@@ -118,9 +118,9 @@ public class CustomArmorRenderer extends RenderPlayer
 
             int renderAmount = currentArmor.getRenderPasses(0);
             ArmorCore ACore = (ArmorCore) currentArmor;
-            for (int currentRender = 0; currentRender < renderAmount; currentRender++)
+            for (int currentRender = 1; currentRender <= renderAmount; currentRender++)
             {
-                this.bindTexture(new ResourceLocation(ACore.getArmorTextureLocation(currentRender)));
+                this.bindTexture(new ResourceLocation(ACore.getArmorTextureLocation(currentArmorItemStack, currentRender)));
                 this.renderPassModel.setLivingAnimations(par1EntityLivingBase, f7, f6, 0);
                 this.renderPassModel.render(par1EntityLivingBase, f7, f6, f4, f3 - f2, f13, f5);
             }

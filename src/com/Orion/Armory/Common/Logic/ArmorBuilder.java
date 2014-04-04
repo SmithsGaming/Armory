@@ -5,46 +5,43 @@ package com.Orion.Armory.Common.Logic;
 *   Created on: 4-4-2014
 */
 
+import com.Orion.Armory.Common.Armor.ArmorCore;
+import com.Orion.Armory.Common.Armor.ArmorModifier;
+import com.Orion.Armory.Common.Armor.ArmorUpgrade;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArmorBuilder
 {
     public ArmorBuilder instance;
-    public ArmorRecipes recipes = new ArmorRecipes();
-
 
     public void init()
     {
        instance = new ArmorBuilder();
-       recipes.initializeRecipes();
     }
 
-
-
-    public class ArmorRecipes
+    public ItemStack buildArmor(ItemStack pBaseArmor, ArmorUpgrade[] pUpgrades, ArmorModifier[] pModifiers)
     {
-        protected List<ArmorRecipe> recipeList = new ArrayList<ArmorRecipe>();
-
-        public void addRecipeToList(ArmorRecipe recipe)
+        if (pBaseArmor.stackTagCompound.getBoolean("CleanArmor") == false)
         {
-            recipeList.add(recipe);
+            return modifyArmor(pBaseArmor, pUpgrades, pModifiers);
         }
 
-        public ArmorRecipe getValidRecipe(ArmorRecipe recipeRequest)
-        {
-            if (recipeList.contains(recipeRequest))
-            {
-                return recipeList.get(recipeList.indexOf(recipeRequest));
-            }
-
-            return null;
-        }
-
-        protected void initializeRecipes()
-        {
-
-        }
+        NBTTagCompound tBaseCompound = pBaseArmor.getTagCompound();
+        tBaseCompound.setBoolean("CleanArmor", false);
 
     }
+
+    public ItemStack modifyArmor(ItemStack pBaseArmor, ArmorUpgrade[] pUpgrades, ArmorModifier[] pModifiers)
+    {
+
+    }
+
+
+
+
+
 }

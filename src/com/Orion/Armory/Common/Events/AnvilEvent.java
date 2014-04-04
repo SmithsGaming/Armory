@@ -4,7 +4,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.AnvilUpdateEvent;
 
-import com.Orion.Armory.Common.Armor.ArmorBase;
 import com.Orion.Armory.Common.Armor.ArmorModifier;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

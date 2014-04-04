@@ -1,5 +1,6 @@
 package com.Orion.Armory.Common.Armor;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.*;
 
 /**
@@ -12,39 +13,18 @@ public class ArmorUpgrade
     public static String iModelTextureLocation;
     public static int iExtraProtection;
     public static int iMaxUpgrade;
+    public static Item iBaseItem;
+    public static int iTargetArmorID;
 
 
-    public ArmorUpgrade(ArmorMaterial pMaterial, String pIconLocation, String pModelTextureLocation, int pExtraProtection, int pMaxUpgrade)
+    public ArmorUpgrade(ArmorMaterial pMaterial, String pIconLocation, String pModelTextureLocation, int pExtraProtection, int pMaxUpgrade, Item pBaseItem, int pTargetArmorID)
     {
         iMaterial = pMaterial;
         iIconLocation = pIconLocation;
         iModelTextureLocation = pModelTextureLocation;
         iExtraProtection = pExtraProtection;
         iMaxUpgrade = pMaxUpgrade;
-    }
-
-    public ArmorMaterial getMaterial()
-    {
-        return iMaterial;
-    }
-
-    public String getIconLocation()
-    {
-        return iIconLocation;
-    }
-
-    public String getModelTextureLocation()
-    {
-        return iModelTextureLocation;
-    }
-
-    public int getExtraProtection()
-    {
-        return iExtraProtection;
-    }
-
-    public int getMaxUpgrade()
-    {
-        return iMaxUpgrade;
+        iBaseItem = pBaseItem;
+        iTargetArmorID = pTargetArmorID;
     }
 }

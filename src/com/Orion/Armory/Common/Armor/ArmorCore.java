@@ -1,6 +1,8 @@
 package com.Orion.Armory.Common.Armor;
 
-import java.security.InvalidParameterException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,16 +22,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 /**
  * Created by Orion on 26-3-2014
  */
-public class ArmorCore extends ItemArmor implements ISpecialArmor
+public abstract class ArmorCore extends ItemArmor implements ISpecialArmor
 {
     public final int armorPart;
-    public IIcon emptyIcon = null;
-    public String[] iconLocations;
-    public String[] modelTextureLocations;
-    public IIcon[] iconTextures;
-    /*
-     * ArmorPart: From top to bottom 0 tp 3 (Helmet = 1, Shoes = 3)
-     */
+
+    //Hashmaps for storing the Icons
+    public HashMap<Integer, IIcon> iBaseIcons = new HashMap<Integer, IIcon>();
+    public HashMap<Integer, IIcon> iUpgradeIcons = new HashMap<Integer, IIcon>();
+    public HashMap<Integer, IIcon> iModifierIcons = new HashMap<Integer, IIcon>();
+
+    //Hashmaps to target the texture files
+    public HashMap<Integer, String[]> iBaseStrings = new HashMap<Integer, String[]>();
+    public HashMap<Integer, String[]> iUpgradeStrings = new HashMap<Integer, String[]>();
+    public HashMap<Integer, String[]> iModifierStrings = new HashMap<Integer, String[]>();
+
     public ArmorCore(ArmorMaterial material, int ArmorPart) {
         super(material, 0, ArmorPart);
         this.setMaxStackSize(1);
@@ -37,6 +43,11 @@ public class ArmorCore extends ItemArmor implements ISpecialArmor
         this.setCreativeTab(ARegistry.tabArmoryArmor);
     }
 
+    //Abstracted methods are implemented in the equivalent armorpiece
+    public abstract String getModifierTextureSuffix(int pModifierID);
+    public abstract String getUpgradeTextureSuffix(int pUpgradeID);
+
+    //Functions for ISpecialArmor.
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
         return null;
@@ -52,80 +63,93 @@ public class ArmorCore extends ItemArmor implements ISpecialArmor
         return;
     }
 
-    @SideOnly(Side.CLIENT)
-    public String addIconToIconTextures(int renderPass, boolean emptyLayer, String texture, String modelTexture)
+
+    //Special registering the individual texture location for both Icon ([0]) and model [1]
+    public void registerBaseTexture(int ID, String[] pBaseTextureLocations)
     {
-        if (iconTextures[renderPass] != null)
+        iBaseStrings.put(ID, pBaseTextureLocations);
+    }
+
+    public void registerUpgradeTexture(int ID, String [] pUpgradeTextureLocations)
+    {
+        iUpgradeStrings.put(ID, pUpgradeTextureLocations);
+    }
+
+    public void registerModifierTexture(int ID, String[] pModifierTextureLocations)
+    {
+        iModifierStrings.put(ID, pModifierTextureLocations);
+    }
+
+    //Function called when registering the item to register the Icons.
+    @Override
+    public void registerIcons(IIconRegister pIconRegister)
+    {
+        //Adding the base icons
+        Iterator tBaseIter = iBaseStrings.entrySet().iterator();
+        while (tBaseIter.hasNext())
         {
-            throw new InvalidParameterException("The given renderPass already has a Icon connected!");
+            Map.Entry<Integer, String[]> tCurrentTexture = (Map.Entry<Integer, String[]>) tBaseIter.next();
+            iBaseIcons.put(tCurrentTexture.getKey(), pIconRegister.registerIcon(tCurrentTexture.getValue()[0]));
         }
-        if (emptyLayer == true)
+
+        //Adding the upgrade icons
+        Iterator tUpgradeIter = iUpgradeStrings.entrySet().iterator();
+        while (tUpgradeIter.hasNext())
         {
-            iconTextures[renderPass] = emptyIcon;
-            return "";
+            Map.Entry<Integer, String[]> tCurrentTexture = (Map.Entry<Integer, String[]>) tUpgradeIter.next();
+            iUpgradeIcons.put(tCurrentTexture.getKey(), pIconRegister.registerIcon(tCurrentTexture.getValue()[0]));
         }
-        iconLocations[renderPass] = texture;
-        modelTextureLocations[renderPass] = modelTexture;
-        return texture;
+
+        //Adding the modifier icons
+        Iterator tModifierIter = iModifierStrings.entrySet().iterator();
+        while (tModifierIter.hasNext())
+        {
+            Map.Entry<Integer, String[]> tCurrentTexture = (Map.Entry<Integer, String[]>) tModifierIter.next();
+            iModifierIcons.put(tCurrentTexture.getKey(), pIconRegister.registerIcon(tCurrentTexture.getValue()[0]));
+        }
+
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean requiresMultipleRenderPasses()
+    public IIcon getIcon (ItemStack stack, int renderPass)
     {
-        return true;
-    }
+        NBTTagCompound tItemCompound = stack.getTagCompound();
+        NBTTagCompound tRenderCompound = tItemCompound.getCompoundTag("RenderCompound");
+        NBTTagCompound tCurrentRenderCompound = tRenderCompound.getCompoundTag("RenderPass " + renderPass);
+        String tIconLocation = tCurrentRenderCompound.getString("IconLocation");
+        int tIconID = tCurrentRenderCompound.getInteger("IconID");
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(ItemStack stack, int renderPass)
-    {
-        if (renderPass >(iconTextures.length))
-        {
-            throw new IndexOutOfBoundsException("To much renderpasses for the given armor! Please register a IIcon for this layer!");
+        if (tIconLocation.equals("Base")) {
+            return iBaseIcons.get(tIconID);
+        } else if (tIconLocation.equals("Upgrade")) {
+            return iUpgradeIcons.get(tIconID);
+        } else if (tIconLocation.equals("Modifier")) {
+            return iModifierIcons.get(tIconID);
         }
 
-        return iconTextures[renderPass];
+        return null;
     }
 
-    @Override
     @SideOnly(Side.CLIENT)
-    public int getRenderPasses(int metadata)
+    public String getArmorTextureLocation(ItemStack stack, int renderPass)
     {
-        return iconTextures.length;
-    }
+        NBTTagCompound tItemCompound = stack.getTagCompound();
+        NBTTagCompound tRenderCompound = tItemCompound.getCompoundTag("RenderCompound");
+        NBTTagCompound tCurrentRenderCompound = tRenderCompound.getCompoundTag("RenderPass " + renderPass);
+        String tIconLocation = tCurrentRenderCompound.getString("IconLocation");
+        int tIconID = tCurrentRenderCompound.getInteger("TextureID");
 
-    @Override
-    public void registerIcons (IIconRegister iconRegister)
-    {
-        iconTextures = new IIcon[iconLocations.length];
-
-        for (int i=1; i<=iconLocations.length; i++)
-        {
-            IIcon currentIcon;
-            currentIcon = iconRegister.registerIcon(iconLocations[i-1]);
-
-            iconTextures[i-1] = currentIcon;
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
-    {
-        if (par1ItemStack.stackTagCompound == null)
-        {
-            par1ItemStack.stackTagCompound = new NBTTagCompound();
+        if (tIconLocation.equals("Base")) {
+            return iBaseStrings.get(tIconID)[1];
+        } else if (tIconLocation.equals("Upgrade")) {
+            return iUpgradeStrings.get(tIconID)[1];
+        } else if (tIconLocation.equals("Modifier")) {
+            return iModifierStrings.get(tIconID)[1];
         }
 
-        par1ItemStack.stackTagCompound.setInteger("currentRenderPass", par2);
-        return 16777215;
-    }
 
-    @SideOnly(Side.CLIENT)
-    public String getArmorTextureLocation(int RenderPass)
-    {
-        return modelTextureLocations[RenderPass];
+        return "";
     }
 
 }

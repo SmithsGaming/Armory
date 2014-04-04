@@ -1,20 +1,16 @@
 package com.Orion.Armory.Common;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import net.minecraft.init.Items;
+import com.Orion.Armory.Common.Armor.ArmorCore;
+
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.Orion.Armory.Client.CreativeTab.ArmorTab;
-import com.Orion.Armory.Common.Armor.ArmorBase;
-import com.Orion.Armory.Common.Armor.ArmorModifier;
-import com.Orion.Armory.Common.Armor.ArmorUpgrade;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * Created by Orion on 26-3-2014
@@ -22,35 +18,62 @@ import cpw.mods.fml.common.registry.GameRegistry;
  */
 public class ARegistry
 {
+    //instance and logger
     public static ARegistry instance = new ARegistry();
     public static Logger logger = LogManager.getLogger("Armory");
 
     // Tabs for the creative inventory
     public static ArmorTab tabArmoryArmor;
-    public static ArmorTab tabArmoryComponents;
 
-    /*Function regarding the management of these arrays and hashmaps*/
+    //Values for storing all the different parts and materials
+    public HashMap<ItemArmor.ArmorMaterial, boolean[]> armorMaterials = new HashMap<ItemArmor.ArmorMaterial, boolean[]>();
+    public String[] armorUpgrades = {"topHead", "earProtection", "shoulderPads", "bodyProtection", "backProtection", "frontLegProtection", "backLegProtection", "shoeProtection"};
+    public String[] armorModifiers = {"helmetAquaAffinity", "helmetAquaBreathing", "helmetNightSight", "helmetThorns", "helmetAutoRepair", "helmetReinforced", "helmetElectric",
+            "chestplateStrength", "chestplateHaste", "chestplateFlying", "chestplateThorns","chestplateAutoRepair", "chestplateReinforced", "chestplateElectric",
+            "leggingsSpeed", "leggingsJumpAssist", "leggingsUpHillAssist", "leggingsThorns", "leggingsAutoRepair", "leggingsReinforced", "leggingsElectric",
+            "shoesFallAssist", "shoesSwimAssist", "shoesAutoRepair", "shoesReinforced", "shoesElectric"};
 
-    /*Current Function adds
-     *
-     */
-    public static void addTestArmor()
+    //Arraylist for storing all the basic tool mappings
+    ArrayList<ArmorCore> armorMappings = new ArrayList<ArmorCore>();
+
+    public ARegistry()
     {
-        ItemArmor.ArmorMaterial testMaterial = EnumHelper.addArmorMaterial("test", 100, new int[]{3,7,6,4}, 25);
-        ArmorUpgrade testUpgrade = new ArmorUpgrade(testMaterial, "tconstruct-armory:multiarmor/item/upgrades/testupgrade", "tconstruct-armory:textures/models/multiarmor/upgrades/shoulder.png", 4, 1);
-       // AUpgradeRepo.shoulderPads = testUpgrade;
-
-        ArmorModifier testModifier = new ArmorModifier(Items.redstone, "tconstruct-armory:multiarmor/item/modifiers/redstone", "tconstruct-armory:textures/models/multiarmor/modifiers/redstone.png", "Speed", 1);
-        //AModifierRepo.speedUpgrade = testModifier;
-
-        ArmorUpgrade[] upgrades = new ArmorUpgrade[1];
-        upgrades[0] = testUpgrade;
-        ArmorModifier[] modifiers = new ArmorModifier[1];
-        modifiers[0] = testModifier;
-
-        ArmorBase testArmor = (ArmorBase) new ArmorBase(testMaterial, 1, 100, "tconstruct-armory:multiarmor/item/base/chainmail_chestplate", "tconstruct-armory:textures/models/multiarmor/base/test_armor_model.png",Arrays.asList(upgrades), Arrays.asList(modifiers)).setUnlocalizedName("Armory.ArmorTest");
-       // AArmorRepo.testArmor = testArmor;
-
-        GameRegistry.registerItem(testArmor, "Armorytest");
+        this.initializeMaterials();
     }
+
+    protected void initializeMaterials()
+    {
+        this.addMaterial("Iron", new boolean[]{true, true, true, true, true, true, true, true, true});
+        this.addMaterial("Steel", new boolean[]{true, true, true, true, true, true, true, true, true});
+        this.addMaterial("Alumite", new boolean[]{true, true, true, true, true, true, true, true, true});
+        this.addMaterial("Bronze", new boolean[]{true, true, true, true, true, true, true, true, true});
+        this.addMaterial("Ardite", new boolean[]{false, true, true, true, true, true, true, true, true});
+        this.addMaterial("Cobalt", new boolean[]{false, true, true, false, true, true, true, true, false});
+        this.addMaterial("Obsidian", new boolean[]{false, false, true, true, false, false, false, false, false});
+        this.addMaterial("Manyullyn", new boolean[]{false, true, false, false, true, true, true, true, false});
+    }
+
+
+    public ArrayList<ArmorCore> getAllArmorMappings()
+    {
+        return armorMappings;
+    }
+
+    public void addArmorMapping(ArmorCore pCore)
+    {
+        armorMappings.add(pCore);
+    }
+
+    public HashMap<ItemArmor.ArmorMaterial, boolean[]> getArmorMaterials()
+    {
+        return armorMaterials;
+    }
+
+    public void addMaterial(String pMaterialName, boolean[] activeParts)
+    {
+        ItemArmor.ArmorMaterial tArmorMaterial = EnumHelper.addArmorMaterial(pMaterialName, 0, new int[]{0,0,0,0}, 0);
+        armorMaterials.put(tArmorMaterial, activeParts);
+    }
+
+
 }
