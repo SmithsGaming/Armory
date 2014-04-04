@@ -1,25 +1,21 @@
 package com.Orion.Armory.Common.Armor;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.entity.RenderBiped;
-import net.minecraft.client.renderer.entity.RenderPlayer;
+import java.security.InvalidParameterException;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.ISpecialArmor;
-import tconstruct.library.TConstructRegistry;
 
-import java.security.InvalidParameterException;
-import java.util.Iterator;
-import java.util.Map;
+import com.Orion.Armory.Common.ARegistry;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Created by Orion on 26-3-2014
@@ -38,7 +34,7 @@ public class ArmorCore extends ItemArmor implements ISpecialArmor
         super(material, 0, ArmorPart);
         this.setMaxStackSize(1);
         this.armorPart = ArmorPart;
-        this.setCreativeTab(TConstructRegistry.toolTab);
+        this.setCreativeTab(ARegistry.tabArmoryArmor);
     }
 
     @Override
