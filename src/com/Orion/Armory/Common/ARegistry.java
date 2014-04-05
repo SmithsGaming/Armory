@@ -1,7 +1,6 @@
 package com.Orion.Armory.Common;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 import com.Orion.Armory.Common.Armor.ArmorCore;
 
@@ -26,7 +25,7 @@ public class ARegistry
     public static ArmorTab tabArmoryArmor;
 
     //Values for storing all the different parts and materials
-    public HashMap<ItemArmor.ArmorMaterial, boolean[]> armorMaterials = new HashMap<ItemArmor.ArmorMaterial, boolean[]>();
+    public HashMap<String, boolean[]> armorMaterials = new HashMap<String, boolean[]>();
     public String[] armorUpgrades = {"topHead", "earProtection", "shoulderPads", "bodyProtection", "backProtection", "frontLegProtection", "backLegProtection", "shoeProtection"};
     public String[] armorModifiers = {"helmetAquaAffinity", "helmetAquaBreathing", "helmetNightSight", "helmetThorns", "helmetAutoRepair", "helmetReinforced", "helmetElectric",
             "chestplateStrength", "chestplateHaste", "chestplateFlying", "chestplateThorns","chestplateAutoRepair", "chestplateReinforced", "chestplateElectric",
@@ -64,16 +63,57 @@ public class ARegistry
         armorMappings.add(pCore);
     }
 
-    public HashMap<ItemArmor.ArmorMaterial, boolean[]> getArmorMaterials()
+    public HashMap<String, boolean[]> getArmorMaterials()
     {
         return armorMaterials;
     }
 
     public void addMaterial(String pMaterialName, boolean[] activeParts)
     {
-        ItemArmor.ArmorMaterial tArmorMaterial = EnumHelper.addArmorMaterial(pMaterialName, 0, new int[]{0,0,0,0}, 0);
-        armorMaterials.put(tArmorMaterial, activeParts);
+        armorMaterials.put(pMaterialName, activeParts);
     }
 
+    public int getMaterialID(String pMaterialName)
+    {
+        Iterator iter = armorMaterials.entrySet().iterator();
+        int tMaterialID = -1;
+
+        while (iter.hasNext())
+        {
+            tMaterialID++;
+            Map.Entry<String, boolean[]> tCurrentMaterial = (Map.Entry<String, boolean[]>) iter.next();
+
+            if (tCurrentMaterial.getKey() == pMaterialName)
+            {
+                return tMaterialID;
+            }
+        }
+
+        return -1;
+    }
+
+    public int getUpgradeTextureID(String pMaterialName, String pUpgradeName)
+    {
+        int tUpgradeID = Arrays.asList(armorUpgrades).indexOf(pUpgradeName)+1;
+        int tMaterialID = getMaterialID(pMaterialName);
+
+        if ((tUpgradeID == -1) || (tMaterialID == -1)) {
+            return -1;
+        }
+
+        return ((tMaterialID) * this.armorUpgrades.length + tUpgradeID);
+    }
+
+    public int getModifierTextureID(String pMaterialName, String pModifierName)
+    {
+        int tModifierID = Arrays.asList(armorModifiers).indexOf(pModifierName)+1;
+        int tMaterialID = getMaterialID(pMaterialName);
+
+        if ((tModifierID == -1) || (tMaterialID == -1)) {
+            return -1;
+        }
+
+        return ((tMaterialID)*this.armorModifiers.length + tModifierID);
+    }
 
 }

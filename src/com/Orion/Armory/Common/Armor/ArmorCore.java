@@ -148,7 +148,6 @@ public abstract class ArmorCore extends ItemArmor implements ISpecialArmor
             return iModifierStrings.get(tIconID)[1];
         }
 
-
         return "";
     }
 

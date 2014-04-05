@@ -29,18 +29,18 @@ public class AClientRegistry extends ARegistry
             {
                 tMaterialCount++;
 
-                Map.Entry<ItemArmor.ArmorMaterial, boolean[]> tMaterialEntry = (Map.Entry<ItemArmor.ArmorMaterial, boolean[]>) iter.next();
+                Map.Entry<String, boolean[]> tMaterialEntry = (Map.Entry<String, boolean[]>) iter.next();
                 if (tMaterialEntry.getValue()[0]==true)
                 {
-                    String tBaseTextureLocations[] = {"tconstruct-armory:multiamrmor/item/base/" + tMaterialEntry.getKey().name() + "_Base", "tconstruct-armory:models/multiamrmor/base/" + tMaterialEntry.getKey().name() + "_Base"};
-                    tCore.registerBaseTexture(tMaterialCount, tBaseTextureLocations);
+                    String tBaseTextureLocations[] = {"tconstruct-armory:multiamrmor/item/base/" + tMaterialEntry.getKey() + "_Base", "tconstruct-armory:models/multiamrmor/base/" + tMaterialEntry.getKey() + "_Base"};
+                    tCore.registerBaseTexture(tMaterialCount-1, tBaseTextureLocations);
                 }
                 for(int i=1; i < tMaterialEntry.getValue().length; i++)
                 {
                     String suffix = tCore.getUpgradeTextureSuffix(i-1);
                     if (!(suffix == "") && (tMaterialEntry.getValue()[i] == true))
                     {
-                        String tUpgradeTextureLocations[] = {"tconstruct-armory:multiamrmor/item/upgrades/" + tMaterialEntry.getKey().name() + suffix, "tconstruct-armory:models/multiamrmor/upgrades/" + tMaterialEntry.getKey().name() + suffix};
+                        String tUpgradeTextureLocations[] = {"tconstruct-armory:multiamrmor/item/upgrades/" + tMaterialEntry.getKey() + suffix, "tconstruct-armory:models/multiamrmor/upgrades/" + tMaterialEntry.getKey() + suffix};
                         tCore.registerUpgradeTexture((tMaterialCount-1)*this.armorUpgrades.length + i, tUpgradeTextureLocations);
                     }
                 }
@@ -49,7 +49,7 @@ public class AClientRegistry extends ARegistry
                    String suffix = tCore.getModifierTextureSuffix(i-1);
                    if (!(suffix == ""))
                    {
-                       String tModifierTextureLocations[] = {"tconstruct-armory:multiamrmor/item/modifiers/" + tMaterialEntry.getKey().name() + suffix, "tconstruct-armory:models/multiamrmor/modifiers/" + tMaterialEntry.getKey().name() + suffix};
+                       String tModifierTextureLocations[] = {"tconstruct-armory:multiamrmor/item/modifiers/" + tMaterialEntry.getKey() + suffix, "tconstruct-armory:models/multiamrmor/modifiers/" + tMaterialEntry.getKey() + suffix};
                        tCore.registerModifierTexture((tMaterialCount-1)*this.armorModifiers.length + i, tModifierTextureLocations);
                    }
                 }
