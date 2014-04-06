@@ -24,8 +24,9 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public abstract class ArmorCore extends ItemArmor implements ISpecialArmor
 {
-    public final int armorPart;
-    public static String iMaterialName;
+    //TODO: Implement generic functions for creating the texture suffixes, this to make the texture system more flexible.
+
+    public final int iArmorPart;
 
     //Hashmaps for storing the Icons
     public HashMap<Integer, IIcon> iBaseIcons = new HashMap<Integer, IIcon>();
@@ -37,19 +38,18 @@ public abstract class ArmorCore extends ItemArmor implements ISpecialArmor
     public HashMap<Integer, String[]> iUpgradeStrings = new HashMap<Integer, String[]>();
     public HashMap<Integer, String[]> iModifierStrings = new HashMap<Integer, String[]>();
 
-    public ArmorCore(String pMaterialName, int ArmorPart) {
-        super(ArmorMaterial.DIAMOND, 0, ArmorPart);
+    public ArmorCore(int pArmorPart) {
+        super(ARegistry.iArmorMaterial, 0, pArmorPart);
         this.setMaxStackSize(1);
-        this.armorPart = ArmorPart;
-        this.setCreativeTab(ARegistry.tabArmoryArmor);
-        iMaterialName = pMaterialName;
+        this.iArmorPart = pArmorPart;
+        this.setCreativeTab(ARegistry.iTabArmoryArmor);
     }
 
     //Abstracted methods are implemented in the equivalent armorpiece
     public abstract String getModifierTextureSuffix(int pModifierID);
     public abstract String getUpgradeTextureSuffix(int pUpgradeID);
 
-    //Functions for ISpecialArmor.
+    //Functions for ISpecialArmor. TODO: Needs to be implemented.
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
         return null;
@@ -66,7 +66,7 @@ public abstract class ArmorCore extends ItemArmor implements ISpecialArmor
     }
 
 
-    //Special registering the individual texture location for both Icon ([0]) and model [1]
+    //Special functions for the registering of the individual texture location for both Icon ([0]) and model [1]
     public void registerBaseTexture(int ID, String[] pBaseTextureLocations)
     {
         iBaseStrings.put(ID, pBaseTextureLocations);

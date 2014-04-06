@@ -127,7 +127,7 @@ public class CustomArmorRenderer extends RenderPlayer
         //}
         //catch (Exception exception)
         //{
-        //    logger.error("Couldn\'t render entity", exception);
+        //    iLogger.error("Couldn\'t render entity", exception);
         //}
     }
 }

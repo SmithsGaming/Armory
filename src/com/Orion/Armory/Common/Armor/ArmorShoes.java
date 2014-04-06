@@ -8,7 +8,7 @@ package com.Orion.Armory.Common.Armor;
 public class ArmorShoes extends ArmorCore
 {
     public ArmorShoes(ArmorMaterial material, int ArmorPart) {
-        super(material, ArmorPart);
+        super(ArmorPart);
     }
 
     @Override

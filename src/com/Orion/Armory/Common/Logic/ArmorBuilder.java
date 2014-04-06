@@ -11,21 +11,22 @@ import net.minecraft.item.ItemStack;
 
 public class ArmorBuilder
 {
-    public ArmorBuilder instance;
+    //TODO: Create the build/modify functions
+    private static ArmorBuilder instance;
 
-    public void init()
+    public static void init()
     {
        instance = new ArmorBuilder();
     }
 
     public ItemStack buildArmor(ItemStack pBaseArmor, ArmorUpgrade[] pUpgrades, ArmorModifier[] pModifiers)
     {
-
+        return null;
     }
 
     public ItemStack modifyArmor(ItemStack pBaseArmor, ArmorUpgrade[] pUpgrades, ArmorModifier[] pModifiers)
     {
-
+        return null;
     }
 
 

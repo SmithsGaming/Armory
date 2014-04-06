@@ -8,8 +8,8 @@ package com.Orion.Armory.Common.Armor;
 public class ArmorHelmet extends ArmorCore
 
 {
-    public ArmorHelmet(ArmorMaterial material, int ArmorPart) {
-        super(material, ArmorPart);
+    public ArmorHelmet(int ArmorPart) {
+        super(ArmorPart);
     }
 
     public String getModifierTextureSuffix(int pModifierID)

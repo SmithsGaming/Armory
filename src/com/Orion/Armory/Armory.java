@@ -28,7 +28,6 @@ public class Armory
     @Mod.EventHandler
     public void preInit (FMLPreInitializationEvent event)
     {
-        ARegistry.addTestArmor();
         proxy.registerEvents();
     }
 }

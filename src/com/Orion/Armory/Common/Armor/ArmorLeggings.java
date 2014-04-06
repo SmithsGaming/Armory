@@ -1,15 +1,15 @@
 package com.Orion.Armory.Common.Armor;
 /*
-*   ArmorLeggins
+*   ArmorLeggings
 *   Created by: Orion
 *   Created on: 4-4-2014
 */
 
-public class ArmorLeggins extends ArmorCore
+public class ArmorLeggings extends ArmorCore
 {
 
-    public ArmorLeggins(ArmorMaterial material, int ArmorPart) {
-        super(material, ArmorPart);
+    public ArmorLeggings(int ArmorPart) {
+        super(ArmorPart);
     }
 
     @Override

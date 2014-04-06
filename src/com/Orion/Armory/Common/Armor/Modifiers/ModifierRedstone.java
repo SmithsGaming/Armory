@@ -12,13 +12,15 @@ import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
+import java.util.ArrayList;
+
 public class ModifierRedstone extends ArmorModifier {
     public ModifierRedstone() {
-        super("Armor.Chest.Redstone", "Haste", "", 1, Items.redstone);
+        super("Armor.Chest.Redstone", "Haste", "", 1, 500, 100, Items.redstone, new ArrayList<Integer>(), new ArrayList<Integer>());
     }
 
     @Override
-    public void applyEffectToArmorPiece(ArmorCore pArmorPiece) {
+    public void applyEffectToArmorPiece(ArmorCore pArmorPiece, int pModifierLevel) {
         //For this modifier this does nothing as it gives an effect to the player
         return;
     }
