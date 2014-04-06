@@ -1,6 +1,6 @@
 package com.Orion.Armory.Common;
 
-import com.Orion.Armory.Common.Armor.ArmorModifier;
+import com.Orion.Armory.Common.Armor.Modifiers.ArmorModifier;
 //import tconstruct.library.armor.ArmorModTypeFilter;
 
 /**

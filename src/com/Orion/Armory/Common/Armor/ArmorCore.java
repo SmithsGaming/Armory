@@ -25,6 +25,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public abstract class ArmorCore extends ItemArmor implements ISpecialArmor
 {
     public final int armorPart;
+    public static String iMaterialName;
 
     //Hashmaps for storing the Icons
     public HashMap<Integer, IIcon> iBaseIcons = new HashMap<Integer, IIcon>();
@@ -36,11 +37,12 @@ public abstract class ArmorCore extends ItemArmor implements ISpecialArmor
     public HashMap<Integer, String[]> iUpgradeStrings = new HashMap<Integer, String[]>();
     public HashMap<Integer, String[]> iModifierStrings = new HashMap<Integer, String[]>();
 
-    public ArmorCore(ArmorMaterial material, int ArmorPart) {
-        super(material, 0, ArmorPart);
+    public ArmorCore(String pMaterialName, int ArmorPart) {
+        super(ArmorMaterial.DIAMOND, 0, ArmorPart);
         this.setMaxStackSize(1);
         this.armorPart = ArmorPart;
         this.setCreativeTab(ARegistry.tabArmoryArmor);
+        iMaterialName = pMaterialName;
     }
 
     //Abstracted methods are implemented in the equivalent armorpiece

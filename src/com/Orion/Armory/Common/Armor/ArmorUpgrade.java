@@ -11,49 +11,25 @@ import net.minecraftforge.common.util.EnumHelper;
  */
 public class ArmorUpgrade
 {
-    public static String iMaterial;
-    public static String iName;
-    public static int iExtraProtection;
-    public static int iMaxUpgrade;
-    public static Item iBaseItem;
+    public static int iMaterialID;
     public static int iTargetArmorID;
+    public static int iUpgradeLocation;
+    public static String iInternalName;
+    public static String iVisibleName;
+    public static String iVisibleNameColor;
+    public static float iProtection;
+    public static int iMaxUpgrades;
 
-
-    public ArmorUpgrade(String pMaterial,String pName, int pExtraProtection, int pMaxUpgrade, Item pBaseItem, int pTargetArmorID)
+    //Constructors
+    public ArmorUpgrade(int pMaterialID, int pTargetArmorID, int pUpgradeLocation, String pInternalName, String pVisibleName, String pVisibleNameColor, float pProtection, int pMaxUpgrades)
     {
-        iMaterial = pMaterial;
-        iName = pName;
-        iExtraProtection = pExtraProtection;
-        iMaxUpgrade = pMaxUpgrade;
-        iBaseItem = pBaseItem;
+        iMaterialID = pMaterialID;
         iTargetArmorID = pTargetArmorID;
+        iUpgradeLocation = pUpgradeLocation;
+        iInternalName = pInternalName;
+        iVisibleName = pVisibleName;
+        iVisibleNameColor = pVisibleNameColor;
+        iProtection = pProtection;
+        iMaxUpgrades = pMaxUpgrades;
     }
-
-    public ArmorUpgrade(NBTTagCompound pBaseCompound)
-    {
-        iMaterial = pBaseCompound.getString("Material");
-        iName = pBaseCompound.getString("Name");
-        iExtraProtection = pBaseCompound.getInteger("ExtraProtection");
-        iMaxUpgrade = pBaseCompound.getInteger("MaxUpgrades");
-        iBaseItem = Item.getItemById(pBaseCompound.getInteger("BaseItemID"));
-        iTargetArmorID = pBaseCompound.getInteger(("TargetArmorID"));
-    }
-
-    public NBTTagCompound createNBTTagCompound()
-    {
-        NBTTagCompound tBaseCompound = new NBTTagCompound();
-
-        //Adding the Upgrade data to its compound;
-        tBaseCompound.setString("Material", iMaterial);
-        tBaseCompound.setString("Name", iName);
-        tBaseCompound.setInteger("ExtraProtection", iExtraProtection);
-        tBaseCompound.setInteger("MaxUpgrades", iMaxUpgrade);
-        tBaseCompound.setInteger("BaseItemID", Item.getIdFromItem(iBaseItem));
-        tBaseCompound.setInteger("TargetArmorID", iTargetArmorID);
-
-        //Returning the base compound
-        return tBaseCompound;
-    }
-
-
 }

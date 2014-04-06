@@ -4,8 +4,8 @@ import java.util.*;
 
 import com.Orion.Armory.Common.Armor.ArmorCore;
 
-import net.minecraft.item.ItemArmor;
-import net.minecraftforge.common.util.EnumHelper;
+import com.Orion.Armory.Common.Armor.Modifiers.ArmorModifier;
+import com.Orion.Armory.Common.Armor.ArmorUpgrade;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,6 +35,10 @@ public class ARegistry
     //Arraylist for storing all the basic tool mappings
     ArrayList<ArmorCore> armorMappings = new ArrayList<ArmorCore>();
 
+    //ArrayList for storing all the modifiers and upgrades
+    ArrayList<ArmorUpgrade> armorUpgrades = new ArrayList<ArmorUpgrade>();
+    ArrayList<ArmorModifier> armorModifiers = new ArrayList<ArmorModifier>();
+
     public ARegistry()
     {
         this.initializeMaterials();
@@ -42,14 +46,14 @@ public class ARegistry
 
     protected void initializeMaterials()
     {
-        this.addMaterial("Iron", new boolean[]{true, true, true, true, true, true, true, true, true});
-        this.addMaterial("Steel", new boolean[]{true, true, true, true, true, true, true, true, true});
-        this.addMaterial("Alumite", new boolean[]{true, true, true, true, true, true, true, true, true});
-        this.addMaterial("Bronze", new boolean[]{true, true, true, true, true, true, true, true, true});
-        this.addMaterial("Ardite", new boolean[]{false, true, true, true, true, true, true, true, true});
-        this.addMaterial("Cobalt", new boolean[]{false, true, true, false, true, true, true, true, false});
-        this.addMaterial("Obsidian", new boolean[]{false, false, true, true, false, false, false, false, false});
-        this.addMaterial("Manyullyn", new boolean[]{false, true, false, false, true, true, true, true, false});
+        this.registerMaterial("Iron", new boolean[]{true, true, true, true, true, true, true, true, true});
+        this.registerMaterial("Steel", new boolean[]{true, true, true, true, true, true, true, true, true});
+        this.registerMaterial("Alumite", new boolean[]{true, true, true, true, true, true, true, true, true});
+        this.registerMaterial("Bronze", new boolean[]{true, true, true, true, true, true, true, true, true});
+        this.registerMaterial("Ardite", new boolean[]{false, true, true, true, true, true, true, true, true});
+        this.registerMaterial("Cobalt", new boolean[]{false, true, true, false, true, true, true, true, false});
+        this.registerMaterial("Obsidian", new boolean[]{false, false, true, true, false, false, false, false, false});
+        this.registerMaterial("Manyullyn", new boolean[]{false, true, false, false, true, true, true, true, false});
     }
 
 
@@ -68,7 +72,7 @@ public class ARegistry
         return armorMaterials;
     }
 
-    public void addMaterial(String pMaterialName, boolean[] activeParts)
+    public void registerMaterial(String pMaterialName, boolean[] activeParts)
     {
         armorMaterials.put(pMaterialName, activeParts);
     }
@@ -90,6 +94,11 @@ public class ARegistry
         }
 
         return -1;
+    }
+
+    public void registerModifier(ArmorModifier pModifier)
+    {
+        armorModifiers.add(pModifier);
     }
 
     public int getUpgradeTextureID(String pMaterialName, String pUpgradeName)
@@ -115,5 +124,6 @@ public class ARegistry
 
         return ((tMaterialID)*this.armorModifiers.length + tModifierID);
     }
+
 
 }
