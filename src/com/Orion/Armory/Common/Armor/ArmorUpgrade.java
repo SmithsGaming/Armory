@@ -19,6 +19,7 @@ public class ArmorUpgrade
     public static String iInternalName;
     public static String iVisibleName;
     public static String iVisibleNameColor;
+    public static String iTextureSuffix;
     public static float iProtection;
     public static int iExtraDurability;
     public static int iMaxUpgrades;

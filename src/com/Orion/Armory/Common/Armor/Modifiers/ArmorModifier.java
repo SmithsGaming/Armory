@@ -18,6 +18,7 @@ public abstract class ArmorModifier
     public String iInternalName;
     public String iVisibleName;
     public String iVisibleNameColor;
+    public String iTextureSuffix;
     public int iTargetArmorID;
     public int iMaxModifications;
     public int iItemsPerLevel = -1;
@@ -31,11 +32,12 @@ public abstract class ArmorModifier
 
     //Constructors
     //This is used for modifiers who are a one time appliers
-    public ArmorModifier(String pInternalName, String pVisibleName, String pVisibleNameColor, int pTargetArmorID, int pMaxModifications, Item pBaseItem, ArrayList<Integer> pRequiredModifiers, ArrayList<Integer> pModifierBlacklist)
+    public ArmorModifier(String pInternalName, String pVisibleName, String pVisibleNameColor, String pTextureSuffix, int pTargetArmorID, int pMaxModifications, Item pBaseItem, ArrayList<Integer> pRequiredModifiers, ArrayList<Integer> pModifierBlacklist)
     {
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
         iVisibleNameColor = pVisibleNameColor;
+        iTextureSuffix = pTextureSuffix;
         iTargetArmorID = pTargetArmorID;
         iMaxModifications = pMaxModifications;
         iBaseItem = pBaseItem;
@@ -98,6 +100,34 @@ public abstract class ArmorModifier
         }
 
         this.addModifierToBlacklist(tModifierID);
+    }
+
+    public void removeModifierFromRequirements(int pModifierID) { iRequiredModifiers.remove(pModifierID);}
+
+    public void removeModifierFromRequirements(ArmorModifier pModifier)
+    {
+        int tModifierID = ARegistry.iInstance.getModifierID(pModifier);
+
+        if (tModifierID == -1)
+        {
+            throw new InvalidParameterException("The given modifier: " + pModifier.iVisibleName + ", is not registered with the Armory registry. Please register your modifiers first.");
+        }
+
+        this.removeModifierFromRequirements(tModifierID);
+    }
+
+    public void removeModifierFromBlacklist(int pModiferID) { iModifierBlackList.remove(pModiferID);}
+
+    public void removeModifierFromBlacklist(ArmorModifier pModifier)
+    {
+        int tModifierID = ARegistry.iInstance.getModifierID(pModifier);
+
+        if (tModifierID == -1)
+        {
+            throw new InvalidParameterException("The given modifier: " + pModifier.iVisibleName + ", is not registered with the Armory registry. Please register your modifiers first.");
+        }
+
+        this.removeModifierFromBlacklist(tModifierID);
     }
 
     //Has to be set before using to validate crafting:
