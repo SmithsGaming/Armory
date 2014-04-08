@@ -5,10 +5,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class ArmorTab extends CreativeTabs{
+public class ComponentsTab extends CreativeTabs{
 
-	public ArmorTab() {
-		super(CreativeTabs.getNextID(), "Armory - Armor Tab");
+	public ComponentsTab() {
+		super(CreativeTabs.getNextID(), "Armory - Components Tab");
 	}
 
 	@Override

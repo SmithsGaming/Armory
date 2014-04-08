@@ -6,23 +6,41 @@ package com.Orion.Armory.Common.Logic;
 */
 
 import com.Orion.Armory.Armory;
+import com.Orion.Armory.Client.AClientRegistry;
 import com.Orion.Armory.Common.ARegistry;
+import com.Orion.Armory.Common.Armor.ArmorCore;
 import com.Orion.Armory.Common.Armor.ArmorMaterial;
 import com.Orion.Armory.Common.Armor.ArmorUpgrade;
+import com.Orion.Armory.Common.Events.RegisterArmorEvent;
+import com.Orion.Armory.Common.Events.RegisterMaterialsEvent;
+import com.Orion.Armory.Common.Events.RegisterModifiersEvent;
+import com.Orion.Armory.Common.Events.RegisterUpgradesEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
 
 public class ArmoryInitializer
 {
 
-    public static void Initialize()
+    public static void Initialize(Side pSide)
     {
         if (Armory.instance.iIsInitialized)
         {
             return;
         }
 
+        registerMaterials();
+        registerUpgrades();
+        registerModifiers();
+        registerArmors();
 
+        if (pSide == Side.CLIENT) {
+            registerRenderMappings();
+        }
+
+        prepareGame();
     }
 
     private static void registerMaterials()
@@ -35,6 +53,8 @@ public class ArmoryInitializer
         ARegistry.iInstance.registerMaterial(new ArmorMaterial("tconstruct.Cobalt", "Cobalt", "", true, new ArrayList<Boolean>()), true);
         ARegistry.iInstance.registerMaterial(new ArmorMaterial("vanilla.Obsidian", "Obsidian", "", false, new ArrayList<Boolean>()), true);
         ARegistry.iInstance.registerMaterial(new ArmorMaterial("tconstruct.Manyullyn", "Manyullun", "", false, new ArrayList<Boolean>()), true);
+
+        MinecraftForge.EVENT_BUS.post(new RegisterMaterialsEvent());
     }
 
     private static void registerUpgrades()
@@ -47,6 +67,8 @@ public class ArmoryInitializer
         registerFrontLegProtection();
         registerBackLegProtection();
         registerShoeProtection();
+
+        MinecraftForge.EVENT_BUS.post(new RegisterUpgradesEvent());
     }
 
     private static void registerTopHead()
@@ -223,16 +245,34 @@ public class ArmoryInitializer
 
     private static void registerModifiers()
     {
+        //TODO: Create all the modifiers
 
+        MinecraftForge.EVENT_BUS.post(new RegisterModifiersEvent());
     }
 
     private static void registerArmors()
     {
+        ArmorCore tHelmet = new ArmorCore(0);
+        ArmorCore tChestPlate = new ArmorCore(1);
+        ArmorCore tLeggings = new ArmorCore(2);
+        ArmorCore tShoes = new ArmorCore(3);
 
+        ARegistry.iInstance.addArmorMapping(tHelmet);
+        ARegistry.iInstance.addArmorMapping(tChestPlate);
+        ARegistry.iInstance.addArmorMapping(tLeggings);
+        ARegistry.iInstance.addArmorMapping(tShoes);
+
+        MinecraftForge.EVENT_BUS.post(new RegisterArmorEvent());
     }
 
+    @SideOnly(Side.CLIENT)
     private static void registerRenderMappings()
     {
+        AClientRegistry.registerRenderMappings();
+    }
 
+    private static void prepareGame()
+    {
+        //TODO: Implement registration of items into the game.
     }
 }

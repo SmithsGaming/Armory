@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 /**
  * Created by Orion on 26-3-2014
  */
-public abstract class ArmorCore extends ItemArmor implements ISpecialArmor
+public class ArmorCore extends ItemArmor implements ISpecialArmor
 {
     public final int iArmorPart;
 
@@ -42,10 +42,6 @@ public abstract class ArmorCore extends ItemArmor implements ISpecialArmor
         this.iArmorPart = pArmorPart;
         this.setCreativeTab(ARegistry.iTabArmoryArmor);
     }
-
-    //Abstracted methods are implemented in the equivalent armorpiece
-    public abstract String getModifierTextureSuffix(int pModifierID);
-    public abstract String getUpgradeTextureSuffix(int pUpgradeID);
 
     //Functions for ISpecialArmor. TODO: Needs to be implemented.
     @Override

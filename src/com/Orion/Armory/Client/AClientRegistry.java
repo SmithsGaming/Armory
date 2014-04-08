@@ -16,9 +16,7 @@ import java.util.Map;
 
 public class AClientRegistry extends ARegistry
 {
-    //TODO: Create the rendermapping system with the new Registry system.
-
-    public void registerRenderMappings()
+    public static void registerRenderMappings()
     {
         for(ArmorCore tArmor: iInstance.getAllArmorMappings())
         {

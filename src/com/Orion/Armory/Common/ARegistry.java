@@ -2,6 +2,7 @@ package com.Orion.Armory.Common;
 
 import java.util.*;
 
+import com.Orion.Armory.Client.CreativeTab.ComponentsTab;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 
 import com.Orion.Armory.Common.Armor.ArmorMaterial;
@@ -29,6 +30,7 @@ public class ARegistry
 
     // Tabs for the creative inventory
     public static ArmorTab iTabArmoryArmor;
+    public static ComponentsTab iTabArmoryComponents;
 
     //Arraylist for storing all the materials
     ArrayList<ArmorMaterial> iArmorMaterials = new ArrayList<ArmorMaterial>();
@@ -42,23 +44,9 @@ public class ARegistry
 
     public ARegistry()
     {
-        this.initializeMaterials();
+        iTabArmoryArmor = new ArmorTab();
+        iTabArmoryComponents = new ComponentsTab();
     }
-
-    protected void initializeMaterials()
-    {
-        /*
-        this.registerMaterial("Iron", new boolean[]{true, true, true, true, true, true, true, true, true});
-        this.registerMaterial("Steel", new boolean[]{true, true, true, true, true, true, true, true, true});
-        this.registerMaterial("Alumite", new boolean[]{true, true, true, true, true, true, true, true, true});
-        this.registerMaterial("Bronze", new boolean[]{true, true, true, true, true, true, true, true, true});
-        this.registerMaterial("Ardite", new boolean[]{false, true, true, true, true, true, true, true, true});
-        this.registerMaterial("Cobalt", new boolean[]{false, true, true, false, true, true, true, true, false});
-        this.registerMaterial("Obsidian", new boolean[]{false, false, true, true, false, false, false, false, false});
-        this.registerMaterial("Manyullyn", new boolean[]{false, true, false, false, true, true, true, true, false});
-        */
-    }
-
 
     public ArrayList<ArmorCore> getAllArmorMappings()
     {
@@ -269,7 +257,7 @@ public class ARegistry
 
 //Arrays for testing, these contain all the basic upgrades and modifiers
 //public String[] iArmorUpgrades = {"topHead", "earProtection", "shoulderPads", "bodyProtection", "backProtection", "frontLegProtection", "backLegProtection", "shoeProtection"};
-//public String[] iArmorModifiers = {"helmetAquaAffinity", "helmetAquaBreathing", "helmetNightSight", "helmetThorns", "helmetAutoRepair", "helmetReinforced", "helmetElectric",
+//public String[] iArmorModifiers = {"helmetAquaBreathing", "helmetNightSight", "helmetThorns", "helmetAutoRepair", "helmetReinforced", "helmetElectric",
 //        "chestplateStrength", "chestplateHaste", "chestplateFlying", "chestplateThorns","chestplateAutoRepair", "chestplateReinforced", "chestplateElectric",
 //        "leggingsSpeed", "leggingsJumpAssist", "leggingsUpHillAssist", "leggingsThorns", "leggingsAutoRepair", "leggingsReinforced", "leggingsElectric",
 //        "shoesFallAssist", "shoesSwimAssist", "shoesAutoRepair", "shoesReinforced", "shoesElectric"};

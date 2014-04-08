@@ -14,9 +14,9 @@ import net.minecraft.potion.PotionEffect;
 
 import java.util.ArrayList;
 
-public class ModifierRedstone extends ArmorModifier {
-    public ModifierRedstone() {
-        super("Armor.Chest.Redstone", "Haste", "", 1, 500, 100, Items.redstone, new ArrayList<Integer>(), new ArrayList<Integer>());
+public class ModifierChestHaste extends ArmorModifier {
+    public ModifierChestHaste() {
+        super("Armor.Chest.Redstone", "Haste", "", "Armor_Chest_Redstone", 1, 500, 100, Items.redstone, new ArrayList<Integer>(), new ArrayList<Integer>());
     }
 
     @Override
@@ -28,6 +28,6 @@ public class ModifierRedstone extends ArmorModifier {
     @Override
     public void applyEffectToPlayer(EntityPlayer pPlayer, int pModifierLevel)
     {
-        pPlayer.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 1, pModifierLevel));
+        pPlayer.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 2, pModifierLevel));
     }
 }
