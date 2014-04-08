@@ -21,8 +21,12 @@ public class Armory
     @Mod.Instance("TConstruct-Armory")
     public static Armory instance;
 
+    // Proxies used to register stuff client and server side.
     @SidedProxy(clientSide="com.Orion.Armory.Common.ArmoryCommonProxy", serverSide="com.Orion.Armory.Client.ArmoryClientProxy")
     public static ArmoryCommonProxy proxy;
+
+    // Data that is needed throughout the whole mod.
+    public static boolean iIsInitialized = false;
 
 
     @Mod.EventHandler

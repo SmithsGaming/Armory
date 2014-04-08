@@ -24,25 +24,23 @@ public class AClientRegistry extends ARegistry
         {
             for(ArmorMaterial tMaterial: iInstance.getArmorMaterials())
             {
-                if (tMaterial.iBaseArmorMaterial)
-                {
-                    tArmor.registerBaseTexture(iInstance.getMaterialID(tMaterial), new String[] {"tconstruct-armory:multiarmor/base/"+tMaterial.iInternalName+"_base", "tconstruct-armory:models/multimarmor/base/"+tMaterial.iInternalName+"_base"});
+                if (tMaterial.iBaseArmorMaterial) {
+                    tArmor.registerBaseTexture(iInstance.getMaterialID(tMaterial), new String[]{"tconstruct-armory:multiarmor/base/" + tMaterial.iInternalName + "_base", "tconstruct-armory:models/multimarmor/base/" + tMaterial.iInternalName + "_base"});
                 }
-
-                for (ArmorUpgrade tUpgrade: iInstance.getUpgrades())
+            }
+            for (ArmorUpgrade tUpgrade: iInstance.getUpgrades())
+            {
+                if (iInstance.getMaterial(tUpgrade.iMaterialID).iActiveParts.get(iInstance.getUpgradeID(tUpgrade)))
                 {
-                    if (tMaterial.iActiveParts.get(iInstance.getUpgradeID(tUpgrade)))
-                    {
-                        tArmor.registerUpgradeTexture(iInstance.getUpgradeTextureID(tMaterial.iInternalName, tUpgrade.iInternalName), new String[]{"tconstruct-armory:multiarmor/upgrades/"+tMaterial.iInternalName+iInstance.getUpgradeTextureSuffix(tUpgrade), "tconstruct-armory:models/multiarmor/upgrades/"+tMaterial.iInternalName+iInstance.getUpgradeTextureSuffix(tUpgrade)});
-                    }
+                    tArmor.registerUpgradeTexture(iInstance.getUpgradeTextureID(iInstance.getMaterial(tUpgrade.iMaterialID).iInternalName, tUpgrade.iInternalName), new String[]{"tconstruct-armory:multiarmor/upgrades/"+iInstance.getMaterial(tUpgrade.iMaterialID).iInternalName+iInstance.getUpgradeTextureSuffix(tUpgrade), "tconstruct-armory:models/multiarmor/upgrades/"+iInstance.getMaterial(tUpgrade.iMaterialID).iInternalName+iInstance.getUpgradeTextureSuffix(tUpgrade)});
                 }
+            }
 
-                for (ArmorModifier tModifier: iInstance.getModifiers())
+            for (ArmorModifier tModifier: iInstance.getModifiers())
+            {
+                if (tArmor.iArmorPart == tModifier.iTargetArmorID)
                 {
-                    if (tArmor.iArmorPart == tModifier.iTargetArmorID)
-                    {
-                        tArmor.registerModifierTexture(iInstance.getModifierTextureID(tMaterial.iInternalName, tModifier.iInternalName), new String[] {"tconstruct-armory:multiarmor/modifiers/"+tMaterial.iInternalName+iInstance.getModifierTextureSuffix(tModifier),"tconstruct-armory:models/multiarmor/modifiers/"+tMaterial.iInternalName+ iInstance.getModifierTextureSuffix(tModifier)});
-                    }
+                    tArmor.registerModifierTexture(iInstance.getModifierTextureID(tModifier.iInternalName), new String[] {"tconstruct-armory:multiarmor/modifiers/"+iInstance.getModifierTextureSuffix(tModifier) ,"tconstruct-armory:models/multiarmor/modifiers/"+ iInstance.getModifierTextureSuffix(tModifier)});
                 }
             }
         }

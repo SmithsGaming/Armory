@@ -175,7 +175,6 @@ public class ARegistry
     public void registerUpgrade(ArmorUpgrade pUpgrade)
     {
         iArmorUpgrades.add(pUpgrade);
-
     }
 
     public int getUpgradeID(String pUpgradeName)
@@ -218,16 +217,9 @@ public class ARegistry
         return ((tMaterialID) * this.iArmorUpgrades.size() + tUpgradeID);
     }
 
-    public int getModifierTextureID(String pMaterialName, String pModifierName)
+    public int getModifierTextureID(String pModifierName)
     {
-        int tModifierID = Arrays.asList(iArmorModifiers).indexOf(pModifierName)+1;
-        int tMaterialID = getMaterialID(pMaterialName);
-
-        if ((tModifierID == -1) || (tMaterialID == -1)) {
-            return -1;
-        }
-
-        return ((tMaterialID)*this.iArmorModifiers.size() + tModifierID);
+        return this.getModifierID(pModifierName);
     }
 
     public String getUpgradeTextureSuffix(int pUpgradeID)
