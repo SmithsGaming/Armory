@@ -30,7 +30,7 @@ public class AClientRegistry extends ARegistry
             }
             for (ArmorUpgrade tUpgrade: iInstance.getUpgrades())
             {
-                if (iInstance.getMaterial(tUpgrade.iMaterialID).iActiveParts.get(iInstance.getUpgradeID(tUpgrade)))
+                if ((iInstance.getMaterial(tUpgrade.iMaterialID).iActiveParts.get(iInstance.getUpgradeID(tUpgrade))) && (tUpgrade.iTargetArmorID == tArmor.iArmorPart))
                 {
                     tArmor.registerUpgradeTexture(iInstance.getUpgradeTextureID(iInstance.getMaterial(tUpgrade.iMaterialID).iInternalName, tUpgrade.iInternalName), new String[]{"tconstruct-armory:multiarmor/upgrades/"+iInstance.getMaterial(tUpgrade.iMaterialID).iInternalName+iInstance.getUpgradeTextureSuffix(tUpgrade), "tconstruct-armory:models/multiarmor/upgrades/"+iInstance.getMaterial(tUpgrade.iMaterialID).iInternalName+iInstance.getUpgradeTextureSuffix(tUpgrade)});
                 }
