@@ -47,11 +47,12 @@ public abstract class ArmorModifier
     }
 
     //This one is used for modifiers who use levels and/or require more then one item per level
-    public ArmorModifier(String pInternalName, String pVisibleName, String pVisibleNameColor, int pTargetArmorID, int pMaxModifications, int pItemsPerLevel, Item pBaseItem, ArrayList<Integer> pRequiredModifiers, ArrayList<Integer> pModifierBlacklist)
+    public ArmorModifier(String pInternalName, String pVisibleName, String pVisibleNameColor, String pTextureSuffix, int pTargetArmorID, int pMaxModifications, int pItemsPerLevel, Item pBaseItem, ArrayList<Integer> pRequiredModifiers, ArrayList<Integer> pModifierBlacklist)
     {
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
         iVisibleNameColor = pVisibleNameColor;
+        iTextureSuffix = pTextureSuffix;
         iTargetArmorID = pTargetArmorID;
         iMaxModifications = pMaxModifications;
         iItemsPerLevel = pItemsPerLevel;

@@ -24,8 +24,6 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public abstract class ArmorCore extends ItemArmor implements ISpecialArmor
 {
-    //TODO: Implement generic functions for creating the texture suffixes, this to make the texture system more flexible.
-
     public final int iArmorPart;
 
     //Hashmaps for storing the Icons

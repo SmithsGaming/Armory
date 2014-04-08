@@ -208,8 +208,8 @@ public class ARegistry
 
     public int getUpgradeTextureID(String pMaterialName, String pUpgradeName)
     {
-        int tUpgradeID = Arrays.asList(iArmorUpgrades).indexOf(pUpgradeName)+1;
-        int tMaterialID = getMaterialID(pMaterialName);
+        int tUpgradeID = this.getUpgradeID(pUpgradeName)+1;
+        int tMaterialID = this.getMaterialID(pMaterialName);
 
         if ((tUpgradeID == -1) || (tMaterialID == -1)) {
             return -1;
@@ -230,6 +230,42 @@ public class ARegistry
         return ((tMaterialID)*this.iArmorModifiers.size() + tModifierID);
     }
 
+    public String getUpgradeTextureSuffix(int pUpgradeID)
+    {
+        return iArmorUpgrades.get(pUpgradeID).iTextureSuffix;
+    }
+
+    public String getUpgradeTextureSuffix(ArmorUpgrade pUpgrade)
+    {
+        return this.getUpgradeTextureSuffix(this.getUpgradeID(pUpgrade));
+    }
+
+    public String getModifierTextureSuffix(int pModifierID) { return iArmorModifiers.get(pModifierID).iTextureSuffix;}
+
+    public String getModifierTextureSuffix(ArmorModifier pModifier)
+    {
+        return this.getModifierTextureSuffix(this.getModifierID(pModifier));
+    }
+
+    public void changeTextureSuffixOnUpgrade(int pUpgradeID, String pNewTextureSuffix)
+    {
+        iArmorUpgrades.get(pUpgradeID).iTextureSuffix = pNewTextureSuffix;
+    }
+
+    public void changeTextureSuffixOnUpgrade(ArmorUpgrade pUpgrade, String pNewTextureSuffix)
+    {
+        this.changeTextureSuffixOnUpgrade(this.getUpgradeID(pUpgrade), pNewTextureSuffix);
+    }
+
+    public void changeTextureSuffixOnModifier(int pModifierID, String pNewTextureSuffix)
+    {
+        iArmorModifiers.get(pModifierID).iTextureSuffix = pNewTextureSuffix;
+    }
+
+    public void changeTextureSuffixOnModifier(ArmorModifier pModifier, String pNewTextureSuffix)
+    {
+        this.changeTextureSuffixOnModifier(this.getModifierID(pModifier), pNewTextureSuffix);
+    }
 
 }
 

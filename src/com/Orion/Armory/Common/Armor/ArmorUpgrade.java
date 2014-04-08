@@ -9,23 +9,23 @@ import net.minecraftforge.common.util.EnumHelper;
 import java.util.ArrayList;
 
 /**
- * Created by Marc on 27-3-2014.
+ * Created by Orion on 27-3-2014.
  */
 public class ArmorUpgrade
 {
-    public static int iMaterialID;
-    public static int iTargetArmorID;
-    public static int iUpgradeLocation;
-    public static String iInternalName;
-    public static String iVisibleName;
-    public static String iVisibleNameColor;
-    public static String iTextureSuffix;
-    public static float iProtection;
-    public static int iExtraDurability;
-    public static int iMaxUpgrades;
+    public int iMaterialID;
+    public int iTargetArmorID;
+    public int iUpgradeLocation;
+    public String iInternalName;
+    public String iVisibleName;
+    public String iVisibleNameColor;
+    public String iTextureSuffix;
+    public float iProtection;
+    public int iExtraDurability;
+    public int iMaxUpgrades;
 
     //Constructors
-    public ArmorUpgrade(int pMaterialID, int pTargetArmorID, int pUpgradeLocation, String pInternalName, String pVisibleName, String pVisibleNameColor, float pProtection, int pExtraDurability,int pMaxUpgrades)
+    public ArmorUpgrade(int pMaterialID, int pTargetArmorID, int pUpgradeLocation, String pInternalName, String pVisibleName, String pVisibleNameColor, String pTextureSuffix, float pProtection, int pExtraDurability,int pMaxUpgrades)
     {
         iMaterialID = pMaterialID;
         iTargetArmorID = pTargetArmorID;
@@ -33,6 +33,7 @@ public class ArmorUpgrade
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
         iVisibleNameColor = pVisibleNameColor;
+        iTextureSuffix = pTextureSuffix;
         iProtection = pProtection;
         iExtraDurability = pExtraDurability;
         iMaxUpgrades = pMaxUpgrades;
