@@ -43,7 +43,7 @@ public class ArmoryInitializer
         registerEarProtection();
         registerShoulderPads();
         registerFrontProtection();
-        registerBackProtetion();
+        registerBackProtection();
         registerFrontLegProtection();
         registerBackLegProtection();
         registerShoeProtection();
@@ -94,7 +94,7 @@ public class ArmoryInitializer
         for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
         {
             ArmorUpgrade tShoulderPadLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 0, tMaterial.iInternalName+".ShoulderPad.Left", "Shoulder pad left", "", "_Shoulder_Pad_Left", 1F, 50, 1);
-            ArmorUpgrade tShoulderPadRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 0, tMaterial.iInternalName+".ShoulderPad.Right", "Shoulder pad right", "", "_Shoulder_Pad_Right", 1F, 50, 1);
+            ArmorUpgrade tShoulderPadRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 1, tMaterial.iInternalName+".ShoulderPad.Right", "Shoulder pad right", "", "_Shoulder_Pad_Right", 1F, 50, 1);
             ARegistry.iInstance.registerUpgrade(tShoulderPadLeft);
             ARegistry.iInstance.registerUpgrade(tShoulderPadRight);
 
@@ -113,27 +113,112 @@ public class ArmoryInitializer
 
     private static void registerFrontProtection()
     {
+        for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
+        {
+            ArmorUpgrade tFrontChestProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 3, tMaterial.iInternalName+".Protection.Chest.Front.Left", "Front chest protection left", "", "_Protection_Chest_Front_Left", 2F, 100, 1);
+            ArmorUpgrade tFrontChestProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 4, tMaterial.iInternalName+".Protection.Chest.Front.Right", "Front chest protection right", "", "_Protection_Chest_Front_Right", 2F, 100, 1);
+            ARegistry.iInstance.registerUpgrade(tFrontChestProtectionLeft);
+            ARegistry.iInstance.registerUpgrade(tFrontChestProtectionRight);
 
+            if (tMaterial.iInternalName.equals("vanilla.Obsidian"))
+            {
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tFrontChestProtectionLeft), false);
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tFrontChestProtectionRight), false);
+            }
+            else
+            {
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tFrontChestProtectionLeft), true);
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tFrontChestProtectionRight), true);
+            }
+        }
     }
 
-    private static void registerBackProtetion()
+    private static void registerBackProtection()
     {
+        for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
+        {
+            ArmorUpgrade tBackChestProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 5, tMaterial.iInternalName+".Protection.Chest.Back.Left", "Back chest protection left", "", "_Protection_Chest_Front_Left", 2F, 150, 1);
+            ArmorUpgrade tBackChestProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 6, tMaterial.iInternalName+".Protection.Chest.Back.Right", "Back chest protection right", "", "_Protection_Chest_Back_Right", 2F, 150, 1);
+            ARegistry.iInstance.registerUpgrade(tBackChestProtectionLeft);
+            ARegistry.iInstance.registerUpgrade(tBackChestProtectionRight);
 
+            if (tMaterial.iInternalName.equals("vanilla.Obsidian"))
+            {
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tBackChestProtectionLeft), false);
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tBackChestProtectionRight), false);
+            }
+            else
+            {
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tBackChestProtectionLeft), true);
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tBackChestProtectionRight), true);
+            }
+        }
     }
 
     private static void registerFrontLegProtection()
     {
+        for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
+        {
+            ArmorUpgrade tFrontLeggingsProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 2, 0, tMaterial.iInternalName+".Protection.Leggings.Front.Left", "Front leg protection left", "", "_Protection_Leggings_Front_Left", 1.5F, 125, 1);
+            ArmorUpgrade tFrontLeggingsProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 2, 1, tMaterial.iInternalName+".Protection.Leggings.Front.Right", "Front leg protection right", "", "_Protection_Leggings_Front_Right", 1.5F, 125, 1);
+            ARegistry.iInstance.registerUpgrade(tFrontLeggingsProtectionLeft);
+            ARegistry.iInstance.registerUpgrade(tFrontLeggingsProtectionRight);
 
+            if (tMaterial.iInternalName.equals("vanilla.Obsidian"))
+            {
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tFrontLeggingsProtectionLeft), false);
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tFrontLeggingsProtectionRight), false);
+            }
+            else
+            {
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tFrontLeggingsProtectionLeft), true);
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tFrontLeggingsProtectionRight), true);
+            }
+        }
     }
 
     private static void registerBackLegProtection()
     {
+        for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
+        {
+            ArmorUpgrade tBackLeggingsProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 2, 5, tMaterial.iInternalName+".Protection.Leggings.Back.Left", "Back leg protection left", "", "_Protection_Leggings_Front_Left", 2F, 150, 1);
+            ArmorUpgrade tBackLeggingsProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 2, 6, tMaterial.iInternalName+".Protection.Leggings.Back.Right", "Back leg protection right", "", "_Protection_Leggings_Back_Right", 2F, 150, 1);
+            ARegistry.iInstance.registerUpgrade(tBackLeggingsProtectionLeft);
+            ARegistry.iInstance.registerUpgrade(tBackLeggingsProtectionRight);
 
+            if (tMaterial.iInternalName.equals("vanilla.Obsidian"))
+            {
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tBackLeggingsProtectionLeft), false);
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tBackLeggingsProtectionRight), false);
+            }
+            else
+            {
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tBackLeggingsProtectionLeft), true);
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tBackLeggingsProtectionRight), true);
+            }
+        }
     }
 
     private static void registerShoeProtection()
     {
+        for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
+        {
+            ArmorUpgrade tShoeProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 3, 0, tMaterial.iInternalName+".Protection.Shoe.Left", "Shoe protection left", "", "_Protection_Shoe_Left", 1F, 50, 1);
+            ArmorUpgrade tShoeProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 3, 1, tMaterial.iInternalName+".Protection.Shoe.Right", "Shoe protection right", "", "_Protection_Shoe_Right", 1F, 50, 1);
+            ARegistry.iInstance.registerUpgrade(tShoeProtectionLeft);
+            ARegistry.iInstance.registerUpgrade(tShoeProtectionRight);
 
+            if ((tMaterial.iInternalName.equals("tconstruct.Ardite")) || (tMaterial.iInternalName.equals("tconstruct.Cobalt")) || tMaterial.iInternalName.equals("tconstruct.Manyullun"))
+            {
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tShoeProtectionLeft), false);
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tShoeProtectionRight), false);
+            }
+            else
+            {
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tShoeProtectionLeft), true);
+                tMaterial.registerNewActivePart(ARegistry.iInstance.getUpgradeID(tShoeProtectionRight), true);
+            }
+        }
     }
 
     private static void registerModifiers()
