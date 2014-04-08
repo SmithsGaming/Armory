@@ -5,31 +5,38 @@ package com.Orion.Armory.Client.Render;
 *   Created on: 2-4-2014
 */
 
+import com.Orion.Armory.Client.Models.AExtendedPlayerModel;
+import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraft.client.renderer.entity.RendererLivingEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.ForgeHooksClient;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
-public class CustomArmorRenderer extends RenderPlayer
+@SideOnly(Side.CLIENT)
+public class CustomArmorRenderer extends RendererLivingEntity
 {
-    private static final Logger logger = LogManager.getLogger();
     public CustomArmorRenderer()
     {
+        super(new AExtendedPlayerModel(0F), 0F);
         if(this.renderManager == null)
         {
             this.setRenderManager(RenderManager.instance);
         }
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(Entity var1) {
+        return null;
     }
 
     private float interpolateRotation(float par1, float par2, float par3)
@@ -49,11 +56,10 @@ public class CustomArmorRenderer extends RenderPlayer
         return par1 + par3 * f3;
     }
 
-
-    public void renderArmorPiece(EntityLivingBase par1EntityLivingBase, double x, double y, double z, Item currentArmor,ItemStack currentArmorItemStack, int armorSlotID)
+    public void doRender(EntityLivingBase par1EntityLivingBase, double x, double y, double z, Item currentArmor,ItemStack currentArmorItemStack, int armorSlotID)
     {
-        //try
-        //{
+        try
+        {
             float f2 = this.interpolateRotation(par1EntityLivingBase.prevRenderYawOffset, par1EntityLivingBase.renderYawOffset, 0);
             float f3 = this.interpolateRotation(par1EntityLivingBase.prevRotationYawHead, par1EntityLivingBase.rotationYawHead, 0);
             float f4;
@@ -99,19 +105,35 @@ public class CustomArmorRenderer extends RenderPlayer
                 f6 = 1.0F;
             }
 
-            ModelBiped modelbiped = armorSlotID == 2 ? new ModelBiped(0.5F) : new ModelBiped(1.0F);
-            modelbiped.bipedHead.showModel = armorSlotID == 0;
-            modelbiped.bipedHeadwear.showModel = armorSlotID == 0;
-            modelbiped.bipedBody.showModel = armorSlotID == 1 || armorSlotID == 2;
-            modelbiped.bipedRightArm.showModel = armorSlotID == 1;
-            modelbiped.bipedLeftArm.showModel = armorSlotID == 1;
-            modelbiped.bipedRightLeg.showModel = armorSlotID == 2 || armorSlotID == 3;
-            modelbiped.bipedLeftLeg.showModel = armorSlotID == 2 || armorSlotID == 3;
-            modelbiped = ForgeHooksClient.getArmorModel((AbstractClientPlayer) par1EntityLivingBase, currentArmorItemStack, armorSlotID, modelbiped);
-            this.setRenderPassModel(modelbiped);
-            modelbiped.onGround = this.mainModel.onGround;
-            modelbiped.isRiding = this.mainModel.isRiding;
-            modelbiped.isChild = this.mainModel.isChild;
+            AExtendedPlayerModel tModel = armorSlotID == 2 ? new AExtendedPlayerModel(0.5F) : new AExtendedPlayerModel(1.0F);
+            tModel.head.showModel = armorSlotID == 0;
+            tModel.body.showModel = armorSlotID == 1 || armorSlotID == 2;
+            tModel.rightarm.showModel = armorSlotID == 1;
+            tModel.leftarm.showModel = armorSlotID == 1;
+            tModel.rightleg.showModel = armorSlotID == 2 || armorSlotID == 3;
+            tModel.leftleg.showModel = armorSlotID == 2 || armorSlotID == 3;
+            tModel.onGround = this.mainModel.onGround;
+            tModel.isRiding = this.mainModel.isRiding;
+            tModel.isChild = this.mainModel.isChild;
+
+            tModel.isSneak = par1EntityLivingBase.isSneaking();
+
+            ItemStack itemstack = ((AbstractClientPlayer) par1EntityLivingBase).inventory.getCurrentItem();
+            tModel.heldItemRight = itemstack != null ? 1 : 0;
+
+            if (itemstack != null && ((AbstractClientPlayer) par1EntityLivingBase).getItemInUseCount() > 0)
+            {
+                EnumAction enumaction = itemstack.getItemUseAction();
+
+                if (enumaction == EnumAction.block)
+                {
+                    tModel.heldItemRight = 3;
+                }
+                else if (enumaction == EnumAction.bow)
+                {
+                    tModel.aimedBow = true;
+                }
+            }
 
             GL11.glScalef(2.0F, 2.0F, 2.0F);
             GL11.glTranslatef(0F, -0.75F, 0F);
@@ -121,13 +143,12 @@ public class CustomArmorRenderer extends RenderPlayer
             for (int currentRender = 1; currentRender <= renderAmount; currentRender++)
             {
                 this.bindTexture(new ResourceLocation(ACore.getArmorTextureLocation(currentArmorItemStack, currentRender)));
-                this.renderPassModel.setLivingAnimations(par1EntityLivingBase, f7, f6, 0);
-                this.renderPassModel.render(par1EntityLivingBase, f7, f6, f4, f3 - f2, f13, f5);
+                tModel.render(par1EntityLivingBase, f7, f6, f4, f3 - f2, f13, f5);
             }
-        //}
-        //catch (Exception exception)
-        //{
-        //    iLogger.error("Couldn\'t render entity", exception);
-        //}
+        }
+        catch (Exception exception)
+        {
+            ARegistry.iLogger.error("Couldn\'t render entity", exception);
+        }
     }
 }
