@@ -25,6 +25,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ArmorCore extends ItemArmor implements ISpecialArmor
 {
     public final int iArmorPart;
+    public String iInternalName;
 
     //Hashmaps for storing the Icons
     public HashMap<Integer, IIcon> iBaseIcons = new HashMap<Integer, IIcon>();
@@ -36,9 +37,10 @@ public class ArmorCore extends ItemArmor implements ISpecialArmor
     public HashMap<Integer, String[]> iUpgradeStrings = new HashMap<Integer, String[]>();
     public HashMap<Integer, String[]> iModifierStrings = new HashMap<Integer, String[]>();
 
-    public ArmorCore(int pArmorPart) {
+    public ArmorCore(String pInternalName, int pArmorPart) {
         super(ARegistry.iArmorMaterial, 0, pArmorPart);
         this.setMaxStackSize(1);
+        this.iInternalName = pInternalName;
         this.iArmorPart = pArmorPart;
         this.setCreativeTab(ARegistry.iTabArmoryArmor);
     }
@@ -118,9 +120,9 @@ public class ArmorCore extends ItemArmor implements ISpecialArmor
 
         if (tIconLocation.equals("Base")) {
             return iBaseIcons.get(tIconID);
-        } else if (tIconLocation.equals("Upgrade")) {
+        } else if (tIconLocation.equals("Upgrades")) {
             return iUpgradeIcons.get(tIconID);
-        } else if (tIconLocation.equals("Modifier")) {
+        } else if (tIconLocation.equals("Modifiers")) {
             return iModifierIcons.get(tIconID);
         }
 

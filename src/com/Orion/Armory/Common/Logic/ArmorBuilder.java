@@ -7,8 +7,10 @@ package com.Orion.Armory.Common.Logic;
 
 import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
+import com.Orion.Armory.Common.Armor.ArmorMaterial;
 import com.Orion.Armory.Common.Armor.Modifiers.ArmorModifier;
 import com.Orion.Armory.Common.Armor.ArmorUpgrade;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -17,7 +19,7 @@ import java.util.Arrays;
 
 public class ArmorBuilder
 {
-    //TODO: Create the build/modify functions
+    //TODO: Create the initialize armor function.
     private static ArmorBuilder instance;
 
     public static void init()
@@ -36,6 +38,7 @@ public class ArmorBuilder
         //Grab the base component of the NBT Tag
         NBTTagCompound tBaseCompound = pBaseArmor.getTagCompound();
         ArrayList<ArmorModifier> tInstalledModifiers = ARegistry.iInstance.getInstalledModifiersOnItemStack(pBaseArmor);
+        ArrayList<ArmorUpgrade> tInstalledUpgrades = ARegistry.iInstance.getInstalledArmorUpgradesOnItemStack(pBaseArmor);
 
         //Check if the maximum amount of modifiers is already installed
         if (tBaseCompound.getInteger("MaxModifiers") == tInstalledModifiers.size())
@@ -64,27 +67,110 @@ public class ArmorBuilder
         ItemStack tReturnStack = new ItemStack(tCore);
 
         //Create the parameters for the new NBTTag compound
-        int tNewMaxDurability = tBaseCompound.getInteger("MaxDurability");
-        int tNewMaxAbsorption = tBaseCompound.getInteger("BaseDamageAbsorption");
-        for (ArmorUpgrade tUpgrade: pUpgrades)
+        int tNewBaseDurability = tBaseCompound.getInteger("BaseDurability");
+        int tUsedDurability = tNewBaseDurability - tBaseCompound.getInteger("CurrentDurability");
+        int tMaterialID = tBaseCompound.getInteger("MaterialID");
+        int tNewMaxAbsorption = ARegistry.iInstance.getMaterial(tMaterialID).getBaseDamageAbsorption(tCore.iArmorPart);
+
+        //Merge upgrades
+        tInstalledUpgrades.addAll(pUpgrades);
+
+        for (ArmorUpgrade tUpgrade: tInstalledUpgrades)
         {
-            tNewMaxDurability += tUpgrade.iExtraDurability;
-            tNewMaxAbsorption += (tBaseCompound.getInteger("BaseDamageAbsorption") * tUpgrade.iProtection);
+            tNewBaseDurability += tUpgrade.iExtraDurability;
+            tNewMaxAbsorption += (ARegistry.iInstance.getMaterial(tMaterialID).getBaseDamageAbsorption(tCore.iArmorPart) * tUpgrade.iProtection);
         }
 
+        //Merge the modifiers (keeps the multiple level modifiers in mind by checking to old ones before adding new ones.)
+        for (ArmorModifier tNewModifier: pModifiers) {
+            boolean tInstalled = false;
 
+            for (ArmorModifier tInstalledModifier : tInstalledModifiers) {
+                if (tInstalledModifier.equals(tNewModifier)) {
+                    tInstalledModifier.setInstalledAmount(tInstalledModifier.iInstalledAmount + tNewModifier.iInstalledAmount);
+                    tInstalled = true;
+                }
+            }
 
+            if (!tInstalled) {
+                tInstalledModifiers.add(tNewModifier);
+            }
+        }
 
+        //Creating the new NBTTagCompound for storing the data.
+        NBTTagCompound tNewCompound = new NBTTagCompound();
+        NBTTagCompound tNewRenderCompound = new NBTTagCompound();
+        NBTTagCompound tNewUpgradesCompound = new NBTTagCompound();
+        NBTTagCompound tNewModifiersCompound = new NBTTagCompound();
 
+        //Setting the basic data for the Armor
+        tNewCompound.setInteger("MaterialID", tMaterialID);
+        tNewCompound.setInteger("BaseDurability", tNewBaseDurability);
+        tNewCompound.setInteger("CurrentDurability", tNewBaseDurability-tUsedDurability);
+        tNewCompound.setInteger("DamageAbsorption", tNewMaxAbsorption);
 
+        //Add the renderpass data for the base armor
+        tNewRenderCompound.setTag("RenderPass - 0", new NBTTagCompound());
+        tNewRenderCompound.getCompoundTag("RenderPass - 0").setString("IconLocation", "Base");
+        tNewRenderCompound.getCompoundTag("RenderPass - 0").setInteger("IconID", tMaterialID);
 
+        //Adding the Upgrade data to the the upgrade and render part of the compound
+        int tRenderPassCounter = 0;
+        for (ArmorUpgrade tCurrentUpgrade: tInstalledUpgrades)
+        {
+            NBTTagCompound tRenderPassCompound = new NBTTagCompound();
+            NBTTagCompound tUpgradeCompound = new NBTTagCompound();
 
+            tRenderPassCounter++;
 
+            tRenderPassCompound.setString("IconLocation", "Upgrades");
+            tRenderPassCompound.setInteger("IconID", ARegistry.iInstance.getUpgradeTextureID(ARegistry.iInstance.getMaterial(tMaterialID).iInternalName, tCurrentUpgrade.iInternalName));
+
+            tUpgradeCompound.setInteger("UpgradeID", ARegistry.iInstance.getUpgradeID(tCurrentUpgrade));
+
+            tNewRenderCompound.setTag("RenderPass - " + tRenderPassCounter, tRenderPassCompound);
+            tNewUpgradesCompound.setTag("Upgrade - " + tRenderPassCounter, tUpgradeCompound);
+        }
+        tNewCompound.setInteger("InstalledUpgrades", tRenderPassCounter);
+
+        int tModifierCounter = 0;
+        for (ArmorModifier tCurrentModifier: tInstalledModifiers)
+        {
+            NBTTagCompound tRenderPassCompound = new NBTTagCompound();
+            NBTTagCompound tModifierCompound = new NBTTagCompound();
+
+            tRenderPassCounter++;
+            tModifierCounter++;
+
+            tRenderPassCompound.setString("IconLocation", "Modifiers");
+            tRenderPassCompound.setInteger("IconID", ARegistry.iInstance.getModifierTextureID(tCurrentModifier.iInternalName));
+
+            tModifierCompound.setInteger("ModifierID", ARegistry.iInstance.getModifierID(tCurrentModifier));
+            tModifierCompound.setInteger("Amount", tCurrentModifier.iInstalledAmount);
+
+            tNewRenderCompound.setTag("RenderPass - " + tRenderPassCounter, tRenderPassCompound);
+            tNewModifiersCompound.setTag("Modifier - " + tModifierCounter, tModifierCompound);
+        }
+        tNewCompound.setInteger("InstalledModifiers", tModifierCounter);
+
+        //Adding the finished compounds to the root compound
+        tNewCompound.setTag("RenderCompound", tNewRenderCompound);
+        tNewCompound.setTag("Upgrades", tNewUpgradesCompound);
+        tNewCompound.setTag("Modifiers", tNewModifiersCompound);
+
+        //Adding the Tagcompound to the Stack and returning the finished stack.
+        tReturnStack.setTagCompound(tNewCompound);
         return tReturnStack;
     }
 
-    public ItemStack modifyArmor(ItemStack pBaseArmor, ArmorUpgrade[] pUpgrades, ArmorModifier[] pModifiers)
+    public ItemStack createInitialArmor(int pMaterialID, int pArmorID)
     {
+        ArmorCore tCore = ARegistry.iInstance.getArmorMapping(pArmorID);
+        ItemStack tReturnStack = new ItemStack(tCore);
+
+        NBTTagCompound tBaseCompound = new NBTTagCompound();
+        NBTTagCompound tRenderCompound = new NBTTagCompound();
+
         return null;
     }
 

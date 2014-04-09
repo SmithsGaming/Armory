@@ -182,6 +182,11 @@ public abstract class ArmorModifier
         return true;
     }
 
+    public boolean equals(ArmorModifier tOtherModifier)
+    {
+        return (this.iInternalName == tOtherModifier.iInternalName);
+    }
+
     //Abstract functions and properties all modifiers need to have:
     public abstract void applyEffectToArmorPiece(ArmorCore pArmorPiece, int pModifierLevel);
     public abstract void applyEffectToPlayer(EntityPlayer pPlayer, int pModifierLevel);

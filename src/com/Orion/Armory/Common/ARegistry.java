@@ -1,10 +1,8 @@
 package com.Orion.Armory.Common;
 
 import java.util.*;
-
 import com.Orion.Armory.Client.CreativeTab.ComponentsTab;
 import com.Orion.Armory.Common.Armor.ArmorCore;
-
 import com.Orion.Armory.Common.Armor.ArmorMaterial;
 import com.Orion.Armory.Common.Armor.Modifiers.ArmorModifier;
 import com.Orion.Armory.Common.Armor.ArmorUpgrade;
@@ -14,10 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.EnumHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.Orion.Armory.Client.CreativeTab.ArmorTab;
-import org.omg.CORBA.PUBLIC_MEMBER;
-import tconstruct.library.armor.ArmorMod;
 
 /**
  * Created by Orion on 26-3-2014
@@ -58,6 +53,34 @@ public class ARegistry
     public void addArmorMapping(ArmorCore pCore)
     {
         iArmorMappings.add(pCore);
+    }
+
+    public int getArmorID(String pArmorName)
+    {
+        for (ArmorCore tCore:iArmorMappings)
+        {
+            if (tCore.iInternalName == pArmorName)
+            {
+                return iArmorMappings.indexOf(tCore);
+            }
+        }
+
+        return -1;
+    }
+
+    public int getArmorID(ArmorCore pCore)
+    {
+        return iArmorMappings.indexOf(pCore);
+    }
+
+    public ArmorCore getArmorMapping(int pArmorID)
+    {
+        return iArmorMappings.get(pArmorID);
+    }
+
+    public ArmorCore getArmorMapping(String pArmorName)
+    {
+        return iArmorMappings.get(getArmorID(pArmorName));
     }
 
     public ArrayList<ArmorMaterial> getArmorMaterials()
