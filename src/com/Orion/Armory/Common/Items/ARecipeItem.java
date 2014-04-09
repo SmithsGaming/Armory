@@ -17,6 +17,6 @@ public class ARecipeItem extends CraftingItem
 
 
     public ARecipeItem() {
-        super(new String[] {"Armory.Crafting.BreathingHelp", "Armory.Crafting.Lamp", "Armory.Crafting.AquaMotor", "Armory.Crafting.Nails", "Armory.Crafting.FeatherSet", "Armory.Crafting.Wings"}, new String[] {"Breathing_Help", "Lamp", "Aqua_Motor", "Lamp", "Nails", "Feather_Set", "Wings"}, "crafting/", ARegistry.iTabArmoryComponents);
+        super(new String[] {"Armory.Crafting.BreathingHelp", "Armory.Crafting.Lamp", "Armory.Crafting.AquaMotor", "Armory.Crafting.Nails", "Armory.Crafting.FeatherSet", "Armory.Crafting.Wings"}, new String[] {"Breathing_Help", "Lamp", "Aqua_Motor", "Lamp", "Nails", "Feather_Set", "Wings"}, "crafting/", "tconstruct-armory", ARegistry.iTabArmoryComponents);
     }
 }

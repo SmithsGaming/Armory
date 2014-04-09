@@ -9,6 +9,8 @@ import com.Orion.Armory.Common.Armor.ArmorMaterial;
 import com.Orion.Armory.Common.Armor.Modifiers.ArmorModifier;
 import com.Orion.Armory.Common.Armor.ArmorUpgrade;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.EnumHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -245,6 +247,43 @@ public class ARegistry
     public void changeTextureSuffixOnModifier(ArmorModifier pModifier, String pNewTextureSuffix)
     {
         this.changeTextureSuffixOnModifier(this.getModifierID(pModifier), pNewTextureSuffix);
+    }
+
+    public ArrayList<ArmorUpgrade> getInstalledArmorUpgradesOnItemStack(ItemStack pBaseArmor)
+    {
+        NBTTagCompound tBaseCompound  = pBaseArmor.getTagCompound();
+        int tInstalledUpgrades = tBaseCompound.getInteger("InstalledUpgrades");
+        ArrayList<ArmorUpgrade> tUpgrades = new ArrayList<ArmorUpgrade>();
+
+        for (int iter = 1; iter <= tInstalledUpgrades; iter ++)
+        {
+            int tUpgradeID = tBaseCompound.getCompoundTag("Upgrades").getCompoundTag("Upgrade - "+iter).getInteger("UpgradeID");
+            ArmorUpgrade tUpgrade = ARegistry.iInstance.getUpgrade(tUpgradeID);
+
+            tUpgrades.add(tUpgrade);
+        }
+
+        return tUpgrades;
+    }
+
+    public ArrayList<ArmorModifier> getInstalledModifiersOnItemStack(ItemStack pBaseArmor)
+    {
+        NBTTagCompound tBaseCompound = pBaseArmor.getTagCompound();
+        int tInstalledModifiers = tBaseCompound.getInteger("InstalledModifiers");
+        ArrayList<ArmorModifier> tModifiers = new ArrayList<ArmorModifier>();
+
+        for (int iter = 1; iter <= tInstalledModifiers; iter++)
+        {
+            int tModifierID = tBaseCompound.getCompoundTag("Modifiers").getCompoundTag("Modifier - "+iter).getInteger("ModifierID");
+            int tInstalledAmount = tBaseCompound.getCompoundTag("Modifiers").getCompoundTag("Modifier - " + iter).getInteger("Amount");
+
+            ArmorModifier tModifier = ARegistry.iInstance.getModifier(tModifierID);
+            tModifier.setInstalledAmount(tInstalledAmount);
+
+            tModifiers.add(tModifier);
+        }
+
+        return tModifiers;
     }
 
 }
