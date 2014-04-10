@@ -7,6 +7,7 @@ package com.Orion.Armory.Common.Armor;
 
 import com.Orion.Armory.Common.ARegistry;
 import net.minecraft.item.ItemArmor;
+import scala.Int;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -18,16 +19,20 @@ public class ArmorMaterial
     public String iVisibleNameColor;
     public boolean iBaseArmorMaterial;
     public ArrayList<Integer> iBaseDamageAbsorption;
+    public ArrayList<Integer> iBaseDurability;
+    public ArrayList<Integer> iPartModifiers;
     public ArrayList<Boolean> iActiveParts = new ArrayList<Boolean>();
 
     //Constructor
-    public ArmorMaterial(String pInternalName, String pVisibleName, String pVisibleNameColor, boolean pBaseArmorMaterial, ArrayList<Integer> pBaseDamageAbsorption, ArrayList<Boolean> pActiveParts)
+    public ArmorMaterial(String pInternalName, String pVisibleName, String pVisibleNameColor, boolean pBaseArmorMaterial, ArrayList<Integer> pBaseDamageAbsorption,ArrayList<Integer> pBaseDurability, ArrayList<Integer> pPartModifiers, ArrayList<Boolean> pActiveParts)
     {
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
         iVisibleNameColor = pVisibleNameColor;
         iBaseArmorMaterial = pBaseArmorMaterial;
         iBaseDamageAbsorption = pBaseDamageAbsorption;
+        iBaseDurability = pBaseDurability;
+        iPartModifiers = pPartModifiers;
         iActiveParts = pActiveParts;
     }
 
@@ -53,17 +58,29 @@ public class ArmorMaterial
 
     public void setBaseDamageAbsorption(int pTargetArmorID, int pBaseDamageAbsorption)
     {
-        iBaseDamageAbsorption.add(pTargetArmorID, pBaseDamageAbsorption);
+        iBaseDamageAbsorption.set(pTargetArmorID, pBaseDamageAbsorption);
     }
 
     public int getBaseDamageAbsorption(int pTargetArmorID)
     {
-        if (pTargetArmorID > iBaseDamageAbsorption.size()-1)
-        {
-            return 0;
-        }
-
         return iBaseDamageAbsorption.get(pTargetArmorID);
     }
+
+    public void setBaseDurability(int pTargetArmorID, int pBaseDurability)
+    {
+        iBaseDurability.set(pTargetArmorID, pBaseDurability);
+    }
+
+    public int getBaseDurability(int pTargetArmorID)
+    {
+        return iBaseDurability.get(pTargetArmorID);
+    }
+
+    public void setMaxModifiersOnPart(int pTargetArmorID, int pMaxModifiers)
+    {
+        iPartModifiers.set(pTargetArmorID, pMaxModifiers);
+    }
+
+    public int getMaxModifiersOnPart(int pTargetArmorID) { return iPartModifiers.get(pTargetArmorID);}
 
 }
