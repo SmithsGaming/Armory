@@ -17,4 +17,9 @@ public class ArmoryCommonProxy
     {
         MinecraftForge.EVENT_BUS.register(new RenderPlayerEventHook());
     }
+
+    public void registerRenderers()
+    {
+        return;
+    }
 }

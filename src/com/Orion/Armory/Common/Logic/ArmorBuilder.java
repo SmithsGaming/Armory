@@ -152,6 +152,7 @@ public class ArmorBuilder
             tNewModifiersCompound.setTag("Modifier - " + tModifierCounter, tModifierCompound);
         }
         tNewCompound.setInteger("InstalledModifiers", tModifierCounter);
+        tNewRenderCompound.setInteger("RenderPasses", tRenderPassCounter);
 
         //Adding the finished compounds to the root compound
         tNewCompound.setTag("RenderCompound", tNewRenderCompound);

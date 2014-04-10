@@ -5,11 +5,16 @@ package com.Orion.Armory.Client.Render;
 *   Created on: 9-4-2014
 */
 
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.client.IItemRenderer;
+import com.Orion.Armory.Common.Armor.ArmorCore;
+import net.minecraft.util.IIcon;
 
 public class ArmorItemRenderer implements IItemRenderer {
-    //TODO: Create a special IItemRenderer that allows rendering of items with getRenderPass(ItemStack) as values to enable the gettings of the amount of passes that are needed from the NBT Tag.
+    //TODO: Find a example of an renderer that handles rendering items in hand (Maybe look at the toolrenderer of TC)
+    private static RenderItem iRenderItem = new RenderItem();
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -22,7 +27,13 @@ public class ArmorItemRenderer implements IItemRenderer {
     }
 
     @Override
-    public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-
+    public void renderItem(ItemRenderType type, ItemStack itemStack, Object... data)
+    {
+        int tRenderPasses = ((ArmorCore) itemStack.getItem()).getRenderPasses(itemStack);
+        for (int tPassIter = 0; tPassIter <= tRenderPasses; tPassIter++)
+        {
+            IIcon tIcon = ((ArmorCore) itemStack.getItem()).getIcon(itemStack, tPassIter);
+            iRenderItem.renderIcon(0,0,tIcon, 16, 16);
+        }
     }
 }

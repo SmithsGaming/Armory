@@ -149,4 +149,9 @@ public class ArmorCore extends ItemArmor implements ISpecialArmor
         return "";
     }
 
+    public int getRenderPasses(ItemStack pStack)
+    {
+        return pStack.getTagCompound().getCompoundTag("RenderCompound").getInteger("RenderPasses");
+    }
+
 }
