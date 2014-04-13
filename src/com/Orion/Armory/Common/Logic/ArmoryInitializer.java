@@ -11,10 +11,7 @@ import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 import com.Orion.Armory.Common.Armor.ArmorMaterial;
 import com.Orion.Armory.Common.Armor.ArmorUpgrade;
-import com.Orion.Armory.Common.Events.RegisterArmorEvent;
-import com.Orion.Armory.Common.Events.RegisterMaterialsEvent;
-import com.Orion.Armory.Common.Events.RegisterModifiersEvent;
-import com.Orion.Armory.Common.Events.RegisterUpgradesEvent;
+import com.Orion.Armory.Common.Events.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,7 +20,6 @@ import java.util.ArrayList;
 
 public class ArmoryInitializer
 {
-
     public static void Initialize(Side pSide)
     {
         if (Armory.instance.iIsInitialized)
@@ -45,14 +41,14 @@ public class ArmoryInitializer
 
     private static void registerMaterials()
     {
-        ARegistry.iInstance.registerMaterial(new ArmorMaterial("vanilla.Iron", "Iron", "", true, new ArrayList<Boolean>()), true);
-        ARegistry.iInstance.registerMaterial(new ArmorMaterial("vanilla.Chain", "Steel", "", true, new ArrayList<Boolean>()), true);
-        ARegistry.iInstance.registerMaterial(new ArmorMaterial("tconstruct.Alumite", "Alumite", "", true, new ArrayList<Boolean>()), true);
-        ARegistry.iInstance.registerMaterial(new ArmorMaterial("armory.Bronze", "Bronze", "", true, new ArrayList<Boolean>()), true);
-        ARegistry.iInstance.registerMaterial(new ArmorMaterial("tconstruct.Ardite", "Ardite", "", false, new ArrayList<Boolean>()), true);
-        ARegistry.iInstance.registerMaterial(new ArmorMaterial("tconstruct.Cobalt", "Cobalt", "", true, new ArrayList<Boolean>()), true);
-        ARegistry.iInstance.registerMaterial(new ArmorMaterial("vanilla.Obsidian", "Obsidian", "", false, new ArrayList<Boolean>()), true);
-        ARegistry.iInstance.registerMaterial(new ArmorMaterial("tconstruct.Manyullyn", "Manyullun", "", false, new ArrayList<Boolean>()), true);
+        ARegistry.iInstance.registerMaterial(new ArmorMaterial("vanilla.Iron", "Iron", "", true, new ArrayList<Float>(), new ArrayList<Integer>(), new ArrayList<Integer>(), new ArrayList<Boolean>()), true);
+        ARegistry.iInstance.registerMaterial(new ArmorMaterial("vanilla.Chain", "Steel", "", true, new ArrayList<Float>(), new ArrayList<Integer>(), new ArrayList<Integer>(), new ArrayList<Boolean>()), true);
+        ARegistry.iInstance.registerMaterial(new ArmorMaterial("tconstruct.Alumite", "Alumite", "", true, new ArrayList<Float>(), new ArrayList<Integer>(), new ArrayList<Integer>(),new ArrayList<Boolean>()), true);
+        ARegistry.iInstance.registerMaterial(new ArmorMaterial("armory.Bronze", "Bronze", "", true, new ArrayList<Float>(), new ArrayList<Integer>(), new ArrayList<Integer>(),new ArrayList<Boolean>()), true);
+        ARegistry.iInstance.registerMaterial(new ArmorMaterial("tconstruct.Ardite", "Ardite", "", false, new ArrayList<Float>(), new ArrayList<Integer>(), new ArrayList<Integer>(),new ArrayList<Boolean>()), true);
+        ARegistry.iInstance.registerMaterial(new ArmorMaterial("tconstruct.Cobalt", "Cobalt", "", true, new ArrayList<Float>(), new ArrayList<Integer>(), new ArrayList<Integer>(),new ArrayList<Boolean>()), true);
+        ARegistry.iInstance.registerMaterial(new ArmorMaterial("vanilla.Obsidian", "Obsidian", "", false, new ArrayList<Float>(), new ArrayList<Integer>(), new ArrayList<Integer>(),new ArrayList<Boolean>()), true);
+        ARegistry.iInstance.registerMaterial(new ArmorMaterial("tconstruct.Manyullyn", "Manyullun", "", false, new ArrayList<Float>(), new ArrayList<Integer>(), new ArrayList<Integer>(),new ArrayList<Boolean>()), true);
 
         MinecraftForge.EVENT_BUS.post(new RegisterMaterialsEvent());
     }
@@ -252,17 +248,192 @@ public class ArmoryInitializer
 
     private static void registerArmors()
     {
-        ArmorCore tHelmet = new ArmorCore(0);
-        ArmorCore tChestPlate = new ArmorCore(1);
-        ArmorCore tLeggings = new ArmorCore(2);
-        ArmorCore tShoes = new ArmorCore(3);
+        registerHelmet();
+        registerChestplate();
+        registerLeggins();
+        registerShoes();
+        MinecraftForge.EVENT_BUS.post(new RegisterArmorEvent());
+    }
+
+    private static void registerHelmet()
+    {
+        ArmorCore tHelmet = new ArmorCore("armory.Helmet", 0);
+
+        for(ArmorMaterial tMaterial   :ARegistry.iInstance.getArmorMaterials()) {
+            if (tMaterial.iInternalName.equals("vanilla.Iron")) {
+                tMaterial.setBaseDamageAbsorption(0, 1.5F);
+                tMaterial.setBaseDurability(0, 50);
+                tMaterial.setMaxModifiersOnPart(0, 1);
+            } else if (tMaterial.iInternalName.equals("vanilla.Chain")) {
+                tMaterial.setBaseDamageAbsorption(0, 2.0F);
+                tMaterial.setBaseDurability(0, 60);
+                tMaterial.setMaxModifiersOnPart(0, 1);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Alumite")) {
+                tMaterial.setBaseDamageAbsorption(0, 2.0F);
+                tMaterial.setBaseDurability(0, 100);
+                tMaterial.setMaxModifiersOnPart(0, 2);
+            } else if (tMaterial.iInternalName.equals("armory.Bronze")) {
+                tMaterial.setBaseDamageAbsorption(0, 1.0F);
+                tMaterial.setBaseDurability(0, 100);
+                tMaterial.setMaxModifiersOnPart(0, 0);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Ardite")) {
+                tMaterial.setBaseDamageAbsorption(0, 2.5F);
+                tMaterial.setBaseDurability(0, 100);
+                tMaterial.setMaxModifiersOnPart(0, 2);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Cobalt")) {
+                tMaterial.setBaseDamageAbsorption(0, 3F);
+                tMaterial.setBaseDurability(0, 140);
+                tMaterial.setMaxModifiersOnPart(0, 2);
+            } else if (tMaterial.iInternalName.equals("vanilla.Obsidian")) {
+                tMaterial.setBaseDamageAbsorption(0, 3F);
+                tMaterial.setBaseDurability(0, 200);
+                tMaterial.setMaxModifiersOnPart(0, 2);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Manyullun")) {
+                tMaterial.setBaseDamageAbsorption(0, 3.5F);
+                tMaterial.setBaseDurability(0, 250);
+                tMaterial.setMaxModifiersOnPart(0, 3);
+            } else {
+                MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(0, ARegistry.iInstance.getMaterialID(tMaterial)));
+            }
+        }
+
 
         ARegistry.iInstance.addArmorMapping(tHelmet);
-        ARegistry.iInstance.addArmorMapping(tChestPlate);
-        ARegistry.iInstance.addArmorMapping(tLeggings);
-        ARegistry.iInstance.addArmorMapping(tShoes);
+    }
 
-        MinecraftForge.EVENT_BUS.post(new RegisterArmorEvent());
+    private static void registerChestplate()
+    {
+        ArmorCore tChestPlate = new ArmorCore("armory.Chestplate", 1);
+
+        for(ArmorMaterial tMaterial   :ARegistry.iInstance.getArmorMaterials()) {
+            if (tMaterial.iInternalName.equals("vanilla.Iron")) {
+                tMaterial.setBaseDamageAbsorption(1, 2.0F);
+                tMaterial.setBaseDurability(1, 50);
+                tMaterial.setMaxModifiersOnPart(1, 1);
+            } else if (tMaterial.iInternalName.equals("vanilla.Chain")) {
+                tMaterial.setBaseDamageAbsorption(1, 2.5F);
+                tMaterial.setBaseDurability(1, 60);
+                tMaterial.setMaxModifiersOnPart(1, 1);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Alumite")) {
+                tMaterial.setBaseDamageAbsorption(1, 2.5F);
+                tMaterial.setBaseDurability(1, 100);
+                tMaterial.setMaxModifiersOnPart(1, 2);
+            } else if (tMaterial.iInternalName.equals("armory.Bronze")) {
+                tMaterial.setBaseDamageAbsorption(1, 1.5F);
+                tMaterial.setBaseDurability(1, 100);
+                tMaterial.setMaxModifiersOnPart(1, 0);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Ardite")) {
+                tMaterial.setBaseDamageAbsorption(1, 3.0F);
+                tMaterial.setBaseDurability(1, 100);
+                tMaterial.setMaxModifiersOnPart(1, 2);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Cobalt")) {
+                tMaterial.setBaseDamageAbsorption(1, 3.5F);
+                tMaterial.setBaseDurability(1, 140);
+                tMaterial.setMaxModifiersOnPart(1, 2);
+            } else if (tMaterial.iInternalName.equals("vanilla.Obsidian")) {
+                tMaterial.setBaseDamageAbsorption(1, 3.5F);
+                tMaterial.setBaseDurability(1, 200);
+                tMaterial.setMaxModifiersOnPart(1, 2);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Manyullun")) {
+                tMaterial.setBaseDamageAbsorption(1, 4.0F);
+                tMaterial.setBaseDurability(1, 250);
+                tMaterial.setMaxModifiersOnPart(1, 3);
+            } else {
+                MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(1, ARegistry.iInstance.getMaterialID(tMaterial)));
+            }
+        }
+
+        ARegistry.iInstance.addArmorMapping(tChestPlate);
+    }
+
+    private static void registerLeggins()
+    {
+        ArmorCore tLeggings = new ArmorCore("armory.Leggins", 2);
+        
+        for(ArmorMaterial tMaterial   :ARegistry.iInstance.getArmorMaterials()) {
+            if (tMaterial.iInternalName.equals("vanilla.Iron")) {
+                tMaterial.setBaseDamageAbsorption(2, 1.5F);
+                tMaterial.setBaseDurability(2, 50);
+                tMaterial.setMaxModifiersOnPart(2, 1);
+            } else if (tMaterial.iInternalName.equals("vanilla.Chain")) {
+                tMaterial.setBaseDamageAbsorption(2, 2.0F);
+                tMaterial.setBaseDurability(2, 60);
+                tMaterial.setMaxModifiersOnPart(2, 1);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Alumite")) {
+                tMaterial.setBaseDamageAbsorption(2, 2.0F);
+                tMaterial.setBaseDurability(2, 100);
+                tMaterial.setMaxModifiersOnPart(2, 2);
+            } else if (tMaterial.iInternalName.equals("armory.Bronze")) {
+                tMaterial.setBaseDamageAbsorption(2, 1.0F);
+                tMaterial.setBaseDurability(2, 100);
+                tMaterial.setMaxModifiersOnPart(2, 0);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Ardite")) {
+                tMaterial.setBaseDamageAbsorption(2, 2.5F);
+                tMaterial.setBaseDurability(2, 100);
+                tMaterial.setMaxModifiersOnPart(2, 2);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Cobalt")) {
+                tMaterial.setBaseDamageAbsorption(2, 3F);
+                tMaterial.setBaseDurability(2, 140);
+                tMaterial.setMaxModifiersOnPart(2, 2);
+            } else if (tMaterial.iInternalName.equals("vanilla.Obsidian")) {
+                tMaterial.setBaseDamageAbsorption(2, 3F);
+                tMaterial.setBaseDurability(2, 200);
+                tMaterial.setMaxModifiersOnPart(2, 2);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Manyullun")) {
+                tMaterial.setBaseDamageAbsorption(2, 3.5F);
+                tMaterial.setBaseDurability(2, 250);
+                tMaterial.setMaxModifiersOnPart(2, 3);
+            } else {
+                MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(2, ARegistry.iInstance.getMaterialID(tMaterial)));
+            }
+        }
+
+        ARegistry.iInstance.addArmorMapping(tLeggings);
+    }
+
+    private static void registerShoes()
+    {
+        ArmorCore tShoes = new ArmorCore("armory.Shoes", 3);
+
+        for(ArmorMaterial tMaterial   :ARegistry.iInstance.getArmorMaterials()) {
+            if (tMaterial.iInternalName.equals("vanilla.Iron")) {
+                tMaterial.setBaseDamageAbsorption(3, 1.0F);
+                tMaterial.setBaseDurability(3, 50);
+                tMaterial.setMaxModifiersOnPart(3, 1);
+            } else if (tMaterial.iInternalName.equals("vanilla.Chain")) {
+                tMaterial.setBaseDamageAbsorption(3, 1.5F);
+                tMaterial.setBaseDurability(3, 60);
+                tMaterial.setMaxModifiersOnPart(3, 1);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Alumite")) {
+                tMaterial.setBaseDamageAbsorption(3, 1.5F);
+                tMaterial.setBaseDurability(3, 100);
+                tMaterial.setMaxModifiersOnPart(3, 2);
+            } else if (tMaterial.iInternalName.equals("armory.Bronze")) {
+                tMaterial.setBaseDamageAbsorption(3, 0.5F);
+                tMaterial.setBaseDurability(3, 100);
+                tMaterial.setMaxModifiersOnPart(3, 0);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Ardite")) {
+                tMaterial.setBaseDamageAbsorption(3, 2.0F);
+                tMaterial.setBaseDurability(3, 100);
+                tMaterial.setMaxModifiersOnPart(3, 2);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Cobalt")) {
+                tMaterial.setBaseDamageAbsorption(3, 2.5F);
+                tMaterial.setBaseDurability(3, 140);
+                tMaterial.setMaxModifiersOnPart(3, 2);
+            } else if (tMaterial.iInternalName.equals("vanilla.Obsidian")) {
+                tMaterial.setBaseDamageAbsorption(3, 2.5F);
+                tMaterial.setBaseDurability(3, 200);
+                tMaterial.setMaxModifiersOnPart(3, 2);
+            } else if (tMaterial.iInternalName.equals("tconstruct.Manyullun")) {
+                tMaterial.setBaseDamageAbsorption(3, 3.0F);
+                tMaterial.setBaseDurability(3, 250);
+                tMaterial.setMaxModifiersOnPart(3, 3);
+            } else {
+                MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(3, ARegistry.iInstance.getMaterialID(tMaterial)));
+            }
+        }
+
+        ARegistry.iInstance.addArmorMapping(tShoes);
     }
 
     @SideOnly(Side.CLIENT)

@@ -18,13 +18,13 @@ public class ArmorMaterial
     public String iVisibleName;
     public String iVisibleNameColor;
     public boolean iBaseArmorMaterial;
-    public ArrayList<Integer> iBaseDamageAbsorption;
+    public ArrayList<Float> iBaseDamageAbsorption;
     public ArrayList<Integer> iBaseDurability;
     public ArrayList<Integer> iPartModifiers;
     public ArrayList<Boolean> iActiveParts = new ArrayList<Boolean>();
 
     //Constructor
-    public ArmorMaterial(String pInternalName, String pVisibleName, String pVisibleNameColor, boolean pBaseArmorMaterial, ArrayList<Integer> pBaseDamageAbsorption,ArrayList<Integer> pBaseDurability, ArrayList<Integer> pPartModifiers, ArrayList<Boolean> pActiveParts)
+    public ArmorMaterial(String pInternalName, String pVisibleName, String pVisibleNameColor, boolean pBaseArmorMaterial, ArrayList<Float> pBaseDamageAbsorption,ArrayList<Integer> pBaseDurability, ArrayList<Integer> pPartModifiers, ArrayList<Boolean> pActiveParts)
     {
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
@@ -56,12 +56,12 @@ public class ArmorMaterial
         iActiveParts.set(pUpgradeID, pPartState);
     }
 
-    public void setBaseDamageAbsorption(int pTargetArmorID, int pBaseDamageAbsorption)
+    public void setBaseDamageAbsorption(int pTargetArmorID, Float pBaseDamageAbsorption)
     {
         iBaseDamageAbsorption.set(pTargetArmorID, pBaseDamageAbsorption);
     }
 
-    public int getBaseDamageAbsorption(int pTargetArmorID)
+    public Float getBaseDamageAbsorption(int pTargetArmorID)
     {
         return iBaseDamageAbsorption.get(pTargetArmorID);
     }
