@@ -23,7 +23,7 @@ public class AClientRegistry extends ARegistry
             for(ArmorMaterial tMaterial: iInstance.getArmorMaterials())
             {
                 if (tMaterial.iBaseArmorMaterial) {
-                    tArmor.registerBaseTexture(iInstance.getMaterialID(tMaterial), new String[]{"tconstruct-armory:multiarmor/base/" + tMaterial.iInternalName + "_base", "tconstruct-armory:models/multimarmor/base/" + tMaterial.iInternalName + "_base"});
+                    tArmor.registerBaseTexture(iInstance.getMaterialID(tMaterial), new String[]{"tconstruct-armory:multiarmor/base/" + tMaterial.iInternalName + "_ " + tArmor.iInternalName +"_base", "tconstruct-armory:models/multimarmor/base/" + tMaterial.iInternalName + "_base"});
                 }
             }
             for (ArmorUpgrade tUpgrade: iInstance.getUpgrades())
