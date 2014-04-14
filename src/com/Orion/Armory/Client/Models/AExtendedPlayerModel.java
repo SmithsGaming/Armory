@@ -12,7 +12,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
-class AExtendedPlayerModel extends ModelBase
+public class AExtendedPlayerModel extends ModelBase
 {
     //fields
     public ModelRenderer head;

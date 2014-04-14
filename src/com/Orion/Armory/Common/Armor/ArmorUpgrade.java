@@ -49,7 +49,7 @@ public class ArmorUpgrade
         int tInstalledAmount = 0;
         for (ArmorUpgrade tUpgrade : pInstalledUpgrades)
         {
-            if (tUpgrade == this)
+            if (tUpgrade.iTextureSuffix.equals(this.iTextureSuffix))
             {
                 tInstalledAmount++;
             }

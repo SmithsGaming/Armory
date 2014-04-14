@@ -89,8 +89,8 @@ public class ArmoryInitializer
     {
         for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
         {
-            ArmorUpgrade tEarProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 0, 1, tMaterial.iInternalName+".EarProtection.Left", "Ear protection left", "", "_Ear_Protection_Left", 0.5F, 20, 1);
-            ArmorUpgrade tEarProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 0, 2, tMaterial.iInternalName+".EarProtection.Right", "Ear protection right", "", "_Ear_Protection_Right", 0.5F, 20, 1);
+            ArmorUpgrade tEarProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 0, 1, tMaterial.iInternalName+".EarProtection.Left", "Ear protection left", "", "_Protection_Ear_Left", 0.5F, 20, 1);
+            ArmorUpgrade tEarProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 0, 2, tMaterial.iInternalName+".EarProtection.Right", "Ear protection right", "", "_Protection_Ear_Right", 0.5F, 20, 1);
             ARegistry.iInstance.registerUpgrade(tEarProtectionLeft);
             ARegistry.iInstance.registerUpgrade(tEarProtectionRight);
 

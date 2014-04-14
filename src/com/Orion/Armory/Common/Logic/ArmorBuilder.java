@@ -71,7 +71,7 @@ public class ArmorBuilder
         int tNewBaseDurability = ARegistry.iInstance.getMaterial(tMaterialID).getBaseDurability(tCore.iArmorPart);
         int tTotalDurability = tBaseCompound.getInteger("TotalDurability");
         int tUsedDurability = tTotalDurability - tBaseCompound.getInteger("CurrentDurability");
-        int tNewMaxAbsorption = ARegistry.iInstance.getMaterial(tMaterialID).getBaseDamageAbsorption(tCore.iArmorPart);
+        Float tNewMaxAbsorption = ARegistry.iInstance.getMaterial(tMaterialID).getBaseDamageAbsorption(tCore.iArmorPart);
 
         //Merge upgrades
         tInstalledUpgrades.addAll(pUpgrades);
@@ -108,7 +108,7 @@ public class ArmorBuilder
         tNewCompound.setInteger("MaterialID", tMaterialID);
         tNewCompound.setInteger("TotalDurability", tNewBaseDurability);
         tNewCompound.setInteger("CurrentDurability", tNewBaseDurability-tUsedDurability);
-        tNewCompound.setInteger("DamageAbsorption", tNewMaxAbsorption);
+        tNewCompound.setFloat("DamageAbsorption", tNewMaxAbsorption);
         tNewCompound.setInteger("MaxModifiers", ARegistry.iInstance.getMaterial(tMaterialID).getMaxModifiersOnPart(tCore.iArmorPart));
 
         //Add the renderpass data for the base armor
@@ -178,7 +178,7 @@ public class ArmorBuilder
         tBaseCompound.setInteger("MaterialID", pMaterialID);
         tBaseCompound.setInteger("TotalDurability", ARegistry.iInstance.getMaterial(pMaterialID).getBaseDurability(pArmorID));
         tBaseCompound.setInteger("CurrentDurability", tBaseCompound.getInteger("TotalDurability"));
-        tBaseCompound.setInteger("DamageAbsorption", ARegistry.iInstance.getMaterial(pMaterialID).getBaseDamageAbsorption(pArmorID));
+        tBaseCompound.setFloat("DamageAbsorption", ARegistry.iInstance.getMaterial(pMaterialID).getBaseDamageAbsorption(pArmorID));
         tBaseCompound.setInteger("MaxModifiers", ARegistry.iInstance.getMaterial(pMaterialID).getMaxModifiersOnPart(pArmorID));
 
         //Creating the initial Renderpass for the base armor layer.
