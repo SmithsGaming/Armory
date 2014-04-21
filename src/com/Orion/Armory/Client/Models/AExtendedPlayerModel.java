@@ -65,7 +65,7 @@ public class AExtendedPlayerModel extends ModelBase
       rightleg.setTextureSize(64, 64);
       rightleg.mirror = true;
       setRotation(rightleg, 0F, 0F, 0F);
-      rightfoot = new ModelRenderer(this, 16, 52);
+      rightfoot = new ModelRenderer(this, 0, 52);
       rightfoot.addBox(-2F, 8F, -2F, 4, 5, 4, pScale);
       rightfoot.setRotationPoint(-2F, 11F, 0F);
       rightfoot.setTextureSize(64, 64);
@@ -77,7 +77,7 @@ public class AExtendedPlayerModel extends ModelBase
       leftleg.setTextureSize(64, 64);
       leftleg.mirror = true;
       setRotation(leftleg, 0F, 0F, 0F);
-      leftfoot = new ModelRenderer(this, 0, 52);
+      leftfoot = new ModelRenderer(this, 16, 52);
       leftfoot.addBox(-2F, 8F, -2F, 4, 5, 4, pScale);
       leftfoot.setRotationPoint(2F, 11F, 0F);
       leftfoot.setTextureSize(64, 64);
