@@ -23,6 +23,7 @@ public class AExtendedPlayerModel extends ModelBase
     public ModelRenderer rightfoot;
     public ModelRenderer leftleg;
     public ModelRenderer leftfoot;
+    public ModelRenderer waist;
 
     public int heldItemLeft;
     public int heldItemRight;
@@ -64,9 +65,9 @@ public class AExtendedPlayerModel extends ModelBase
       rightleg.setTextureSize(64, 64);
       rightleg.mirror = true;
       setRotation(rightleg, 0F, 0F, 0F);
-      rightfoot = new ModelRenderer(this, 32, 40);
-      rightfoot.addBox(-2F, 8F, -2F, 4, 4, 4, pScale);
-      rightfoot.setRotationPoint(-2F, 12F, 0F);
+      rightfoot = new ModelRenderer(this, 16, 52);
+      rightfoot.addBox(-2F, 8F, -2F, 4, 5, 4, pScale);
+      rightfoot.setRotationPoint(-2F, 11F, 0F);
       rightfoot.setTextureSize(64, 64);
       rightfoot.mirror = true;
       setRotation(rightfoot, 0F, 0F, 0F);
@@ -76,12 +77,18 @@ public class AExtendedPlayerModel extends ModelBase
       leftleg.setTextureSize(64, 64);
       leftleg.mirror = true;
       setRotation(leftleg, 0F, 0F, 0F);
-      leftfoot = new ModelRenderer(this, 32, 32);
-      leftfoot.addBox(-2F, 8F, -2F, 4, 4, 4, pScale);
-      leftfoot.setRotationPoint(2F, 12F, 0F);
+      leftfoot = new ModelRenderer(this, 0, 52);
+      leftfoot.addBox(-2F, 8F, -2F, 4, 5, 4, pScale);
+      leftfoot.setRotationPoint(2F, 11F, 0F);
       leftfoot.setTextureSize(64, 64);
       leftfoot.mirror = true;
       setRotation(leftfoot, 0F, 0F, 0F);
+      waist = new ModelRenderer(this, 0,44);
+      waist.addBox(-4F, 8F, -2F, 8,4,4, pScale);
+      waist.setRotationPoint(0F,0F,0F);
+      waist.setTextureSize(64,64);
+      waist.mirror = true;
+      setRotation(waist, 0F, 0F, 0F);
   }
   
   public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -96,6 +103,7 @@ public class AExtendedPlayerModel extends ModelBase
       rightfoot.render(f5);
       leftleg.render(f5);
       leftfoot.render(f5);
+      waist.render(f5);
   }
   
   private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -172,6 +180,7 @@ public class AExtendedPlayerModel extends ModelBase
         if (this.isSneak)
         {
             this.body.rotateAngleX = 0.5F;
+            this.waist.rotateAngleX = 0.5F;
             this.rightarm.rotateAngleX += 0.4F;
             this.leftarm.rotateAngleX += 0.4F;
             this.rightleg.rotationPointZ = 4.0F;
@@ -183,6 +192,7 @@ public class AExtendedPlayerModel extends ModelBase
         else
         {
             this.body.rotateAngleX = 0.0F;
+            this.waist.rotateAngleX = 0.0F;
             this.rightleg.rotationPointZ = 0.1F;
             this.leftleg.rotationPointZ = 0.1F;
             this.rightleg.rotationPointY = 12.0F;
