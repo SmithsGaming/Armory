@@ -7,6 +7,7 @@ package com.Orion.Armory.Common.Logic;
 
 import com.Orion.Armory.Armory;
 import com.Orion.Armory.Client.AClientRegistry;
+import com.Orion.Armory.Client.ArmoryResource;
 import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 import com.Orion.Armory.Common.Armor.ArmorMaterial;
@@ -39,9 +40,13 @@ public class ArmoryInitializer
         prepareGame();
     }
 
+    //TODO: Create the registration of the ArmoryResources.....
     private static void registerMaterials()
     {
         ARegistry.iInstance.registerMaterial(new ArmorMaterial("vanilla.Iron", "Iron", "", true, new ArrayList<Float>(), new ArrayList<Integer>(), new ArrayList<Integer>(), new ArrayList<Boolean>()), true);
+        ARegistry.iInstance.getMaterial("vanilla.Iron").registerResource(new ArmoryResource("armory.Render.vanilla.Iron.Chest", ""));
+
+
         ARegistry.iInstance.registerMaterial(new ArmorMaterial("vanilla.Chain", "Steel", "", true, new ArrayList<Float>(), new ArrayList<Integer>(), new ArrayList<Integer>(), new ArrayList<Boolean>()), true);
         ARegistry.iInstance.registerMaterial(new ArmorMaterial("tconstruct.Alumite", "Alumite", "", true, new ArrayList<Float>(), new ArrayList<Integer>(), new ArrayList<Integer>(),new ArrayList<Boolean>()), true);
         ARegistry.iInstance.registerMaterial(new ArmorMaterial("armory.Bronze", "Bronze", "", true, new ArrayList<Float>(), new ArrayList<Integer>(), new ArrayList<Integer>(),new ArrayList<Boolean>()), true);

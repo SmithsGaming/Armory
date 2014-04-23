@@ -1,10 +1,6 @@
 package com.Orion.Armory.Common.Armor;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemArmor.*;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.EnumHelper;
+import com.Orion.Armory.Client.ArmoryResource;
 
 import java.util.ArrayList;
 
@@ -17,23 +13,25 @@ public class ArmorUpgrade
     public int iTargetArmorID;
     public int iUpgradeLocation;
     public String iInternalName;
+    public String iType;
     public String iVisibleName;
     public String iVisibleNameColor;
-    public String iTextureSuffix;
+    public ArmoryResource iResource;
     public float iProtection;
     public int iExtraDurability;
     public int iMaxUpgrades;
 
     //Constructors
-    public ArmorUpgrade(int pMaterialID, int pTargetArmorID, int pUpgradeLocation, String pInternalName, String pVisibleName, String pVisibleNameColor, String pTextureSuffix, float pProtection, int pExtraDurability,int pMaxUpgrades)
+    public ArmorUpgrade(int pMaterialID, int pTargetArmorID, int pUpgradeLocation, String pInternalName, String pType, String pVisibleName, String pVisibleNameColor, ArmoryResource pResource, float pProtection, int pExtraDurability,int pMaxUpgrades)
     {
         iMaterialID = pMaterialID;
         iTargetArmorID = pTargetArmorID;
         iUpgradeLocation = pUpgradeLocation;
         iInternalName = pInternalName;
+        iType = pType;
         iVisibleName = pVisibleName;
         iVisibleNameColor = pVisibleNameColor;
-        iTextureSuffix = pTextureSuffix;
+        iResource = pResource;
         iProtection = pProtection;
         iExtraDurability = pExtraDurability;
         iMaxUpgrades = pMaxUpgrades;
@@ -49,7 +47,7 @@ public class ArmorUpgrade
         int tInstalledAmount = 0;
         for (ArmorUpgrade tUpgrade : pInstalledUpgrades)
         {
-            if (tUpgrade.iTextureSuffix.equals(this.iTextureSuffix))
+            if (tUpgrade.iType.equals(this.iType))
             {
                 tInstalledAmount++;
             }
@@ -61,5 +59,10 @@ public class ArmorUpgrade
         }
 
         return true;
+    }
+
+    public ArmoryResource getResource()
+    {
+        return iResource;
     }
 }

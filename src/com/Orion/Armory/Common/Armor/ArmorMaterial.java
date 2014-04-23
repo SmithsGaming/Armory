@@ -5,9 +5,8 @@ package com.Orion.Armory.Common.Armor;
 *   Created on: 6-4-2014
 */
 
+import com.Orion.Armory.Client.ArmoryResource;
 import com.Orion.Armory.Common.ARegistry;
-import net.minecraft.item.ItemArmor;
-import scala.Int;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -18,6 +17,7 @@ public class ArmorMaterial
     public String iVisibleName;
     public String iVisibleNameColor;
     public boolean iBaseArmorMaterial;
+    public ArrayList<ArmoryResource> iResources;
     public ArrayList<Float> iBaseDamageAbsorption;
     public ArrayList<Integer> iBaseDurability;
     public ArrayList<Integer> iPartModifiers;
@@ -82,5 +82,15 @@ public class ArmorMaterial
     }
 
     public int getMaxModifiersOnPart(int pTargetArmorID) { return iPartModifiers.get(pTargetArmorID);}
+
+    public void registerResource(ArmoryResource pResource)
+    {
+        iResources.add(pResource);
+    }
+
+    public ArmoryResource getResource(int pTargetArmorID)
+    {
+        return iResources.get(pTargetArmorID);
+    }
 
 }

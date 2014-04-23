@@ -5,6 +5,7 @@ package com.Orion.Armory.Client.Render;
 *   Created on: 2-4-2014
 */
 
+import com.Orion.Armory.Client.ArmoryResource;
 import com.Orion.Armory.Client.Models.AExtendedPlayerModel;
 import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
@@ -18,6 +19,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -107,11 +109,14 @@ public class CustomArmorRenderer extends RendererLivingEntity
 
             AExtendedPlayerModel tModel = armorSlotID == 2 ? new AExtendedPlayerModel(0.5F) : new AExtendedPlayerModel(1.0F);
             tModel.head.showModel = armorSlotID == 0;
-            tModel.body.showModel = armorSlotID == 1 || armorSlotID == 2;
+            tModel.body.showModel = armorSlotID == 1;
             tModel.rightarm.showModel = armorSlotID == 1;
             tModel.leftarm.showModel = armorSlotID == 1;
-            tModel.rightleg.showModel = armorSlotID == 2 || armorSlotID == 3;
-            tModel.leftleg.showModel = armorSlotID == 2 || armorSlotID == 3;
+            tModel.waist.showModel = armorSlotID == 2;
+            tModel.rightleg.showModel = armorSlotID == 2;
+            tModel.leftleg.showModel = armorSlotID == 2;
+            tModel.rightfoot.showModel = armorSlotID == 3;
+            tModel.leftfoot.showModel = armorSlotID == 3;
             tModel.onGround = this.mainModel.onGround;
             tModel.isRiding = this.mainModel.isRiding;
             tModel.isChild = this.mainModel.isChild;
@@ -138,12 +143,24 @@ public class CustomArmorRenderer extends RendererLivingEntity
             GL11.glScalef(2.0F, 2.0F, 2.0F);
             GL11.glTranslatef(0F, -0.75F, 0F);
 
-            int renderAmount = currentArmor.getRenderPasses(0);
             ArmorCore ACore = (ArmorCore) currentArmor;
-            for (int currentRender = 1; currentRender <= renderAmount; currentRender++)
+            NBTTagCompound tRenderCompound = currentArmorItemStack.getTagCompound().getCompoundTag("RenderCompound");
+            int RenderPasses = ACore.getRenderPasses(currentArmorItemStack);
+
+            for (int currentRender = 0; currentRender <= RenderPasses; currentRender++)
             {
-                this.bindTexture(new ResourceLocation(ACore.getArmorTextureLocation(currentArmorItemStack, currentRender)));
+                ArmoryResource tResource = ACore.getResource(tRenderCompound.getCompoundTag("RenderPass - " + currentArmor).getInteger("ResourceID"));
+
+                float tRed = tResource.getColor(0) / 255.0F;
+                float tGreen = tResource.getColor(1) / 255.0F;
+                float tBlue = tResource.getColor(2) / 255.0F;
+
+                GL11.glColor4f(tRed, tGreen, tBlue, 1.0F);
+
+                this.bindTexture(new ResourceLocation(tResource.getModelLocation()));
                 tModel.render(par1EntityLivingBase, f7, f6, f4, f3 - f2, f13, f5);
+
+                GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             }
         }
         catch (Exception exception)

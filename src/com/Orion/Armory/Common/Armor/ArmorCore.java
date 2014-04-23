@@ -1,9 +1,9 @@
 package com.Orion.Armory.Common.Armor;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
+import com.Orion.Armory.Client.ArmoryResource;
+import com.Orion.Armory.Common.ARegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,13 +11,9 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.IIcon;
 import net.minecraftforge.common.ISpecialArmor;
 
-import com.Orion.Armory.Common.ARegistry;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
 
 /**
  * Created by Orion on 26-3-2014
@@ -28,14 +24,7 @@ public class ArmorCore extends ItemArmor implements ISpecialArmor
     public String iInternalName;
 
     //Hashmaps for storing the Icons
-    public HashMap<Integer, IIcon> iBaseIcons = new HashMap<Integer, IIcon>();
-    public HashMap<Integer, IIcon> iUpgradeIcons = new HashMap<Integer, IIcon>();
-    public HashMap<Integer, IIcon> iModifierIcons = new HashMap<Integer, IIcon>();
-
-    //Hashmaps to target the texture files
-    public HashMap<Integer, String[]> iBaseStrings = new HashMap<Integer, String[]>();
-    public HashMap<Integer, String[]> iUpgradeStrings = new HashMap<Integer, String[]>();
-    public HashMap<Integer, String[]> iModifierStrings = new HashMap<Integer, String[]>();
+    public ArrayList<ArmoryResource> iResources = new ArrayList<ArmoryResource>();
 
     public ArmorCore(String pInternalName, int pArmorPart) {
         super(ARegistry.iArmorMaterial, 0, pArmorPart);
@@ -61,97 +50,33 @@ public class ArmorCore extends ItemArmor implements ISpecialArmor
         return;
     }
 
-
-    //Special functions for the registering of the individual texture location for both Icon ([0]) and model [1]
-    public void registerBaseTexture(int ID, String[] pBaseTextureLocations)
+    //Function for registering a rescource to the object.
+    public void registerResource(Integer pResourceID, ArmoryResource pResource)
     {
-        iBaseStrings.put(ID, pBaseTextureLocations);
-    }
-
-    public void registerUpgradeTexture(int ID, String [] pUpgradeTextureLocations)
-    {
-        iUpgradeStrings.put(ID, pUpgradeTextureLocations);
-    }
-
-    public void registerModifierTexture(int ID, String[] pModifierTextureLocations)
-    {
-        iModifierStrings.put(ID, pModifierTextureLocations);
+        iResources.add(pResourceID, pResource);
     }
 
     //Function called when registering the item to register the Icons.
     @Override
     public void registerIcons(IIconRegister pIconRegister)
     {
-        //Adding the base icons
-        Iterator tBaseIter = iBaseStrings.entrySet().iterator();
-        while (tBaseIter.hasNext())
+        for(ArmoryResource tCurrentResource: iResources)
         {
-            Map.Entry<Integer, String[]> tCurrentTexture = (Map.Entry<Integer, String[]>) tBaseIter.next();
-            iBaseIcons.put(tCurrentTexture.getKey(), pIconRegister.registerIcon(tCurrentTexture.getValue()[0]));
+            tCurrentResource.addIcon(pIconRegister.registerIcon(tCurrentResource.getIconLocation()));
         }
-
-        //Adding the upgrade icons
-        Iterator tUpgradeIter = iUpgradeStrings.entrySet().iterator();
-        while (tUpgradeIter.hasNext())
-        {
-            Map.Entry<Integer, String[]> tCurrentTexture = (Map.Entry<Integer, String[]>) tUpgradeIter.next();
-            iUpgradeIcons.put(tCurrentTexture.getKey(), pIconRegister.registerIcon(tCurrentTexture.getValue()[0]));
-        }
-
-        //Adding the modifier icons
-        Iterator tModifierIter = iModifierStrings.entrySet().iterator();
-        while (tModifierIter.hasNext())
-        {
-            Map.Entry<Integer, String[]> tCurrentTexture = (Map.Entry<Integer, String[]>) tModifierIter.next();
-            iModifierIcons.put(tCurrentTexture.getKey(), pIconRegister.registerIcon(tCurrentTexture.getValue()[0]));
-        }
-
     }
 
-    @Override
+    //Function to get the IIcon for rendering Icons, The modeltexturelocation for models and the colors for combining.
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon (ItemStack stack, int renderPass)
+    public ArmoryResource getResource(int pResourceID)
     {
-        NBTTagCompound tItemCompound = stack.getTagCompound();
-        NBTTagCompound tRenderCompound = tItemCompound.getCompoundTag("RenderCompound");
-        NBTTagCompound tCurrentRenderCompound = tRenderCompound.getCompoundTag("RenderPass " + renderPass);
-        String tIconLocation = tCurrentRenderCompound.getString("IconLocation");
-        int tIconID = tCurrentRenderCompound.getInteger("IconID");
-
-        if (tIconLocation.equals("Base")) {
-            return iBaseIcons.get(tIconID);
-        } else if (tIconLocation.equals("Upgrades")) {
-            return iUpgradeIcons.get(tIconID);
-        } else if (tIconLocation.equals("Modifiers")) {
-            return iModifierIcons.get(tIconID);
-        }
-
-        return null;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public String getArmorTextureLocation(ItemStack stack, int renderPass)
-    {
-        NBTTagCompound tItemCompound = stack.getTagCompound();
-        NBTTagCompound tRenderCompound = tItemCompound.getCompoundTag("RenderCompound");
-        NBTTagCompound tCurrentRenderCompound = tRenderCompound.getCompoundTag("RenderPass " + renderPass);
-        String tIconLocation = tCurrentRenderCompound.getString("IconLocation");
-        int tIconID = tCurrentRenderCompound.getInteger("TextureID");
-
-        if (tIconLocation.equals("Base")) {
-            return iBaseStrings.get(tIconID)[1];
-        } else if (tIconLocation.equals("Upgrade")) {
-            return iUpgradeStrings.get(tIconID)[1];
-        } else if (tIconLocation.equals("Modifier")) {
-            return iModifierStrings.get(tIconID)[1];
-        }
-
-        return "";
+        return iResources.get(pResourceID);
     }
 
     public int getRenderPasses(ItemStack pStack)
     {
-        return pStack.getTagCompound().getCompoundTag("RenderCompound").getInteger("RenderPasses");
+        NBTTagCompound tBaseCompound = pStack.getTagCompound();
+        return tBaseCompound.getInteger("RenderPasses");
     }
 
 }

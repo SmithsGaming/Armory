@@ -7,15 +7,12 @@ package com.Orion.Armory.Common.Logic;
 
 import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
-import com.Orion.Armory.Common.Armor.ArmorMaterial;
-import com.Orion.Armory.Common.Armor.Modifiers.ArmorModifier;
 import com.Orion.Armory.Common.Armor.ArmorUpgrade;
-import net.minecraft.item.ItemArmor;
+import com.Orion.Armory.Common.Armor.Modifiers.ArmorModifier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ArmorBuilder
 {
@@ -113,8 +110,7 @@ public class ArmorBuilder
 
         //Add the renderpass data for the base armor
         tNewRenderCompound.setTag("RenderPass - 0", new NBTTagCompound());
-        tNewRenderCompound.getCompoundTag("RenderPass - 0").setString("IconLocation", "Base");
-        tNewRenderCompound.getCompoundTag("RenderPass - 0").setInteger("IconID", tMaterialID);
+        tNewRenderCompound.getCompoundTag("RenderPass - 0").setInteger("ResourceID", tMaterialID);
 
         //Adding the Upgrade data to the the upgrade and render part of the compound
         int tRenderPassCounter = 0;
@@ -125,8 +121,7 @@ public class ArmorBuilder
 
             tRenderPassCounter++;
 
-            tRenderPassCompound.setString("IconLocation", "Upgrades");
-            tRenderPassCompound.setInteger("IconID", ARegistry.iInstance.getUpgradeTextureID(ARegistry.iInstance.getMaterial(tMaterialID).iInternalName, tCurrentUpgrade.iInternalName));
+            tRenderPassCompound.setInteger("ResourceID", ARegistry.iInstance.getUpgradeTextureID(ARegistry.iInstance.getMaterial(tMaterialID).iInternalName, tCurrentUpgrade.iInternalName));
 
             tUpgradeCompound.setInteger("UpgradeID", ARegistry.iInstance.getUpgradeID(tCurrentUpgrade));
 
@@ -144,8 +139,7 @@ public class ArmorBuilder
             tRenderPassCounter++;
             tModifierCounter++;
 
-            tRenderPassCompound.setString("IconLocation", "Modifiers");
-            tRenderPassCompound.setInteger("IconID", ARegistry.iInstance.getModifierTextureID(tCurrentModifier.iInternalName));
+            tRenderPassCompound.setInteger("ResourceID", ARegistry.iInstance.getModifierTextureID(tCurrentModifier.iInternalName));
 
             tModifierCompound.setInteger("ModifierID", ARegistry.iInstance.getModifierID(tCurrentModifier));
             tModifierCompound.setInteger("Amount", tCurrentModifier.iInstalledAmount);
@@ -184,8 +178,7 @@ public class ArmorBuilder
         //Creating the initial Renderpass for the base armor layer.
         tBaseCompound.setInteger("RenderPasses", 0);
         tRenderCompound.setTag("RenderPass - 0", new NBTTagCompound());
-        tRenderCompound.getCompoundTag("RenderPass - 0").setString("IconLocation", "Base");
-        tRenderCompound.getCompoundTag("RenderPass - 0").setInteger("IconID", pMaterialID);
+        tRenderCompound.getCompoundTag("RenderPass - 0").setInteger("ResourceID", ARegistry.iInstance.getMaterialTextureID(ARegistry.iInstance.getMaterial(pMaterialID).iInternalName));
 
         //Creating the initial modifier and upgrade data
         tBaseCompound.setInteger("InstalledUpgrades", 0);

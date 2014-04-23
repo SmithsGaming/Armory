@@ -1,18 +1,19 @@
 package com.Orion.Armory.Common;
 
-import java.util.*;
+import com.Orion.Armory.Client.CreativeTab.ArmorTab;
 import com.Orion.Armory.Client.CreativeTab.ComponentsTab;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 import com.Orion.Armory.Common.Armor.ArmorMaterial;
-import com.Orion.Armory.Common.Armor.Modifiers.ArmorModifier;
 import com.Orion.Armory.Common.Armor.ArmorUpgrade;
+import com.Orion.Armory.Common.Armor.Modifiers.ArmorModifier;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.EnumHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.Orion.Armory.Client.CreativeTab.ArmorTab;
+
+import java.util.ArrayList;
 
 /**
  * Created by Orion on 26-3-2014
@@ -220,56 +221,17 @@ public class ARegistry
 
     public int getUpgradeTextureID(String pMaterialName, String pUpgradeName)
     {
-        int tUpgradeID = this.getUpgradeID(pUpgradeName)+1;
-        int tMaterialID = this.getMaterialID(pMaterialName);
-
-        if ((tUpgradeID == -1) || (tMaterialID == -1)) {
-            return -1;
-        }
-
-        return ((tMaterialID) * this.iArmorUpgrades.size() + tUpgradeID);
+        return (((this.getMaterialID(pMaterialName)-1)* iArmorUpgrades.size())-1) + this.getUpgradeID(pUpgradeName);
     }
 
     public int getModifierTextureID(String pModifierName)
     {
-        return this.getModifierID(pModifierName);
+        return ((iArmorMaterials.size() * iArmorUpgrades.size()) - 1) + this.getModifierID(pModifierName);
     }
 
-    public String getUpgradeTextureSuffix(int pUpgradeID)
+    public int getMaterialTextureID(String pMaterialName)
     {
-        return iArmorUpgrades.get(pUpgradeID).iTextureSuffix;
-    }
-
-    public String getUpgradeTextureSuffix(ArmorUpgrade pUpgrade)
-    {
-        return this.getUpgradeTextureSuffix(this.getUpgradeID(pUpgrade));
-    }
-
-    public String getModifierTextureSuffix(int pModifierID) { return iArmorModifiers.get(pModifierID).iTextureSuffix;}
-
-    public String getModifierTextureSuffix(ArmorModifier pModifier)
-    {
-        return this.getModifierTextureSuffix(this.getModifierID(pModifier));
-    }
-
-    public void changeTextureSuffixOnUpgrade(int pUpgradeID, String pNewTextureSuffix)
-    {
-        iArmorUpgrades.get(pUpgradeID).iTextureSuffix = pNewTextureSuffix;
-    }
-
-    public void changeTextureSuffixOnUpgrade(ArmorUpgrade pUpgrade, String pNewTextureSuffix)
-    {
-        this.changeTextureSuffixOnUpgrade(this.getUpgradeID(pUpgrade), pNewTextureSuffix);
-    }
-
-    public void changeTextureSuffixOnModifier(int pModifierID, String pNewTextureSuffix)
-    {
-        iArmorModifiers.get(pModifierID).iTextureSuffix = pNewTextureSuffix;
-    }
-
-    public void changeTextureSuffixOnModifier(ArmorModifier pModifier, String pNewTextureSuffix)
-    {
-        this.changeTextureSuffixOnModifier(this.getModifierID(pModifier), pNewTextureSuffix);
+        return ((this.getMaterialID(pMaterialName) - 1) * iArmorUpgrades.size());
     }
 
     public ArrayList<ArmorUpgrade> getInstalledArmorUpgradesOnItemStack(ItemStack pBaseArmor)
