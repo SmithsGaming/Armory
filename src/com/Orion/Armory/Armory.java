@@ -1,11 +1,9 @@
 package com.Orion.Armory;
 
-import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.ArmoryCommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.client.Minecraft;
 
 /**
  * Base class for Armory
@@ -13,7 +11,7 @@ import net.minecraft.client.Minecraft;
  * Created by: Orion 25-3-2014
  */
 
-@Mod(modid = "TConstruct-Armory", name = "TConstruct - Armory extension", version = "0.0.1 Alpha 1",
+@Mod(modid = "TConstruct-Armory", name = "TConstruct - Armory extension", version = "0.0.1 Alpha 22",
         dependencies = "required-after:Forge@[9.11,);required-after:Mantle;after:ForgeMultipart;after:TContruct")
 public class Armory
 {
@@ -33,5 +31,6 @@ public class Armory
     public void preInit (FMLPreInitializationEvent event)
     {
         proxy.registerEvents();
+        proxy.initializeArmory();
     }
 }

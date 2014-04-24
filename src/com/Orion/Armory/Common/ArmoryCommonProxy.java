@@ -1,9 +1,8 @@
 package com.Orion.Armory.Common;
 
 import com.Orion.Armory.Client.Render.RenderPlayerEventHook;
-import cpw.mods.fml.common.network.IGuiHandler;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
+import com.Orion.Armory.Common.Logic.ArmoryInitializer;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.MinecraftForge;
 
 /**
@@ -13,6 +12,12 @@ import net.minecraftforge.common.MinecraftForge;
  */
 public class ArmoryCommonProxy
 {
+    public void initializeArmory()
+    {
+        ArmoryInitializer tInitializer = new ArmoryInitializer();
+        tInitializer.iInstance.Initialize(Side.SERVER);
+    }
+
     public void registerEvents()
     {
         MinecraftForge.EVENT_BUS.register(new RenderPlayerEventHook());

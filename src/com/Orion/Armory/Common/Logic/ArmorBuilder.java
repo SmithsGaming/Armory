@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class ArmorBuilder
 {
     //TODO: Create the initialize armor function.
-    private static ArmorBuilder instance;
+    public static ArmorBuilder instance;
 
     public static void init()
     {

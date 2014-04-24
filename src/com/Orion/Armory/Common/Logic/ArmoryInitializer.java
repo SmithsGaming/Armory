@@ -14,20 +14,27 @@ import com.Orion.Armory.Common.Armor.ArmorCore;
 import com.Orion.Armory.Common.Armor.ArmorMaterial;
 import com.Orion.Armory.Common.Armor.ArmorUpgrade;
 import com.Orion.Armory.Common.Events.*;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
 
 public class ArmoryInitializer
 {
+    public ArmoryInitializer iInstance = new ArmoryInitializer();
+
     public static void Initialize(Side pSide)
     {
         if (Armory.instance.iIsInitialized)
         {
             return;
         }
+
+        ArmorBuilder.init();
 
         registerMaterials();
         registerUpgrades();
@@ -592,6 +599,19 @@ public class ArmoryInitializer
 
     private static void prepareGame()
     {
-        //TODO: Implement registration of items into the game.
+        for(ArmorCore tCore: ARegistry.iInstance.getAllArmorMappings())
+        {
+            GameRegistry.registerItem(tCore, tCore.getUnlocalizedName(), "tconstruct-armory");
+        }
+
+        ItemStack tHelmetIron = ArmorBuilder.instance.createInitialArmor(ARegistry.iInstance.getMaterialID("vanilla.Iron"), 0);
+        ItemStack tChestplateIron = ArmorBuilder.instance.createInitialArmor(ARegistry.iInstance.getMaterialID("vanilla.Iron"), 1);
+        ItemStack tLegginsIron = ArmorBuilder.instance.createInitialArmor(ARegistry.iInstance.getMaterialID("vanilla.Iron"), 2);
+        ItemStack tShoesIron = ArmorBuilder.instance.createInitialArmor(ARegistry.iInstance.getMaterialID("vanilla.Iron"), 3);
+
+        GameRegistry.addRecipe(tHelmetIron, "X  ", "   ", "   ", 'X', new ItemStack(Items.iron_ingot));
+        GameRegistry.addRecipe(tChestplateIron, " X ", "   ", "   ", 'X', new ItemStack(Items.iron_ingot));
+        GameRegistry.addRecipe(tLegginsIron, "  X", "   ", "   ", 'X', new ItemStack(Items.iron_ingot));
+        GameRegistry.addRecipe(tShoesIron, "   ", "X  ", "   ", 'X', new ItemStack(Items.iron_ingot));
     }
 }
