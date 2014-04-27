@@ -15,16 +15,23 @@ public class AClientRegistry extends ARegistry
 {
     public static void registerRenderMappings()
     {
+        iLogger.info("Counted " + iInstance.getAllArmorMappings().size() + " types of Armor.");
+        iLogger.info("Counted " + iInstance.getArmorMaterials().size() + " types of Materials.");
+        iLogger.info("Counted " + iInstance.getUpgrades().size() + " types of Upgrades.");
+        iLogger.info("Counted " + iInstance.getModifiers().size() + " types of Modifiers.");
+
+        iLogger.info("Total amount of rescources: " + (iInstance.getAllArmorMappings().size() * (iInstance.getArmorMaterials().size() + iInstance.getUpgrades().size() + iInstance.getModifiers().size())));
+
         for(ArmorCore tArmor: iInstance.getAllArmorMappings())
         {
             for(ArmorMaterial tMaterial : iInstance.getArmorMaterials())
             {
                 tArmor.registerResource(iInstance.getMaterialTextureID(tMaterial.iInternalName), tMaterial.getResource(tArmor.iArmorPart));
+            }
 
-                for(ArmorUpgrade tUpgrade : iInstance.getUpgrades())
-                {
-                    tArmor.registerResource(iInstance.getUpgradeTextureID(tMaterial.iInternalName, tUpgrade.iInternalName), tUpgrade.getResource());
-                }
+            for(ArmorUpgrade tUpgrade : iInstance.getUpgrades())
+            {
+                tArmor.registerResource(iInstance.getUpgradeTextureID(iInstance.getMaterial(tUpgrade.iMaterialID).iInternalName, tUpgrade.iInternalName), tUpgrade.getResource());
             }
 
             for(ArmorModifier tModifier: iInstance.getModifiers())

@@ -13,7 +13,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by Orion on 26-3-2014
@@ -24,10 +26,11 @@ public class ArmorCore extends ItemArmor implements ISpecialArmor
     public String iInternalName;
 
     //Hashmaps for storing the Icons
-    public ArrayList<ArmoryResource> iResources = new ArrayList<ArmoryResource>();
+    public HashMap<Integer, ArmoryResource> iResources = new HashMap<Integer, ArmoryResource>();
 
     public ArmorCore(String pInternalName, int pArmorPart) {
         super(ARegistry.iArmorMaterial, 0, pArmorPart);
+        this.setUnlocalizedName(pInternalName);
         this.setMaxStackSize(1);
         this.iInternalName = pInternalName;
         this.iArmorPart = pArmorPart;
@@ -53,16 +56,18 @@ public class ArmorCore extends ItemArmor implements ISpecialArmor
     //Function for registering a rescource to the object.
     public void registerResource(Integer pResourceID, ArmoryResource pResource)
     {
-        iResources.add(pResourceID, pResource);
+        iResources.put(pResourceID, pResource);
     }
 
     //Function called when registering the item to register the Icons.
     @Override
     public void registerIcons(IIconRegister pIconRegister)
     {
-        for(ArmoryResource tCurrentResource: iResources)
+        Iterator tResourceIterator = iResources.entrySet().iterator();
+        while(tResourceIterator.hasNext())
         {
-            tCurrentResource.addIcon(pIconRegister.registerIcon(tCurrentResource.getIconLocation()));
+            Map.Entry<Integer, ArmoryResource> tResource = (Map.Entry<Integer, ArmoryResource>) tResourceIterator.next();
+            tResource.getValue().addIcon(pIconRegister.registerIcon(tResource.getValue().getIconLocation()));
         }
     }
 

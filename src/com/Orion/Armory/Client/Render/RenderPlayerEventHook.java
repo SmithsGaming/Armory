@@ -6,7 +6,6 @@ package com.Orion.Armory.Client.Render;
 */
 
 import com.Orion.Armory.Common.Armor.ArmorCore;
-import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -45,7 +44,7 @@ public class RenderPlayerEventHook
             return;
         }
 
-        armorRendererInstance.renderArmorPiece((net.minecraft.entity.EntityLivingBase) event.entity, renderDataX, renderDataY, renderDataZ, event.stack.getItem(), event.stack, event.slot-1);
+        armorRendererInstance.doRender((net.minecraft.entity.EntityLivingBase) event.entity, renderDataX, renderDataY, renderDataZ, event.stack.getItem(), event.stack, event.slot-1);
 
         event.result = -2;
     }

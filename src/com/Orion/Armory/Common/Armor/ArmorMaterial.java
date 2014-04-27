@@ -9,7 +9,7 @@ import com.Orion.Armory.Client.ArmoryResource;
 import com.Orion.Armory.Common.ARegistry;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ArmorMaterial
 {
@@ -17,14 +17,14 @@ public class ArmorMaterial
     public String iVisibleName;
     public String iVisibleNameColor;
     public boolean iBaseArmorMaterial;
-    public ArrayList<ArmoryResource> iResources;
-    public ArrayList<Float> iBaseDamageAbsorption;
-    public ArrayList<Integer> iBaseDurability;
-    public ArrayList<Integer> iPartModifiers;
-    public ArrayList<Boolean> iActiveParts = new ArrayList<Boolean>();
+    public HashMap<Integer, ArmoryResource> iResources = new HashMap<Integer, ArmoryResource>();
+    public HashMap<Integer, Boolean> iActiveParts = new HashMap<Integer, Boolean>();
+    public HashMap<Integer, Float> iBaseDamageAbsorption = new HashMap<Integer, Float>();
+    public HashMap<Integer, Integer> iBaseDurability = new HashMap<Integer, Integer>();
+    public HashMap<Integer, Integer> iPartModifiers = new HashMap<Integer, Integer>();
 
     //Constructor
-    public ArmorMaterial(String pInternalName, String pVisibleName, String pVisibleNameColor, boolean pBaseArmorMaterial, ArrayList<Float> pBaseDamageAbsorption,ArrayList<Integer> pBaseDurability, ArrayList<Integer> pPartModifiers, ArrayList<Boolean> pActiveParts)
+    public ArmorMaterial(String pInternalName, String pVisibleName, String pVisibleNameColor, boolean pBaseArmorMaterial, HashMap<Integer, Float> pBaseDamageAbsorption, HashMap<Integer, Integer> pBaseDurability, HashMap<Integer, Integer> pPartModifiers, HashMap<Integer, Boolean> pActiveParts)
     {
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
@@ -38,12 +38,12 @@ public class ArmorMaterial
 
     public void registerNewActivePart(int pUpgradeID, boolean pPartState)
     {
-        if (iActiveParts.get(pUpgradeID) != null)
+        if ((iActiveParts.size() != 0) && (iActiveParts.get(pUpgradeID) != null))
         {
             throw new InvalidParameterException("The given upgrade: " + ARegistry.iInstance.getUpgrade(pUpgradeID).iVisibleName + ", is already registered  for this material: " + iVisibleName + ". The upgrades will automatically register them self's to the material.");
         }
 
-        iActiveParts.add(pUpgradeID, pPartState);
+        iActiveParts.put(pUpgradeID, pPartState);
     }
 
     public void modifyPartState(int pUpgradeID, boolean pPartState)
@@ -53,12 +53,13 @@ public class ArmorMaterial
             throw new InvalidParameterException("The given upgrade: " + ARegistry.iInstance.getUpgrade(pUpgradeID).iVisibleName + ", is not registered for the following material: "+ iVisibleName + ". Something went wrong as this should have happened when registering the material!");
         }
 
-        iActiveParts.set(pUpgradeID, pPartState);
+        iActiveParts.remove(pUpgradeID);
+        iActiveParts.put(pUpgradeID, pPartState);
     }
 
     public void setBaseDamageAbsorption(int pTargetArmorID, Float pBaseDamageAbsorption)
     {
-        iBaseDamageAbsorption.set(pTargetArmorID, pBaseDamageAbsorption);
+        iBaseDamageAbsorption.put(pTargetArmorID, pBaseDamageAbsorption);
     }
 
     public Float getBaseDamageAbsorption(int pTargetArmorID)
@@ -68,7 +69,7 @@ public class ArmorMaterial
 
     public void setBaseDurability(int pTargetArmorID, int pBaseDurability)
     {
-        iBaseDurability.set(pTargetArmorID, pBaseDurability);
+        iBaseDurability.put(pTargetArmorID, pBaseDurability);
     }
 
     public int getBaseDurability(int pTargetArmorID)
@@ -78,14 +79,14 @@ public class ArmorMaterial
 
     public void setMaxModifiersOnPart(int pTargetArmorID, int pMaxModifiers)
     {
-        iPartModifiers.set(pTargetArmorID, pMaxModifiers);
+        iPartModifiers.put(pTargetArmorID, pMaxModifiers);
     }
 
     public int getMaxModifiersOnPart(int pTargetArmorID) { return iPartModifiers.get(pTargetArmorID);}
 
     public void registerResource(ArmoryResource pResource)
     {
-        iResources.add(pResource);
+        iResources.put(iResources.size(), pResource);
     }
 
     public ArmoryResource getResource(int pTargetArmorID)

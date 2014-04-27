@@ -221,17 +221,17 @@ public class ARegistry
 
     public int getUpgradeTextureID(String pMaterialName, String pUpgradeName)
     {
-        return (((this.getMaterialID(pMaterialName)-1)* iArmorUpgrades.size())-1) + this.getUpgradeID(pUpgradeName);
+        return (this.getMaterialID(pMaterialName)* (iArmorUpgrades.size()+1)) + this.getUpgradeID(pUpgradeName)+1;
     }
 
     public int getModifierTextureID(String pModifierName)
     {
-        return ((iArmorMaterials.size() * iArmorUpgrades.size()) - 1) + this.getModifierID(pModifierName);
+        return ((iArmorMaterials.size() * iArmorUpgrades.size()) + 1) + this.getModifierID(pModifierName)+1;
     }
 
     public int getMaterialTextureID(String pMaterialName)
     {
-        return ((this.getMaterialID(pMaterialName) - 1) * iArmorUpgrades.size());
+        return (this.getMaterialID(pMaterialName) * (iArmorUpgrades.size()+1));
     }
 
     public ArrayList<ArmorUpgrade> getInstalledArmorUpgradesOnItemStack(ItemStack pBaseArmor)

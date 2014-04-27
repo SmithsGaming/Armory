@@ -32,5 +32,6 @@ public class Armory
     {
         proxy.registerEvents();
         proxy.initializeArmory();
+        proxy.registerRenderers();
     }
 }
