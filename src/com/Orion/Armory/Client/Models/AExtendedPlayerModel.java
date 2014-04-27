@@ -1,7 +1,7 @@
 package com.Orion.Armory.Client.Models;
 
 /*
-/  AExtendedPlayerModel (Created with techne, just modified the setRotationAngles and added some parameters for players.)
+/  AExtendedPlayerModel
 /  Created by : Orion
 /  Created on : 08/04/2014
 */

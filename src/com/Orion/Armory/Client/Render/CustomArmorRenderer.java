@@ -58,10 +58,13 @@ public class CustomArmorRenderer extends RendererLivingEntity
         return par1 + par3 * f3;
     }
 
-    public void doRender(EntityLivingBase par1EntityLivingBase, double x, double y, double z, Item currentArmor,ItemStack currentArmorItemStack, int armorSlotID)
+    public void doRender(EntityLivingBase par1EntityLivingBase, double x, double y, double z, Item currentArmor,ItemStack currentArmorItemStack)
     {
         try
         {
+            ArmorCore ACore = (ArmorCore) currentArmor;
+            int armorSlotID = ACore.iArmorPart;
+
             float f2 = this.interpolateRotation(par1EntityLivingBase.prevRenderYawOffset, par1EntityLivingBase.renderYawOffset, 0);
             float f3 = this.interpolateRotation(par1EntityLivingBase.prevRotationYawHead, par1EntityLivingBase.rotationYawHead, 0);
             float f4;
@@ -107,7 +110,7 @@ public class CustomArmorRenderer extends RendererLivingEntity
                 f6 = 1.0F;
             }
 
-            AExtendedPlayerModel tModel = armorSlotID == 2 ? new AExtendedPlayerModel(0.5F) : new AExtendedPlayerModel(1.0F);
+            AExtendedPlayerModel tModel = armorSlotID == 2 ? new AExtendedPlayerModel(0F) : new AExtendedPlayerModel(0F);
             tModel.head.showModel = armorSlotID == 0;
             tModel.body.showModel = armorSlotID == 1;
             tModel.rightarm.showModel = armorSlotID == 1;
@@ -140,10 +143,10 @@ public class CustomArmorRenderer extends RendererLivingEntity
                 }
             }
 
-            GL11.glScalef(2.0F, 2.0F, 2.0F);
-            GL11.glTranslatef(0F, -0.75F, 0F);
+            //GL11.glScalef(2.0F, 2.0F, 2.0F);
+            //GL11.glTranslatef(0F, -0.75F, 0F);
 
-            ArmorCore ACore = (ArmorCore) currentArmor;
+
             NBTTagCompound tRenderCompound = currentArmorItemStack.getTagCompound().getCompoundTag("RenderCompound");
             int RenderPasses = ACore.getRenderPasses(currentArmorItemStack);
 

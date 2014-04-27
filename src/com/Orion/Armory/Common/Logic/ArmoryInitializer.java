@@ -68,10 +68,10 @@ public class ArmoryInitializer
     private static void registerIron()
     {
         ArmorMaterial tIron = new ArmorMaterial("vanilla.Iron", "Iron", "", true, new HashMap<Integer, Float>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Boolean>());
-        ArmoryResource tHelmetResource = new ArmoryResource("vanilla.Iron.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tChestPlateResource = new ArmoryResource("vanilla.Iron.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tLegginsResource = new ArmoryResource("vanilla.Iron.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tShoesResource = new ArmoryResource("vanilla.Iron.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
+        ArmoryResource tHelmetResource = new ArmoryResource("vanilla.Iron.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tChestPlateResource = new ArmoryResource("vanilla.Iron.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tLegginsResource = new ArmoryResource("vanilla.Iron.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tShoesResource = new ArmoryResource("vanilla.Iron.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
         
         tIron.registerResource(tHelmetResource);
         tIron.registerResource(tChestPlateResource);
@@ -84,10 +84,10 @@ public class ArmoryInitializer
     private static void registerChain()
     {
         ArmorMaterial tChain = new ArmorMaterial("vanilla.Chain", "Steel", "", true, new HashMap<Integer, Float>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Boolean>());
-        ArmoryResource tHelmetResource = new ArmoryResource("vanilla.Chain.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tChestPlateResource = new ArmoryResource("vanilla.Chain.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tLegginsResource = new ArmoryResource("vanilla.Chain.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tShoesResource = new ArmoryResource("vanilla.Chain.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
+        ArmoryResource tHelmetResource = new ArmoryResource("vanilla.Chain.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tChestPlateResource = new ArmoryResource("vanilla.Chain.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tLegginsResource = new ArmoryResource("vanilla.Chain.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tShoesResource = new ArmoryResource("vanilla.Chain.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
 
         tChain.registerResource(tHelmetResource);
         tChain.registerResource(tChestPlateResource);
@@ -100,10 +100,10 @@ public class ArmoryInitializer
     private static void registerObsidian()
     {
         ArmorMaterial tObsidian = new ArmorMaterial("vanilla.Obsidian", "Steel", "", true, new HashMap<Integer, Float>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Boolean>());
-        ArmoryResource tHelmetResource = new ArmoryResource("vanilla.Obsidian.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tChestPlateResource = new ArmoryResource("vanilla.Obsidian.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tLegginsResource = new ArmoryResource("vanilla.Obsidian.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tShoesResource = new ArmoryResource("vanilla.Obsidian.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
+        ArmoryResource tHelmetResource = new ArmoryResource("vanilla.Obsidian.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tChestPlateResource = new ArmoryResource("vanilla.Obsidian.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tLegginsResource = new ArmoryResource("vanilla.Obsidian.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tShoesResource = new ArmoryResource("vanilla.Obsidian.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
 
         tObsidian.registerResource(tHelmetResource);
         tObsidian.registerResource(tChestPlateResource);
@@ -116,10 +116,10 @@ public class ArmoryInitializer
     private static void registerAlumite()
     {
         ArmorMaterial tAlumite = new ArmorMaterial("tconstruct.Alumite", "Steel", "", true, new HashMap<Integer, Float>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Boolean>());
-        ArmoryResource tHelmetResource = new ArmoryResource("tconstruct.Alumite.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tChestPlateResource = new ArmoryResource("tconstruct.Alumite.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tLegginsResource = new ArmoryResource("tconstruct.Alumite.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tShoesResource = new ArmoryResource("tconstruct.Alumite.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
+        ArmoryResource tHelmetResource = new ArmoryResource("tconstruct.Alumite.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tChestPlateResource = new ArmoryResource("tconstruct.Alumite.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tLegginsResource = new ArmoryResource("tconstruct.Alumite.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tShoesResource = new ArmoryResource("tconstruct.Alumite.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
 
         tAlumite.registerResource(tHelmetResource);
         tAlumite.registerResource(tChestPlateResource);
@@ -132,10 +132,10 @@ public class ArmoryInitializer
     private static void registerArdite()
     {
         ArmorMaterial tArdite = new ArmorMaterial("tconstruct.Ardite", "Steel", "", true, new HashMap<Integer, Float>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Boolean>());
-        ArmoryResource tHelmetResource = new ArmoryResource("tconstruct.Ardite.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tChestPlateResource = new ArmoryResource("tconstruct.Ardite.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tLegginsResource = new ArmoryResource("tconstruct.Ardite.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tShoesResource = new ArmoryResource("tconstruct.Ardite.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
+        ArmoryResource tHelmetResource = new ArmoryResource("tconstruct.Ardite.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tChestPlateResource = new ArmoryResource("tconstruct.Ardite.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tLegginsResource = new ArmoryResource("tconstruct.Ardite.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tShoesResource = new ArmoryResource("tconstruct.Ardite.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
 
         tArdite.registerResource(tHelmetResource);
         tArdite.registerResource(tChestPlateResource);
@@ -148,10 +148,10 @@ public class ArmoryInitializer
     private static void registerCobalt()
     {
         ArmorMaterial tCobalt = new ArmorMaterial("tconstruct.Cobalt", "Steel", "", true, new HashMap<Integer, Float>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Boolean>());
-        ArmoryResource tHelmetResource = new ArmoryResource("tconstruct.Cobalt.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tChestPlateResource = new ArmoryResource("tconstruct.Cobalt.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tLegginsResource = new ArmoryResource("tconstruct.Cobalt.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tShoesResource = new ArmoryResource("tconstruct.Cobalt.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
+        ArmoryResource tHelmetResource = new ArmoryResource("tconstruct.Cobalt.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tChestPlateResource = new ArmoryResource("tconstruct.Cobalt.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tLegginsResource = new ArmoryResource("tconstruct.Cobalt.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tShoesResource = new ArmoryResource("tconstruct.Cobalt.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
 
         tCobalt.registerResource(tHelmetResource);
         tCobalt.registerResource(tChestPlateResource);
@@ -164,10 +164,10 @@ public class ArmoryInitializer
     private static void registerManyullun()
     {
         ArmorMaterial tManyullun = new ArmorMaterial("tconstruct.Manyullun", "Steel", "", true, new HashMap<Integer, Float>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Boolean>());
-        ArmoryResource tHelmetResource = new ArmoryResource("tconstruct.Manyullun.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tChestPlateResource = new ArmoryResource("tconstruct.Manyullun.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tLegginsResource = new ArmoryResource("tconstruct.Manyullun.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tShoesResource = new ArmoryResource("tconstruct.Manyullun.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
+        ArmoryResource tHelmetResource = new ArmoryResource("tconstruct.Manyullun.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tChestPlateResource = new ArmoryResource("tconstruct.Manyullun.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tLegginsResource = new ArmoryResource("tconstruct.Manyullun.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tShoesResource = new ArmoryResource("tconstruct.Manyullun.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
 
         tManyullun.registerResource(tHelmetResource);
         tManyullun.registerResource(tChestPlateResource);
@@ -180,10 +180,10 @@ public class ArmoryInitializer
     private static void registerBronze()
     {
         ArmorMaterial tBronze = new ArmorMaterial("armory.Bronze", "Steel", "", true, new HashMap<Integer, Float>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Integer>(), new HashMap<Integer, Boolean>());
-        ArmoryResource tHelmetResource = new ArmoryResource("armory.Bronze.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tChestPlateResource = new ArmoryResource("armory.Bronze.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tLegginsResource = new ArmoryResource("armory.Bronze.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
-        ArmoryResource tShoesResource = new ArmoryResource("armory.Bronze.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/model/multiarmor/base/Base", 255, 255, 255);
+        ArmoryResource tHelmetResource = new ArmoryResource("armory.Bronze.Base.Helmet", "tconstruct-armory:multiarmor/base/armory.Helmet_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tChestPlateResource = new ArmoryResource("armory.Bronze.Base.Chestplate", "tconstruct-armory:multiarmor/base/armory.Chestplate_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tLegginsResource = new ArmoryResource("armory.Bronze.Base.Leggins", "tconstruct-armory:multiarmor/base/armory.Leggins_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
+        ArmoryResource tShoesResource = new ArmoryResource("armory.Bronze.Base.Shoes", "tconstruct-armory:multiarmor/base/armory.Shoes_Base", "tconstruct-armory:textures/models/multiarmor/base/Base.png", 255, 255, 255);
 
         tBronze.registerResource(tHelmetResource);
         tBronze.registerResource(tChestPlateResource);

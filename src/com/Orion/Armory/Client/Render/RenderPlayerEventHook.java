@@ -44,7 +44,7 @@ public class RenderPlayerEventHook
             return;
         }
 
-        armorRendererInstance.doRender((net.minecraft.entity.EntityLivingBase) event.entity, renderDataX, renderDataY, renderDataZ, event.stack.getItem(), event.stack, event.slot-1);
+        armorRendererInstance.doRender((net.minecraft.entity.EntityLivingBase) event.entity, renderDataX, renderDataY, renderDataZ, event.stack.getItem(), event.stack);
 
         event.result = -2;
     }
