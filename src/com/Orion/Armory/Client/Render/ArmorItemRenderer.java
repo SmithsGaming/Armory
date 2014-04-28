@@ -6,9 +6,12 @@ package com.Orion.Armory.Client.Render;
 */
 
 import com.Orion.Armory.Client.ArmoryResource;
+import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
+import com.Orion.Armory.Common.Logic.ArmorBuilder;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
@@ -30,10 +33,16 @@ public class ArmorItemRenderer implements IItemRenderer {
     @Override
     public void renderItem(ItemRenderType type, ItemStack itemStack, Object... data)
     {
+        if (itemStack.getTagCompound() == null)
+        {
+            itemStack = ArmorBuilder.instance.createInitialArmor(ARegistry.iInstance.getMaterialID("vanilla.Iron"), 1);
+        }
+
         int tRenderPasses = ((ArmorCore) itemStack.getItem()).getRenderPasses(itemStack);
+        NBTTagCompound tRenderCompound = itemStack.getTagCompound().getCompoundTag("RenderCompound");
         for (int tPassIter = 0; tPassIter <= tRenderPasses; tPassIter++)
         {
-            ArmoryResource tResource = ((ArmorCore) itemStack.getItem()).getResource(tPassIter);
+            ArmoryResource tResource = ((ArmorCore) itemStack.getItem()).getResource(tRenderCompound.getCompoundTag("RenderPass - " + tPassIter));
             IIcon tIcon = tResource.getIcon();
             float tRed = tResource.getColor(0) / 255.0F;
             float tGreen = tResource.getColor(1) / 255.0F;

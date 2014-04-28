@@ -19,8 +19,10 @@ public class RenderPlayerEventHook
     double renderDataX;
     double renderDataY;
     double renderDataZ;
+    float partialTickTime;
     RenderManager renderManager;
 
+    //Used to do the actual rendering of the current armormodel
     @SubscribeEvent
     public void SetArmorModelCalled(RenderPlayerEvent.SetArmorModel event)
     {
@@ -44,11 +46,12 @@ public class RenderPlayerEventHook
             return;
         }
 
-        armorRendererInstance.doRender((net.minecraft.entity.EntityLivingBase) event.entity, renderDataX, renderDataY, renderDataZ, event.stack.getItem(), event.stack);
+        armorRendererInstance.doRender((net.minecraft.entity.EntityLivingBase) event.entity, renderDataX, renderDataY, renderDataZ, event.stack.getItem(), event.stack, event.partialRenderTick);
 
         event.result = -2;
     }
 
+    //Used for grabbing the rotation data.
     @SubscribeEvent
     public void PreRenderPlayerCalled(RenderLivingEvent.Pre event)
     {

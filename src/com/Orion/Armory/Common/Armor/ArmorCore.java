@@ -78,6 +78,14 @@ public class ArmorCore extends ItemArmor implements ISpecialArmor
         return iResources.get(pResourceID);
     }
 
+    @SideOnly(Side.CLIENT)
+    public ArmoryResource getResource(NBTTagCompound pRenderCompound)
+    {
+        int tResourceID = pRenderCompound.getInteger("ResourceID");
+
+        return iResources.get(tResourceID);
+    }
+
     public int getRenderPasses(ItemStack pStack)
     {
         NBTTagCompound tBaseCompound = pStack.getTagCompound();

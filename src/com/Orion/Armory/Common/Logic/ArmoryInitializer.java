@@ -609,7 +609,7 @@ public class ArmoryInitializer
         ItemStack tLegginsIron = ArmorBuilder.instance.createInitialArmor(ARegistry.iInstance.getMaterialID("vanilla.Iron"), 2);
         ItemStack tShoesIron = ArmorBuilder.instance.createInitialArmor(ARegistry.iInstance.getMaterialID("vanilla.Iron"), 3);
 
-        GameRegistry.addRecipe(tHelmetIron, "X  ", "X  ", "   ", 'X', new ItemStack(Items.iron_ingot));
+        GameRegistry.addRecipe(tHelmetIron, "X  ", "  X", "   ", 'X', new ItemStack(Items.iron_ingot));
         GameRegistry.addRecipe(tChestplateIron, " X ", " X ", "   ", 'X', new ItemStack(Items.iron_ingot));
         GameRegistry.addRecipe(tLegginsIron, "  X", "  X", "   ", 'X', new ItemStack(Items.iron_ingot));
         GameRegistry.addRecipe(tShoesIron, "   ", "X  ", "X  ", 'X', new ItemStack(Items.iron_ingot));

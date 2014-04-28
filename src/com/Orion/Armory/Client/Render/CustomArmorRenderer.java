@@ -58,15 +58,18 @@ public class CustomArmorRenderer extends RendererLivingEntity
         return par1 + par3 * f3;
     }
 
-    public void doRender(EntityLivingBase par1EntityLivingBase, double x, double y, double z, Item currentArmor,ItemStack currentArmorItemStack)
+    public void doRender(EntityLivingBase par1EntityLivingBase, double x, double y, double z, Item currentArmor,ItemStack currentArmorItemStack, float partialTickTime)
     {
         try
         {
             ArmorCore ACore = (ArmorCore) currentArmor;
             int armorSlotID = ACore.iArmorPart;
 
-            float f2 = this.interpolateRotation(par1EntityLivingBase.prevRenderYawOffset, par1EntityLivingBase.renderYawOffset, 0);
-            float f3 = this.interpolateRotation(par1EntityLivingBase.prevRotationYawHead, par1EntityLivingBase.rotationYawHead, 0);
+            //float f2 = this.interpolateRotation(par1EntityLivingBase.prevRenderYawOffset, par1EntityLivingBase.renderYawOffset, partialTickTime);
+            //float f3 = this.interpolateRotation(par1EntityLivingBase.prevRotationYawHead, par1EntityLivingBase.rotationYawHead, partialTickTime);
+            float f2 = par1EntityLivingBase.renderYawOffset;
+            float f3 = par1EntityLivingBase.rotationYawHead;
+
             float f4;
 
             if (par1EntityLivingBase.isRiding() && par1EntityLivingBase.ridingEntity instanceof EntityLivingBase)
@@ -95,7 +98,7 @@ public class CustomArmorRenderer extends RendererLivingEntity
 
             float f13 = par1EntityLivingBase.prevRotationPitch + par1EntityLivingBase.rotationPitch;
 
-            f4 = this.handleRotationFloat(par1EntityLivingBase, 0);
+            f4 = this.handleRotationFloat(par1EntityLivingBase, partialTickTime);
             float f5 = 0.0625F;
             float f6 = par1EntityLivingBase.prevLimbSwingAmount + (par1EntityLivingBase.limbSwingAmount - par1EntityLivingBase.prevLimbSwingAmount);
             float f7 = par1EntityLivingBase.limbSwing - par1EntityLivingBase.limbSwingAmount * (1.0F);
@@ -110,16 +113,16 @@ public class CustomArmorRenderer extends RendererLivingEntity
                 f6 = 1.0F;
             }
 
-            AExtendedPlayerModel tModel = armorSlotID == 2 ? new AExtendedPlayerModel(0F) : new AExtendedPlayerModel(0F);
-            tModel.head.showModel = armorSlotID == 0;
-            tModel.body.showModel = armorSlotID == 1;
-            tModel.rightarm.showModel = armorSlotID == 1;
-            tModel.leftarm.showModel = armorSlotID == 1;
-            tModel.waist.showModel = armorSlotID == 2;
-            tModel.rightleg.showModel = armorSlotID == 2;
-            tModel.leftleg.showModel = armorSlotID == 2;
-            tModel.rightfoot.showModel = armorSlotID == 3;
-            tModel.leftfoot.showModel = armorSlotID == 3;
+            AExtendedPlayerModel tModel = armorSlotID == 2 ? new AExtendedPlayerModel(0.5F) : new AExtendedPlayerModel(1F);
+            tModel.bipedHead.showModel = armorSlotID == 0;
+            tModel.bipedBody.showModel = armorSlotID == 1;
+            tModel.bipedRightArm.showModel = armorSlotID == 1;
+            tModel.bipedLeftArm.showModel = armorSlotID == 1;
+            tModel.bipedWaist.showModel = armorSlotID == 2;
+            tModel.bipedRightLeg.showModel = armorSlotID == 2;
+            tModel.bipedLeftLeg.showModel = armorSlotID == 2;
+            tModel.bipedRightFoot.showModel = armorSlotID == 3;
+            tModel.bipedLeftFoot.showModel = armorSlotID == 3;
             tModel.onGround = this.mainModel.onGround;
             tModel.isRiding = this.mainModel.isRiding;
             tModel.isChild = this.mainModel.isChild;
@@ -143,12 +146,13 @@ public class CustomArmorRenderer extends RendererLivingEntity
                 }
             }
 
-            //GL11.glScalef(2.0F, 2.0F, 2.0F);
-            //GL11.glTranslatef(0F, -0.75F, 0F);
-
-
             NBTTagCompound tRenderCompound = currentArmorItemStack.getTagCompound().getCompoundTag("RenderCompound");
             int RenderPasses = ACore.getRenderPasses(currentArmorItemStack);
+
+            GL11.glScalef(1.5F, 1.5F, 1.5F);
+            //GL11.glTranslatef(0F, -0.7F, 0F);
+
+
 
             for (int currentRender = 0; currentRender <= RenderPasses; currentRender++)
             {
@@ -165,6 +169,8 @@ public class CustomArmorRenderer extends RendererLivingEntity
 
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             }
+
+            //GL11.glScalef(0F, 0F, 0F);
         }
         catch (Exception exception)
         {

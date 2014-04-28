@@ -6,6 +6,7 @@ import com.Orion.Armory.Common.Armor.ArmorCore;
 import com.Orion.Armory.Common.Armor.ArmorMaterial;
 import com.Orion.Armory.Common.Armor.ArmorUpgrade;
 import com.Orion.Armory.Common.Armor.Modifiers.ArmorModifier;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,6 +30,8 @@ public class ARegistry
     // Tabs for the creative inventory
     public static ArmorTab iTabArmoryArmor;
     public static ComponentsTab iTabArmoryComponents;
+    public static Item iArmoryTabIcon;
+    public static Item iComponentsTabIcon;
 
     //Arraylist for storing all the materials
     ArrayList<ArmorMaterial> iArmorMaterials = new ArrayList<ArmorMaterial>();

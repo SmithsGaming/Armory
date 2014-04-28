@@ -7,132 +7,124 @@ package com.Orion.Armory.Client.Models;
 */
 
 
-import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
 
-public class AExtendedPlayerModel extends ModelBase
+public class AExtendedPlayerModel extends ModelBiped
 {
     //fields
-    public ModelRenderer head;
-    public ModelRenderer body;
-    public ModelRenderer rightarm;
-    public ModelRenderer leftarm;
-    public ModelRenderer rightleg;
-    public ModelRenderer rightfoot;
-    public ModelRenderer leftleg;
-    public ModelRenderer leftfoot;
-    public ModelRenderer waist;
+    public ModelRenderer bipedRightFoot;
+    public ModelRenderer bipedLeftFoot;
+    public ModelRenderer bipedWaist;
 
     public int heldItemLeft;
     public int heldItemRight;
     public boolean isSneak;
     public boolean aimedBow;
   
-  public AExtendedPlayerModel(float pScale)
-  {
-      textureWidth = 64;
-      textureHeight = 64;
-    
-      head = new ModelRenderer(this, 0, 0);
-      head.addBox(-4F, -8F, -4F, 8, 8, 8, pScale);
-      head.setRotationPoint(0F, 0F , 0F);
-      head.setTextureSize(64, 64);
-      head.mirror = true;
-      setRotation(head, 0F, 0F, 0F);
-      body = new ModelRenderer(this, 0, 16);
-      body.addBox(-4F, 0F, -2F, 8, 12, 4, pScale);
-      body.setRotationPoint(0F, 0F, 0F);
-      body.setTextureSize(64, 64);
-      body.mirror = true;
-      setRotation(body, 0F, 0F, 0F);
-      rightarm = new ModelRenderer(this, 32, 16);
-      rightarm.addBox(-3F, -2F, -2F, 4, 12, 4, pScale);
-      rightarm.setRotationPoint(-5F, 2F, 0F);
-      rightarm.setTextureSize(64, 64);
-      rightarm.mirror = true;
-      setRotation(rightarm, 0F, 0F, 0F);
-      leftarm = new ModelRenderer(this, 32, 0);
-      leftarm.addBox(-1F, -2F, -2F, 4, 12, 4, pScale);
-      leftarm.setRotationPoint(5F, 2F, 0F);
-      leftarm.setTextureSize(64, 64);
-      leftarm.mirror = true;
-      setRotation(leftarm, 0F, 0F, 0F);
-      rightleg = new ModelRenderer(this, 0, 32);
-      rightleg.addBox(-2F, 0F, -2F, 4, 8, 4, pScale);
-      rightleg.setRotationPoint(-2F, 12F, 0F);
-      rightleg.setTextureSize(64, 64);
-      rightleg.mirror = true;
-      setRotation(rightleg, 0F, 0F, 0F);
-      rightfoot = new ModelRenderer(this, 0, 52);
-      rightfoot.addBox(-2F, 8F, -2F, 4, 5, 4, pScale);
-      rightfoot.setRotationPoint(-2F, 11F, 0F);
-      rightfoot.setTextureSize(64, 64);
-      rightfoot.mirror = true;
-      setRotation(rightfoot, 0F, 0F, 0F);
-      leftleg = new ModelRenderer(this, 16, 32);
-      leftleg.addBox(-2F, 0F, -2F, 4, 8, 4, pScale);
-      leftleg.setRotationPoint(2F, 12F, 0F);
-      leftleg.setTextureSize(64, 64);
-      leftleg.mirror = true;
-      setRotation(leftleg, 0F, 0F, 0F);
-      leftfoot = new ModelRenderer(this, 16, 52);
-      leftfoot.addBox(-2F, 8F, -2F, 4, 5, 4, pScale);
-      leftfoot.setRotationPoint(2F, 11F, 0F);
-      leftfoot.setTextureSize(64, 64);
-      leftfoot.mirror = true;
-      setRotation(leftfoot, 0F, 0F, 0F);
-      waist = new ModelRenderer(this, 0,44);
-      waist.addBox(-4F, 8F, -2F, 8,4,4, pScale);
-      waist.setRotationPoint(0F,0F,0F);
-      waist.setTextureSize(64,64);
-      waist.mirror = true;
-      setRotation(waist, 0F, 0F, 0F);
+    public AExtendedPlayerModel(float pScale)
+    {
+        super(pScale, 0F, 64, 64);
+
+        textureWidth = 64;
+        textureHeight = 64;
+
+        bipedHead = new ModelRenderer(this, 0, 0);
+        bipedHead.addBox(-4F, -8F, -4F, 8, 8, 8, pScale);
+        bipedHead.setRotationPoint(0F, 0F , 0F);
+        bipedHead.setTextureSize(64, 64);
+        bipedHead.mirror = true;
+        setRotation(bipedHead, 0F, 0F, 0F);
+        bipedBody = new ModelRenderer(this, 0, 16);
+        bipedBody.addBox(-4F, 0F, -2F, 8, 12, 4, pScale);
+        bipedBody.setRotationPoint(0F, 0F, 0F);
+        bipedBody.setTextureSize(64, 64);
+        bipedBody.mirror = true;
+        setRotation(bipedBody, 0F, 0F, 0F);
+        bipedRightArm = new ModelRenderer(this, 32, 16);
+        bipedRightArm.addBox(-3F, -2F, -2F, 4, 12, 4, pScale);
+        bipedRightArm.setRotationPoint(0F, 0F, 0F);
+        bipedRightArm.setTextureSize(64, 64);
+        bipedRightArm.mirror = true;
+        setRotation(bipedRightArm, 0F, 0F, 0F);
+        bipedLeftArm = new ModelRenderer(this, 32, 0);
+        bipedLeftArm.addBox(-1F, -2F, -2F, 4, 12, 4, pScale);
+        bipedLeftArm.setRotationPoint(0F, 0F, 0F);
+        bipedLeftArm.setTextureSize(64, 64);
+        bipedLeftArm.mirror = true;
+        setRotation(bipedLeftArm, 0F, 0F, 0F);
+        bipedRightLeg = new ModelRenderer(this, 0, 32);
+        bipedRightLeg.addBox(-2F, 0F, -2F, 4, 8, 4, pScale);
+        bipedRightLeg.setRotationPoint(0F, 0F, 0F);
+        bipedRightLeg.setTextureSize(64, 64);
+        bipedRightLeg.mirror = true;
+        setRotation(bipedRightLeg, 0F, 0F, 0F);
+        bipedRightFoot = new ModelRenderer(this, 0, 52);
+        bipedRightFoot.addBox(-2F, 8F, -2F, 4, 5, 4, pScale);
+        bipedRightFoot.setRotationPoint(0F, 0F, 0F);
+        bipedRightFoot.setTextureSize(64, 64);
+        bipedRightFoot.mirror = true;
+        setRotation(bipedRightFoot, 0F, 0F, 0F);
+        bipedLeftLeg = new ModelRenderer(this, 16, 32);
+        bipedLeftLeg.addBox(-2F, 0F, -2F, 4, 8, 4, pScale);
+        bipedLeftLeg.setRotationPoint(0F, 0F, 0F);
+        bipedLeftLeg.setTextureSize(64, 64);
+        bipedLeftLeg.mirror = true;
+        setRotation(bipedLeftLeg, 0F, 0F, 0F);
+        bipedLeftFoot = new ModelRenderer(this, 16, 52);
+        bipedLeftFoot.addBox(-2F, 8F, -2F, 4, 5, 4, pScale);
+        bipedLeftFoot.setRotationPoint(0F, 0F, 0F);
+        bipedLeftFoot.setTextureSize(64, 64);
+        bipedLeftFoot.mirror = true;
+        setRotation(bipedLeftFoot, 0F, 0F, 0F);
+        bipedWaist = new ModelRenderer(this, 0,44);
+        bipedWaist.addBox(-4F, 8F, -2F, 8, 4, 4, pScale);
+        bipedWaist.setRotationPoint(0F, 0F, 0F);
+        bipedWaist.setTextureSize(64, 64);
+        bipedWaist.mirror = true;
+        setRotation(bipedWaist, 0F, 0F, 0F);
+
+
+        this.bipedBody.addChild(bipedWaist);
+        this.bipedLeftLeg.addChild(bipedLeftFoot);
+        this.bipedRightLeg.addChild(bipedRightFoot);
   }
   
-  public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-  {
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+      super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
       super.render(entity, f, f1, f2, f3, f4, f5);
-      setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-      head.render(f5);
-      body.render(f5);
-      rightarm.render(f5);
-      leftarm.render(f5);
-      rightleg.render(f5);
-      rightfoot.render(f5);
-      leftleg.render(f5);
-      leftfoot.render(f5);
-      waist.render(f5);
   }
   
-  private void setRotation(ModelRenderer model, float x, float y, float z)
-  {
+    private void setRotation(ModelRenderer model, float x, float y, float z)
+    {
       model.rotateAngleX = x;
       model.rotateAngleY = y;
       model.rotateAngleZ = z;
   }
 
+    /*
     public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity)
     {
-        this.head.rotateAngleY = par4 / (180F / (float)Math.PI);
-        this.head.rotateAngleX = par5 / (180F / (float)Math.PI);
-        this.rightarm.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float) Math.PI) * 2.0F * par2 * 0.5F;
+        this.bipedHead.rotateAngleY = par4 / (180F / (float)Math.PI);
+        this.bipedHead.rotateAngleX = par5 / (180F / (float)Math.PI);
+        this.bipedRightArm.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float) Math.PI) * 2.0F * par2 * 0.5F;
         this.leftarm.rotateAngleX = MathHelper.cos(par1 * 0.6662F) * 2.0F * par2 * 0.5F;
-        this.rightarm.rotateAngleZ = 0.0F;
+        this.bipedRightArm.rotateAngleZ = 0.0F;
         this.leftarm.rotateAngleZ = 0.0F;
         this.rightleg.rotateAngleX = MathHelper.cos(par1 * 0.6662F) * 1.4F * par2;
-        this.rightfoot.rotateAngleX = MathHelper.cos(par1 * 0.6662F) * 1.4F * par2;
+        this.bipedRightFoot.rotateAngleX = MathHelper.cos(par1 * 0.6662F) * 1.4F * par2;
         this.leftleg.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 1.4F * par2;
-        this.leftfoot.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 1.4F * par2;
+        this.bipedLeftFoot.rotateAngleX = MathHelper.cos(par1 * 0.6662F + (float)Math.PI) * 1.4F * par2;
         this.rightleg.rotateAngleY = 0.0F;
-        this.rightfoot.rotateAngleY = 0.0F;
+        this.bipedRightFoot.rotateAngleY = 0.0F;
         this.leftleg.rotateAngleY = 0.0F;
-        this.leftfoot.rotateAngleY= 0.0F;
+        this.bipedLeftFoot.rotateAngleY= 0.0F;
 
         if (this.isRiding)
         {
-            this.rightarm.rotateAngleX += -((float)Math.PI / 5F);
+            this.bipedRightArm.rotateAngleX += -((float)Math.PI / 5F);
             this.leftarm.rotateAngleX += -((float)Math.PI / 5F);
             this.rightleg.rotateAngleX = -((float)Math.PI * 2F / 5F);
             this.leftleg.rotateAngleX = -((float)Math.PI * 2F / 5F);
@@ -147,10 +139,10 @@ public class AExtendedPlayerModel extends ModelBase
 
         if (this.heldItemRight != 0)
         {
-            this.rightarm.rotateAngleX = this.rightarm.rotateAngleX * 0.5F - ((float)Math.PI / 10F) * (float)this.heldItemRight;
+            this.bipedRightArm.rotateAngleX = this.bipedRightArm.rotateAngleX * 0.5F - ((float)Math.PI / 10F) * (float)this.heldItemRight;
         }
 
-        this.rightarm.rotateAngleY = 0.0F;
+        this.bipedRightArm.rotateAngleY = 0.0F;
         this.leftarm.rotateAngleY = 0.0F;
         float f6;
         float f7;
@@ -158,70 +150,71 @@ public class AExtendedPlayerModel extends ModelBase
         if (this.onGround > -9990.0F)
         {
             f6 = this.onGround;
-            this.body.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(f6) * (float)Math.PI * 2.0F) * 0.2F;
-            this.rightarm.rotationPointZ = MathHelper.sin(this.body.rotateAngleY) * 5.0F;
-            this.rightarm.rotationPointX = -MathHelper.cos(this.body.rotateAngleY) * 5.0F;
-            this.leftarm.rotationPointZ = -MathHelper.sin(this.body.rotateAngleY) * 5.0F;
-            this.leftarm.rotationPointX = MathHelper.cos(this.body.rotateAngleY) * 5.0F;
-            this.rightarm.rotateAngleY += this.body.rotateAngleY;
-            this.leftarm.rotateAngleY += this.body.rotateAngleY;
-            this.leftarm.rotateAngleX += this.body.rotateAngleY;
+            this.bipedBody.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(f6) * (float)Math.PI * 2.0F) * 0.2F;
+            this.bipedRightArm.rotationPointZ = MathHelper.sin(this.bipedBody.rotateAngleY) * 5.0F;
+            this.bipedRightArm.rotationPointX = -MathHelper.cos(this.bipedBody.rotateAngleY) * 5.0F;
+            this.leftarm.rotationPointZ = -MathHelper.sin(this.bipedBody.rotateAngleY) * 5.0F;
+            this.leftarm.rotationPointX = MathHelper.cos(this.bipedBody.rotateAngleY) * 5.0F;
+            this.bipedRightArm.rotateAngleY += this.bipedBody.rotateAngleY;
+            this.leftarm.rotateAngleY += this.bipedBody.rotateAngleY;
+            this.leftarm.rotateAngleX += this.bipedBody.rotateAngleY;
             f6 = 1.0F - this.onGround;
             f6 *= f6;
             f6 *= f6;
             f6 = 1.0F - f6;
             f7 = MathHelper.sin(f6 * (float)Math.PI);
-            float f8 = MathHelper.sin(this.onGround * (float)Math.PI) * -(this.head.rotateAngleX - 0.7F) * 0.75F;
-            this.rightarm.rotateAngleX = (float)((double)this.rightarm.rotateAngleX - ((double)f7 * 1.2D + (double)f8));
-            this.rightarm.rotateAngleY += this.body.rotateAngleY * 2.0F;
-            this.rightarm.rotateAngleZ = MathHelper.sin(this.onGround * (float)Math.PI) * -0.4F;
+            float f8 = MathHelper.sin(this.onGround * (float)Math.PI) * -(this.bipedHead.rotateAngleX - 0.7F) * 0.75F;
+            this.bipedRightArm.rotateAngleX = (float)((double)this.bipedRightArm.rotateAngleX - ((double)f7 * 1.2D + (double)f8));
+            this.bipedRightArm.rotateAngleY += this.bipedBody.rotateAngleY * 2.0F;
+            this.bipedRightArm.rotateAngleZ = MathHelper.sin(this.onGround * (float)Math.PI) * -0.4F;
         }
 
         if (this.isSneak)
         {
-            this.body.rotateAngleX = 0.5F;
-            this.waist.rotateAngleX = 0.5F;
-            this.rightarm.rotateAngleX += 0.4F;
+            this.bipedBody.rotateAngleX = 0.5F;
+            this.bipedWaist.rotateAngleX = 0.5F;
+            this.bipedRightArm.rotateAngleX += 0.4F;
             this.leftarm.rotateAngleX += 0.4F;
             this.rightleg.rotationPointZ = 4.0F;
             this.leftleg.rotationPointZ = 4.0F;
             this.rightleg.rotationPointY = 9.0F;
             this.leftleg.rotationPointY = 9.0F;
-            this.head.rotationPointY = 1.0F;
+            this.bipedHead.rotationPointY = 1.0F;
         }
         else
         {
-            this.body.rotateAngleX = 0.0F;
-            this.waist.rotateAngleX = 0.0F;
+            this.bipedBody.rotateAngleX = 0.0F;
+            this.bipedWaist.rotateAngleX = 0.0F;
             this.rightleg.rotationPointZ = 0.1F;
             this.leftleg.rotationPointZ = 0.1F;
             this.rightleg.rotationPointY = 12.0F;
             this.leftleg.rotationPointY = 12.0F;
-            this.head.rotationPointY = 0.0F;
+            this.bipedHead.rotationPointY = 0.0F;
         }
 
-        this.rightarm.rotateAngleZ += MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
+        this.bipedRightArm.rotateAngleZ += MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
         this.leftarm.rotateAngleZ -= MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
-        this.rightarm.rotateAngleX += MathHelper.sin(par3 * 0.067F) * 0.05F;
+        this.bipedRightArm.rotateAngleX += MathHelper.sin(par3 * 0.067F) * 0.05F;
         this.leftarm.rotateAngleX -= MathHelper.sin(par3 * 0.067F) * 0.05F;
 
         if (this.aimedBow)
         {
             f6 = 0.0F;
             f7 = 0.0F;
-            this.rightarm.rotateAngleZ = 0.0F;
+            this.bipedRightArm.rotateAngleZ = 0.0F;
             this.leftarm.rotateAngleZ = 0.0F;
-            this.rightarm.rotateAngleY = -(0.1F - f6 * 0.6F) + this.head.rotateAngleY;
-            this.leftarm.rotateAngleY = 0.1F - f6 * 0.6F + this.head.rotateAngleY + 0.4F;
-            this.rightarm.rotateAngleX = -((float)Math.PI / 2F) + this.head.rotateAngleX;
-            this.leftarm.rotateAngleX = -((float)Math.PI / 2F) + this.head.rotateAngleX;
-            this.rightarm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
+            this.bipedRightArm.rotateAngleY = -(0.1F - f6 * 0.6F) + this.bipedHead.rotateAngleY;
+            this.leftarm.rotateAngleY = 0.1F - f6 * 0.6F + this.bipedHead.rotateAngleY + 0.4F;
+            this.bipedRightArm.rotateAngleX = -((float)Math.PI / 2F) + this.bipedHead.rotateAngleX;
+            this.leftarm.rotateAngleX = -((float)Math.PI / 2F) + this.bipedHead.rotateAngleX;
+            this.bipedRightArm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
             this.leftarm.rotateAngleX -= f6 * 1.2F - f7 * 0.4F;
-            this.rightarm.rotateAngleZ += MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
+            this.bipedRightArm.rotateAngleZ += MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
             this.leftarm.rotateAngleZ -= MathHelper.cos(par3 * 0.09F) * 0.05F + 0.05F;
-            this.rightarm.rotateAngleX += MathHelper.sin(par3 * 0.067F) * 0.05F;
+            this.bipedRightArm.rotateAngleX += MathHelper.sin(par3 * 0.067F) * 0.05F;
             this.leftarm.rotateAngleX -= MathHelper.sin(par3 * 0.067F) * 0.05F;
         }
     }
+    */
 
 }

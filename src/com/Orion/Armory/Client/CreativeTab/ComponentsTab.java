@@ -1,5 +1,6 @@
 package com.Orion.Armory.Client.CreativeTab;
 
+import com.Orion.Armory.Common.Armor.ArmorCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,7 +15,7 @@ public class ComponentsTab extends CreativeTabs{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem() {
-		return null;
+        return new ArmorCore("armory.Dummy.Display.ComponentsTab", 0);
 	}
 
 	@Override
