@@ -1,7 +1,7 @@
 package com.Orion.Armory.Common;
 
-import com.Orion.Armory.Client.Render.ArmorItemRenderer;
-import com.Orion.Armory.Client.Render.RenderPlayerEventHook;
+import com.Orion.Armory.Client.Render.Old.ArmorItemRenderer;
+import com.Orion.Armory.Client.Render.Old.RenderPlayerEventHook;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
 import cpw.mods.fml.relauncher.Side;

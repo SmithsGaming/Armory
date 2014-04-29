@@ -1,4 +1,4 @@
-package com.Orion.Armory.Client.Render;
+package com.Orion.Armory.Client.Render.Old;
 /*
 *   ArmorItemRenderer
 *   Created by: Orion

@@ -84,12 +84,6 @@ public class AExtendedPlayerModel extends ModelBiped
       bipedWaist.setTextureSize(64,64);
       bipedWaist.mirror = true;
       setRotation(bipedWaist, 0F, 0F, 0F);
-
-
-      this.bipedBody.addChild(bipedWaist);
-      this.bipedLeftLeg.addChild(bipedLeftFoot);
-      this.bipedRightLeg.addChild(bipedRightFoot);
-
   }
   
   public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)

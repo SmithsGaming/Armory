@@ -1,4 +1,4 @@
-package com.Orion.Armory.Client.Render;
+package com.Orion.Armory.Client.Render.Old;
 /*
 /  CustomPlayerRenderer
 /  Created by : Orion
@@ -6,12 +6,14 @@ package com.Orion.Armory.Client.Render;
 */
 
 import com.Orion.Armory.Client.Models.AExtendedPlayerModel;
+import com.Orion.Armory.Common.Armor.ArmorCore;
 import net.minecraft.block.Block;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.RenderBiped;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
 import net.minecraft.entity.Entity;
@@ -44,6 +46,7 @@ public class CustomPlayerRenderer extends RenderPlayer
     private ModelBiped modelArmor;
     private static final String __OBFID = "CL_00001020";
     private static CustomLivingEntityRenderer iCustumLivingEntityRenderer;
+    private static RenderPlayer iPlayerRenderer;
 
     public CustomPlayerRenderer()
     {
@@ -54,6 +57,12 @@ public class CustomPlayerRenderer extends RenderPlayer
         this.modelArmor = new AExtendedPlayerModel(0.5F);
 
         iCustumLivingEntityRenderer = new CustomLivingEntityRenderer(this.mainModel, this.shadowSize);
+        iPlayerRenderer = new RenderPlayer();
+
+        if (this.renderManager == null)
+        {
+            this.setRenderManager(RenderManager.instance);
+        }
     }
 
     //No clue what this function does, or if it is even needed.
@@ -79,6 +88,22 @@ public class CustomPlayerRenderer extends RenderPlayer
      */
     public void doRender(AbstractClientPlayer par1AbstractClientPlayer, double par2, double par4, double par6, float par8, float par9)
     {
+        //Check if the player is using Armory armor, else pass to original Renderer.
+        boolean iWearing = true;
+        for (int iIter = 0; iIter<=3; iIter ++)
+        {
+            if (!(par1AbstractClientPlayer.inventory.armorItemInSlot(3-iIter).getItem() instanceof ArmorCore))
+            {
+                iWearing = false;
+            }
+        }
+
+        if (!iWearing)
+        {
+            iPlayerRenderer.doRender(par1AbstractClientPlayer, par2, par4, par6, par8, par9);
+        }
+
+
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
         ItemStack itemstack = par1AbstractClientPlayer.inventory.getCurrentItem();
         this.modelArmorChestplate.heldItemRight = this.modelArmor.heldItemRight = this.modelBipedMain.heldItemRight = itemstack != null ? 1 : 0;

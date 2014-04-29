@@ -1,4 +1,4 @@
-package com.Orion.Armory.Client.Render;
+package com.Orion.Armory.Client.Render.Old;
 /*
 *   CustomLivingEntityRenderer
 *   Created by: Orion
@@ -6,11 +6,13 @@ package com.Orion.Armory.Client.Render;
 */
 
 import com.Orion.Armory.Client.ArmoryResource;
+import com.Orion.Armory.Client.Models.AExtendedPlayerModel;
 import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,6 +34,10 @@ public class CustomLivingEntityRenderer extends RendererLivingEntity
 
     public CustomLivingEntityRenderer(ModelBase par1ModelBase, float par2) {
         super(par1ModelBase, par2);
+        if(this.renderManager == null)
+        {
+            this.setRenderManager(RenderManager.instance);
+        }
     }
 
     private float interpolateRotation(float par1, float par2, float par3)
@@ -172,7 +178,10 @@ public class CustomLivingEntityRenderer extends RendererLivingEntity
 
                         this.bindTexture(new ResourceLocation(tCurrentResource.getModelLocation()));
 
+                        renderPassModel.setLivingAnimations(par1EntityLivingBase, f7, f6, par9);
+                        renderPassModel.render((Entity) par1EntityLivingBase, f7, f6, f4, f3 - f2, f13, f5);
 
+                        GL11.glColor3f(1.0F, 1.0F, 1.0F);
                     }
                 }
             }
@@ -253,9 +262,9 @@ public class CustomLivingEntityRenderer extends RendererLivingEntity
      * Queries whether should render the specified pass or not.
      * TODO: Apply this check onto the new NBTTag system of the armor pieces.
      */
-    protected int shouldRenderPass(AbstractClientPlayer par1AbstractClientPlayer, int par2, float par3)
+    protected int shouldRenderPass(AbstractClientPlayer par1AbstractClientPlayer, int pArmorPart, float par3)
     {
-        ItemStack itemstack = par1AbstractClientPlayer.inventory.armorItemInSlot(3 - par2);
+        ItemStack itemstack = par1AbstractClientPlayer.inventory.armorItemInSlot(3 - pArmorPart);
 
         if (itemstack != null)
         {
@@ -263,6 +272,20 @@ public class CustomLivingEntityRenderer extends RendererLivingEntity
 
             if(item instanceof ArmorCore)
             {
+                ArmorCore tCore = (ArmorCore)item;
+
+                AExtendedPlayerModel tExtendedModel = pArmorPart == 2 ? new AExtendedPlayerModel(0.5F) : new AExtendedPlayerModel(1.0F);
+                tExtendedModel.bipedHead.showModel = pArmorPart == 0;
+                tExtendedModel.bipedBody.showModel = pArmorPart == 1;
+                tExtendedModel.bipedRightArm.showModel = pArmorPart == 1;
+                tExtendedModel.bipedLeftArm.showModel = pArmorPart == 1;
+                tExtendedModel.bipedWaist.showModel = pArmorPart == 2;
+                tExtendedModel.bipedRightLeg.showModel = pArmorPart == 2;
+                tExtendedModel.bipedLeftLeg.showModel = pArmorPart == 2;
+                tExtendedModel.bipedRightFoot.showModel = pArmorPart == 3;
+                tExtendedModel.bipedLeftFoot.showModel = pArmorPart == 3;
+                this.setRenderPassModel(tExtendedModel);
+
                 return 1;
             }
             else
