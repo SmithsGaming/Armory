@@ -5,12 +5,19 @@ package com.Orion.Armory.Client.Render;
 *   Created on: 28-4-2014
 */
 
+import com.Orion.Armory.Client.ArmoryResource;
 import com.Orion.Armory.Common.ARegistry;
+import com.Orion.Armory.Common.Armor.ArmorCore;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderLivingEvent;
@@ -139,8 +146,35 @@ public class CustomLivingEntityRenderer extends RendererLivingEntity
             for (int i = 0; i < 4; ++i)
             {
                 j = this.shouldRenderPass(par1EntityLivingBase, i, par9);
+                if(j==0)
+                {
+                    GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+                    GL11.glPopMatrix();
+                    return;
+                }
+                if(j==1)
+                {
+                    ItemStack tArmorItemStack = (ItemStack) ((EntityPlayer) par1EntityLivingBase).inventory.armorItemInSlot(3 - i);
+                    ArmorCore tCore = (ArmorCore) tArmorItemStack.getItem();
+                    NBTTagCompound tRenderCompound = tArmorItemStack.getTagCompound().getCompoundTag("RenderCompound");
+                    Integer tRenderPasses = tCore.getRenderPasses(tArmorItemStack);
+
+                    for(int tCurrentRenderPass = 0; tCurrentRenderPass <= tRenderPasses; tCurrentRenderPass++)
+                    {
+                        NBTTagCompound tCurrentRenderCompound = tRenderCompound.getCompoundTag("RenderPass - " + tCurrentRenderPass);
+                        ArmoryResource tCurrentResource = tCore.getResource(tCurrentRenderCompound);
+                        
+                        //Getting and setting the current color.
+                        float tRed = tCurrentResource.getColor(0)/255;
+                        float tGreen = tCurrentResource.getColor(1)/255;
+                        float tBlue = tCurrentResource.getColor(2)/255;
+                        GL11.glColor3f(tRed, tGreen, tBlue);
+
+                        this.bindTexture(new ResourceLocation(tCurrentResource.getModelLocation()));
 
 
+                    }
+                }
             }
 
             GL11.glDepthMask(true);
@@ -213,6 +247,31 @@ public class CustomLivingEntityRenderer extends RendererLivingEntity
         GL11.glPopMatrix();
         this.passSpecialRender(par1EntityLivingBase, par2, par4, par6);
         MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Post(par1EntityLivingBase, this, par2, par4, par6));
+    }
+
+    /**
+     * Queries whether should render the specified pass or not.
+     * TODO: Apply this check onto the new NBTTag system of the armor pieces.
+     */
+    protected int shouldRenderPass(AbstractClientPlayer par1AbstractClientPlayer, int par2, float par3)
+    {
+        ItemStack itemstack = par1AbstractClientPlayer.inventory.armorItemInSlot(3 - par2);
+
+        if (itemstack != null)
+        {
+            Item item = itemstack.getItem();
+
+            if(item instanceof ArmorCore)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        return -1;
     }
 
     @Override
