@@ -7,6 +7,7 @@ package com.Orion.Armory.Client.Render;
 
 import com.Orion.Armory.Client.Models.AExtendedPlayerModel;
 import com.Orion.Armory.Common.ARegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.model.ModelBiped;
@@ -124,6 +125,20 @@ public class ArmoryPlayerRenderer extends Render
     }
 
     //Moves the drawing location to the correct place on the screen.
+    //->Player
+    protected void renderLivingAt(AbstractClientPlayer pPlayer, double pRenderDataX, double pRenderDataY, double pRenderDataZ)
+    {
+        if (pPlayer.isEntityAlive() && pPlayer.isPlayerSleeping())
+        {
+            this.renderLivingAt((EntityLivingBase) pPlayer, pRenderDataX + (double) pPlayer.field_71079_bU, pRenderDataY + (double) pPlayer.field_71082_cx, pRenderDataZ + (double) pPlayer.field_71089_bV);
+        }
+        else
+        {
+            this.renderLivingAt((EntityLivingBase) pPlayer, pRenderDataX, pRenderDataY, pRenderDataZ);
+        }
+    }
+
+    //LivingEntity
     protected void renderLivingAt(EntityLivingBase pLivingEntity, double pRenderDataX, double pRenderDataY, double pRenderDataZ)
     {
         GL11.glTranslatef((float)pRenderDataX, (float)pRenderDataY, (float)pRenderDataZ);
@@ -136,6 +151,7 @@ public class ArmoryPlayerRenderer extends Render
     }
 
     //Rotates the model (corpse) of the player after death. And also flips the models of Dinnerbone and Grumm.
+    //-> Player
     protected void rotateCorpse(AbstractClientPlayer pPlayer, float pCurrentRotation, float pYOffset, float pPartialTickTime)
     {
         if (pPlayer.isEntityAlive() && pPlayer.isPlayerSleeping())
@@ -150,6 +166,7 @@ public class ArmoryPlayerRenderer extends Render
         }
     }
 
+    //->LivingEntity
     protected void rotateCorpse(EntityLivingBase pLivingEntity, float pCurrentRotation, float pYOffset, float pPartialTickTime)
     {
         GL11.glRotatef(180.0F - pYOffset, 0.0F, 1.0F, 0.0F);
@@ -185,10 +202,40 @@ public class ArmoryPlayerRenderer extends Render
     }
 
     //Called to prepare the model for drawing
+    //-> Player
     protected void preRenderCallback(AbstractClientPlayer pAbstractPlayer, float pPartialTickTime)
     {
         float f1 = 0.9375F;
         GL11.glScalef(f1, f1, f1);
+    }
+
+    //Renders the actual player model
+    protected void renderModel(EntityLivingBase pLivingEntity, float pSwingRotation, float pPreviousSwingRotation, float pRotationFloat, float pRenderDataY, float pRotationPitch, float pUnknown)
+    {
+        this.bindEntityTexture(pLivingEntity);
+
+        if (!pLivingEntity.isInvisible())
+        {
+            this.iModelBipedMain.render(pLivingEntity, pSwingRotation, pPreviousSwingRotation, pRotationFloat, pRenderDataY, pRotationPitch, pUnknown);
+        }
+        else if (!pLivingEntity.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer))
+        {
+            GL11.glPushMatrix();
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.15F);
+            GL11.glDepthMask(false);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
+            this.iModelBipedMain.render(pLivingEntity, pSwingRotation, pPreviousSwingRotation, pRotationFloat, pRenderDataY, pRotationPitch, pUnknown);
+            GL11.glDisable(GL11.GL_BLEND);
+            GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
+            GL11.glPopMatrix();
+            GL11.glDepthMask(true);
+        }
+        else
+        {
+            this.iModelBipedMain.setRotationAngles(pSwingRotation, pPreviousSwingRotation, pRotationFloat, pRenderDataY, pRotationPitch, pUnknown, pLivingEntity);
+        }
     }
 
     //This method takes over the function of the EntityLiving renderer that is called by the super call in the doRender function of the player renderer.
@@ -250,9 +297,9 @@ public class ArmoryPlayerRenderer extends Render
             }
 
             float f13 = pEntity.prevRotationPitch + (pEntity.rotationPitch - pEntity.prevRotationPitch) * pPartialTickTime;
-            this.renderLivingAt(pEntity, pRenderDataX, pRenderDataY, pRenderDataZ);
+            this.renderLivingAt((AbstractClientPlayer)pEntity, pRenderDataX, pRenderDataY, pRenderDataZ);
             f4 = this.handleRotationFloat(pEntity, pPartialTickTime);
-            this.rotateCorpse(pEntity, f4, f2, pPartialTickTime);
+            this.rotateCorpse((AbstractClientPlayer)pEntity, f4, f2, pPartialTickTime);
             float f5 = 0.0625F;
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
             GL11.glScalef(-1.0F, -1.0F, 1.0F);
