@@ -7,28 +7,44 @@ package com.Orion.Armory.Client.Render;
 
 import com.Orion.Armory.Client.Models.AExtendedPlayerModel;
 import com.Orion.Armory.Common.ARegistry;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelBox;
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
+import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+
+import java.util.Random;
+
+import static net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED;
+import static net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D;
 
 public class ArmoryPlayerRenderer extends Render
 {
@@ -238,6 +254,290 @@ public class ArmoryPlayerRenderer extends Render
         }
     }
 
+    //Renders the equipped item on the model
+    //-> Player
+    protected void renderEquippedItems(AbstractClientPlayer pPlayer, float pPartialTickTime)
+    {
+        RenderPlayerEvent.Specials.Pre event = new RenderPlayerEvent.Specials.Pre(pPlayer,(RenderPlayer) (RendererLivingEntity) (Render) this, pPartialTickTime);
+        if (MinecraftForge.EVENT_BUS.post(event))
+        {
+            return;
+        }
+
+        GL11.glColor3f(1.0F, 1.0F, 1.0F);
+        this.renderArrowsStuckInEntity(pPlayer, pPartialTickTime);
+        ItemStack itemstack = pPlayer.inventory.armorItemInSlot(3);
+
+        if (itemstack != null && event.renderHelmet)
+        {
+            GL11.glPushMatrix();
+            this.iModelBipedMain.bipedHead.postRender(0.0625F);
+            float f1;
+
+            if (itemstack.getItem() instanceof ItemBlock)
+            {
+                IItemRenderer customRenderer = MinecraftForgeClient.getItemRenderer(itemstack, EQUIPPED);
+                boolean is3D = (customRenderer != null && customRenderer.shouldUseRenderHelper(EQUIPPED, itemstack, BLOCK_3D));
+
+                if (is3D || RenderBlocks.renderItemIn3d(Block.getBlockFromItem(itemstack.getItem()).getRenderType()))
+                {
+                    f1 = 0.625F;
+                    GL11.glTranslatef(0.0F, -0.25F, 0.0F);
+                    GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
+                    GL11.glScalef(f1, -f1, -f1);
+                }
+
+                this.renderManager.itemRenderer.renderItem(pPlayer, itemstack, 0);
+            }
+            else if (itemstack.getItem() == Items.skull)
+            {
+                f1 = 1.0625F;
+                GL11.glScalef(f1, -f1, -f1);
+                String s = "";
+
+                if (itemstack.hasTagCompound() && itemstack.getTagCompound().hasKey("SkullOwner", 8))
+                {
+                    s = itemstack.getTagCompound().getString("SkullOwner");
+                }
+
+                TileEntitySkullRenderer.field_147536_b.func_147530_a(-0.5F, 0.0F, -0.5F, 1, 180.0F, itemstack.getItemDamage(), s);
+            }
+
+            GL11.glPopMatrix();
+        }
+
+        float f3;
+
+        if (pPlayer.getCommandSenderName().equals("deadmau5") && pPlayer.getTextureSkin().isTextureUploaded())
+        {
+            this.bindTexture(pPlayer.getLocationSkin());
+
+            for (int j = 0; j < 2; ++j)
+            {
+                float f10 = pPlayer.prevRotationYaw + (pPlayer.rotationYaw - pPlayer.prevRotationYaw) * pPartialTickTime - (pPlayer.prevRenderYawOffset + (pPlayer.renderYawOffset - pPlayer.prevRenderYawOffset) * pPartialTickTime);
+                float f2 = pPlayer.prevRotationPitch + (pPlayer.rotationPitch - pPlayer.prevRotationPitch) * pPartialTickTime;
+                GL11.glPushMatrix();
+                GL11.glRotatef(f10, 0.0F, 1.0F, 0.0F);
+                GL11.glRotatef(f2, 1.0F, 0.0F, 0.0F);
+                GL11.glTranslatef(0.375F * (float)(j * 2 - 1), 0.0F, 0.0F);
+                GL11.glTranslatef(0.0F, -0.375F, 0.0F);
+                GL11.glRotatef(-f2, 1.0F, 0.0F, 0.0F);
+                GL11.glRotatef(-f10, 0.0F, 1.0F, 0.0F);
+                f3 = 1.3333334F;
+                GL11.glScalef(f3, f3, f3);
+                this.iModelBipedMain.renderEars(0.0625F);
+                GL11.glPopMatrix();
+            }
+        }
+
+        boolean flag = pPlayer.getTextureCape().isTextureUploaded();
+        flag = event.renderCape && flag;
+        float f5;
+
+        if (flag && !pPlayer.isInvisible() && !pPlayer.getHideCape())
+        {
+            this.bindTexture(pPlayer.getLocationCape());
+            GL11.glPushMatrix();
+            GL11.glTranslatef(0.0F, 0.0F, 0.125F);
+            double d3 = pPlayer.field_71091_bM + (pPlayer.field_71094_bP - pPlayer.field_71091_bM) * (double)pPartialTickTime - (pPlayer.prevPosX + (pPlayer.posX - pPlayer.prevPosX) * (double)pPartialTickTime);
+            double d4 = pPlayer.field_71096_bN + (pPlayer.field_71095_bQ - pPlayer.field_71096_bN) * (double)pPartialTickTime - (pPlayer.prevPosY + (pPlayer.posY - pPlayer.prevPosY) * (double)pPartialTickTime);
+            double d0 = pPlayer.field_71097_bO + (pPlayer.field_71085_bR - pPlayer.field_71097_bO) * (double)pPartialTickTime - (pPlayer.prevPosZ + (pPlayer.posZ - pPlayer.prevPosZ) * (double)pPartialTickTime);
+            f5 = pPlayer.prevRenderYawOffset + (pPlayer.renderYawOffset - pPlayer.prevRenderYawOffset) * pPartialTickTime;
+            double d1 = (double)MathHelper.sin(f5 * (float)Math.PI / 180.0F);
+            double d2 = (double)(-MathHelper.cos(f5 * (float)Math.PI / 180.0F));
+            float f6 = (float)d4 * 10.0F;
+
+            if (f6 < -6.0F)
+            {
+                f6 = -6.0F;
+            }
+
+            if (f6 > 32.0F)
+            {
+                f6 = 32.0F;
+            }
+
+            float f7 = (float)(d3 * d1 + d0 * d2) * 100.0F;
+            float f8 = (float)(d3 * d2 - d0 * d1) * 100.0F;
+
+            if (f7 < 0.0F)
+            {
+                f7 = 0.0F;
+            }
+
+            float f9 = pPlayer.prevCameraYaw + (pPlayer.cameraYaw - pPlayer.prevCameraYaw) * pPartialTickTime;
+            f6 += MathHelper.sin((pPlayer.prevDistanceWalkedModified + (pPlayer.distanceWalkedModified - pPlayer.prevDistanceWalkedModified) * pPartialTickTime) * 6.0F) * 32.0F * f9;
+
+            if (pPlayer.isSneaking())
+            {
+                f6 += 25.0F;
+            }
+
+            GL11.glRotatef(6.0F + f7 / 2.0F + f6, 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(f8 / 2.0F, 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(-f8 / 2.0F, 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+            this.iModelBipedMain.renderCloak(0.0625F);
+            GL11.glPopMatrix();
+        }
+
+        ItemStack itemstack1 = pPlayer.inventory.getCurrentItem();
+
+        if (itemstack1 != null && event.renderItem)
+        {
+            GL11.glPushMatrix();
+            this.iModelBipedMain.bipedRightArm.postRender(0.0625F);
+            GL11.glTranslatef(-0.0625F, 0.4375F, 0.0625F);
+
+            if (pPlayer.fishEntity != null)
+            {
+                itemstack1 = new ItemStack(Items.stick);
+            }
+
+            EnumAction enumaction = null;
+
+            if (pPlayer.getItemInUseCount() > 0)
+            {
+                enumaction = itemstack1.getItemUseAction();
+            }
+
+            IItemRenderer customRenderer = MinecraftForgeClient.getItemRenderer(itemstack1, EQUIPPED);
+            boolean is3D = (customRenderer != null && customRenderer.shouldUseRenderHelper(EQUIPPED, itemstack1, BLOCK_3D));
+
+            if (is3D || itemstack1.getItem() instanceof ItemBlock && RenderBlocks.renderItemIn3d(Block.getBlockFromItem(itemstack1.getItem()).getRenderType()))
+            {
+                f3 = 0.5F;
+                GL11.glTranslatef(0.0F, 0.1875F, -0.3125F);
+                f3 *= 0.75F;
+                GL11.glRotatef(20.0F, 1.0F, 0.0F, 0.0F);
+                GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
+                GL11.glScalef(-f3, -f3, f3);
+            }
+            else if (itemstack1.getItem() == Items.bow)
+            {
+                f3 = 0.625F;
+                GL11.glTranslatef(0.0F, 0.125F, 0.3125F);
+                GL11.glRotatef(-20.0F, 0.0F, 1.0F, 0.0F);
+                GL11.glScalef(f3, -f3, f3);
+                GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
+                GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
+            }
+            else if (itemstack1.getItem().isFull3D())
+            {
+                f3 = 0.625F;
+
+                if (itemstack1.getItem().shouldRotateAroundWhenRendering())
+                {
+                    GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
+                    GL11.glTranslatef(0.0F, -0.125F, 0.0F);
+                }
+
+                if (pPlayer.getItemInUseCount() > 0 && enumaction == EnumAction.block)
+                {
+                    GL11.glTranslatef(0.05F, 0.0F, -0.1F);
+                    GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
+                    GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
+                    GL11.glRotatef(-60.0F, 0.0F, 0.0F, 1.0F);
+                }
+
+                GL11.glTranslatef(0.0F, 0.1875F, 0.0F);
+                GL11.glScalef(f3, -f3, f3);
+                GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
+                GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
+            }
+            else
+            {
+                f3 = 0.375F;
+                GL11.glTranslatef(0.25F, 0.1875F, -0.1875F);
+                GL11.glScalef(f3, f3, f3);
+                GL11.glRotatef(60.0F, 0.0F, 0.0F, 1.0F);
+                GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
+                GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
+            }
+
+            float f4;
+            float f12;
+            int k;
+
+            if (itemstack1.getItem().requiresMultipleRenderPasses())
+            {
+                for (k = 0; k <= itemstack1.getItem().getRenderPasses(itemstack1.getItemDamage()); ++k)
+                {
+                    int i = itemstack1.getItem().getColorFromItemStack(itemstack1, k);
+                    f12 = (float)(i >> 16 & 255) / 255.0F;
+                    f4 = (float)(i >> 8 & 255) / 255.0F;
+                    f5 = (float)(i & 255) / 255.0F;
+                    GL11.glColor4f(f12, f4, f5, 1.0F);
+                    this.renderManager.itemRenderer.renderItem(pPlayer, itemstack1, k);
+                }
+            }
+            else
+            {
+                k = itemstack1.getItem().getColorFromItemStack(itemstack1, 0);
+                float f11 = (float)(k >> 16 & 255) / 255.0F;
+                f12 = (float)(k >> 8 & 255) / 255.0F;
+                f4 = (float)(k & 255) / 255.0F;
+                GL11.glColor4f(f11, f12, f4, 1.0F);
+                this.renderManager.itemRenderer.renderItem(pPlayer, itemstack1, 0);
+            }
+
+            GL11.glPopMatrix();
+        }
+        MinecraftForge.EVENT_BUS.post(new RenderPlayerEvent.Specials.Post(pPlayer,(RenderPlayer) (RendererLivingEntity) (Render) this, pPartialTickTime));
+    }
+
+    //Renders the arrows which are stuck in an entity
+    //-> Living Entity
+    protected void renderArrowsStuckInEntity(EntityLivingBase pLivingBase, float pPartialTickTime)
+    {
+        int i = pLivingBase.getArrowCountInEntity();
+
+        if (i > 0)
+        {
+            EntityArrow entityarrow = new EntityArrow(pLivingBase.worldObj, pLivingBase.posX, pLivingBase.posY, pLivingBase.posZ);
+            Random random = new Random((long)pLivingBase.getEntityId());
+            RenderHelper.disableStandardItemLighting();
+
+            for (int j = 0; j < i; ++j)
+            {
+                GL11.glPushMatrix();
+                ModelRenderer modelrenderer = this.iModelBipedMain.getRandomModelBox(random);
+                ModelBox modelbox = (ModelBox)modelrenderer.cubeList.get(random.nextInt(modelrenderer.cubeList.size()));
+                modelrenderer.postRender(0.0625F);
+                float f1 = random.nextFloat();
+                float f2 = random.nextFloat();
+                float f3 = random.nextFloat();
+                float f4 = (modelbox.posX1 + (modelbox.posX2 - modelbox.posX1) * f1) / 16.0F;
+                float f5 = (modelbox.posY1 + (modelbox.posY2 - modelbox.posY1) * f2) / 16.0F;
+                float f6 = (modelbox.posZ1 + (modelbox.posZ2 - modelbox.posZ1) * f3) / 16.0F;
+                GL11.glTranslatef(f4, f5, f6);
+                f1 = f1 * 2.0F - 1.0F;
+                f2 = f2 * 2.0F - 1.0F;
+                f3 = f3 * 2.0F - 1.0F;
+                f1 *= -1.0F;
+                f2 *= -1.0F;
+                f3 *= -1.0F;
+                float f7 = MathHelper.sqrt_float(f1 * f1 + f3 * f3);
+                entityarrow.prevRotationYaw = entityarrow.rotationYaw = (float)(Math.atan2((double)f1, (double)f3) * 180.0D / Math.PI);
+                entityarrow.prevRotationPitch = entityarrow.rotationPitch = (float)(Math.atan2((double)f2, (double)f7) * 180.0D / Math.PI);
+                double d0 = 0.0D;
+                double d1 = 0.0D;
+                double d2 = 0.0D;
+                float f8 = 0.0F;
+                this.renderManager.renderEntityWithPosYaw(entityarrow, d0, d1, d2, f8, pPartialTickTime);
+                GL11.glPopMatrix();
+            }
+
+            RenderHelper.enableStandardItemLighting();
+        }
+    }
+
+    //Sets the color overlay for entities
+    protected int getColorMultiplier(EntityLivingBase pLivingBase, float pBrightness, float pPartialTickTime)
+    {
+        return 0;
+    }
+
     //This method takes over the function of the EntityLiving renderer that is called by the super call in the doRender function of the player renderer.
     protected void renderPlayer (EntityLivingBase pEntity, double pRenderDataX, double pRenderDataY, double pRenderDataZ, float pUnknown, float pPartialTickTime)
     {
@@ -326,6 +626,7 @@ public class ArmoryPlayerRenderer extends Render
             float f9;
             float f10;
 
+ /*
             for (int i = 0; i < 4; ++i)
             {
                 j = this.shouldRenderPass(pEntity, i, pPartialTickTime);
@@ -382,9 +683,9 @@ public class ArmoryPlayerRenderer extends Render
                     GL11.glEnable(GL11.GL_ALPHA_TEST);
                 }
             }
-
+*/
             GL11.glDepthMask(true);
-            this.renderEquippedItems(pEntity, pPartialTickTime);
+            this.renderEquippedItems((AbstractClientPlayer) pEntity, pPartialTickTime);
             float f14 = pEntity.getBrightness(pPartialTickTime);
             j = this.getColorMultiplier(pEntity, f14, pPartialTickTime);
             OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
