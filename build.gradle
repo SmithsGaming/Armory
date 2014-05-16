@@ -8,6 +8,16 @@ configFile.withReader {
     project.ext.config = new ConfigSlurper().parse prop
 }
 
+logger.lifecycle("Minecraft version: " + config.minecraft_version)
+logger.lifecycle("Forge version: " + config.forge_version)
+logger.lifecycle("OrionsBelt version: " + config.orionsbelt_version)
+logger.lifecycle("Mantle version: " + config.mantle_version)
+logger.lifecycle("TinkersConstruct version: " + config.tconstruct_version)
+logger.lifecycle("Mod version: " + config.mod_version)
+
+
+
+
 // The ForgeGradle buildscript.
 buildscript {
     repositories {
@@ -20,6 +30,14 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+        maven {
+            name 'OrionMinecraft'
+            url 'http://mavenrepo.orionminecraft.com'
+        }
+        maven {
+            name 'DVS1 Maven FS'
+            url 'http://dvs1.progwml6.com/files/maven'
+        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
@@ -28,6 +46,7 @@ buildscript {
 
 //The repositories in which the dependencies are stored
 repositories {
+    mavenCentral()
     maven {
         name 'DVS1 Maven FS'
         url 'http://dvs1.progwml6.com/files/maven'
@@ -38,6 +57,9 @@ repositories {
     }
 }
 
+apply plugin: 'forge'
+apply plugin: 'maven'
+
 //These configurations are needed for uploading to a MavenRepo
 configurations {
     deployerJars
@@ -46,15 +68,14 @@ configurations {
 //These are the dependencies of Armory
 dependencies {
     //Mod dependencies
-    compile group: 'com.Orion.OrionsBelt', name: 'OrionsBelt', version: config.orionsbelt_version
+    compile "com.Orion.OrionsBelt:OrionsBelt:"+ config.orionsbelt_version+":jar"
     compile "mantle:Mantle:${config.minecraft_version}-${config.mantle_version}:deobf"
+    compile "tconstruct:TConstruct:" + config.minecraft_version + "-" + config.tconstruct_version + ":jar"
 
     //Maven uploader
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'
 }
 
-apply plugin: 'forge'
-apply plugin: 'maven'
 
 version = config.mod_version.toString() + " - Alpha " + System.getenv().TRAVIS_BUILD_NUMBER.toString()
 if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
@@ -67,7 +88,7 @@ archivesBaseName = "OrionsBelt"
 
 minecraft {
     version = "1.7.2-10.12.1.1060"
-    assetDir = "eclipse/assets"
+    assetDir = "run/assets"
 }
 
 processResources
