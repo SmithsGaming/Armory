@@ -707,11 +707,11 @@ public class ArmoryPlayerRenderer extends Render
 
                     for (int l = 0; l < 4; ++l)
                     {
-                        if (this.inheritRenderPass(pEntity, l, pPartialTickTime) >= 0)
+                        /*if (this.inheritRenderPass(pEntity, l, pPartialTickTime) >= 0)
                         {
                             GL11.glColor4f(f14, 0.0F, 0.0F, 0.4F);
                             this.iRenderPassModel.render(pEntity, f7, f6, f4, f3 - f2, f13, f5);
-                        }
+                        }*/
                     }
                 }
 
@@ -726,11 +726,11 @@ public class ArmoryPlayerRenderer extends Render
 
                     for (int i1 = 0; i1 < 4; ++i1)
                     {
-                        if (this.inheritRenderPass(pEntity, i1, pPartialTickTime) >= 0)
+                      /*  if (this.inheritRenderPass(pEntity, i1, pPartialTickTime) >= 0)
                         {
                             GL11.glColor4f(f8, f9, f15, f10);
                             this.iRenderPassModel.render(pEntity, f7, f6, f4, f3 - f2, f13, f5);
-                        }
+                        }*/
                     }
                 }
 
@@ -752,7 +752,7 @@ public class ArmoryPlayerRenderer extends Render
         OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glPopMatrix();
-        this.passSpecialRender(pEntity, pRenderDataX, pRenderDataY, pRenderDataZ);
+        //this.passSpecialRender(pEntity, pRenderDataX, pRenderDataY, pRenderDataZ);
         MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Post(pEntity,(RenderPlayer) (RendererLivingEntity) (Render) this, pRenderDataX, pRenderDataY, pRenderDataZ));
     }
 

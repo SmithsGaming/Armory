@@ -1,24 +1,14 @@
-// Load the properties of this project
+// Load the properties of this project.
 ext.configFile = file "build.properties"
 
+//Reference the properties inside the project:
 configFile.withReader {
-    // Load config.  It shall from now be referenced as simply config or project.config
     def prop = new Properties()
     prop.load(it)
     project.ext.config = new ConfigSlurper().parse prop
 }
 
-logger.lifecycle("Minecraft version: " + config.minecraft_version)
-logger.lifecycle("Forge version: " + config.forge_version)
-logger.lifecycle("OrionsBelt version: " + config.orionsbelt_version)
-logger.lifecycle("Mantle version: " + config.mantle_version)
-logger.lifecycle("TinkersConstruct version: " + config.tconstruct_version)
-logger.lifecycle("Mod version: " + config.mod_version)
-
-
-
-
-// The ForgeGradle buildscript.
+//ForgeGradle BuildScript.
 buildscript {
     repositories {
         mavenCentral()
@@ -30,91 +20,121 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
-        maven {
-            name 'OrionMinecraft'
-            url 'http://mavenrepo.orionminecraft.com'
-        }
-        maven {
-            name 'DVS1 Maven FS'
-            url 'http://dvs1.progwml6.com/files/maven'
-        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
 
-//The repositories in which the dependencies are stored
+//The repositories in which the dependencies are stored:
 repositories {
     mavenCentral()
-    maven {
+    maven { // The repo from which to get waila
+        name "Mobius Repo"
+        url "http://mobiusstrip.eu/maven"
+    }
+    maven { //The repo to get NEI etc
+        name 'CB FS'
+        url 'http://chickenbones.net/maven'
+    }
+    maven { //The repo to get TiC
         name 'DVS1 Maven FS'
         url 'http://dvs1.progwml6.com/files/maven'
     }
-    maven {
-        name 'OrionMinecraft'
-        url 'http://mavenrepo.orionminecraft.com'
+    maven { //Forges own repo
+        name 'ForgeFS'
+        url 'http://files.minecraftforge.net/maven'
+    }
+    maven { //My own repo (used for uploading and dependency)
+        name 'OrionMavenRepo'
+        url 'http://mavenrepo.orionminecraft.com/'
     }
 }
 
+//Apply the gradle plugins.
 apply plugin: 'forge'
 apply plugin: 'maven'
 
-//These configurations are needed for uploading to a MavenRepo
+//These configurations are needed for uploading to a MavenRepo:
 configurations {
     deployerJars
 }
 
-//These are the dependencies of Armory
+//Initializing the mod environment
+version = config.mod_version.toString() + "-" + System.getenv().TRAVIS_BUILD_NUMBER.toString()
+if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
+{
+    version = version + "-SNAPSHOT"
+}
+group= "com.Orion.OrionsBelt"
+archivesBaseName = "OrionsBelt"
+
+//Points Gradle (and ForgeGradle) to the right directories:
+sourceSets {
+    main {
+        resources {
+            srcDir 'Resources'
+        }
+        java {
+            srcDir 'src/Armory'
+        }
+    }
+}
+
+
+minecraft {
+    version = "1.7.2-10.12.2.1124"
+    assetDir = "run/assets"
+}
+
 dependencies {
     //Mod dependencies
-    compile "com.Orion.OrionsBelt:OrionsBelt:"+ config.orionsbelt_version+":jar"
+    compile "com.Orion.OrionsBelt:OrionsBelt:"+ config.orionsbelt_version
     compile "mantle:Mantle:${config.minecraft_version}-${config.mantle_version}:deobf"
-    compile "tconstruct:TConstruct:" + config.minecraft_version + "-" + config.tconstruct_version + ":jar"
+    compile "tconstruct:TConstruct:${config.minecraft_version}-${config.tconstruct_version}:deobf"
 
     //Maven uploader
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'
 }
 
-
-version = config.mod_version.toString() + " - Alpha " + System.getenv().TRAVIS_BUILD_NUMBER.toString()
-if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
-{
-    version = version + "-SNAPSHOT"
-}
-
-group= "com.Orion.OrionsBelt" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "OrionsBelt"
-
-minecraft {
-    version = "1.7.2-10.12.1.1060"
-    assetDir = "run/assets"
-}
-
 processResources
-        {
-            // this will ensure that this task is redone when the versions change.
-            inputs.property "version", project.version
-            inputs.property "mcversion", project.minecraft.version
+{
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
 
-            // replace stuff in mcmod.info, nothing else
-            from(sourceSets.main.resources.srcDirs) {
-                include 'mcmod.info'
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
 
-                // replace version and mcversion
-                expand 'version':project.version, 'mcversion':project.minecraft.version
-            }
+//The following function comes with thanks to AbrarSyed:
+//Copying the coremod dependencies from the classpath to the mods directory so the system can load them in a Dev Env.
+//This is not executed during build!
+task copyChicken(type: Copy, dependsOn: "setupDecompWorkspace") {
+    from configurations.compile
+    include "**/*Chicken*.jar", "**/*NotEnoughItems*.jar"
+    exclude "**/CodeChickenLib*" // because CCC downloads it anyways.. -_-
+    into file(minecraft.assetDir + "/../mods") // parallel to the assets dir
+}
 
-            // copy everything else, thats not the mcmod.info
-            from(sourceSets.main.resources.srcDirs) {
-                exclude 'mcmod.info'
-            }
-        }
+task createDevSetup{
+    description "Creates a full decompiled and ready to go (as far as possible) dev environment."
+}
 
+tasks.createDevSetup.dependsOn("setupDevWorkspace", "setupDecompWorkspace", "copyChicken")
+
+//Following functions and tasks are needed to upload to my MavenRepo:
 uploadArchives {
-    //logger.lifecycle("FTPUserName: "+ System.getenv().FTPUserName.toString())
-    //logger.lifecycle("FTPPassword: "+ System.getenv().FTPPassword.toString())
-
     repositories.mavenDeployer {
         configuration = configurations.deployerJars
         if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))

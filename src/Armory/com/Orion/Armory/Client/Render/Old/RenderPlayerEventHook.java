@@ -57,10 +57,11 @@ public class RenderPlayerEventHook
             return;
         }
 
+        /*
         this.renderDataX = event.x;
         this.renderDataY = event.y;
         this.renderDataZ = event.z;
-
+*/
     }
 
 
