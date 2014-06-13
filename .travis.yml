@@ -1,0 +1,13 @@
+language: java
+jdk:
+- oraclejdk7
+before_install:
+- chmod +x gradlew
+install: ./gradlew setupCIWorkspace -S
+script: ./gradlew build -i -S
+after_success:
+  - ./gradlew uploadJars -S
+env:
+  global:
+  - secure: QyTY2EgCrqNiktzT5LV8pOKDWtY/5adx0NtesBHVT3MO1EXJdPoZA3oGFTva4rCi2Dz7gEgW3Pbvw5/giolmyG8KtwTB/y1FMIOymEFPUpUyjIqk/o+/R2hOZaDRgQVdpBllucitLYajrw+fi3i7d6Fqqd3srUYAX3F501DwW1c=
+  - secure: MEV0d0NPPrBtwoHDttuqJnxma/l+ZokTunyqlPf+AHd+JkY6fFCro+OaauiREqiXtYxMZrODXky3TyOAikUJKob16siK/9UIWp2MsoPn/Dm3J89B1q1hxSulKpfHNyDWnoRv29ASAiCcU+hgmjsoWJLn4jfmxSSHx+gsTUTyL+I=

@@ -2,151 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97c6c06a-ce86-43cb-8ac4-c04000e79279" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Betelgeuze - License.rtf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Rigel - License.rtf" />
-      <change type="DELETED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\.idea\.name" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\.idea\compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\.idea\copyright\profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\.idea\encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\.idea\misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\.idea\modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\.idea\scopes\scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\.idea\vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\.idea\workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\LICENSE" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\base\armory.Chestplate_Base.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/base/armory.Chestplate_Base.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\base\armory.Helmet_Base.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/base/armory.Helmet_Base.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\base\armory.Leggins_Base.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/base/armory.Leggins_Base.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\base\armory.Shoes_Base.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/base/armory.Shoes_Base.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Chest_Auto_Repair.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Chest_Auto_Repair.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Chest_Electric.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Chest_Electric.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Chest_Flying.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Chest_Flying.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Chest_Haste.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Chest_Haste.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Chest_Reinforced.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Chest_Reinforced.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Chest_Strength.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Chest_Strength.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Chest_Thorns.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Chest_Thorns.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Helmet_Aqua_Affinity.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Helmet_Aqua_Affinity.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Helmet_Aqua_Breathing.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Helmet_Aqua_Breathing.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Helmet_Auto_Repair.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Helmet_Auto_Repair.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Helmet_Electric.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Helmet_Electric.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Helmet_Reinforced.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Helmet_Reinforced.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Helmet_Thorns.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Helmet_Thorns.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Leggins_Auto_Repair.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Leggins_Auto_Repair.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Leggins_Electric.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Leggins_Electric.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Leggins_Jump_Assist.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Leggins_Jump_Assist.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Leggins_Reinforced.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Leggins_Reinforced.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Leggins_Speed.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Leggins_Speed.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Leggins_Thorns.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Leggins_Thorns.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Leggins_UpHill_Assist.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Leggins_UpHill_Assist.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Shoe_Auto_Repair.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Shoe_Auto_Repair.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Shoe_Electric.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Shoe_Electric.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Shoe_Fall_Assist.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Shoe_Fall_Assist.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Shoe_Reinforced.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Shoe_Reinforced.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Shoe_Swim_Assist.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Shoe_Swim_Assist.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Temp-Base armor\armory.Bronze_armory.Chestplate_base.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Temp-Base armor/armory.Bronze_armory.Chestplate_base.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Temp-Base armor\armory.Bronze_armory.Helmet_base.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Temp-Base armor/armory.Bronze_armory.Helmet_base.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Temp-Base armor\armory.Bronze_armory.Leggins_base.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Temp-Base armor/armory.Bronze_armory.Leggins_base.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\modifiers\Temp-Base armor\armory.Bronze_armory.Shoes_base.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Temp-Base armor/armory.Bronze_armory.Shoes_base.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Chestplate_Protection_Back_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Chestplate_Protection_Back_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Chestplate_Protection_Front_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Chestplate_Protection_Front_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Chestplate_Protection_Front_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Chestplate_Protection_Front_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Chestplate_ShoulderPad_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Chestplate_ShoulderPad_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Helmet_Protection_Ear_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Helmet_Protection_Ear_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Helmet_TopHead.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Helmet_TopHead.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Leggins_Protection_Back_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Leggins_Protection_Back_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Leggins_Protection_Back_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Leggins_Protection_Back_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Leggins_Protection_Front_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Leggins_Protection_Front_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Leggins_Protection_Front_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Leggins_Protection_Front_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Shoes_Protection_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Shoes_Protection_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\items\multiarmor\upgrades\armory.Shoes_Protection_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/upgrades/armory.Shoes_Protection_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\AExtendedPlayerModel.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/AExtendedPlayerModel.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\base\Base.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/base/Base.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Chest_Auto_Repair.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Chest_Auto_Repair.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Chest_Electric.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Chest_Electric.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Chest_Flying.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Chest_Flying.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Chest_Haste.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Chest_Haste.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Chest_Reinforced.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Chest_Reinforced.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Chest_Strength.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Chest_Strength.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Chest_Thorns.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Chest_Thorns.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Helmet_Aqua-Affinity.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Helmet_Aqua-Affinity.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Helmet_Aqua_Breathing.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Helmet_Aqua_Breathing.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Helmet_Auto_Repair.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Helmet_Auto_Repair.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Helmet_Electric.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Helmet_Electric.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Helmet_Reinforced.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Helmet_Reinforced.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Helmet_Thorns.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Helmet_Thorns.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Leggins_Auto_Repair.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Leggins_Auto_Repair.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Leggins_Electric.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Leggins_Electric.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Leggins_Jump_Assist.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Leggins_Jump_Assist.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Leggins_Reinforced.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Leggins_Reinforced.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Leggins_Speed.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Leggins_Speed.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Leggins_Thorns.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Leggins_Thorns.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Leggins_UpHill_Assist.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Leggins_UpHill_Assist.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Shoe_Auto_Repair.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Shoe_Auto_Repair.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Shoe_Electric.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Shoe_Electric.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Shoe_Fall_Assist.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Shoe_Fall_Assist.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Shoe_Reinforced.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Shoe_Reinforced.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\modifiers\Shoe_Swim_Assist.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/modifiers/Shoe_Swim_Assist.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Chestplate_Protection_Back_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Chestplate_Protection_Back_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Chestplate_Protection_Front_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Chestplate_Protection_Front_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Chestplate_ShoulderPad_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Chestplate_ShoulderPad_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Helmet_Protection_Ear_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Helmet_Protection_Ear_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Helmet_TopHead.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Helmet_TopHead.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Leggins_Protection_Back_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Leggins_Protection_Back_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Leggins_Protection_Front_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Leggins_Protection_Front_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Shoes_Protection_Left.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Shoes_Protection_Left.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\assets\tconstruct-armory\textures\models\multiarmor\upgrades\armory.Shoes_Protection_Right.png" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/upgrades/armory.Shoes_Protection_Right.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\models\AExtendedPlayerModel.png" afterPath="$PROJECT_DIR$/resources/models/AExtendedPlayerModel.png" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\models\AExtendedPlayerModel.tcn" afterPath="$PROJECT_DIR$/resources/models/AExtendedPlayerModel.tcn" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\models\Armor_Base.xcf" afterPath="$PROJECT_DIR$/resources/models/Armor_Base.xcf" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\rescources\models\BaseArmor.xcf" afterPath="$PROJECT_DIR$/resources/models/BaseArmor.xcf" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Armory.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Armory.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\AClientRegistry.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/AClientRegistry.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\ArmoryClientProxy.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/ArmoryClientProxy.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\ArmoryResource.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/ArmoryResource.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\CreativeTab\ArmorTab.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/CreativeTab/ArmorTab.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\CreativeTab\ComponentsTab.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/CreativeTab/ComponentsTab.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\Models\AExtendedPlayerModel.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/Models/AExtendedPlayerModel.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\Render\ArmoryArmorRender.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/Render/ArmoryArmorRender.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\Render\ArmoryPlayerRenderer.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/Render/ArmoryPlayerRenderer.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\Render\ArmoryVanillaArmorRender.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/Render/ArmoryVanillaArmorRender.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\Render\Old\ArmorItemRenderer.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/Render/Old/ArmorItemRenderer.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\Render\Old\CustomArmorRenderer.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/Render/Old/CustomArmorRenderer.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\Render\Old\CustomLivingEntityRenderer.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/Render/Old/CustomLivingEntityRenderer.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\Render\Old\CustomPlayerRenderer.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/Render/Old/CustomPlayerRenderer.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Client\Render\Old\RenderPlayerEventHook.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/Render/Old/RenderPlayerEventHook.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\ARegistry.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ARegistry.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Armor\ArmorCore.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorCore.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Armor\ArmorMaterial.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorMaterial.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Armor\ArmorUpgrade.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorUpgrade.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Armor\Modifiers\ArmorModifier.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/Modifiers/ArmorModifier.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Armor\Modifiers\ModifierChestHaste.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/Modifiers/ModifierChestHaste.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\ArmoryCommonProxy.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ArmoryCommonProxy.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Events\ModifyMaterialEvent.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Events/ModifyMaterialEvent.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Events\RegisterArmorEvent.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Events/RegisterArmorEvent.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Events\RegisterMaterialsEvent.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Events/RegisterMaterialsEvent.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Events\RegisterModifiersEvent.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Events/RegisterModifiersEvent.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Events\RegisterUpgradesEvent.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Events/RegisterUpgradesEvent.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Items\ARecipeItem.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Items/ARecipeItem.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Logic\ArmorBuilder.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorBuilder.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Logic\ArmorRecipe.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorRecipe.java" />
-      <change type="MOVED" beforePath="C:\Users\Marc\Documents\Development\Minecraft\Armory\src\com\Orion\Armory\Common\Logic\ArmoryInitializer.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmoryInitializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Armory.iml" afterPath="$PROJECT_DIR$/Armory.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.travis.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Armory.ipr" afterPath="$PROJECT_DIR$/Armory.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Armory.iws" afterPath="$PROJECT_DIR$/Armory.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.properties" afterPath="$PROJECT_DIR$/build.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew" afterPath="$PROJECT_DIR$/gradlew" />
     </list>
     <ignored path="Armory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -202,6 +60,30 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="Armory" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="build.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+              <caret line="4" column="27" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".travis.yml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3207547" vertical-offset="0" max-vertical-offset="636">
+              <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -851,12 +733,17 @@
       <changelist id="97c6c06a-ce86-43cb-8ac4-c04000e79279" name="Default" comment="" />
       <created>1402683468622</created>
       <updated>1402683468622</updated>
-      <workItem from="1402683469119" duration="506000" />
+      <workItem from="1402683469119" duration="1135000" />
     </task>
+    <task id="LOCAL-00001" summary="Finally got a working dev environment.&#10;&#10;Updated: Dev environment&#10;Updated: Resource directory now properly named.&#10;Updated: Partially happy with the new buildscript for Gradle. Finally implemented the uploading to my maven repo.&#10;&#10;Added: Support for my maven repo.&#10;&#10;ToDo: Rewrite the rendering code by moving into OrionsBelt for compatibility reasons.">
+      <created>1402684284281</created>
+      <updated>1402684284281</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="506000" />
+    <option name="totallyTimeSpent" value="1135000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
@@ -881,8 +768,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928064" sideWeight="0.496875" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928064" sideWeight="0.496875" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -905,6 +792,8 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="Finally got a working dev environment.&#10;&#10;Updated: Dev environment&#10;Updated: Resource directory now properly named.&#10;Updated: Partially happy with the new buildscript for Gradle. Finally implemented the uploading to my maven repo.&#10;&#10;Added: Support for my maven repo.&#10;&#10;ToDo: Rewrite the rendering code by moving into OrionsBelt for compatibility reasons." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finally got a working dev environment.&#10;&#10;Updated: Dev environment&#10;Updated: Resource directory now properly named.&#10;Updated: Partially happy with the new buildscript for Gradle. Finally implemented the uploading to my maven repo.&#10;&#10;Added: Support for my maven repo.&#10;&#10;ToDo: Rewrite the rendering code by moving into OrionsBelt for compatibility reasons." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -913,6 +802,32 @@
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Betelgeuze - License.rtf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3791">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3207547" vertical-offset="0" max-vertical-offset="636">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
