@@ -120,7 +120,7 @@ processResources
 //The following function comes with thanks to AbrarSyed:
 //Copying the coremod dependencies from the classpath to the mods directory so the system can load them in a Dev Env.
 //This is not executed during build!
-task copyChicken(type: Copy, dependsOn: "setupDecompWorkspace") {
+task copyChicken(type: Copy){
     from configurations.compile
     include "**/*Chicken*.jar", "**/*NotEnoughItems*.jar"
     exclude "**/CodeChickenLib*" // because CCC downloads it anyways.. -_-
