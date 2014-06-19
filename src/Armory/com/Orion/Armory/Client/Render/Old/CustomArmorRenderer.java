@@ -6,7 +6,7 @@ package com.Orion.Armory.Client.Render.Old;
 */
 
 import com.Orion.Armory.Client.ArmoryResource;
-import com.Orion.Armory.Client.Models.AExtendedPlayerModel;
+import com.Orion.OrionsBelt.Client.Models.AExtendedPlayerModel;
 import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 import cpw.mods.fml.relauncher.Side;

@@ -1,0 +1,16 @@
+[
+{
+  "modid": "${modid}",
+  "name": "Armory",
+  "description": "Tools.... Hmm i like armor.......",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorsList": ["OrionDevelopment"],
+  "credits": "All the people who helped me getting this project going",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

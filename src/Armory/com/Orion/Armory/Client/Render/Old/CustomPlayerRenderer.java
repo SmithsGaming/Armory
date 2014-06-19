@@ -5,7 +5,7 @@ package com.Orion.Armory.Client.Render.Old;
 /  Created on : 29/04/2014
 */
 
-import com.Orion.Armory.Client.Models.AExtendedPlayerModel;
+import com.Orion.OrionsBelt.Client.Models.AExtendedPlayerModel;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 import net.minecraft.block.Block;
 import net.minecraft.client.entity.AbstractClientPlayer;

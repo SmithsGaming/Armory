@@ -5,7 +5,8 @@ package com.Orion.Armory.Client.Render;
 *   Created on: 29-4-2014
 */
 
-import com.Orion.Armory.Client.Models.AExtendedPlayerModel;
+/*
+import com.Orion.OrionsBelt.Client.Models.AExtendedPlayerModel;
 import com.Orion.Armory.Common.ARegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -45,7 +46,6 @@ import java.util.Random;
 
 import static net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED;
 import static net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D;
-
 public class ArmoryPlayerRenderer extends Render
 {
     private Logger iLogger = ARegistry.iLogger;
@@ -683,7 +683,7 @@ public class ArmoryPlayerRenderer extends Render
                     GL11.glEnable(GL11.GL_ALPHA_TEST);
                 }
             }
-*/
+*//*
             GL11.glDepthMask(true);
             this.renderEquippedItems((AbstractClientPlayer) pEntity, pPartialTickTime);
             float f14 = pEntity.getBrightness(pPartialTickTime);
@@ -760,3 +760,4 @@ public class ArmoryPlayerRenderer extends Render
 
 }
 
+*/
