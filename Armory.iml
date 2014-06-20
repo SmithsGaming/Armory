@@ -6,12 +6,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/api/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Armory" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/api/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/api" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/resources" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/api/resources" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
@@ -20,10 +21,12 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.Orion.OrionsBelt/OrionsBelt/1.0.0-69-SNAPSHOT/874b36c7e6f0e30120c5944d9c588da0d0a1fc8/OrionsBelt-1.0.0-69-SNAPSHOT.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.Orion.OrionsBelt/OrionsBelt/1.0.0-73-SNAPSHOT/56c4a0b7fbc2361477f884fcce2f15d1c2012831/OrionsBelt-1.0.0-73-SNAPSHOT.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../OrionsBelt/src" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
@@ -362,7 +365,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" scope="PROVIDED">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/codechicken/NotEnoughItems/1.7.2-1.0.1/94071d36499fe0526ca1ad800c447080785b81dc/NotEnoughItems-1.7.2-1.0.1-dev.jar!/" />
@@ -371,7 +374,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" scope="PROVIDED">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/codechicken/CodeChickenLib/1.7.2-1.1.0.77/2ba3adf3673e3e527884151aa179224a16ff914b/CodeChickenLib-1.7.2-1.1.0.77-dev.jar!/" />
@@ -380,7 +383,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" scope="PROVIDED">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/codechicken/CodeChickenCore/1.7.2-1.0.1/104bf4302297b381d1f079979362095fcf3a0b4/CodeChickenCore-1.7.2-1.0.1-dev.jar!/" />
