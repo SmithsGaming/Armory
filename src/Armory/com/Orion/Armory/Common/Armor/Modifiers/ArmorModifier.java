@@ -1,7 +1,7 @@
 package com.Orion.Armory.Common.Armor.Modifiers;
 
 
-import com.Orion.Armory.Client.ArmoryResource;
+import com.Orion.OrionsBelt.Client.CustomResource;
 import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +18,7 @@ public abstract class ArmorModifier
     public String iInternalName;
     public String iVisibleName;
     public String iVisibleNameColor;
-    public ArmoryResource iResource;
+    public CustomResource iResource;
     public int iTargetArmorID;
     public int iMaxModifications;
     public int iItemsPerLevel = -1;
@@ -32,7 +32,7 @@ public abstract class ArmorModifier
 
     //Constructors
     //This is used for modifiers who are a one time appliers
-    public ArmorModifier(String pInternalName, String pVisibleName, String pVisibleNameColor, ArmoryResource pResource, int pTargetArmorID, int pMaxModifications, Item pBaseItem, ArrayList<Integer> pRequiredModifiers, ArrayList<Integer> pModifierBlacklist)
+    public ArmorModifier(String pInternalName, String pVisibleName, String pVisibleNameColor, CustomResource pResource, int pTargetArmorID, int pMaxModifications, Item pBaseItem, ArrayList<Integer> pRequiredModifiers, ArrayList<Integer> pModifierBlacklist)
     {
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
@@ -47,7 +47,7 @@ public abstract class ArmorModifier
     }
 
     //This one is used for modifiers who use levels and/or require more then one item per level
-    public ArmorModifier(String pInternalName, String pVisibleName, String pVisibleNameColor, ArmoryResource pResource, int pTargetArmorID, int pMaxModifications, int pItemsPerLevel, Item pBaseItem, ArrayList<Integer> pRequiredModifiers, ArrayList<Integer> pModifierBlacklist)
+    public ArmorModifier(String pInternalName, String pVisibleName, String pVisibleNameColor, CustomResource pResource, int pTargetArmorID, int pMaxModifications, int pItemsPerLevel, Item pBaseItem, ArrayList<Integer> pRequiredModifiers, ArrayList<Integer> pModifierBlacklist)
     {
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
@@ -187,7 +187,7 @@ public abstract class ArmorModifier
         return (this.iInternalName == tOtherModifier.iInternalName);
     }
 
-    public ArmoryResource getResource()
+    public CustomResource getResource()
     {
         return iResource;
     }

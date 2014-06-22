@@ -5,8 +5,8 @@ package com.Orion.Armory.Common.Armor.Modifiers;
 *   Created on: 6-4-2014
 */
 
-import com.Orion.Armory.Client.ArmoryResource;
 import com.Orion.Armory.Common.Armor.ArmorCore;
+import com.Orion.OrionsBelt.Client.CustomResource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.potion.Potion;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class ModifierChestHaste extends ArmorModifier {
 
     public ModifierChestHaste() {
-        super("Armor.Chest.Redstone", "Haste", "", new ArmoryResource("armory.Modifiers.Haste", "tconstruct-armory:multiarmor/modifiers/Chest_Haste"), 1, 500, 100, Items.redstone, new ArrayList<Integer>(), new ArrayList<Integer>());
+        super("Armor.Chest.Redstone", "Haste", "", new CustomResource("armory.Modifiers.Haste", "tconstruct-armory:multiarmor/modifiers/Chest_Haste"), 1, 500, 100, Items.redstone, new ArrayList<Integer>(), new ArrayList<Integer>());
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.Orion.Armory.Common.Armor;
 
-import com.Orion.Armory.Client.ArmoryResource;
+import com.Orion.OrionsBelt.Client.CustomResource;
 
 import java.util.ArrayList;
 
@@ -16,13 +16,13 @@ public class ArmorUpgrade
     public String iType;
     public String iVisibleName;
     public String iVisibleNameColor;
-    public ArmoryResource iResource;
+    public CustomResource iResource;
     public float iProtection;
     public int iExtraDurability;
     public int iMaxUpgrades;
 
     //Constructors
-    public ArmorUpgrade(int pMaterialID, int pTargetArmorID, int pUpgradeLocation, String pInternalName, String pType, String pVisibleName, String pVisibleNameColor, ArmoryResource pResource, float pProtection, int pExtraDurability,int pMaxUpgrades)
+    public ArmorUpgrade(int pMaterialID, int pTargetArmorID, int pUpgradeLocation, String pInternalName, String pType, String pVisibleName, String pVisibleNameColor, CustomResource pResource, float pProtection, int pExtraDurability,int pMaxUpgrades)
     {
         iMaterialID = pMaterialID;
         iTargetArmorID = pTargetArmorID;
@@ -61,7 +61,7 @@ public class ArmorUpgrade
         return true;
     }
 
-    public ArmoryResource getResource()
+    public CustomResource getResource()
     {
         return iResource;
     }

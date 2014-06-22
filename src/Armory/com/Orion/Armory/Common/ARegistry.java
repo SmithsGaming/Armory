@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 /**
  * Created by Orion on 26-3-2014
- * Based off: TConstructRegistry
  */
 public class ARegistry
 {

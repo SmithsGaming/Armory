@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.Armor;
 *   Created on: 6-4-2014
 */
 
-import com.Orion.Armory.Client.ArmoryResource;
+import com.Orion.OrionsBelt.Client.CustomResource;
 import com.Orion.Armory.Common.ARegistry;
 
 import java.security.InvalidParameterException;
@@ -17,7 +17,7 @@ public class ArmorMaterial
     public String iVisibleName;
     public String iVisibleNameColor;
     public boolean iBaseArmorMaterial;
-    public HashMap<Integer, ArmoryResource> iResources = new HashMap<Integer, ArmoryResource>();
+    public HashMap<Integer, CustomResource> iResources = new HashMap<Integer, CustomResource>();
     public HashMap<Integer, Boolean> iActiveParts = new HashMap<Integer, Boolean>();
     public HashMap<Integer, Float> iBaseDamageAbsorption = new HashMap<Integer, Float>();
     public HashMap<Integer, Integer> iBaseDurability = new HashMap<Integer, Integer>();
@@ -84,12 +84,12 @@ public class ArmorMaterial
 
     public int getMaxModifiersOnPart(int pTargetArmorID) { return iPartModifiers.get(pTargetArmorID);}
 
-    public void registerResource(ArmoryResource pResource)
+    public void registerResource(CustomResource pResource)
     {
         iResources.put(iResources.size(), pResource);
     }
 
-    public ArmoryResource getResource(int pTargetArmorID)
+    public CustomResource getResource(int pTargetArmorID)
     {
         return iResources.get(pTargetArmorID);
     }

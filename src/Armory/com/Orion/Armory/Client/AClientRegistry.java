@@ -26,17 +26,17 @@ public class AClientRegistry extends ARegistry
         {
             for(ArmorMaterial tMaterial : iInstance.getArmorMaterials())
             {
-                tArmor.registerResource(iInstance.getMaterialTextureID(tMaterial.iInternalName), tMaterial.getResource(tArmor.iArmorPart));
+                tArmor.registerResource(tMaterial.getResource(tArmor.iArmorPart));
             }
 
             for(ArmorUpgrade tUpgrade : iInstance.getUpgrades())
             {
-                tArmor.registerResource(iInstance.getUpgradeTextureID(iInstance.getMaterial(tUpgrade.iMaterialID).iInternalName, tUpgrade.iInternalName), tUpgrade.getResource());
+                tArmor.registerResource(tUpgrade.getResource());
             }
 
             for(ArmorModifier tModifier: iInstance.getModifiers())
             {
-                tArmor.registerResource(iInstance.getModifierTextureID(tModifier.iInternalName), tModifier.getResource());
+                tArmor.registerResource(tModifier.getResource());
             }
         }
     }

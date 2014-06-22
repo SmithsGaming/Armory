@@ -3,11 +3,11 @@ package com.Orion.Armory;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 import com.Orion.Armory.Common.ArmoryCommonProxy;
 import com.Orion.OrionsBelt.Client.Render.RenderMultiLayeredArmor;
-import com.Orion.OrionsBelt.OrionsBelt;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import com.Orion.OrionsBelt.OrionsBelt;
 
 /**
  * Base class for Armory
@@ -24,24 +24,21 @@ public class Armory
     public static Armory instance;
 
     // Proxies used to register stuff client and server side.
-    @SidedProxy(clientSide="com.Orion.Armory.Common.ArmoryCommonProxy", serverSide="com.Orion.Armory.Client.ArmoryClientProxy")
+    @SidedProxy(clientSide="com.Orion.Armory.Client.ArmoryClientProxy", serverSide="com.Orion.Armory.Common.ArmoryCommonProxy")
     public static ArmoryCommonProxy proxy;
 
     // Data that is needed throughout the whole mod.
     public static boolean iIsInitialized = false;
 
-
     @Mod.EventHandler
     public void preInit (FMLPreInitializationEvent event)
     {
-        proxy.registerEvents();
         proxy.initializeArmory();
-        proxy.registerRenderers();
     }
 
     @Mod.EventHandler
     public void postInit (FMLPostInitializationEvent event)
     {
-        OrionsBelt.iInstance.iRenderRegistry.addNewRenderer(ArmorCore.class, new RenderMultiLayeredArmor());
+        //OrionsBelt.iInstance.iRenderRegistry.addNewRenderer(ArmorCore.class, new RenderMultiLayeredArmor());
     }
 }

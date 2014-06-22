@@ -110,7 +110,7 @@ public class ArmorBuilder
 
         //Add the renderpass data for the base armor
         tNewRenderCompound.setTag("RenderPass - 0", new NBTTagCompound());
-        tNewRenderCompound.getCompoundTag("RenderPass - 0").setInteger("ResourceID", tMaterialID);
+        tNewRenderCompound.getCompoundTag("RenderPass - 0").setString("ResourceID", ARegistry.iInstance.getMaterial(tMaterialID).getResource(tCore.iArmorPart).iInternalName);
 
         //Adding the Upgrade data to the the upgrade and render part of the compound
         int tRenderPassCounter = 0;
@@ -121,7 +121,7 @@ public class ArmorBuilder
 
             tRenderPassCounter++;
 
-            tRenderPassCompound.setInteger("ResourceID", ARegistry.iInstance.getUpgradeTextureID(ARegistry.iInstance.getMaterial(tMaterialID).iInternalName, tCurrentUpgrade.iInternalName));
+            tRenderPassCompound.setString("ResourceID", tCurrentUpgrade.getResource().iInternalName);
 
             tUpgradeCompound.setInteger("UpgradeID", ARegistry.iInstance.getUpgradeID(tCurrentUpgrade));
 
@@ -139,7 +139,7 @@ public class ArmorBuilder
             tRenderPassCounter++;
             tModifierCounter++;
 
-            tRenderPassCompound.setInteger("ResourceID", ARegistry.iInstance.getModifierTextureID(tCurrentModifier.iInternalName));
+            tRenderPassCompound.setString("ResourceID", tCurrentModifier.getResource().iInternalName);
 
             tModifierCompound.setInteger("ModifierID", ARegistry.iInstance.getModifierID(tCurrentModifier));
             tModifierCompound.setInteger("Amount", tCurrentModifier.iInstalledAmount);
@@ -178,7 +178,7 @@ public class ArmorBuilder
         //Creating the initial Renderpass for the base armor layer.
         tBaseCompound.setInteger("RenderPasses", 0);
         tRenderCompound.setTag("RenderPass - 0", new NBTTagCompound());
-        tRenderCompound.getCompoundTag("RenderPass - 0").setInteger("ResourceID", ARegistry.iInstance.getMaterialTextureID(ARegistry.iInstance.getMaterial(pMaterialID).iInternalName));
+        tRenderCompound.getCompoundTag("RenderPass - 0").setString("ResourceID", ARegistry.iInstance.getMaterial(pMaterialID).getResource(tCore.iArmorPart).iInternalName);
 
         //Creating the initial modifier and upgrade data
         tBaseCompound.setInteger("InstalledUpgrades", 0);

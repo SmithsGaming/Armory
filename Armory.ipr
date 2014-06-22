@@ -180,6 +180,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Armory.iml" filepath="$PROJECT_DIR$/Armory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../OrionsBelt/OrionsBelt.iml" filepath="$PROJECT_DIR$/../OrionsBelt/OrionsBelt.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
@@ -190,6 +191,7 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../OrionsBelt" vcs="Git" />
   </component>
 </project>
 
