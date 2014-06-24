@@ -33,7 +33,10 @@
           <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tconstruct/TConstruct/1.7.2-1.6.0.jenkins494/1e4bcf040e9ce983a343cf7caefd9594351bbda4/TConstruct-1.7.2-1.6.0.jenkins494-deobf.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../TinkersContruct/src/api/java" />
+          <root url="file://$MODULE_DIR$/../TinkersContruct/src/main/java" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">

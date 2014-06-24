@@ -157,6 +157,10 @@ public class ArmorBuilder
 
         //Adding the Tagcompound to the Stack and returning the finished stack.
         tReturnStack.setTagCompound(tNewCompound);
+
+        //Setting the damage bar
+        tReturnStack.setItemDamage((int) (tReturnStack.getTagCompound().getInteger("CurrentDurability")/tReturnStack.getTagCompound().getInteger("TotalDurability") * 100));
+
         return tReturnStack;
     }
 
@@ -190,9 +194,9 @@ public class ArmorBuilder
         //Adding the initial BaseCompound to the itemstack
         tReturnStack.setTagCompound(tBaseCompound);
 
+        tReturnStack.setItemDamage((int) (tReturnStack.getTagCompound().getInteger("CurrentDurability")/tReturnStack.getTagCompound().getInteger("TotalDurability") * 100));
         return tReturnStack;
     }
-
 
 
 

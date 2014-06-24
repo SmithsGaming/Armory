@@ -1,11 +1,13 @@
 package com.Orion.Armory.Common.Armor.Modifiers;
 
 
+import com.Orion.Armory.Common.Armor.ArmorMaterial;
 import com.Orion.OrionsBelt.Client.CustomResource;
 import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -21,8 +23,7 @@ public abstract class ArmorModifier
     public CustomResource iResource;
     public int iTargetArmorID;
     public int iMaxModifications;
-    public int iItemsPerLevel = -1;
-    public Item iBaseItem;
+    public ItemStack iCraftingStack;
 
     public ArrayList<Integer> iRequiredModifiers;
     public ArrayList<Integer> iModifierBlackList;
@@ -32,7 +33,7 @@ public abstract class ArmorModifier
 
     //Constructors
     //This is used for modifiers who are a one time appliers
-    public ArmorModifier(String pInternalName, String pVisibleName, String pVisibleNameColor, CustomResource pResource, int pTargetArmorID, int pMaxModifications, Item pBaseItem, ArrayList<Integer> pRequiredModifiers, ArrayList<Integer> pModifierBlacklist)
+    public ArmorModifier(String pInternalName, String pVisibleName, String pVisibleNameColor, CustomResource pResource, int pTargetArmorID, int pMaxModifications, ItemStack pCraftingStack, ArrayList<Integer> pRequiredModifiers, ArrayList<Integer> pModifierBlacklist)
     {
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
@@ -40,23 +41,7 @@ public abstract class ArmorModifier
         iResource = pResource;
         iTargetArmorID = pTargetArmorID;
         iMaxModifications = pMaxModifications;
-        iBaseItem = pBaseItem;
-
-        iRequiredModifiers = pRequiredModifiers;
-        iModifierBlackList = pModifierBlacklist;
-    }
-
-    //This one is used for modifiers who use levels and/or require more then one item per level
-    public ArmorModifier(String pInternalName, String pVisibleName, String pVisibleNameColor, CustomResource pResource, int pTargetArmorID, int pMaxModifications, int pItemsPerLevel, Item pBaseItem, ArrayList<Integer> pRequiredModifiers, ArrayList<Integer> pModifierBlacklist)
-    {
-        iInternalName = pInternalName;
-        iVisibleName = pVisibleName;
-        iVisibleNameColor = pVisibleNameColor;
-        iResource = pResource;
-        iTargetArmorID = pTargetArmorID;
-        iMaxModifications = pMaxModifications;
-        iItemsPerLevel = pItemsPerLevel;
-        iBaseItem = pBaseItem;
+        iCraftingStack = pCraftingStack;
 
         iRequiredModifiers = pRequiredModifiers;
         iModifierBlackList = pModifierBlacklist;
@@ -176,6 +161,20 @@ public abstract class ArmorModifier
                 }
             }
 
+        }
+
+        boolean allRequiredAvailable = true;
+        for(Integer tRequiredModifier : iRequiredModifiers)
+        {
+            if ((pInstalledModifiers.indexOf(ARegistry.iInstance.getModifier(tRequiredModifier)) == -1) && (pNewModifiers.indexOf(ARegistry.iInstance.getModifier(tRequiredModifier)) == -1))
+            {
+                allRequiredAvailable = false;
+            }
+        }
+
+        if (!allRequiredAvailable)
+        {
+            return false;
         }
 
         iInstalledAmount = -1;

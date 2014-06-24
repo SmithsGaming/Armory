@@ -1,41 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97c6c06a-ce86-43cb-8ac4-c04000e79279" name="Default" comment="PC Sync Build">
-      <change type="DELETED" beforePath="D:\Development\Minecraft\Armory\src\Armory\com\Orion\Armory\Client\ArmoryResource.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Development\Minecraft\Armory\src\Armory\com\Orion\Armory\Client\Render\ArmoryArmorRender.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Development\Minecraft\Armory\src\Armory\com\Orion\Armory\Client\Render\ArmoryPlayerRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Development\Minecraft\Armory\src\Armory\com\Orion\Armory\Client\Render\ArmoryVanillaArmorRender.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Development\Minecraft\Armory\src\Armory\com\Orion\Armory\Client\Render\Old\ArmorItemRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Development\Minecraft\Armory\src\Armory\com\Orion\Armory\Client\Render\Old\CustomArmorRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Development\Minecraft\Armory\src\Armory\com\Orion\Armory\Client\Render\Old\CustomLivingEntityRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Development\Minecraft\Armory\src\Armory\com\Orion\Armory\Client\Render\Old\CustomPlayerRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Development\Minecraft\Armory\src\Armory\com\Orion\Armory\Client\Render\Old\RenderPlayerEventHook.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/AClientRegistry.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/AClientRegistry.java" />
+    <list default="true" id="97c6c06a-ce86-43cb-8ac4-c04000e79279" name="Default" comment="Started on crafting stuff&#10;">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorChangeRecipe.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Crafting/CraftingEventHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Item/UpgradeBaseItem.java" />
+      <change type="DELETED" beforePath="D:\Development\Minecraft\Armory\src\Armory\com\Orion\Armory\Common\Items\ARecipeItem.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Development\Minecraft\Armory\src\Armory\com\Orion\Armory\Common\Logic\ArmorRecipe.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ARegistry.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ARegistry.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorBuilder.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorBuilder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorCore.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorCore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorMaterial.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorMaterial.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/Modifiers/ArmorModifier.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/Modifiers/ArmorModifier.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/CreativeTab/ArmorTab.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/CreativeTab/ArmorTab.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorUpgrade.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorUpgrade.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Armory.iml" afterPath="$PROJECT_DIR$/Armory.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Armory.ipr" afterPath="$PROJECT_DIR$/Armory.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Armory.iws" afterPath="$PROJECT_DIR$/Armory.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Armory.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Armory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/ArmoryClientProxy.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/ArmoryClientProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ArmoryCommonProxy.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ArmoryCommonProxy.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmoryInitializer.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmoryInitializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/ClientProxy.java" afterPath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/ClientProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Models/ExtendedPlayerModel.java" afterPath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Models/ExtendedPlayerModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/Modifiers/ModifierChestHaste.java" afterPath="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/Modifiers/ModifierChestHaste.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Common/Util/Armor/MultiLayeredArmor.java" afterPath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Common/Util/Armor/MultiLayeredArmor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/OrionsBelt.java" afterPath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/OrionsBelt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/EventHandler/RenderArmorEventHandler.java" afterPath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/EventHandler/RenderArmorEventHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RenderMultiLayeredArmor.java" afterPath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RenderMultiLayeredArmor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RenderRegistry.java" afterPath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RenderRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RendererItemMultiLayeredArmor.java" afterPath="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RendererItemMultiLayeredArmor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.properties" afterPath="$PROJECT_DIR$/build.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
+      <change type="MOVED" beforePath="D:\Development\Minecraft\Armory\resources\mcmod.info" afterPath="$PROJECT_DIR$/resources/assets/tconstruct-armory/mcmod.info" />
     </list>
     <ignored path="Armory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,104 +78,114 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="OrionsBelt.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/OrionsBelt.java">
+      <file leaf-file-name="PlayerEvent.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/cpw/mods/fml/common/gameevent/PlayerEvent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="731" max-vertical-offset="850">
-              <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="935" max-vertical-offset="1360">
+              <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArmoryInitializer.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ArmoryInitializer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmoryInitializer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="6426" max-vertical-offset="10897">
-              <caret line="378" column="4" selection-start-line="378" selection-start-column="4" selection-end-line="378" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RenderRegistry.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RenderRegistry.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="578">
-              <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Armory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Armory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="697" max-vertical-offset="850">
-              <caret line="41" column="10" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RenderArmorEventHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/EventHandler/RenderArmorEventHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="782">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RenderMultiLayeredArmor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RenderMultiLayeredArmor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3128" max-vertical-offset="3332">
-              <caret line="184" column="51" selection-start-line="184" selection-start-column="51" selection-end-line="184" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExtendedPlayerModel.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Models/ExtendedPlayerModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6148936" vertical-offset="510" max-vertical-offset="3434">
-              <caret line="128" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.33226323" vertical-offset="201" max-vertical-offset="8381">
+              <caret line="45" column="10" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
               <folding>
-                <element signature="method#setRotation#0;class#ExtendedPlayerModel#0" expanded="true" />
-                <element signature="method#setRotationAngles#0;class#ExtendedPlayerModel#0" expanded="true" />
+                <element signature="method#registerModifiers#0;class#ArmoryInitializer#0" expanded="true" />
+                <element signature="method#registerArmors#0;class#ArmoryInitializer#0" expanded="true" />
+                <element signature="method#registerHelmet#0;class#ArmoryInitializer#0" expanded="true" />
+                <element signature="method#registerChestplate#0;class#ArmoryInitializer#0" expanded="true" />
+                <element signature="method#registerLeggins#0;class#ArmoryInitializer#0" expanded="true" />
+                <element signature="method#registerShoes#0;class#ArmoryInitializer#0" expanded="true" />
+                <element signature="method#registerRenderMappings#0;class#ArmoryInitializer#0" expanded="true" />
+                <element signature="method#prepareGame#0;class#ArmoryInitializer#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelBiped.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/client/model/ModelBiped.java">
+      <file leaf-file-name="UpgradeBaseItem.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Item/UpgradeBaseItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1887" max-vertical-offset="4301">
-              <caret line="111" column="9" selection-start-line="83" selection-start-column="8" selection-end-line="111" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+              <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+              <folding>
+                <element signature="method#UpgradeBaseItem#0;class#UpgradeBaseItem#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Item.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/item/Item.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-22.2" vertical-offset="6415" max-vertical-offset="19924">
+              <caret line="492" column="25" selection-start-line="492" selection-start-column="20" selection-end-line="492" selection-end-column="25" />
+              <folding>
+                <element signature="method#registerItems#0;class#Item#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArmorChangeRecipe.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorChangeRecipe.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="1309">
+              <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+              <folding>
+                <element signature="method#getCraftingResult#0;class#ArmorChangeRecipe#0" expanded="true" />
+                <element signature="e#933#947#0" expanded="true" />
+                <element signature="e#1013#1028#0" expanded="true" />
+                <element signature="e#2230#2231#0" expanded="true" />
+                <element signature="e#2254#2255#0" expanded="true" />
+                <element signature="e#2310#2311#0" expanded="true" />
+                <element signature="e#2337#2338#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ARegistry.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ARegistry.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1156" max-vertical-offset="2295">
+              <caret line="214" column="43" selection-start-line="214" selection-start-column="43" selection-end-line="214" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RendererLivingEntity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/client/renderer/entity/RendererLivingEntity.java">
+      <file leaf-file-name="ArmorUpgrade.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorUpgrade.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1428" max-vertical-offset="9435">
-              <caret line="84" column="16" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+              <folding>
+                <element signature="method#ArmorUpgrade#0;class#ArmorUpgrade#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InventoryCrafting.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/inventory/InventoryCrafting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="2975">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RenderPlayer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/client/renderer/entity/RenderPlayer.java">
+      <file leaf-file-name="IRecipe.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/item/crafting/IRecipe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2890" max-vertical-offset="9707">
-              <caret line="170" column="19" selection-start-line="170" selection-start-column="19" selection-end-line="170" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="510">
+              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -205,7 +199,7 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../OrionsBelt" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="tasksExpandState">
@@ -635,26 +629,36 @@
       <list>
         <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/Render/Old/CustomArmorRenderer.java" />
         <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorMaterial.java" />
-        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorUpgrade.java" />
-        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/Modifiers/ArmorModifier.java" />
         <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/ArmoryClientProxy.java" />
         <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/Modifiers/ModifierChestHaste.java" />
-        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ARegistry.java" />
         <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ArmoryCommonProxy.java" />
-        <option value="$PROJECT_DIR$/build.properties" />
         <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/AClientRegistry.java" />
-        <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Common/Util/Armor/MultiLayeredArmor.java" />
-        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorCore.java" />
-        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorBuilder.java" />
-        <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RendererItemMultiLayeredArmor.java" />
         <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/ClientProxy.java" />
-        <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/OrionsBelt.java" />
-        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Armory.java" />
         <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RenderRegistry.java" />
         <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/EventHandler/RenderArmorEventHandler.java" />
-        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmoryInitializer.java" />
-        <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RenderMultiLayeredArmor.java" />
+        <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Common/Util/Armor/MultiLayeredArmor.java" />
         <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Models/ExtendedPlayerModel.java" />
+        <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Models/CustomArmorModel.java" />
+        <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RenderMultiLayeredArmor.java" />
+        <option value="$PROJECT_DIR$/../OrionsBelt/resources/mcmod.info" />
+        <option value="$PROJECT_DIR$/../OrionsBelt/build.gradle" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Armory.java" />
+        <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/OrionsBelt.java" />
+        <option value="$PROJECT_DIR$/resources/mcmod.info" />
+        <option value="$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RendererItemMultiLayeredArmor.java" />
+        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorBuilder.java" />
+        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/CreativeTab/ArmorTab.java" />
+        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorCore.java" />
+        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Crafting/CraftingEventHandler.java" />
+        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorUpgrade.java" />
+        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/Modifiers/ArmorModifier.java" />
+        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorRecipe.java" />
+        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ARegistry.java" />
+        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorChangeRecipe.java" />
+        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Item/UpgradeBaseItem.java" />
+        <option value="$PROJECT_DIR$/build.properties" />
+        <option value="$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmoryInitializer.java" />
       </list>
     </option>
   </component>
@@ -699,6 +703,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -721,6 +726,86 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="TConstruct-1.7.2-1.6.0.jenkins494-deobf.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TConstruct-1.7.2-1.6.0.jenkins494-deobf.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tconstruct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TConstruct-1.7.2-1.6.0.jenkins494-deobf.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tconstruct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="library" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TConstruct-1.7.2-1.6.0.jenkins494-deobf.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tconstruct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="library" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="forgeSrc-1.7.2-10.12.2.1124.jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -740,6 +825,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraftforge" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -762,96 +851,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="forgeSrc-1.7.2-10.12.2.1124.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="forgeSrc-1.7.2-10.12.2.1124.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="renderer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="forgeSrc-1.7.2-10.12.2.1124.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="renderer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -877,11 +876,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
+              <option name="myItemId" value="tileentity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forgeSrc-1.7.2-10.12.2.1124.jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
+              <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="block" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1067,6 +1088,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="OrionsBelt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Armory" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1145,7 +1180,37 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Logic" />
+              <option name="myItemId" value="Item" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Crafting" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1192,116 +1257,9 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="textures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="textures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="multiarmor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upgrades" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="textures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="multiarmor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -1319,7 +1277,16 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="dynamic.classpath" value="false" />
     <property name="FullScreen" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../OrionsBelt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TinkersContruct" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="iRec&#9;PSI&#9;JAVA://net.minecraft.item.crafting.IRecipe&#10;Crafting&#9;PSI&#9;JAVA://cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent#crafting" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Development\Minecraft\Armory\resources" />
+      <recent name="D:\Development\Minecraft\Armory\resources\assets\tconstruct-armory" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Minecraft Client">
     <configuration default="false" name="Armory [createDevSetup]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -1747,7 +1714,10 @@
       <workItem from="1403431576438" duration="6733000" />
       <workItem from="1403453490643" duration="607000" />
       <workItem from="1403457219990" duration="3565000" />
-      <workItem from="1403469487274" duration="8000" />
+      <workItem from="1403469487274" duration="87000" />
+      <workItem from="1403523011223" duration="8775000" />
+      <workItem from="1403606358928" duration="23066000" />
+      <workItem from="1403642310487" duration="2402000" />
     </task>
     <task id="LOCAL-00001" summary="Finally got a working dev environment.&#10;&#10;Updated: Dev environment&#10;Updated: Resource directory now properly named.&#10;Updated: Partially happy with the new buildscript for Gradle. Finally implemented the uploading to my maven repo.&#10;&#10;Added: Support for my maven repo.&#10;&#10;ToDo: Rewrite the rendering code by moving into OrionsBelt for compatibility reasons.">
       <created>1402684284281</created>
@@ -1761,15 +1731,19 @@
       <created>1402858900934</created>
       <updated>1402858900934</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Implemented the rendering with OrionsBelt.&#10;&#10;TODO: BugFix rendering size of the models int OrionsBelt">
+      <created>1403469538542</created>
+      <updated>1403469538542</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32259000" />
+    <option name="totallyTimeSpent" value="66581000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1778,12 +1752,13 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39716312" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33637285" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3285273" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32944915" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1792,12 +1767,12 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25052083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928064" sideWeight="0.496875" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="DSM" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="92" y="92" width="1736" height="896" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928064" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1819,7 +1794,9 @@
     <MESSAGE value="Finally got a working dev environment.&#10;&#10;Updated: Dev environment&#10;Updated: Resource directory now properly named.&#10;Updated: Partially happy with the new buildscript for Gradle. Finally implemented the uploading to my maven repo.&#10;&#10;Added: Support for my maven repo.&#10;&#10;ToDo: Rewrite the rendering code by moving into OrionsBelt for compatibility reasons." />
     <MESSAGE value="Added Travis AutoBuild:&#10;&#10;Added: TravisCI travis.yml file." />
     <MESSAGE value="PC Sync Build" />
-    <option name="LAST_COMMIT_MESSAGE" value="PC Sync Build" />
+    <MESSAGE value="Implemented the rendering with OrionsBelt.&#10;&#10;TODO: BugFix rendering size of the models int OrionsBelt" />
+    <MESSAGE value="Started on crafting stuff&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started on crafting stuff&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1827,7 +1804,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ARegistry.java</url>
-          <line>191</line>
+          <line>210</line>
           <properties />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
@@ -1838,7 +1815,7 @@
           <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="46" />
+      <option name="time" value="67" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1846,294 +1823,59 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
+    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/client/renderer/entity/RenderPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="306">
-          <caret line="12" column="86" selection-start-line="12" selection-start-column="86" selection-end-line="12" selection-end-column="86" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1655" max-vertical-offset="3723">
+          <caret line="170" column="19" selection-start-line="170" selection-start-column="19" selection-end-line="170" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Betelgeuze - License.rtf">
+    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/client/renderer/entity/RendererLivingEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3791">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1774" max-vertical-offset="5712">
+          <caret line="84" column="16" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/client/model/TexturedQuad.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32176656" vertical-offset="0" max-vertical-offset="634">
-          <caret line="12" column="86" selection-start-line="12" selection-start-column="86" selection-end-line="12" selection-end-column="86" />
+        <state vertical-scroll-proportion="0.3586498" vertical-offset="0" max-vertical-offset="948">
+          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/entity/EntityLivingBase.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/client/model/ModelBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="34252" max-vertical-offset="36890">
-          <caret line="2181" column="17" selection-start-line="2181" selection-start-column="17" selection-end-line="2181" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.6722164" vertical-offset="0" max-vertical-offset="961">
+          <caret line="96" column="31" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/client/model/ModelRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2754">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-2.3257024" vertical-offset="2303" max-vertical-offset="3264">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="method#render#0;class#ModelRenderer#0" expanded="false" />
+            <element signature="method#compileDisplayList#0;class#ModelRenderer#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/Modifiers/ModifierChestHaste.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/client/model/ModelBiped.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5200422" vertical-offset="0" max-vertical-offset="948">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.17689906" vertical-offset="0" max-vertical-offset="1666">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <folding>
+            <element signature="method#render#0;class#ModelBiped#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/Modifiers/ArmorModifier.java">
+    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/client/model/ModelBiped.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2510549" vertical-offset="38" max-vertical-offset="1343">
-          <caret line="197" column="1" selection-start-line="197" selection-start-column="1" selection-end-line="197" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorUpgrade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43037975" vertical-offset="0" max-vertical-offset="948">
-          <caret line="24" column="180" selection-start-line="24" selection-start-column="180" selection-end-line="24" selection-end-column="180" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorMaterial.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.90084386" vertical-offset="13" max-vertical-offset="969">
-          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Events/ModifyMaterialEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Events/RegisterArmorEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Events/RegisterMaterialsEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Events/RegisterModifiersEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Events/RegisterUpgradesEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15920916" vertical-offset="0" max-vertical-offset="961">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Items/ARecipeItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorRecipe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12382934" vertical-offset="0" max-vertical-offset="961">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tconstruct/TConstruct/1.7.2-1.6.0.jenkins494/1e4bcf040e9ce983a343cf7caefd9594351bbda4/TConstruct-1.7.2-1.6.0.jenkins494-deobf.jar!/tconstruct/client/ToolCoreRenderer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="374">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ArmoryCommonProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/AClientRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="160" max-vertical-offset="782">
-          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.Orion.OrionsBelt/OrionsBelt/1.0.0-79-SNAPSHOT/5937ce88fb1356ee49924ecf72390ccb95263078/OrionsBelt-1.0.0-79-SNAPSHOT.jar!/com/Orion/OrionsBelt/Common/Util/Armor/MultiLayeredArmor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8201058" vertical-offset="96" max-vertical-offset="663">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/ArmoryClientProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorCore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="629">
-          <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/item/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29942417" vertical-offset="9296" max-vertical-offset="14450">
-          <caret line="1145" column="7" selection-start-line="1145" selection-start-column="7" selection-end-line="1145" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/item/ItemArmor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2703">
-          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/util/IIcon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="508" max-vertical-offset="1054">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/client/renderer/texture/TextureAtlasSprite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1939" max-vertical-offset="2550">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/base/armory.Chestplate_Base.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Chest_Electric.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Leggins_UpHill_Assist.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/modifiers/Shoe_Swim_Assist.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="3315">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ARegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1323" max-vertical-offset="2295">
-          <caret line="190" column="16" selection-start-line="190" selection-start-column="16" selection-end-line="190" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraftforge/client/event/RenderPlayerEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5890653" vertical-offset="0" max-vertical-offset="1037">
-          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RendererItemMultiLayeredArmor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="389" max-vertical-offset="1020">
-          <caret line="49" column="57" selection-start-line="49" selection-start-column="57" selection-end-line="49" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/ClientProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Common/CommonProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26984128" vertical-offset="0" max-vertical-offset="567">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Common/Util/Armor/MultiLayeredArmor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="389" max-vertical-offset="1190">
-          <caret line="57" column="14" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/OrionsBelt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="96" max-vertical-offset="663">
-          <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Armory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="113" max-vertical-offset="680">
-          <caret line="41" column="10" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_51/src.zip!/java/util/HashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="7036" max-vertical-offset="11067">
-          <caret line="750" column="19" selection-start-line="750" selection-start-column="19" selection-end-line="750" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RenderRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2924">
+          <caret line="243" column="0" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -2145,68 +1887,379 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmoryInitializer.java">
+    <entry file="file://$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/items/multiarmor/base/armory.Helmet_Base.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/tconstruct-armory/textures/models/multiarmor/base/Base.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/cpw/mods/fml/common/eventhandler/Event.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="2244">
-          <caret line="378" column="4" selection-start-line="378" selection-start-column="4" selection-end-line="378" selection-end-column="4" />
+        <state vertical-scroll-proportion="-0.314587" vertical-offset="315" max-vertical-offset="1649">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorMaterial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27517986" vertical-offset="0" max-vertical-offset="969">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/client/model/ModelRenderer.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/client/model/ModelBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2565906" vertical-offset="2491" max-vertical-offset="3060">
-          <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="118" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.7027027" vertical-offset="221" max-vertical-offset="850">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Models/CustomArmorModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.86" vertical-offset="3722" max-vertical-offset="4301">
+          <caret line="301" column="0" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
+          <folding>
+            <element signature="method#CustomArmorModel#2;class#CustomArmorModel#0" expanded="true" />
+            <element signature="method#setRotationAngles#0;class#CustomArmorModel#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tconstruct/TConstruct/1.7.2-1.6.0.jenkins494/1e4bcf040e9ce983a343cf7caefd9594351bbda4/TConstruct-1.7.2-1.6.0.jenkins494-deobf.jar!/tconstruct/library/tools/ToolCore.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="2754">
+          <caret line="13" column="53" selection-start-line="12" selection-start-column="55" selection-end-line="13" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/item/ItemEnchantedBook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.92" vertical-offset="0" max-vertical-offset="986">
+          <caret line="36" column="23" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/block/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25" vertical-offset="8516" max-vertical-offset="26248">
+          <caret line="1149" column="23" selection-start-line="1149" selection-start-column="15" selection-end-line="1149" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/block/BlockVine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6756757" vertical-offset="663" max-vertical-offset="2125">
+          <caret line="218" column="27" selection-start-line="218" selection-start-column="27" selection-end-line="218" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/client/renderer/entity/RendererLivingEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76629573" vertical-offset="674" max-vertical-offset="6171">
+          <caret line="112" column="12" selection-start-line="112" selection-start-column="12" selection-end-line="113" selection-end-column="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/CustomRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27027026" vertical-offset="0" max-vertical-offset="629">
+          <caret line="13" column="63" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/client/model/ModelBiped.java">
+    <entry file="file://$PROJECT_DIR$/../TinkersContruct/src/main/java/tconstruct/library/tools/ToolCore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5" vertical-offset="559" max-vertical-offset="2924">
-          <caret line="121" column="8" selection-start-line="121" selection-start-column="8" selection-end-line="225" selection-end-column="9" />
+        <state vertical-scroll-proportion="-2.1017487" vertical-offset="2376" max-vertical-offset="5185">
+          <caret line="114" column="35" selection-start-line="114" selection-start-column="35" selection-end-line="114" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RenderMultiLayeredArmor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2397" max-vertical-offset="3077">
-          <caret line="184" column="51" selection-start-line="184" selection-start-column="51" selection-end-line="184" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/net/minecraft/client/model/ModelBiped.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="889" max-vertical-offset="1666">
-          <caret line="111" column="9" selection-start-line="83" selection-start-column="8" selection-end-line="111" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/client/renderer/entity/RenderPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1655" max-vertical-offset="3723">
-          <caret line="170" column="19" selection-start-line="170" selection-start-column="19" selection-end-line="170" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/client/renderer/entity/RendererLivingEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1774" max-vertical-offset="5712">
-          <caret line="84" column="16" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Models/ExtendedPlayerModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6148936" vertical-offset="510" max-vertical-offset="3434">
-          <caret line="128" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="1819">
+          <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
           <folding>
-            <element signature="method#setRotation#0;class#ExtendedPlayerModel#0" expanded="true" />
-            <element signature="method#setRotationAngles#0;class#ExtendedPlayerModel#0" expanded="true" />
+            <element signature="docComment;method#interpolateRotation#0;class#RenderMultiLayeredArmor#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_51/src.zip!/java/util/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.2972972" vertical-offset="0" max-vertical-offset="9911">
+          <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../OrionsBelt/resources/mcmod.info">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36589405" vertical-offset="0" max-vertical-offset="604">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../OrionsBelt/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1785">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="54" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Armory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
+          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/tconstruct-armory/mcmod.info">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45033112" vertical-offset="0" max-vertical-offset="604">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/OrionsBelt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+          <caret line="27" column="102" selection-start-line="27" selection-start-column="102" selection-end-line="27" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Common/Util/Armor/MultiLayeredArmor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51033384" vertical-offset="2" max-vertical-offset="1122">
+          <caret line="30" column="26" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="26" />
+          <folding>
+            <element signature="method#registerIcons#0;class#MultiLayeredArmor#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../OrionsBelt/src/com/Orion/OrionsBelt/Client/Render/RendererItemMultiLayeredArmor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1088">
+          <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/mantle/Mantle/1.7.2-145.3a637c2/a529e8488a6fb68fa21ec9932e7497eaad2268d2/Mantle-1.7.2-145.3a637c2-deobf.jar!/mantle/lib/TabTools.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34991422" vertical-offset="0" max-vertical-offset="583">
+          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/CreativeTab/ComponentsTab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Client/CreativeTab/ArmorTab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="e#865#879#0" expanded="true" />
+            <element signature="e#1471#1472#0" expanded="true" />
+            <element signature="e#1498#1499#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraftforge/common/ISpecialArmor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7631579" vertical-offset="658" max-vertical-offset="5117">
+          <caret line="76" column="66" selection-start-line="76" selection-start-column="63" selection-end-line="76" selection-end-column="66" />
+          <folding>
+            <element signature="method#ArmorProperties#0;class#ArmorProperties#0;class#ISpecialArmor#0" expanded="false" />
+            <element signature="method#ApplyArmor#0;class#ArmorProperties#0;class#ISpecialArmor#0" expanded="false" />
+            <element signature="method#StandardizeList#0;class#ArmorProperties#0;class#ISpecialArmor#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/creativetab/CreativeTabs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5779221" vertical-offset="1633" max-vertical-offset="3332">
+          <caret line="191" column="4" selection-start-line="191" selection-start-column="4" selection-end-line="191" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8378378" vertical-offset="493" max-vertical-offset="1598">
+          <caret line="60" column="34" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#ArmorCore#0;class#ArmorCore#0" expanded="true" />
+            <element signature="method#getProperties#0;class#ArmorCore#0" expanded="true" />
+            <element signature="method#damageArmor#0;class#ArmorCore#0" expanded="true" />
+            <element signature="e#3163#3164#0" expanded="true" />
+            <element signature="e#3190#3191#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7027027" vertical-offset="2754" max-vertical-offset="3383">
+          <caret line="198" column="5" selection-start-line="198" selection-start-column="5" selection-end-line="198" selection-end-column="5" />
+          <folding>
+            <element signature="method#buildArmor#0;class#ArmorBuilder#0" expanded="false" />
+            <element signature="method#createInitialArmor#0;class#ArmorBuilder#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Crafting/CraftingEventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/item/crafting/IRecipe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.1.1060/forgeSrc-1.7.2-10.12.1.1060-sources.jar!/cpw/mods/fml/common/gameevent/PlayerEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="918">
+          <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/inventory/InventoryCrafting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1615">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/Modifiers/ArmorModifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.6455696" vertical-offset="463" max-vertical-offset="2380">
+          <caret line="176" column="25" selection-start-line="176" selection-start-column="25" selection-end-line="176" selection-end-column="25" />
+          <folding>
+            <element signature="method#ArmorModifier#0;class#ArmorModifier#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Armor/ArmorUpgrade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <element signature="method#ArmorUpgrade#0;class#ArmorUpgrade#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/ARegistry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1156" max-vertical-offset="2295">
+          <caret line="214" column="43" selection-start-line="214" selection-start-column="43" selection-end-line="214" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmorChangeRecipe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="1309">
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+          <folding>
+            <element signature="method#getCraftingResult#0;class#ArmorChangeRecipe#0" expanded="true" />
+            <element signature="e#933#947#0" expanded="true" />
+            <element signature="e#1013#1028#0" expanded="true" />
+            <element signature="e#2230#2231#0" expanded="true" />
+            <element signature="e#2254#2255#0" expanded="true" />
+            <element signature="e#2310#2311#0" expanded="true" />
+            <element signature="e#2337#2338#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Item/UpgradeBaseItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+          <folding>
+            <element signature="method#UpgradeBaseItem#0;class#UpgradeBaseItem#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29240376" vertical-offset="1249" max-vertical-offset="2822">
+          <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.070759624" vertical-offset="0" max-vertical-offset="961">
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/build/dirtyArtifacts/forgeSrc-1.7.2-10.12.2.1124-sources.jar!/net/minecraft/item/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.2" vertical-offset="6415" max-vertical-offset="19924">
+          <caret line="492" column="25" selection-start-line="492" selection-start-column="20" selection-end-line="492" selection-end-column="25" />
+          <folding>
+            <element signature="method#registerItems#0;class#Item#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Armory/com/Orion/Armory/Common/Logic/ArmoryInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33226323" vertical-offset="201" max-vertical-offset="8381">
+          <caret line="45" column="10" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <folding>
+            <element signature="method#registerModifiers#0;class#ArmoryInitializer#0" expanded="true" />
+            <element signature="method#registerArmors#0;class#ArmoryInitializer#0" expanded="true" />
+            <element signature="method#registerHelmet#0;class#ArmoryInitializer#0" expanded="true" />
+            <element signature="method#registerChestplate#0;class#ArmoryInitializer#0" expanded="true" />
+            <element signature="method#registerLeggins#0;class#ArmoryInitializer#0" expanded="true" />
+            <element signature="method#registerShoes#0;class#ArmoryInitializer#0" expanded="true" />
+            <element signature="method#registerRenderMappings#0;class#ArmoryInitializer#0" expanded="true" />
+            <element signature="method#prepareGame#0;class#ArmoryInitializer#0" expanded="true" />
           </folding>
         </state>
       </provider>

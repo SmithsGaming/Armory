@@ -15,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Orion on 26-3-2014
@@ -29,8 +30,6 @@ public class ARegistry
     // Tabs for the creative inventory
     public static ArmorTab iTabArmoryArmor;
     public static ComponentsTab iTabArmoryComponents;
-    public static Item iArmoryTabIcon;
-    public static Item iComponentsTabIcon;
 
     //Arraylist for storing all the materials
     ArrayList<ArmorMaterial> iArmorMaterials = new ArrayList<ArmorMaterial>();
@@ -131,6 +130,13 @@ public class ARegistry
         return this.getMaterial(this.getMaterialID(pMaterialName));
     }
 
+    public ArmorMaterial getBaseMaterialOfItemStack(ItemStack pArmorStack)
+    {
+        return iArmorMaterials.get(pArmorStack.getTagCompound().getInteger("MaterialID"));
+    }
+
+
+
     public void changeUpgradeStateOnMaterial(int pMaterialID,int pUpgradeID, boolean pPartState)
     {
         iArmorMaterials.get(pMaterialID).modifyPartState(pUpgradeID, pPartState);
@@ -186,6 +192,19 @@ public class ARegistry
         return this.getModifier(this.getModifierID(pModifierName));
     }
 
+    public ArmorModifier getModifier(ItemStack pCraftingStack)
+    {
+        for(ArmorModifier tModifier: iArmorModifiers)
+        {
+            if (tModifier.iCraftingStack == pCraftingStack)
+            {
+                return tModifier;
+            }
+        }
+
+        return null;
+    }
+
     public ArrayList<ArmorUpgrade> getUpgrades() {return iArmorUpgrades;}
 
     public void registerUpgrade(ArmorUpgrade pUpgrade)
@@ -221,19 +240,17 @@ public class ARegistry
         return this.getUpgrade(this.getUpgradeID(pUpgradeName));
     }
 
-    public int getUpgradeTextureID(String pMaterialName, String pUpgradeName)
+    public ArmorUpgrade getUpgrade(ItemStack pCraftingStack)
     {
-        return (this.getMaterialID(pMaterialName)* (iArmorUpgrades.size()+1)) + this.getUpgradeID(pUpgradeName)+1;
-    }
+        for(ArmorUpgrade tUpgrade: iArmorUpgrades)
+        {
+            if (tUpgrade.iCraftingStack == pCraftingStack)
+            {
+                return tUpgrade;
+            }
+        }
 
-    public int getModifierTextureID(String pModifierName)
-    {
-        return ((iArmorMaterials.size() * iArmorUpgrades.size()) + 1) + this.getModifierID(pModifierName)+1;
-    }
-
-    public int getMaterialTextureID(String pMaterialName)
-    {
-        return (this.getMaterialID(pMaterialName) * (iArmorUpgrades.size()+1));
+        return null;
     }
 
     public ArrayList<ArmorUpgrade> getInstalledArmorUpgradesOnItemStack(ItemStack pBaseArmor)

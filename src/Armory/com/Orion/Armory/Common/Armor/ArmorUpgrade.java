@@ -1,6 +1,7 @@
 package com.Orion.Armory.Common.Armor;
 
 import com.Orion.OrionsBelt.Client.CustomResource;
+import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 
@@ -20,9 +21,10 @@ public class ArmorUpgrade
     public float iProtection;
     public int iExtraDurability;
     public int iMaxUpgrades;
+    public ItemStack iCraftingStack;
 
     //Constructors
-    public ArmorUpgrade(int pMaterialID, int pTargetArmorID, int pUpgradeLocation, String pInternalName, String pType, String pVisibleName, String pVisibleNameColor, CustomResource pResource, float pProtection, int pExtraDurability,int pMaxUpgrades)
+    public ArmorUpgrade(int pMaterialID, int pTargetArmorID, int pUpgradeLocation, String pInternalName, String pType, String pVisibleName, String pVisibleNameColor, CustomResource pResource, float pProtection, int pExtraDurability, int pMaxUpgrades, ItemStack pCraftingStack)
     {
         iMaterialID = pMaterialID;
         iTargetArmorID = pTargetArmorID;
@@ -35,6 +37,7 @@ public class ArmorUpgrade
         iProtection = pProtection;
         iExtraDurability = pExtraDurability;
         iMaxUpgrades = pMaxUpgrades;
+        iCraftingStack = pCraftingStack;
     }
 
     public ArmorUpgrade getCopy()

@@ -15,8 +15,8 @@ import com.Orion.OrionsBelt.OrionsBelt;
  * Created by: Orion 25-3-2014
  */
 
-@Mod(modid = "Armory", name = "Armory - A TConstruct Extension", version = "0.0.1 Alpha 22",
-        dependencies = "required-after:Forge@[9.11,);required-after:Mantle;after:ForgeMultipart;after:TContruct;required-after:OrionsBelt")
+@Mod(modid = "Armory", name = "Armory - Armor? Not useless defence any more!", version = "@VERSION@",
+        dependencies = "required-after:Forge@[10.12,);required-after:Mantle;after:ForgeMultipart;after:TContruct;required-after:OrionsBelt")
 public class Armory
 {
     // Instance of this mod use for internal and Forge references
@@ -34,11 +34,5 @@ public class Armory
     public void preInit (FMLPreInitializationEvent event)
     {
         proxy.initializeArmory();
-    }
-
-    @Mod.EventHandler
-    public void postInit (FMLPostInitializationEvent event)
-    {
-        //OrionsBelt.iInstance.iRenderRegistry.addNewRenderer(ArmorCore.class, new RenderMultiLayeredArmor());
     }
 }

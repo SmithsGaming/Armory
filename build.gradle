@@ -85,6 +85,10 @@ sourceSets {
 minecraft {
     version = "1.7.2-10.12.2.1124"
     assetDir = "run/assets"
+
+    //Replacing stuff inside the code:
+    replace "@VERSION@", project.version
+    replaceIn "Armory.java"
 }
 
 dependencies {

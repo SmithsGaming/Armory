@@ -1,10 +1,10 @@
 [
 {
-  "modid": "${modid}",
+  "modid": "Armory",
   "name": "Armory",
-  "description": "Tools.... Hmm i like armor.......",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
+  "description": "Armor? - No useless defence anymore!",
+  "version": "@version@",
+  "mcversion": "@mcversion@",
   "url": "",
   "updateUrl": "",
   "authorsList": ["OrionDevelopment"],
