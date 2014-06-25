@@ -35,7 +35,7 @@ public class ArmorChangeRecipe implements IRecipe
         ArrayList<ArmorUpgrade> tNewUpgrades = new ArrayList<ArmorUpgrade>();
         ArrayList<ArmorModifier> tNewModifiers = new ArrayList<ArmorModifier>();
 
-        if (!(pCraftingGrid.getStackInRowAndColumn(1,1).getItem() instanceof ArmorCore))
+        if ((pCraftingGrid.getStackInRowAndColumn(1,1) == null) || (!(pCraftingGrid.getStackInRowAndColumn(1,1).getItem() instanceof ArmorCore)))
         {
             return null;
         }

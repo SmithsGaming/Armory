@@ -9,6 +9,7 @@ import com.Orion.Armory.Common.Armor.ArmorCore;
 import com.Orion.OrionsBelt.Client.CustomResource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class ModifierChestHaste extends ArmorModifier {
 
     public ModifierChestHaste() {
-        super("Armor.Chest.Redstone", "Haste", "", new CustomResource("armory.Modifiers.Haste", "tconstruct-armory:multiarmor/modifiers/Chest_Haste"), 1, 500, 100, Items.redstone, new ArrayList<Integer>(), new ArrayList<Integer>());
+        super("Armor.Chest.Redstone", "Haste", "", new CustomResource("armory.Modifiers.Haste", "tconstruct-armory:multiarmor/modifiers/Chest_Haste"), 1, 500, new ItemStack(Items.redstone, 1), new ArrayList<Integer>(), new ArrayList<Integer>());
     }
 
     @Override
