@@ -12,21 +12,15 @@ import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 import com.Orion.Armory.Common.Armor.ArmorMaterial;
 import com.Orion.Armory.Common.Armor.ArmorUpgrade;
-import com.Orion.Armory.Common.Armor.Modifiers.ArmorModifier;
 import com.Orion.Armory.Common.Events.*;
-import com.Orion.OrionsBelt.Client.CustomResource;
+import com.Orion.OrionsBelt.Client.Util.CustomResource;
 import com.Orion.OrionsBelt.Client.Render.RenderMultiLayeredArmor;
-import com.Orion.OrionsBelt.Client.Render.RendererItemMultiLayeredArmor;
 import com.Orion.OrionsBelt.OrionsBelt;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ArmoryInitializer
@@ -43,7 +37,7 @@ public class ArmoryInitializer
         ArmorBuilder.init();
 
         registerMaterials();
-        //registerUpgrades();
+        registerUpgrades();
         registerModifiers();
         registerArmors();
 
@@ -198,8 +192,8 @@ public class ArmoryInitializer
         ARegistry.iInstance.registerMaterial(tBronze, true);
     }
 
-    /*
-    TODO: Implement Items for crafting
+
+    //TODO: Implement Items for crafting
     private static void registerUpgrades()
     {
         registerTopHead();
@@ -218,8 +212,8 @@ public class ArmoryInitializer
     {
         for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
         {
-            CustomResource tResource = new CustomResource(tMaterial.iInternalName+".Helmet.TopHead", "tconstruct-armory:multiarmor/upgrades/armory.Helmet_TopHead", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Helmet_TopHead.png", tMaterial.getResource(0).getColor(0), tMaterial.getResource(0).getColor(1), tMaterial.getResource(0).getColor(2));
-            ArmorUpgrade tTopHead = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 0, 0, tMaterial.iInternalName+".TopHead", "TopHead", "Head protection", "", tResource, 2.5F, 60, 1);
+            CustomResource tResource = new CustomResource(tMaterial.iInternalName+".Helmet.TopHead", "tconstruct-armory:multiarmor/upgrades/armory.Helmet_TopHead", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Helmet_TopHead.png", tMaterial.getResource(0).getColorInt(0), tMaterial.getResource(0).getColorInt(1), tMaterial.getResource(0).getColorInt(2));
+            ArmorUpgrade tTopHead = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 0, 0, tMaterial.iInternalName+".TopHead", "TopHead", "Head protection", "", tResource, 2.5F, 60, 1, null);
             ARegistry.iInstance.registerUpgrade(tTopHead);
 
             if (tMaterial.iInternalName.equals("vanilla.Obsidian"))
@@ -237,10 +231,10 @@ public class ArmoryInitializer
     {
         for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
         {
-            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Helmet.Protection.Ear.Left", "tconstruct-armory:multiarmor/upgrades/armory.Helmet_Protection_Ear_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left.png", tMaterial.getResource(0).getColor(0), tMaterial.getResource(0).getColor(1), tMaterial.getResource(0).getColor(2));
-            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Helmet.Protection.Ear.Right", "tconstruct-armory:multiarmor/upgrades/armory.Helmet_Protection_Ear_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right.png", tMaterial.getResource(0).getColor(0), tMaterial.getResource(0).getColor(1), tMaterial.getResource(0).getColor(2));
-            ArmorUpgrade tEarProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 0, 1, tMaterial.iInternalName+".Protection.Ear.Left", "Helmet.Protection.Ear.Left","Ear protection left", "", tLeftResource, 0.5F, 20, 1);
-            ArmorUpgrade tEarProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 0, 2, tMaterial.iInternalName+".Protection.Ear.Right", "Helmet.Protection.Ear.Right","Ear protection right", "", tRightResource, 0.5F, 20, 1);
+            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Helmet.Protection.Ear.Left", "tconstruct-armory:multiarmor/upgrades/armory.Helmet_Protection_Ear_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left.png", tMaterial.getResource(0).getColorInt(0), tMaterial.getResource(0).getColorInt(1), tMaterial.getResource(0).getColorInt(2));
+            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Helmet.Protection.Ear.Right", "tconstruct-armory:multiarmor/upgrades/armory.Helmet_Protection_Ear_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right.png", tMaterial.getResource(0).getColorInt(0), tMaterial.getResource(0).getColorInt(1), tMaterial.getResource(0).getColorInt(2));
+            ArmorUpgrade tEarProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 0, 1, tMaterial.iInternalName+".Protection.Ear.Left", "Helmet.Protection.Ear.Left","Ear protection left", "", tLeftResource, 0.5F, 20, 1, null);
+            ArmorUpgrade tEarProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 0, 2, tMaterial.iInternalName+".Protection.Ear.Right", "Helmet.Protection.Ear.Right","Ear protection right", "", tRightResource, 0.5F, 20, 1, null);
             ARegistry.iInstance.registerUpgrade(tEarProtectionLeft);
             ARegistry.iInstance.registerUpgrade(tEarProtectionRight);
 
@@ -261,10 +255,10 @@ public class ArmoryInitializer
     {
         for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
         {
-            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Chestplate.ShoulderPad.Left", "tconstruct-armory:multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left.png", tMaterial.getResource(1).getColor(0), tMaterial.getResource(1).getColor(1), tMaterial.getResource(1).getColor(2));
-            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Chestplate.ShoulderPad.Right", "tconstruct-armory:multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right.png", tMaterial.getResource(1).getColor(0), tMaterial.getResource(1).getColor(1), tMaterial.getResource(1).getColor(2));
-            ArmorUpgrade tShoulderPadLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 0, tMaterial.iInternalName+".ShoulderPad.Left","Chestplate.ShoulderPad.Left",  "Shoulder pad left", "", tLeftResource, 1F, 50, 1);
-            ArmorUpgrade tShoulderPadRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 1, tMaterial.iInternalName+".ShoulderPad.Right", "Chestplate.ShoulderPad.Right", "Shoulder pad right", "", tRightResource, 1F, 50, 1);
+            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Chestplate.ShoulderPad.Left", "tconstruct-armory:multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left.png", tMaterial.getResource(1).getColorInt(0), tMaterial.getResource(1).getColorInt(1), tMaterial.getResource(1).getColorInt(2));
+            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Chestplate.ShoulderPad.Right", "tconstruct-armory:multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right.png", tMaterial.getResource(1).getColorInt(0), tMaterial.getResource(1).getColorInt(1), tMaterial.getResource(1).getColorInt(2));
+            ArmorUpgrade tShoulderPadLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 0, tMaterial.iInternalName+".ShoulderPad.Left","Chestplate.ShoulderPad.Left",  "Shoulder pad left", "", tLeftResource, 1F, 50, 1, null);
+            ArmorUpgrade tShoulderPadRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 1, tMaterial.iInternalName+".ShoulderPad.Right", "Chestplate.ShoulderPad.Right", "Shoulder pad right", "", tRightResource, 1F, 50, 1, null);
             ARegistry.iInstance.registerUpgrade(tShoulderPadLeft);
             ARegistry.iInstance.registerUpgrade(tShoulderPadRight);
 
@@ -285,10 +279,10 @@ public class ArmoryInitializer
     {
         for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
         {
-            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Chestplate.Protection.Front.Left", "tconstruct-armory:multiarmor/upgrades/armory.Chestplate_Protection_Front_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Left.png", tMaterial.getResource(1).getColor(0), tMaterial.getResource(1).getColor(1), tMaterial.getResource(1).getColor(2));
-            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Chestplate.Protection.Front.Right", "tconstruct-armory:multiarmor/upgrades/armory.Chestplate_Protection_Front_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Right.png", tMaterial.getResource(1).getColor(0), tMaterial.getResource(1).getColor(1), tMaterial.getResource(1).getColor(2));
-            ArmorUpgrade tFrontChestProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 3, tMaterial.iInternalName+".Protection.Chest.Front.Left", "Chestplate.Protection.Front.Left","Front chest protection left", "", tLeftResource, 2F, 100, 1);
-            ArmorUpgrade tFrontChestProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 4, tMaterial.iInternalName+".Protection.Chest.Front.Right", "Chestplate.Protection.Front.Right", "Front chest protection right", "", tRightResource, 2F, 100, 1);
+            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Chestplate.Protection.Front.Left", "tconstruct-armory:multiarmor/upgrades/armory.Chestplate_Protection_Front_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Left.png", tMaterial.getResource(1).getColorInt(0), tMaterial.getResource(1).getColorInt(1), tMaterial.getResource(1).getColorInt(2));
+            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Chestplate.Protection.Front.Right", "tconstruct-armory:multiarmor/upgrades/armory.Chestplate_Protection_Front_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Right.png", tMaterial.getResource(1).getColorInt(0), tMaterial.getResource(1).getColorInt(1), tMaterial.getResource(1).getColorInt(2));
+            ArmorUpgrade tFrontChestProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 3, tMaterial.iInternalName+".Protection.Chest.Front.Left", "Chestplate.Protection.Front.Left","Front chest protection left", "", tLeftResource, 2F, 100, 1, null);
+            ArmorUpgrade tFrontChestProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 4, tMaterial.iInternalName+".Protection.Chest.Front.Right", "Chestplate.Protection.Front.Right", "Front chest protection right", "", tRightResource, 2F, 100, 1, null);
             ARegistry.iInstance.registerUpgrade(tFrontChestProtectionLeft);
             ARegistry.iInstance.registerUpgrade(tFrontChestProtectionRight);
 
@@ -309,10 +303,10 @@ public class ArmoryInitializer
     {
         for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
         {
-            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Chestplate.Protection.Back.Left", "tconstruct-armory:multiarmor/upgrades/armory.Chestplate_Protection_Back_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left.png", tMaterial.getResource(1).getColor(0), tMaterial.getResource(1).getColor(1), tMaterial.getResource(1).getColor(2));
-            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Chestplate.Protection.Back.Right", "tconstruct-armory:multiarmor/upgrades/armory.Chestplate_Protection_Back_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right.png", tMaterial.getResource(1).getColor(0), tMaterial.getResource(1).getColor(1), tMaterial.getResource(1).getColor(2));
-            ArmorUpgrade tBackChestProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 5, tMaterial.iInternalName+".Protection.Chest.Back.Left", "Chestplate.Protection.Back.Left","Back chest protection left", "", tLeftResource, 2F, 150, 1);
-            ArmorUpgrade tBackChestProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 6, tMaterial.iInternalName+".Protection.Chest.Back.Right", "Chestplate.Protection.Back.Right","Back chest protection right", "", tRightResource, 2F, 150, 1);
+            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Chestplate.Protection.Back.Left", "tconstruct-armory:multiarmor/upgrades/armory.Chestplate_Protection_Back_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left.png", tMaterial.getResource(1).getColorInt(0), tMaterial.getResource(1).getColorInt(1), tMaterial.getResource(1).getColorInt(2));
+            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Chestplate.Protection.Back.Right", "tconstruct-armory:multiarmor/upgrades/armory.Chestplate_Protection_Back_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right.png", tMaterial.getResource(1).getColorInt(0), tMaterial.getResource(1).getColorInt(1), tMaterial.getResource(1).getColorInt(2));
+            ArmorUpgrade tBackChestProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 5, tMaterial.iInternalName+".Protection.Chest.Back.Left", "Chestplate.Protection.Back.Left","Back chest protection left", "", tLeftResource, 2F, 150, 1, null);
+            ArmorUpgrade tBackChestProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 1, 6, tMaterial.iInternalName+".Protection.Chest.Back.Right", "Chestplate.Protection.Back.Right","Back chest protection right", "", tRightResource, 2F, 150, 1, null);
             ARegistry.iInstance.registerUpgrade(tBackChestProtectionLeft);
             ARegistry.iInstance.registerUpgrade(tBackChestProtectionRight);
 
@@ -333,10 +327,10 @@ public class ArmoryInitializer
     {
         for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
         {
-            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Leggins.Protection.Front.Left", "tconstruct-armory:multiarmor/upgrades/armory.Leggins_Protection_Front_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Left.png", tMaterial.getResource(2).getColor(0), tMaterial.getResource(2).getColor(1), tMaterial.getResource(2).getColor(2));
-            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Leggins.Protection.Front.Right", "tconstruct-armory:multiarmor/upgrades/armory.Leggins_Protection_Front_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Right.png", tMaterial.getResource(2).getColor(0), tMaterial.getResource(2).getColor(1), tMaterial.getResource(2).getColor(2));
-            ArmorUpgrade tFrontLeggingsProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 2, 0, tMaterial.iInternalName+".Protection.Leggings.Front.Left", "Leggins.Protection.Front.Left","Front leg protection left", "", tLeftResource, 1.5F, 125, 1);
-            ArmorUpgrade tFrontLeggingsProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 2, 1, tMaterial.iInternalName+".Protection.Leggings.Front.Right", "Leggins.Protection.Front.Right","Front leg protection right", "", tRightResource, 1.5F, 125, 1);
+            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Leggins.Protection.Front.Left", "tconstruct-armory:multiarmor/upgrades/armory.Leggins_Protection_Front_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Left.png", tMaterial.getResource(2).getColorInt(0), tMaterial.getResource(2).getColorInt(1), tMaterial.getResource(2).getColorInt(2));
+            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Leggins.Protection.Front.Right", "tconstruct-armory:multiarmor/upgrades/armory.Leggins_Protection_Front_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Right.png", tMaterial.getResource(2).getColorInt(0), tMaterial.getResource(2).getColorInt(1), tMaterial.getResource(2).getColorInt(2));
+            ArmorUpgrade tFrontLeggingsProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 2, 0, tMaterial.iInternalName+".Protection.Leggings.Front.Left", "Leggins.Protection.Front.Left","Front leg protection left", "", tLeftResource, 1.5F, 125, 1, null);
+            ArmorUpgrade tFrontLeggingsProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 2, 1, tMaterial.iInternalName+".Protection.Leggings.Front.Right", "Leggins.Protection.Front.Right","Front leg protection right", "", tRightResource, 1.5F, 125, 1, null);
             ARegistry.iInstance.registerUpgrade(tFrontLeggingsProtectionLeft);
             ARegistry.iInstance.registerUpgrade(tFrontLeggingsProtectionRight);
 
@@ -357,10 +351,10 @@ public class ArmoryInitializer
     {
         for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
         {
-            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Leggins.Protection.Back.Left", "tconstruct-armory:multiarmor/upgrades/armory.Leggins_Protection_Back_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Left.png", tMaterial.getResource(2).getColor(0), tMaterial.getResource(2).getColor(1), tMaterial.getResource(2).getColor(2));
-            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Leggins.Protection.Back.Right", "tconstruct-armory:multiarmor/upgrades/armory.Leggins_Protection_Back_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Right.png", tMaterial.getResource(2).getColor(0), tMaterial.getResource(2).getColor(1), tMaterial.getResource(2).getColor(2));
-            ArmorUpgrade tBackLeggingsProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 2, 5, tMaterial.iInternalName+".Protection.Leggings.Back.Left","Leggins.Protection.Back.Left", "Back leg protection left", "", tLeftResource, 2F, 150, 1);
-            ArmorUpgrade tBackLeggingsProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 2, 6, tMaterial.iInternalName+".Protection.Leggings.Back.Right","Leggins.Protection.Back.Right", "Back leg protection right", "", tRightResource, 2F, 150, 1);
+            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Leggins.Protection.Back.Left", "tconstruct-armory:multiarmor/upgrades/armory.Leggins_Protection_Back_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Left.png", tMaterial.getResource(2).getColorInt(0), tMaterial.getResource(2).getColorInt(1), tMaterial.getResource(2).getColorInt(2));
+            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Leggins.Protection.Back.Right", "tconstruct-armory:multiarmor/upgrades/armory.Leggins_Protection_Back_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Right.png", tMaterial.getResource(2).getColorInt(0), tMaterial.getResource(2).getColorInt(1), tMaterial.getResource(2).getColorInt(2));
+            ArmorUpgrade tBackLeggingsProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 2, 5, tMaterial.iInternalName+".Protection.Leggings.Back.Left","Leggins.Protection.Back.Left", "Back leg protection left", "", tLeftResource, 2F, 150, 1, null);
+            ArmorUpgrade tBackLeggingsProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 2, 6, tMaterial.iInternalName+".Protection.Leggings.Back.Right","Leggins.Protection.Back.Right", "Back leg protection right", "", tRightResource, 2F, 150, 1, null);
             ARegistry.iInstance.registerUpgrade(tBackLeggingsProtectionLeft);
             ARegistry.iInstance.registerUpgrade(tBackLeggingsProtectionRight);
 
@@ -381,10 +375,10 @@ public class ArmoryInitializer
     {
         for (ArmorMaterial tMaterial: ARegistry.iInstance.getArmorMaterials())
         {
-            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Shoes.Protection.Left", "tconstruct-armory:multiarmor/upgrades/armory.Shoes_Protection_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Shoes_Protection_Left.png", tMaterial.getResource(3).getColor(0), tMaterial.getResource(3).getColor(1), tMaterial.getResource(3).getColor(2));
-            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Shoes.Protection.Right", "tconstruct-armory:multiarmor/upgrades/armory.Shoes_Protection_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Shoes_Protection_Right.png", tMaterial.getResource(3).getColor(0), tMaterial.getResource(3).getColor(1), tMaterial.getResource(3).getColor(2));
-            ArmorUpgrade tShoeProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 3, 0, tMaterial.iInternalName+".Protection.Shoe.Left", "Shoes.Protection.Left","Shoe protection left", "", tLeftResource, 1F, 50, 1);
-            ArmorUpgrade tShoeProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 3, 1, tMaterial.iInternalName+".Protection.Shoe.Right", "Shoes.Protection.Right", "Shoe protection right", "", tRightResource, 1F, 50, 1);
+            CustomResource tLeftResource = new CustomResource(tMaterial.iInternalName+".Shoes.Protection.Left", "tconstruct-armory:multiarmor/upgrades/armory.Shoes_Protection_Left", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Shoes_Protection_Left.png", tMaterial.getResource(3).getColorInt(0), tMaterial.getResource(3).getColorInt(1), tMaterial.getResource(3).getColorInt(2));
+            CustomResource tRightResource = new CustomResource(tMaterial.iInternalName+".Shoes.Protection.Right", "tconstruct-armory:multiarmor/upgrades/armory.Shoes_Protection_Right", "tconstruct-armory:textures/models/multiarmor/upgrades/armory.Shoes_Protection_Right.png", tMaterial.getResource(3).getColorInt(0), tMaterial.getResource(3).getColorInt(1), tMaterial.getResource(3).getColorInt(2));
+            ArmorUpgrade tShoeProtectionLeft = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 3, 0, tMaterial.iInternalName+".Protection.Shoe.Left", "Shoes.Protection.Left","Shoe protection left", "", tLeftResource, 1F, 50, 1, null);
+            ArmorUpgrade tShoeProtectionRight = new ArmorUpgrade(ARegistry.iInstance.getMaterialID(tMaterial), 3, 1, tMaterial.iInternalName+".Protection.Shoe.Right", "Shoes.Protection.Right", "Shoe protection right", "", tRightResource, 1F, 50, 1, null);
             ARegistry.iInstance.registerUpgrade(tShoeProtectionLeft);
             ARegistry.iInstance.registerUpgrade(tShoeProtectionRight);
 
@@ -401,7 +395,6 @@ public class ArmoryInitializer
         }
     }
 
-    */
     private static void registerModifiers()
     {
         //TODO: Create all the modifiers
@@ -606,7 +599,7 @@ public class ArmoryInitializer
 
         for(ArmorCore tCore: ARegistry.iInstance.getAllArmorMappings())
         {
-            MinecraftForgeClient.registerItemRenderer(tCore, new RendererItemMultiLayeredArmor());
+            //MinecraftForgeClient.registerItemRenderer(tCore, new RendererItemMultiLayeredArmor());
             OrionsBelt.iInstance.iRenderRegistry.addNewRenderer(tCore, new RenderMultiLayeredArmor());
         }
     }

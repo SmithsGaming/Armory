@@ -2,8 +2,7 @@ package com.Orion.Armory.Common.Armor;
 
 import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Logic.ArmorBuilder;
-import com.Orion.Armory.Common.Armor.ArmorMaterial;
-import com.Orion.OrionsBelt.Common.Util.Armor.MultiLayeredArmor;
+import com.Orion.OrionsBelt.Common.Items.Armor.MultiLayeredArmor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,7 +24,7 @@ public class ArmorCore extends MultiLayeredArmor implements ISpecialArmor {
     public String iInternalName;
 
     public ArmorCore(String pInternalName, int pArmorPart) {
-        super("Armory.MultiArmor", pArmorPart, ARegistry.iArmorMaterial);
+        super("Armory.MultiArmor", pArmorPart, ARegistry.iArmorMaterial, 15);
         this.setUnlocalizedName(pInternalName);
         this.setMaxStackSize(1);
         this.iInternalName = pInternalName;

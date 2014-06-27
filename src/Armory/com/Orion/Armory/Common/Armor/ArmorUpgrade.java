@@ -1,6 +1,6 @@
 package com.Orion.Armory.Common.Armor;
 
-import com.Orion.OrionsBelt.Client.CustomResource;
+import com.Orion.OrionsBelt.Client.Util.CustomResource;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;

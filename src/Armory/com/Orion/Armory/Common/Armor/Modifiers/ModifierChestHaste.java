@@ -6,7 +6,7 @@ package com.Orion.Armory.Common.Armor.Modifiers;
 */
 
 import com.Orion.Armory.Common.Armor.ArmorCore;
-import com.Orion.OrionsBelt.Client.CustomResource;
+import com.Orion.OrionsBelt.Client.Util.CustomResource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

@@ -44,7 +44,7 @@ public class ARegistry
     public ARegistry()
     {
         iTabArmoryArmor = new ArmorTab();
-        iTabArmoryComponents = new ComponentsTab();
+        //iTabArmoryComponents = new ComponentsTab();
     }
 
     public ArrayList<ArmorCore> getAllArmorMappings()

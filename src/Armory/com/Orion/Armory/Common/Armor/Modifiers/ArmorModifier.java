@@ -1,12 +1,10 @@
 package com.Orion.Armory.Common.Armor.Modifiers;
 
 
-import com.Orion.Armory.Common.Armor.ArmorMaterial;
-import com.Orion.OrionsBelt.Client.CustomResource;
+import com.Orion.OrionsBelt.Client.Util.CustomResource;
 import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.ArmorCore;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.security.InvalidParameterException;

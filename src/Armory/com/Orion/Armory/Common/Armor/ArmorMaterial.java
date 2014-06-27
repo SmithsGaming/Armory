@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.Armor;
 *   Created on: 6-4-2014
 */
 
-import com.Orion.OrionsBelt.Client.CustomResource;
+import com.Orion.OrionsBelt.Client.Util.CustomResource;
 import com.Orion.Armory.Common.ARegistry;
 
 import java.security.InvalidParameterException;
