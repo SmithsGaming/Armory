@@ -1,8 +1,10 @@
 package com.Orion.Armory;
 
-import old.Common.ArmoryCommonProxy;
+import com.Orion.Armory.Common.ArmoryCommonProxy;
+import com.Orion.Armory.Util.References;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 /**
@@ -11,16 +13,16 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
  * Created by: Orion 25-3-2014
  */
 
-@Mod(modid = "Armory", name = "Armory", version = "@VERSION@",
-        dependencies = "required-after:Forge@[10.12,);required-after:Mantle;after:ForgeMultipart;after:TContruct;required-after:OrionsBelt")
+@Mod(modid = References.General.MOD_ID, name = "Armory", version = References.General.VERSION,
+        dependencies = "required-after:Forge@[10.13,);required-after:Mantle;after:ForgeMultipart;after:TContruct;")
 public class Armory
 {
     // Instance of this mod use for internal and Forge references
-    @Mod.Instance("Armory")
+    @Mod.Instance(References.General.MOD_ID)
     public static Armory instance;
 
     // Proxies used to register stuff client and server side.
-    @SidedProxy(clientSide="old.Client.ArmoryClientProxy", serverSide="old.Common.ArmoryCommonProxy")
+    @SidedProxy(clientSide="com.Orion.Armory.Client.ArmoryClientProxy", serverSide="com.Orion.Armory.Common.ArmoryCommonProxy")
     public static ArmoryCommonProxy proxy;
 
     // Data that is needed throughout the whole mod.

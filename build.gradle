@@ -1,3 +1,4 @@
+//Buildscript: Armory
 // Load the properties of this project.
 ext.configFile = file "build.properties"
 
@@ -66,8 +67,8 @@ if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
 {
     version = version + "-SNAPSHOT"
 }
-group= "com.Orion.OrionsBelt"
-archivesBaseName = "OrionsBelt"
+group= "com.Orion.Armory"
+archivesBaseName = "Armory"
 
 //Points Gradle (and ForgeGradle) to the right directories:
 sourceSets {
@@ -76,24 +77,25 @@ sourceSets {
             srcDir 'Resources'
         }
         java {
-            srcDir 'src/Armory'
+            srcDir 'Source/Armory'
         }
     }
 }
 
-
+//Sets up the currect versions for minecraft and Forge
 minecraft {
-    version = "1.7.2-10.12.2.1124"
-    assetDir = "run/assets"
+    version = "1.7.10-10.13.1.1217"
+    runDir = "run/assets"
 
     //Replacing stuff inside the code:
     replace "@VERSION@", project.version
     replaceIn "Armory.java"
 }
 
+//Tells gradle which dependencies are needed for gradle and project
 dependencies {
     //Mod dependencies
-    compile "com.Orion.OrionsBelt:OrionsBelt:"+ config.orionsbelt_version
+    //compile "com.Orion.OrionsBelt:OrionsBelt:"+ config.orionsbelt_version
     compile "mantle:Mantle:${config.minecraft_version}-${config.mantle_version}:deobf"
     compile "tconstruct:TConstruct:${config.minecraft_version}-${config.tconstruct_version}:deobf"
 
@@ -101,13 +103,14 @@ dependencies {
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'
 }
 
+//This will process all the resources used during build, and needed for running the project
 processResources
 {
-    // this will ensure that this task is redone when the versions change.
+    //This will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
-    // replace stuff in mcmod.info, nothing else
+    //Replaces stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
                 
@@ -115,7 +118,7 @@ processResources
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
         
-    // copy everything else, thats not the mcmod.info
+    //Copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
@@ -128,16 +131,19 @@ task copyChicken(type: Copy){
     from configurations.compile
     include "**/*Chicken*.jar", "**/*NotEnoughItems*.jar"
     exclude "**/CodeChickenLib*" // because CCC downloads it anyways.. -_-
-    into file(minecraft.assetDir + "/../mods") // parallel to the assets dir
+    into file(minecraft.runDir + "/mods") // parallel to the assets dir
 }
 
+//External task for settingup the a dev environment to develop Armory inc. NEI and WAILA 
 task createDevSetup{
     description "Creates a full decompiled and ready to go (as far as possible) dev environment."
 }
 
+//Set the dependencies properly for the createDevSetup task.
 tasks.createDevSetup.dependsOn("setupDevWorkspace", "setupDecompWorkspace", "copyChicken")
 
-//Following functions and tasks are needed to upload to my MavenRepo:
+//Function to upload completed project to the maven repo.
+//TODO: Implement uploading to CurseForge
 uploadArchives {
     repositories.mavenDeployer {
         configuration = configurations.deployerJars
@@ -155,6 +161,7 @@ uploadArchives {
     }
 }
 
+//The external task that executes the uploadAtchives function.
 task('uploadJars', dependsOn: uploadArchives) {
     description = "uploads JARs"
 }
