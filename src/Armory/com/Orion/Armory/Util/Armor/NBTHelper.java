@@ -5,10 +5,10 @@ package com.Orion.Armory.Util.Armor;
  *   Created on: 14-9-2014
  */
 
-import com.Orion.Armory.Common.ARegistry;
 import com.Orion.Armory.Common.Armor.Core.ArmorAddonPosition;
 import com.Orion.Armory.Common.Armor.Core.MLAAddon;
 import com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor;
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,13 +22,14 @@ public class NBTHelper {
     public static HashMap<MLAAddon, Integer> getAddonMap(ItemStack pItemStack) {
         HashMap<MLAAddon, Integer> tAddonMap = new HashMap<MLAAddon, Integer>();
         NBTTagCompound tStackCompound = pItemStack.getTagCompound();
+        String tTier = tStackCompound.getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.ArmorTier);
         NBTTagCompound tAddonsCompound = tStackCompound.getCompoundTag(References.NBTTagCompoundData.InstalledAddons);
 
         for (ArmorAddonPosition tPossiblePosition : (((MultiLayeredArmor) pItemStack.getItem()).getAllowedPositions())) {
             NBTTagCompound tPositionCompound = tAddonsCompound.getCompoundTag(tPossiblePosition.getInternalName());
 
             if (!tPositionCompound.hasNoTags()) {
-                tAddonMap.put(ARegistry.iInstance.getMLAAddonFromID(tPositionCompound.getString(References.NBTTagCompoundData.Addons.AddonID)), tPositionCompound.getInteger(References.NBTTagCompoundData.Addons.AddonInstalledAmount));
+                tAddonMap.put(GeneralRegistry.getInstance().getMLAAddon(tPositionCompound.getString(References.NBTTagCompoundData.Addons.AddonID), tTier), tPositionCompound.getInteger(References.NBTTagCompoundData.Addons.AddonInstalledAmount));
             }
         }
 

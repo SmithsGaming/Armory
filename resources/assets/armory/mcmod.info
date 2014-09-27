@@ -1,0 +1,16 @@
+[
+{
+  "modid": "Armory",
+  "name": "Armory",
+  "description": "Armor? - No useless defence anymore!",
+  "version": "@version@",
+  "mcversion": "@mcversion@",
+  "url": "",
+  "updateUrl": "",
+  "authorsList": ["OrionDevelopment"],
+  "credits": "All the people who helped me getting this project going",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

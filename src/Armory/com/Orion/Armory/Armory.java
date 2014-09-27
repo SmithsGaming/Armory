@@ -6,6 +6,7 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.relauncher.Side;
 
 /**
  * Base class for Armory
@@ -27,6 +28,9 @@ public class Armory
 
     // Data that is needed throughout the whole mod.
     public static boolean iIsInitialized = false;
+
+    //Stored to get the loaded side when needed
+    public static Side iSide;
 
     @Mod.EventHandler
     public void preInit (FMLPreInitializationEvent event)

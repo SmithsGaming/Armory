@@ -1,5 +1,6 @@
 package com.Orion.Armory.Client;
 
+import com.Orion.Armory.Armory;
 import com.Orion.Armory.Client.Logic.ArmoryClientInitializer;
 import com.Orion.Armory.Common.ArmoryCommonProxy;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
@@ -13,6 +14,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy
     @Override
     public void initializeArmory()
     {
+        Armory.iSide = Side.CLIENT;
         ArmoryClientInitializer.InitializeClient();
     }
 }

@@ -72,8 +72,30 @@ public class Textures
         }
     }
     
-    public class Items
+    public static class Items
     {
-        
+        public static class ItemRing
+        {
+            public static CustomResource IronResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:basic/MetalRing", "", Colors.IRON);
+            public static CustomResource ChainResource = new CustomResource(References.InternalNames.Materials.Vanilla.CHAIN, "armory:basic/MetalRing", "", Colors.CHAIN);
+            public static CustomResource ObsidianResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:basic/MetalRing", "", Colors.OBSIDIAN);
+            public static CustomResource BronzeResource = new CustomResource(References.InternalNames.Materials.Common.BRONZE, "armory:basic/MetalRing", "", Colors.BRONZE);
+            public static CustomResource AlumiteResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE, "armory:basic/MetalRing", "", Colors.ALUMITE);
+            public static CustomResource ManyullunResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN, "armory:basic/MetalRing", "", Colors.MANYULLUN);
+            public static CustomResource CobaltResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT, "armory:basic/MetalRing", "", Colors.COBALT);
+            public static CustomResource ArditeResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE, "armory:basic/MetalRing", "", Colors.ARDITE);
+        }
+
+        public static class ItemChain
+        {
+            public static CustomResource IronResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:basic/MetalChain", "", Colors.IRON);
+            public static CustomResource ChainResource = new CustomResource(References.InternalNames.Materials.Vanilla.CHAIN, "armory:basic/MetalChain", "", Colors.CHAIN);
+            public static CustomResource ObsidianResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:basic/MetalChain", "", Colors.OBSIDIAN);
+            public static CustomResource BronzeResource = new CustomResource(References.InternalNames.Materials.Common.BRONZE, "armory:basic/MetalChain", "", Colors.BRONZE);
+            public static CustomResource AlumiteResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE, "armory:basic/MetalChain", "", Colors.ALUMITE);
+            public static CustomResource ManyullunResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN, "armory:basic/MetalChain", "", Colors.MANYULLUN);
+            public static CustomResource CobaltResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT, "armory:basic/MetalChain", "", Colors.COBALT);
+            public static CustomResource ArditeResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE, "armory:basic/MetalChain", "", Colors.ARDITE);
+        }
     }
 }

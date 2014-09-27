@@ -20,10 +20,10 @@ public class References
     {
         public class Armor
         {
-            public static final String HELMET = "Armory.Helmet";
-            public static final String CHESTPLATE = "Armory.Chestplate";
-            public static final String LEGGINGS = "Armory.Leggins";
-            public static final String SHOES = "Armory.Shoes";
+            public static final String MEDIEVALHELMET = "Armory.Helmet.Medieval";
+            public static final String MEDIEVALCHESTPLATE = "Armory.Chestplate.Medieval";
+            public static final String MEDIEVALLEGGINGS = "Armory.Leggins.Medieval";
+            public static final String MEDIEVALSHOES = "Armory.Shoes.Medieval";
         }
 
         public class Materials
@@ -189,6 +189,19 @@ public class References
             }
         }
 
+        public class Tiers
+        {
+            public static final String MEDIEVAL = "Amrory.Tiers.Medieval";
+            public static final String PLATED = "Armory.Tiers.Plated";
+            public static final String QUANTUM = "Armory.Tiers.Quantum";
+        }
+
+        public class Items
+        {
+            public static final String ItemMetalRing = "Armory.Items.Components.MetalRing";
+            public static final String ItemMetalChain = "Armory.Items.Components.MetalChain";
+        }
+
     }
 
     //General texture addresses
@@ -202,6 +215,7 @@ public class References
         public static final String InstalledAddons = "InstalledAddons";
         public static final String ArmorData = "ArmorData";
         public static final String RenderCompound = "RenderCompound";
+        public static final String RingMaterial = "RingMaterial";
 
         //Versioning used when there is a change in the NBT tag structure.
         public class Versioning {
@@ -222,6 +236,7 @@ public class References
         //Used when storing data from the armor
         public class Armor {
             public static final String ArmorID = "ArmorID";
+            public static final String ArmorTier = "ArmorTier";
             public static final String ArmorPart = "ArmorSlot";
             public static final String MaterialID = "MaterialID";
             public static final String Addons = "InstalledAddons";
