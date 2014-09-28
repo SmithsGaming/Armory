@@ -160,15 +160,15 @@ uploadArchives {
         }
     }
 
-    if (System.getenv().TRAVIS_BRANCH.toString().contains("Current-Release"))
+    if (System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
     {
-        logger.lifecycle("Uploading code to the correspoding Minecraft version brach. Creating branche if needed.")
+        logger.lifecycle("Uploading code to the corresponding Minecraft version branch. Creating branch if needed.")
 
         def cmd = "git push origin Minecraft-" + config.minecraft_version.toString()
         def prog = cmd.execute()
         prog.waitFor()
 
-        logger.lifecycle("Mirrored the code the correspoding minecraft version branch. Current MC Version: " + config.minecraft_version.toString())
+        logger.lifecycle("Mirrored the code the corresponding minecraft version branch. Current MC Version: " + config.minecraft_version.toString() + ". Branch name: Minecraft-" + config.minecraft_version.toString() + ".")
     }
 }
 
