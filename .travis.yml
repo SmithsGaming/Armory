@@ -7,6 +7,7 @@ install: ./gradlew setupCIWorkspace -S
 script: ./gradlew build -i -S
 after_success:
   - ./gradlew uploadJars -S
+  - ./gradlew createGithubBranches -S
 env:
   global:
   - secure: P422YTy/U4jKEpjZukXTqj3Ms/CqOrJC7f7Uk1IziNkq5D1Y6tXQs+Olq52v0rhLorgquV+gF1J6vlymepzEJz+xs8/bZ437YHIVMCcrA7oVc/b/jjKxubfzwzR1Z0ZOdnZLQrEbY0ZR5oeuXwvhk9CtMZRg1/r5GLA5GV4YL58=

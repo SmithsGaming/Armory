@@ -159,7 +159,9 @@ uploadArchives {
             }
         }
     }
+}
 
+task('createGithubBranches') << {
     if (System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
     {
         logger.lifecycle("Uploading code to the corresponding Minecraft version branch. Creating branch if needed.")
@@ -176,3 +178,4 @@ uploadArchives {
 task('uploadJars', dependsOn: uploadArchives) {
     description = "uploads JARs"
 }
+
