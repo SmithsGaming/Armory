@@ -9,6 +9,14 @@ configFile.withReader {
     project.ext.config = new ConfigSlurper().parse prop
 }
 
+//Date formatting helper function
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('dd-MM-yyyy : hh:mm:ss')
+    return formattedDate
+}
+
+
 //ForgeGradle BuildScript.
 buildscript {
     repositories {
@@ -166,30 +174,25 @@ task('createGithubBranches') << {
     {
         logger.lifecycle("Uploading code to the corresponding Minecraft version branch. Creating branch if needed.")
         logger.lifecycle("Creating local branch.")
+        //Creates/Or checks out the new local branch.
         def createLocalBranchCMD = "git checkout -b Minecraft-" + config.minecraft_version.toString()
         def createLocalProg = createLocalBranchCMD.execute();
         createLocalProg.waitFor()
-        logger.lifecycle("Result of the branch creation:")
-        println "return code: ${ createLocalProg.exitValue()}"
-        println "stderr: ${createLocalProg.err.text}"
-        println "stdout: ${createLocalProg.in.text}"
+
+        //Adds a tag to the minecraft version specific branch for the version number.
+        logger.lifecycle("Adding version tag.")
+        def addTagCMD = "git -a Version[" + version + "] -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'"
+        def addTagProg = addTagCMD.execute()
+        addTagProg.waitFor()
 
         logger.lifecycle("Uploading force push to repo.")
         def setUrlCMD = "git config remote.origin.url https://" + System.getenv().GitUsername.toString() + ":" + System.getenv().GitPassword.toString() + "@github.com/OrionDevelopment/Armory"
         def setURLProg = setUrlCMD.execute()
         setURLProg.waitFor()
-        logger.lifecycle("Result of the url change:")
-        println "return code: ${ setURLProg.exitValue()}"
-        println "stderr: ${setURLProg.err.text}"
-        println "stdout: ${setURLProg.in.text}"
 
         def cmd = "git push origin -f Minecraft-" + config.minecraft_version.toString()
         def prog = cmd.execute()
         prog.waitFor()
-        logger.lifecycle("Result of the upload:")
-        println "return code: ${ prog.exitValue()}"
-        println "stderr: ${prog.err.text}"
-        println "stdout: ${prog.in.text}"
 
         logger.lifecycle("Mirrored the code the corresponding minecraft version branch. Current MC Version: " + config.minecraft_version.toString() + ". Branch name: Minecraft-" + config.minecraft_version.toString() + ".")
     }
