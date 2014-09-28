@@ -176,7 +176,7 @@ task('testgetgitrepos') <<
             {
                 if (i.toString().contains("Development"))
                     {
-                        println "Founf the Development branch"
+                        println "Found the Development branch"
                     }
             }
         }
