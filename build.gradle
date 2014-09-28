@@ -183,9 +183,9 @@ task('createGithubBranches') << {
         def prog = cmd.execute()
         prog.waitFor()
         logger.lifecycle("Result of the upload:")
-        println "return code: ${ proc.exitValue()}"
-        println "stderr: ${proc.err.text}"
-        println "stdout: ${proc.in.text}"
+        println "return code: ${ prog.exitValue()}"
+        println "stderr: ${prog.err.text}"
+        println "stdout: ${prog.in.text}"
 
         logger.lifecycle("Mirrored the code the corresponding minecraft version branch. Current MC Version: " + config.minecraft_version.toString() + ". Branch name: Minecraft-" + config.minecraft_version.toString() + ".")
     }
