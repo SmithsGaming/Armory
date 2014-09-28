@@ -165,3 +165,18 @@ uploadArchives {
 task('uploadJars', dependsOn: uploadArchives) {
     description = "uploads JARs"
 }
+
+task('testgetgitrepos') <<
+        {
+            def cmd = "git ls-remote"
+            def prog = cmd.execute()
+            prog.waitFor()
+
+            for (i in prog.text.trim().split())
+            {
+                if (i.toString().contains("Development"))
+                    {
+                        println "Founf the Development branch"
+                    }
+            }
+        }
