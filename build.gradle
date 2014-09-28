@@ -166,7 +166,7 @@ task('createGithubBranches') << {
     {
         logger.lifecycle("Uploading code to the corresponding Minecraft version branch. Creating branch if needed.")
         logger.lifecycle("Creating local branch.")
-        def createLocalBranchCMD = "git checkout Minecraft-\" + config.minecraft_version.toString()"
+        def createLocalBranchCMD = "git checkout -b Minecraft-\" + config.minecraft_version.toString()"
         def createLocalProg = createLocalBranchCMD.execute();
         createLocalProg.waitFor()
 
