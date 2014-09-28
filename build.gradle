@@ -170,14 +170,18 @@ task('createGithubBranches') << {
         def createLocalProg = createLocalBranchCMD.execute();
         createLocalProg.waitFor()
         logger.lifecycle("Result of the branch creation:")
-        logger.lifecycle(createLocalProg.text.trim())
+        println "return code: ${ createLocalProg.exitValue()}"
+        println "stderr: ${createLocalProg.err.text}"
+        println "stdout: ${createLocalProg.in.text}"
 
         logger.lifecycle("Uploading force push to repo.")
         def setUrlCMD = "git config remote.origin.url https://" + System.getenv().GitUsername.toString() + ":" + System.getenv().GitPassword.toString() + "@github.com/OrionDevelopment/Armory"
         def setURLProg = setUrlCMD.execute()
         setURLProg.waitFor()
         logger.lifecycle("Result of the url change:")
-        logger.lifecycle(setURLProg.text.trim())
+        println "return code: ${ setURLProg.exitValue()}"
+        println "stderr: ${setURLProg.err.text}"
+        println "stdout: ${setURLProg.in.text}"
 
         def cmd = "git push origin -f Minecraft-" + config.minecraft_version.toString()
         def prog = cmd.execute()
