@@ -171,6 +171,10 @@ task('createGithubBranches') << {
         createLocalProg.waitFor()
 
         logger.lifecycle("Uploading force push to repo.")
+        def setUrlCMD = "git config remote.origin.url https://" + System.getenv().GitUsername.toString() + ":" + System.getenv().GitPassword.toString() + "@github.com/OrionDevelopment/Armory"
+        def setURLProg = setUrlCMD.execute()
+        setURLProg.waitFor()
+
         def cmd = "git push origin -f Minecraft-" + config.minecraft_version.toString()
         def prog = cmd.execute()
         prog.waitFor()
