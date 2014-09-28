@@ -9,7 +9,7 @@ after_success:
   - ./gradlew uploadJars -S
 env:
   global:
-  - secure: QyTY2EgCrqNiktzT5LV8pOKDWtY/5adx0NtesBHVT3MO1EXJdPoZA3oGFTva4rCi2Dz7gEgW3Pbvw5/giolmyG8KtwTB/y1FMIOymEFPUpUyjIqk/o+/R2hOZaDRgQVdpBllucitLYajrw+fi3i7d6Fqqd3srUYAX3F501DwW1c=
-  - secure: MEV0d0NPPrBtwoHDttuqJnxma/l+ZokTunyqlPf+AHd+JkY6fFCro+OaauiREqiXtYxMZrODXky3TyOAikUJKob16siK/9UIWp2MsoPn/Dm3J89B1q1hxSulKpfHNyDWnoRv29ASAiCcU+hgmjsoWJLn4jfmxSSHx+gsTUTyL+I=
   - secure: P422YTy/U4jKEpjZukXTqj3Ms/CqOrJC7f7Uk1IziNkq5D1Y6tXQs+Olq52v0rhLorgquV+gF1J6vlymepzEJz+xs8/bZ437YHIVMCcrA7oVc/b/jjKxubfzwzR1Z0ZOdnZLQrEbY0ZR5oeuXwvhk9CtMZRg1/r5GLA5GV4YL58=
   - secure: A9e8GsyseDNNwXWHbEYa7RmEqO9v3nKVKZA5aDIUYCLjcZBSckFR5X9fDXd1pFnxTasQlFbU3UPR63C5Lm81lSVGrKXA8lLGH5JTAgVcvBcvUvvahYLkXXJYSatBF2p6EfhZWw1eqfZInvDmRcyz4wy4mLK2ZKZjpwYqQGEALrY=
+  - secure: kWp6g5L3hNwk1c5YPyZ9tprhQFI1ZtUEn9YcZ5tM+W+dgz0I36iuI7AMlrfKKwQfkTg19RIhhwn3QChIscvV6i1fs7q2WNpEVwUf5aqRZEb6UKggPMdEAbdycOJI/FETuGuh4k8pLVVHO74vDXzXWqe/djcpSXOwbd/OTd9Zs1c=
+  - secure: P/mL4W0zH2aGxsRgPZ9AvTfOinsLiXp4h/WPkv6r74JMmgEHSSOIQfIyrgyozJB3XclJXZHtReOmWwx3rLhrMk/ON7Wp/2Fsmz/rakG9pX4KyyfU0DiV7fgsu7GJb2lPYIo3SC+P1Pq+sSZ0nEzZP+GEvX8/79O01sr5XkHmHaM=
