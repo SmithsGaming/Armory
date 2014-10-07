@@ -6,9 +6,9 @@ package com.Orion.Armory.Common.Armor.TierMedieval;
 */
 
 
-import com.Orion.Armory.Client.Util.Colors;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.Client.Color;
+import com.Orion.Armory.Util.Client.Colors;
 
 import java.security.InvalidParameterException;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.Orion.Armory.Client.Util;
+package com.Orion.Armory.Util.Client;
 /*
 *   Textures
 *   Created by: Orion
@@ -6,7 +6,6 @@ package com.Orion.Armory.Client.Util;
 */
 
 import com.Orion.Armory.Util.References;
-import com.Orion.Armory.Util.Client.CustomResource;
 
 public class Textures
 {

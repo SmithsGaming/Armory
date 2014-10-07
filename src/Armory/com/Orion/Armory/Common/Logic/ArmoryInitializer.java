@@ -6,17 +6,20 @@ package com.Orion.Armory.Common.Logic;
  */
 
 import com.Orion.Armory.Armory;
-import com.Orion.Armory.Client.Util.Colors;
+import com.Orion.Armory.Common.Armor.Core.ArmorAddonPosition;
+import com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor;
 import com.Orion.Armory.Common.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Armor.TierMedieval.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Crafting.ChainCraftingRecipe;
 import com.Orion.Armory.Common.Crafting.MedievalArmorCraftingRecipe;
-import com.Orion.Armory.Common.Events.*;
+import com.Orion.Armory.Common.Events.ModifyMaterialEvent;
+import com.Orion.Armory.Common.Events.RegisterArmorEvent;
+import com.Orion.Armory.Common.Events.RegisterMaterialsEvent;
+import com.Orion.Armory.Common.Events.RegisterUpgradesEvent;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
-import com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor;
+import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.References.InternalNames;
-import com.Orion.Armory.Common.Armor.Core.ArmorAddonPosition;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraftforge.common.MinecraftForge;

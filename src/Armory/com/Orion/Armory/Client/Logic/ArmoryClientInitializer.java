@@ -5,13 +5,13 @@ package com.Orion.Armory.Client.Logic;
  *   Created on: 19-9-2014
  */
 
-import com.Orion.Armory.Client.Util.Textures;
 import com.Orion.Armory.Common.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Armor.TierMedieval.ArmorMedieval;
-import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
-import com.Orion.Armory.Util.References;
+import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.Client.CustomResource;
+import com.Orion.Armory.Util.Client.Textures;
+import com.Orion.Armory.Util.References;
 
 public class ArmoryClientInitializer extends ArmoryInitializer
 {

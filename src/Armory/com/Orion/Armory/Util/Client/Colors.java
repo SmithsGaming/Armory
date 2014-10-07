@@ -1,11 +1,9 @@
-package com.Orion.Armory.Client.Util;
+package com.Orion.Armory.Util.Client;
 /*
 *   Colors
 *   Created by: Orion
 *   Created on: 27-6-2014
 */
-
-import com.Orion.Armory.Util.Client.Color;
 
 public class Colors
 {

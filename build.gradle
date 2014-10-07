@@ -178,6 +178,7 @@ task('createGithubBranches') << {
         def createLocalBranchCMD = "git checkout -b Minecraft-" + config.minecraft_version.toString()
         def createLocalProg = createLocalBranchCMD.execute();
         createLocalProg.waitFor()
+        
 
         //Adds a tag to the minecraft version specific branch for the version number.
         logger.lifecycle("Adding version tag.")

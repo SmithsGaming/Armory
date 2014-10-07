@@ -1,4 +1,4 @@
-package com.Orion.Armory.Client.Util;
+package com.Orion.Armory.Util.Client;
 /*
 *   TextureHelper
 *   Created by: Orion

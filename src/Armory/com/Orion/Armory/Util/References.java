@@ -5,8 +5,6 @@ package com.Orion.Armory.Util;
 *   Created on: 27-6-2014
 */
 
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
-
 public class References
 {
     public class General
@@ -202,6 +200,23 @@ public class References
             public static final String ItemMetalChain = "Armory.Items.Components.MetalChain";
         }
 
+        public class MultiBlock
+        {
+            public static final String Air = "Vanilla.Air";
+            public static final String Cauldron = "Vanilla.Cauldron";
+            public static final String Anvil = "Vanilla.Anvil";
+        }
+
+        public class Blocks
+        {
+            public static final String FirePit = "Armory.FirePit";
+        }
+
+        public class TileEntities
+        {
+            public static final String FirePitContainter = "container.Armory.FirePit";
+        }
+
     }
 
     //General texture addresses
@@ -248,6 +263,14 @@ public class References
         public class Rendering {
             public static final String MaxRenderPasses = "RenderPasses";
             public static final String ResourceIDs = "ResourceIDs";
+        }
+
+        public class HeatedIngot
+        {
+            public static final String OriginalItem = "OriginalItemID";
+            public static final String OriginalNBT = "OriginalNBT";
+            public static final String OriginalMeta = "OriginalMeta";
+            public static final String Temperature = "Temperature";
         }
     }
 

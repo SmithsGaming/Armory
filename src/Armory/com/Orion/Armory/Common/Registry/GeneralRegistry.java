@@ -5,8 +5,10 @@ package com.Orion.Armory.Common.Registry;
  *   Created on: 24-9-2014
  */
 
-import com.Orion.Armory.Client.CreativeTab.*;
+import com.Orion.Armory.Client.CreativeTab.ComponentsTab;
+import com.Orion.Armory.Client.CreativeTab.MedievalTab;
 import com.Orion.Armory.Common.Armor.Core.MLAAddon;
+import com.Orion.Armory.Common.Item.ItemHeatedIngot;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
@@ -49,4 +51,6 @@ public class GeneralRegistry {
             return null;
         }
     }
+
+    public static ItemHeatedIngot iHeatedIngot = null;
 }
