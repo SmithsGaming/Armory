@@ -5,9 +5,9 @@ package com.Orion.Armory.Util.Armor;
  *   Created on: 14-9-2014
  */
 
-import com.Orion.Armory.Common.Armor.Core.ArmorAddonPosition;
-import com.Orion.Armory.Common.Armor.Core.MLAAddon;
-import com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor;
+import com.Orion.Armory.Common.Item.Armor.Core.ArmorAddonPosition;
+import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
+import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemStack;

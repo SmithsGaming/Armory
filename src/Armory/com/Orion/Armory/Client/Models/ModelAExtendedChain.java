@@ -5,7 +5,7 @@ package com.Orion.Armory.Client.Models;
  *   Created on: 23-9-2014
  */
 
-import com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor;
+import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
 import com.Orion.Armory.Util.Client.CustomResource;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;

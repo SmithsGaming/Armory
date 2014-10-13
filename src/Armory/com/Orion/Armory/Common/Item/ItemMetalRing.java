@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.Item;
  *   Created on: 25-9-2014
  */
 
-import com.Orion.Armory.Common.Armor.TierMedieval.ArmorMaterialMedieval;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.Client.CustomResource;
@@ -95,7 +95,7 @@ public class ItemMetalRing extends Item
     public void getSubItems(Item pRing, CreativeTabs pCreativeTab, List pItemStacks)
     {
         for(ArmorMaterialMedieval tMaterial: MedievalRegistry.getInstance().getArmorMaterials().values()){
-            ItemStack tRingStack = new ItemStack(MedievalRegistry.iMetalRing, 1);
+            ItemStack tRingStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1);
 
             NBTTagCompound tStackCompound = new NBTTagCompound();
             tStackCompound.setString(References.NBTTagCompoundData.RingMaterial, tMaterial.iInternalName);

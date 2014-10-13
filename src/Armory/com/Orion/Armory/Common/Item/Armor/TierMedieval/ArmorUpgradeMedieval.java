@@ -1,7 +1,7 @@
-package com.Orion.Armory.Common.Armor.TierMedieval;
+package com.Orion.Armory.Common.Item.Armor.TierMedieval;
 
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
-import com.Orion.Armory.Common.Armor.Core.MLAAddon;
+import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
 
 /**
  * Created by Orion on 27-3-2014.

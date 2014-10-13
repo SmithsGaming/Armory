@@ -6,7 +6,7 @@ package com.Orion.Armory.Common.Crafting;
  */
 
 import com.Orion.Armory.Common.Item.ItemMetalRing;
-import com.Orion.Armory.Common.Registry.MedievalRegistry;
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.References;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
@@ -47,7 +47,7 @@ public class ChainCraftingRecipe implements IRecipe {
             String tMaterialLower = pCraftingGrid.getStackInRowAndColumn(IColumIter, 2).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
 
             if (tMaterialUpper.equals(tMaterialMiddle) && tMaterialUpper.equals(tMaterialLower)) {
-                ItemStack tReturnStack = new ItemStack(MedievalRegistry.iMetalChain, 1);
+                ItemStack tReturnStack = new ItemStack(GeneralRegistry.Items.iMetalChain, 1);
                 tReturnStack.setTagCompound(pCraftingGrid.getStackInRowAndColumn(IColumIter, 0).getTagCompound());
 
                 return tReturnStack;

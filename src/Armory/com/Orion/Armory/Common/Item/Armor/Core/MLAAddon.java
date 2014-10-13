@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.Armor.Core;
+package com.Orion.Armory.Common.Item.Armor.Core;
 /*
 /  MLAAddon
 /  Created by : Orion
@@ -25,7 +25,7 @@ public abstract class MLAAddon {
      * @param pAddonPositionID The position of the addon on the MLA armor.
      *                         <p/>
      *                         Classes you might be interested in:
-     * @see com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor
      * @see ArmorAddonPosition
      */
     public MLAAddon(String pInternalName, String pParentName, String pAddonPositionID) {
@@ -54,7 +54,7 @@ public abstract class MLAAddon {
      * @return The internal name of the addon
      * <p/>
      * Classes you might be interested in:
-     * @see com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor
      * @see ArmorAddonPosition
      */
     public String getInternalName() {
@@ -67,7 +67,7 @@ public abstract class MLAAddon {
      * @return The InternalName of the ItemArmor this addon is registered to.
      * <p/>
      * Classes that might interest you:
-     * @see com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor
      */
     public String getParentName() {
         return this.iParentName;
@@ -79,7 +79,7 @@ public abstract class MLAAddon {
      * @return The position of the addon on the armor
      * <p/>
      * Classes you might be interested in:
-     * @see com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor
      * @see ArmorAddonPosition
      */
     public String getAddonPositionID() {

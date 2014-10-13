@@ -1,8 +1,8 @@
-package com.Orion.Armory.Common.Armor.TierPlated.Modifiers;
+package com.Orion.Armory.Common.Item.Armor.TierPlated.Modifiers;
 
 
-import com.Orion.Armory.Common.Armor.Core.MLAAddon;
-import com.Orion.Armory.Common.Armor.TierPlated.ArmorPlated;
+import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
+import com.Orion.Armory.Common.Item.Armor.TierPlated.ArmorPlated;
 import com.Orion.Armory.Util.Client.CustomResource;
 import net.minecraft.entity.player.EntityPlayer;
 

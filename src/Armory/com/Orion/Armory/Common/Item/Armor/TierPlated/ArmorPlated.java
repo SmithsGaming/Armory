@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.Armor.TierPlated;
+package com.Orion.Armory.Common.Item.Armor.TierPlated;
 /*
  *   ArmorPlated
  *   Created by: Orion
@@ -6,27 +6,22 @@ package com.Orion.Armory.Common.Armor.TierPlated;
  */
 
 import com.Orion.Armory.Client.Models.ModelAExtendedChain;
-import com.Orion.Armory.Common.Armor.Core.MLAAddon;
-import com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor;
-import com.Orion.Armory.Common.Armor.TierMedieval.ArmorMaterialMedieval;
-import com.Orion.Armory.Common.Armor.TierMedieval.ArmorUpgradeMedieval;
-import com.Orion.Armory.Common.Armor.TierPlated.Modifiers.ArmorModifierPlated;
-import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
+import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
+import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorUpgradeMedieval;
+import com.Orion.Armory.Common.Item.Armor.TierPlated.Modifiers.ArmorModifierPlated;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 
 import java.security.InvalidParameterException;
-import java.util.HashMap;
-import java.util.List;
 
 public class ArmorPlated extends MultiLayeredArmor
 {

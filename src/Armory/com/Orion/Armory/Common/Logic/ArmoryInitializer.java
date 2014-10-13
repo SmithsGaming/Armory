@@ -6,22 +6,29 @@ package com.Orion.Armory.Common.Logic;
  */
 
 import com.Orion.Armory.Armory;
-import com.Orion.Armory.Common.Armor.Core.ArmorAddonPosition;
-import com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor;
-import com.Orion.Armory.Common.Armor.TierMedieval.ArmorMaterialMedieval;
-import com.Orion.Armory.Common.Armor.TierMedieval.ArmorMedieval;
-import com.Orion.Armory.Common.Armor.TierMedieval.ArmorUpgradeMedieval;
+import com.Orion.Armory.Common.Item.Armor.Core.ArmorAddonPosition;
+import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorUpgradeMedieval;
+import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Crafting.ChainCraftingRecipe;
 import com.Orion.Armory.Common.Crafting.MedievalArmorCraftingRecipe;
 import com.Orion.Armory.Common.Events.ModifyMaterialEvent;
 import com.Orion.Armory.Common.Events.RegisterArmorEvent;
 import com.Orion.Armory.Common.Events.RegisterMaterialsEvent;
 import com.Orion.Armory.Common.Events.RegisterUpgradesEvent;
+import com.Orion.Armory.Common.Item.ItemMetalChain;
+import com.Orion.Armory.Common.Item.ItemMetalRing;
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
+import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Util.Client.Colors;
+import com.Orion.Armory.Util.Client.TextureAddressHelper;
 import com.Orion.Armory.Util.References.InternalNames;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.HashMap;
@@ -32,6 +39,9 @@ public class ArmoryInitializer
     {
         Armory.iSide = Side.SERVER;
         MedievalInitialization.Initialize();
+        SystemInit.RegisterBlocks();
+        SystemInit.RegisterItems();
+        SystemInit.RegisterTileEntities();
         MedievalInitialization.prepareGame();
     }
 
@@ -455,8 +465,8 @@ public class ArmoryInitializer
         private static void modifyShoes()
         {
             for(ArmorMaterialMedieval tMaterial   : MedievalRegistry.getInstance().getArmorMaterials().values()) {
-                if (tMaterial.iInternalName.equals("vanilla.Iron")) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Materials.Vanilla.IRON, 1.0F);
+                if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.IRON)) {
+                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALSHOES, 1.0F);
                     tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALSHOES, 50);
                     tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALSHOES, 1);
                 } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.CHAIN)) {
@@ -500,11 +510,33 @@ public class ArmoryInitializer
                 GameRegistry.registerItem(tCore, tCore.getInternalName());
             }
 
-            GameRegistry.registerItem(MedievalRegistry.iMetalChain, InternalNames.Items.ItemMetalChain);
-            GameRegistry.registerItem(MedievalRegistry.iMetalRing, InternalNames.Items.ItemMetalRing);
-
             GameRegistry.addRecipe(new ChainCraftingRecipe());
             GameRegistry.addRecipe(new MedievalArmorCraftingRecipe());
+        }
+    }
+
+    public static class SystemInit
+    {
+        public static void RegisterBlocks()
+        {
+            GeneralRegistry.Blocks.iBlockFirePit = (BlockFirePit) new BlockFirePit().setHardness(0.5F).setStepSound(Block.soundTypeMetal)
+                    .setBlockName(InternalNames.Blocks.FirePit).setCreativeTab(GeneralRegistry.iTabArmoryComponents).setBlockTextureName(TextureAddressHelper.getTextureAddress("FirePitTextureOff"));
+
+            GameRegistry.registerBlock(GeneralRegistry.Blocks.iBlockFirePit, InternalNames.Blocks.FirePit);
+        }
+
+        public static void RegisterItems()
+        {
+            GeneralRegistry.Items.iMetalChain = new ItemMetalChain();
+            GeneralRegistry.Items.iMetalRing = new ItemMetalRing();
+
+            GameRegistry.registerItem(GeneralRegistry.Items.iMetalChain, InternalNames.Items.ItemMetalChain);
+            GameRegistry.registerItem(GeneralRegistry.Items.iMetalRing, InternalNames.Items.ItemMetalRing);
+        }
+
+        public static void RegisterTileEntities()
+        {
+            GameRegistry.registerTileEntity(TileEntityFirePit.class, InternalNames.TileEntities.FirePitContainer);
         }
     }
 

@@ -1,9 +1,9 @@
 package com.Orion.Armory.Common.Blocks;
 /*
-/  BlockFirePit
-/  Created by : Orion
-/  Created on : 02/10/2014
-*/
+ *   BlockHeater
+ *   Created by: Orion
+ *   Created on: 12-10-2014
+ */
 
 import com.Orion.Armory.Common.Logic.Multiblock.IMultiBlockPart;
 import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
@@ -13,31 +13,24 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockFirePit extends BlockContainer implements IMultiBlockPart
+public class BlockHeater extends BlockContainer implements IMultiBlockPart
 {
-    protected String iInternalName = References.InternalNames.Blocks.FirePit;
+    protected String iInternalName = References.InternalNames.Blocks.Heater;
 
-    public BlockFirePit() {
+    protected BlockHeater(Material p_i45386_1_) {
         super(Material.iron);
     }
 
-    @Override
     public String getInternalName() {
         return this.iInternalName;
     }
 
     @Override
     public boolean validatePart(Integer pXCoord, Integer pYCoord, Integer pZCoord, World pWorld) {
-        if (pWorld.getBlock(pXCoord, pYCoord, pZCoord) == this)
-        {
-            return true;
-        }
-
         return false;
     }
 
@@ -86,7 +79,7 @@ public class BlockFirePit extends BlockContainer implements IMultiBlockPart
     @Override
     public int getRenderType()
     {
-        return References.RenderIDs.FirePitID;
+        return References.RenderIDs.HeaterID;
     }
 
     @Override

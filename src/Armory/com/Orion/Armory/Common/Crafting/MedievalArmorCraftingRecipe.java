@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.Crafting;
  *   Created on: 25-9-2014
  */
 
-import com.Orion.Armory.Common.Armor.Core.MLAAddon;
+import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
 import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Item.ItemMetalChain;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;

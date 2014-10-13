@@ -5,12 +5,10 @@ package com.Orion.Armory.Common.Registry;
  *   Created on: 24-9-2014
  */
 
-import com.Orion.Armory.Common.Armor.Core.MLAAddon;
-import com.Orion.Armory.Common.Armor.TierMedieval.ArmorMaterialMedieval;
-import com.Orion.Armory.Common.Armor.TierMedieval.ArmorMedieval;
-import com.Orion.Armory.Common.Armor.TierMedieval.ArmorUpgradeMedieval;
-import com.Orion.Armory.Common.Item.ItemMetalChain;
-import com.Orion.Armory.Common.Item.ItemMetalRing;
+import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorUpgradeMedieval;
 import com.Orion.Armory.Util.Armor.NBTHelper;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemStack;
@@ -22,10 +20,6 @@ import java.util.Map;
 public class MedievalRegistry {
     protected static MedievalRegistry iInstance;
     protected static GeneralRegistry iGeneralRegistry = GeneralRegistry.getInstance();
-
-    //Item storage
-    public static ItemMetalRing iMetalRing = new ItemMetalRing();
-    public static ItemMetalChain iMetalChain = new ItemMetalChain();
 
     //Hashmap for storing all the materials
     protected HashMap<String, ArmorMaterialMedieval> iArmorMaterials = new HashMap<String, ArmorMaterialMedieval>();

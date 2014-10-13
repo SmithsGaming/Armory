@@ -1,6 +1,6 @@
 package com.Orion.Armory.Client.CreativeTab;
 
-import com.Orion.Armory.Common.Armor.Core.MLAAddon;
+import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
 import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.References;

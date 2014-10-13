@@ -1,7 +1,6 @@
 package com.Orion.Armory.Client.CreativeTab;
 
-import com.Orion.Armory.Common.Item.ItemMetalRing;
-import com.Orion.Armory.Common.Registry.MedievalRegistry;
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,7 +22,7 @@ public class ComponentsTab extends CreativeTabs{
     {
         if (iItemStack == null)
         {
-            iItemStack = new ItemStack(MedievalRegistry.iMetalRing, 1);
+            iItemStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1);
             NBTTagCompound tStackCompound = new NBTTagCompound();
             tStackCompound.setString(References.NBTTagCompoundData.RingMaterial, References.InternalNames.Materials.Common.BRONZE);
 

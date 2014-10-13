@@ -30,7 +30,7 @@ public class HeatedIngotFactory
 
     public ItemStack convertToHeatedIngot(ItemStack pCooledIngotStack)
     {
-        ItemStack tReturnStack = new ItemStack(GeneralRegistry.iHeatedIngot);
+        ItemStack tReturnStack = new ItemStack(GeneralRegistry.Items.iHeatedIngot);
         NBTTagCompound tStackCompound = new NBTTagCompound();
 
         tStackCompound.setInteger(References.NBTTagCompoundData.HeatedIngot.OriginalItem, Item.getIdFromItem(pCooledIngotStack.getItem()));

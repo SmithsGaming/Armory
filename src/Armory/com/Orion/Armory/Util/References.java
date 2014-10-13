@@ -5,6 +5,8 @@ package com.Orion.Armory.Util;
 *   Created on: 27-6-2014
 */
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
+
 public class References
 {
     public class General
@@ -210,18 +212,27 @@ public class References
         public class Blocks
         {
             public static final String FirePit = "Armory.FirePit";
+            public static final String Heater = "Armory.Heater";
         }
 
         public class TileEntities
         {
-            public static final String FirePitContainter = "container.Armory.FirePit";
+            public static final String FirePitContainer = "container.Armory.FirePit";
+            public static final String HeaterComponent = "components.Armory.Heater";
         }
 
     }
 
-    //General texture addresses
-    public class TextureAddresses {
-        public static final String BLANK_ICON = "blankItem";
+    //General model addresses
+    public class Models
+    {
+        public class ModelLocations
+        {
+            protected final static String iModelLocation = "models/";
+
+            public final static String FirePit = iModelLocation + "FirePit.obj";
+            public final static String Heater = iModelLocation + "Heater.obj;";
+        }
     }
 
     //NBTTag compound version
@@ -272,6 +283,12 @@ public class References
             public static final String OriginalMeta = "OriginalMeta";
             public static final String Temperature = "Temperature";
         }
+    }
+
+    public static class RenderIDs
+    {
+        public static final int FirePitID = RenderingRegistry.getNextAvailableRenderId();
+        public static final int HeaterID = RenderingRegistry.getNextAvailableRenderId();
     }
 
 }

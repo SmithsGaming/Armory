@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.Armor.TierPlated;
+package com.Orion.Armory.Common.Item.Armor.TierPlated;
 /*
  *   PlatedMaterial
  *   Created by: Orion

@@ -1,9 +1,9 @@
 package com.Orion.Armory.Common.TileEntity;
 /*
-/  TileEntityFirePit
-/  Created by : Orion
-/  Created on : 02/10/2014
-*/
+ *   TileEntityHeater
+ *   Created by: Orion
+ *   Created on: 12-10-2014
+ */
 
 import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
 import com.Orion.Armory.Common.Registry.IngotRegistry;
@@ -18,46 +18,48 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 
-public class TileEntityFirePit extends TileEntity implements IInventory
+public class TileEntityHeater extends TileEntity implements IInventory
 {
-    protected ArrayList<ItemStack> iIngotsInFire = new ArrayList<ItemStack>(5);
+    protected boolean iIsHeater = false;
+    protected ArrayList<ItemStack> iFuelStacks = new ArrayList<ItemStack>(5);
+    protected ItemStack iFanStack = null;
+
     protected int iNumPlayersUsing;
-    protected float iCurrentTemperature = 20;
-    protected float iLastAddedHeat = 0;
-    protected boolean iIsBurning = false;
     protected ForgeDirection iCurrentDirection = ForgeDirection.NORTH;
-    protected String iName = "Fire pit";
+    protected String iName = "Heater";
 
     @Override
     public int getSizeInventory() {
-        return iIngotsInFire.size();
+        if (iIsHeater) return 0;
+
+        return 5;
     }
 
     @Override
-    public ItemStack getStackInSlot(int p_70301_1_) {
-        return iIngotsInFire.get(p_70301_1_);
+    public ItemStack getStackInSlot(int pSlotID) {
+        return iFuelStacks.get(pSlotID);
     }
 
     @Override
-    public ItemStack decrStackSize(int p_70298_1_, int p_70298_2_) {
-        if (this.iIngotsInFire.get(p_70298_1_) != null)
+    public ItemStack decrStackSize(int pSlotID, int pAmount) {
+        if (this.iFuelStacks.get(pSlotID) != null)
         {
             ItemStack itemstack;
 
-            if (this.iIngotsInFire.get(p_70298_1_).stackSize <= p_70298_2_)
+            if (this.iFuelStacks.get(pSlotID).stackSize <= pAmount)
             {
-                itemstack = this.iIngotsInFire.get(p_70298_1_);
-                this.iIngotsInFire.set(p_70298_1_, null);
+                itemstack = this.iFuelStacks.get(pSlotID);
+                this.iFuelStacks.set(pSlotID, null);
                 this.markDirty();
                 return itemstack;
             }
             else
             {
-                itemstack = this.iIngotsInFire.get(p_70298_1_).splitStack(p_70298_2_);
+                itemstack = this.iFuelStacks.get(pSlotID).splitStack(pAmount);
 
-                if (this.iIngotsInFire.get(p_70298_1_).stackSize == 0)
+                if (this.iFuelStacks.get(pSlotID).stackSize == 0)
                 {
-                    this.iIngotsInFire.set(p_70298_1_, null);
+                    this.iFuelStacks.set(pSlotID, null);
                 }
 
                 this.markDirty();
@@ -71,11 +73,11 @@ public class TileEntityFirePit extends TileEntity implements IInventory
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int p_70304_1_) {
-        if (this.iIngotsInFire.get(p_70304_1_) != null)
+    public ItemStack getStackInSlotOnClosing(int pSlotID) {
+        if (this.iFuelStacks.get(pSlotID) != null)
         {
-            ItemStack itemstack = this.iIngotsInFire.get(p_70304_1_);
-            this.iIngotsInFire.set(p_70304_1_, null);
+            ItemStack itemstack = this.iFuelStacks.get(pSlotID);
+            this.iFuelStacks.set(pSlotID, null);
             return itemstack;
         }
         else
@@ -86,7 +88,7 @@ public class TileEntityFirePit extends TileEntity implements IInventory
 
     @Override
     public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_) {
-        this.iIngotsInFire.set(p_70299_1_, p_70299_2_);
+        this.iFuelStacks.set(p_70299_1_, p_70299_2_);
 
         if (p_70299_2_ != null && p_70299_2_.stackSize > this.getInventoryStackLimit())
         {
@@ -98,7 +100,7 @@ public class TileEntityFirePit extends TileEntity implements IInventory
 
     @Override
     public String getInventoryName() {
-        return References.InternalNames.TileEntities.FirePitContainer;
+        return References.InternalNames.TileEntities.HeaterComponent;
     }
 
     @Override
@@ -108,7 +110,7 @@ public class TileEntityFirePit extends TileEntity implements IInventory
 
     @Override
     public int getInventoryStackLimit() {
-        return 1;
+        return 64;
     }
 
     @Override
@@ -141,61 +143,12 @@ public class TileEntityFirePit extends TileEntity implements IInventory
     }
 
     @Override
-    public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
+    public boolean isItemValidForSlot(int pSlotID, ItemStack pStack) {
         return false;
     }
 
     public void updateEntity()
     {
-        int tTotalIngots = iIngotsInFire.size();
-        float tAddedHeat = this.iLastAddedHeat / (float) (tTotalIngots + 1);
-        for (ItemStack tIngot : iIngotsInFire)
-        {
-            int tIndex = iIngotsInFire.indexOf(tIngot);
-
-            if (IngotRegistry.geInstance().isHeatable(tIngot))
-            {
-                tIngot = HeatedIngotFactory.getInstance().convertToHeatedIngot(tIngot);
-            }
-
-            tIngot = NBTHelper.heatHeatedItem(tIngot, (int) tAddedHeat);
-
-            if (NBTHelper.getTemperatureOfIngot(tIngot) <= 20)
-            {
-                tIngot = HeatedIngotFactory.getInstance().convertToCooleadIngot(tIngot);
-            }
-
-            iIngotsInFire.add(tIndex, tIngot);
-            this.markDirty();
-        }
-    }
-
-    public float heatFurnace(float pFuelAmount)
-    {
-        this.iCurrentTemperature += pFuelAmount / 20F;
-        this.iLastAddedHeat = pFuelAmount / 20F;
-        return this.iCurrentTemperature;
-    }
-
-    public boolean isBurning() {return iIsBurning; }
-
-    public void setDirection(ForgeDirection pNewDirection)
-    {
-        this.iCurrentDirection = pNewDirection;
-    }
-
-    public ForgeDirection getDirection()
-    {
-        return this.iCurrentDirection;
-    }
-
-    public void setDisplayName(String pName)
-    {
-        this.iName = pName;
-    }
-
-    public String getDisplayName()
-    {
-        return this.iName;
+        
     }
 }

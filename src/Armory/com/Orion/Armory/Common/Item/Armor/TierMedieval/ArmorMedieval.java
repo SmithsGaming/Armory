@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.Armor.TierMedieval;
+package com.Orion.Armory.Common.Item.Armor.TierMedieval;
 /*
  *   ArmorMedieval
  *   Created by: Orion
@@ -6,11 +6,12 @@ package com.Orion.Armory.Common.Armor.TierMedieval;
  */
 
 import com.Orion.Armory.Client.Models.ModelAExtendedChain;
-import com.Orion.Armory.Common.Armor.Core.MLAAddon;
-import com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor;
+import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
+import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
 import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
+import com.Orion.Armory.Util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
@@ -19,6 +20,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
 
@@ -67,9 +69,9 @@ public class ArmorMedieval extends MultiLayeredArmor {
     @Override
     public void damageArmor(EntityLivingBase pEntity, ItemStack pStack, DamageSource pSource, int pDamage, int pSlot)    {
         ArmorMaterialMedieval tArmorMaterialMedieval = MedievalRegistry.getInstance().getBaseMaterialOfItemStack(pStack);
-        pStack.getTagCompound().setInteger("CurrentDurability", pStack.getTagCompound().getInteger("CurrentDurability") - pDamage);
+        pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).setInteger(References.NBTTagCompoundData.Armor.CurrentDurability, pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.CurrentDurability) - pDamage);
 
-        pStack.setItemDamage((int) ((float)pStack.getTagCompound().getInteger("CurrentDurability")/ (float)pStack.getTagCompound().getInteger("TotalDurability") * 100));
+        pStack.setItemDamage((int) ((float)pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.CurrentDurability)/ pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.TotalDurability) * 100));
 
         ((EntityPlayer) pEntity).inventory.armorInventory[pSlot] = pStack;
     }
@@ -92,6 +94,54 @@ public class ArmorMedieval extends MultiLayeredArmor {
 
             pItemStacks.add(tStandardArmor);
         }
+
+        if (!(Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment"))
+        {
+            return;
+        }
+
+
+        if (this.getInternalName().equals(References.InternalNames.Armor.MEDIEVALHELMET)) {
+            HashMap<MLAAddon, Integer> tHelmetAddons = new HashMap<MLAAddon, Integer>();
+            tHelmetAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.TOP + "-" + References.InternalNames.Materials.Common.BRONZE), 1);
+            tHelmetAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.RIGHT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT), 1);
+            tHelmetAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.LEFT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT), 1);
+
+            ItemStack tAddonHelmet = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tHelmetAddons, MedievalRegistry.getInstance().getMaterial(References.InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE).getBaseDurability(this.getInternalName()), References.InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE);
+
+            pItemStacks.add(tAddonHelmet);
+        } else if (this.getInternalName().equals(References.InternalNames.Armor.MEDIEVALCHESTPLATE)) {
+            HashMap<MLAAddon, Integer> tChestplateAddons = new HashMap<MLAAddon, Integer>();
+            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.SHOULDERLEFT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE), 1);
+            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.SHOULDERRIGHT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE), 1);
+            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.FRONTLEFT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT), 1);
+            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.FRONTRIGHT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT), 1);
+            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.BACKLEFT + "-" + References.InternalNames.Materials.Vanilla.IRON), 1);
+            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.BACKRIGHT + "-" + References.InternalNames.Materials.Vanilla.IRON), 1);
+
+            ItemStack tAddonChestplate = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tChestplateAddons, MedievalRegistry.getInstance().getMaterial(References.InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN).getBaseDurability(this.getInternalName()), References.InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN);
+
+            pItemStacks.add(tAddonChestplate);
+        } else if (this.getInternalName().equals(References.InternalNames.Armor.MEDIEVALLEGGINGS)) {
+            HashMap<MLAAddon, Integer> tLeggingAddons = new HashMap<MLAAddon, Integer>();
+            tLeggingAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.FRONTLEFT + "-" + References.InternalNames.Materials.Vanilla.CHAIN), 1);
+            tLeggingAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.FRONTRIGHT + "-" + References.InternalNames.Materials.Vanilla.CHAIN), 1);
+            tLeggingAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.BACKLEFT + "-" + References.InternalNames.Materials.Vanilla.CHAIN), 1);
+            tLeggingAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.BACKRIGHT + "-" + References.InternalNames.Materials.Vanilla.CHAIN), 1);
+
+            ItemStack tAddonLeggins = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tLeggingAddons, MedievalRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN).getBaseDurability(this.getInternalName()), References.InternalNames.Materials.Vanilla.OBSIDIAN);
+
+            pItemStacks.add(tAddonLeggins);
+        } else if (this.getInternalName().equals(References.InternalNames.Armor.MEDIEVALSHOES)) {
+            HashMap<MLAAddon, Integer> tShoesAddons = new HashMap<MLAAddon, Integer>();
+            tShoesAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Shoes.LEFT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT), 1);
+            tShoesAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Shoes.RIGHT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT), 1);
+
+            ItemStack tAddonShoes = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tShoesAddons, MedievalRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getInternalName()), References.InternalNames.Materials.Vanilla.IRON);
+
+            pItemStacks.add(tAddonShoes);
+        }
+
     }
 
     @SideOnly(Side.CLIENT)

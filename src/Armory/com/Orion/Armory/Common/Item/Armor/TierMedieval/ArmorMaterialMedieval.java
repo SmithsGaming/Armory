@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.Armor.TierMedieval;
+package com.Orion.Armory.Common.Item.Armor.TierMedieval;
 /*
 *   ArmorMaterial
 *   Created by: Orion

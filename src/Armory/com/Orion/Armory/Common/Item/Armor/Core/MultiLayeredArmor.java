@@ -1,9 +1,10 @@
-package com.Orion.Armory.Common.Armor.Core;
+package com.Orion.Armory.Common.Item.Armor.Core;
 /*
 *   MultiLayeredArmor
 *   Created by: Orion
 *   Created on: 28-6-2014
 */
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.References;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -31,7 +32,7 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
     public IIcon iBlankIcon;
 
     //Hashmaps for storing the Resources needed for rendering.
-    //The CustomResource object stores both the Colors, Icons and Model-textures
+    //The CustomResource object stores both the Colors, Icons and TileEntities-textures
     public HashMap<String, CustomResource> iResources = new HashMap<String, CustomResource>();
 
     //Data for the registering of MultiLayeredArmor
@@ -141,6 +142,7 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
     ///#############################################Resource control functions##########################################
     //Function for registering a new resource the Item may need to render it
     public void registerResource(CustomResource pResource) {
+        GeneralRegistry.iLogger.info("Registering resource: " + pResource.getInternalName() + ". To: " + this.getInternalName());
         iResources.put(pResource.getInternalName(), pResource);
     }
 

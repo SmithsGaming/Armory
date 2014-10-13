@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.Armor.Core;
+package com.Orion.Armory.Common.Item.Armor.Core;
 /*
 *   ArmorAddonPosition
 *   Created by: Orion
@@ -18,8 +18,8 @@ public class ArmorAddonPosition {
      * @param pMaxAddonsOnPosition The max addons allowed on this position
      *                             <p/>
      *                             Classes you might be interested in:
-     * @see com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor
-     * @see com.Orion.Armory.Common.Armor.Core.MLAAddon
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MLAAddon
      */
     public ArmorAddonPosition(String pInternalName, String pParentArmorID, Integer pMaxAddonsOnPosition) {
         this.iInternalName = pInternalName;
@@ -33,8 +33,8 @@ public class ArmorAddonPosition {
      * @return The internal name of this addon position
      * <p/>
      * Classes you might be interested in:
-     * @see com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor
-     * @see com.Orion.Armory.Common.Armor.Core.MLAAddon
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MLAAddon
      */
     public String getInternalName() {
         return this.iInternalName;
@@ -47,8 +47,8 @@ public class ArmorAddonPosition {
      * <p/>
      * <p/>
      * Classes you might be interested in:
-     * @see com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor
-     * @see com.Orion.Armory.Common.Armor.Core.MLAAddon
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MLAAddon
      */
     public String getParentArmorID() {
         return this.iParentArmorID;
@@ -60,8 +60,8 @@ public class ArmorAddonPosition {
      * @return The max amount of MLA Addons that are allowed on this position
      * <p/>
      * Classes you might be interested in:
-     * @see com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor
-     * @see com.Orion.Armory.Common.Armor.Core.MLAAddon
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MLAAddon
      */
     public Integer getMaxAddonsOnPosition() {
         return this.iMaxAddonsOnPosition;
@@ -73,8 +73,8 @@ public class ArmorAddonPosition {
      * @param pMaxAddonsOnPosition The new max amount of addons
      *                             <p/>
      *                             Classes you might be interested in:
-     * @see com.Orion.Armory.Common.Armor.Core.MultiLayeredArmor
-     * @see com.Orion.Armory.Common.Armor.Core.MLAAddon
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor
+     * @see com.Orion.Armory.Common.Item.Armor.Core.MLAAddon
      */
     public void setMaxAddonsOnPosition(Integer pMaxAddonsOnPosition) {
         this.iMaxAddonsOnPosition = pMaxAddonsOnPosition;

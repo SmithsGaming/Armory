@@ -5,13 +5,20 @@ package com.Orion.Armory.Client.Logic;
  *   Created on: 19-9-2014
  */
 
-import com.Orion.Armory.Common.Armor.TierMedieval.ArmorMaterialMedieval;
-import com.Orion.Armory.Common.Armor.TierMedieval.ArmorMedieval;
+import com.Orion.Armory.Client.Renderer.Items.ItemRendererFirePit;
+import com.Orion.Armory.Client.Renderer.TileEntities.FirePitTESR;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
+import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.References;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ArmoryClientInitializer extends ArmoryInitializer
 {
@@ -20,6 +27,10 @@ public class ArmoryClientInitializer extends ArmoryInitializer
         MedievalInitialization.Initialize();
         MedievalClientInitialization.registerMaterialResources();
         MedievalClientInitialization.registerUpgradeResources();
+        ArmoryInitializer.SystemInit.RegisterItems();
+        ArmoryInitializer.SystemInit.RegisterBlocks();
+        ArmoryInitializer.SystemInit.RegisterTileEntities();
+        SystemInit.RegisterTESR();
         MedievalClientInitialization.registerRingResources();
         MedievalClientInitialization.registerChainResources();
         MedievalInitialization.prepareGame();
@@ -141,28 +152,37 @@ public class ArmoryClientInitializer extends ArmoryInitializer
         
         public static void registerRingResources()
         {
-            MedievalRegistry.iMetalRing.registerResource(Textures.Items.ItemRing.IronResource);
-            MedievalRegistry.iMetalRing.registerResource(Textures.Items.ItemRing.ChainResource);
-            MedievalRegistry.iMetalRing.registerResource(Textures.Items.ItemRing.ObsidianResource);
-            MedievalRegistry.iMetalRing.registerResource(Textures.Items.ItemRing.BronzeResource);
-            MedievalRegistry.iMetalRing.registerResource(Textures.Items.ItemRing.AlumiteResource);
-            MedievalRegistry.iMetalRing.registerResource(Textures.Items.ItemRing.CobaltResource);
-            MedievalRegistry.iMetalRing.registerResource(Textures.Items.ItemRing.ArditeResource);
-            MedievalRegistry.iMetalRing.registerResource(Textures.Items.ItemRing.ManyullunResource);
+            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.IronResource);
+            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.ChainResource);
+            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.ObsidianResource);
+            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.BronzeResource);
+            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.AlumiteResource);
+            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.CobaltResource);
+            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.ArditeResource);
+            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.ManyullunResource);
         }
         
         public static void registerChainResources()
         {
-            MedievalRegistry.iMetalChain.registerResource(Textures.Items.ItemChain.IronResource);
-            MedievalRegistry.iMetalChain.registerResource(Textures.Items.ItemChain.ChainResource);
-            MedievalRegistry.iMetalChain.registerResource(Textures.Items.ItemChain.ObsidianResource);
-            MedievalRegistry.iMetalChain.registerResource(Textures.Items.ItemChain.BronzeResource);
-            MedievalRegistry.iMetalChain.registerResource(Textures.Items.ItemChain.AlumiteResource);
-            MedievalRegistry.iMetalChain.registerResource(Textures.Items.ItemChain.CobaltResource);
-            MedievalRegistry.iMetalChain.registerResource(Textures.Items.ItemChain.ArditeResource);
-            MedievalRegistry.iMetalChain.registerResource(Textures.Items.ItemChain.ManyullunResource);
+            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.IronResource);
+            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.ChainResource);
+            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.ObsidianResource);
+            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.BronzeResource);
+            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.AlumiteResource);
+            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.CobaltResource);
+            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.ArditeResource);
+            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.ManyullunResource);
         }
         
+    }
+
+    public static class SystemInit
+    {
+        public static void RegisterTESR()
+        {
+            ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFirePit.class, new FirePitTESR());
+            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockFirePit), new ItemRendererFirePit());
+        }
     }
     
 
