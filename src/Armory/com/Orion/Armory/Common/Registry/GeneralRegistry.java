@@ -7,8 +7,8 @@ package com.Orion.Armory.Common.Registry;
 
 import com.Orion.Armory.Client.CreativeTab.ComponentsTab;
 import com.Orion.Armory.Client.CreativeTab.MedievalTab;
-import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
+import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
 import com.Orion.Armory.Common.Item.ItemHeatedIngot;
 import com.Orion.Armory.Common.Item.ItemMetalChain;
 import com.Orion.Armory.Common.Item.ItemMetalRing;
@@ -48,8 +48,6 @@ public class GeneralRegistry {
     {
         if (pTier.equals(References.InternalNames.Tiers.MEDIEVAL)) {
             return MedievalRegistry.getInstance().getUpgrade(pAddonID);
-        } else if (pTier.equals(References.InternalNames.Tiers.PLATED)) {
-            return PlatedRegistry.getInstance().getUpgrade(pAddonID);
         } else {
             return null;
         }
