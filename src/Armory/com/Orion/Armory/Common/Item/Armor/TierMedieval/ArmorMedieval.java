@@ -95,12 +95,6 @@ public class ArmorMedieval extends MultiLayeredArmor {
             pItemStacks.add(tStandardArmor);
         }
 
-        if (!(Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment"))
-        {
-            return;
-        }
-
-
         if (this.getInternalName().equals(References.InternalNames.Armor.MEDIEVALHELMET)) {
             HashMap<MLAAddon, Integer> tHelmetAddons = new HashMap<MLAAddon, Integer>();
             tHelmetAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.TOP + "-" + References.InternalNames.Materials.Common.BRONZE), 1);
