@@ -29,6 +29,9 @@ import com.Orion.Armory.Util.References.InternalNames;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.HashMap;
@@ -512,6 +515,8 @@ public class ArmoryInitializer
 
             GameRegistry.addRecipe(new ChainCraftingRecipe());
             GameRegistry.addRecipe(new MedievalArmorCraftingRecipe());
+
+            GameRegistry.addShapedRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockFirePit, 1), "#=#", "#/#", "###", '#', new ItemStack(Items.iron_ingot, 1), '=', new ItemStack(Items.cauldron, 1), '/', new ItemStack(Blocks.furnace, 1));
         }
     }
 

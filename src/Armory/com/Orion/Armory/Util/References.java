@@ -289,6 +289,7 @@ public class References
             public class Basic
             {
                 public static final String DIRECTION = "Direction";
+                public static final String NAME = "Name";
             }
         }
     }

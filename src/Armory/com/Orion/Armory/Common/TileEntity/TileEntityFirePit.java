@@ -8,28 +8,22 @@ package com.Orion.Armory.Common.TileEntity;
 import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
 import com.Orion.Armory.Common.Registry.IngotRegistry;
 import com.Orion.Armory.Util.HeatedIngots.NBTHelper;
-import com.Orion.Armory.Util.References;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 
-public class TileEntityFirePit extends TileEntity {
+public class TileEntityFirePit extends TileEntityArmory {
     protected ArrayList<ItemStack> iIngotsInFire = new ArrayList<ItemStack>(5);
     protected ItemStack iCurrentFuelStack = new ItemStack(Items.coal, 64);
     protected ArrayList<ItemStack> iFuelReserve = new ArrayList<ItemStack>(4);
-    protected int iNumPlayersUsing;
     protected float iCurrentTemperature = 20;
     protected float iLastAddedHeat = 0;
     protected boolean iIsBurning = false;
-    protected ForgeDirection iCurrentDirection; // = ForgeDirection.NORTH;
-    protected String iName = "Fire pit";
 
     public ItemStack getStackInSlot(int pSlotID) {
         if (pSlotID < 4) {
@@ -54,18 +48,13 @@ public class TileEntityFirePit extends TileEntity {
     @Override
     public void readFromNBT(NBTTagCompound pCompound) {
         super.readFromNBT(pCompound);
-
-        if (pCompound.hasKey(References.NBTTagCompoundData.TE.Basic.DIRECTION))
-        {
-            this.iCurrentDirection = ForgeDirection.getOrientation(pCompound.getByte(References.NBTTagCompoundData.TE.Basic.DIRECTION));
-        }
     }
 
     @Override
     public void writeToNBT(NBTTagCompound pCompound)
     {
         super.writeToNBT(pCompound);
-        pCompound.setByte(References.NBTTagCompoundData.TE.Basic.DIRECTION, (byte) iCurrentDirection.ordinal());
+
     }
 
     public void updateEntity()
@@ -118,31 +107,6 @@ public class TileEntityFirePit extends TileEntity {
 
     public boolean isBurning() {return iIsBurning; }
 
-    public void setDirection(int pNewDirection)
-    {
-        iCurrentDirection = ForgeDirection.getOrientation(pNewDirection);
-    }
-
-    public void setDirection(ForgeDirection pNewDirection)
-    {
-        this.iCurrentDirection = pNewDirection;
-    }
-
-    public ForgeDirection getDirection()
-    {
-        return this.iCurrentDirection;
-    }
-
-    public void setDisplayName(String pName)
-    {
-        this.iName = pName;
-    }
-
-    public String getDisplayName()
-    {
-        return this.iName;
-    }
-
     @Override
     public Packet getDescriptionPacket()
     {
@@ -156,6 +120,4 @@ public class TileEntityFirePit extends TileEntity {
     {
         this.readFromNBT(packet.func_148857_g());
     }
-
-
 }

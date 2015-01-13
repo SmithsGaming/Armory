@@ -100,17 +100,17 @@ public class MedievalArmorCraftingRecipe implements IRecipe
 
     public boolean validateChestplate(InventoryCrafting pCraftingGrid)
     {
-        if (pCraftingGrid.getStackInRowAndColumn(0,1) == null || !(pCraftingGrid.getStackInRowAndColumn(0,1).getItem() instanceof ItemMetalChain)) return false;
-        String tMaterial = pCraftingGrid.getStackInRowAndColumn(0,1).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
+        if (pCraftingGrid.getStackInRowAndColumn(0, 0) == null || !(pCraftingGrid.getStackInRowAndColumn(0,0).getItem() instanceof ItemMetalChain)) return false;
+        String tMaterial = pCraftingGrid.getStackInRowAndColumn(0,0).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
 
         if (pCraftingGrid.getStackInRowAndColumn(0,0) == null || !(pCraftingGrid.getStackInRowAndColumn(0,0).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(0,0).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
-        if (pCraftingGrid.getStackInRowAndColumn(1,0) == null || !(pCraftingGrid.getStackInRowAndColumn(1,0).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(1,0).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
-        if (pCraftingGrid.getStackInRowAndColumn(2,0) == null || !(pCraftingGrid.getStackInRowAndColumn(2,0).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(2,0).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
-        if (pCraftingGrid.getStackInRowAndColumn(0,1) != null) return false;
-        if (pCraftingGrid.getStackInRowAndColumn(1,1) == null || !(pCraftingGrid.getStackInRowAndColumn(1,1).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(1,1).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
-        if (pCraftingGrid.getStackInRowAndColumn(2,1) == null || !(pCraftingGrid.getStackInRowAndColumn(2,1).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(2,1).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
+        if (pCraftingGrid.getStackInRowAndColumn(0,1) == null || !(pCraftingGrid.getStackInRowAndColumn(0,1).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(0,1).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
         if (pCraftingGrid.getStackInRowAndColumn(0,2) == null || !(pCraftingGrid.getStackInRowAndColumn(0,2).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(0,2).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
-        if (pCraftingGrid.getStackInRowAndColumn(2,2) == null || !(pCraftingGrid.getStackInRowAndColumn(1,2).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(1,2).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
+        if (pCraftingGrid.getStackInRowAndColumn(1,0) != null) return false;
+        if (pCraftingGrid.getStackInRowAndColumn(1,1) == null || !(pCraftingGrid.getStackInRowAndColumn(1,1).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(1,1).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
+        if (pCraftingGrid.getStackInRowAndColumn(1,2) == null || !(pCraftingGrid.getStackInRowAndColumn(1,2).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(1,2).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
+        if (pCraftingGrid.getStackInRowAndColumn(2,0) == null || !(pCraftingGrid.getStackInRowAndColumn(2,0).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(2,0).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
+        if (pCraftingGrid.getStackInRowAndColumn(2,1) == null || !(pCraftingGrid.getStackInRowAndColumn(2,1).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(2,1).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
         if (pCraftingGrid.getStackInRowAndColumn(2,2) == null || !(pCraftingGrid.getStackInRowAndColumn(2,2).getItem() instanceof ItemMetalChain) || !(pCraftingGrid.getStackInRowAndColumn(2,2).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial).equals(tMaterial))) return false;
 
         return true;

@@ -70,8 +70,7 @@ public class ItemRendererFirePit implements IItemRenderer
 
         // Scale, Translate, Rotate
         GL11.glScalef(1F, 1F, 1F);
-        GL11.glTranslatef(x, y, z);
-        //GL11.glRotatef(0F, 1F, 0, 0);
+        GL11.glTranslatef(x, y, z - 1F);
 
         // Bind texture
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(iOffTexture);

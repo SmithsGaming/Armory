@@ -111,6 +111,18 @@ dependencies {
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/Armory'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+}
+
+
 //This will process all the resources used during build, and needed for running the project
 processResources
 {
