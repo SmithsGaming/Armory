@@ -283,6 +283,14 @@ public class References
             public static final String OriginalMeta = "OriginalMeta";
             public static final String Temperature = "Temperature";
         }
+
+        public class TE
+        {
+            public class Basic
+            {
+                public static final String DIRECTION = "Direction";
+            }
+        }
     }
 
     public static class RenderIDs
