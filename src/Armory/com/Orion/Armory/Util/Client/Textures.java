@@ -97,4 +97,8 @@ public class Textures
             public static CustomResource ArditeResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE, "armory:basic/16x Chain", "", Colors.ARDITE);
         }
     }
+
+    public static class GUI
+    {
+    }
 }
