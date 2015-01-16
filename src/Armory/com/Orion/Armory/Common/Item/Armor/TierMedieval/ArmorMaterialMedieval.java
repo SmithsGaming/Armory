@@ -19,7 +19,7 @@ public class ArmorMaterialMedieval
     public String iVisibleName;
     public String iVisibleNameColor;
     public boolean iBaseArmorMaterial;
-    public Color iColor = Colors.IRON;
+    public Color iColor = Colors.Metals.IRON;
     public HashMap<String, Boolean> iActiveParts = new HashMap<String, Boolean>();
     public HashMap<String, Float> iBaseDamageAbsorption = new HashMap<String, Float>();
     public HashMap<String, Integer> iBaseDurability = new HashMap<String, Integer>();

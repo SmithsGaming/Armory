@@ -32,7 +32,7 @@ public class Color {
             pBlue = 255;
         }
 
-        if (iAlpha > 255) {
+        if (pAlpha > 255) {
             pAlpha = 255;
         }
 
@@ -85,6 +85,23 @@ public class Color {
     }
 
     public int getColor() {
+        if (iColorRed > 255) {
+            iColorRed = 255;
+        }
+
+        if (iColorGreen > 255) {
+            iColorGreen = 255;
+        }
+
+        if (iColorBlue > 255) {
+            iColorBlue = 255;
+        }
+
+        if (iAlpha > 255) {
+            iAlpha = 255;
+        }
+
+
         int tReturnValue = iColorRed;
 
         tReturnValue = (tReturnValue << 8) + iColorGreen;
@@ -94,6 +111,10 @@ public class Color {
     }
 
     public void setColorRed(int pRed) {
+        if (pRed > 255)
+        {
+            pRed = 255;
+        }
         this.iColorRed = pRed;
     }
 
@@ -102,6 +123,10 @@ public class Color {
     }
 
     public void setColorBlue(int pBlue) {
+        if (pBlue > 255)
+        {
+            pBlue = 255;
+        }
         this.iColorBlue = pBlue;
     }
 
@@ -110,6 +135,11 @@ public class Color {
     }
 
     public void setColorGreen(int pGreen) {
+        if(pGreen > 255)
+        {
+            pGreen = 255;
+        }
+
         this.iColorGreen = pGreen;
     }
 
@@ -117,11 +147,15 @@ public class Color {
         this.setColorGreen((int) (pGreen * 255F));
     }
 
-    public void setAlpha(int pRed) {
-        this.iAlpha = pRed;
+    public void setAlpha(int pAlpha) {
+        if(pAlpha > 255)
+        {
+            pAlpha = 255;
+        }
+        this.iAlpha = pAlpha;
     }
 
-    public void setAlpha(float pRed) {
-        this.setAlpha((int) (pRed * 255F));
+    public void setAlpha(float pAlpha) {
+        this.setAlpha((int) (pAlpha * 255F));
     }
 }
