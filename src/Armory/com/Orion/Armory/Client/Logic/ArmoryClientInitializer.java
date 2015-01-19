@@ -5,6 +5,7 @@ package com.Orion.Armory.Client.Logic;
  *   Created on: 19-9-2014
  */
 
+import com.Orion.Armory.Client.Renderer.Items.ItemHeatedIngotRenderer;
 import com.Orion.Armory.Client.Renderer.Items.ItemRendererFirePit;
 import com.Orion.Armory.Client.Renderer.TileEntities.FirePitTESR;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
@@ -30,7 +31,8 @@ public class ArmoryClientInitializer extends ArmoryInitializer
         ArmoryInitializer.SystemInit.RegisterItems();
         ArmoryInitializer.SystemInit.RegisterBlocks();
         ArmoryInitializer.SystemInit.RegisterTileEntities();
-        SystemInit.RegisterTESR();
+        SystemInit.registerTESR();
+        SystemInit.registerIIR();
         MedievalClientInitialization.registerRingResources();
         MedievalClientInitialization.registerChainResources();
         MedievalInitialization.prepareGame();
@@ -178,10 +180,16 @@ public class ArmoryClientInitializer extends ArmoryInitializer
 
     public static class SystemInit
     {
-        public static void RegisterTESR()
+        public static void registerIIR()
+        {
+            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockFirePit), new ItemRendererFirePit());
+            MinecraftForgeClient.registerItemRenderer(GeneralRegistry.Items.iHeatedIngot, new ItemHeatedIngotRenderer());
+        }
+
+
+        public static void registerTESR()
         {
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFirePit.class, new FirePitTESR());
-            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockFirePit), new ItemRendererFirePit());
         }
     }
     

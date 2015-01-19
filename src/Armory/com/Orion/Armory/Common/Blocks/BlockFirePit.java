@@ -5,15 +5,16 @@ package com.Orion.Armory.Common.Blocks;
 /  Created on : 02/10/2014
 */
 
+import com.Orion.Armory.Armory;
 import com.Orion.Armory.Common.Logic.Multiblock.IMultiBlockPart;
 import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Util.References;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -94,4 +95,23 @@ public class BlockFirePit extends BlockContainer implements IMultiBlockPart
     {
         return false;
     }
+
+    @Override
+    public boolean onBlockActivated(World pWorld, int pX, int pY, int pZ, EntityPlayer pPlayer, int pFaceHit, float par7, float par8, float par9)
+    {
+        if (pPlayer.isSneaking())
+        {
+            return false;
+        }
+        else
+        {
+            if (!pWorld.isRemote) {
+                if (pWorld.getTileEntity(pX, pY, pZ) instanceof TileEntityFirePit) {
+                    pPlayer.openGui(Armory.instance, References.GuiIDs.FIREPITID, pWorld, pX, pY, pZ);
+                }
+            }
+            return true;
+        }
+    }
+
 }

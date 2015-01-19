@@ -18,11 +18,14 @@ import net.minecraftforge.common.util.EnumHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
+
 public class GeneralRegistry {
     //iInstance, iLogger and dummy iArmorMaterial.
     protected static GeneralRegistry iInstance;
     public static Logger iLogger = LogManager.getLogger("Armory");
     public static ItemArmor.ArmorMaterial iArmorMaterial = EnumHelper.addArmorMaterial("Armory-Dummy", 100, new int[]{0, 0, 0, 0}, 0);
+    public static HashMap<String, Float> iMeltingPoints = new HashMap<String, Float>();
 
     // Tabs for the creative inventory
     public static MedievalTab iTabMedievalArmor;
@@ -37,7 +40,6 @@ public class GeneralRegistry {
         //TODO: Initialize all creative tabs once implemented properly
     }
 
-
     public static GeneralRegistry getInstance()
     {
         if (iInstance == null) iInstance = new GeneralRegistry();
@@ -51,6 +53,16 @@ public class GeneralRegistry {
         } else {
             return null;
         }
+    }
+
+    public float getMeltingPoint(String pMaterialName)
+    {
+        return iMeltingPoints.get(pMaterialName);
+    }
+
+    public void setMeltingPoint(String pMaterialPoint, float pMeltingPoint)
+    {
+        iMeltingPoints.put(pMaterialPoint, pMeltingPoint);
     }
 
     public static class Blocks

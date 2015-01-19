@@ -5,9 +5,6 @@ package com.Orion.Armory.Common.TileEntity;
  *   Created on: 12-10-2014
  */
 
-import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
-import com.Orion.Armory.Common.Registry.IngotRegistry;
-import com.Orion.Armory.Util.HeatedIngots.NBTHelper;
 import com.Orion.Armory.Util.References;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.player.EntityPlayer;

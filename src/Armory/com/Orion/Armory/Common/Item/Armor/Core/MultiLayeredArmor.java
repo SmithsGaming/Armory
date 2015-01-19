@@ -51,7 +51,7 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
     }
 
     ///#############################################Functions for grabbing data#########################################
-    //Returns the InternalName (ID as handled by the OB Registry etc), which has to be unique, of this instance of a
+    //Returns the InternalName (ID as handled by the Armory Registry etc), which has to be unique, of this instance of a
     //MultiLayeredArmor (MLA).
     public String getInternalName() {
         return iInternalName;

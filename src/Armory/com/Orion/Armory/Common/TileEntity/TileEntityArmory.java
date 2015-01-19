@@ -12,8 +12,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityArmory extends TileEntity
 {
-    private String iName;
-    private ForgeDirection iCurrentDirection;
+    protected String iName = "";
+    protected ForgeDirection iCurrentDirection;
 
     @Override
     public void readFromNBT(NBTTagCompound pCompound) {

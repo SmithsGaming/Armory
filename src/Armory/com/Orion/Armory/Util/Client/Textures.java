@@ -100,7 +100,7 @@ public class Textures
 
     public static class Gui
     {
-        private static String GUITEXTUREPATH = "armory:gui/";
+        private static String GUITEXTUREPATH = "armory:textures/gui/";
 
         public static class Basic
         {
@@ -109,5 +109,7 @@ public class Textures
             public static String LEDGERLEFT = BASICTEXTUREPATH + "Ledger/ledger_left.png";
             public static String LEDGERRIGHT = BASICTEXTUREPATH + "Ledger/ledger_right.png";
         }
+
+        public static String FIREPIT = GUITEXTUREPATH + "FirePit.png";
     }
 }

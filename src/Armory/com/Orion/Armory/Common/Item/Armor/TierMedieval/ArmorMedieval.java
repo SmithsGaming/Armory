@@ -6,9 +6,9 @@ package com.Orion.Armory.Common.Item.Armor.TierMedieval;
  */
 
 import com.Orion.Armory.Client.Models.ModelAExtendedChain;
+import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
 import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
-import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.References;
@@ -20,7 +20,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
 
@@ -86,8 +85,8 @@ public class ArmorMedieval extends MultiLayeredArmor {
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
     @SideOnly(Side.CLIENT)
-    @Override
-    public void getSubItems(Item pArmorCore, CreativeTabs pCreativeTab, List pItemStacks)
+     @Override
+     public void getSubItems(Item pArmorCore, CreativeTabs pCreativeTab, List pItemStacks)
     {
         for(ArmorMaterialMedieval tMaterial: MedievalRegistry.getInstance().getArmorMaterials().values()){
             ItemStack tStandardArmor = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(this.getInternalName()), tMaterial.iInternalName);

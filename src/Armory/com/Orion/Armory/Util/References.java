@@ -200,6 +200,7 @@ public class References
         {
             public static final String ItemMetalRing = "Armory.Items.Components.MetalRing";
             public static final String ItemMetalChain = "Armory.Items.Components.MetalChain";
+            public static final String ItemHeatedIngot = "Armory.Items.Components.HeatedIngots";
         }
 
         public class MultiBlock
@@ -278,10 +279,9 @@ public class References
 
         public class HeatedIngot
         {
-            public static final String OriginalItem = "OriginalItemID";
-            public static final String OriginalNBT = "OriginalNBT";
-            public static final String OriginalMeta = "OriginalMeta";
-            public static final String Temperature = "Temperature";
+            public static final String ORIGINALITEM = "ORIGINALITEM";
+            public static final String MATERIALID = "OriginalMaterial";
+            public static final String CURRENTTEMPERATURE = "CURRENTTEMPERATURE";
         }
 
         public class TE
@@ -290,6 +290,20 @@ public class References
             {
                 public static final String DIRECTION = "Direction";
                 public static final String NAME = "Name";
+                public static final String SLOT = "Slot";
+            }
+
+            public class FirePit
+            {
+                public static final String MAXTEMPERATURE = "MaxTemperature";
+                public static final String CURRENTTEMPERATURE = "CurrentTemperature";
+                public static final String CURRENTLYBURNING = "IsBurning";
+                public static final String LASTADDEDHEAT = "LastAddedHeat";
+                public static final String INGOTITEMSTACKS = "Ingots";
+                public static final String FUELITEMSTACKS = "FuelStacks";
+                public static final String FUELSTACKBURNINGTIME = "FuelStackBurningTime";
+                public static final String FUELSTACKFUELAMOUNT = "FuelStackFuelAmount";
+
             }
         }
     }
@@ -298,6 +312,11 @@ public class References
     {
         public static final int FirePitID = RenderingRegistry.getNextAvailableRenderId();
         public static final int HeaterID = RenderingRegistry.getNextAvailableRenderId();
+    }
+
+    public static class GuiIDs
+    {
+        public static int FIREPITID = 0;
     }
 
 }

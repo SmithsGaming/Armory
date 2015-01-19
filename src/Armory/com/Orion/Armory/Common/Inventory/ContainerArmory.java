@@ -11,8 +11,10 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerArmory extends Container
+public abstract class ContainerArmory extends Container
 {
+    protected final int PLAYER_INVENTORY_ROWS = 3;
+    protected final int PLAYER_INVENTORY_COLUMNS = 9;
 
     @Override
     public boolean canInteractWith(EntityPlayer pPlayer) {
@@ -20,73 +22,73 @@ public class ContainerArmory extends Container
     }
 
     @Override
-    protected boolean mergeItemStack(ItemStack itemStack, int slotMin, int slotMax, boolean ascending)
+    protected boolean mergeItemStack(ItemStack pItemStack, int pSlotMin, int pSlotMax, boolean pAscending)
     {
-        boolean slotFound = false;
-        int currentSlotIndex = ascending ? slotMax - 1 : slotMin;
+        boolean tSlotFound = false;
+        int tCurrentSlotIndex = pAscending ? pSlotMax - 1 : pSlotMin;
 
-        Slot slot;
-        ItemStack stackInSlot;
+        Slot tSlot;
+        ItemStack tSlotInStack;
 
-        if (itemStack.isStackable())
+        if (pItemStack.isStackable())
         {
-            while (itemStack.stackSize > 0 && (!ascending && currentSlotIndex < slotMax || ascending && currentSlotIndex >= slotMin))
+            while (pItemStack.stackSize > 0 && (!pAscending && tCurrentSlotIndex < pSlotMax || pAscending && tCurrentSlotIndex >= pSlotMin))
             {
-                slot = (Slot) this.inventorySlots.get(currentSlotIndex);
-                stackInSlot = slot.getStack();
+                tSlot = (Slot) this.inventorySlots.get(tCurrentSlotIndex);
+                tSlotInStack = tSlot.getStack();
 
-                if (slot.isItemValid(itemStack) && ItemStackHelper.equalsIgnoreStackSize(itemStack, stackInSlot))
+                if (tSlot.isItemValid(pItemStack) && ItemStackHelper.equalsIgnoreStackSize(pItemStack, tSlotInStack))
                 {
-                    int combinedStackSize = stackInSlot.stackSize + itemStack.stackSize;
-                    int slotStackSizeLimit = Math.min(stackInSlot.getMaxStackSize(), slot.getSlotStackLimit());
+                    int combinedStackSize = tSlotInStack.stackSize + pItemStack.stackSize;
+                    int slotStackSizeLimit = Math.min(tSlotInStack.getMaxStackSize(), tSlot.getSlotStackLimit());
 
                     if (combinedStackSize <= slotStackSizeLimit)
                     {
-                        itemStack.stackSize = 0;
-                        stackInSlot.stackSize = combinedStackSize;
-                        slot.onSlotChanged();
-                        slotFound = true;
+                        pItemStack.stackSize = 0;
+                        tSlotInStack.stackSize = combinedStackSize;
+                        tSlot.onSlotChanged();
+                        tSlotFound = true;
                     }
-                    else if (stackInSlot.stackSize < slotStackSizeLimit)
+                    else if (tSlotInStack.stackSize < slotStackSizeLimit)
                     {
-                        itemStack.stackSize -= slotStackSizeLimit - stackInSlot.stackSize;
-                        stackInSlot.stackSize = slotStackSizeLimit;
-                        slot.onSlotChanged();
-                        slotFound = true;
+                        pItemStack.stackSize -= slotStackSizeLimit - tSlotInStack.stackSize;
+                        tSlotInStack.stackSize = slotStackSizeLimit;
+                        tSlot.onSlotChanged();
+                        tSlotFound = true;
                     }
                 }
 
-                currentSlotIndex += ascending ? -1 : 1;
+                tCurrentSlotIndex += pAscending ? -1 : 1;
             }
         }
 
-        if (itemStack.stackSize > 0)
+        if (pItemStack.stackSize > 0)
         {
-            currentSlotIndex = ascending ? slotMax - 1 : slotMin;
+            tCurrentSlotIndex = pAscending ? pSlotMax - 1 : pSlotMin;
 
-            while (!ascending && currentSlotIndex < slotMax || ascending && currentSlotIndex >= slotMin)
+            while (!pAscending && tCurrentSlotIndex < pSlotMax || pAscending && tCurrentSlotIndex >= pSlotMin)
             {
-                slot = (Slot) this.inventorySlots.get(currentSlotIndex);
-                stackInSlot = slot.getStack();
+                tSlot = (Slot) this.inventorySlots.get(tCurrentSlotIndex);
+                tSlotInStack = tSlot.getStack();
 
-                if (slot.isItemValid(itemStack) && stackInSlot == null)
+                if (tSlot.isItemValid(pItemStack) && tSlotInStack == null)
                 {
-                    slot.putStack(ItemStackHelper.cloneItemStack(itemStack, Math.min(itemStack.stackSize, slot.getSlotStackLimit())));
-                    slot.onSlotChanged();
+                    tSlot.putStack(ItemStackHelper.cloneItemStack(pItemStack, Math.min(pItemStack.stackSize, tSlot.getSlotStackLimit())));
+                    tSlot.onSlotChanged();
 
-                    if (slot.getStack() != null)
+                    if (tSlot.getStack() != null)
                     {
-                        itemStack.stackSize -= slot.getStack().stackSize;
-                        slotFound = true;
+                        pItemStack.stackSize -= tSlot.getStack().stackSize;
+                        tSlotFound = true;
                     }
 
                     break;
                 }
 
-                currentSlotIndex += ascending ? -1 : 1;
+                tCurrentSlotIndex += pAscending ? -1 : 1;
             }
         }
 
-        return slotFound;
+        return tSlotFound;
     }
 }

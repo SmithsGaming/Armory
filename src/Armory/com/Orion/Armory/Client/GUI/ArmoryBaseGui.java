@@ -21,6 +21,9 @@ import java.util.ArrayList;
 
 public class ArmoryBaseGui extends GuiContainer
 {
+    LedgerManager iLedgers = new LedgerManager(this);
+    ResourceLocation iBackGroundTexture;
+
 
     public ArmoryBaseGui(Container pTargetedContainer) {
         super(pTargetedContainer);
@@ -28,8 +31,21 @@ public class ArmoryBaseGui extends GuiContainer
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float pFloat, int pMouseX, int pMouseY) {
+        //Render ledgers background at a lower level then the rest!
+        GL11.glPushMatrix();
+        this.zLevel -= 2;
+        iLedgers.drawBackgroundOfLedgers();
+        this.zLevel += 2;
+        GL11.glPopMatrix();
 
+        GL11.glPushMatrix();
+        GL11.glTranslatef(guiLeft, guiTop, 0F);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.mc.getTextureManager().bindTexture(iBackGroundTexture);
+        this.drawTexturedModalRect(0, 0, 0, 0, this.xSize, this.ySize);
+        GL11.glPopMatrix();
     }
+
 
     protected class LedgerManager
     {
@@ -67,6 +83,52 @@ public class ArmoryBaseGui extends GuiContainer
             }
 
             return null;
+        }
+
+        public void drawBackgroundOfLedgers()
+        {
+            int tYPos = guiTop + 8;
+            for(int i = 0; i < ledgersLeft.size(); i++)
+            {
+                Ledger tLedger = ledgersLeft.get(i);
+                tLedger.update();
+
+                tLedger.drawBackGround(guiLeft, tYPos);
+                tYPos += tLedger.getHeight();
+            }
+
+            tYPos = guiTop + 8;
+            for(int i = 0; i < ledgersRight.size(); i++)
+            {
+                Ledger tLedger = ledgersRight.get(i);
+                tLedger.update();
+
+                tLedger.drawBackGround(guiLeft+xSize, tYPos);
+                tYPos += tLedger.getHeight();
+            }
+        }
+
+        public void drawForegroundOfLedgers(int pMouseX, int pMouseY)
+        {
+            int tYPos = guiTop + 8;
+            for(int i = 0; i < ledgersLeft.size(); i++)
+            {
+                Ledger tLedger = ledgersLeft.get(i);
+
+                tLedger.drawForeGround(guiLeft, tYPos);
+                if (tLedger.checkIfPointIsInLedger(pMouseX, pMouseY)) { tLedger.drawToolTips(pMouseX, pMouseY); }
+                tYPos += tLedger.getHeight();
+            }
+
+            tYPos = guiTop + 8;
+            for(int i = 0; i < ledgersRight.size(); i++)
+            {
+                Ledger tLedger = ledgersRight.get(i);
+
+                tLedger.drawForeGround(guiLeft+xSize, tYPos);
+                if (tLedger.checkIfPointIsInLedger(pMouseX, pMouseY)) { tLedger.drawToolTips(pMouseX, pMouseY); }
+                tYPos += tLedger.getHeight();
+            }
         }
     }
 
@@ -133,8 +195,6 @@ public class ArmoryBaseGui extends GuiContainer
         /*
          * parameter pX: always directly to the border of the GUI
          * parameter pY: always directly under the last rendered Ledger
-         *
-         *
          */
         public void drawBackGround(int pX, int pY)
         {
@@ -181,6 +241,11 @@ public class ArmoryBaseGui extends GuiContainer
         }
 
         public abstract void drawForeGround(int pX, int pY);
+
+        public void drawToolTips(int pMouseX, int pMouseY)
+        {
+
+        }
 
         public void setFullyOpen()
         {

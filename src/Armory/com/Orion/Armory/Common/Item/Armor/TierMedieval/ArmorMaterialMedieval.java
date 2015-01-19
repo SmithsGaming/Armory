@@ -6,9 +6,12 @@ package com.Orion.Armory.Common.Item.Armor.TierMedieval;
 */
 
 
+import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.Client.Color;
 import com.Orion.Armory.Util.Client.Colors;
+import net.minecraft.item.ItemStack;
 
 import java.security.InvalidParameterException;
 import java.util.HashMap;
@@ -26,7 +29,7 @@ public class ArmorMaterialMedieval
     public HashMap<String, Integer> iPartModifiers = new HashMap<String, Integer>();
 
     //Constructor
-    public ArmorMaterialMedieval(String pInternalName, String pVisibleName, String pVisibleNameColor, boolean pBaseArmorMaterial, HashMap<String, Float> pBaseDamageAbsorption, HashMap<String, Integer> pBaseDurability, HashMap<String, Integer> pPartModifiers, HashMap<String, Boolean> pActiveParts, Color pColor)
+    public ArmorMaterialMedieval(String pInternalName, String pVisibleName, String pVisibleNameColor, boolean pBaseArmorMaterial, HashMap<String, Float> pBaseDamageAbsorption, HashMap<String, Integer> pBaseDurability, HashMap<String, Integer> pPartModifiers, HashMap<String, Boolean> pActiveParts, Color pColor, float pMeltingPoint, ItemStack pBaseItemStack)
     {
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
@@ -37,6 +40,12 @@ public class ArmorMaterialMedieval
         iPartModifiers = pPartModifiers;
         iActiveParts = pActiveParts;
         iColor = pColor;
+
+        if (!(GeneralRegistry.iMeltingPoints.containsKey(pInternalName)))
+        {
+            GeneralRegistry.iMeltingPoints.put(pInternalName, pMeltingPoint);
+            HeatedIngotFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
+        }
     }
 
     public void registerNewActivePart(String pUpgradeInternalName, boolean pPartState)
