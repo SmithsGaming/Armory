@@ -30,3 +30,4 @@ run
 *.ipr
 *.iws
 *.iml
+*.db

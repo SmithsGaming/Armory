@@ -56,7 +56,7 @@ public class ItemHeatedIngot extends Item
     @Override
     public double getDurabilityForDisplay(ItemStack pStack)
     {
-        return (pStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE)) / (HeatedIngotFactory.getInstance().getMeltingPointFromMaterial(pStack));
+        return  1 - (pStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE)) / (HeatedIngotFactory.getInstance().getMeltingPointFromMaterial(pStack));
     }
 
     @Override
@@ -84,8 +84,14 @@ public class ItemHeatedIngot extends Item
             {
                 GeneralRegistry.iLogger.info("Tried to create a HeatedIngot from: " + HeatedIngotFactory.getInstance().getMaterialIDFromItemStack(tCooledStack) + " and failed!");
             }
-
         }
+    }
+
+    @Override
+    public String getUnlocalizedName (ItemStack pStack)
+    {
+        ItemStack tOriginalItemStack = ItemStack.loadItemStackFromNBT(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.HeatedIngot.ORIGINALITEM));
+        return tOriginalItemStack.getUnlocalizedName();
     }
 
     public static void setItemTemperature(ItemStack pItemStack, double pNewTemp)

@@ -7,6 +7,7 @@ package com.Orion.Armory.Common.TileEntity;
 
 import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedIngot;
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
 import com.Orion.Armory.Network.NetworkManager;
 import com.Orion.Armory.Util.References;
@@ -268,7 +269,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
                 if (ItemHeatedIngot.getItemTemperature(tItemStack) < iMaxTemperature) {
                     tSendUpdate = true;
 
-                    ItemHeatedIngot.setItemTemperature(tItemStack, ItemHeatedIngot.getItemTemperature(tItemStack) + (iLastAddedHeat / tTotalIngotsGettingHeat));
+                    double tNewHeat = ItemHeatedIngot.getItemTemperature(tItemStack) + (iLastAddedHeat / (tTotalIngotsGettingHeat * 200));
+                    if (tNewHeat > GeneralRegistry.getInstance().getMeltingPoint(HeatedIngotFactory.getInstance().getMaterialIDFromItemStack(tItemStack)))
+                    {
+                        tNewHeat = 0;
+                    }
+
+                    ItemHeatedIngot.setItemTemperature(tItemStack, tNewHeat);
                 }
             }
         }
@@ -312,6 +319,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
                 tTotalAddedHeat += heatFurnace(TileEntityFurnace.getItemBurnTime(iFuelStacks[tFuelStackIndex]));
             }
         }
+
+        tTotalAddedHeat = tTotalAddedHeat / 200;
 
         iLastAddedHeat = tTotalAddedHeat;
         return tTotalAddedHeat;
@@ -370,7 +379,6 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         }
 
         return tIngotAmount;
-
     }
 
     public float heatFurnace(float pFuelAmount)
