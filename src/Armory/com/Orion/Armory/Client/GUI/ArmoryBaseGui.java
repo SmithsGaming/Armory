@@ -5,16 +5,14 @@ package com.Orion.Armory.Client.Gui;
 /  Created on : 15/01/2015
 */
 
-import com.Orion.Armory.Util.Client.Color;
-import com.Orion.Armory.Util.Client.Colors;
-import com.Orion.Armory.Util.Client.SessionVars;
-import com.Orion.Armory.Util.Client.Textures;
+import com.Orion.Armory.Util.Client.*;
 import com.Orion.Armory.Util.References;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -140,7 +138,8 @@ public class ArmoryBaseGui extends GuiContainer
         public int iLastYOrigin = 0;
 
         public Color iBackgroundColor = Colors.Ledgers.DEFAULT;
-        public IIcon iHeaderIcon;
+        public ResourceLocation iHeaderIcon;
+        public Color iHeaderTextColor;
         public String iHeader = "";
         public Boolean iOpen = false;
         public LedgerDirection iDirection;
@@ -193,7 +192,7 @@ public class ArmoryBaseGui extends GuiContainer
         }
 
         /*
-         * parameter pX: always directly to the border of the GUI
+         * parameter pX: always directly to the border of the Gui
          * parameter pY: always directly under the last rendered Ledger
          */
         public void drawBackGround(int pX, int pY)
@@ -215,12 +214,13 @@ public class ArmoryBaseGui extends GuiContainer
 
         public void drawHeaderIcon(int pX, int pY)
         {
-            drawTexturedModelRectFromIcon(pX + getWidth() + 4, pY + 4, iHeaderIcon, 16, 16);
+            mc.renderEngine.bindTexture(iHeaderIcon);
+            drawTexturedModalRect(pX + getWidth() + 4, pY + 4, 0, 16, 16, 16);
         }
 
         public void drawHeaderText(int pX, int pY, FontRenderer pFont)
         {
-            drawCenteredString(pFont, iHeader, (iMaxWidthOpen - 24) / 2, 4, Colors.Ledgers.DEFAULT.getColor());
+            drawCenteredString(pFont, iHeader, (iMaxWidthOpen - 48) / 2, 4, iHeaderTextColor.getColor());
         }
 
         public void draw(int pX, int pY)
@@ -279,6 +279,34 @@ public class ArmoryBaseGui extends GuiContainer
             }
 
             return false;
+        }
+    }
+
+    protected class InfoLedger extends Ledger
+    {
+        final String[] iTranslatedInfoText;
+
+        public InfoLedger(String pTitel, String[] pUntranslatedInfotext, ResourceLocation pIconLocation) {
+            iHeader = pTitel;
+            iHeaderIcon = pIconLocation;
+            iTranslatedInfoText = new String[pUntranslatedInfotext.length];
+
+            for(int tRule = 0; tRule < pUntranslatedInfotext.length; tRule++)
+            {
+                iTranslatedInfoText[tRule] = StatCollector.translateToLocal(pUntranslatedInfotext[tRule]);
+            }
+
+            iMaxWidthOpen = 48 + StringUtils.GetMininumWidth(iTranslatedInfoText, mc.fontRenderer);
+            iMaxHeightOpen = 24 * (pUntranslatedInfotext.length + 1);
+        }
+
+
+        @Override
+        public void drawForeGround(int pX, int pY) {
+            for (int tRule = 0; tRule < iTranslatedInfoText.length; tRule++)
+            {
+                drawString(mc.fontRenderer, iTranslatedInfoText[tRule],pX + 24, pY + 24 * (tRule + 1), Colors.Ledgers.BLACK.getColor());
+            }
         }
     }
 
