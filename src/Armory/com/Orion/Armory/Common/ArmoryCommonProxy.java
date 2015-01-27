@@ -2,7 +2,6 @@ package com.Orion.Armory.Common;
 
 
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
-import cpw.mods.fml.relauncher.Side;
 
 /**
  * Created by Orion on 26-4-2014
@@ -15,4 +14,7 @@ public class ArmoryCommonProxy
     {
         ArmoryInitializer.InitializeServer();
     }
+
+    public void registerEventHandlers(){}
+
 }

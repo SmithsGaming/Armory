@@ -105,11 +105,11 @@ public class Textures
         public static class Basic
         {
             private static String BASICTEXTUREPATH = GUITEXTUREPATH + "Basic/";
-
-            public static String LEDGERLEFT = BASICTEXTUREPATH + "Ledger/ledger_left.png";
-            public static String LEDGERRIGHT = BASICTEXTUREPATH + "Ledger/ledger_right.png";
+            public static String LEDGERLEFT = BASICTEXTUREPATH + "Ledger/ledger.png";
+            public static String INFOICON = "armory:Gui-Icons/16x Info icon";
         }
 
         public static String FIREPIT = GUITEXTUREPATH + "FirePit.png";
+        public static String THERMOMETER = "armory:Gui-Icons/16x Thermo";
     }
 }

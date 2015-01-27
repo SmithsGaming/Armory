@@ -39,6 +39,7 @@ public class Armory
     public void preInit (FMLPreInitializationEvent event)
     {
         proxy.initializeArmory();
+        proxy.registerEventHandlers();
     }
 
     @Mod.EventHandler
@@ -47,5 +48,4 @@ public class Armory
         NetworkManager.Init();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
     }
-
 }
