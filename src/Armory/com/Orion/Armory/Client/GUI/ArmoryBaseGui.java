@@ -6,9 +6,11 @@ package com.Orion.Armory.Client.Gui;
 */
 
 import com.Orion.Armory.Util.Client.*;
-import com.Orion.Armory.Util.References;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
@@ -16,24 +18,50 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ArmoryBaseGui extends GuiContainer
 {
     LedgerManager iLedgers = new LedgerManager(this);
     ResourceLocation iBackGroundTexture;
+    int iDisplayHeight;
+    int iDisplayWidth;
+    int iGuiScale;
 
 
     public ArmoryBaseGui(Container pTargetedContainer) {
         super(pTargetedContainer);
+        calcGUIProperties();
     }
+
+    protected void calcGUIProperties()
+    {
+        Minecraft mc = Minecraft.getMinecraft();
+        ScaledResolution sc = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+        iDisplayWidth = sc.getScaledWidth();
+        iDisplayHeight = sc.getScaledHeight();
+        iGuiScale = sc.getScaleFactor();
+    }
+
+    private void calcScaleFactor(int guiScale)
+    {
+        this.iGuiScale = 1;
+        if (guiScale == 0)
+            guiScale = 1000;
+
+        while (this.iGuiScale < guiScale && this.iDisplayWidth / (this.iGuiScale + 1) >= 320
+                && this.iDisplayHeight / (this.iGuiScale + 1) >= 240)
+            ++this.iGuiScale;
+    }
+
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float pFloat, int pMouseX, int pMouseY) {
         //Render ledgers background at a lower level then the rest!
         GL11.glPushMatrix();
-        this.zLevel -= 2;
-        iLedgers.drawBackgroundOfLedgers();
-        this.zLevel += 2;
+        //this.zLevel -= 2;
+        iLedgers.drawLedgers();
+        //this.zLevel += 2;
         GL11.glPopMatrix();
 
         GL11.glPushMatrix();
@@ -44,6 +72,16 @@ public class ArmoryBaseGui extends GuiContainer
         GL11.glPopMatrix();
     }
 
+    @Override
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+        int mX = mouseX - guiLeft;
+        int mY = mouseY - guiTop;
+
+        super.mouseClicked(mouseX, mouseY, mouseButton);
+
+        // / Handle ledger clicks
+        if (iLedgers.handleMouseClicked(mouseX, mouseY, mouseButton)) { return; }
+    }
 
     protected class LedgerManager
     {
@@ -58,11 +96,13 @@ public class ArmoryBaseGui extends GuiContainer
 
         public void addLedgerLeft(Ledger pNewLedger)
         {
+            pNewLedger.iDirection = LedgerDirection.Left;
             ledgersLeft.add(pNewLedger);
         }
 
         public void addLedgerRight(Ledger pNewLedger)
         {
+            pNewLedger.iDirection = LedgerDirection.Right;
             ledgersRight.add(pNewLedger);
         }
 
@@ -83,7 +123,7 @@ public class ArmoryBaseGui extends GuiContainer
             return null;
         }
 
-        public void drawBackgroundOfLedgers()
+        public void drawLedgers()
         {
             int tYPos = guiTop + 8;
             for(int i = 0; i < ledgersLeft.size(); i++)
@@ -91,7 +131,7 @@ public class ArmoryBaseGui extends GuiContainer
                 Ledger tLedger = ledgersLeft.get(i);
                 tLedger.update();
 
-                tLedger.drawBackGround(guiLeft, tYPos);
+                tLedger.draw(guiLeft, tYPos);
                 tYPos += tLedger.getHeight();
             }
 
@@ -101,59 +141,64 @@ public class ArmoryBaseGui extends GuiContainer
                 Ledger tLedger = ledgersRight.get(i);
                 tLedger.update();
 
-                tLedger.drawBackGround(guiLeft+xSize, tYPos);
+                tLedger.draw(guiLeft+xSize, tYPos);
                 tYPos += tLedger.getHeight();
             }
         }
 
-        public void drawForegroundOfLedgers(int pMouseX, int pMouseY)
+        public boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton)
         {
-            int tYPos = guiTop + 8;
-            for(int i = 0; i < ledgersLeft.size(); i++)
-            {
-                Ledger tLedger = ledgersLeft.get(i);
 
-                tLedger.drawForeGround(guiLeft, tYPos);
-                if (tLedger.checkIfPointIsInLedger(pMouseX, pMouseY)) { tLedger.drawToolTips(pMouseX, pMouseY); }
-                tYPos += tLedger.getHeight();
+            if (pMouseButton == 0) {
+
+                Ledger ledger = this.getLedgetAt(pMouseX, pMouseY);
+
+                // Default action only if the mouse click was not handled by the
+                // ledger itself.
+                if (ledger != null && !ledger.handleMouseClicked(pMouseX, pMouseY, pMouseButton)) {
+
+                    for (Ledger other : ledgersLeft) {
+                        if (other != ledger && other.isOpen()) {
+                            other.toggleOpenState();
+                        }
+                    }
+                    for (Ledger other : ledgersRight) {
+                        if (other != ledger && other.isOpen()) {
+                            other.toggleOpenState();
+                        }
+                    }
+                    ledger.toggleOpenState();
+                    return true;
+                }
             }
-
-            tYPos = guiTop + 8;
-            for(int i = 0; i < ledgersRight.size(); i++)
-            {
-                Ledger tLedger = ledgersRight.get(i);
-
-                tLedger.drawForeGround(guiLeft+xSize, tYPos);
-                if (tLedger.checkIfPointIsInLedger(pMouseX, pMouseY)) { tLedger.drawToolTips(pMouseX, pMouseY); }
-                tYPos += tLedger.getHeight();
-            }
+            return false;
         }
     }
 
     protected abstract class Ledger
     {
-        public int iCurrentXExtension;
-        public int iCurrentYExtension;
+        public int iCurrentXExtension = 24;
+        public int iCurrentYExtension = 24;
         public int iLastXOrigin = 0;
         public int iLastYOrigin = 0;
 
         public Color iBackgroundColor = Colors.Ledgers.DEFAULT;
-        public ResourceLocation iHeaderIcon;
-        public Color iHeaderTextColor;
+        public IIcon iHeaderIcon;
+        public Color iHeaderTextColor = Colors.Ledgers.BLACK;
         public String iHeader = "";
         public Boolean iOpen = false;
+        public Boolean iClosed = true;
         public LedgerDirection iDirection;
 
-        public int iLimitWidth = 128;
-        public int iLimitHeight = 128;
+        public int iLimitWidth = 256;
+        public int iLimitHeight = 256;
 
         public int iMaxHeightOpen = 124;
         public int iMaxHeightClosed = 24;
         public int iMaxWidthOpen = 124;
         public int iMaxWidthClosed = 24;
 
-        public ResourceLocation TEXTURELEFT = new ResourceLocation(References.General.MOD_ID.toLowerCase(), Textures.Gui.Basic.LEDGERLEFT);
-        public ResourceLocation TEXTURERIGHT = new ResourceLocation(References.General.MOD_ID.toLowerCase(), Textures.Gui.Basic.LEDGERRIGHT);
+        public ResourceLocation TEXTURELEFT = new ResourceLocation(Textures.Gui.Basic.LEDGERLEFT);
 
         public void update()
         {
@@ -166,6 +211,16 @@ public class ArmoryBaseGui extends GuiContainer
                 iCurrentXExtension -= 4;
             }
 
+            if (iCurrentYExtension > iMaxHeightClosed)
+            {
+                iClosed = false;
+            }
+            else
+            {
+                iClosed = true;
+            }
+
+
             if (iOpen && iCurrentYExtension < iMaxHeightOpen)
             {
                 iCurrentYExtension += 4;
@@ -176,14 +231,14 @@ public class ArmoryBaseGui extends GuiContainer
             }
         }
 
-        public int getWidth()
+        public int getOriginOffSet()
         {
             if(iDirection == LedgerDirection.Left)
             {
                 return iCurrentXExtension * -1;
             }
 
-            return iCurrentXExtension;
+            return 4;
         }
 
         public int getHeight()
@@ -197,48 +252,69 @@ public class ArmoryBaseGui extends GuiContainer
          */
         public void drawBackGround(int pX, int pY)
         {
+
             GL11.glColor3f(iBackgroundColor.getColorRedFloat(), iBackgroundColor.getColorGreenFloat(), iBackgroundColor.getColorBlueFloat());
 
-            if(iDirection == LedgerDirection.Left)
+            mc.renderEngine.bindTexture(TEXTURELEFT);
+
+            if (iDirection == LedgerDirection.Left)
             {
-                mc.renderEngine.bindTexture(TEXTURELEFT);
+                drawTexturedModalRect(pX + getOriginOffSet(), pY, 0, 0, iCurrentXExtension, 4);
+                drawTexturedModalRect(pX + getOriginOffSet(), pY + 3, 0, 3, iCurrentXExtension, iCurrentYExtension - 7);
+                drawTexturedModalRect(pX + getOriginOffSet(), pY + iCurrentYExtension - 4, 0, 252, iCurrentXExtension, 4);
+                drawTexturedModalRect(pX + getOriginOffSet() + iCurrentXExtension, pY, 252, 256 - iCurrentYExtension, 4, iCurrentYExtension);
+                drawTexturedModalRect(pX + getOriginOffSet() + iCurrentXExtension, pY, 252, 0, 4, 4);
             }
             else
             {
-                mc.renderEngine.bindTexture(TEXTURERIGHT);
+                drawTexturedModalRect(pX, pY + 4, 4,4, iCurrentXExtension + 4, iCurrentYExtension - 8);
+                drawTexturedModalRect(pX-4, pY, 0,0, iCurrentXExtension + 8, 4);
+                drawTexturedModalRect(pX-4, pY + iCurrentYExtension - 4, 0, 252, iCurrentXExtension + 8, 4);
+                drawTexturedModalRect(pX-4, pY + 4, 4,4, 4, iCurrentYExtension-8);
+                drawTexturedModalRect(pX + getOriginOffSet() + iCurrentXExtension, pY, 252, 0, 4, iCurrentYExtension);
+                drawTexturedModalRect(pX + getOriginOffSet() + iCurrentXExtension, pY +iCurrentYExtension - 4, 252, 252, 4, 4);
             }
 
-            drawTexturedModalRect(pX + getWidth(), pY, 0, 256, iCurrentXExtension, iCurrentYExtension);
-            GL11.glColor3f(1.0F, 1.0F, 1.0F);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         }
 
         public void drawHeaderIcon(int pX, int pY)
         {
-            mc.renderEngine.bindTexture(iHeaderIcon);
-            drawTexturedModalRect(pX + getWidth() + 4, pY + 4, 0, 16, 16, 16);
+            mc.renderEngine.bindTexture(TextureMap.locationItemsTexture);
+            drawTexturedModelRectFromIcon(pX + getOriginOffSet() + 4, pY + 4, iHeaderIcon, 16, 16);
         }
 
         public void drawHeaderText(int pX, int pY, FontRenderer pFont)
         {
-            drawCenteredString(pFont, iHeader, (iMaxWidthOpen - 48) / 2, 4, iHeaderTextColor.getColor());
+            drawCenteredString(pFont, iHeader, pX + getOriginOffSet() + 24 + (pFont.getStringWidth(iHeader) / 2), pY + 4, iHeaderTextColor.getColor());
         }
 
         public void draw(int pX, int pY)
         {
+            GL11.glEnable(GL11.GL_SCISSOR_TEST);
+            GL11.glPushAttrib(GL11.GL_SCISSOR_BIT);
+            GL11.glScissor((pX-4) * iGuiScale, (iDisplayHeight) - (( pY + iCurrentYExtension) * iGuiScale), (4 + iCurrentXExtension) * iGuiScale, (iCurrentYExtension) * iGuiScale);
+
             drawBackGround(pX, pY);
             drawHeaderIcon(pX, pY);
 
-            if (!iOpen)
+            iLastXOrigin = pX + getOriginOffSet();
+            iLastYOrigin = pY;
+
+            if (iClosed)
             {
+                GL11.glPopAttrib();
+                GL11.glDisable(GL11.GL_SCISSOR_TEST);
                 return;
             }
 
+
             drawHeaderText(pX, pY, mc.fontRenderer);
             drawForeGround(pX, pY);
+            GL11.glPopAttrib();
+            GL11.glDisable(GL11.GL_SCISSOR_TEST);
+       }
 
-            iLastXOrigin = pX;
-            iLastYOrigin = pY;
-        }
 
         public abstract void drawForeGround(int pX, int pY);
 
@@ -268,11 +344,16 @@ public class ArmoryBaseGui extends GuiContainer
             }
         }
 
+        public boolean isOpen()
+        {
+            return iOpen;
+        }
+
         public boolean checkIfPointIsInLedger(int pTargetX, int pTargetY)
         {
-            if ((iLastXOrigin <= pTargetX) && ((iLastXOrigin + getWidth()) >= pTargetX))
+            if ((iLastXOrigin <= pTargetX) && ((iLastXOrigin + iCurrentXExtension) >= pTargetX))
             {
-                if((iLastYOrigin <= pTargetY) && ((iLastYOrigin + getHeight()) >= pTargetY))
+                if((iLastYOrigin <= pTargetY) && ((iLastYOrigin + iCurrentYExtension) >= pTargetY))
                 {
                     return true;
                 }
@@ -280,33 +361,49 @@ public class ArmoryBaseGui extends GuiContainer
 
             return false;
         }
+
+        public abstract boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton);
     }
 
     protected class InfoLedger extends Ledger
     {
         final String[] iTranslatedInfoText;
 
-        public InfoLedger(String pTitel, String[] pUntranslatedInfotext, ResourceLocation pIconLocation) {
-            iHeader = pTitel;
-            iHeaderIcon = pIconLocation;
-            iTranslatedInfoText = new String[pUntranslatedInfotext.length];
+        public InfoLedger(String pTitel, String[] pUntranslatedInfotext, IIcon pIcon) {
+            iHeader = StatCollector.translateToLocal(pTitel);
+            iHeaderIcon = pIcon;
+            iBackgroundColor = Colors.Ledgers.RED;
+            ArrayList<String> tTranslationsWithSplit = new ArrayList<String>();
+
+            int tMaxWidth = Minecraft.getMinecraft().fontRenderer.getStringWidth(iHeader);
 
             for(int tRule = 0; tRule < pUntranslatedInfotext.length; tRule++)
             {
-                iTranslatedInfoText[tRule] = StatCollector.translateToLocal(pUntranslatedInfotext[tRule]);
+                Collections.addAll(tTranslationsWithSplit, StringUtils.SplitString((StatCollector.translateToLocal(pUntranslatedInfotext[tRule])), tMaxWidth));
             }
 
-            iMaxWidthOpen = 48 + StringUtils.GetMininumWidth(iTranslatedInfoText, mc.fontRenderer);
-            iMaxHeightOpen = 24 * (pUntranslatedInfotext.length + 1);
+            iMaxWidthOpen = 48 + tMaxWidth;
+            iMaxHeightOpen = 24 + (Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + 3) * tTranslationsWithSplit.size() + 8;
+            iTranslatedInfoText = tTranslationsWithSplit.toArray(new String[0]);
         }
-
 
         @Override
         public void drawForeGround(int pX, int pY) {
             for (int tRule = 0; tRule < iTranslatedInfoText.length; tRule++)
             {
-                drawString(mc.fontRenderer, iTranslatedInfoText[tRule],pX + 24, pY + 24 * (tRule + 1), Colors.Ledgers.BLACK.getColor());
+                int iDrawingX = pX + 24 + getOriginOffSet();
+                int iDrawingY = pY + 24 + (mc.fontRenderer.FONT_HEIGHT + 3) * tRule;
+
+                if ((iDrawingY + mc.fontRenderer.FONT_HEIGHT + 3) <= (pY + iCurrentYExtension - 8))
+                {
+                    drawString(mc.fontRenderer, iTranslatedInfoText[tRule],iDrawingX, iDrawingY, Colors.Ledgers.BLACK.getColor());
+                }
             }
+        }
+
+        @Override
+        public boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton) {
+            return false;
         }
     }
 
