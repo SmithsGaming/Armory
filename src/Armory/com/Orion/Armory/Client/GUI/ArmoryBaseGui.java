@@ -1,4 +1,4 @@
-package com.Orion.Armory.Client.Gui;
+package com.Orion.Armory.Client.GUI;
 /*
 /  ArmoryBaseGui
 /  Created by : Orion
@@ -20,7 +20,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ArmoryBaseGui extends GuiContainer
+public abstract class ArmoryBaseGui extends GuiContainer
 {
     LedgerManager iLedgers = new LedgerManager(this);
     ResourceLocation iBackGroundTexture;
@@ -36,22 +36,16 @@ public class ArmoryBaseGui extends GuiContainer
 
     protected void calcGUIProperties()
     {
+        calcScaleFactor();
+    }
+
+    private void calcScaleFactor()
+    {
         Minecraft mc = Minecraft.getMinecraft();
         ScaledResolution sc = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
         iDisplayWidth = sc.getScaledWidth();
         iDisplayHeight = sc.getScaledHeight();
         iGuiScale = sc.getScaleFactor();
-    }
-
-    private void calcScaleFactor(int guiScale)
-    {
-        this.iGuiScale = 1;
-        if (guiScale == 0)
-            guiScale = 1000;
-
-        while (this.iGuiScale < guiScale && this.iDisplayWidth / (this.iGuiScale + 1) >= 320
-                && this.iDisplayHeight / (this.iGuiScale + 1) >= 240)
-            ++this.iGuiScale;
     }
 
 
@@ -69,8 +63,13 @@ public class ArmoryBaseGui extends GuiContainer
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(iBackGroundTexture);
         this.drawTexturedModalRect(0, 0, 0, 0, this.xSize, this.ySize);
+
+        drawGuiContainerBackGroundFeatures(pFloat, pMouseX, pMouseY);
+
         GL11.glPopMatrix();
     }
+
+    protected abstract void drawGuiContainerBackGroundFeatures(float pFloat, int pMouseX, int pMouseY);
 
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
@@ -291,10 +290,6 @@ public class ArmoryBaseGui extends GuiContainer
 
         public void draw(int pX, int pY)
         {
-            GL11.glEnable(GL11.GL_SCISSOR_TEST);
-            GL11.glPushAttrib(GL11.GL_SCISSOR_BIT);
-            GL11.glScissor((pX-4) * iGuiScale, (iDisplayHeight) - (( pY + iCurrentYExtension) * iGuiScale), (4 + iCurrentXExtension) * iGuiScale, (iCurrentYExtension) * iGuiScale);
-
             drawBackGround(pX, pY);
             drawHeaderIcon(pX, pY);
 
@@ -303,14 +298,22 @@ public class ArmoryBaseGui extends GuiContainer
 
             if (iClosed)
             {
-                GL11.glPopAttrib();
-                GL11.glDisable(GL11.GL_SCISSOR_TEST);
                 return;
             }
 
+            calcScaleFactor();
+
+            GL11.glPushAttrib(GL11.GL_SCISSOR_BIT);
+            GL11.glEnable(GL11.GL_SCISSOR_TEST);
+            GL11.glScissor((pX + getOriginOffSet() - 4) * iGuiScale, ((iDisplayHeight - pY - iCurrentYExtension) * iGuiScale), (iCurrentXExtension) * iGuiScale, (iCurrentYExtension) * iGuiScale);
+
+            //Debug code for the scissor box position
+            //mc.renderEngine.bindTexture(TextureMap.locationItemsTexture);
+            //drawTexturedModalRect(0, 0, 0, 0, iDisplayWidth, iDisplayHeight);
 
             drawHeaderText(pX, pY, mc.fontRenderer);
             drawForeGround(pX, pY);
+
             GL11.glPopAttrib();
             GL11.glDisable(GL11.GL_SCISSOR_TEST);
        }
@@ -376,6 +379,11 @@ public class ArmoryBaseGui extends GuiContainer
             ArrayList<String> tTranslationsWithSplit = new ArrayList<String>();
 
             int tMaxWidth = Minecraft.getMinecraft().fontRenderer.getStringWidth(iHeader);
+            if ( tMaxWidth < 120)
+            {
+                tMaxWidth = 120;
+            }
+
 
             for(int tRule = 0; tRule < pUntranslatedInfotext.length; tRule++)
             {

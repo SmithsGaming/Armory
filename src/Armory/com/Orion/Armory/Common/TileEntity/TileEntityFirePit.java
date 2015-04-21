@@ -23,6 +23,12 @@ import net.minecraft.util.StatCollector;
 
 public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
+    public float iPositiveHeat = 0.325F;
+    public float iNegativeHeat = -0.1F;
+
+    public float iPositiveHeatTerm = 0.325F;
+    public float iNegativeHeatTerm = -0.1F;
+
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
 
@@ -34,8 +40,14 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
     public float iMaxTemperature = 1500;
     public float iCurrentTemperature = 20;
+    public float iLastTemperature = 20;
     public float iLastAddedHeat = 0;
     public boolean iIsBurning = false;
+
+    public TileEntityFirePit()
+    {
+
+    }
 
     @Override
     public int getSizeInventory() {
@@ -238,92 +250,120 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
     @Override
     public void updateEntity()
     {
-        iIsBurning = false;
-        boolean tSendUpdate = false;
-
-        if (heatFurnace() > 0F)
+        if (worldObj.isRemote)
         {
-            tSendUpdate = true;
+            return;
         }
 
-        if (getHeatableIngotAmount() > 0)
-        {
-            int tTotalIngotsGettingHeat = getIngotAmount() + 1; // Plus 1 for the actual furnace getting heat!
+        iLastTemperature = iCurrentTemperature;
+        iIsBurning = false;
 
-            for (int tIngotStackIndex = 0; tIngotStackIndex < INGOTSTACKS_AMOUNT; tIngotStackIndex++) {
-                if (iIngotStacks[tIngotStackIndex] == null)
+        heatFurnace();
+
+        if (iLastAddedHeat > 0F)
+        {
+            iIsBurning = true;
+        }
+
+        heatIngots();
+
+        iLastAddedHeat = iCurrentTemperature - iLastTemperature;
+
+        if (iLastAddedHeat != 0F)
+        {
+            markDirty();
+        }
+    }
+
+    public void heatFurnace() {
+
+        iPositiveHeatTerm = iPositiveHeat;
+        iNegativeHeatTerm = iNegativeHeat;
+
+        iLastAddedHeat = 0F;
+
+        for (int tFuelStackIndex = 0; tFuelStackIndex < FUELSTACK_AMOUNT; tFuelStackIndex++) {
+            if (iFuelStackBurningTime[tFuelStackIndex] == null)
+            {
+                iFuelStackBurningTime[tFuelStackIndex] = -1;
+            }
+
+            if (iFuelStackBurningTime[tFuelStackIndex] == -1)
+            {
+                if (iFuelStacks[tFuelStackIndex] == null)
                 {
                     continue;
                 }
 
-                ItemStack tItemStack = iIngotStacks[tIngotStackIndex];
+                ItemStack tTargetedFuelStack = iFuelStacks[tFuelStackIndex];
 
-                //Convert the itemstack into a heated ingot stack if needed!
-                if (!(tItemStack.getItem() instanceof ItemHeatedIngot)) {
-                    tSendUpdate = true;
+                //Check if the stack is a valid Fuel in the Furnace
+                if ((tTargetedFuelStack != null) && (TileEntityFurnace.isItemFuel(tTargetedFuelStack))) {
 
-                    tItemStack = HeatedIngotFactory.getInstance().convertToHeatedIngot(tItemStack);
-                    iIngotStacks[tIngotStackIndex] = tItemStack;
-                }
+                    //Update the Fuelstack if a new piece of fuel is needed.
+                    if (iFuelStackBurningTime[tFuelStackIndex] == -1) {
+                        --tTargetedFuelStack.stackSize;
 
-                if (ItemHeatedIngot.getItemTemperature(tItemStack) < iMaxTemperature) {
-                    tSendUpdate = true;
+                        iFuelStackBurningTime[tFuelStackIndex] = 0;
 
-                    double tNewHeat = ItemHeatedIngot.getItemTemperature(tItemStack) + (iLastAddedHeat / (tTotalIngotsGettingHeat * 200));
-                    if (tNewHeat > GeneralRegistry.getInstance().getMeltingPoint(HeatedIngotFactory.getInstance().getMaterialIDFromItemStack(tItemStack)))
-                    {
-                        tNewHeat = 0;
+                        iFuelStackFuelAmount[tFuelStackIndex] = TileEntityFurnace.getItemBurnTime(tTargetedFuelStack);
+
+                        if (tTargetedFuelStack.stackSize == 0) {
+                            iFuelStacks[tFuelStackIndex] = tTargetedFuelStack.getItem().getContainerItem(tTargetedFuelStack);
+                        }
                     }
 
-                    ItemHeatedIngot.setItemTemperature(tItemStack, tNewHeat);
                 }
+            }
+
+            if (iFuelStackBurningTime[tFuelStackIndex] > -1)
+            {
+
+                ++iFuelStackBurningTime[tFuelStackIndex];
+
+                //Process depleted fuelstack
+                if (iFuelStackBurningTime[tFuelStackIndex].intValue() == iFuelStackFuelAmount[tFuelStackIndex].intValue()) {
+                    iFuelStackBurningTime[tFuelStackIndex] = -1;
+                }
+
+                iLastAddedHeat += iPositiveHeatTerm;
             }
         }
 
-        if(tSendUpdate)
-        {
-            this.markDirty();
-        }
+        iLastAddedHeat *=  (1-(iCurrentTemperature / iMaxTemperature))    ;
     }
 
-    public float heatFurnace()
+    public void heatIngots()
     {
-        float tTotalAddedHeat = 0F;
+        if ((iLastAddedHeat == 0F) && (iCurrentTemperature == 20F)) {return;}
 
-        for (int tFuelStackIndex = 0;tFuelStackIndex < FUELSTACK_AMOUNT; tFuelStackIndex++)
-        {
-            if (iFuelStacks[tFuelStackIndex] == null)
-            {
+        iCurrentTemperature += iLastAddedHeat;
+
+        for (int tIngotStackCount = 0; tIngotStackCount < INGOTSTACKS_AMOUNT; tIngotStackCount ++) {
+            if (iIngotStacks[tIngotStackCount] == null) {
                 continue;
             }
 
-            if (iFuelStacks[tFuelStackIndex] != null && (iFuelStackFuelAmount[tFuelStackIndex] == null || iFuelStackFuelAmount[tFuelStackIndex] == 0 || iFuelStackBurningTime[tFuelStackIndex] == null || iFuelStackBurningTime[tFuelStackIndex] == 0))
-            {
-                --iFuelStacks[tFuelStackIndex].stackSize;
-                if (this.iFuelStacks[tFuelStackIndex].stackSize == 0)
+            float tCurrentStackTemp = ItemHeatedIngot.getItemTemperature(iIngotStacks[tIngotStackCount]);
+            float tCurrentStackCoefficient = GeneralRegistry.getInstance().getHeatCoefficient(HeatedIngotFactory.getInstance().getMaterialIDFromItemStack(iIngotStacks[tIngotStackCount]));
+
+            float tSourceDifference = iNegativeHeatTerm - tCurrentStackCoefficient;
+            float tTargetDifference = -1 * tSourceDifference + iNegativeHeatTerm;
+
+            if (tCurrentStackTemp <= iCurrentTemperature) {
+                iCurrentTemperature += tSourceDifference;
+                ItemHeatedIngot.setItemTemperature(iIngotStacks[tIngotStackCount], ItemHeatedIngot.getItemTemperature(iIngotStacks[tIngotStackCount]) + tTargetDifference);
+            } else if (ItemHeatedIngot.getItemTemperature(iIngotStacks[tIngotStackCount]) > iCurrentTemperature) {
+                if (tCurrentStackTemp <= 20F)
                 {
-                    this.iFuelStacks[tFuelStackIndex] = iFuelStacks[tFuelStackIndex].getItem().getContainerItem(iFuelStacks[tFuelStackIndex]);
+                    //Items cannot cool any further then 20 degrees
+                    continue;
                 }
-                iFuelStackFuelAmount[tFuelStackIndex] = TileEntityFurnace.getItemBurnTime(iFuelStacks[tFuelStackIndex]);
-                iFuelStackBurningTime[tFuelStackIndex] = 1;
-            }
 
-            if ((TileEntityFurnace.isItemFuel(iFuelStacks[tFuelStackIndex])) && (iFuelStackBurningTime[tFuelStackIndex] == TileEntityFurnace.getItemBurnTime(iFuelStacks[tFuelStackIndex])))
-            {
-                iFuelStackFuelAmount[tFuelStackIndex] = 0;
-            }
-
-            if ((TileEntityFurnace.isItemFuel(iFuelStacks[tFuelStackIndex])) && (iFuelStackBurningTime[tFuelStackIndex] < TileEntityFurnace.getItemBurnTime(iFuelStacks[tFuelStackIndex])))
-            {
-                iFuelStackBurningTime[tFuelStackIndex] = iFuelStackBurningTime[tFuelStackIndex] + 1;
-                tTotalAddedHeat += heatFurnace(TileEntityFurnace.getItemBurnTime(iFuelStacks[tFuelStackIndex]));
+                iCurrentTemperature += tTargetDifference;
+                ItemHeatedIngot.setItemTemperature(iIngotStacks[tIngotStackCount], ItemHeatedIngot.getItemTemperature(iIngotStacks[tIngotStackCount]) + tSourceDifference);
             }
         }
-
-        tTotalAddedHeat = tTotalAddedHeat / 200;
-
-        iLastAddedHeat = tTotalAddedHeat;
-        return tTotalAddedHeat;
     }
 
 
@@ -381,19 +421,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         return tIngotAmount;
     }
 
-    public float heatFurnace(float pFuelAmount)
-    {
-        this.iCurrentTemperature += pFuelAmount / 20F;
-        this.iLastAddedHeat = pFuelAmount / 20F;
-        return this.iCurrentTemperature;
-    }
-
     public boolean isBurning() {return iIsBurning; }
 
     @Override
     public void markDirty()
     {
-        com.Orion.Armory.Network.NetworkManager.INSTANCE.sendToAllAround(new MessageTileEntityFirePit(this), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, (double) this.xCoord, (double) this.yCoord, (double) this.zCoord, 128d));
+        NetworkManager.INSTANCE.sendToAllAround(new MessageTileEntityFirePit(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId,(double) this.xCoord,(double) this.yCoord,(double) this.zCoord, 128));
+        //worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
         super.markDirty();
         worldObj.func_147451_t(xCoord, yCoord, zCoord);

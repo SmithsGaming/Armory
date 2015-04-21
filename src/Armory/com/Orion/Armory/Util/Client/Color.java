@@ -47,6 +47,7 @@ public class Color {
     }
 
     public Color(int pColor) {
+        iAlpha = pColor >> 32 & 255;
         iColorRed = pColor >> 16 & 255;
         iColorGreen = pColor >> 8 & 255;
         iColorBlue = pColor & 255;
@@ -102,8 +103,9 @@ public class Color {
         }
 
 
-        int tReturnValue = iColorRed;
+        int tReturnValue = iAlpha;
 
+        tReturnValue = (tReturnValue << 8) + iColorRed;
         tReturnValue = (tReturnValue << 8) + iColorGreen;
         tReturnValue = (tReturnValue << 8) + iColorBlue;
 
@@ -157,5 +159,20 @@ public class Color {
 
     public void setAlpha(float pAlpha) {
         this.setAlpha((int) (pAlpha * 255F));
+    }
+
+    public Color Combine(Color pMixed, float pMixingScale)
+    {
+        return Combine(this, pMixed, pMixingScale);
+    }
+
+    public static Color Combine( Color pOriginal, Color pMixed, float pMixingScale)
+    {
+        int tAlpha = (int) ((1 - pMixingScale) * pOriginal.iAlpha + pMixingScale * pMixed .iAlpha);
+        int tRedColor = (int) ((1 - pMixingScale) * pOriginal.iColorRed + pMixingScale * pMixed .iColorRed);
+        int tGreenColor = (int) ((1 - pMixingScale) * pOriginal.iColorGreen + pMixingScale * pMixed .iColorGreen);
+        int tBlueColor = (int) ((1 - pMixingScale) * pOriginal.iColorBlue + pMixingScale * pMixed .iColorBlue);
+
+        return new Color(tRedColor, tGreenColor, tBlueColor, tAlpha);
     }
 }

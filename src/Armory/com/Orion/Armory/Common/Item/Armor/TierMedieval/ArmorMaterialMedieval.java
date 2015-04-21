@@ -29,7 +29,7 @@ public class ArmorMaterialMedieval
     public HashMap<String, Integer> iPartModifiers = new HashMap<String, Integer>();
 
     //Constructor
-    public ArmorMaterialMedieval(String pInternalName, String pVisibleName, String pVisibleNameColor, boolean pBaseArmorMaterial, HashMap<String, Float> pBaseDamageAbsorption, HashMap<String, Integer> pBaseDurability, HashMap<String, Integer> pPartModifiers, HashMap<String, Boolean> pActiveParts, Color pColor, float pMeltingPoint, ItemStack pBaseItemStack)
+    public ArmorMaterialMedieval(String pInternalName, String pVisibleName, String pVisibleNameColor, boolean pBaseArmorMaterial, HashMap<String, Float> pBaseDamageAbsorption, HashMap<String, Integer> pBaseDurability, HashMap<String, Integer> pPartModifiers, HashMap<String, Boolean> pActiveParts, Color pColor, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack)
     {
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
@@ -41,9 +41,10 @@ public class ArmorMaterialMedieval
         iActiveParts = pActiveParts;
         iColor = pColor;
 
-        if (!(GeneralRegistry.iMeltingPoints.containsKey(pInternalName)))
+        if (GeneralRegistry.getInstance().getMeltingPoint(pInternalName) == -1)
         {
-            GeneralRegistry.iMeltingPoints.put(pInternalName, pMeltingPoint);
+            GeneralRegistry.getInstance().setMeltingPoint(pInternalName, pMeltingPoint);
+            GeneralRegistry.getInstance().setHeatCoefficient(pInternalName, pHeatCoefficient);
             HeatedIngotFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
         }
     }

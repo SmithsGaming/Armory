@@ -90,6 +90,13 @@ sourceSets {
     }
 }
 
+//IDea fix for
+idea {
+    module {
+        inheritOutputDirs = true
+    }
+}
+
 //Sets up the currect versions for minecraft and Forge
 minecraft {
     version = config.minecraft_version.toString() + "-" + config.forge_version

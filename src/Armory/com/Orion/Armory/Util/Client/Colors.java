@@ -8,6 +8,12 @@ package com.Orion.Armory.Util.Client;
 public final class Colors
 {
 
+    public static class General
+    {
+        public static Color RED = new Color(255, 0, 0);
+        public static Color ELECTRICBLUE = new Color(45, 206, 250);
+    }
+
     public static class Metals{
         public static Color IRON = new Color(255, 255, 255);
         public static Color CHAIN = new Color (98, 98, 98);

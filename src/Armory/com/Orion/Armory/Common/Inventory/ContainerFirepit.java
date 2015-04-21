@@ -13,13 +13,13 @@ import net.minecraft.inventory.Slot;
 
 import java.util.ArrayList;
 
-public class ContainerFirePit extends ContainerArmory
+public class ContainerFirepit extends ContainerArmory
 {
     private TileEntityFirePit iTEFirePit;
     private ArrayList<Integer> iFuelStackBurningTime = new ArrayList<Integer>(iTEFirePit.FUELSTACK_AMOUNT);
     private ArrayList<Integer> iFuelStackFuelAmount = new ArrayList<Integer>(iTEFirePit.FUELSTACK_AMOUNT);
 
-    public ContainerFirePit(InventoryPlayer pPlayerInventory, TileEntityFirePit pTEFirePit)
+    public ContainerFirepit(InventoryPlayer pPlayerInventory, TileEntityFirePit pTEFirePit)
     {
         this.iTEFirePit = pTEFirePit;
 
@@ -46,5 +46,10 @@ public class ContainerFirePit extends ContainerArmory
         {
             this.addSlotToContainer(new Slot(pPlayerInventory, actionBarSlotIndex, 8 + actionBarSlotIndex * 18, 142));
         }
+    }
+
+    public TileEntityFirePit GetTileEntity()
+    {
+        return iTEFirePit;
     }
 }

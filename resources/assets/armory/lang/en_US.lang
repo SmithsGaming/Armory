@@ -1,5 +1,8 @@
-com.Orion.Armory.Gui.Basic.InfoTitel=Firepit - Information
-com.Orion.Armory.FirePit.Info.S1=The Firepit can heat ingots up to its own maximum temperature.
-com.Orion.Armory.FirePit.Info.S2=To raise its maximum temperature add Heaters.
-com.Orion.Armory.FirePit.Info.S3=Keep your eye on it though as it can meld ingots that get to hot.
-com.Armory.Orion.FirePit.TempTitel=Firepit - Temperature Information
+Armory.GUI.InfoTitel=Information
+Armory.GUI.FirePit.LEdger.InfoLine1=The Firepit can heat ingots up to its own maximum temperature.
+Armory.GUI.FirePit.LEdger.InfoLine2=To raise its maximum temperature add Heaters.
+Armory.GUI.FirePit.LEdger.InfoLine3=Keep your eye on it though as it can meld ingots that get to hot.
+Armory.GUI.FirePit.Ledger.TempTitel=Firepit - Temperature
+Armory.GUI.FirePit.Ledger.TempMax=Maximum:
+Armory.GUI.FirePit.Ledger.TempCurrent=Current:
+Armor.GUI.FirePit.Ledger.LastAdded=Last added:

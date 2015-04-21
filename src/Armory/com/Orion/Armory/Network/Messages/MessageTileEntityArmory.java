@@ -42,8 +42,7 @@ public abstract class MessageTileEntityArmory
         iCurrentDirection = ForgeDirection.getOrientation(buf.readInt());
     }
 
-    public void toBytes(ByteBuf buf)
-    {
+    public void toBytes(ByteBuf buf) {
         buf.writeInt(xCoord);
         buf.writeInt(yCoord);
         buf.writeInt(zCoord);
@@ -51,19 +50,5 @@ public abstract class MessageTileEntityArmory
         ByteBufUtils.writeUTF8String(buf, iName);
 
         buf.writeInt(ForgeDirectionHelper.ConvertToInt(iCurrentDirection));
-    }
-
-    public IMessage onMessage(MessageTileEntityArmory message, MessageContext ctx)
-    {
-        TileEntity tEntity = FMLClientHandler.instance().getClient().theWorld.getTileEntity(message.xCoord, message.yCoord, message.zCoord);
-        if (tEntity instanceof TileEntityArmory)
-        {
-            ((TileEntityArmory) tEntity).setDisplayName(message.iName);
-            ((TileEntityArmory) tEntity).setDirection(message.iCurrentDirection);
-        }
-
-        FMLClientHandler.instance().getClient().theWorld.func_147451_t(message.xCoord, message.yCoord, message.zCoord);
-
-        return null;
     }
 }

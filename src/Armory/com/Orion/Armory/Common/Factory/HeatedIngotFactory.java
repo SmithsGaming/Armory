@@ -97,7 +97,7 @@ public class HeatedIngotFactory
 
     public float getMeltingPointFromMaterial(String pMaterialName)
     {
-        return GeneralRegistry.iMeltingPoints.get(pMaterialName);
+        return GeneralRegistry.getInstance().getMeltingPoint(pMaterialName);
     }
 
     public ArrayList<ItemStack> getAllMappedStacks()

@@ -7,10 +7,14 @@ package com.Orion.Armory.Client.Renderer.Items;
 
 import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedIngot;
+import com.Orion.Armory.Util.Client.Color;
+import com.Orion.Armory.Util.Client.Colors;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
@@ -34,8 +38,11 @@ public class ItemHeatedIngotRenderer implements IItemRenderer
     public void renderItem(ItemRenderType pRenderType, ItemStack pItemStack, Object... pDataArray) {
         if (!(pItemStack.getItem() instanceof ItemHeatedIngot) || !(pRenderType == ItemRenderType.INVENTORY)) { return; }
 
-        RenderItem.getInstance().renderItemIntoGUI(Minecraft.getMinecraft().fontRenderer, RenderManager.instance.renderEngine, HeatedIngotFactory.getInstance().convertToCooledIngot(pItemStack), 0,0);
-        renderTemperatureBar(pItemStack);
+        if ((pRenderType == ItemRenderType.INVENTORY) && (RenderManager.instance.renderEngine != null))
+        {
+            RenderItem.getInstance().renderItemIntoGUI(Minecraft.getMinecraft().fontRenderer, RenderManager.instance.renderEngine, HeatedIngotFactory.getInstance().convertToCooledIngot(pItemStack), 0,0);
+            renderTemperatureBar(pItemStack);
+        }
     }
 
     private void renderTemperatureBar(ItemStack pItemStack)
@@ -49,7 +56,7 @@ public class ItemHeatedIngotRenderer implements IItemRenderer
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         GL11.glDisable(GL11.GL_BLEND);
         Tessellator tessellator = Tessellator.instance;
-        int i1 = 255 - k << 16 | k << 8;
+        int i1 = Color.Combine(Colors.General.ELECTRICBLUE, Colors.General.RED, (j1 / 13)).getColor();
         int l = (255 - k) / 4 << 16 | 16128;
         this.renderQuad(tessellator, 2, 13, 13, 2, 0);
         this.renderQuad(tessellator, 2, 13, 12, 1, l);
@@ -62,14 +69,14 @@ public class ItemHeatedIngotRenderer implements IItemRenderer
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    private void renderQuad(Tessellator p_77017_1_, int p_77017_2_, int p_77017_3_, int p_77017_4_, int p_77017_5_, int p_77017_6_)
+    private void renderQuad(Tessellator pTessellator, int p_77017_2_, int p_77017_3_, int p_77017_4_, int p_77017_5_, int pOpaque)
     {
-        p_77017_1_.startDrawingQuads();
-        p_77017_1_.setColorOpaque_I(p_77017_6_);
-        p_77017_1_.addVertex((double)(p_77017_2_ + 0), (double)(p_77017_3_ + 0), 0.0D);
-        p_77017_1_.addVertex((double)(p_77017_2_ + 0), (double)(p_77017_3_ + p_77017_5_), 0.0D);
-        p_77017_1_.addVertex((double)(p_77017_2_ + p_77017_4_), (double)(p_77017_3_ + p_77017_5_), 0.0D);
-        p_77017_1_.addVertex((double)(p_77017_2_ + p_77017_4_), (double)(p_77017_3_ + 0), 0.0D);
-        p_77017_1_.draw();
+        pTessellator.startDrawingQuads();
+        pTessellator.setColorOpaque_I(pOpaque);
+        pTessellator.addVertex((double) (p_77017_2_ + 0), (double) (p_77017_3_ + 0), 0.0D);
+        pTessellator.addVertex((double) (p_77017_2_ + 0), (double) (p_77017_3_ + p_77017_5_), 0.0D);
+        pTessellator.addVertex((double) (p_77017_2_ + p_77017_4_), (double) (p_77017_3_ + p_77017_5_), 0.0D);
+        pTessellator.addVertex((double) (p_77017_2_ + p_77017_4_), (double) (p_77017_3_ + 0), 0.0D);
+        pTessellator.draw();
     }
 }
