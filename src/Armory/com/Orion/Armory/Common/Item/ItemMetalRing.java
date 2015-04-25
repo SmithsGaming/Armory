@@ -5,6 +5,7 @@ package com.Orion.Armory.Common.Item;
  *   Created on: 25-9-2014
  */
 
+import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
@@ -102,6 +103,8 @@ public class ItemMetalRing extends Item
             NBTTagCompound tStackCompound = new NBTTagCompound();
             tStackCompound.setString(References.NBTTagCompoundData.RingMaterial, tMaterial.iInternalName);
             tRingStack.setTagCompound(tStackCompound);
+
+            HeatedIngotFactory.getInstance().addHeatableItemstack(tMaterial.iInternalName, tRingStack);
 
             pItemStacks.add(tRingStack);
         }

@@ -2,10 +2,9 @@ package com.Orion.Armory.Client.GUI.Plugins.NEI;
 
 import codechicken.lib.vec.Rectangle4i;
 import codechicken.nei.api.INEIGuiAdapter;
-import codechicken.nei.api.INEIGuiHandler;
+import com.Orion.Armory.Client.GUI.Components.Ledgers.Ledger;
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import org.lwjgl.Sys;
 
 /**
  * Created by Orion
@@ -23,19 +22,26 @@ public class NEIGuiTabHandler extends INEIGuiAdapter
 
             rect = new Rectangle4i(x, y, w, h);
 
-            for (ArmoryBaseGui.Ledger Ledger : abg.Ledgers().getLeftLedgers()) {
-                Rectangle4i bounds = new Rectangle4i(Ledger.iLastXOrigin + Ledger.getOriginOffSet(), Ledger.iLastYOrigin, Ledger.getWidth(), Ledger.getHeight());
+            for(int i = 0; i < abg.Ledgers().getLeftLedgers().size(); i++)
+            {
+                Ledger tLedger = (Ledger) abg.Ledgers().getLeftLedgers().get(i);
+
+                Rectangle4i bounds = new Rectangle4i(tLedger.iLastXOrigin + tLedger.getOriginOffSet(), tLedger.iLastYOrigin, tLedger.getWidth(), tLedger.getHeight());
                 if (bounds.intersects(rect)){
                     return true;
                 }
             }
 
-            for (ArmoryBaseGui.Ledger Ledger : abg.Ledgers().getRightLedgers()) {
-                Rectangle4i bounds = new Rectangle4i(Ledger.iLastXOrigin + Ledger.getOriginOffSet(), Ledger.iLastYOrigin, Ledger.getWidth(), Ledger.getHeight());
+            for(int i = 0; i < abg.Ledgers().getRightLedgers().size(); i++)
+            {
+                Ledger tLedger = (Ledger) abg.Ledgers().getRightLedgers().get(i);
+
+                Rectangle4i bounds = new Rectangle4i(tLedger.iLastXOrigin + tLedger.getOriginOffSet(), tLedger.iLastYOrigin, tLedger.getWidth(), tLedger.getHeight());
                 if (bounds.intersects(rect)) {
                     return true;
                 }
             }
+
 
             Rectangle4i bounds = new Rectangle4i(abg.guiLeft, gui.guiTop, ((ArmoryBaseGui) gui).getWidth(), ((ArmoryBaseGui) gui).getHeigth());
             if (bounds.intersects(rect)) {

@@ -1,5 +1,6 @@
 package com.Orion.Armory.Client.GUI;
 
+import com.Orion.Armory.Client.GUI.Components.Ledgers.InfoLedger;
 import com.Orion.Armory.Client.Logic.CoreIconProvider;
 import com.Orion.Armory.Common.Inventory.ContainerFirepit;
 import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
@@ -34,6 +35,6 @@ public class GuiHeater extends com.Orion.Armory.Client.GUI.ArmoryBaseGui
 
         this.iBackGroundTexture = new ResourceLocation(Textures.Gui.HEATER);
 
-        this.iLedgers.addLedgerLeft(new ArmoryBaseGui.InfoLedger(TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.Heater.InfoLine1, "", TranslationKeys.GUI.Heater.InfoLine2}, CoreIconProvider.getInstance().getIcon(0)));
+        this.iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.Heater.InfoLine1, "", TranslationKeys.GUI.Heater.InfoLine2}, CoreIconProvider.getInstance().getIcon(0)));
     }
 }

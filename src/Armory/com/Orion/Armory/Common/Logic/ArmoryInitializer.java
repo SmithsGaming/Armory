@@ -20,7 +20,7 @@ import com.Orion.Armory.Common.Events.RegisterArmorEvent;
 import com.Orion.Armory.Common.Events.RegisterMaterialsEvent;
 import com.Orion.Armory.Common.Events.RegisterUpgradesEvent;
 import com.Orion.Armory.Common.Item.ItemFan;
-import com.Orion.Armory.Common.Item.ItemHeatedIngot;
+import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Item.ItemMetalChain;
 import com.Orion.Armory.Common.Item.ItemMetalRing;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
@@ -40,7 +40,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.MinecraftForge;
-import org.omg.CORBA.INTERNAL;
 import tconstruct.tools.TinkerTools;
 
 import java.util.HashMap;
@@ -548,7 +547,7 @@ public class ArmoryInitializer
         {
             GeneralRegistry.Items.iMetalChain = new ItemMetalChain();
             GeneralRegistry.Items.iMetalRing = new ItemMetalRing();
-            GeneralRegistry.Items.iHeatedIngot = new ItemHeatedIngot();
+            GeneralRegistry.Items.iHeatedIngot = new ItemHeatedItem();
             GeneralRegistry.Items.iFan = new ItemFan();
 
             GameRegistry.registerItem(GeneralRegistry.Items.iMetalChain, InternalNames.Items.ItemMetalChain);

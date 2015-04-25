@@ -5,6 +5,7 @@ package com.Orion.Armory.Common.Item;
  *   Created on: 25-9-2014
  */
 
+import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
@@ -90,9 +91,7 @@ public class ItemMetalChain extends Item
         return true;
     }
 
-    /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     */
+
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(Item pRing, CreativeTabs pCreativeTab, List pItemStacks)
@@ -103,6 +102,8 @@ public class ItemMetalChain extends Item
             NBTTagCompound tStackCompound = new NBTTagCompound();
             tStackCompound.setString(References.NBTTagCompoundData.RingMaterial, tMaterial.iInternalName);
             tChainStack.setTagCompound(tStackCompound);
+
+            HeatedIngotFactory.getInstance().addHeatableItemstack(tMaterial.iInternalName, tChainStack);
 
             pItemStacks.add(tChainStack);
         }

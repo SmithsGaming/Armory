@@ -6,15 +6,13 @@ package com.Orion.Armory.Client.Renderer.Items;
  */
 
 import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
-import com.Orion.Armory.Common.Item.ItemHeatedIngot;
+import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Util.Client.Color;
 import com.Orion.Armory.Util.Client.Colors;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
@@ -24,7 +22,7 @@ public class ItemHeatedIngotRenderer implements IItemRenderer
 
     @Override
     public boolean handleRenderType(ItemStack pItemStack, ItemRenderType pRenderType) {
-        if ((pItemStack.getItem() instanceof ItemHeatedIngot) && (pRenderType == ItemRenderType.INVENTORY)) { return true; }
+        if ((pItemStack.getItem() instanceof ItemHeatedItem) && (pRenderType == ItemRenderType.INVENTORY)) { return true; }
 
         return false;
     }
@@ -36,7 +34,7 @@ public class ItemHeatedIngotRenderer implements IItemRenderer
 
     @Override
     public void renderItem(ItemRenderType pRenderType, ItemStack pItemStack, Object... pDataArray) {
-        if (!(pItemStack.getItem() instanceof ItemHeatedIngot) || !(pRenderType == ItemRenderType.INVENTORY)) { return; }
+        if (!(pItemStack.getItem() instanceof ItemHeatedItem) || !(pRenderType == ItemRenderType.INVENTORY)) { return; }
 
         if ((pRenderType == ItemRenderType.INVENTORY) && (RenderManager.instance.renderEngine != null))
         {

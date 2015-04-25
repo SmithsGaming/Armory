@@ -11,7 +11,7 @@ import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
 import com.Orion.Armory.Common.Item.ItemFan;
-import com.Orion.Armory.Common.Item.ItemHeatedIngot;
+import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Item.ItemMetalChain;
 import com.Orion.Armory.Common.Item.ItemMetalRing;
 import com.Orion.Armory.Util.References;
@@ -88,7 +88,7 @@ public class GeneralRegistry {
 
     public static class Items
     {
-        public static ItemHeatedIngot iHeatedIngot = null;
+        public static ItemHeatedItem iHeatedIngot = null;
         public static ItemMetalRing iMetalRing = null;
         public static ItemMetalChain iMetalChain = null;
         public static ItemFan iFan = null;

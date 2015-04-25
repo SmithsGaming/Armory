@@ -1,9 +1,6 @@
 package com.Orion.Armory.Common.Inventory.Slots;
 
-import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
 import com.Orion.Armory.Common.Item.ItemFan;
-import com.Orion.Armory.Common.Item.ItemHeatedIngot;
-import net.minecraft.client.renderer.texture.Stitcher;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;

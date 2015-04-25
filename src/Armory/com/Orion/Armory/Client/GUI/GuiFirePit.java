@@ -5,6 +5,8 @@ package com.Orion.Armory.Client.GUI;
  *   Created on: 18-1-2015
  */
 
+import com.Orion.Armory.Client.GUI.Components.Ledgers.InfoLedger;
+import com.Orion.Armory.Client.GUI.Components.Ledgers.Ledger;
 import com.Orion.Armory.Client.Logic.CoreIconProvider;
 import com.Orion.Armory.Common.Inventory.ContainerFirepit;
 import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
@@ -31,8 +33,10 @@ public class GuiFirePit extends com.Orion.Armory.Client.GUI.ArmoryBaseGui
     {
         String[] iTranslatedInfoText;
 
-        public TemperatureLedger()
+        public TemperatureLedger(GuiFirePit pGui)
         {
+            super(pGui);
+
             iHeader = StatCollector.translateToLocal(TranslationKeys.GUI.FirePit.TempTitel);
             iHeaderIcon = CoreIconProvider.getInstance().getIcon(CoreIconProvider.THERMOMETER);
             iBackgroundColor = Colors.Ledgers.YELLOW;
@@ -91,8 +95,8 @@ public class GuiFirePit extends com.Orion.Armory.Client.GUI.ArmoryBaseGui
 
         this.iBackGroundTexture = new ResourceLocation(Textures.Gui.FIREPIT);
 
-        this.iLedgers.addLedgerLeft(new InfoLedger(TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.FirePit.InfoLine1, "", TranslationKeys.GUI.FirePit.InfoLine2, "", TranslationKeys.GUI.FirePit.InfoLine3}, CoreIconProvider.getInstance().getIcon(0)));
-        this.iLedgers.addLedgerRight(new TemperatureLedger());
+        this.iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.FirePit.InfoLine1, "", TranslationKeys.GUI.FirePit.InfoLine2, "", TranslationKeys.GUI.FirePit.InfoLine3}, CoreIconProvider.getInstance().getIcon(0)));
+        this.iLedgers.addLedgerRight(new TemperatureLedger(this));
     }
 
     @Override

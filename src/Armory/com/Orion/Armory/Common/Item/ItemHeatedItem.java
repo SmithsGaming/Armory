@@ -1,6 +1,6 @@
 package com.Orion.Armory.Common.Item;
 /*
-/  ItemHeatedIngot
+/  ItemHeatedItem
 /  Created by : Orion
 /  Created on : 03/10/2014
 */
@@ -21,9 +21,9 @@ import net.minecraft.util.StatCollector;
 import java.util.Iterator;
 import java.util.List;
 
-public class ItemHeatedIngot extends Item
+public class ItemHeatedItem extends Item
 {
-    public ItemHeatedIngot()
+    public ItemHeatedItem()
     {
         setMaxStackSize(1);
         setCreativeTab(GeneralRegistry.iTabArmoryComponents);
@@ -107,15 +107,15 @@ public class ItemHeatedIngot extends Item
     }
 
     @Override
-    public String getUnlocalizedName (ItemStack pStack)
+    public String getItemStackDisplayName(ItemStack pStack)
     {
         ItemStack tOriginalItemStack = ItemStack.loadItemStackFromNBT(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.HeatedIngot.ORIGINALITEM));
-        return tOriginalItemStack.getUnlocalizedName();
+        return tOriginalItemStack.getItem().getItemStackDisplayName(tOriginalItemStack);
     }
 
     public static void setItemTemperature(ItemStack pItemStack, float pNewTemp)
     {
-        if (pItemStack.getItem() instanceof ItemHeatedIngot)
+        if (pItemStack.getItem() instanceof ItemHeatedItem)
         {
             pItemStack.getTagCompound().setFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE, pNewTemp);
         }
@@ -123,7 +123,7 @@ public class ItemHeatedIngot extends Item
 
     public static float getItemTemperature(ItemStack pItemStack)
     {
-        if (pItemStack.getItem() instanceof ItemHeatedIngot)
+        if (pItemStack.getItem() instanceof ItemHeatedItem)
         {
             return pItemStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE);
         }

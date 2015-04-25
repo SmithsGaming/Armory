@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.Factory;
 /  Created on : 03/10/2014
 */
 
-import com.Orion.Armory.Common.Item.ItemHeatedIngot;
+import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Core.ItemStackHelper;
 import com.Orion.Armory.Util.References;
@@ -55,7 +55,7 @@ public class HeatedIngotFactory
 
     public ItemStack convertToCooledIngot(ItemStack pHeatedItemStack)
     {
-        if (!(pHeatedItemStack.getItem() instanceof ItemHeatedIngot))
+        if (!(pHeatedItemStack.getItem() instanceof ItemHeatedItem))
         {
             if (isHeatable(pHeatedItemStack))
             {
@@ -84,7 +84,7 @@ public class HeatedIngotFactory
 
     public String getMaterialIDFromItemStack(ItemStack pItemStack)
     {
-        if (pItemStack.getItem() instanceof ItemHeatedIngot)
+        if (pItemStack.getItem() instanceof ItemHeatedItem)
         {
             return pItemStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID);
         }
