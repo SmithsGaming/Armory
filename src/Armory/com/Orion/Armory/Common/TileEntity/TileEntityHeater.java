@@ -5,91 +5,107 @@ package com.Orion.Armory.Common.TileEntity;
  *   Created on: 12-10-2014
  */
 
+import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
+import com.Orion.Armory.Network.Messages.MessageTileEntityHeater;
+import com.Orion.Armory.Network.NetworkManager;
 import com.Orion.Armory.Util.References;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 
-public class TileEntityHeater extends TileEntity implements IInventory
+public class TileEntityHeater extends TileEntityArmory implements IInventory
 {
-    protected boolean iIsHeater = false;
-    protected ArrayList<ItemStack> iFuelStacks = new ArrayList<ItemStack>(5);
-    protected ItemStack iFanStack = null;
+    public ItemStack iFanStack = null;
+    int iTargetX;
+    int iTargetY;
+    int iTargetZ;
 
-    protected int iNumPlayersUsing;
-    protected ForgeDirection iCurrentDirection = ForgeDirection.NORTH;
-    protected String iName = "Heater";
+    public int iItemInSlotTicks = 0;
+    public float iLastRotationAngle = 0F;
 
     @Override
     public int getSizeInventory() {
-        if (iIsHeater) return 0;
-
-        return 5;
+        return 1;
     }
 
     @Override
     public ItemStack getStackInSlot(int pSlotID) {
-        return iFuelStacks.get(pSlotID);
+        if (pSlotID == 0)
+        {
+            return iFanStack;
+        }
+
+        return null;
     }
 
     @Override
     public ItemStack decrStackSize(int pSlotID, int pAmount) {
-        if (this.iFuelStacks.get(pSlotID) != null)
-        {
-            ItemStack itemstack;
-
-            if (this.iFuelStacks.get(pSlotID).stackSize <= pAmount)
-            {
-                itemstack = this.iFuelStacks.get(pSlotID);
-                this.iFuelStacks.set(pSlotID, null);
-                this.markDirty();
-                return itemstack;
-            }
-            else
-            {
-                itemstack = this.iFuelStacks.get(pSlotID).splitStack(pAmount);
-
-                if (this.iFuelStacks.get(pSlotID).stackSize == 0)
-                {
-                    this.iFuelStacks.set(pSlotID, null);
-                }
-
-                this.markDirty();
-                return itemstack;
-            }
-        }
-        else
+        if (pSlotID != 0)
         {
             return null;
         }
-    }
 
-    @Override
-    public ItemStack getStackInSlotOnClosing(int pSlotID) {
-        if (this.iFuelStacks.get(pSlotID) != null)
+        if (iFanStack == null)
         {
-            ItemStack itemstack = this.iFuelStacks.get(pSlotID);
-            this.iFuelStacks.set(pSlotID, null);
+            return null;
+        }
+
+        ItemStack itemstack;
+
+        if (iFanStack.stackSize <= pAmount)
+        {
+            itemstack = iFanStack;
+            iFanStack = null;
+            this.markDirty();
             return itemstack;
         }
         else
         {
-            return null;
+            itemstack = iFanStack.splitStack(pAmount);
+
+            if (iFanStack.stackSize == 0)
+            {
+                iFanStack = null;
+            }
+
+            this.markDirty();
+            return itemstack;
         }
     }
 
-    @Override
-    public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_) {
-        this.iFuelStacks.set(p_70299_1_, p_70299_2_);
 
-        if (p_70299_2_ != null && p_70299_2_.stackSize > this.getInventoryStackLimit())
+    @Override
+    public ItemStack getStackInSlotOnClosing(int pSlotID) {
+        if (pSlotID == 0)
         {
-            p_70299_2_.stackSize = this.getInventoryStackLimit();
+            return iFanStack;
+        }
+
+        return null;
+    }
+
+    @Override
+    public void setInventorySlotContents(int pSlotID, ItemStack pNewItemStack) {
+        iFanStack = pNewItemStack;
+
+        if (iFanStack == null)
+        {
+            iItemInSlotTicks = 0;
+            iLastRotationAngle = 0F;
+        }
+
+        if (pNewItemStack != null && pNewItemStack.stackSize > this.getInventoryStackLimit())
+        {
+            pNewItemStack.stackSize = this.getInventoryStackLimit();
         }
 
         this.markDirty();
@@ -97,12 +113,12 @@ public class TileEntityHeater extends TileEntity implements IInventory
 
     @Override
     public String getInventoryName() {
-        return References.InternalNames.TileEntities.HeaterComponent;
+        return this.hasCustomInventoryName() ? this.iName : StatCollector.translateToLocal(References.InternalNames.Blocks.FirePit);
     }
 
     @Override
     public boolean hasCustomInventoryName() {
-        return true;
+        return ((this.iName.length() > 0) && this.iName.isEmpty() == false);
     }
 
     @Override
@@ -111,32 +127,18 @@ public class TileEntityHeater extends TileEntity implements IInventory
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer p_70300_1_) {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : p_70300_1_.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+    public boolean isUseableByPlayer(EntityPlayer pPlayer) {
+        return true;
     }
 
     @Override
     public void openInventory() {
-        if (this.iNumPlayersUsing < 0)
-        {
-            this.iNumPlayersUsing = 0;
-        }
-
-        ++this.iNumPlayersUsing;
-        this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, this.getBlockType(), 1, this.iNumPlayersUsing);
-        this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.getBlockType());
-        this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord - 1, this.zCoord, this.getBlockType());
+        //No animation and definitely no cat on top of this nice puppy
     }
 
     @Override
     public void closeInventory() {
-        if (this.getBlockType() instanceof BlockChest)
-        {
-            --this.iNumPlayersUsing;
-            this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, this.getBlockType(), 1, this.iNumPlayersUsing);
-            this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.getBlockType());
-            this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord - 1, this.zCoord, this.getBlockType());
-        }
+        //NOOP
     }
 
     @Override
@@ -144,8 +146,90 @@ public class TileEntityHeater extends TileEntity implements IInventory
         return false;
     }
 
+    @Override
+    public void writeToNBT(NBTTagCompound pCompound)
+    {
+        super.writeToNBT(pCompound);
+
+        if (iFanStack != null)
+        {
+            pCompound.setTag(References.NBTTagCompoundData.TE.Heater.FANSTACK, iFanStack.writeToNBT(new NBTTagCompound()));
+        }
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound pCompound)
+    {
+        super.readFromNBT(pCompound);
+
+        if (pCompound.hasKey(References.NBTTagCompoundData.TE.Heater.FANSTACK))
+        {
+            iFanStack = ItemStack.loadItemStackFromNBT(pCompound.getCompoundTag(References.NBTTagCompoundData.TE.Heater.FANSTACK));
+        }
+    }
+
+    @Override
     public void updateEntity()
     {
-        
+        if (IsContainingAFan())
+        {
+            iItemInSlotTicks++;
+        }
+    }
+
+    public boolean IsContainingAFan()
+    {
+        return (iFanStack != null);
+    }
+
+    public boolean IsHelpingAFirePit()
+    {
+        if (!IsContainingAFan())
+        {
+            return false;
+        }
+
+        TileEntity tTargetTE = getWorldObj().getTileEntity(iTargetX, iTargetY, iTargetZ);
+        if (tTargetTE == null)
+        {
+            return false;
+        }
+
+        return (tTargetTE instanceof TileEntityFirePit);
+    }
+
+
+    @Override
+    public void markDirty()
+    {
+        NetworkManager.INSTANCE.sendToAllAround(new MessageTileEntityHeater(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId,(double) this.xCoord,(double) this.yCoord,(double) this.zCoord, 128));
+        //worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+
+        super.markDirty();
+        worldObj.func_147451_t(xCoord, yCoord, zCoord);
+    }
+
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        return NetworkManager.INSTANCE.getPacketFrom(new MessageTileEntityHeater(this));
+    }
+
+    public boolean validateTarget()
+    {
+        ForgeDirection oppositeDirection = iCurrentDirection.getOpposite();
+
+        iTargetX = this.xCoord + oppositeDirection.offsetX;
+        iTargetY = this.yCoord + oppositeDirection.offsetY;
+        iTargetZ = this.zCoord + oppositeDirection.offsetZ;
+
+        TileEntity tTargetTE = getWorldObj().getTileEntity(iTargetX, iTargetY, iTargetZ);
+        if (tTargetTE == null)
+        {
+            return false;
+        }
+
+        return (tTargetTE instanceof TileEntityFirePit);
     }
 }
+

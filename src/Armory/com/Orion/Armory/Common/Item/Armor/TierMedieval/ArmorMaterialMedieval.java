@@ -12,6 +12,7 @@ import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.Client.Color;
 import com.Orion.Armory.Util.Client.Colors;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 
 import java.security.InvalidParameterException;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class ArmorMaterialMedieval
 {
     public String iInternalName;
     public String iVisibleName;
-    public String iVisibleNameColor;
+    public EnumChatFormatting iVisibleNameColor;
     public boolean iBaseArmorMaterial;
     public Color iColor = Colors.Metals.IRON;
     public HashMap<String, Boolean> iActiveParts = new HashMap<String, Boolean>();
@@ -29,7 +30,7 @@ public class ArmorMaterialMedieval
     public HashMap<String, Integer> iPartModifiers = new HashMap<String, Integer>();
 
     //Constructor
-    public ArmorMaterialMedieval(String pInternalName, String pVisibleName, String pVisibleNameColor, boolean pBaseArmorMaterial, HashMap<String, Float> pBaseDamageAbsorption, HashMap<String, Integer> pBaseDurability, HashMap<String, Integer> pPartModifiers, HashMap<String, Boolean> pActiveParts, Color pColor, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack)
+    public ArmorMaterialMedieval(String pInternalName, String pVisibleName, EnumChatFormatting pVisibleNameColor, boolean pBaseArmorMaterial, HashMap<String, Float> pBaseDamageAbsorption, HashMap<String, Integer> pBaseDurability, HashMap<String, Integer> pPartModifiers, HashMap<String, Boolean> pActiveParts, Color pColor, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack)
     {
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;

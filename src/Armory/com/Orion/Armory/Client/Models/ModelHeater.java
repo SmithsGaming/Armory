@@ -16,7 +16,7 @@ public class ModelHeater
 
     public ModelHeater()
     {
-        this.iModelCustom = AdvancedModelLoader.loadModel(new ResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + References.Models.ModelLocations.FirePit));
+        this.iModelCustom = AdvancedModelLoader.loadModel(new ResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + References.Models.ModelLocations.Heater));
     }
 
     public void renderAll()

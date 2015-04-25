@@ -6,8 +6,11 @@ package com.Orion.Armory.Common.Handlers;
  */
 
 import com.Orion.Armory.Client.GUI.GuiFirePit;
+import com.Orion.Armory.Client.GUI.GuiHeater;
 import com.Orion.Armory.Common.Inventory.ContainerFirepit;
+import com.Orion.Armory.Common.Inventory.ContainerHeater;
 import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
+import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,6 +24,10 @@ public class GuiHandler implements IGuiHandler
         {
             return new ContainerFirepit(pPlayer.inventory, (TileEntityFirePit) pWorld.getTileEntity(pX, pY, pZ));
         }
+        else if (pID == References.GuiIDs.HEATERID)
+        {
+            return new ContainerHeater(pPlayer.inventory, (TileEntityHeater) pWorld.getTileEntity(pX, pY, pZ));
+        }
 
         return null;
     }
@@ -30,6 +37,10 @@ public class GuiHandler implements IGuiHandler
         if (pID == References.GuiIDs.FIREPITID)
         {
             return new GuiFirePit(new ContainerFirepit(pPlayer.inventory, (TileEntityFirePit) pWorld.getTileEntity(pX, pY, pZ)));
+        }
+            else if (pID == References.GuiIDs.HEATERID)
+        {
+            return new GuiHeater(new ContainerHeater(pPlayer.inventory, (TileEntityHeater) pWorld.getTileEntity(pX, pY, pZ)));
         }
 
         return null;

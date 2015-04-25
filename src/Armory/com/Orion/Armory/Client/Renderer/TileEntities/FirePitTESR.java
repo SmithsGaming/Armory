@@ -28,7 +28,6 @@ import java.util.Random;
 public class FirePitTESR extends TileEntitySpecialRenderer
 {
     protected final ResourceLocation iOffTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePitTextureOff.png");
-    protected final ResourceLocation iBurningTexture = new ResourceLocation(References.General.MOD_ID + ":" + "texture/blocks/FirePitTextureOn.png");
     protected final ResourceLocation iCoalSurfaceTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/CoalField.png");
 
     public final ModelFirePit iModel = new ModelFirePit();

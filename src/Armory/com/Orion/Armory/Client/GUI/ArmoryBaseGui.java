@@ -28,7 +28,6 @@ public abstract class ArmoryBaseGui extends GuiContainer
     int iDisplayWidth;
     int iGuiScale;
 
-
     public ArmoryBaseGui(Container pTargetedContainer) {
         super(pTargetedContainer);
         calcGUIProperties();
@@ -48,6 +47,20 @@ public abstract class ArmoryBaseGui extends GuiContainer
         iGuiScale = sc.getScaleFactor();
     }
 
+    public LedgerManager Ledgers()
+    {
+        return iLedgers;
+    }
+
+    public int getWidth()
+    {
+        return xSize;
+    }
+
+    public int getHeigth()
+    {
+        return ySize;
+    }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float pFloat, int pMouseX, int pMouseY) {
@@ -69,7 +82,10 @@ public abstract class ArmoryBaseGui extends GuiContainer
         GL11.glPopMatrix();
     }
 
-    protected abstract void drawGuiContainerBackGroundFeatures(float pFloat, int pMouseX, int pMouseY);
+    protected void drawGuiContainerBackGroundFeatures(float pFloat, int pMouseX, int pMouseY)
+    {
+        //NOOP by default
+    }
 
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
@@ -82,40 +98,50 @@ public abstract class ArmoryBaseGui extends GuiContainer
         if (iLedgers.handleMouseClicked(mouseX, mouseY, mouseButton)) { return; }
     }
 
-    protected class LedgerManager
+    public class LedgerManager
     {
-        ArmoryBaseGui gui;
-        ArrayList<Ledger> ledgersLeft = new ArrayList<Ledger>();
-        ArrayList<Ledger> ledgersRight = new ArrayList<Ledger>();
+        ArmoryBaseGui iGui;
+        ArrayList<Ledger> iLedgersLeft = new ArrayList<Ledger>();
+        ArrayList<Ledger> iLedgersRight = new ArrayList<Ledger>();
 
         public LedgerManager(ArmoryBaseGui pGui)
         {
-            this.gui = pGui;
+            this.iGui = pGui;
+        }
+
+        public ArrayList<Ledger> getLeftLedgers()
+        {
+            return iLedgersLeft;
+        }
+
+        public ArrayList<Ledger> getRightLedgers()
+        {
+            return iLedgersRight;
         }
 
         public void addLedgerLeft(Ledger pNewLedger)
         {
             pNewLedger.iDirection = LedgerDirection.Left;
-            ledgersLeft.add(pNewLedger);
+            iLedgersLeft.add(pNewLedger);
         }
 
         public void addLedgerRight(Ledger pNewLedger)
         {
             pNewLedger.iDirection = LedgerDirection.Right;
-            ledgersRight.add(pNewLedger);
+            iLedgersRight.add(pNewLedger);
         }
 
         public Ledger getLedgetAt(int pTargetX, int pTargetY)
         {
-            for(int i = 0; i < ledgersLeft.size(); i++)
+            for(int i = 0; i < iLedgersLeft.size(); i++)
             {
-                Ledger tLedger = ledgersLeft.get(i);
+                Ledger tLedger = iLedgersLeft.get(i);
                 if (tLedger.checkIfPointIsInLedger(pTargetX, pTargetY)) { return tLedger; }
             }
 
-            for(int i = 0; i < ledgersRight.size(); i++)
+            for(int i = 0; i < iLedgersRight.size(); i++)
             {
-                Ledger tLedger = ledgersRight.get(i);
+                Ledger tLedger = iLedgersRight.get(i);
                 if (tLedger.checkIfPointIsInLedger(pTargetX, pTargetY)) { return tLedger; }
             }
 
@@ -125,9 +151,9 @@ public abstract class ArmoryBaseGui extends GuiContainer
         public void drawLedgers()
         {
             int tYPos = guiTop + 8;
-            for(int i = 0; i < ledgersLeft.size(); i++)
+            for(int i = 0; i < iLedgersLeft.size(); i++)
             {
-                Ledger tLedger = ledgersLeft.get(i);
+                Ledger tLedger = iLedgersLeft.get(i);
                 tLedger.update();
 
                 tLedger.draw(guiLeft, tYPos);
@@ -135,9 +161,9 @@ public abstract class ArmoryBaseGui extends GuiContainer
             }
 
             tYPos = guiTop + 8;
-            for(int i = 0; i < ledgersRight.size(); i++)
+            for(int i = 0; i < iLedgersRight.size(); i++)
             {
-                Ledger tLedger = ledgersRight.get(i);
+                Ledger tLedger = iLedgersRight.get(i);
                 tLedger.update();
 
                 tLedger.draw(guiLeft+xSize, tYPos);
@@ -156,12 +182,12 @@ public abstract class ArmoryBaseGui extends GuiContainer
                 // ledger itself.
                 if (ledger != null && !ledger.handleMouseClicked(pMouseX, pMouseY, pMouseButton)) {
 
-                    for (Ledger other : ledgersLeft) {
+                    for (Ledger other : iLedgersLeft) {
                         if (other != ledger && other.isOpen()) {
                             other.toggleOpenState();
                         }
                     }
-                    for (Ledger other : ledgersRight) {
+                    for (Ledger other : iLedgersRight) {
                         if (other != ledger && other.isOpen()) {
                             other.toggleOpenState();
                         }
@@ -174,7 +200,7 @@ public abstract class ArmoryBaseGui extends GuiContainer
         }
     }
 
-    protected abstract class Ledger
+    public abstract class Ledger
     {
         public int iCurrentXExtension = 24;
         public int iCurrentYExtension = 24;
@@ -244,6 +270,8 @@ public abstract class ArmoryBaseGui extends GuiContainer
         {
             return iCurrentYExtension;
         }
+
+        public int getWidth() {return iCurrentXExtension;}
 
         /*
          * parameter pX: always directly to the border of the Gui

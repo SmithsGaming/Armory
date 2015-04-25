@@ -9,6 +9,7 @@ import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.Client.CustomResource;
+import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,7 +18,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -103,5 +106,14 @@ public class ItemMetalChain extends Item
 
             pItemStacks.add(tChainStack);
         }
+    }
+
+    @Override
+    public String getItemStackDisplayName(ItemStack pStack)
+    {
+        String tMaterialID = pStack.getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
+        ArmorMaterialMedieval tMaterial = MedievalRegistry.getInstance().getMaterial(tMaterialID);
+
+        return tMaterial.iVisibleNameColor + StatCollector.translateToLocal(tMaterial.iVisibleName) + " " + EnumChatFormatting.RESET + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name");
     }
 }

@@ -109,7 +109,9 @@ public class Textures
             public static String INFOICON = "armory:Gui-Icons/16x Info icon";
         }
 
-        public static String FIREPIT = GUITEXTUREPATH + "FirePit.png";
+        public static String FIREPIT = GUITEXTUREPATH + "firepit.png";
         public static String THERMOMETER = "armory:Gui-Icons/16x Thermo";
+
+        public static String HEATER = GUITEXTUREPATH + "Heater.png";
     }
 }

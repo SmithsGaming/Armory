@@ -16,8 +16,6 @@ import java.util.ArrayList;
 public class ContainerFirepit extends ContainerArmory
 {
     private TileEntityFirePit iTEFirePit;
-    private ArrayList<Integer> iFuelStackBurningTime = new ArrayList<Integer>(iTEFirePit.FUELSTACK_AMOUNT);
-    private ArrayList<Integer> iFuelStackFuelAmount = new ArrayList<Integer>(iTEFirePit.FUELSTACK_AMOUNT);
 
     public ContainerFirepit(InventoryPlayer pPlayerInventory, TileEntityFirePit pTEFirePit)
     {

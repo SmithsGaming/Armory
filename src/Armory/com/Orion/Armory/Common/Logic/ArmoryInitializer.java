@@ -6,6 +6,7 @@ package com.Orion.Armory.Common.Logic;
  */
 
 import com.Orion.Armory.Armory;
+import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Item.Armor.Core.ArmorAddonPosition;
 import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
@@ -18,14 +19,17 @@ import com.Orion.Armory.Common.Events.ModifyMaterialEvent;
 import com.Orion.Armory.Common.Events.RegisterArmorEvent;
 import com.Orion.Armory.Common.Events.RegisterMaterialsEvent;
 import com.Orion.Armory.Common.Events.RegisterUpgradesEvent;
+import com.Orion.Armory.Common.Item.ItemFan;
 import com.Orion.Armory.Common.Item.ItemHeatedIngot;
 import com.Orion.Armory.Common.Item.ItemMetalChain;
 import com.Orion.Armory.Common.Item.ItemMetalRing;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
+import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.TextureAddressHelper;
+import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.References.InternalNames;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -34,7 +38,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.MinecraftForge;
+import org.omg.CORBA.INTERNAL;
 import tconstruct.tools.TinkerTools;
 
 import java.util.HashMap;
@@ -74,14 +80,14 @@ public class ArmoryInitializer
 
         private static void registerMaterials()
         {
-            ArmorMaterialMedieval tIron = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.IRON, "Iron", "", true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.IRON, 1538, 0.225F, new ItemStack(Items.iron_ingot));
-            ArmorMaterialMedieval tChain = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.CHAIN, "Steel", "", true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.CHAIN, 1148, 0.25F, new ItemStack(TinkerTools.materials, 1, 16));
-            ArmorMaterialMedieval tObsidian = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.OBSIDIAN, "Obsidian", "", true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.OBSIDIAN, 998, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
-            ArmorMaterialMedieval tAlumite = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE, "Alumite", "", true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.ALUMITE, 1023, 0.2F, new ItemStack(TinkerTools.materials, 1, 15));
-            ArmorMaterialMedieval tArdite = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE, "Ardite", "", true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.ARDITE, 1752, 0.4F, new ItemStack(TinkerTools.materials, 1, 4));
-            ArmorMaterialMedieval tCobalt = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT, "Cobalt", "", true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.COBALT, 1635, 0.3F, new ItemStack(TinkerTools.materials, 1, 3));
-            ArmorMaterialMedieval tManyullun = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN, "Manyullun", "", true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.MANYULLUN, 2963, 0.489F, new ItemStack(TinkerTools.materials, 1, 5));
-            ArmorMaterialMedieval tBronze = new ArmorMaterialMedieval(InternalNames.Materials.Common.BRONZE, "Bronze", "", true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.BRONZE, 950, 0.186F, new ItemStack(TinkerTools.materials, 1, 13));
+            ArmorMaterialMedieval tIron = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, EnumChatFormatting.WHITE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.IRON, 1538, 0.225F, new ItemStack(Items.iron_ingot));
+            ArmorMaterialMedieval tChain = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.CHAIN, TranslationKeys.Materials.VisibleNames.Steel, EnumChatFormatting.GRAY, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.CHAIN, 1148, 0.25F, new ItemStack(TinkerTools.materials, 1, 16));
+            ArmorMaterialMedieval tObsidian = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, EnumChatFormatting.DARK_PURPLE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.OBSIDIAN, 998, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
+            ArmorMaterialMedieval tAlumite = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE, TranslationKeys.Materials.VisibleNames.Alumite, EnumChatFormatting.RED, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.ALUMITE, 1023, 0.2F, new ItemStack(TinkerTools.materials, 1, 15));
+            ArmorMaterialMedieval tArdite = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE, TranslationKeys.Materials.VisibleNames.Ardite, EnumChatFormatting.DARK_RED, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.ARDITE, 1752, 0.4F, new ItemStack(TinkerTools.materials, 1, 4));
+            ArmorMaterialMedieval tCobalt = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT, TranslationKeys.Materials.VisibleNames.Cobalt, EnumChatFormatting.BLUE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.COBALT, 1635, 0.3F, new ItemStack(TinkerTools.materials, 1, 3));
+            ArmorMaterialMedieval tManyullun = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN, TranslationKeys.Materials.VisibleNames.Manyullun, EnumChatFormatting.LIGHT_PURPLE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.MANYULLUN, 2963, 0.489F, new ItemStack(TinkerTools.materials, 1, 5));
+            ArmorMaterialMedieval tBronze = new ArmorMaterialMedieval(InternalNames.Materials.Common.BRONZE, TranslationKeys.Materials.VisibleNames.Bronze, EnumChatFormatting.GOLD, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.BRONZE, 950, 0.186F, new ItemStack(TinkerTools.materials, 1, 13));
 
             MedievalRegistry.getInstance().registerMaterial(tIron);
             MedievalRegistry.getInstance().registerMaterial(tChain);
@@ -527,10 +533,15 @@ public class ArmoryInitializer
     {
         public static void RegisterBlocks()
         {
-            GeneralRegistry.Blocks.iBlockFirePit = (BlockFirePit) new BlockFirePit().setHardness(0.5F).setStepSound(Block.soundTypeMetal)
-                    .setBlockName(InternalNames.Blocks.FirePit).setCreativeTab(GeneralRegistry.iTabArmoryComponents).setBlockTextureName(TextureAddressHelper.getTextureAddress("FirePitTextureOff"));
+            GeneralRegistry.Blocks.iBlockFirePit = (BlockFirePit) new BlockFirePit().setHardness(1F).setStepSound(Block.soundTypeMetal)
+                    .setBlockName(InternalNames.Blocks.FirePit).setCreativeTab(GeneralRegistry.iTabArmoryComponents).setBlockTextureName(TextureAddressHelper.getTextureAddress("DarkSteelPartical"));
+
+            GeneralRegistry.Blocks.iBlockHeater = (BlockHeater) new BlockHeater().setHardness(1F).setStepSound(Block.soundTypeMetal)
+                    .setBlockName(InternalNames.Blocks.Heater).setCreativeTab(GeneralRegistry.iTabArmoryComponents).setBlockTextureName(TextureAddressHelper.getTextureAddress("DarkSteelPartical"));
+
 
             GameRegistry.registerBlock(GeneralRegistry.Blocks.iBlockFirePit, InternalNames.Blocks.FirePit);
+            GameRegistry.registerBlock(GeneralRegistry.Blocks.iBlockHeater, InternalNames.Blocks.Heater);
         }
 
         public static void RegisterItems()
@@ -538,15 +549,18 @@ public class ArmoryInitializer
             GeneralRegistry.Items.iMetalChain = new ItemMetalChain();
             GeneralRegistry.Items.iMetalRing = new ItemMetalRing();
             GeneralRegistry.Items.iHeatedIngot = new ItemHeatedIngot();
+            GeneralRegistry.Items.iFan = new ItemFan();
 
             GameRegistry.registerItem(GeneralRegistry.Items.iMetalChain, InternalNames.Items.ItemMetalChain);
             GameRegistry.registerItem(GeneralRegistry.Items.iMetalRing, InternalNames.Items.ItemMetalRing);
             GameRegistry.registerItem(GeneralRegistry.Items.iHeatedIngot, InternalNames.Items.ItemHeatedIngot);
+            GameRegistry.registerItem(GeneralRegistry.Items.iFan, InternalNames.Items.ItemFan);
         }
 
         public static void RegisterTileEntities()
         {
             GameRegistry.registerTileEntity(TileEntityFirePit.class, InternalNames.TileEntities.FirePitContainer);
+            GameRegistry.registerTileEntity(TileEntityHeater.class, InternalNames.TileEntities.HeaterComponent);
         }
     }
 

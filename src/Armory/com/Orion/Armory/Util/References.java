@@ -201,6 +201,7 @@ public class References
             public static final String ItemMetalRing = "Armory.Items.Components.MetalRing";
             public static final String ItemMetalChain = "Armory.Items.Components.MetalChain";
             public static final String ItemHeatedIngot = "Armory.Items.Components.HeatedIngots";
+            public static final String ItemFan = "Armory.Items.HeatedFan";
         }
 
         public class MultiBlock
@@ -212,8 +213,8 @@ public class References
 
         public class Blocks
         {
-            public static final String FirePit = "Armory.FirePit";
-            public static final String Heater = "Armory.Heater";
+            public static final String FirePit = "Armory.Blocks.FirePit";
+            public static final String Heater = "Armory.Blocks.Heater";
         }
 
         public class TileEntities
@@ -232,7 +233,7 @@ public class References
             protected final static String iModelLocation = "models/";
 
             public final static String FirePit = iModelLocation + "FirePit.obj";
-            public final static String Heater = iModelLocation + "Heater.obj;";
+            public final static String Heater = iModelLocation + "Heater.obj";
         }
     }
 
@@ -303,7 +304,11 @@ public class References
                 public static final String FUELITEMSTACKS = "FuelStacks";
                 public static final String FUELSTACKBURNINGTIME = "FuelStackBurningTime";
                 public static final String FUELSTACKFUELAMOUNT = "FuelStackFuelAmount";
+            }
 
+            public class Heater
+            {
+                public static final String FANSTACK = "FANSTACK";
             }
         }
     }
@@ -317,6 +322,7 @@ public class References
     public static class GuiIDs
     {
         public static int FIREPITID = 0;
+        public static int HEATERID = 1;
     }
 
 }

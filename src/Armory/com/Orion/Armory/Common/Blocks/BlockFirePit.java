@@ -6,7 +6,6 @@ package com.Orion.Armory.Common.Blocks;
 */
 
 import com.Orion.Armory.Armory;
-import com.Orion.Armory.Common.Logic.Multiblock.IMultiBlockPart;
 import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Util.References;
 import net.minecraft.block.BlockContainer;
@@ -19,27 +18,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockFirePit extends BlockContainer implements IMultiBlockPart
+public class BlockFirePit extends BlockContainer
 {
-    protected String iInternalName = References.InternalNames.Blocks.FirePit;
-
     public BlockFirePit() {
         super(Material.iron);
-    }
-
-    @Override
-    public String getInternalName() {
-        return this.iInternalName;
-    }
-
-    @Override
-    public boolean validatePart(Integer pXCoord, Integer pYCoord, Integer pZCoord, World pWorld) {
-        if (pWorld.getBlock(pXCoord, pYCoord, pZCoord) == this)
-        {
-            return true;
-        }
-
-        return false;
+        setBlockName(References.InternalNames.Blocks.FirePit);
     }
 
     @Override
@@ -76,6 +59,8 @@ public class BlockFirePit extends BlockContainer implements IMultiBlockPart
         {
             tTE.setDisplayName(pItemStack.getDisplayName());
         }
+
+
     }
 
     @Override

@@ -1,8 +1,39 @@
+#General GUI Elements
 Armory.GUI.InfoTitel=Information
-Armory.GUI.FirePit.LEdger.InfoLine1=The Firepit can heat ingots up to its own maximum temperature.
-Armory.GUI.FirePit.LEdger.InfoLine2=To raise its maximum temperature add Heaters.
-Armory.GUI.FirePit.LEdger.InfoLine3=Keep your eye on it though as it can meld ingots that get to hot.
+#
+#Firepit specific information
+Armory.GUI.FirePit.Ledger.InfoLine1=The Firepit can heat ingots up to its own maximum temperature.
+Armory.GUI.FirePit.Ledger.InfoLine2=To raise its maximum temperature add Heaters.
+Armory.GUI.FirePit.Ledger.InfoLine3=Keep your eye on it though as it can meld ingots that get to hot.
 Armory.GUI.FirePit.Ledger.TempTitel=Firepit - Temperature
 Armory.GUI.FirePit.Ledger.TempMax=Maximum:
 Armory.GUI.FirePit.Ledger.TempCurrent=Current:
-Armor.GUI.FirePit.Ledger.LastAdded=Last added:
+Armory.GUI.FirePit.Ledger.LastAdded=Last added:
+#
+#Heater specific information
+Armory.GUI.Heater.Ledger.InfoLine1=The heater is an additional component of the FirePit.
+Armory.GUI.Heater.Ledger.InfoLine2=It raises both its efficiency and its maximum temperature.
+#
+#Blocks
+tile.Armory.Blocks.FirePit.name=FirePit
+tile.Armory.Blocks.Heater.name=FirePit - Heater Extension
+#
+#Items
+item.Armory.Items.HeatedFan.name=Heater extension Fan
+item.Armory.Items.Components.MetalRing.name=Ring
+item.Armory.Items.Components.MetalChain.name=Chain
+#
+#HeatedIngot Specific
+Armory.Items.HeatedIngot.Tooltip.Temperature=Current Temperature:
+#
+#Materials
+Armory.Materials.Vanilla.Iron=Iron
+Armory.Materials.Vanilla.Chain=Steel
+Armory.Materials.Vanilla.Obsidian=Obsidian
+Armory.Materials.TConstruct.Alumite=Alumite
+Armory.Materials.TConstruct.Ardite=Ardite
+Armory.Materials.TConstruct.Cobalt=Cobalt
+Armory.Materials.TConstruct.Manyullun=Manyullun
+Armory.Materials.Common.Bronze=Bronze
+
+

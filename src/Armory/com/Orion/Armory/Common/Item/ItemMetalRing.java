@@ -17,7 +17,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -103,5 +105,14 @@ public class ItemMetalRing extends Item
 
             pItemStacks.add(tRingStack);
         }
+    }
+
+    @Override
+    public String getItemStackDisplayName(ItemStack pStack)
+    {
+        String tMaterialID = pStack.getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
+        ArmorMaterialMedieval tMaterial = MedievalRegistry.getInstance().getMaterial(tMaterialID);
+
+        return tMaterial.iVisibleNameColor + StatCollector.translateToLocal(tMaterial.iVisibleName) + " " + EnumChatFormatting.RESET + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name");
     }
 }

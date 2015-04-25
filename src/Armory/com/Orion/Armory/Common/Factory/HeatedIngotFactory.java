@@ -57,6 +57,11 @@ public class HeatedIngotFactory
     {
         if (!(pHeatedItemStack.getItem() instanceof ItemHeatedIngot))
         {
+            if (isHeatable(pHeatedItemStack))
+            {
+                return pHeatedItemStack;
+            }
+
             throw new InvalidParameterException("The given parameter is not a heatable item. Please report this to the modder!");
         }
 
