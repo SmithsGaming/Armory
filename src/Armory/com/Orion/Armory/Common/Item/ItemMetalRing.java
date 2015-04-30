@@ -43,7 +43,7 @@ public class ItemMetalRing extends Item
         Iterator tResourceIterator = iResources.entrySet().iterator();
         while (tResourceIterator.hasNext()) {
             Map.Entry<String, CustomResource> tResource = (Map.Entry<String, CustomResource>) tResourceIterator.next();
-            tResource.getValue().addIcon(pIconRegister.registerIcon(tResource.getValue().getIconLocation()));
+            tResource.getValue().addIcon(pIconRegister.registerIcon(tResource.getValue().getPrimaryLocation()));
         }
     }
 

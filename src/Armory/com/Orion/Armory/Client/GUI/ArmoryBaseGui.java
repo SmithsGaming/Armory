@@ -5,26 +5,20 @@ package com.Orion.Armory.Client.GUI;
 /  Created on : 15/01/2015
 */
 
-import com.Orion.Armory.Client.GUI.Components.Core.ComponentManager;
+import com.Orion.Armory.Client.GUI.Components.ComponentBorder;
+import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
+import com.Orion.Armory.Client.GUI.Components.Core.StandardComponentManager;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
-import com.Orion.Armory.Util.Client.*;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.inventory.Container;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 public abstract class ArmoryBaseGui extends GuiContainer {
     LedgerManager iLedgers = new LedgerManager(this);
-    ComponentManager iComponents = new ComponentManager(this);
+    StandardComponentManager iComponents = new StandardComponentManager(this);
     ResourceLocation iBackGroundTexture;
     public int iDisplayHeight;
     public int iDisplayWidth;
@@ -47,7 +41,7 @@ public abstract class ArmoryBaseGui extends GuiContainer {
         return iLedgers;
     }
 
-    public ComponentManager Components()
+    public StandardComponentManager Components()
     {
         return iComponents;
     }
@@ -70,8 +64,8 @@ public abstract class ArmoryBaseGui extends GuiContainer {
         GL11.glPushMatrix();
         GL11.glTranslatef(guiLeft, guiTop, 0F);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(iBackGroundTexture);
-        this.drawTexturedModalRect(0, 0, 0, 0, this.xSize, this.ySize);
+        //this.mc.getTextureManager().bindTexture(iBackGroundTexture);
+        //this.drawTexturedModalRect(0, 0, 0, 0, this.xSize, this.ySize);
 
         iComponents.drawComponents();
 
@@ -95,6 +89,11 @@ public abstract class ArmoryBaseGui extends GuiContainer {
         if (iLedgers.handleMouseClicked(mouseX, mouseY, mouseButton)) {
             return;
         }
+    }
+
+    public boolean getSlotVisibility(ComponentSlot pSlotElement)
+    {
+        return true;
     }
 }
 

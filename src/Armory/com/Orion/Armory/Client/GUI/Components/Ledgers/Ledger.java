@@ -1,8 +1,7 @@
 package com.Orion.Armory.Client.GUI.Components.Ledgers;
 
-import com.Orion.Armory.Armory;
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
-import com.Orion.Armory.Client.GUI.Components.Core.Component;
+import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
 import com.Orion.Armory.Util.Client.Color;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.SessionVars;
@@ -21,7 +20,7 @@ import org.lwjgl.opengl.GL11;
  * <p/>
  * Copyrighted according to Project specific license
  */
-public abstract class Ledger extends Component
+public abstract class Ledger extends AbstractGUIComponent
 {
     public int iCurrentXExtension = 24;
     public int iCurrentYExtension = 24;
@@ -44,11 +43,11 @@ public abstract class Ledger extends Component
     public int iMaxWidthOpen = 124;
     public int iMaxWidthClosed = 24;
 
-    public ResourceLocation TEXTURELEFT = new ResourceLocation(Textures.Gui.Basic.LEDGERLEFT);
+    public ResourceLocation TEXTURELEFT = new ResourceLocation(Textures.Gui.Basic.LEDGERLEFT.getPrimaryLocation());
 
-    public Ledger(ArmoryBaseGui pGui)
+    public Ledger(ArmoryBaseGui pGui, String pInternalName)
     {
-        super(pGui, 0, 0, 0, 0);
+        super(pGui,pInternalName, 0, 0, 0, 0);
     }
 
     @Override
@@ -81,6 +80,9 @@ public abstract class Ledger extends Component
         {
             iCurrentYExtension -= 4;
         }
+
+        iWidth = iCurrentXExtension;
+        iHeight = iCurrentYExtension;
     }
 
     public int getOriginOffSet()
@@ -121,6 +123,9 @@ public abstract class Ledger extends Component
             drawTexturedModalRect(pX + getOriginOffSet(), pY + iCurrentYExtension - 4, 0, 252, iCurrentXExtension, 4);
             drawTexturedModalRect(pX + getOriginOffSet() + iCurrentXExtension, pY, 252, 256 - iCurrentYExtension, 4, iCurrentYExtension);
             drawTexturedModalRect(pX + getOriginOffSet() + iCurrentXExtension, pY, 252, 0, 4, 4);
+
+            iLeft = pX + getOriginOffSet();
+            iTop = pY;
         }
         else
         {
@@ -130,6 +135,9 @@ public abstract class Ledger extends Component
             drawTexturedModalRect(pX-4, pY + 4, 4,4, 4, iCurrentYExtension-8);
             drawTexturedModalRect(pX + getOriginOffSet() + iCurrentXExtension, pY, 252, 0, 4, iCurrentYExtension);
             drawTexturedModalRect(pX + getOriginOffSet() + iCurrentXExtension, pY +iCurrentYExtension - 4, 252, 252, 4, 4);
+
+            iLeft = pX;
+            iTop = pY;
         }
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

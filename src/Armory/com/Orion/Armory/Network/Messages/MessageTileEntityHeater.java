@@ -1,7 +1,6 @@
 package com.Orion.Armory.Network.Messages;
 
 import com.Orion.Armory.Common.TileEntity.TileEntityArmory;
-import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

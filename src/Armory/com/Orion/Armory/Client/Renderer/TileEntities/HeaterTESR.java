@@ -1,7 +1,6 @@
 package com.Orion.Armory.Client.Renderer.TileEntities;
 
 import com.Orion.Armory.Client.Models.ModelHeater;
-import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
 import com.Orion.Armory.Util.References;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

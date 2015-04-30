@@ -11,31 +11,31 @@ import java.util.ArrayList;
  * <p/>
  * Copyrighted according to Project specific license
  */
-public class ComponentManager
+public class StandardComponentManager implements IComponentManager
 {
     protected ArmoryBaseGui iGui;
-    ArrayList<Component> iComponents = new ArrayList<Component>();
+    ArrayList<AbstractGUIComponent> iComponents = new ArrayList<AbstractGUIComponent>();
 
-    public ComponentManager(ArmoryBaseGui pGui)
+    public StandardComponentManager(ArmoryBaseGui pGui)
     {
         this.iGui = pGui;
     }
 
-    public ArrayList<Component> getComponents()
+    public ArrayList<AbstractGUIComponent> getComponents()
     {
         return iComponents;
     }
 
-    public void addComponent(Component pNewComponent)
+    public void addComponent(AbstractGUIComponent pNewComponent)
     {
         iComponents.add(pNewComponent);
     }
 
-    public Component getComponentAt(int pTargetX, int pTargetY)
+    public AbstractGUIComponent getComponentAt(int pTargetX, int pTargetY)
     {
         for(int i = 0; i < iComponents.size(); i++)
         {
-            Component tComponent = iComponents.get(i);
+            AbstractGUIComponent tComponent = iComponents.get(i);
             if (tComponent.checkIfPointIsInComponent(pTargetX, pTargetY)) { return tComponent; }
         }
 
@@ -45,7 +45,7 @@ public class ComponentManager
     public void drawComponents()
     {
         for(int i = 0; i < iComponents.size(); i++) {
-            Component tComponent = iComponents.get(i);
+            AbstractGUIComponent tComponent = iComponents.get(i);
             tComponent.onUpdate();
 
             tComponent.draw(iGui.guiLeft, iGui.guiTop);
@@ -57,7 +57,7 @@ public class ComponentManager
 
         if (pMouseButton == 0) {
 
-            Component tComponent = this.getComponentAt(pMouseX, pMouseY);
+            AbstractGUIComponent tComponent = this.getComponentAt(pMouseX, pMouseY);
 
             if (tComponent != null) {
                 return tComponent.handleMouseClicked(pMouseX, pMouseY, pMouseButton);

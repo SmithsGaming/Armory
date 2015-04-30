@@ -10,7 +10,6 @@ import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.Client.CustomResource;
-import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -44,7 +43,7 @@ public class ItemMetalChain extends Item
         Iterator tResourceIterator = iResources.entrySet().iterator();
         while (tResourceIterator.hasNext()) {
             Map.Entry<String, CustomResource> tResource = (Map.Entry<String, CustomResource>) tResourceIterator.next();
-            tResource.getValue().addIcon(pIconRegister.registerIcon(tResource.getValue().getIconLocation()));
+            tResource.getValue().addIcon(pIconRegister.registerIcon(tResource.getValue().getPrimaryLocation()));
         }
     }
 

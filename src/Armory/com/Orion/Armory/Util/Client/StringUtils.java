@@ -8,8 +8,6 @@ package com.Orion.Armory.Util.Client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 
-import java.util.ArrayList;
-
 public class StringUtils
 {
     public static int GetMininumWidth(String[] pStrings, FontRenderer pCurrentFont)

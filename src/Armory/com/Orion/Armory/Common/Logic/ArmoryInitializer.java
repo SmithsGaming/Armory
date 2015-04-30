@@ -6,19 +6,19 @@ package com.Orion.Armory.Common.Logic;
  */
 
 import com.Orion.Armory.Armory;
-import com.Orion.Armory.Common.Blocks.BlockHeater;
-import com.Orion.Armory.Common.Item.Armor.Core.ArmorAddonPosition;
-import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
-import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
-import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
-import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
+import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Crafting.ChainCraftingRecipe;
 import com.Orion.Armory.Common.Crafting.MedievalArmorCraftingRecipe;
 import com.Orion.Armory.Common.Events.ModifyMaterialEvent;
 import com.Orion.Armory.Common.Events.RegisterArmorEvent;
 import com.Orion.Armory.Common.Events.RegisterMaterialsEvent;
 import com.Orion.Armory.Common.Events.RegisterUpgradesEvent;
+import com.Orion.Armory.Common.Item.Armor.Core.ArmorAddonPosition;
+import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Item.ItemFan;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Item.ItemMetalChain;

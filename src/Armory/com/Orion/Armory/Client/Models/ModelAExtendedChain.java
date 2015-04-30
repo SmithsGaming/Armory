@@ -122,7 +122,7 @@ public class ModelAExtendedChain extends ModelBiped
         for(Integer IIterator = 0; IIterator < tRenderPasses; IIterator++)
         {
             CustomResource tResource = tArmor.getResource(iStackToBeRendered, IIterator);
-            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(tResource.getModelLocation()));
+            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(tResource.getSecondaryLocation()));
             GL11.glColor3f(tResource.getColor().getColorRedFloat(), tResource.getColor().getColorGreenFloat(), tResource.getColor().getColorBlueFloat());
 
             if (this.isChild)

@@ -2,7 +2,6 @@ package com.Orion.Armory.Client.GUI.Plugins.NEI;
 
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
-import com.Orion.Armory.Armory;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.References;
 

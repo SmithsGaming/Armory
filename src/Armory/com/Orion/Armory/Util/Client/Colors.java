@@ -7,6 +7,7 @@ package com.Orion.Armory.Util.Client;
 
 public final class Colors
 {
+    public static Color DEFAULT = new Color(255, 255, 255, 255);
 
     public static class General
     {

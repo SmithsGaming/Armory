@@ -1,9 +1,7 @@
 package com.Orion.Armory.Client.Renderer.Items;
 
-import com.Orion.Armory.Client.Models.ModelFirePit;
 import com.Orion.Armory.Client.Models.ModelHeater;
 import com.Orion.Armory.Util.References;
-import com.sun.javafx.sg.prism.NodeEffectInput;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

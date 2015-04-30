@@ -22,7 +22,7 @@ public class InfoLedger extends Ledger
     final String[] iTranslatedInfoText;
 
     public InfoLedger(ArmoryBaseGui pGui, String pTitel, String[] pUntranslatedInfotext, IIcon pIcon) {
-        super(pGui);
+        super(pGui, "Gui.Ledgers.InfoLedger");
 
         iHeader = StatCollector.translateToLocal(pTitel);
         iHeaderIcon = pIcon;

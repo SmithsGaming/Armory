@@ -6,6 +6,7 @@ package com.Orion.Armory.Util.Client;
 */
 
 import com.Orion.Armory.Util.References;
+import net.minecraft.client.renderer.texture.IIconRegister;
 
 public class Textures
 {
@@ -105,13 +106,39 @@ public class Textures
         public static class Basic
         {
             private static String BASICTEXTUREPATH = GUITEXTUREPATH + "Basic/";
-            public static String LEDGERLEFT = BASICTEXTUREPATH + "Ledger/ledger.png";
-            public static String INFOICON = "armory:Gui-Icons/16x Info icon";
+            public static CustomResource LEDGERLEFT = new CustomResource("Gui.Basic.Ledgers.Left", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT);
+            public static CustomResource INFOICON = new CustomResource("Gui.Basic.Ledgers.InfoIon", "armory:Gui-Icons/16x Info icon", Colors.DEFAULT);
+
+            public static class Slots
+            {
+                public static CustomResource DEFAULT = new CustomResource("Gui.Basic.Slots.Default",BASICTEXTUREPATH + "slot.png", Colors.DEFAULT);
+            }
+
+            public static class Border
+            {
+                private static String BORDERTEXTUREPATH = BASICTEXTUREPATH + "Borders/";
+                public static CustomResource CENTER = new CustomResource("Gui.Basic.Border.Center", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 4, 4, 248, 248);
+                public static CustomResource STRAIGHTBORDER = new CustomResource("Gui.Basic.Border.Border", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 4, 0, 248, 4);
+                public static CustomResource INWARTSCORNER = new CustomResource("Gui.Basic.Border.Corner.Inwarts", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 0, 0, 4, 4);
+                public static CustomResource OUTWARTSCORNER = new CustomResource("Gui.Basic.Border.Corner.Outwarts", BORDERTEXTUREPATH + "Outwartscorner.png", Colors.DEFAULT);
+            }
         }
 
-        public static String FIREPIT = GUITEXTUREPATH + "firepit.png";
-        public static String THERMOMETER = "armory:Gui-Icons/16x Thermo";
+        public static class FirePit
+        {
+            public static CustomResource BACKGROUND = new CustomResource("Gui.FirePit.Background", GUITEXTUREPATH + "firepit.png", Colors.DEFAULT);
+            public static CustomResource THERMOMETERICON = new CustomResource("Gui.FirePit.Thermometer", TextureAddressHelper.getTextureAddress("Gui-Icons/16x Thermo"), Colors.DEFAULT);
+        }
 
-        public static String HEATER = GUITEXTUREPATH + "Heater.png";
+        public static class Heater
+        {
+            public static CustomResource BACKGROUND = new CustomResource("Gui.Heater.Background", GUITEXTUREPATH + "Heater.png", Colors.DEFAULT);
+        }
+    }
+
+    public static void registerIcons(IIconRegister pRegistrar)
+    {
+        Gui.Basic.INFOICON.addIcon(pRegistrar.registerIcon(Gui.Basic.INFOICON.getPrimaryLocation()));
+        Gui.FirePit.THERMOMETERICON.addIcon(pRegistrar.registerIcon(Gui.FirePit.THERMOMETERICON.getPrimaryLocation()));
     }
 }

@@ -11,8 +11,6 @@ import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 
-import java.util.ArrayList;
-
 public class ContainerFirepit extends ContainerArmory
 {
     private TileEntityFirePit iTEFirePit;

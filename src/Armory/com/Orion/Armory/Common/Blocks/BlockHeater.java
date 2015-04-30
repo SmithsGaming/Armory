@@ -6,7 +6,6 @@ package com.Orion.Armory.Common.Blocks;
  */
 
 import com.Orion.Armory.Armory;
-import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
 import com.Orion.Armory.Util.References;
 import net.minecraft.block.BlockContainer;

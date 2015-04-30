@@ -16,6 +16,11 @@ public class CustomResource {
     private IIcon iIcon;
     private Color iColor;
 
+    private int iLeft;
+    private int iTop;
+    private int iWidth;
+    private int iHeigth;
+
     public CustomResource(String pInternalName, String pIconLocation) {
         this(pInternalName, pIconLocation, "");
     }
@@ -35,11 +40,38 @@ public class CustomResource {
         iColor = pColor;
     }
 
+    public CustomResource(String pInternalName, String pIconLocation, int pRed, int pGreen, int pBlue)
+    {
+        this(pInternalName, pIconLocation, new Color(pRed, pGreen, pBlue));
+    }
+
+    public CustomResource(String pInternalName, String pIconLocation, Color pColor)
+    {
+        this(pInternalName, pIconLocation, "", pColor);
+    }
+
+    public CustomResource(String pInternalName, String pIconLocation, int pLeft, int pTop, int pWidth, int pHeigth)
+    {
+        this(pInternalName, pIconLocation, Colors.DEFAULT, pLeft, pTop, pWidth , pHeigth);
+    }
+
+    public CustomResource(String pInternalName, String pIconLocation, Color pColor, int pLeft, int pTop, int pWidth, int pHeigth)
+    {
+        iInternalName = pInternalName;
+        iInternalName = pInternalName;
+        iRescourceLocations.add(pIconLocation);
+        iColor = pColor;
+        iLeft = pLeft;
+        iTop = pTop;
+        iWidth = pWidth;
+        iHeigth = pHeigth;
+    }
+
     public String getInternalName() {
         return this.iInternalName;
     }
 
-    public String getIconLocation() {
+    public String getPrimaryLocation() {
         return iRescourceLocations.get(0);
     }
 
@@ -51,9 +83,17 @@ public class CustomResource {
         return iIcon;
     }
 
-    public String getModelLocation() {
+    public String getSecondaryLocation() {
         return iRescourceLocations.get(1);
     }
+
+    public int getDistanceToLeft() { return iLeft; }
+
+    public int getDistanceToTop() { return iTop; }
+
+    public int getWidth() { return iWidth; }
+
+    public int getHeigth() { return iHeigth; }
 
     public int getColorInt(int pIndex) {
         switch (pIndex) {

@@ -5,7 +5,7 @@ package com.Orion.Armory.Client.Event;
  *   Created on: 24-1-2015
  */
 
-import com.Orion.Armory.Client.Logic.CoreIconProvider;
+import com.Orion.Armory.Util.Client.Textures;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,7 +20,7 @@ public class ClientEventHandler
     {
         if (pEvent.map.getTextureType() == 1)
         {
-            CoreIconProvider.getInstance().registerIcons(pEvent.map);
+            Textures.registerIcons(pEvent.map);
         }
     }
 }

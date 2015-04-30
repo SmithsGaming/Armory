@@ -1,8 +1,8 @@
 package com.Orion.Armory.Client.GUI.Components.Ledgers;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
-import com.Orion.Armory.Client.GUI.Components.Core.Component;
-import com.Orion.Armory.Client.GUI.Components.Core.ComponentManager;
+import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
+import com.Orion.Armory.Client.GUI.Components.Core.StandardComponentManager;
 
 import java.util.ArrayList;
 
@@ -15,24 +15,24 @@ import java.util.ArrayList;
  */
 public class LedgerManager
 {
-    ComponentManager iLeftLedgerManager;
-    ComponentManager iRightLedgerManager;
+    StandardComponentManager iLeftLedgerManager;
+    StandardComponentManager iRightLedgerManager;
 
     ArmoryBaseGui iGui;
 
     public LedgerManager(ArmoryBaseGui pGui) {
         iGui = pGui;
 
-        iLeftLedgerManager = new ComponentManager(pGui);
-        iRightLedgerManager = new ComponentManager(pGui);
+        iLeftLedgerManager = new StandardComponentManager(pGui);
+        iRightLedgerManager = new StandardComponentManager(pGui);
     }
 
-    public ArrayList<Component> getLeftLedgers()
+    public ArrayList<AbstractGUIComponent> getLeftLedgers()
     {
         return iLeftLedgerManager.getComponents();
     }
 
-    public ArrayList<Component> getRightLedgers()
+    public ArrayList<AbstractGUIComponent> getRightLedgers()
     {
         return iRightLedgerManager.getComponents();
     }

@@ -5,9 +5,10 @@ package com.Orion.Armory.Client.GUI;
  *   Created on: 18-1-2015
  */
 
+import com.Orion.Armory.Client.GUI.Components.ComponentBorder;
+import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.InfoLedger;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.Ledger;
-import com.Orion.Armory.Client.Logic.CoreIconProvider;
 import com.Orion.Armory.Common.Inventory.ContainerFirepit;
 import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Util.Client.Colors;
@@ -16,6 +17,7 @@ import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Client.TranslationKeys;
 import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
@@ -35,10 +37,10 @@ public class GuiFirePit extends com.Orion.Armory.Client.GUI.ArmoryBaseGui
 
         public TemperatureLedger(GuiFirePit pGui)
         {
-            super(pGui);
+            super(pGui, "Gui.GuiFirePit.Ledgers.Temperature");
 
             iHeader = StatCollector.translateToLocal(TranslationKeys.GUI.FirePit.TempTitel);
-            iHeaderIcon = CoreIconProvider.getInstance().getIcon(CoreIconProvider.THERMOMETER);
+            iHeaderIcon = Textures.Gui.FirePit.THERMOMETERICON.getIcon();
             iBackgroundColor = Colors.Ledgers.YELLOW;
             ArrayList<String> tTranslationsWithSplit = new ArrayList<String>();
 
@@ -93,10 +95,24 @@ public class GuiFirePit extends com.Orion.Armory.Client.GUI.ArmoryBaseGui
         this.xSize = 175;
         this.ySize = 165;
 
-        this.iBackGroundTexture = new ResourceLocation(Textures.Gui.FIREPIT);
+        }
 
-        this.iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.FirePit.InfoLine1, "", TranslationKeys.GUI.FirePit.InfoLine2, "", TranslationKeys.GUI.FirePit.InfoLine3}, CoreIconProvider.getInstance().getIcon(0)));
+    @Override
+    public void initGui()
+    {
+        super.initGui();
+
+        iComponents.addComponent(new ComponentBorder(this, "Gui.FirePit.Background", ySize, xSize, guiLeft, guiTop, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
+
+        this.iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.FirePit.InfoLine1, "", TranslationKeys.GUI.FirePit.InfoLine2, "", TranslationKeys.GUI.FirePit.InfoLine3}, Textures.Gui.Basic.INFOICON.getIcon()));
         this.iLedgers.addLedgerRight(new TemperatureLedger(this));
+
+        for(Object tSlotObject : inventorySlots.inventorySlots)
+        {
+            Slot tSlot = (Slot) tSlotObject;
+
+            iComponents.addComponent(new ComponentSlot(this, "Gui.GuiFirePit.Slots." + tSlot.slotNumber, tSlot));
+        }
     }
 
     @Override

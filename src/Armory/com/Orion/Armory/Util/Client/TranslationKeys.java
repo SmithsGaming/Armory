@@ -1,8 +1,5 @@
 package com.Orion.Armory.Util.Client;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 /**
  * Created by Orion
  * Created on 4/16/2015

@@ -2,8 +2,8 @@ package com.Orion.Armory.Client.GUI.Plugins.NEI;
 
 import codechicken.lib.vec.Rectangle4i;
 import codechicken.nei.api.INEIGuiAdapter;
-import com.Orion.Armory.Client.GUI.Components.Ledgers.Ledger;
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
+import com.Orion.Armory.Client.GUI.Components.Ledgers.Ledger;
 import net.minecraft.client.gui.inventory.GuiContainer;
 
 /**

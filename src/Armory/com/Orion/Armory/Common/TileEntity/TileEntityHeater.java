@@ -5,12 +5,10 @@ package com.Orion.Armory.Common.TileEntity;
  *   Created on: 12-10-2014
  */
 
-import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
 import com.Orion.Armory.Network.Messages.MessageTileEntityHeater;
 import com.Orion.Armory.Network.NetworkManager;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import net.minecraft.block.BlockChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -19,8 +17,6 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.ArrayList;
 
 public class TileEntityHeater extends TileEntityArmory implements IInventory
 {

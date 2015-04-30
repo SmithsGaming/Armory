@@ -1,13 +1,9 @@
 package com.Orion.Armory.Common.Inventory;
 
 import com.Orion.Armory.Common.Inventory.Slots.SlotFan;
-import com.Orion.Armory.Common.Inventory.Slots.SlotFuelInput;
-import com.Orion.Armory.Common.Inventory.Slots.SlotHeatable;
-import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
-import tconstruct.tools.inventory.SlotFrypan;
 
 /**
  * Created by Orion
