@@ -27,7 +27,7 @@ public class ContainerFirepit extends ContainerArmory
 
         for (int tSlotIndex = 0; tSlotIndex < pTEFirePit.FUELSTACK_AMOUNT; tSlotIndex++)
         {
-            this.addSlotToContainer(new SlotFuelInput(pTEFirePit, tSlotIndex + 5, 44 + tSlotIndex * 18, 63));
+            this.addSlotToContainer(new SlotFuelInput(pTEFirePit, tSlotIndex + 5, 44 + tSlotIndex * 18, 59));
         }
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < PLAYER_INVENTORY_ROWS; ++inventoryRowIndex)

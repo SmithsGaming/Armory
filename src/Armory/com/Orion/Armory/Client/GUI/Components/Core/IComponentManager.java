@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 public interface IComponentManager
 {
-    public ArrayList<AbstractGUIComponent> getComponents();
+    public ArrayList<IGUIComponent> getComponents();
 
-    public void addComponent(AbstractGUIComponent pNewComponent);
+    public void addComponent(IGUIComponent pNewComponent);
 
-    public AbstractGUIComponent getComponentAt(int pTargetX, int pTargetY);
+    public IGUIComponent getComponentAt(int pTargetX, int pTargetY);
 
     public void drawComponents();
 

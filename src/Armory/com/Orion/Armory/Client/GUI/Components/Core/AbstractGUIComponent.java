@@ -25,7 +25,7 @@ public abstract class AbstractGUIComponent extends Gui implements IGUIComponent
 
     String iInternalName;
 
-    public AbstractGUIComponent(ArmoryBaseGui pGui, String pInternalName, int pHeight, int pWidth, int pLeft, int pTop)
+    public AbstractGUIComponent(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeight)
     {
         super();
 

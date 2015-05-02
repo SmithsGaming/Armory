@@ -7,6 +7,8 @@ package com.Orion.Armory.Util;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
+import java.security.PublicKey;
+
 public class References
 {
     public class General
@@ -204,25 +206,27 @@ public class References
             public static final String ItemFan = "Armory.Items.HeatedFan";
         }
 
-        public class MultiBlock
-        {
-            public static final String Air = "Vanilla.Air";
-            public static final String Cauldron = "Vanilla.Cauldron";
-            public static final String Anvil = "Vanilla.Anvil";
-        }
-
         public class Blocks
         {
             public static final String FirePit = "Armory.Blocks.FirePit";
             public static final String Heater = "Armory.Blocks.Heater";
+            public static final String ArmorsAnvil = "Armory.Blocks.Anvil";
         }
 
         public class TileEntities
         {
             public static final String FirePitContainer = "container.Armory.FirePit";
-            public static final String HeaterComponent = "components.Armory.Heater";
+            public static final String HeaterComponent = "container.Armory.Heater";
+            public static final String ArmorsAnvil = "container.Armory.Anvil";
         }
 
+        public class HeatedItemTypes
+        {
+            public static final String INGOT = "Ingot";
+            public static final String RING = "Ring";
+            public static final String CHAIN = "Chain";
+            public static final String PLATE = "Plate";
+        }
     }
 
     //General model addresses
@@ -234,6 +238,7 @@ public class References
 
             public final static String FirePit = iModelLocation + "FirePit.obj";
             public final static String Heater = iModelLocation + "Heater.obj";
+            public final static String Anvil = iModelLocation + "ArmorsAnvil.obj";
         }
     }
 
@@ -283,6 +288,7 @@ public class References
             public static final String ORIGINALITEM = "ORIGINALITEM";
             public static final String MATERIALID = "OriginalMaterial";
             public static final String CURRENTTEMPERATURE = "CURRENTTEMPERATURE";
+            public static final String TYPE = "Type";
         }
 
         public class TE
@@ -317,6 +323,7 @@ public class References
     {
         public static final int FirePitID = RenderingRegistry.getNextAvailableRenderId();
         public static final int HeaterID = RenderingRegistry.getNextAvailableRenderId();
+        public static final int AnvilID = RenderingRegistry.getNextAvailableRenderId();
     }
 
     public static class GuiIDs

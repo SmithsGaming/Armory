@@ -18,8 +18,8 @@ public class ComponentBorder extends AbstractGUIComponent
     Color iBackGroundColor;
     CornerTypes iUpperCornerType;
 
-    public ComponentBorder(ArmoryBaseGui pGui, String pInternalName, int pHeight, int pWidth, int pLeft, int pTop, Color pBackGroundColor, CornerTypes pUpperCornerType) {
-        super(pGui, pInternalName, pHeight, pWidth, pLeft, pTop);
+    public ComponentBorder(ArmoryBaseGui pGui, String pInternalName,int pLeft, int pTop, int pWidth, int pHeight, Color pBackGroundColor, CornerTypes pUpperCornerType) {
+        super(pGui, pInternalName, pLeft, pTop, pWidth, pHeight);
 
         iBackGroundColor = pBackGroundColor;
         iUpperCornerType = pUpperCornerType;
@@ -42,13 +42,31 @@ public class ComponentBorder extends AbstractGUIComponent
 
         if (iUpperCornerType == CornerTypes.Outwarts)
         {
+            //renderCenter();
 
+            //renderCornerOutwarts(-4, -4, 0);
+            renderCornerOutwarts(-4, iWidth, 1);
+            renderCornerInwarts(iWidth, iHeight, 2);
+            renderCornerInwarts(0, iHeight, 3);
+
+            renderBorder(3, 0, 0, false);
+            renderBorder(iWidth, 3, 1, true);
+            renderBorder(iWidth - 3, iHeight, 2, true);
+            renderBorder(0, iHeight - 3, 3, true);
         }
         else if (iUpperCornerType == CornerTypes.StraightVertical)
         {
-            //Render the center
-            //Render the four borders
-            //Render the two lower corners(rotate around Z-axis)
+            renderCenter();
+
+            renderCornerStraightVertical(0, 0, 0);
+            renderCornerStraightVertical(0, iWidth, 1);
+            renderCornerInwarts(iWidth, iHeight, 2);
+            renderCornerInwarts(0, iHeight, 3);
+
+            renderBorder(3, 0, 0, false);
+            renderBorder(iWidth, 3, 1, true);
+            renderBorder(iWidth - 3, iHeight, 2, true);
+            renderBorder(0, iHeight - 3, 3, true);
         }
         else
         {
@@ -56,16 +74,16 @@ public class ComponentBorder extends AbstractGUIComponent
             renderCenter();
 
             //Render four Corners
-            //renderCornerInwarts(iLeft, iTop, 0);
-            //renderCornerInwarts(iLeft + iWidth - 4, iTop, 1);
-            //renderCornerInwarts(iLeft + iWidth - 4, iTop + iHeight - 4, 2);
-            //renderCornerInwarts(iLeft, iTop + iHeight -4, 3);
+            renderCornerInwarts(0, 0, 0);
+            renderCornerInwarts(iWidth, 0, 1);
+            renderCornerInwarts(iWidth, iHeight, 2);
+            renderCornerInwarts(0, iHeight, 3);
 
             //RenderBorders
-            //renderBorder(iLeft + 4, iTop, 0, true);
-            //renderBorder(iLeft + iWidth - 4, iTop + 4, 1, true);
-            //renderBorder(iLeft + 4, iTop + iHeight - 4, 2, true);
-            //renderBorder(iLeft, iTop + 4, 3, true);
+            renderBorder(3, 0, 0, true);
+            renderBorder(iWidth, 3, 1, true);
+            renderBorder(iWidth - 3, iHeight, 2, true);
+            renderBorder(0, iHeight - 3, 3, true);
         }
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
@@ -75,20 +93,20 @@ public class ComponentBorder extends AbstractGUIComponent
     private void renderCenter()
     {
         bindTexture(Textures.Gui.Basic.Border.CENTER.getPrimaryLocation());
-        if(iWidth - 8 <= Textures.Gui.Basic.Border.CENTER.getWidth() && iHeight - 8 <= Textures.Gui.Basic.Border.CENTER.getHeigth())
+        if(iWidth - 6 <= Textures.Gui.Basic.Border.CENTER.getWidth() && iHeight - 8 <= Textures.Gui.Basic.Border.CENTER.getHeigth())
         {
-            drawTexturedModalRect(iLeft +4, iTop + 4, Textures.Gui.Basic.Border.CENTER.getDistanceToLeft(), Textures.Gui.Basic.Border.CENTER.getDistanceToTop(), iWidth - 8, iHeight - 8);
+            drawTexturedModalRect(3, 3, Textures.Gui.Basic.Border.CENTER.getDistanceToLeft(), Textures.Gui.Basic.Border.CENTER.getDistanceToTop(), iWidth - 6, iHeight - 6);
         }
         else
         {
-            int tDrawnHeigth = 5;
-            int tDrawnWidth = 5;
+            int tDrawnHeigth = 3;
+            int tDrawnWidth = 3;
             while(tDrawnHeigth < iHeight)
             {
-                if (iWidth - 8 <= Textures.Gui.Basic.Border.CENTER.getWidth())
+                if (iWidth - 6 <= Textures.Gui.Basic.Border.CENTER.getWidth())
                 {
-                    drawTexturedModalRect(tDrawnWidth, tDrawnHeigth, Textures.Gui.Basic.Border.CENTER.getDistanceToLeft(), Textures.Gui.Basic.Border.CENTER.getDistanceToTop(), iWidth - 8, Textures.Gui.Basic.Border.CENTER.getHeigth());
-                    tDrawnWidth += (iWidth - 8);
+                    drawTexturedModalRect(tDrawnWidth, tDrawnHeigth, Textures.Gui.Basic.Border.CENTER.getDistanceToLeft(), Textures.Gui.Basic.Border.CENTER.getDistanceToTop(), iWidth - 6, Textures.Gui.Basic.Border.CENTER.getHeigth());
+                    tDrawnWidth += (iWidth - 6);
                     tDrawnHeigth += Textures.Gui.Basic.Border.CENTER.getHeigth();
                 }
                 else
@@ -99,7 +117,7 @@ public class ComponentBorder extends AbstractGUIComponent
                         {
                             drawTexturedModalRect(tDrawnWidth, tDrawnHeigth, Textures.Gui.Basic.Border.CENTER.getDistanceToLeft(), Textures.Gui.Basic.Border.CENTER.getDistanceToTop(), Textures.Gui.Basic.Border.CENTER.getWidth(), iHeight - 8);
                             tDrawnWidth += Textures.Gui.Basic.Border.CENTER.getWidth();
-                            tDrawnHeigth += iHeight - 8;
+                            tDrawnHeigth += iHeight - 6;
                         }
                         else
                         {
@@ -118,15 +136,13 @@ public class ComponentBorder extends AbstractGUIComponent
     private void renderCornerOutwarts(int pCornerXPos, int pCornerYPos, int pCornerNumber)
     {
         GL11.glPushMatrix();
-        GL11.glColor4f(iBackGroundColor.getColorRedFloat(), iBackGroundColor.getColorGreenFloat(), iBackGroundColor.getColorBlueFloat(), iBackGroundColor.getAlphaFloat());
 
         GL11.glTranslatef(pCornerXPos, pCornerYPos, 0F);
         GL11.glRotatef(pCornerNumber * 90F, 0F, 0F, 1F);
 
         bindTexture(Textures.Gui.Basic.Border.OUTWARTSCORNER.getPrimaryLocation());
-        drawTexturedModalRect(0,0, Textures.Gui.Basic.Border.OUTWARTSCORNER.getDistanceToLeft(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getDistanceToTop(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getWidth(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getHeigth());
+        drawTexturedModalRect(0, 0, Textures.Gui.Basic.Border.OUTWARTSCORNER.getDistanceToLeft(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getDistanceToTop(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getWidth(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getHeigth());
 
-        GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();
     }
 
@@ -134,15 +150,25 @@ public class ComponentBorder extends AbstractGUIComponent
     private void renderCornerInwarts(int pCornerXPos, int pCornerYPos, int pCornerNumber)
     {
         GL11.glPushMatrix();
-        GL11.glColor4f(iBackGroundColor.getColorRedFloat(), iBackGroundColor.getColorGreenFloat(), iBackGroundColor.getColorBlueFloat(), iBackGroundColor.getAlphaFloat());
 
         GL11.glTranslatef(pCornerXPos, pCornerYPos, 0F);
-        GL11.glRotatef(pCornerNumber * 90F, 0F, 0F, 1F);
 
-        bindTexture(Textures.Gui.Basic.Border.INWARTSCORNER.getPrimaryLocation());
-        drawTexturedModalRect(0,0, Textures.Gui.Basic.Border.INWARTSCORNER.getDistanceToLeft(), Textures.Gui.Basic.Border.INWARTSCORNER.getDistanceToTop(), Textures.Gui.Basic.Border.INWARTSCORNER.getWidth(), Textures.Gui.Basic.Border.INWARTSCORNER.getHeigth());
+        CustomResource tResource;
 
-        GL11.glColor4f(1F, 1F, 1F, 1F);
+        if (pCornerNumber != 2)
+        {
+            GL11.glRotatef(pCornerNumber * 90F, 0F, 0F, 1F);
+            tResource = Textures.Gui.Basic.Border.INWARTSCORNERLIGHT;
+        }
+        else
+        {
+            tResource = Textures.Gui.Basic.Border.INWARTSCORNERDARK;
+            GL11.glTranslatef(-4F, -4F, 0F);
+        }
+
+        bindTexture(tResource.getPrimaryLocation());
+        drawTexturedModalRect(0,0,tResource.getDistanceToLeft(), tResource.getDistanceToTop(), tResource.getWidth(), tResource.getHeigth());
+
         GL11.glPopMatrix();
     }
 
@@ -150,15 +176,26 @@ public class ComponentBorder extends AbstractGUIComponent
     private void renderCornerStraightVertical(int pCornerXPos, int pCornerYPos, int pCornerNumber)
     {
         GL11.glPushMatrix();
-        GL11.glColor4f(iBackGroundColor.getColorRedFloat(), iBackGroundColor.getColorGreenFloat(), iBackGroundColor.getColorBlueFloat(), iBackGroundColor.getAlphaFloat());
+
+        pCornerNumber = (pCornerNumber % 2);
 
         GL11.glTranslatef(pCornerXPos, pCornerYPos, 0F);
-        GL11.glRotatef(pCornerNumber * 90F, 0F, 0F, 1F);
 
-        bindTexture(Textures.Gui.Basic.Border.INWARTSCORNER.getPrimaryLocation());
-        drawTexturedModalRect(0,0, Textures.Gui.Basic.Border.INWARTSCORNER.getDistanceToLeft(), Textures.Gui.Basic.Border.INWARTSCORNER.getDistanceToTop(), Textures.Gui.Basic.Border.INWARTSCORNER.getWidth(), Textures.Gui.Basic.Border.INWARTSCORNER.getHeigth());
+        CustomResource tResource;
+        if (pCornerNumber == 0)
+        {
+            tResource = Textures.Gui.Basic.Border.STRAIGHTBORDERLIGHT;
+            GL11.glRotatef(270F, 0F, 0F, 1F);
+        }
+        else
+        {
+            tResource = Textures.Gui.Basic.Border.STRAIGHTBORDERDARK;
+            GL11.glRotatef(90F, 0F, 0F, 1F);
+        }
 
-        GL11.glColor4f(1F, 1F, 1F, 1F);
+        bindTexture(tResource.getPrimaryLocation());
+        drawTexturedModalRect(pCornerXPos-3, pCornerYPos, tResource.getDistanceToLeft(), tResource.getDistanceToTop(),6, tResource.getHeigth());
+
         GL11.glPopMatrix();
     }
 
@@ -167,62 +204,66 @@ public class ComponentBorder extends AbstractGUIComponent
     private void renderBorder(int pTopLeftXPos, int pTopLeftYPos, int pSideNumber, boolean pBordered)
     {
         GL11.glPushMatrix();
-        GL11.glColor4f(iBackGroundColor.getColorRedFloat(), iBackGroundColor.getColorGreenFloat(), iBackGroundColor.getColorBlueFloat(), iBackGroundColor.getAlphaFloat());
 
         CustomResource tResource;
+        int tLength = iWidth - 6;
+        int tHeigth;
 
-        if (pBordered)
+        if ((pSideNumber % 2) == 1)
         {
-            tResource = Textures.Gui.Basic.Border.STRAIGHTBORDER;
-        }
-        else
-        {
-            tResource = Textures.Gui.Basic.Border.CENTER;
+            tLength = iHeight - 6;
         }
 
         GL11.glTranslatef(pTopLeftXPos, pTopLeftYPos, 0F);
         GL11.glRotatef(pSideNumber * 90F, 0F, 0F, 1F);
 
-        bindTexture(tResource.getPrimaryLocation());
-        if(iWidth - 8 <= Textures.Gui.Basic.Border.CENTER.getWidth() && iHeight - 8 <= Textures.Gui.Basic.Border.CENTER.getHeigth())
+        if (pBordered)
         {
-            drawTexturedModalRect(0,0, Textures.Gui.Basic.Border.CENTER.getDistanceToLeft(), Textures.Gui.Basic.Border.CENTER.getDistanceToTop(), iWidth - 8, iHeight - 8);
+            if ((pSideNumber != 1) && (pSideNumber != 2))
+            {
+                tResource = Textures.Gui.Basic.Border.STRAIGHTBORDERLIGHT;
+                tHeigth = tResource.getHeigth();
+            }
+            else
+            {
+                tResource = Textures.Gui.Basic.Border.STRAIGHTBORDERDARK;
+                tHeigth = tResource.getHeigth();
+                GL11.glRotatef(180F, 0F, 0F, 1F);
+                GL11.glTranslatef(-tLength, -3F, 0F);
+            }
+        }
+        else {
+            tResource = Textures.Gui.Basic.Border.CENTER;
+            tHeigth = 6;
+            GL11.glTranslatef(0F, -3F, 0F);
+        }
+
+        bindTexture(tResource.getPrimaryLocation());
+
+        if(tLength <= Textures.Gui.Basic.Border.STRAIGHTBORDERLIGHT.getWidth())
+        {
+            drawTexturedModalRect(0, 0, tResource.getDistanceToLeft(), tResource.getDistanceToTop(), tLength, tHeigth);
         }
         else
         {
             int tDrawnHeigth = 0;
             int tDrawnWidth = 0;
-            while(tDrawnHeigth < iHeight)
-            {
-                if (iWidth - 8 <= Textures.Gui.Basic.Border.CENTER.getWidth())
+            while (tDrawnWidth <= iWidth)
                 {
-                    drawTexturedModalRect(tDrawnWidth, tDrawnHeigth, Textures.Gui.Basic.Border.CENTER.getDistanceToLeft(), Textures.Gui.Basic.Border.CENTER.getDistanceToTop(), iWidth - 8, Textures.Gui.Basic.Border.CENTER.getHeigth());
-                    tDrawnWidth += (iWidth - 8);
-                    tDrawnHeigth += Textures.Gui.Basic.Border.CENTER.getHeigth();
-                }
-                else
-                {
-                    while (tDrawnWidth <= iWidth)
+                    if (iHeight - 8 < Textures.Gui.Basic.Border.CENTER.getHeigth())
                     {
-                        if (iHeight - 8 < Textures.Gui.Basic.Border.CENTER.getHeigth())
-                        {
-                            drawTexturedModalRect(tDrawnWidth, tDrawnHeigth, Textures.Gui.Basic.Border.CENTER.getDistanceToLeft(), Textures.Gui.Basic.Border.CENTER.getDistanceToTop(), Textures.Gui.Basic.Border.CENTER.getWidth(), iHeight - 8);
-                            tDrawnWidth += Textures.Gui.Basic.Border.CENTER.getWidth();
-                            tDrawnHeigth += iHeight - 8;
-                        }
-                        else
-                        {
-                            drawTexturedModalRect(tDrawnWidth, tDrawnHeigth, Textures.Gui.Basic.Border.CENTER.getDistanceToLeft(), Textures.Gui.Basic.Border.CENTER.getDistanceToTop(), Textures.Gui.Basic.Border.CENTER.getWidth(), Textures.Gui.Basic.Border.CENTER.getHeigth());
-                            tDrawnWidth += Textures.Gui.Basic.Border.CENTER.getWidth();
-                            tDrawnHeigth += Textures.Gui.Basic.Border.CENTER.getHeigth();
-                        }
+                        drawTexturedModalRect(tDrawnWidth, tDrawnHeigth, Textures.Gui.Basic.Border.CENTER.getDistanceToLeft(), Textures.Gui.Basic.Border.CENTER.getDistanceToTop(), Textures.Gui.Basic.Border.CENTER.getWidth(), iHeight - 8);
+                        tDrawnWidth += Textures.Gui.Basic.Border.CENTER.getWidth();
+                        tDrawnHeigth += iHeight - 8;
                     }
-                    tDrawnWidth = 0;
+                    else
+                    {
+                        drawTexturedModalRect(tDrawnWidth, tDrawnHeigth, Textures.Gui.Basic.Border.CENTER.getDistanceToLeft(), Textures.Gui.Basic.Border.CENTER.getDistanceToTop(), Textures.Gui.Basic.Border.CENTER.getWidth(), Textures.Gui.Basic.Border.CENTER.getHeigth());
+                        tDrawnWidth += Textures.Gui.Basic.Border.CENTER.getWidth();
+                        tDrawnHeigth += Textures.Gui.Basic.Border.CENTER.getHeigth();
+                    }
                 }
-            }
         }
-
-        GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();
     }
 

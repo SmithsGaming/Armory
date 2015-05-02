@@ -19,7 +19,7 @@ public class ComponentSlot extends AbstractGUIComponent
     private CustomResource iSlotResource;
 
     public ComponentSlot(ArmoryBaseGui pGui, String pInternalName, int pHeight, int pWidth, int pLeft, int pTop, CustomResource pSlotResource) {
-        super(pGui, pInternalName, pHeight, pWidth, pLeft, pTop);
+        super(pGui, pInternalName, pLeft, pTop, pWidth, pHeight);
 
         iSlotResource = pSlotResource;
     }

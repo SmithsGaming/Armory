@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.Item;
 /  Created on : 03/10/2014
 */
 
-import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
+import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.References;
@@ -65,7 +65,7 @@ public class ItemHeatedItem extends Item
     @Override
     public double getDurabilityForDisplay(ItemStack pStack)
     {
-        return  1 - (pStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE)) / (HeatedIngotFactory.getInstance().getMeltingPointFromMaterial(pStack));
+        return  1 - (pStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE)) / (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(pStack));
     }
 
     @SideOnly(Side.CLIENT)
@@ -88,12 +88,12 @@ public class ItemHeatedItem extends Item
     @Override
     public void getSubItems(Item pArmorCore, CreativeTabs pCreativeTab, List pItemStacks)
     {
-        Iterator<ItemStack> tStackIter = HeatedIngotFactory.getInstance().getAllMappedStacks().iterator();
+        Iterator<ItemStack> tStackIter = HeatedItemFactory.getInstance().getAllMappedStacks().iterator();
 
         while (tStackIter.hasNext())
         {
             ItemStack tCooledStack = tStackIter.next();
-            ItemStack tHeatedStack = HeatedIngotFactory.getInstance().convertToHeatedIngot(tCooledStack);
+            ItemStack tHeatedStack = HeatedItemFactory.getInstance().convertToHeatedIngot(tCooledStack);
 
             if (tHeatedStack != null)
             {
@@ -101,7 +101,7 @@ public class ItemHeatedItem extends Item
             }
             else
             {
-                GeneralRegistry.iLogger.info("Tried to create a HeatedIngot from: " + HeatedIngotFactory.getInstance().getMaterialIDFromItemStack(tCooledStack) + " and failed!");
+                GeneralRegistry.iLogger.info("Tried to create a HeatedIngot from: " + HeatedItemFactory.getInstance().getMaterialIDFromItemStack(tCooledStack) + " and failed!");
             }
         }
     }

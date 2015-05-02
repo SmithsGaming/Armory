@@ -7,6 +7,7 @@ package com.Orion.Armory.Common.Registry;
 
 import com.Orion.Armory.Client.CreativeTab.ComponentsTab;
 import com.Orion.Armory.Client.CreativeTab.MedievalTab;
+import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
@@ -84,6 +85,7 @@ public class GeneralRegistry {
     {
         public static BlockFirePit iBlockFirePit = null;
         public static BlockHeater iBlockHeater = null;
+        public static BlockArmorsAnvil iBlockAnvil = null;
     }
 
     public static class Items

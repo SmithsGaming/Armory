@@ -6,6 +6,7 @@ package com.Orion.Armory.Common.Logic;
  */
 
 import com.Orion.Armory.Armory;
+import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Crafting.ChainCraftingRecipe;
@@ -25,6 +26,7 @@ import com.Orion.Armory.Common.Item.ItemMetalChain;
 import com.Orion.Armory.Common.Item.ItemMetalRing;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
+import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
 import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
 import com.Orion.Armory.Util.Client.Colors;
@@ -538,9 +540,13 @@ public class ArmoryInitializer
             GeneralRegistry.Blocks.iBlockHeater = (BlockHeater) new BlockHeater().setHardness(1F).setStepSound(Block.soundTypeMetal)
                     .setBlockName(InternalNames.Blocks.Heater).setCreativeTab(GeneralRegistry.iTabArmoryComponents).setBlockTextureName(TextureAddressHelper.getTextureAddress("DarkSteelPartical"));
 
+            GeneralRegistry.Blocks.iBlockAnvil = (BlockArmorsAnvil) new BlockArmorsAnvil().setHardness(1F).setStepSound(Block.soundTypeAnvil)
+                    .setBlockName(InternalNames.Blocks.ArmorsAnvil).setCreativeTab(GeneralRegistry.iTabArmoryComponents).setBlockTextureName(TextureAddressHelper.getTextureAddress("DarkSteelPartical"));
+
 
             GameRegistry.registerBlock(GeneralRegistry.Blocks.iBlockFirePit, InternalNames.Blocks.FirePit);
             GameRegistry.registerBlock(GeneralRegistry.Blocks.iBlockHeater, InternalNames.Blocks.Heater);
+            GameRegistry.registerBlock(GeneralRegistry.Blocks.iBlockAnvil, InternalNames.Blocks.ArmorsAnvil);
         }
 
         public static void RegisterItems()
@@ -560,6 +566,7 @@ public class ArmoryInitializer
         {
             GameRegistry.registerTileEntity(TileEntityFirePit.class, InternalNames.TileEntities.FirePitContainer);
             GameRegistry.registerTileEntity(TileEntityHeater.class, InternalNames.TileEntities.HeaterComponent);
+            GameRegistry.registerTileEntity(TileEntityArmorsAnvil.class, InternalNames.TileEntities.ArmorsAnvil);
         }
     }
 

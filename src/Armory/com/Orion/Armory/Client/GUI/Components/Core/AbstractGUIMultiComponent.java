@@ -22,7 +22,9 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
     public int iLeft = 0;
     public int iTop = 0;
 
-    public AbstractGUIMultiComponent(ArmoryBaseGui pGui, int pLeft, int pTop, int pWidth, int pHeigth)
+    String iInternalName;
+
+    public AbstractGUIMultiComponent(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeigth)
     {
         iSubComponents = new StandardComponentManager(pGui);
 
@@ -33,20 +35,28 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
 
         iWidth = pWidth;
         iHeight = pHeigth;
+
+        iInternalName = pInternalName;
     }
 
+
+    public String getInternalName() {
+        return iInternalName;
+    }
+
+
     @Override
-    public ArrayList<AbstractGUIComponent> getComponents() {
+    public ArrayList<IGUIComponent> getComponents() {
         return iSubComponents.getComponents();
     }
 
     @Override
-    public void addComponent(AbstractGUIComponent pNewComponent) {
+    public void addComponent(IGUIComponent pNewComponent) {
         iSubComponents.addComponent(pNewComponent);
     }
 
     @Override
-    public AbstractGUIComponent getComponentAt(int pTargetX, int pTargetY) {
+    public IGUIComponent getComponentAt(int pTargetX, int pTargetY) {
         pTargetX -= iLeft;
         pTargetY -=iTop;
 
@@ -61,7 +71,7 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
     @Override
     public void onUpdate() {
         for(int i = 0; i < iSubComponents.getComponents().size(); i++) {
-            AbstractGUIComponent tComponent = iSubComponents.getComponents().get(i);
+            IGUIComponent tComponent = iSubComponents.getComponents().get(i);
             tComponent.onUpdate();
         }
     }

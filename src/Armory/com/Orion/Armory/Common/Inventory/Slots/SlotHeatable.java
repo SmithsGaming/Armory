@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.Inventory.Slots;
  *   Created on: 18-1-2015
  */
 
-import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
+import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -22,6 +22,6 @@ public class SlotHeatable extends Slot
     public boolean isItemValid(ItemStack pItemStack)
     {
         if (pItemStack.getItem() instanceof ItemHeatedItem) { return true; }
-        return HeatedIngotFactory.getInstance().isHeatable(pItemStack);
+        return HeatedItemFactory.getInstance().isHeatable(pItemStack);
     }
 }

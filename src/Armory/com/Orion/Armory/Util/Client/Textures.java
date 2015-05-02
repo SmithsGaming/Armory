@@ -8,6 +8,8 @@ package com.Orion.Armory.Util.Client;
 import com.Orion.Armory.Util.References;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
+import java.lang.management.BufferPoolMXBean;
+
 public class Textures
 {
     public static class MultiArmor
@@ -116,11 +118,13 @@ public class Textures
 
             public static class Border
             {
-                private static String BORDERTEXTUREPATH = BASICTEXTUREPATH + "Borders/";
+                private static String BORDERTEXTUREPATH = BASICTEXTUREPATH + "Border/";
                 public static CustomResource CENTER = new CustomResource("Gui.Basic.Border.Center", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 4, 4, 248, 248);
-                public static CustomResource STRAIGHTBORDER = new CustomResource("Gui.Basic.Border.Border", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 4, 0, 248, 4);
-                public static CustomResource INWARTSCORNER = new CustomResource("Gui.Basic.Border.Corner.Inwarts", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 0, 0, 4, 4);
-                public static CustomResource OUTWARTSCORNER = new CustomResource("Gui.Basic.Border.Corner.Outwarts", BORDERTEXTUREPATH + "Outwartscorner.png", Colors.DEFAULT);
+                public static CustomResource STRAIGHTBORDERLIGHT = new CustomResource("Gui.Basic.Border.Border.Ligth", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 3, 0, 250, 3);
+                public static CustomResource STRAIGHTBORDERDARK = new CustomResource("Gui.Basic.Border.Border.Dark", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 3, 253, 250, 3);
+                public static CustomResource INWARTSCORNERLIGHT = new CustomResource("Gui.Basic.Border.Corner.Inwarts.Ligth", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 0, 0, 3, 3);
+                public static CustomResource INWARTSCORNERDARK = new CustomResource("Gui.Basic.Border.Corner.Inwarts.Dark", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 252, 252, 4, 4);
+                public static CustomResource OUTWARTSCORNER = new CustomResource("Gui.Basic.Border.Corner.Outwarts", BORDERTEXTUREPATH + "CornerOutwarts.png", Colors.DEFAULT, 0, 0, 3, 3);
             }
         }
 

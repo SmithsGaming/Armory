@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.Item;
  *   Created on: 25-9-2014
  */
 
-import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
+import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
@@ -27,7 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class ItemMetalRing extends Item
+public class ItemMetalRing extends Item implements IHeatableItem
 {
     private HashMap<String, CustomResource> iResources = new HashMap<String, CustomResource>();
 
@@ -104,7 +104,7 @@ public class ItemMetalRing extends Item
             tStackCompound.setString(References.NBTTagCompoundData.RingMaterial, tMaterial.iInternalName);
             tRingStack.setTagCompound(tStackCompound);
 
-            HeatedIngotFactory.getInstance().addHeatableItemstack(tMaterial.iInternalName, tRingStack);
+            HeatedItemFactory.getInstance().addHeatableItemstack(tMaterial.iInternalName, tRingStack);
 
             pItemStacks.add(tRingStack);
         }
@@ -117,5 +117,10 @@ public class ItemMetalRing extends Item
         ArmorMaterialMedieval tMaterial = MedievalRegistry.getInstance().getMaterial(tMaterialID);
 
         return tMaterial.iVisibleNameColor + StatCollector.translateToLocal(tMaterial.iVisibleName) + " " + EnumChatFormatting.RESET + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name");
+    }
+
+    @Override
+    public String getInternalType() {
+        return References.InternalNames.HeatedItemTypes.RING;
     }
 }

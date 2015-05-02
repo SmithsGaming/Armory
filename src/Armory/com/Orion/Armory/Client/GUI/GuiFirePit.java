@@ -9,6 +9,7 @@ import com.Orion.Armory.Client.GUI.Components.ComponentBorder;
 import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.InfoLedger;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.Ledger;
+import com.Orion.Armory.Client.GUI.Components.MultiComponents.PlayerInventory;
 import com.Orion.Armory.Common.Inventory.ContainerFirepit;
 import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Util.Client.Colors;
@@ -102,18 +103,25 @@ public class GuiFirePit extends com.Orion.Armory.Client.GUI.ArmoryBaseGui
     {
         super.initGui();
 
-        iComponents.addComponent(new ComponentBorder(this, "Gui.FirePit.Background", ySize, xSize, guiLeft, guiTop, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
+        if (iComponents.getComponents().size() > 0)
+        {
+            return;
+        }
+
+        iComponents.addComponent(new ComponentBorder(this, "Gui.FirePit.Background", guiLeft, guiTop, xSize, ySize - 80, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
+        iComponents.addComponent(new PlayerInventory(this, "Gui.FirePit.Player", 0, 76, (TileEntityFirePit.FUELSTACK_AMOUNT + TileEntityFirePit.INGOTSTACKS_AMOUNT), ComponentBorder.CornerTypes.StraightVertical));
 
         this.iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.FirePit.InfoLine1, "", TranslationKeys.GUI.FirePit.InfoLine2, "", TranslationKeys.GUI.FirePit.InfoLine3}, Textures.Gui.Basic.INFOICON.getIcon()));
         this.iLedgers.addLedgerRight(new TemperatureLedger(this));
 
-        for(Object tSlotObject : inventorySlots.inventorySlots)
+        for(int tSlotIndex = 0;tSlotIndex < (TileEntityFirePit.FUELSTACK_AMOUNT + TileEntityFirePit.INGOTSTACKS_AMOUNT); tSlotIndex++)
         {
-            Slot tSlot = (Slot) tSlotObject;
+            Slot tSlot = (Slot) inventorySlots.inventorySlots.get(tSlotIndex);
 
             iComponents.addComponent(new ComponentSlot(this, "Gui.GuiFirePit.Slots." + tSlot.slotNumber, tSlot));
         }
-    }
+
+       }
 
     @Override
     protected void drawGuiContainerBackGroundFeatures(float pFloat, int pMouseX, int pMouseY) {

@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.TileEntity;
 /  Created on : 02/10/2014
 */
 
-import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
+import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
@@ -156,7 +156,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
                return true;
             }
 
-            return HeatedIngotFactory.iInstance.isHeatable(pItemStack);
+            return HeatedItemFactory.iInstance.isHeatable(pItemStack);
         }
         else if( pSlotIndex < INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT)
         {
@@ -412,13 +412,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
                 continue;
             }
 
-            if ((iCurrentTemperature > 20F) && !(iIngotStacks[tIngotStackCount].getItem() instanceof ItemHeatedItem) && HeatedIngotFactory.getInstance().isHeatable(iIngotStacks[tIngotStackCount]))
+            if ((iCurrentTemperature > 20F) && !(iIngotStacks[tIngotStackCount].getItem() instanceof ItemHeatedItem) && HeatedItemFactory.getInstance().isHeatable(iIngotStacks[tIngotStackCount]))
             {
-                iIngotStacks[tIngotStackCount] = HeatedIngotFactory.getInstance().convertToHeatedIngot(iIngotStacks[tIngotStackCount]);
+                iIngotStacks[tIngotStackCount] = HeatedItemFactory.getInstance().convertToHeatedIngot(iIngotStacks[tIngotStackCount]);
             }
 
             float tCurrentStackTemp = ItemHeatedItem.getItemTemperature(iIngotStacks[tIngotStackCount]);
-            float tCurrentStackCoefficient = GeneralRegistry.getInstance().getHeatCoefficient(HeatedIngotFactory.getInstance().getMaterialIDFromItemStack(iIngotStacks[tIngotStackCount]));
+            float tCurrentStackCoefficient = GeneralRegistry.getInstance().getHeatCoefficient(HeatedItemFactory.getInstance().getMaterialIDFromItemStack(iIngotStacks[tIngotStackCount]));
 
             float tSourceDifference = iNegativeHeatTerm - tCurrentStackCoefficient;
             float tTargetDifference = -1 * tSourceDifference + iNegativeHeatTerm;
@@ -429,7 +429,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             } else if (ItemHeatedItem.getItemTemperature(iIngotStacks[tIngotStackCount]) > iCurrentTemperature) {
                 if (tCurrentStackTemp <= 20F)
                 {
-                    iIngotStacks[tIngotStackCount] = HeatedIngotFactory.getInstance().convertToCooledIngot(iIngotStacks[tIngotStackCount]);
+                    iIngotStacks[tIngotStackCount] = HeatedItemFactory.getInstance().convertToCooledIngot(iIngotStacks[tIngotStackCount]);
                 }
 
                 iCurrentTemperature += tTargetDifference;

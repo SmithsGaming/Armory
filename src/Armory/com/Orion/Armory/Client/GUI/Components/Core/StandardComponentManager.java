@@ -14,28 +14,28 @@ import java.util.ArrayList;
 public class StandardComponentManager implements IComponentManager
 {
     protected ArmoryBaseGui iGui;
-    ArrayList<AbstractGUIComponent> iComponents = new ArrayList<AbstractGUIComponent>();
+    ArrayList<IGUIComponent> iComponents = new ArrayList<IGUIComponent>();
 
     public StandardComponentManager(ArmoryBaseGui pGui)
     {
         this.iGui = pGui;
     }
 
-    public ArrayList<AbstractGUIComponent> getComponents()
+    public ArrayList<IGUIComponent> getComponents()
     {
         return iComponents;
     }
 
-    public void addComponent(AbstractGUIComponent pNewComponent)
+    public void addComponent(IGUIComponent pNewComponent)
     {
         iComponents.add(pNewComponent);
     }
 
-    public AbstractGUIComponent getComponentAt(int pTargetX, int pTargetY)
+    public IGUIComponent getComponentAt(int pTargetX, int pTargetY)
     {
         for(int i = 0; i < iComponents.size(); i++)
         {
-            AbstractGUIComponent tComponent = iComponents.get(i);
+            IGUIComponent tComponent = iComponents.get(i);
             if (tComponent.checkIfPointIsInComponent(pTargetX, pTargetY)) { return tComponent; }
         }
 
@@ -45,7 +45,7 @@ public class StandardComponentManager implements IComponentManager
     public void drawComponents()
     {
         for(int i = 0; i < iComponents.size(); i++) {
-            AbstractGUIComponent tComponent = iComponents.get(i);
+            IGUIComponent tComponent = iComponents.get(i);
             tComponent.onUpdate();
 
             tComponent.draw(iGui.guiLeft, iGui.guiTop);
@@ -57,7 +57,7 @@ public class StandardComponentManager implements IComponentManager
 
         if (pMouseButton == 0) {
 
-            AbstractGUIComponent tComponent = this.getComponentAt(pMouseX, pMouseY);
+            IGUIComponent tComponent = this.getComponentAt(pMouseX, pMouseY);
 
             if (tComponent != null) {
                 return tComponent.handleMouseClicked(pMouseX, pMouseY, pMouseButton);

@@ -5,7 +5,7 @@ package com.Orion.Armory.Client.Renderer.Items;
  *   Created on: 17-1-2015
  */
 
-import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
+import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Util.Client.Color;
 import com.Orion.Armory.Util.Client.Colors;
@@ -38,7 +38,7 @@ public class ItemHeatedIngotRenderer implements IItemRenderer
 
         if ((pRenderType == ItemRenderType.INVENTORY) && (RenderManager.instance.renderEngine != null))
         {
-            RenderItem.getInstance().renderItemIntoGUI(Minecraft.getMinecraft().fontRenderer, RenderManager.instance.renderEngine, HeatedIngotFactory.getInstance().convertToCooledIngot(pItemStack), 0,0);
+            RenderItem.getInstance().renderItemIntoGUI(Minecraft.getMinecraft().fontRenderer, RenderManager.instance.renderEngine, HeatedItemFactory.getInstance().convertToCooledIngot(pItemStack), 0,0);
             renderTemperatureBar(pItemStack);
         }
     }

@@ -6,8 +6,10 @@ package com.Orion.Armory.Client.Logic;
  */
 
 import com.Orion.Armory.Client.Renderer.Items.ItemHeatedIngotRenderer;
+import com.Orion.Armory.Client.Renderer.Items.ItemRendererAnvil;
 import com.Orion.Armory.Client.Renderer.Items.ItemRendererFirePit;
 import com.Orion.Armory.Client.Renderer.Items.ItemRendererHeater;
+import com.Orion.Armory.Client.Renderer.TileEntities.AnvilTESR;
 import com.Orion.Armory.Client.Renderer.TileEntities.FirePitTESR;
 import com.Orion.Armory.Client.Renderer.TileEntities.HeaterTESR;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
@@ -15,6 +17,7 @@ import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
+import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
 import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
 import com.Orion.Armory.Util.Client.CustomResource;
@@ -187,6 +190,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer
         {
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockFirePit), new ItemRendererFirePit());
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockHeater), new ItemRendererHeater());
+            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockAnvil), new ItemRendererAnvil());
             MinecraftForgeClient.registerItemRenderer(GeneralRegistry.Items.iHeatedIngot, new ItemHeatedIngotRenderer());
         }
 
@@ -195,6 +199,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer
         {
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFirePit.class, new FirePitTESR());
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHeater.class, new HeaterTESR());
+            ClientRegistry.bindTileEntitySpecialRenderer(TileEntityArmorsAnvil.class, new AnvilTESR());
         }
     }
     

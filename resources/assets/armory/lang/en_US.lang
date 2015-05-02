@@ -17,6 +17,7 @@ Armory.GUI.Heater.Ledger.InfoLine2=It raises both its efficiency and its maximum
 #Blocks
 tile.Armory.Blocks.FirePit.name=FirePit
 tile.Armory.Blocks.Heater.name=FirePit - Heater Extension
+tile.Armory.Blocks.Anvil.name=Armors Anvil
 #
 #Items
 item.Armory.Items.HeatedFan.name=Heater extension Fan

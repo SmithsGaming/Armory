@@ -6,7 +6,7 @@ package com.Orion.Armory.Common.Item.Armor.TierMedieval;
 */
 
 
-import com.Orion.Armory.Common.Factory.HeatedIngotFactory;
+import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.Client.Color;
@@ -46,7 +46,7 @@ public class ArmorMaterialMedieval
         {
             GeneralRegistry.getInstance().setMeltingPoint(pInternalName, pMeltingPoint);
             GeneralRegistry.getInstance().setHeatCoefficient(pInternalName, pHeatCoefficient);
-            HeatedIngotFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
+            HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
         }
     }
 
