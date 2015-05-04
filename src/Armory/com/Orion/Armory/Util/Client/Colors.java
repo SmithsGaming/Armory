@@ -12,6 +12,13 @@ public final class Colors
     public static class General
     {
         public static Color RED = new Color(255, 0, 0);
+        public static Color GREEN = new Color(0,255,0);
+        public static Color BLUE = new Color(0,0,255);
+        public static Color YELLOW  = new Color(255, 255, 0);
+        public static Color ORANGE = new Color(255, 150, 35);
+        public static Color LIGHTBLUE = new Color(120, 158, 255);
+        public static Color LICHTGREEN = new Color(102, 255, 122);
+
         public static Color ELECTRICBLUE = new Color(45, 206, 250);
     }
 

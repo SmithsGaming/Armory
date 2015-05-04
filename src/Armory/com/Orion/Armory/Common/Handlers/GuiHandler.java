@@ -5,10 +5,13 @@ package com.Orion.Armory.Common.Handlers;
  *   Created on: 18-1-2015
  */
 
+import com.Orion.Armory.Client.GUI.GuiArmorsAnvil;
 import com.Orion.Armory.Client.GUI.GuiFirePit;
 import com.Orion.Armory.Client.GUI.GuiHeater;
+import com.Orion.Armory.Common.Inventory.ContainerArmorsAnvil;
 import com.Orion.Armory.Common.Inventory.ContainerFirepit;
 import com.Orion.Armory.Common.Inventory.ContainerHeater;
+import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
 import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
 import com.Orion.Armory.Util.References;
@@ -28,6 +31,10 @@ public class GuiHandler implements IGuiHandler
         {
             return new ContainerHeater(pPlayer.inventory, (TileEntityHeater) pWorld.getTileEntity(pX, pY, pZ));
         }
+        else if (pID == References.GuiIDs.ANVILID)
+        {
+            return new ContainerArmorsAnvil(pPlayer.inventory, (TileEntityArmorsAnvil) pWorld.getTileEntity(pX, pY, pZ));
+        }
 
         return null;
     }
@@ -38,9 +45,13 @@ public class GuiHandler implements IGuiHandler
         {
             return new GuiFirePit(new ContainerFirepit(pPlayer.inventory, (TileEntityFirePit) pWorld.getTileEntity(pX, pY, pZ)));
         }
-            else if (pID == References.GuiIDs.HEATERID)
+        else if (pID == References.GuiIDs.HEATERID)
         {
             return new GuiHeater(new ContainerHeater(pPlayer.inventory, (TileEntityHeater) pWorld.getTileEntity(pX, pY, pZ)));
+        }
+        else if (pID == References.GuiIDs.ANVILID)
+        {
+            return new GuiArmorsAnvil(new ContainerArmorsAnvil(pPlayer.inventory, (TileEntityArmorsAnvil) pWorld.getTileEntity(pX, pY, pZ)));
         }
 
         return null;

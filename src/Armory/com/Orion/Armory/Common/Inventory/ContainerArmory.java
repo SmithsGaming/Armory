@@ -5,6 +5,7 @@ package com.Orion.Armory.Common.Inventory;
  *   Created on: 16-1-2015
  */
 
+import com.Orion.Armory.Common.TileEntity.TileEntityArmory;
 import com.Orion.Armory.Util.Core.ItemStackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -15,6 +16,13 @@ public abstract class ContainerArmory extends Container
 {
     protected final int PLAYER_INVENTORY_ROWS = 3;
     protected final int PLAYER_INVENTORY_COLUMNS = 9;
+
+    public TileEntityArmory iTargetTE;
+
+    ContainerArmory(TileEntityArmory pTargetTE)
+    {
+         iTargetTE = pTargetTE;
+    }
 
     @Override
     public boolean canInteractWith(EntityPlayer pPlayer) {

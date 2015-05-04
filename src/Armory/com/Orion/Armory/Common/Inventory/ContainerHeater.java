@@ -18,6 +18,7 @@ public class ContainerHeater extends ContainerArmory
 
     public ContainerHeater(InventoryPlayer pPlayerInventory, TileEntityHeater pTEHeater)
     {
+        super(pTEHeater);
         this.iTEHeater = pTEHeater;
 
         this.addSlotToContainer(new SlotFan(pTEHeater, 0, 80, 24));

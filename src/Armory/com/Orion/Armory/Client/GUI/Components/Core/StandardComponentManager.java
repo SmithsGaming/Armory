@@ -1,6 +1,7 @@
 package com.Orion.Armory.Client.GUI.Components.Core;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
+import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 

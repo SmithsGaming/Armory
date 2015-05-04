@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityArmory extends TileEntity
+public abstract class TileEntityArmory extends TileEntity
 {
     protected String iName = "";
     protected ForgeDirection iCurrentDirection;
@@ -71,4 +71,6 @@ public class TileEntityArmory extends TileEntity
     {
         return this.iName;
     }
+
+    public abstract float getProgressBarValue(String pProgressBarID);
 }

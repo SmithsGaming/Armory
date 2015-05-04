@@ -9,6 +9,9 @@ import com.Orion.Armory.Client.GUI.Components.ComponentBorder;
 import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
 import com.Orion.Armory.Client.GUI.Components.Core.StandardComponentManager;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
+import com.Orion.Armory.Common.ArmoryCommonProxy;
+import com.Orion.Armory.Common.Inventory.ContainerArmory;
+import com.Orion.Armory.Common.TileEntity.TileEntityArmory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -19,7 +22,9 @@ import org.lwjgl.opengl.GL11;
 public abstract class ArmoryBaseGui extends GuiContainer {
     LedgerManager iLedgers = new LedgerManager(this);
     StandardComponentManager iComponents = new StandardComponentManager(this);
-    ResourceLocation iBackGroundTexture;
+
+    TileEntityArmory iBaseTE;
+
     public int iDisplayHeight;
     public int iDisplayWidth;
     public int iGuiScale;
@@ -27,6 +32,8 @@ public abstract class ArmoryBaseGui extends GuiContainer {
     public ArmoryBaseGui(Container pTargetedContainer) {
         super(pTargetedContainer);
         calcScaleFactor();
+
+        iBaseTE = ((ContainerArmory) pTargetedContainer).iTargetTE;
     }
 
     public void calcScaleFactor() {
@@ -64,8 +71,6 @@ public abstract class ArmoryBaseGui extends GuiContainer {
         GL11.glPushMatrix();
         GL11.glTranslatef(guiLeft, guiTop, 0F);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        //this.mc.getTextureManager().bindTexture(iBackGroundTexture);
-        //this.drawTexturedModalRect(0, 0, 0, 0, this.xSize, this.ySize);
 
         iComponents.drawComponents();
 
@@ -94,6 +99,11 @@ public abstract class ArmoryBaseGui extends GuiContainer {
     public boolean getSlotVisibility(ComponentSlot pSlotElement)
     {
         return true;
+    }
+
+    public float getProgressBarValue(String pProgressBarID)
+    {
+        return iBaseTE.getProgressBarValue(pProgressBarID);
     }
 }
 

@@ -17,13 +17,13 @@ import net.minecraft.inventory.Slot;
  * <p/>
  * Copyrighted according to Project specific license
  */
-public class PlayerInventory extends AbstractGUIMultiComponent
+public class ComponentPlayerInventory extends AbstractGUIMultiComponent
 {
 
-    public PlayerInventory(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, int pPlayerInventoryStartSlotIndex, ComponentBorder.CornerTypes pConnectionType) {
+    public ComponentPlayerInventory(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, int pPlayerInventoryStartSlotIndex, ComponentBorder.CornerTypes pConnectionType) {
         super(pGui, pInternalName, pLeft, pTop, 176, 90);
 
-        getComponents().add(new ComponentBorder(pGui, pInternalName + ".Background", pLeft, pTop, 175, 90, Colors.DEFAULT, pConnectionType));
+        getComponents().add(new ComponentBorder(pGui, pInternalName + ".Background", 0, 0, 175, 90, Colors.DEFAULT, pConnectionType));
 
         for (int tSlotIndex = pPlayerInventoryStartSlotIndex; tSlotIndex < pGui.inventorySlots.inventorySlots.size(); tSlotIndex ++)
         {
@@ -32,10 +32,10 @@ public class PlayerInventory extends AbstractGUIMultiComponent
 
             if (tRowIndex < 3)
             {
-                addComponent(new ComponentSlot(pGui, pInternalName + ".Slot." + tSlotIndex, 18, 18, 7 + tColumnIndex * 18, 7 + tRowIndex * 18, Textures.Gui.Basic.Slots.DEFAULT));
+                addComponent(new ComponentSlot(pGui, pInternalName + ".Slot." + tSlotIndex, 18, 18, 7 + tColumnIndex * 18, 7 + tRowIndex * 18, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
             }
             else {
-                addComponent(new ComponentSlot(pGui, pInternalName + ".Slot." + tSlotIndex, 18, 18, 7 + tColumnIndex * 18, 11 + tRowIndex * 18, Textures.Gui.Basic.Slots.DEFAULT));
+                addComponent(new ComponentSlot(pGui, pInternalName + ".Slot." + tSlotIndex, 18, 18, 7 + tColumnIndex * 18, 11 + tRowIndex * 18, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
             }
         }
     }

@@ -154,6 +154,11 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
     }
 
     @Override
+    public float getProgressBarValue(String pProgressBarID) {
+        return 0;
+    }
+
+    @Override
     public void readFromNBT(NBTTagCompound pCompound)
     {
         super.readFromNBT(pCompound);

@@ -7,6 +7,8 @@ package com.Orion.Armory.Client.GUI.Components;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
+import com.Orion.Armory.Util.Client.Color;
+import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Client.Textures;
 import net.minecraft.client.Minecraft;
@@ -17,11 +19,13 @@ import org.lwjgl.opengl.GL11;
 public class ComponentSlot extends AbstractGUIComponent
 {
     private CustomResource iSlotResource;
+    private Color iColor;
 
-    public ComponentSlot(ArmoryBaseGui pGui, String pInternalName, int pHeight, int pWidth, int pLeft, int pTop, CustomResource pSlotResource) {
+    public ComponentSlot(ArmoryBaseGui pGui, String pInternalName, int pHeight, int pWidth, int pLeft, int pTop, CustomResource pSlotResource, Color pColor) {
         super(pGui, pInternalName, pLeft, pTop, pWidth, pHeight);
 
         iSlotResource = pSlotResource;
+        iColor = pColor;
     }
 
     public ComponentSlot(ArmoryBaseGui pGui, String pInternalName, Slot pContainerSlot)
@@ -31,7 +35,7 @@ public class ComponentSlot extends AbstractGUIComponent
 
     public ComponentSlot(ArmoryBaseGui pGui, String pInternalName, Slot pContainerSlot, CustomResource pSlotResource)
     {
-        this(pGui, pInternalName, 18, 18, pContainerSlot.xDisplayPosition -1, pContainerSlot.yDisplayPosition -1, pSlotResource);
+        this(pGui, pInternalName, 18, 18, pContainerSlot.xDisplayPosition -1, pContainerSlot.yDisplayPosition -1, pSlotResource, Colors.DEFAULT);
     }
 
     @Override
@@ -48,7 +52,7 @@ public class ComponentSlot extends AbstractGUIComponent
     public void drawBackGround(int pX, int pY) {
         GL11.glPushMatrix();
         GL11.glTranslatef(iLeft, iTop, 0F);
-        GL11.glColor4f(iSlotResource.getColor().getColorRedFloat(), iSlotResource.getColor().getColorGreenFloat(), iSlotResource.getColor().getColorBlueFloat(), iSlotResource.getColor().getAlphaFloat());
+        GL11.glColor4f(iColor.getColorRedFloat(), iColor.getColorGreenFloat(), iColor.getColorBlueFloat(), iColor.getAlphaFloat());
 
         Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(iSlotResource.getPrimaryLocation()));
         drawTexturedModalRect(0, 0, iSlotResource.getDistanceToLeft(), iSlotResource.getDistanceToTop(), iWidth, iHeight);

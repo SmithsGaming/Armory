@@ -17,6 +17,8 @@ public class ContainerFirepit extends ContainerArmory
 
     public ContainerFirepit(InventoryPlayer pPlayerInventory, TileEntityFirePit pTEFirePit)
     {
+        super(pTEFirePit);
+
         this.iTEFirePit = pTEFirePit;
 
         this.addSlotToContainer(new SlotHeatable(pTEFirePit, 0, 23, 27));

@@ -227,6 +227,23 @@ public class References
             public static final String CHAIN = "Chain";
             public static final String PLATE = "Plate";
         }
+
+        public class GUIComponents
+        {
+            public class FirePit
+            {
+                public static final String FLAMEONE = "Flame1";
+                public static final String FLAMETWO = "Flame2";
+                public static final String FLAMETHREE = "Flame3";
+                public static final String FLAMEFOUR = "Flame4";
+                public static final String FLAMEFIVE = "Flame5";
+            }
+
+            public class Anvil
+            {
+                public static final String CRAFTINGPROGRESS = "CraftingProgress";
+            }
+        }
     }
 
     //General model addresses
@@ -316,6 +333,16 @@ public class References
             {
                 public static final String FANSTACK = "FANSTACK";
             }
+
+            public class Anvil
+            {
+                public static final String CRAFTINGSTACKS = "Craftingstacks";
+                public static final String OUTPUTSTACKS = "Outputstacks";
+                public static final String HAMMERSTACKS = "Hammerstacks";
+                public static final String TONGSTACKS = "Tongstacks";
+                public static final String ADDITIONALSTACKS = "Additionalstacks";
+                public static final String COOLSTACKS = "Coolingstacks";
+            }
         }
     }
 
@@ -330,6 +357,7 @@ public class References
     {
         public static int FIREPITID = 0;
         public static int HEATERID = 1;
+        public static int ANVILID = 2;
     }
 
 }

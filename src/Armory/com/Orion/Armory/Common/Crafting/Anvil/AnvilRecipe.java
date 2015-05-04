@@ -1,5 +1,6 @@
 package com.Orion.Armory.Common.Crafting.Anvil;
 
+import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -11,24 +12,28 @@ import net.minecraft.item.ItemStack;
  */
 public class AnvilRecipe
 {
-    public static final int MAX_ELEMENTS = 25;
-
     private int iTargetProgress;
 
-    IAnvilRecipeComponent[] iComponents = new IAnvilRecipeComponent[MAX_ELEMENTS];
+    IAnvilRecipeComponent[] iComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS];
+    IAnvilRecipeComponent[] iAdditionalComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_COOLSLOTS];
 
     private ItemStack iResult;
 
-    public boolean matchesRecipe(ItemStack[] pSlotContents)
+    public boolean matchesRecipe(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents)
     {
-        if (pSlotContents.length > MAX_ELEMENTS)
+        if (pCraftingSlotContents.length > TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS)
         {
             return false;
         }
 
-        for(int tSlotID = 0; tSlotID < MAX_ELEMENTS; tSlotID ++)
+        if (pAdditionalSlotContents.length > TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS)
         {
-            ItemStack tSlotContent = pSlotContents[tSlotID];
+            return false;
+        }
+
+        for(int tSlotID = 0; tSlotID < TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS; tSlotID ++)
+        {
+            ItemStack tSlotContent = pCraftingSlotContents[tSlotID];
 
             if (tSlotContent != null)
             {
@@ -47,7 +52,48 @@ public class AnvilRecipe
             }
         }
 
+        for(int tSlotID = 0; tSlotID < TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS; tSlotID ++)
+        {
+            ItemStack tSlotContent = pAdditionalSlotContents[tSlotID];
+
+            if (tSlotContent != null)
+            {
+                if (iAdditionalComponents[tSlotID] == null)
+                {
+                    return false;
+                }
+                else if(!iAdditionalComponents[tSlotID].isValidComponentForSlot(tSlotContent))
+                {
+                    return false;
+                }
+            }
+            else if (iAdditionalComponents[tSlotID] != null)
+            {
+                return false;
+            }
+        }
+
         return true;
+    }
+
+    public IAnvilRecipeComponent getComponent(int pComponentIndex)
+    {
+        if (pComponentIndex >= TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS)
+        {
+            return null;
+        }
+
+        return iComponents[pComponentIndex];
+    }
+
+    public IAnvilRecipeComponent getAdditionalComponent(int pComponentIndex)
+    {
+        if (pComponentIndex >= TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS)
+        {
+            return null;
+        }
+
+        return iAdditionalComponents[pComponentIndex];
     }
 
     public boolean recipeComplete(int pCurrentProgress)

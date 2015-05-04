@@ -92,8 +92,8 @@ public class BlockArmorsAnvil extends BlockContainer
         else
         {
             if (!pWorld.isRemote) {
-                if (pWorld.getTileEntity(pX, pY, pZ) instanceof TileEntityFirePit) {
-                    //pPlayer.openGui(Armory.instance, References.GuiIDs.FIREPITID, pWorld, pX, pY, pZ);
+                if (pWorld.getTileEntity(pX, pY, pZ) instanceof TileEntityArmorsAnvil) {
+                    pPlayer.openGui(Armory.instance, References.GuiIDs.ANVILID, pWorld, pX, pY, pZ);
                 }
             }
             return true;

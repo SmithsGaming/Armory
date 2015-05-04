@@ -248,6 +248,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         pCompound.setFloat(References.NBTTagCompoundData.TE.FirePit.LASTADDEDHEAT, iLastAddedHeat);
     }
 
+    @Override
+    public float getProgressBarValue(String pProgressBarID) {
+        //TODO: Implement flame progressbar
+        return 0;
+    }
+
     //TODO: Implement new Heatexchange mechanism!
     @Override
     public void updateEntity()
