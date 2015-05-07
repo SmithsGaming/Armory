@@ -3,8 +3,6 @@ package com.Orion.Armory.Client.GUI.Components;
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
 import com.Orion.Armory.Util.Client.CustomResource;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureMap;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -39,7 +37,7 @@ public class ComponentImage extends AbstractGUIComponent {
         GL11.glColor4f(iTargetResource.getColor().getColorRedFloat(), iTargetResource.getColor().getColorGreenFloat(), iTargetResource.getColor().getColorBlueFloat(), iTargetResource.getColor().getAlphaFloat());
 
         bindTexture(iTargetResource.getPrimaryLocation());
-        drawTexturedModalRect(iLeft, iTop, iTargetResource.getDistanceToLeft(), iTargetResource.getDistanceToTop(), iTargetResource.getWidth(), iTargetResource.getHeigth());
+        drawTexturedModalRect(iLeft, iTop, iTargetResource.getU(), iTargetResource.getV(), iTargetResource.getWidth(), iTargetResource.getHeigth());
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();

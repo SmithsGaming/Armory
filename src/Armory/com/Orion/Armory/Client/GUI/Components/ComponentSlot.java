@@ -55,7 +55,18 @@ public class ComponentSlot extends AbstractGUIComponent
         GL11.glColor4f(iColor.getColorRedFloat(), iColor.getColorGreenFloat(), iColor.getColorBlueFloat(), iColor.getAlphaFloat());
 
         Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(iSlotResource.getPrimaryLocation()));
-        drawTexturedModalRect(0, 0, iSlotResource.getDistanceToLeft(), iSlotResource.getDistanceToTop(), iWidth, iHeight);
+        drawTexturedModalRect(0,0, iSlotResource.getU(), iSlotResource.getV(), 1, 1);
+
+        int tWidthRepeated = iWidth / iSlotResource.getWidth();
+        int tWidthLeftAfterRepeating = iWidth % iSlotResource.getWidth();
+
+        int tHeightRepeated = iHeight / iSlotResource.getHeigth();
+        int tHeightLeftAfterRepeating = iHeight % Textures.Gui.Basic.Components.TANKGAUGE.getHeigth();
+
+
+
+
+
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();

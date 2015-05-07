@@ -6,7 +6,6 @@ import com.Orion.Armory.Util.Client.Color;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.References;
-import net.minecraft.client.renderer.texture.TextureMap;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -45,7 +44,7 @@ public class ComponentProgressArrow extends AbstractGUIComponent
         GL11.glColor4f(iBackGroundColor.getColorRedFloat(), iBackGroundColor.getColorGreenFloat(), iBackGroundColor.getColorBlueFloat(), iBackGroundColor.getAlphaFloat());
 
         bindTexture(Textures.Gui.Basic.Components.ARROWEMPTY.getPrimaryLocation());
-        drawTexturedModalRect(iLeft, iTop, Textures.Gui.Basic.Components.ARROWEMPTY.getDistanceToLeft(), Textures.Gui.Basic.Components.ARROWEMPTY.getDistanceToTop(), Textures.Gui.Basic.Components.ARROWEMPTY.getWidth(), Textures.Gui.Basic.Components.ARROWEMPTY.getHeigth());
+        drawTexturedModalRect(iLeft, iTop, Textures.Gui.Basic.Components.ARROWEMPTY.getU(), Textures.Gui.Basic.Components.ARROWEMPTY.getV(), Textures.Gui.Basic.Components.ARROWEMPTY.getWidth(), Textures.Gui.Basic.Components.ARROWEMPTY.getHeigth());
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();
@@ -54,7 +53,7 @@ public class ComponentProgressArrow extends AbstractGUIComponent
         GL11.glColor4f(iForeGroundColor.getColorRedFloat(), iForeGroundColor.getColorGreenFloat(), iForeGroundColor.getColorBlueFloat(), iForeGroundColor.getAlphaFloat());
 
         bindTexture(Textures.Gui.Basic.Components.ARROWFULL.getPrimaryLocation());
-        drawTexturedModalRect(iLeft, iTop, Textures.Gui.Basic.Components.ARROWFULL.getDistanceToLeft(), Textures.Gui.Basic.Components.ARROWFULL.getDistanceToTop(), iCompletePartToBeRendered, Textures.Gui.Basic.Components.ARROWFULL.getHeigth());
+        drawTexturedModalRect(iLeft, iTop, Textures.Gui.Basic.Components.ARROWFULL.getU(), Textures.Gui.Basic.Components.ARROWFULL.getV(), iCompletePartToBeRendered, Textures.Gui.Basic.Components.ARROWFULL.getHeigth());
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();

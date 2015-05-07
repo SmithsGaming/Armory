@@ -23,9 +23,9 @@ public class Coordinate
         iZCoord = pZCoord;
     }
 
-    int getXComponent() { return iXCoord; }
+    public int getXComponent() { return iXCoord; }
 
-    int getYComponent() { return iYCoord; }
+    public int getYComponent() { return iYCoord; }
 
-    int getZComponent() { return iZCoord; }
+    public int getZComponent() { return iZCoord; }
 }

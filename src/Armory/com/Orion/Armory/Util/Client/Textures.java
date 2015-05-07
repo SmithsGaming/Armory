@@ -132,7 +132,10 @@ public class Textures
                 private static String COMPONENTTEXTUREPATH = GUITEXTUREPATH + "Components/";
                 public static CustomResource ARROWEMPTY = new CustomResource("Gui.Basic.Components.Arrow.Empty", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 0,0,22, 16);
                 public static CustomResource ARROWFULL = new CustomResource("Gui.Basic.Components.Arrow.Full", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 22,0,22, 16);
+                public static CustomResource TANKGAUGE = new CustomResource("Gui.Basic.Components.Tankgauge", COMPONENTTEXTUREPATH + "RandomElements.png", Colors.DEFAULT, 0, 0, 16, 16);
             }
+
+
 
             public static class Images
             {

@@ -87,9 +87,9 @@ public class CustomResource {
         return iRescourceLocations.get(1);
     }
 
-    public int getDistanceToLeft() { return iLeft; }
+    public int getU() { return iLeft; }
 
-    public int getDistanceToTop() { return iTop; }
+    public int getV() { return iTop; }
 
     public int getWidth() { return iWidth; }
 
