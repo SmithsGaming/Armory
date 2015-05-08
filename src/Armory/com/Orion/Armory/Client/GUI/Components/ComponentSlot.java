@@ -7,10 +7,8 @@ package com.Orion.Armory.Client.GUI.Components;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
-import com.Orion.Armory.Util.Client.Color;
-import com.Orion.Armory.Util.Client.Colors;
-import com.Orion.Armory.Util.Client.CustomResource;
-import com.Orion.Armory.Util.Client.Textures;
+import com.Orion.Armory.Util.Client.*;
+import com.Orion.Armory.Util.Core.Coordinate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
@@ -51,22 +49,24 @@ public class ComponentSlot extends AbstractGUIComponent
     @Override
     public void drawBackGround(int pX, int pY) {
         GL11.glPushMatrix();
-        GL11.glTranslatef(iLeft, iTop, 0F);
         GL11.glColor4f(iColor.getColorRedFloat(), iColor.getColorGreenFloat(), iColor.getColorBlueFloat(), iColor.getAlphaFloat());
 
         Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(iSlotResource.getPrimaryLocation()));
-        drawTexturedModalRect(0,0, iSlotResource.getU(), iSlotResource.getV(), 1, 1);
+       TextureComponent tCenterComponent = new TextureComponent(Textures.Gui.Basic.Slots.DEFAULT.getPrimaryLocation(), 1, 1, 16, 16, new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
+        
+        TextureComponent[] tCornerComponents = new TextureComponent[4];
+        tCornerComponents[0] = new TextureComponent(Textures.Gui.Basic.Slots.DEFAULT.getPrimaryLocation(), 0, 0, 1, 1, new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
+        tCornerComponents[1] = new TextureComponent(Textures.Gui.Basic.Slots.DEFAULT.getPrimaryLocation(), 17, 0, 1, 1, new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
+        tCornerComponents[2] = new TextureComponent(Textures.Gui.Basic.Slots.DEFAULT.getPrimaryLocation(), 17, 17, 1, 1, new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
+        tCornerComponents[3] = new TextureComponent(Textures.Gui.Basic.Slots.DEFAULT.getPrimaryLocation(), 0, 17, 1, 1, new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
 
-        int tWidthRepeated = iWidth / iSlotResource.getWidth();
-        int tWidthLeftAfterRepeating = iWidth % iSlotResource.getWidth();
+        TextureComponent[] tSideComponents = new TextureComponent[4];
+        tSideComponents[0] = new TextureComponent(Textures.Gui.Basic.Slots.DEFAULT.getPrimaryLocation(), 1, 0, 16, 1, new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
+        tSideComponents[1] = new TextureComponent(Textures.Gui.Basic.Slots.DEFAULT.getPrimaryLocation(), 17, 1, 1, 16, new UIRotation(false, false, true, -90), new Coordinate(0,0,0));
+        tSideComponents[2] = new TextureComponent(Textures.Gui.Basic.Slots.DEFAULT.getPrimaryLocation(), 1, 17, 1, 16, new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
+        tSideComponents[3] = new TextureComponent(Textures.Gui.Basic.Slots.DEFAULT.getPrimaryLocation(), 1, 0, 16, 1, new UIRotation(false, false, true, -90), new Coordinate(0,0,0));
 
-        int tHeightRepeated = iHeight / iSlotResource.getHeigth();
-        int tHeightLeftAfterRepeating = iHeight % Textures.Gui.Basic.Components.TANKGAUGE.getHeigth();
-
-
-
-
-
+        GuiHelper.drawRectangleStretched(tCenterComponent, tSideComponents, tCornerComponents, iWidth, iHeight, new Coordinate(iLeft, iTop,(int) this.zLevel));
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();

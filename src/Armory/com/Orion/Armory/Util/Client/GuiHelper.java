@@ -18,16 +18,22 @@ public final class GuiHelper
 
     public static void drawRectangleStretched(TextureComponent pCenterComponent, TextureComponent[] pSideComponents, TextureComponent[] pCornerComponents, int pWidth, int pHeight, Coordinate pElementCoordinate)
     {
-        renderCenter(pCenterComponent, pWidth, pHeight, new Coordinate(pElementCoordinate.getXComponent() + pCornerComponents[0].iWidth,  pElementCoordinate.getYComponent() + pCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
-
+        renderCenter(pCenterComponent, pWidth - pCornerComponents[0].iWidth - pCornerComponents[1].iWidth, pHeight - pCornerComponents[0].iHeight - pCornerComponents[3].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pCornerComponents[0].iWidth, pElementCoordinate.getYComponent() + pCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
         renderCorner(pCornerComponents[0], pElementCoordinate);
-        renderCorner();
+        renderCorner(pCornerComponents[1], new Coordinate(pElementCoordinate.getXComponent() + pWidth, pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent()));
+        renderCorner(pCornerComponents[2], new Coordinate(pElementCoordinate.getXComponent() + pWidth, pElementCoordinate.getYComponent() + pHeight, pElementCoordinate.getZComponent()));
+        renderCorner(pCornerComponents[3], new Coordinate(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent() + pHeight, pElementCoordinate.getZComponent()));
+
+        renderBorder(pSideComponents[0], pWidth - pCornerComponents[0].iWidth - pCornerComponents[1].iWidth, pSideComponents[0].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pCornerComponents[0].iWidth, pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent()));
+        renderBorder(pSideComponents[1],pHeight - pCornerComponents[1].iHeight - pCornerComponents[2].iHeight, pSideComponents[1].iHeight , new Coordinate(pElementCoordinate.getXComponent() + pWidth - pSideComponents[1].iHeight, pElementCoordinate.getYComponent() + pHeight - pCornerComponents[2].iHeight, pElementCoordinate.getZComponent()));
+        renderBorder(pSideComponents[2],pWidth - pCornerComponents[2].iWidth - pCornerComponents[3].iWidth, pSideComponents[2].iHeight , new Coordinate(pElementCoordinate.getXComponent() + pCornerComponents[3].iWidth, pElementCoordinate.getYComponent() + pHeight - pSideComponents[2].iHeight, pElementCoordinate.getZComponent()));
+        renderBorder(pSideComponents[3],pHeight - pCornerComponents[3].iHeight - pCornerComponents[0].iHeight, pSideComponents[3].iHeight , new Coordinate(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent() + pHeight - pCornerComponents[3].iHeight, pElementCoordinate.getZComponent()));
     }
 
     private static void renderCenter(TextureComponent pComponent, int pWidth, int pHeight, Coordinate pElementCoordinate)
     {
         GL11.glPushMatrix();
-        GL11.glTranslatef(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent());
+        GL11.glTranslatef(pElementCoordinate.getXComponent()+ pComponent.iRelativeTranslation.getXComponent(), pElementCoordinate.getYComponent()+ pComponent.iRelativeTranslation.getYComponent(), pElementCoordinate.getZComponent()+ pComponent.iRelativeTranslation.getZComponent());
         pComponent.iRotation.performGLRotation();
 
         bindTexture(pComponent.iAddress);
@@ -79,14 +85,14 @@ public final class GuiHelper
         GL11.glPopMatrix();
     }
 
-    private static void renderCorner(TextureComponent pCornerComponent, Coordinate pElementCoordinate)
+    private static void renderCorner(TextureComponent pComponent, Coordinate pElementCoordinate)
     {
         GL11.glPushMatrix();
-        GL11.glTranslatef(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent());
-        pCornerComponent.iRotation.performGLRotation();
+        GL11.glTranslatef(pElementCoordinate.getXComponent()+ pComponent.iRelativeTranslation.getXComponent(), pElementCoordinate.getYComponent()+ pComponent.iRelativeTranslation.getYComponent(), pElementCoordinate.getZComponent()+ pComponent.iRelativeTranslation.getZComponent());
+        pComponent.iRotation.performGLRotation();
 
-        bindTexture(pCornerComponent.iAddress);
-        drawTexturedModalRect(0, 0, 0, pCornerComponent.iU, pCornerComponent.iV, pCornerComponent.iWidth, pCornerComponent.iHeight);
+        bindTexture(pComponent.iAddress);
+        drawTexturedModalRect(0, 0, 0, pComponent.iU, pComponent.iV, pComponent.iWidth, pComponent.iHeight);
 
         GL11.glPopMatrix();
     }
@@ -94,7 +100,7 @@ public final class GuiHelper
     private static void renderBorder(TextureComponent pComponent, int pWidth, int pHeight, Coordinate pElementCoordinate)
     {
         GL11.glPushMatrix();
-        GL11.glTranslatef(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent());
+        GL11.glTranslatef(pElementCoordinate.getXComponent()+ pComponent.iRelativeTranslation.getXComponent(), pElementCoordinate.getYComponent()+ pComponent.iRelativeTranslation.getYComponent(), pElementCoordinate.getZComponent()+ pComponent.iRelativeTranslation.getZComponent());
         pComponent.iRotation.performGLRotation();
 
         bindTexture(pComponent.iAddress);

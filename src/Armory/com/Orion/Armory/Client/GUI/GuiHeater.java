@@ -3,7 +3,6 @@ package com.Orion.Armory.Client.GUI;
 import com.Orion.Armory.Client.GUI.Components.ComponentBorder;
 import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.InfoLedger;
-import com.Orion.Armory.Client.GUI.Components.MultiComponents.ComponentPlayerInventory;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Client.TranslationKeys;
@@ -36,8 +35,8 @@ public class GuiHeater extends com.Orion.Armory.Client.GUI.ArmoryBaseGui
             return;
         }
 
-        iComponents.addComponent(new ComponentBorder(this, "Gui.Heater.Background", guiLeft, 47, xSize, ySize, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
-        iComponents.addComponent(new ComponentPlayerInventory(this, "Gui.FirePit.Player", 0, 48, 1, ComponentBorder.CornerTypes.StraightVertical));
+        iComponents.addComponent(new ComponentBorder(this, "Gui.Heater.Background", 0, 0, xSize, ySize, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
+        //iComponents.addComponent(new ComponentPlayerInventory(this, "Gui.FirePit.Player", 0, 48, 1, ComponentBorder.CornerTypes.StraightVertical));
 
 
         iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.Heater.InfoLine1, "", TranslationKeys.GUI.Heater.InfoLine2}, Textures.Gui.Basic.INFOICON.getIcon()));

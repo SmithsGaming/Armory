@@ -7,9 +7,8 @@ package com.Orion.Armory.Client.GUI.Components;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
-import com.Orion.Armory.Util.Client.Color;
-import com.Orion.Armory.Util.Client.CustomResource;
-import com.Orion.Armory.Util.Client.Textures;
+import com.Orion.Armory.Util.Client.*;
+import com.Orion.Armory.Util.Core.Coordinate;
 import org.lwjgl.opengl.GL11;
 
 
@@ -74,19 +73,34 @@ public class ComponentBorder extends AbstractGUIComponent
         else
         {
 
-            renderCenter();
-
+            /*renderCenter();
 
             renderCornerInwarts(0, 0, 0);
             renderCornerInwarts(iWidth, 0, 1);
             renderCornerInwarts(iWidth, iHeight, 2);
             renderCornerInwarts(0, iHeight, 3);
 
-
             renderBorder(3, 0, 0, true);
             renderBorder(iWidth, 3, 1, true);
             renderBorder(iWidth - 3, iHeight, 2, true);
             renderBorder(0, iHeight - 3, 3, true);
+            */
+
+            TextureComponent tCenterComponent = new TextureComponent(Textures.Gui.Basic.Border.CENTER, new UIRotation(false,false,false,0), new Coordinate(0,0,0));
+
+            TextureComponent[] tCornerComponents = new TextureComponent[4];
+            tCornerComponents[0] = new TextureComponent(Textures.Gui.Basic.Border.INWARTSCORNERLIGHT, new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
+            tCornerComponents[1] = new TextureComponent(Textures.Gui.Basic.Border.INWARTSCORNERLIGHT, new UIRotation(false, false, true, 90), new Coordinate(0,0,0));
+            tCornerComponents[2] = new TextureComponent(Textures.Gui.Basic.Border.INWARTSCORNERDARK, new UIRotation(false, false, false, 0), new Coordinate(-4,-4,0));
+            tCornerComponents[3] = new TextureComponent(Textures.Gui.Basic.Border.INWARTSCORNERLIGHT, new UIRotation(false, false, true, 270), new Coordinate(0,0,0));
+
+            TextureComponent[] tSideComponents = new TextureComponent[4];
+            tSideComponents[0] = new TextureComponent(Textures.Gui.Basic.Border.STRAIGHTBORDERLIGHT, new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
+            tSideComponents[1] = new TextureComponent(Textures.Gui.Basic.Border.STRAIGHTBORDERDARK, new UIRotation(false, false, true, -90), new Coordinate(0,0,0));
+            tSideComponents[2] = new TextureComponent(Textures.Gui.Basic.Border.STRAIGHTBORDERDARK, new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
+            tSideComponents[3] = new TextureComponent(Textures.Gui.Basic.Border.STRAIGHTBORDERLIGHT, new UIRotation(false, false, true, -90), new Coordinate(0,0,0));
+
+            GuiHelper.drawRectangleStretched(tCenterComponent, tSideComponents, tCornerComponents, iWidth, iHeight, new Coordinate(iLeft, iTop, (int) this.zLevel));
         }
 
         GL11.glColor4f(1F, 1F, 1F, 1F);

@@ -1,5 +1,6 @@
 package com.Orion.Armory.Util.Client;
 
+import com.Orion.Armory.Util.Core.Coordinate;
 import net.minecraft.client.renderer.texture.TextureMap;
 
 /**
@@ -17,11 +18,13 @@ public class TextureComponent
     public int iWidth = 0;
     public int iHeight = 0;
 
+    public Coordinate iRelativeTranslation = new Coordinate(0,0,0);
+
     public UIRotation iRotation = new UIRotation(false, false, false, 0F);
 
     public String iAddress = TextureMap.locationBlocksTexture.getResourcePath();
 
-    public TextureComponent(String pAddress, int pU, int pV, int pWidth, int pHeight, UIRotation pRotation)
+    public TextureComponent(String pAddress, int pU, int pV, int pWidth, int pHeight, UIRotation pRotation, Coordinate pRelateTranslation)
     {
         iAddress = pAddress;
         iU = pU;
@@ -29,9 +32,10 @@ public class TextureComponent
         iWidth = pWidth;
         iHeight = pHeight;
         iRotation = pRotation;
+        iRelativeTranslation = pRelateTranslation;
     }
 
-    public TextureComponent(CustomResource pResource, UIRotation pRotation)
+    public TextureComponent(CustomResource pResource, UIRotation pRotation, Coordinate pRelativeTranslation)
     {
         iAddress = pResource.getPrimaryLocation();
         iU = pResource.getU();
@@ -39,5 +43,6 @@ public class TextureComponent
         iWidth = pResource.getWidth();
         iHeight = pResource.getHeigth();
         iRotation = pRotation;
+        iRelativeTranslation = pRelativeTranslation;
     }
 }

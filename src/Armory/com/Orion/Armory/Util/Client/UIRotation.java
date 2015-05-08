@@ -1,6 +1,5 @@
 package com.Orion.Armory.Util.Client;
 
-import com.Orion.Armory.Util.Core.Coordinate;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -32,23 +31,6 @@ public class UIRotation
             iRotateZ = 1F;
 
         iAngle = pAngle;
-
-    }
-
-    public Coordinate performRelativeCalculationForComponent(Coordinate pOrigin, TextureComponent pComponent)
-    {
-        int x = pOrigin.getXComponent();
-        int y = pOrigin.getYComponent();
-        int z = pOrigin.getZComponent();
-
-        if(iRotateX > 0F)
-        {
-
-
-        }
-
-
-
 
     }
 
