@@ -2,7 +2,7 @@ package com.Orion.Armory.Client.GUI.Components.MultiComponents;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.ComponentBorder;
-import com.Orion.Armory.Client.GUI.Components.ComponentProgressArrow;
+import com.Orion.Armory.Client.GUI.Components.ComponentProgressBar;
 import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIMultiComponent;
 import com.Orion.Armory.Util.Client.Color;
@@ -31,7 +31,7 @@ public class ComponentExtendedCraftingGrid extends AbstractGUIMultiComponent
             addComponent(new ComponentSlot(pGui, pInternalName + ".Slot.Crafting." + tSlotIndex, 18, 18, 7 + tColumnIndex * 18, 7 + tRowIndex * 18, Textures.Gui.Basic.Slots.DEFAULT, pBackground));
         }
 
-        addComponent(new ComponentProgressArrow(pGui, pInternalName + ".Progress.Arrow.1",105, 45, pForeground, pBackground));
+        addComponent(new ComponentProgressBar(pGui, pInternalName + ".Progress.Arrow.1",105, 45, pForeground, pBackground));
         addComponent(new ComponentSlot(pGui, pInternalName + ".Slot.Output", 18, 18, 137, 43, Textures.Gui.Basic.Slots.DEFAULT, pBackground));
     }
 

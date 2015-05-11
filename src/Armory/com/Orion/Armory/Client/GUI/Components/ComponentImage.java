@@ -3,6 +3,7 @@ package com.Orion.Armory.Client.GUI.Components;
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
 import com.Orion.Armory.Util.Client.CustomResource;
+import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -36,7 +37,7 @@ public class ComponentImage extends AbstractGUIComponent {
         GL11.glPushMatrix();
         GL11.glColor4f(iTargetResource.getColor().getColorRedFloat(), iTargetResource.getColor().getColorGreenFloat(), iTargetResource.getColor().getColorBlueFloat(), iTargetResource.getColor().getAlphaFloat());
 
-        bindTexture(iTargetResource.getPrimaryLocation());
+        GuiHelper.bindTexture(iTargetResource.getPrimaryLocation());
         drawTexturedModalRect(iLeft, iTop, iTargetResource.getU(), iTargetResource.getV(), iTargetResource.getWidth(), iTargetResource.getHeigth());
 
         GL11.glColor4f(1F, 1F, 1F, 1F);

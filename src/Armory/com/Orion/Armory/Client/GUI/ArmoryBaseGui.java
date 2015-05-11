@@ -25,23 +25,10 @@ public abstract class ArmoryBaseGui extends GuiContainer {
 
     TileEntityArmory iBaseTE;
 
-    public int iDisplayHeight;
-    public int iDisplayWidth;
-    public int iGuiScale;
-
     public ArmoryBaseGui(Container pTargetedContainer) {
         super(pTargetedContainer);
-        calcScaleFactor();
 
         iBaseTE = ((ContainerArmory) pTargetedContainer).iTargetTE;
-    }
-
-    public void calcScaleFactor() {
-        Minecraft mc = Minecraft.getMinecraft();
-        ScaledResolution sc = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-        iDisplayWidth = sc.getScaledWidth();
-        iDisplayHeight = sc.getScaledHeight();
-        iGuiScale = sc.getScaleFactor();
     }
 
     public LedgerManager Ledgers() {

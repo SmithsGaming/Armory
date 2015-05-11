@@ -8,6 +8,9 @@ package com.Orion.Armory.Client.GUI.Components;
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
 import com.Orion.Armory.Util.Client.*;
+import com.Orion.Armory.Util.Client.GUI.GuiHelper;
+import com.Orion.Armory.Util.Client.GUI.TextureComponent;
+import com.Orion.Armory.Util.Client.GUI.UIRotation;
 import com.Orion.Armory.Util.Core.Coordinate;
 import org.lwjgl.opengl.GL11;
 
@@ -39,10 +42,11 @@ public class ComponentBorder extends AbstractGUIComponent
         GL11.glPushMatrix();
         GL11.glColor4f(iBackGroundColor.getColorRedFloat(), iBackGroundColor.getColorGreenFloat(), iBackGroundColor.getColorBlueFloat(), iBackGroundColor.getAlphaFloat());
 
-        GL11.glTranslatef(iLeft, iTop, 0F);
 
         if (iUpperCornerType == CornerTypes.Outwarts)
         {
+            GL11.glTranslatef(iLeft, iTop, 0F);
+
             //renderCenter();
             renderCenter();
 
@@ -58,6 +62,7 @@ public class ComponentBorder extends AbstractGUIComponent
         }
         else if (iUpperCornerType == CornerTypes.StraightVertical)
         {
+            GL11.glTranslatef(iLeft, iTop, 0F);
             renderCenter();
 
             renderCornerStraightVertical(0, 0, 0);
@@ -109,7 +114,7 @@ public class ComponentBorder extends AbstractGUIComponent
 
     private void renderCenter()
     {
-        bindTexture(Textures.Gui.Basic.Border.CENTER.getPrimaryLocation());
+        GuiHelper.bindTexture(Textures.Gui.Basic.Border.CENTER.getPrimaryLocation());
         if(iWidth - 6 <= Textures.Gui.Basic.Border.CENTER.getWidth() && iHeight - 6 <= Textures.Gui.Basic.Border.CENTER.getHeigth())
         {
             drawTexturedModalRect(3, 3, Textures.Gui.Basic.Border.CENTER.getU(), Textures.Gui.Basic.Border.CENTER.getV(), iWidth - 6, iHeight - 6);
@@ -181,7 +186,7 @@ public class ComponentBorder extends AbstractGUIComponent
         }
 
 
-        bindTexture(Textures.Gui.Basic.Border.OUTWARTSCORNER.getPrimaryLocation());
+        GuiHelper.bindTexture(Textures.Gui.Basic.Border.OUTWARTSCORNER.getPrimaryLocation());
         drawTexturedModalRect(0, 0, Textures.Gui.Basic.Border.OUTWARTSCORNER.getU(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getV(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getWidth(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getHeigth());
 
         GL11.glPopMatrix();
@@ -207,7 +212,7 @@ public class ComponentBorder extends AbstractGUIComponent
             GL11.glTranslatef(-4F, -4F, 0F);
         }
 
-        bindTexture(tResource.getPrimaryLocation());
+        GuiHelper.bindTexture(tResource.getPrimaryLocation());
         drawTexturedModalRect(0,0,tResource.getU(), tResource.getV(), tResource.getWidth(), tResource.getHeigth());
 
         GL11.glPopMatrix();
@@ -234,7 +239,7 @@ public class ComponentBorder extends AbstractGUIComponent
             GL11.glRotatef(90F, 0F, 0F, 1F);
         }
 
-        bindTexture(tResource.getPrimaryLocation());
+        GuiHelper.bindTexture(tResource.getPrimaryLocation());
         drawTexturedModalRect(pCornerXPos-3, pCornerYPos, tResource.getU(), tResource.getV(),6, tResource.getHeigth());
 
         GL11.glPopMatrix();
@@ -279,7 +284,7 @@ public class ComponentBorder extends AbstractGUIComponent
             GL11.glTranslatef(0F, -3F, 0F);
         }
 
-        bindTexture(tResource.getPrimaryLocation());
+        GuiHelper.bindTexture(tResource.getPrimaryLocation());
 
         if(iWidth - 6 <= tResource.getWidth())
         {

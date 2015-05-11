@@ -1,4 +1,4 @@
-package com.Orion.Armory.Util.Client;
+package com.Orion.Armory.Util.Client.GUI;
 
 import org.lwjgl.opengl.GL11;
 

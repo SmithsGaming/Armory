@@ -53,11 +53,6 @@ public abstract class AbstractGUIComponent extends Gui implements IGUIComponent
 
     public int getWidth() {return iWidth;}
 
-    public void bindTexture(String pTextureAddress)
-    {
-        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(pTextureAddress));
-    }
-
     public void draw(int pX, int pY)
     {
         drawBackGround(pX, pY);

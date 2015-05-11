@@ -107,7 +107,7 @@ public class GuiFirePit extends com.Orion.Armory.Client.GUI.ArmoryBaseGui
             return;
         }
 
-        iComponents.addComponent(new ComponentBorder(this, "Gui.FirePit.Background", guiLeft, guiTop, xSize, ySize - 80, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
+        iComponents.addComponent(new ComponentBorder(this, "Gui.FirePit.Background", 0, 0, xSize, ySize - 80, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
         iComponents.addComponent(new ComponentPlayerInventory(this, "Gui.FirePit.Player", 0, 76, (TileEntityFirePit.FUELSTACK_AMOUNT + TileEntityFirePit.INGOTSTACKS_AMOUNT), ComponentBorder.CornerTypes.StraightVertical));
 
         this.iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.FirePit.InfoLine1, "", TranslationKeys.GUI.FirePit.InfoLine2, "", TranslationKeys.GUI.FirePit.InfoLine3}, Textures.Gui.Basic.INFOICON.getIcon()));

@@ -132,7 +132,6 @@ public class Textures
                 private static String COMPONENTTEXTUREPATH = GUITEXTUREPATH + "Components/";
                 public static CustomResource ARROWEMPTY = new CustomResource("Gui.Basic.Components.Arrow.Empty", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 0,0,22, 16);
                 public static CustomResource ARROWFULL = new CustomResource("Gui.Basic.Components.Arrow.Full", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 22,0,22, 16);
-                public static CustomResource TANKGAUGE = new CustomResource("Gui.Basic.Components.Tankgauge", COMPONENTTEXTUREPATH + "RandomElements.png", Colors.DEFAULT, 0, 0, 16, 16);
             }
 
 
@@ -141,6 +140,8 @@ public class Textures
             {
                 private static String IMAGETEXTUREPATH = GUITEXTUREPATH + "Images/";
                 public static CustomResource HAMMER = new CustomResource("Gui.Basic.Image.Hammer", IMAGETEXTUREPATH + "AnvilHammer.png", Colors.DEFAULT, 0,0,30, 30);
+                public static CustomResource ARROWRIGHTGRAY = new CustomResource("Gui.Basic.Iamge.Arrow.Gray", IMAGETEXTUREPATH + "ArrowImage.png", Colors.DEFAULT, 0 ,0,22,22);
+                public static CustomResource ARROWRIGHTWHITE= new CustomResource("Gui.Basic.Iamge.Arrow.White", IMAGETEXTUREPATH + "ArrowImage.png", Colors.DEFAULT, 22 ,0,22,23);
             }
         }
 

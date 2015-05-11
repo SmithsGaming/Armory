@@ -383,7 +383,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     @Override
     public float getProgressBarValue(String pProgressBarID) {
-        return 0;
+        return 1;
     }
 
     public static void addRecipe(AnvilRecipe pNewRecipe)

@@ -4,8 +4,10 @@ import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
 import com.Orion.Armory.Util.Client.Color;
 import com.Orion.Armory.Util.Client.Colors;
+import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.SessionVars;
 import com.Orion.Armory.Util.Client.Textures;
+import com.Orion.Armory.Util.Core.Rectangle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -167,22 +169,13 @@ public abstract class Ledger extends AbstractGUIComponent
         {
             return;
         }
-
-        iGui.calcScaleFactor();
-
-        GL11.glPushAttrib(GL11.GL_SCISSOR_BIT);
-        GL11.glEnable(GL11.GL_SCISSOR_TEST);
-        GL11.glScissor((pX + getOriginOffSet() - 4) * iGui.iGuiScale, ((iGui.iDisplayHeight - pY - iCurrentYExtension) * iGui.iGuiScale), (iCurrentXExtension) * iGui.iGuiScale, (iCurrentYExtension) * iGui.iGuiScale);
-
-        //Debug code for the scissor box position
-        //mc.renderEngine.bindTexture(TextureMap.locationItemsTexture);
-        //drawTexturedModalRect(0, 0, 0, 0, iDisplayWidth, iDisplayHeight);
+        Rectangle tScissorBox = new Rectangle(pX + getOriginOffSet() - 4,pY + iCurrentYExtension, iCurrentXExtension, iCurrentYExtension );
+        GuiHelper.enableScissor(tScissorBox);
 
         drawHeaderText(pX, pY, Minecraft.getMinecraft().fontRenderer);
         drawForeGround(pX, pY);
 
-        GL11.glPopAttrib();
-        GL11.glDisable(GL11.GL_SCISSOR_TEST);
+        GuiHelper.disableScissor();
     }
 
     @Override

@@ -4,6 +4,8 @@ import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
 import com.Orion.Armory.Util.Client.Color;
 import com.Orion.Armory.Util.Client.Colors;
+import com.Orion.Armory.Util.Client.CustomResource;
+import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.References;
 import org.lwjgl.opengl.GL11;
@@ -15,22 +17,34 @@ import org.lwjgl.opengl.GL11;
  * <p/>
  * Copyrighted according to Project specific license
  */
-public class ComponentProgressArrow extends AbstractGUIComponent
+public class ComponentProgressBar extends AbstractGUIComponent
 {
     int iCompletePartToBeRendered = 0;
     Color iForeGroundColor = Colors.DEFAULT;
     Color iBackGroundColor = Colors.DEFAULT;
+    CustomResource iBackground = Textures.Gui.Basic.Components.ARROWEMPTY;
+    CustomResource iForeground = Textures.Gui.Basic.Components.ARROWFULL;
 
-    public ComponentProgressArrow(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, Color pForeground, Color pBackground) {
+    public ComponentProgressBar(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, Color pBackgroundColor, Color pForegroundColor) {
         super(pGui, pInternalName, pLeft, pTop, Textures.Gui.Basic.Components.ARROWEMPTY.getWidth(), Textures.Gui.Basic.Components.ARROWEMPTY.getHeigth());
 
-        iForeGroundColor = pForeground;
-        iBackGroundColor = pBackground;
+        iForeGroundColor = pForegroundColor;
+        iBackGroundColor = pBackgroundColor;
+    }
+
+    public ComponentProgressBar(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, CustomResource pBackground, CustomResource pForeground, Color pBackgroundColor, Color pForegroundColor) {
+        super(pGui, pInternalName, pLeft, pTop, Textures.Gui.Basic.Components.ARROWEMPTY.getWidth(), Textures.Gui.Basic.Components.ARROWEMPTY.getHeigth());
+
+        iForeGroundColor = pForegroundColor;
+        iBackGroundColor = pBackgroundColor;
+
+        iForeground = pForeground;
+        iBackground = pBackground;
     }
 
     @Override
     public void onUpdate() {
-        iCompletePartToBeRendered = (int) iGui.getProgressBarValue(References.InternalNames.GUIComponents.Anvil.CRAFTINGPROGRESS) * Textures.Gui.Basic.Components.ARROWFULL.getWidth();
+        iCompletePartToBeRendered = (int) (iGui.getProgressBarValue(References.InternalNames.GUIComponents.Anvil.CRAFTINGPROGRESS) * Textures.Gui.Basic.Components.ARROWFULL.getWidth());
     }
 
     @Override
@@ -43,8 +57,8 @@ public class ComponentProgressArrow extends AbstractGUIComponent
         GL11.glPushMatrix();
         GL11.glColor4f(iBackGroundColor.getColorRedFloat(), iBackGroundColor.getColorGreenFloat(), iBackGroundColor.getColorBlueFloat(), iBackGroundColor.getAlphaFloat());
 
-        bindTexture(Textures.Gui.Basic.Components.ARROWEMPTY.getPrimaryLocation());
-        drawTexturedModalRect(iLeft, iTop, Textures.Gui.Basic.Components.ARROWEMPTY.getU(), Textures.Gui.Basic.Components.ARROWEMPTY.getV(), Textures.Gui.Basic.Components.ARROWEMPTY.getWidth(), Textures.Gui.Basic.Components.ARROWEMPTY.getHeigth());
+        GuiHelper.bindTexture(iBackground.getPrimaryLocation());
+        drawTexturedModalRect(iLeft, iTop, iBackground.getU(), iBackground.getV(), iBackground.getWidth(), iBackground.getHeigth());
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();
@@ -52,8 +66,8 @@ public class ComponentProgressArrow extends AbstractGUIComponent
         GL11.glPushMatrix();
         GL11.glColor4f(iForeGroundColor.getColorRedFloat(), iForeGroundColor.getColorGreenFloat(), iForeGroundColor.getColorBlueFloat(), iForeGroundColor.getAlphaFloat());
 
-        bindTexture(Textures.Gui.Basic.Components.ARROWFULL.getPrimaryLocation());
-        drawTexturedModalRect(iLeft, iTop, Textures.Gui.Basic.Components.ARROWFULL.getU(), Textures.Gui.Basic.Components.ARROWFULL.getV(), iCompletePartToBeRendered, Textures.Gui.Basic.Components.ARROWFULL.getHeigth());
+        GuiHelper.bindTexture(iForeground.getPrimaryLocation());
+        drawTexturedModalRect(iLeft, iTop, iForeground.getU(), iForeground.getV(), iCompletePartToBeRendered, iForeground.getHeigth());
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();
