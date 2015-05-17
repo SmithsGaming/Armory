@@ -22,9 +22,9 @@ public class ChainCraftingRecipe implements IRecipe {
 
             if (!(pCraftingGrid.getStackInRowAndColumn(IColumIter, 0).getItem() instanceof ItemMetalRing) || !(pCraftingGrid.getStackInRowAndColumn(IColumIter, 1).getItem() instanceof ItemMetalRing) || !(pCraftingGrid.getStackInRowAndColumn(IColumIter, 2).getItem() instanceof ItemMetalRing)) continue;
 
-            String tMaterialUpper = pCraftingGrid.getStackInRowAndColumn(IColumIter, 0).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
-            String tMaterialMiddle = pCraftingGrid.getStackInRowAndColumn(IColumIter, 1).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
-            String tMaterialLower = pCraftingGrid.getStackInRowAndColumn(IColumIter, 2).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
+            String tMaterialUpper = pCraftingGrid.getStackInRowAndColumn(IColumIter, 0).getTagCompound().getString(References.NBTTagCompoundData.Material);
+            String tMaterialMiddle = pCraftingGrid.getStackInRowAndColumn(IColumIter, 1).getTagCompound().getString(References.NBTTagCompoundData.Material);
+            String tMaterialLower = pCraftingGrid.getStackInRowAndColumn(IColumIter, 2).getTagCompound().getString(References.NBTTagCompoundData.Material);
 
             if (tMaterialUpper.equals(tMaterialMiddle) && tMaterialUpper.equals(tMaterialLower)) {
                 return true;
@@ -42,9 +42,9 @@ public class ChainCraftingRecipe implements IRecipe {
 
             if (!(pCraftingGrid.getStackInRowAndColumn(IColumIter, 0).getItem() instanceof ItemMetalRing) || !(pCraftingGrid.getStackInRowAndColumn(IColumIter, 1).getItem() instanceof ItemMetalRing) || !(pCraftingGrid.getStackInRowAndColumn(IColumIter, 2).getItem() instanceof ItemMetalRing)) continue;
 
-            String tMaterialUpper = pCraftingGrid.getStackInRowAndColumn(IColumIter, 0).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
-            String tMaterialMiddle = pCraftingGrid.getStackInRowAndColumn(IColumIter, 1).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
-            String tMaterialLower = pCraftingGrid.getStackInRowAndColumn(IColumIter, 2).getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
+            String tMaterialUpper = pCraftingGrid.getStackInRowAndColumn(IColumIter, 0).getTagCompound().getString(References.NBTTagCompoundData.Material);
+            String tMaterialMiddle = pCraftingGrid.getStackInRowAndColumn(IColumIter, 1).getTagCompound().getString(References.NBTTagCompoundData.Material);
+            String tMaterialLower = pCraftingGrid.getStackInRowAndColumn(IColumIter, 2).getTagCompound().getString(References.NBTTagCompoundData.Material);
 
             if (tMaterialUpper.equals(tMaterialMiddle) && tMaterialUpper.equals(tMaterialLower)) {
                 ItemStack tReturnStack = new ItemStack(GeneralRegistry.Items.iMetalChain, 1);

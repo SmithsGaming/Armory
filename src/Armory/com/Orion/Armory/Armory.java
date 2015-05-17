@@ -2,11 +2,13 @@ package com.Orion.Armory;
 
 import com.Orion.Armory.Common.ArmoryCommonProxy;
 import com.Orion.Armory.Common.Handlers.GuiHandler;
+import com.Orion.Armory.Common.Logic.ArmoryInitializer;
 import com.Orion.Armory.Network.NetworkManager;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -47,5 +49,11 @@ public class Armory
     {
         NetworkManager.Init();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+    }
+
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        ArmoryInitializer.postInitializeServer();
     }
 }

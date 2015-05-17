@@ -5,10 +5,12 @@ package com.Orion.Armory.Common.Handlers;
  *   Created on: 18-1-2015
  */
 
-import com.Orion.Armory.Client.GUI.GuiArmorsAnvil;
+import com.Orion.Armory.Client.GUI.GuiAmorsAnvilMinimal;
+import com.Orion.Armory.Client.GUI.GuiArmorsAnvilStandard;
 import com.Orion.Armory.Client.GUI.GuiFirePit;
 import com.Orion.Armory.Client.GUI.GuiHeater;
-import com.Orion.Armory.Common.Inventory.ContainerArmorsAnvil;
+import com.Orion.Armory.Common.Inventory.ContainerArmorsAnvilMinimal;
+import com.Orion.Armory.Common.Inventory.ContainerArmorsAnvilStandard;
 import com.Orion.Armory.Common.Inventory.ContainerFirepit;
 import com.Orion.Armory.Common.Inventory.ContainerHeater;
 import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
@@ -33,7 +35,14 @@ public class GuiHandler implements IGuiHandler
         }
         else if (pID == References.GuiIDs.ANVILID)
         {
-            return new ContainerArmorsAnvil(pPlayer.inventory, (TileEntityArmorsAnvil) pWorld.getTileEntity(pX, pY, pZ));
+            TileEntityArmorsAnvil tAnvil = (TileEntityArmorsAnvil) pWorld.getTileEntity(pX, pY, pZ);
+            if (tAnvil.getCurrentState() == TileEntityArmorsAnvil.AnvilState.Minimal)
+            {
+                return new ContainerArmorsAnvilMinimal(pPlayer.inventory, tAnvil);
+            }
+            else if (tAnvil.getCurrentState() == TileEntityArmorsAnvil.AnvilState.Standard) {
+                return new ContainerArmorsAnvilStandard(pPlayer.inventory, tAnvil);
+            }
         }
 
         return null;
@@ -51,7 +60,14 @@ public class GuiHandler implements IGuiHandler
         }
         else if (pID == References.GuiIDs.ANVILID)
         {
-            return new GuiArmorsAnvil(new ContainerArmorsAnvil(pPlayer.inventory, (TileEntityArmorsAnvil) pWorld.getTileEntity(pX, pY, pZ)));
+            TileEntityArmorsAnvil tAnvil = (TileEntityArmorsAnvil) pWorld.getTileEntity(pX, pY, pZ);
+            if (tAnvil.getCurrentState() == TileEntityArmorsAnvil.AnvilState.Minimal)
+            {
+                return new GuiAmorsAnvilMinimal(new ContainerArmorsAnvilMinimal(pPlayer.inventory, tAnvil));
+            }
+            else if (tAnvil.getCurrentState() == TileEntityArmorsAnvil.AnvilState.Standard) {
+                return new GuiArmorsAnvilStandard(new ContainerArmorsAnvilStandard(pPlayer.inventory, tAnvil));
+            }
         }
 
         return null;

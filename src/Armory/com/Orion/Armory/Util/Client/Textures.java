@@ -99,6 +99,30 @@ public class Textures
             public static CustomResource CobaltResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT, "armory:basic/16x Chain", "", Colors.Metals.COBALT);
             public static CustomResource ArditeResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE, "armory:basic/16x Chain", "", Colors.Metals.ARDITE);
         }
+        
+        public static class ItemNugget
+        {
+            public static CustomResource IronResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:basic/16x Nugget", "", Colors.Metals.IRON);
+            public static CustomResource ChainResource = new CustomResource(References.InternalNames.Materials.Vanilla.CHAIN, "armory:basic/16x Nugget", "", Colors.Metals.CHAIN);
+            public static CustomResource ObsidianResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:basic/16x Nugget", "", Colors.Metals.OBSIDIAN);
+            public static CustomResource BronzeResource = new CustomResource(References.InternalNames.Materials.Common.BRONZE, "armory:basic/16x Nugget", "", Colors.Metals.BRONZE);
+            public static CustomResource AlumiteResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE, "armory:basic/16x Nugget", "", Colors.Metals.ALUMITE);
+            public static CustomResource ManyullunResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN, "armory:basic/16x Nugget", "", Colors.Metals.MANYULLUN);
+            public static CustomResource CobaltResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT, "armory:basic/16x Nugget", "", Colors.Metals.COBALT);
+            public static CustomResource ArditeResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE, "armory:basic/16x Nugget", "", Colors.Metals.ARDITE);
+        }
+
+        public static class ItemPlate
+        {
+            public static CustomResource IronResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:basic/16x Plate", "", Colors.Metals.IRON);
+            public static CustomResource ChainResource = new CustomResource(References.InternalNames.Materials.Vanilla.CHAIN, "armory:basic/16x Plate", "", Colors.Metals.CHAIN);
+            public static CustomResource ObsidianResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:basic/16x Plate", "", Colors.Metals.OBSIDIAN);
+            public static CustomResource BronzeResource = new CustomResource(References.InternalNames.Materials.Common.BRONZE, "armory:basic/16x Plate", "", Colors.Metals.BRONZE);
+            public static CustomResource AlumiteResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE, "armory:basic/16x Plate", "", Colors.Metals.ALUMITE);
+            public static CustomResource ManyullunResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN, "armory:basic/16x Plate", "", Colors.Metals.MANYULLUN);
+            public static CustomResource CobaltResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT, "armory:basic/16x Plate", "", Colors.Metals.COBALT);
+            public static CustomResource ArditeResource = new CustomResource(References.InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE, "armory:basic/16x Plate", "", Colors.Metals.ARDITE);
+        }
     }
 
     public static class Gui
@@ -113,7 +137,7 @@ public class Textures
 
             public static class Slots
             {
-                public static CustomResource DEFAULT = new CustomResource("Gui.Basic.Slots.Default",BASICTEXTUREPATH + "slot.png", Colors.DEFAULT);
+                public static CustomResource DEFAULT = new CustomResource("Gui.Basic.Slots.Default",BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 0, 0, 18, 18);
             }
 
             public static class Border
@@ -139,7 +163,6 @@ public class Textures
             public static class Images
             {
                 private static String IMAGETEXTUREPATH = GUITEXTUREPATH + "Images/";
-                public static CustomResource HAMMER = new CustomResource("Gui.Basic.Image.Hammer", IMAGETEXTUREPATH + "AnvilHammer.png", Colors.DEFAULT, 0,0,30, 30);
                 public static CustomResource ARROWRIGHTGRAY = new CustomResource("Gui.Basic.Iamge.Arrow.Gray", IMAGETEXTUREPATH + "ArrowImage.png", Colors.DEFAULT, 0 ,0,22,22);
                 public static CustomResource ARROWRIGHTWHITE= new CustomResource("Gui.Basic.Iamge.Arrow.White", IMAGETEXTUREPATH + "ArrowImage.png", Colors.DEFAULT, 22 ,0,22,23);
             }
@@ -154,6 +177,13 @@ public class Textures
         public static class Heater
         {
             public static CustomResource BACKGROUND = new CustomResource("Gui.Heater.Background", GUITEXTUREPATH + "Heater.png", Colors.DEFAULT);
+        }
+
+        public static class Anvil
+        {
+            public static CustomResource HAMMER = new CustomResource("Gui.Basic.Image.Hammer", Basic.Images.IMAGETEXTUREPATH + "AnvilHammer.png", Colors.DEFAULT, 0,0,30, 30);
+            public static CustomResource HAMMERSLOT = new CustomResource("Gui.Basic.Slot.Hammer", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 18,0,18,18);
+            public static CustomResource TONGSSLOT = new CustomResource("Gui.Basic.Slot.Tongs", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 36,0,18,18);
         }
     }
 

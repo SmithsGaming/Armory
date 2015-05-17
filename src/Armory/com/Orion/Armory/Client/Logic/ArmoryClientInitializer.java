@@ -41,6 +41,8 @@ public class ArmoryClientInitializer extends ArmoryInitializer
         SystemInit.registerIIR();
         MedievalClientInitialization.registerRingResources();
         MedievalClientInitialization.registerChainResources();
+        MedievalClientInitialization.registerNuggetResources();
+        MedievalClientInitialization.registerPlateResources();
         MedievalInitialization.prepareGame();
     }
     
@@ -97,9 +99,9 @@ public class ArmoryClientInitializer extends ArmoryInitializer
         {
             //ArmorPieces
             ArmorMedieval tHelmet = MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET);
-            ArmorMedieval tChestplate = (ArmorMedieval) MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE);
-            ArmorMedieval tLeggings = (ArmorMedieval) MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS);
-            ArmorMedieval tShoes = (ArmorMedieval) MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES);
+            ArmorMedieval tChestplate =  MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE);
+            ArmorMedieval tLeggings = MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS);
+            ArmorMedieval tShoes = MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES);
 
             for (ArmorMaterialMedieval tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values())
             {
@@ -180,6 +182,30 @@ public class ArmoryClientInitializer extends ArmoryInitializer
             GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.CobaltResource);
             GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.ArditeResource);
             GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.ManyullunResource);
+        }
+
+        public static void registerNuggetResources()
+        {
+            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.IronResource);
+            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.ChainResource);
+            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.ObsidianResource);
+            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.BronzeResource);
+            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.AlumiteResource);
+            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.CobaltResource);
+            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.ArditeResource);
+            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.ManyullunResource);
+        }
+
+        public static void registerPlateResources()
+        {
+            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.IronResource);
+            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.ChainResource);
+            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.ObsidianResource);
+            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.BronzeResource);
+            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.AlumiteResource);
+            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.CobaltResource);
+            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.ArditeResource);
+            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.ManyullunResource);
         }
         
     }

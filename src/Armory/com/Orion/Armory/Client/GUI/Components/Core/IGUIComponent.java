@@ -5,8 +5,6 @@ package com.Orion.Armory.Client.GUI.Components.Core;
 /  Created on : 27-4-2015
 */
 
-import com.Orion.Armory.Util.Core.Rectangle;
-
 public interface IGUIComponent
 {
     public abstract void onUpdate();
@@ -28,4 +26,8 @@ public interface IGUIComponent
     public boolean checkIfPointIsInComponent(int pTargetX, int pTargetY);
 
     public abstract boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton);
+
+    public boolean handleKeyTyped(char pKey, int pPara);
+
+    public boolean requiresForcedInput();
 }

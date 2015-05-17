@@ -9,21 +9,21 @@ import com.Orion.Armory.Armory;
 import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
+import com.Orion.Armory.Common.Crafting.Anvil.AnvilRecipe;
+import com.Orion.Armory.Common.Crafting.Anvil.HeatedAnvilRecipeComponent;
 import com.Orion.Armory.Common.Crafting.ChainCraftingRecipe;
 import com.Orion.Armory.Common.Crafting.MedievalArmorCraftingRecipe;
 import com.Orion.Armory.Common.Events.ModifyMaterialEvent;
 import com.Orion.Armory.Common.Events.RegisterArmorEvent;
 import com.Orion.Armory.Common.Events.RegisterMaterialsEvent;
 import com.Orion.Armory.Common.Events.RegisterUpgradesEvent;
+import com.Orion.Armory.Common.Factory.HeatedItemFactory;
+import com.Orion.Armory.Common.Item.*;
 import com.Orion.Armory.Common.Item.Armor.Core.ArmorAddonPosition;
 import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorUpgradeMedieval;
-import com.Orion.Armory.Common.Item.ItemFan;
-import com.Orion.Armory.Common.Item.ItemHeatedItem;
-import com.Orion.Armory.Common.Item.ItemMetalChain;
-import com.Orion.Armory.Common.Item.ItemMetalRing;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
@@ -32,6 +32,7 @@ import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.TextureAddressHelper;
 import com.Orion.Armory.Util.Client.TranslationKeys;
+import com.Orion.Armory.Util.References;
 import com.Orion.Armory.Util.References.InternalNames;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -39,12 +40,19 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import tconstruct.tools.TinkerTools;
 
 import java.util.HashMap;
+import java.util.ListIterator;
 
 public class ArmoryInitializer
 {
@@ -56,6 +64,11 @@ public class ArmoryInitializer
         SystemInit.RegisterItems();
         SystemInit.RegisterTileEntities();
         MedievalInitialization.prepareGame();
+    }
+
+    public static void postInitializeServer()
+    {
+        SystemInit.removeRecipes();
     }
 
     public static class MedievalInitialization
@@ -81,14 +94,14 @@ public class ArmoryInitializer
 
         private static void registerMaterials()
         {
-            ArmorMaterialMedieval tIron = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, EnumChatFormatting.WHITE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.IRON, 1538, 0.225F, new ItemStack(Items.iron_ingot));
-            ArmorMaterialMedieval tChain = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.CHAIN, TranslationKeys.Materials.VisibleNames.Steel, EnumChatFormatting.GRAY, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.CHAIN, 1148, 0.25F, new ItemStack(TinkerTools.materials, 1, 16));
-            ArmorMaterialMedieval tObsidian = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, EnumChatFormatting.DARK_PURPLE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.OBSIDIAN, 998, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
-            ArmorMaterialMedieval tAlumite = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE, TranslationKeys.Materials.VisibleNames.Alumite, EnumChatFormatting.RED, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.ALUMITE, 1023, 0.2F, new ItemStack(TinkerTools.materials, 1, 15));
-            ArmorMaterialMedieval tArdite = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE, TranslationKeys.Materials.VisibleNames.Ardite, EnumChatFormatting.DARK_RED, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.ARDITE, 1752, 0.4F, new ItemStack(TinkerTools.materials, 1, 4));
-            ArmorMaterialMedieval tCobalt = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT, TranslationKeys.Materials.VisibleNames.Cobalt, EnumChatFormatting.BLUE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.COBALT, 1635, 0.3F, new ItemStack(TinkerTools.materials, 1, 3));
-            ArmorMaterialMedieval tManyullun = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN, TranslationKeys.Materials.VisibleNames.Manyullun, EnumChatFormatting.LIGHT_PURPLE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.MANYULLUN, 2963, 0.489F, new ItemStack(TinkerTools.materials, 1, 5));
-            ArmorMaterialMedieval tBronze = new ArmorMaterialMedieval(InternalNames.Materials.Common.BRONZE, TranslationKeys.Materials.VisibleNames.Bronze, EnumChatFormatting.GOLD, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.BRONZE, 950, 0.186F, new ItemStack(TinkerTools.materials, 1, 13));
+            ArmorMaterialMedieval tIron = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", EnumChatFormatting.WHITE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.IRON, 1538, 0.225F, new ItemStack(Items.iron_ingot));
+            ArmorMaterialMedieval tChain = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.CHAIN, TranslationKeys.Materials.VisibleNames.Steel, "Steel", EnumChatFormatting.GRAY, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.CHAIN, 1148, 0.25F, new ItemStack(TinkerTools.materials, 1, 16));
+            ArmorMaterialMedieval tObsidian = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", EnumChatFormatting.DARK_PURPLE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.OBSIDIAN, 998, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
+            ArmorMaterialMedieval tAlumite = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE, TranslationKeys.Materials.VisibleNames.Alumite, "Alumite", EnumChatFormatting.RED, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.ALUMITE, 1023, 0.2F, new ItemStack(TinkerTools.materials, 1, 15));
+            ArmorMaterialMedieval tArdite = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE, TranslationKeys.Materials.VisibleNames.Ardite, "Ardite", EnumChatFormatting.DARK_RED, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.ARDITE, 1752, 0.4F, new ItemStack(TinkerTools.materials, 1, 4));
+            ArmorMaterialMedieval tCobalt = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT, TranslationKeys.Materials.VisibleNames.Cobalt, "Cobalt", EnumChatFormatting.BLUE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.COBALT, 1635, 0.3F, new ItemStack(TinkerTools.materials, 1, 3));
+            ArmorMaterialMedieval tManyullun = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN, TranslationKeys.Materials.VisibleNames.Manyullun, "Manyullyn", EnumChatFormatting.LIGHT_PURPLE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.MANYULLUN, 2963, 0.489F, new ItemStack(TinkerTools.materials, 1, 5));
+            ArmorMaterialMedieval tBronze = new ArmorMaterialMedieval(InternalNames.Materials.Common.BRONZE, TranslationKeys.Materials.VisibleNames.Bronze, "Bronze", EnumChatFormatting.GOLD, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.BRONZE, 950, 0.186F, new ItemStack(TinkerTools.materials, 1, 13));
 
             MedievalRegistry.getInstance().registerMaterial(tIron);
             MedievalRegistry.getInstance().registerMaterial(tChain);
@@ -518,15 +531,48 @@ public class ArmoryInitializer
 
         public static void prepareGame()
         {
-            for(MultiLayeredArmor tCore: MedievalRegistry.getInstance().getAllRegisteredArmors().values())
-            {
-                GameRegistry.registerItem(tCore, tCore.getInternalName());
-            }
+            initializeAnvilRecipes();
 
             GameRegistry.addRecipe(new ChainCraftingRecipe());
             GameRegistry.addRecipe(new MedievalArmorCraftingRecipe());
 
             GameRegistry.addShapedRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockFirePit, 1), "#=#", "#/#", "###", '#', new ItemStack(Items.iron_ingot, 1), '=', new ItemStack(Items.cauldron, 1), '/', new ItemStack(Blocks.furnace, 1));
+        }
+
+        public static void initializeAnvilRecipes()
+        {
+            for (ArmorMaterialMedieval tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values())
+            {
+                ItemStack tRingStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1);
+                NBTTagCompound pRingCompound = new NBTTagCompound();
+                pRingCompound.setString(References.NBTTagCompoundData.Material, tMaterial.iInternalName);
+                tRingStack.setTagCompound(pRingCompound);
+
+                AnvilRecipe tRingRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.iInternalName, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.95F)))
+                        .setProgress(9).setResult(tRingStack).setHammerUsage(4).setTongUsage(1).setShapeLess();
+
+                TileEntityArmorsAnvil.addRecipe(tRingRecipe);
+
+                ItemStack tPlateStack = new ItemStack(GeneralRegistry.Items.iPlate, 1);
+                NBTTagCompound pPlateCompound = new NBTTagCompound();
+                pPlateCompound.setString(References.NBTTagCompoundData.Material, tMaterial.iInternalName);
+                tPlateStack.setTagCompound(pPlateCompound);
+
+                AnvilRecipe tPlateRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.iInternalName, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.95F)))
+                        .setProgress(15).setResult(tPlateStack).setHammerUsage(15).setTongUsage(2).setShapeLess();
+
+                TileEntityArmorsAnvil.addRecipe(tPlateRecipe);
+
+                ItemStack tNuggetStack = new ItemStack(GeneralRegistry.Items.iNugget, 9);
+                NBTTagCompound pNuggetCompound = new NBTTagCompound();
+                pNuggetCompound.setString(References.NBTTagCompoundData.Material, tMaterial.iInternalName);
+                tNuggetStack.setTagCompound(pNuggetCompound);
+
+                AnvilRecipe tNuggetRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.iInternalName, InternalNames.HeatedItemTypes.INGOT, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.5F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.5F) * 0.95F)))
+                        .setProgress(6).setResult(tNuggetStack).setHammerUsage(4).setTongUsage(0).setShapeLess();
+
+                TileEntityArmorsAnvil.addRecipe(tNuggetRecipe);
+            }
         }
     }
 
@@ -554,12 +600,25 @@ public class ArmoryInitializer
             GeneralRegistry.Items.iMetalChain = new ItemMetalChain();
             GeneralRegistry.Items.iMetalRing = new ItemMetalRing();
             GeneralRegistry.Items.iHeatedIngot = new ItemHeatedItem();
+            GeneralRegistry.Items.iNugget = new ItemNugget();
+            GeneralRegistry.Items.iPlate = new ItemPlate();
             GeneralRegistry.Items.iFan = new ItemFan();
+            GeneralRegistry.Items.iHammer = new ItemHammer();
+            GeneralRegistry.Items.iTongs = new ItemTongs();
+
+            for(MultiLayeredArmor tCore: MedievalRegistry.getInstance().getAllRegisteredArmors().values())
+            {
+                GameRegistry.registerItem(tCore, tCore.getInternalName());
+            }
 
             GameRegistry.registerItem(GeneralRegistry.Items.iMetalChain, InternalNames.Items.ItemMetalChain);
             GameRegistry.registerItem(GeneralRegistry.Items.iMetalRing, InternalNames.Items.ItemMetalRing);
             GameRegistry.registerItem(GeneralRegistry.Items.iHeatedIngot, InternalNames.Items.ItemHeatedIngot);
+            GameRegistry.registerItem(GeneralRegistry.Items.iNugget, InternalNames.Items.ItemNugget);
+            GameRegistry.registerItem(GeneralRegistry.Items.iPlate, InternalNames.Items.ItemPlate);
             GameRegistry.registerItem(GeneralRegistry.Items.iFan, InternalNames.Items.ItemFan);
+            GameRegistry.registerItem(GeneralRegistry.Items.iHammer, InternalNames.Items.ItemHammer);
+            GameRegistry.registerItem(GeneralRegistry.Items.iTongs, InternalNames.Items.ItemTongs);
         }
 
         public static void RegisterTileEntities()
@@ -567,6 +626,31 @@ public class ArmoryInitializer
             GameRegistry.registerTileEntity(TileEntityFirePit.class, InternalNames.TileEntities.FirePitContainer);
             GameRegistry.registerTileEntity(TileEntityHeater.class, InternalNames.TileEntities.HeaterComponent);
             GameRegistry.registerTileEntity(TileEntityArmorsAnvil.class, InternalNames.TileEntities.ArmorsAnvil);
+        }
+
+        public static void removeRecipes()
+        {
+            ListIterator<IRecipe> iterator = CraftingManager.getInstance().getRecipeList().listIterator();
+            while (iterator.hasNext())
+            {
+                IRecipe r = iterator.next();
+                int[] tOreID = OreDictionary.getOreIDs(r.getRecipeOutput());
+
+                for (int tID: tOreID)
+                {
+                    String pOreDicID = OreDictionary.getOreName(tID);
+                    if (pOreDicID.contains("nugget"))
+                    {
+                        for(ArmorMaterialMedieval tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values())
+                        {
+                            if (pOreDicID.toLowerCase().contains(tMaterial.iOreDicName.toLowerCase()))
+                            {
+                                iterator.remove();
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

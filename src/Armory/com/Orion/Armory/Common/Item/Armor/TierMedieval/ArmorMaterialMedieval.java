@@ -19,6 +19,7 @@ import java.util.HashMap;
 
 public class ArmorMaterialMedieval
 {
+    public String iOreDicName;
     public String iInternalName;
     public String iVisibleName;
     public EnumChatFormatting iVisibleNameColor;
@@ -30,8 +31,9 @@ public class ArmorMaterialMedieval
     public HashMap<String, Integer> iPartModifiers = new HashMap<String, Integer>();
 
     //Constructor
-    public ArmorMaterialMedieval(String pInternalName, String pVisibleName, EnumChatFormatting pVisibleNameColor, boolean pBaseArmorMaterial, HashMap<String, Float> pBaseDamageAbsorption, HashMap<String, Integer> pBaseDurability, HashMap<String, Integer> pPartModifiers, HashMap<String, Boolean> pActiveParts, Color pColor, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack)
+    public ArmorMaterialMedieval(String pInternalName, String pVisibleName, String pOreDicName, EnumChatFormatting pVisibleNameColor, boolean pBaseArmorMaterial, HashMap<String, Float> pBaseDamageAbsorption, HashMap<String, Integer> pBaseDurability, HashMap<String, Integer> pPartModifiers, HashMap<String, Boolean> pActiveParts, Color pColor, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack)
     {
+        iOreDicName = pOreDicName;
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
         iVisibleNameColor = pVisibleNameColor;

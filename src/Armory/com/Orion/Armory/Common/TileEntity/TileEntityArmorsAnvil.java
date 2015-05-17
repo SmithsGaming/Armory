@@ -2,9 +2,12 @@ package com.Orion.Armory.Common.TileEntity;
 
 import com.Orion.Armory.Common.Crafting.Anvil.AnvilRecipe;
 import com.Orion.Armory.Common.Crafting.Anvil.IAnvilRecipeComponent;
+import com.Orion.Armory.Common.Item.ItemHammer;
+import com.Orion.Armory.Common.Item.ItemTongs;
 import com.Orion.Armory.Network.Messages.MessageTileEntityArmorsAnvil;
 import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
 import com.Orion.Armory.Network.NetworkManager;
+import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,8 +16,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.util.ForgeDirection;
 
+import javax.naming.ldap.ExtendedRequest;
 import java.util.ArrayList;
 
 /**
@@ -41,6 +47,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     public ItemStack[] iAdditionalCraftingStacks = new ItemStack[MAX_ADDITIONALSLOTS];
     public ItemStack[] iCoolStacks = new ItemStack[MAX_COOLSLOTS];
 
+    private int iTEExist = 0;
     public int iCraftingProgress = 0;
     private AnvilRecipe iCurrentValidRecipe;
 
@@ -111,15 +118,15 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     @Override
     public void setInventorySlotContents(int pSlotID, ItemStack pNewItemStack) {
+        if (pSlotID < 0)
+            return;
+
         if (pSlotID < MAX_CRAFTINGSLOTS)
         {
             iCraftingStacks[pSlotID] = pNewItemStack;
+            iCraftingProgress = 0;
             iCurrentValidRecipe = null;
             findValidRecipe();
-            if (iCurrentValidRecipe != null)
-            {
-                iOutPutStacks[0] = iCurrentValidRecipe.getResult();
-            }
             return;
         }
 
@@ -129,10 +136,6 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         if (pSlotID < MAX_OUTPUTSLOTS)
         {
             iOutPutStacks[pSlotID] = pNewItemStack;
-            if (pNewItemStack == null)
-            {
-                ProcessPerformedCrafting();
-            }
             return;
         }
 
@@ -140,25 +143,30 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
         if (pSlotID < MAX_HAMMERSLOTS) {
             iHammerStacks[pSlotID] = pNewItemStack;
+            iCraftingProgress = 0;
+            iCurrentValidRecipe = null;
+            findValidRecipe();
             return;
         }
 
         pSlotID -= MAX_OUTPUTSLOTS;
 
-        if (pSlotID < MAX_TONGSLOTS)
+        if (pSlotID < MAX_TONGSLOTS) {
             iTongStacks[pSlotID] = pNewItemStack;
+            iCraftingProgress = 0;
+            iCurrentValidRecipe = null;
+            findValidRecipe();
+            return;
+        }
 
         pSlotID -= MAX_TONGSLOTS;
 
-        if (pSlotID > MAX_ADDITIONALSLOTS)
+        if (pSlotID < MAX_ADDITIONALSLOTS)
         {
             iAdditionalCraftingStacks[pSlotID] = pNewItemStack;
+            iCraftingProgress = 0;
             iCurrentValidRecipe = null;
             findValidRecipe();
-            if (iCurrentValidRecipe != null)
-            {
-                iOutPutStacks[0] = iCurrentValidRecipe.getResult();
-            }
             return;
         }
 
@@ -166,6 +174,9 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
         if (pSlotID < MAX_COOLSLOTS){
             iCoolStacks[pSlotID] = pNewItemStack;
+            iCraftingProgress = 0;
+            iCurrentValidRecipe = null;
+            findValidRecipe();
             return;
         }
     }
@@ -212,15 +223,13 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
         pSlotID -= MAX_OUTPUTSLOTS;
 
-        //TODO: Implement hammer item and check for it here
         if (pSlotID < MAX_HAMMERSLOTS)
-            return false;
+            return (pTargetStack.getItem() instanceof ItemHammer);
 
         pSlotID -= MAX_OUTPUTSLOTS;
 
-        //TODO; Implement tong item and check for it here
         if (pSlotID < MAX_TONGSLOTS)
-            return false;
+            return (pTargetStack.getItem() instanceof ItemTongs);
 
         return false;
     }
@@ -283,6 +292,10 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
             iCoolStacks[tSlotIndex] = ItemStack.loadItemStackFromNBT(tStackCompound);
         }
+
+        iCraftingProgress = pCompound.getInteger(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS);
+
+        findValidRecipe();
     }
 
     @Override
@@ -379,11 +392,45 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             tCoolingList.appendTag(tIngotCompound);
         }
         pCompound.setTag(References.NBTTagCompoundData.TE.Anvil.COOLSTACKS, tCoolingList);
+
+        pCompound.setInteger(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS, iCraftingProgress);
+    }
+
+    @Override
+    public void updateEntity()
+    {
+        if (iCurrentValidRecipe != null)
+        {
+            iTEExist ++;
+            if(iTEExist == 20)
+            {
+                iCraftingProgress ++;
+                iTEExist = 0;
+            }
+
+            if (iCraftingProgress == iCurrentValidRecipe.iTargetProgress)
+            {
+                iOutPutStacks[0] = iCurrentValidRecipe.getResult();
+                ProcessPerformedCrafting();
+                iCurrentValidRecipe = null;
+                iCraftingProgress = 0;
+            }
+        }
     }
 
     @Override
     public float getProgressBarValue(String pProgressBarID) {
-        return 1;
+        if (pProgressBarID.equals("Gui.Anvil.ExtendedCrafting.Progress.Arrow.1"))
+        {
+            if (iCurrentValidRecipe == null)
+            {
+                return 0F;
+            }
+
+            return ((float)iCraftingProgress / (float) iCurrentValidRecipe.iTargetProgress);
+        }
+
+        return 1F;
     }
 
     public static void addRecipe(AnvilRecipe pNewRecipe)
@@ -393,26 +440,39 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     public void findValidRecipe()
     {
+        if (iHammerStacks[0] == null)
+        {
+            return;
+        }
+
+        if (iTongStacks[0] == null)
+        {
+            return;
+        }
+
         for(AnvilRecipe tRecipe : iRecipes)
         {
-            if(tRecipe.matchesRecipe(iCraftingStacks, iAdditionalCraftingStacks))
+            if(tRecipe.matchesRecipe(iCraftingStacks, iAdditionalCraftingStacks, iHammerStacks[0].getItemDamage(), iTongStacks[0].getItemDamage()))
             {
                 iCurrentValidRecipe = tRecipe;
+                return;
             }
         }
 
         iCurrentValidRecipe = null;
     }
 
-    public void ProcessPerformedCrafting()
-    {
-        for(int tSlotIndex = 0; tSlotIndex > MAX_CRAFTINGSLOTS; tSlotIndex ++)
-        {
+    public void ProcessPerformedCrafting() {
+        if (iCurrentValidRecipe == null) {
+            return;
+        }
+
+        for (int tSlotIndex = 0; tSlotIndex < MAX_CRAFTINGSLOTS; tSlotIndex++) {
             if (iCraftingStacks[tSlotIndex] == null)
                 continue;
 
             IAnvilRecipeComponent tTargetComponent = iCurrentValidRecipe.getComponent(tSlotIndex);
-            if(tTargetComponent == null)
+            if (tTargetComponent == null)
                 continue;
 
             iCraftingStacks[tSlotIndex].stackSize = tTargetComponent.getResultingStackSizeForComponent(iCraftingStacks[tSlotIndex]);
@@ -420,19 +480,196 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
                 iCraftingStacks[tSlotIndex] = null;
         }
 
-        for(int tSlotIndex = 0; tSlotIndex > MAX_ADDITIONALSLOTS; tSlotIndex ++)
-        {
+        for (int tSlotIndex = 0; tSlotIndex < MAX_ADDITIONALSLOTS; tSlotIndex++) {
             if (iAdditionalCraftingStacks[tSlotIndex] == null)
                 continue;
 
             IAnvilRecipeComponent tTargetComponent = iCurrentValidRecipe.getAdditionalComponent(tSlotIndex);
-            if(tTargetComponent == null)
+            if (tTargetComponent == null)
                 continue;
 
             iAdditionalCraftingStacks[tSlotIndex].stackSize = tTargetComponent.getResultingStackSizeForComponent(iAdditionalCraftingStacks[tSlotIndex]);
             if (iAdditionalCraftingStacks[tSlotIndex].stackSize < 1)
                 iAdditionalCraftingStacks[tSlotIndex] = null;
         }
+
+        if (iHammerStacks[0].isItemDamaged() == false)
+        {
+            iHammerStacks[0].setItemDamage(150);
+        }
+        iHammerStacks[0].setItemDamage(iHammerStacks[0].getItemDamage() - iCurrentValidRecipe.iHammerUsage);
+        if (iHammerStacks[0].getItemDamage() == 0)
+        {
+            iHammerStacks[0] = null;
+        }
+
+        if (iTongStacks[0].isItemDamaged() == false)
+        {
+            iTongStacks[0].setItemDamage(150);
+        }
+        iTongStacks[0].setItemDamage(iTongStacks[0].getItemDamage() - iCurrentValidRecipe.iTongUsage);
+        if (iTongStacks[0].getItemDamage() == 0)
+        {
+            iTongStacks[0] = null;
+        }
+    }
+
+    public AnvilState getCurrentState()
+    {
+        boolean tFoundCoolingBasin = false;
+        boolean tFoundHelperRack = false;
+        if (iCurrentDirection == ForgeDirection.NORTH || iCurrentDirection == ForgeDirection.SOUTH)
+        {
+            TileEntity tLeftTE = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord + ForgeDirection.EAST.offsetY, zCoord + ForgeDirection.EAST.offsetZ);
+            TileEntity tRightTE = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord + ForgeDirection.WEST.offsetY, zCoord + ForgeDirection.WEST.offsetZ);
+
+            if (tLeftTE != null)
+            {
+                if (tLeftTE instanceof TileEntityCoolingBasin)
+                {
+                    tFoundCoolingBasin = true;
+                }
+
+                if (tLeftTE instanceof  TileEntityArmorsRack)
+                {
+                    tFoundHelperRack = true;
+                }
+            }
+
+            if (tRightTE != null)
+            {
+                if (tRightTE instanceof TileEntityCoolingBasin)
+                {
+                    tFoundCoolingBasin = true;
+                }
+
+                if (tRightTE instanceof TileEntityArmorsRack)
+                {
+                    tFoundHelperRack = true;
+                }
+            }
+        }
+        else
+        {
+            TileEntity tLeftTE = worldObj.getTileEntity(xCoord + ForgeDirection.NORTH.offsetX, yCoord + ForgeDirection.NORTH.offsetY, zCoord + ForgeDirection.NORTH.offsetZ);
+            TileEntity tRightTE = worldObj.getTileEntity(xCoord + ForgeDirection.SOUTH.offsetX, yCoord + ForgeDirection.SOUTH.offsetY, zCoord + ForgeDirection.SOUTH.offsetZ);
+
+            if (tLeftTE != null) {
+                if (tLeftTE instanceof TileEntityCoolingBasin) {
+                    tFoundCoolingBasin = true;
+                }
+
+                if (tLeftTE instanceof TileEntityArmorsRack) {
+                    tFoundHelperRack = true;
+                }
+            }
+
+            if (tRightTE != null)
+            {
+                if (tRightTE instanceof TileEntityCoolingBasin) {
+                    tFoundCoolingBasin = true;
+                }
+
+                if (tRightTE instanceof TileEntityArmorsRack) {
+                    tFoundHelperRack = true;
+                }
+            }
+        }
+
+        if (!tFoundCoolingBasin && !tFoundHelperRack)
+            return AnvilState.Minimal;
+
+        if (tFoundCoolingBasin && !tFoundHelperRack)
+            return AnvilState.Cooling;
+
+        if (!tFoundCoolingBasin && tFoundHelperRack)
+            return AnvilState.Extended;
+
+        return AnvilState.Standard;
+    }
+
+    public TileEntityCoolingBasin getCoolingBasin()
+    {
+        if (iCurrentDirection == ForgeDirection.NORTH || iCurrentDirection == ForgeDirection.SOUTH)
+        {
+            TileEntity tLeftTE = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord + ForgeDirection.EAST.offsetY, zCoord + ForgeDirection.EAST.offsetZ);
+            TileEntity tRightTE = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord + ForgeDirection.WEST.offsetY, zCoord + ForgeDirection.WEST.offsetZ);
+
+            if (tLeftTE != null) {
+                if (tLeftTE instanceof TileEntityCoolingBasin) {
+                    return (TileEntityCoolingBasin) tLeftTE;
+                }
+            }
+
+            if (tRightTE != null)
+            {
+                if (tRightTE instanceof TileEntityCoolingBasin) {
+                    return (TileEntityCoolingBasin) tRightTE;
+                }
+            }
+        }
+        else
+        {
+            TileEntity tLeftTE = worldObj.getTileEntity(xCoord + ForgeDirection.NORTH.offsetX, yCoord + ForgeDirection.NORTH.offsetY, zCoord + ForgeDirection.NORTH.offsetZ);
+            TileEntity tRightTE = worldObj.getTileEntity(xCoord + ForgeDirection.SOUTH.offsetX, yCoord + ForgeDirection.SOUTH.offsetY, zCoord + ForgeDirection.SOUTH.offsetZ);
+
+            if (tLeftTE != null) {
+                if (tLeftTE instanceof TileEntityCoolingBasin) {
+                    return (TileEntityCoolingBasin) tLeftTE;
+                }
+            }
+
+            if (tRightTE != null)
+            {
+                if (tRightTE instanceof TileEntityCoolingBasin) {
+                    return (TileEntityCoolingBasin) tRightTE;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public TileEntityArmorsRack getRack()
+    {
+        if (iCurrentDirection == ForgeDirection.NORTH || iCurrentDirection == ForgeDirection.SOUTH)
+        {
+            TileEntity tLeftTE = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord + ForgeDirection.EAST.offsetY, zCoord + ForgeDirection.EAST.offsetZ);
+            TileEntity tRightTE = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord + ForgeDirection.WEST.offsetY, zCoord + ForgeDirection.WEST.offsetZ);
+
+            if (tLeftTE != null) {
+                if (tLeftTE instanceof TileEntityArmorsRack) {
+                    return (TileEntityArmorsRack) tLeftTE;
+                }
+            }
+
+            if (tRightTE != null)
+            {
+                if (tRightTE instanceof TileEntityArmorsRack) {
+                    return (TileEntityArmorsRack) tRightTE;
+                }
+            }
+        }
+        else
+        {
+            TileEntity tLeftTE = worldObj.getTileEntity(xCoord + ForgeDirection.NORTH.offsetX, yCoord + ForgeDirection.NORTH.offsetY, zCoord + ForgeDirection.NORTH.offsetZ);
+            TileEntity tRightTE = worldObj.getTileEntity(xCoord + ForgeDirection.SOUTH.offsetX, yCoord + ForgeDirection.SOUTH.offsetY, zCoord + ForgeDirection.SOUTH.offsetZ);
+
+            if (tLeftTE != null) {
+                if (tLeftTE instanceof TileEntityArmorsRack) {
+                    return (TileEntityArmorsRack) tLeftTE;
+                }
+            }
+
+            if (tRightTE != null)
+            {
+                if (tRightTE instanceof TileEntityArmorsRack) {
+                    return (TileEntityArmorsRack) tRightTE;
+                }
+            }
+        }
+
+        return null;
     }
 
     @Override
@@ -448,5 +685,13 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     public Packet getDescriptionPacket()
     {
         return NetworkManager.INSTANCE.getPacketFrom(new MessageTileEntityArmorsAnvil(this));
+    }
+
+    public enum AnvilState
+    {
+        Minimal ,
+        Extended,
+        Cooling,
+        Standard
     }
 }

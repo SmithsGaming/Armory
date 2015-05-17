@@ -99,4 +99,9 @@ public abstract class ContainerArmory extends Container
 
         return tSlotFound;
     }
+
+    public void updateComponentResult(String pComponentID, Object pNewValue)
+    {
+        return;
+    }
 }

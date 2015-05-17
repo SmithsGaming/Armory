@@ -120,4 +120,14 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
 
     @Override
     public abstract boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton);
+
+    public boolean handleKeyTyped(char pKey, int pPara)
+    {
+        return false;
+    }
+
+    public boolean requiresForcedInput()
+    {
+        return false;
+    }
 }

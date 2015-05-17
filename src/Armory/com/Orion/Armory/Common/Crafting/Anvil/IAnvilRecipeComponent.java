@@ -13,11 +13,11 @@ public interface IAnvilRecipeComponent {
 
     ItemStack getComponentTargetStack();
 
-    void setComponentTargetStack(ItemStack pNewTargetStack);
+    IAnvilRecipeComponent setComponentTargetStack(ItemStack pNewTargetStack);
 
     int getResultingStackSizeForComponent(ItemStack pComponentStack);
 
-    void setComponentStackUsage(int pNewUsage);
+    IAnvilRecipeComponent setComponentStackUsage(int pNewUsage);
 
     boolean isValidComponentForSlot(ItemStack pComparedItemStack);
 }

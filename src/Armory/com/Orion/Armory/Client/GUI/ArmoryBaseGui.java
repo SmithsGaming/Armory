@@ -5,18 +5,14 @@ package com.Orion.Armory.Client.GUI;
 /  Created on : 15/01/2015
 */
 
-import com.Orion.Armory.Client.GUI.Components.ComponentBorder;
 import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
 import com.Orion.Armory.Client.GUI.Components.Core.StandardComponentManager;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
-import com.Orion.Armory.Common.ArmoryCommonProxy;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
 import com.Orion.Armory.Common.TileEntity.TileEntityArmory;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
+import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public abstract class ArmoryBaseGui extends GuiContainer {
@@ -72,8 +68,10 @@ public abstract class ArmoryBaseGui extends GuiContainer {
 
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
-        int mX = mouseX - guiLeft;
-        int mY = mouseY - guiTop;
+        GuiHelper.calcScaleFactor();
+
+        int mX = (mouseX / GuiHelper.GUISCALE);
+        int mY = (mouseY / GuiHelper.GUISCALE);
 
         super.mouseClicked(mouseX, mouseY, mouseButton);
 
@@ -81,16 +79,29 @@ public abstract class ArmoryBaseGui extends GuiContainer {
         if (iLedgers.handleMouseClicked(mouseX, mouseY, mouseButton)) {
             return;
         }
+
+        iComponents.handleMouseClicked(mX, mY, mouseButton);
     }
 
-    public boolean getSlotVisibility(ComponentSlot pSlotElement)
+    protected void keyTyped(char pKey, int pPara)
     {
-        return true;
+        if (iLedgers.handleKeyTyped(pKey, pPara))
+            return;
+
+        if (iComponents.handleKeyTyped(pKey, pPara))
+            return;
+
+        super.keyTyped(pKey, pPara);
     }
 
     public float getProgressBarValue(String pProgressBarID)
     {
         return iBaseTE.getProgressBarValue(pProgressBarID);
+    }
+
+    public Object getComponentRelatedObject(String pComponentID)
+    {
+        return iBaseTE.getGUIComponentRelatedObject(pComponentID);
     }
 }
 

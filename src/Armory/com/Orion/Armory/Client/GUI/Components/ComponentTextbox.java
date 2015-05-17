@@ -1,9 +1,16 @@
 package com.Orion.Armory.Client.GUI.Components;
 
+import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
+import com.Orion.Armory.Common.Inventory.ContainerArmory;
+import com.Orion.Armory.Util.Client.Color;
+import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Core.Rectangle;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiTextField;
+import org.lwjgl.opengl.GL11;
+
+import javax.xml.parsers.FactoryConfigurationError;
 
 /**
  * Created by Orion
@@ -14,14 +21,27 @@ import net.minecraft.client.gui.GuiTextField;
  */
 public class ComponentTextbox extends GuiTextField implements IGUIComponent
 {
+    private ArmoryBaseGui iGui;
+    String iInternalName;
 
-    public ComponentTextbox(FontRenderer pFontRenderer, int pX, int pY, int pWidth, int pHeight) {
+    private boolean iUseDefaultBackground = true;
+    private CustomResource iBackGround;
+
+    public ComponentTextbox(ArmoryBaseGui pGui, String pInternalName, FontRenderer pFontRenderer, int pX, int pY, int pWidth, int pHeight) {
         super(pFontRenderer, pX, pY, pWidth, pHeight);
+        iGui = pGui;
+        iInternalName = pInternalName;
+    }
 
-        setTextColor(-1);
-        setDisabledTextColour(-1);
+    public ComponentTextbox(ArmoryBaseGui pGui, String pInternalName, FontRenderer pFontRenderer, int pX, int pY, int pWidth, int pHeight, CustomResource pBackground) {
+        super(pFontRenderer, pX, pY, pWidth, pHeight);
+        iGui = pGui;
+        iInternalName = pInternalName;
+
         setEnableBackgroundDrawing(false);
-        setMaxStringLength(40);
+
+        iUseDefaultBackground = false;
+        iBackGround = pBackground;
     }
 
     @Override
@@ -41,7 +61,18 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
 
     @Override
     public void draw(int pX, int pY) {
+        GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_BLEND);
         this.drawTextBox();
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glEnable(GL11.GL_BLEND);
+
+        if (!iUseDefaultBackground)
+        {
+            drawBackGround(pX, pY);
+            drawForeGround(pX, pY);
+        }
+
     }
 
     @Override
@@ -51,7 +82,12 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
 
     @Override
     public void drawBackGround(int pX, int pY) {
-        //NOOP
+        GL11.glPushMatrix();
+        iBackGround.getColor().performGLColor();
+
+
+
+        Color.resetGLColor();
     }
 
     @Override
@@ -68,6 +104,22 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
     @Override
     public boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton) {
         this.mouseClicked(pMouseX, pMouseY, pMouseButton);
+        return true;
+    }
+
+    @Override
+    public boolean handleKeyTyped(char pKey, int pPara) {
+        if (this.textboxKeyTyped(pKey, pPara))
+        {
+            ((ContainerArmory) iGui.inventorySlots).updateComponentResult(iInternalName, this.getText());
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean requiresForcedInput() {
         return true;
     }
 }

@@ -28,11 +28,11 @@ public class ComponentExtendedCraftingGrid extends AbstractGUIMultiComponent
             int tRowIndex = ((tSlotIndex - pStartPostitionCraftingSlots) / 5);
             int tColumnIndex = (tSlotIndex - pStartPostitionCraftingSlots) % 5;
 
-            addComponent(new ComponentSlot(pGui, pInternalName + ".Slot.Crafting." + tSlotIndex, 18, 18, 7 + tColumnIndex * 18, 7 + tRowIndex * 18, Textures.Gui.Basic.Slots.DEFAULT, pBackground));
+            addComponent(new ComponentSlot(pGui, pInternalName + ".Slot.Crafting." + tSlotIndex, tSlotIndex, 18, 18, 7 + tColumnIndex * 18, 7 + tRowIndex * 18, Textures.Gui.Basic.Slots.DEFAULT, pBackground));
         }
 
         addComponent(new ComponentProgressBar(pGui, pInternalName + ".Progress.Arrow.1",105, 45, pForeground, pBackground));
-        addComponent(new ComponentSlot(pGui, pInternalName + ".Slot.Output", 18, 18, 137, 43, Textures.Gui.Basic.Slots.DEFAULT, pBackground));
+        addComponent(new ComponentSlot(pGui, pInternalName + ".Slot.Output", pEndPostitionCraftingSlots, 18, 18, 137, 43, Textures.Gui.Basic.Slots.DEFAULT, pBackground));
     }
 
     @Override

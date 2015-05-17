@@ -44,7 +44,7 @@ public class ComponentProgressBar extends AbstractGUIComponent
 
     @Override
     public void onUpdate() {
-        iCompletePartToBeRendered = (int) (iGui.getProgressBarValue(References.InternalNames.GUIComponents.Anvil.CRAFTINGPROGRESS) * Textures.Gui.Basic.Components.ARROWFULL.getWidth());
+        iCompletePartToBeRendered = (int) (iGui.getProgressBarValue(this.getInternalName()) * Textures.Gui.Basic.Components.ARROWFULL.getWidth());
     }
 
     @Override

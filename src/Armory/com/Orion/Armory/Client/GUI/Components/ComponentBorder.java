@@ -12,6 +12,7 @@ import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.GUI.TextureComponent;
 import com.Orion.Armory.Util.Client.GUI.UIRotation;
 import com.Orion.Armory.Util.Core.Coordinate;
+import com.Orion.Armory.Util.Core.Rectangle;
 import org.lwjgl.opengl.GL11;
 
 
@@ -318,6 +319,11 @@ public class ComponentBorder extends AbstractGUIComponent
     @Override
     public void drawToolTips(int pMouseX, int pMouseY) {
         //NOOP
+    }
+
+    public boolean checkIfPointIsInComponent(int pTargetX, int pTargetY)
+    {
+        return false;
     }
 
     @Override

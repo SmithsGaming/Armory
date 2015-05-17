@@ -1,9 +1,4 @@
 package com.Orion.Armory.Common.Item;
-/*
- *   ItemMetalRing
- *   Created by: Orion
- *   Created on: 25-9-2014
- */
 
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
@@ -27,15 +22,22 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class ItemMetalChain extends Item implements IHeatableItem
+/**
+ * Created by Orion
+ * Created on 17.05.2015
+ * 14:41
+ * <p/>
+ * Copyrighted according to Project specific license
+ */
+public class ItemPlate extends Item implements IHeatableItem
 {
     private HashMap<String, CustomResource> iResources = new HashMap<String, CustomResource>();
 
-    public ItemMetalChain()
+    public ItemPlate()
     {
-        this.setMaxStackSize(16);
+        this.setMaxStackSize(64);
         this.setCreativeTab(GeneralRegistry.iTabArmoryComponents);
-        this.setUnlocalizedName(References.InternalNames.Items.ItemMetalChain);
+        this.setUnlocalizedName(References.InternalNames.Items.ItemPlate);
     }
 
     @Override
@@ -90,21 +92,23 @@ public class ItemMetalChain extends Item implements IHeatableItem
         return true;
     }
 
-
+    /**
+     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
+     */
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(Item pRing, CreativeTabs pCreativeTab, List pItemStacks)
     {
         for(ArmorMaterialMedieval tMaterial: MedievalRegistry.getInstance().getArmorMaterials().values()){
-            ItemStack tChainStack = new ItemStack(GeneralRegistry.Items.iMetalChain, 1);
+            ItemStack tNuggetStack = new ItemStack(GeneralRegistry.Items.iPlate, 1);
 
             NBTTagCompound tStackCompound = new NBTTagCompound();
             tStackCompound.setString(References.NBTTagCompoundData.Material, tMaterial.iInternalName);
-            tChainStack.setTagCompound(tStackCompound);
+            tNuggetStack.setTagCompound(tStackCompound);
 
-            HeatedItemFactory.getInstance().addHeatableItemstack(tMaterial.iInternalName, tChainStack);
+            HeatedItemFactory.getInstance().addHeatableItemstack(tMaterial.iInternalName, tNuggetStack);
 
-            pItemStacks.add(tChainStack);
+            pItemStacks.add(tNuggetStack);
         }
     }
 
@@ -119,6 +123,6 @@ public class ItemMetalChain extends Item implements IHeatableItem
 
     @Override
     public String getInternalType() {
-        return References.InternalNames.HeatedItemTypes.CHAIN;
+        return References.InternalNames.HeatedItemTypes.PLATE;
     }
 }

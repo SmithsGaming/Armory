@@ -30,6 +30,21 @@ public final class GuiHelper
         renderCenter(pCenterComponent, pWidth, pHeight, pElementCoordinate);
     }
 
+    public static void drawRectangleStretched(MultiComponentTexture pComponents, int pWidth, int pHeight, Coordinate pElementCoordinate)
+    {
+        renderCenter(pComponents.iCenterComponent, pWidth - pComponents.iCornerComponents[0].iWidth - pComponents.iCornerComponents[1].iWidth, pHeight - pComponents.iCornerComponents[0].iHeight - pComponents.iCornerComponents[3].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent() + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
+
+        renderCorner(pComponents.iCornerComponents[0], pElementCoordinate);
+        renderCorner(pComponents.iCornerComponents[1], new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCenterComponent.iWidth + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent()));
+        renderCorner(pComponents.iCornerComponents[2], new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCenterComponent.iWidth  + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent() + pComponents.iCenterComponent.iHeight  + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
+        renderCorner(pComponents.iCornerComponents[3], new Coordinate(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent() + pComponents.iCenterComponent.iHeight  + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
+
+        renderBorder(pComponents.iSideComponents[0], pWidth - (pComponents.iCornerComponents[0].iWidth  * 2), pComponents.iSideComponents[0].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent()));
+        renderBorder(pComponents.iSideComponents[1], pComponents.iSideComponents[1].iWidth, pHeight -  (pComponents.iCornerComponents[0].iHeight * 2), new Coordinate(pElementCoordinate.getXComponent() + (pWidth - pComponents.iCenterComponent.iWidth), pElementCoordinate.getYComponent() + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
+        renderBorder(pComponents.iSideComponents[2], pWidth - (pComponents.iCornerComponents[0].iWidth  * 2), pComponents.iSideComponents[2].iHeight , new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent() + (pComponents.iCornerComponents[0].iHeight * 2), pElementCoordinate.getZComponent()));
+        renderBorder(pComponents.iSideComponents[3], pComponents.iSideComponents[3].iWidth, pHeight -  (pComponents.iCornerComponents[0].iHeight * 2), new Coordinate(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent() + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
+   }
+
     public static void drawRectangleStretched(TextureComponent pCenterComponent, TextureComponent[] pSideComponents, TextureComponent[] pCornerComponents, int pWidth, int pHeight, Coordinate pElementCoordinate)
     {
         renderCenter(pCenterComponent, pWidth - pCornerComponents[0].iWidth - pCornerComponents[1].iWidth, pHeight - pCornerComponents[0].iHeight - pCornerComponents[3].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pCornerComponents[0].iWidth, pElementCoordinate.getYComponent() + pCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
@@ -43,7 +58,8 @@ public final class GuiHelper
         renderBorder(pSideComponents[1], pHeight - pCornerComponents[1].iHeight - pCornerComponents[2].iHeight, pSideComponents[1].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pWidth - pSideComponents[1].iHeight, pElementCoordinate.getYComponent() + pHeight - pCornerComponents[2].iHeight, pElementCoordinate.getZComponent()));
         renderBorder(pSideComponents[2],pWidth - pCornerComponents[2].iWidth - pCornerComponents[3].iWidth, pSideComponents[2].iHeight , new Coordinate(pElementCoordinate.getXComponent() + pCornerComponents[3].iWidth, pElementCoordinate.getYComponent() + pHeight - pSideComponents[2].iHeight, pElementCoordinate.getZComponent()));
         renderBorder(pSideComponents[3], pHeight - pCornerComponents[3].iHeight - pCornerComponents[0].iHeight, pSideComponents[3].iHeight, new Coordinate(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent() + pHeight - pCornerComponents[3].iHeight, pElementCoordinate.getZComponent()));
-   }
+    }
+
 
 
     public static void drawFluid(FluidStack pFluidStack, int pX, int pY, int pZ, int pWidth, int pHeight) {
@@ -67,7 +83,6 @@ public final class GuiHelper
         }
     }
 
-    //The magic is here
     private static void drawCutIcon(IIcon pIcon, int pX, int pY, int pZ, int pWidth, int pHeight, int pCutOffVertical) {
         Tessellator tess = Tessellator.instance;
         tess.startDrawingQuads();

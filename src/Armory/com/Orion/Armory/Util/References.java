@@ -204,6 +204,10 @@ public class References
             public static final String ItemMetalChain = "Armory.Items.Components.MetalChain";
             public static final String ItemHeatedIngot = "Armory.Items.Components.HeatedIngots";
             public static final String ItemFan = "Armory.Items.HeatedFan";
+            public static final String ItemHammer = "Armory.Items.ItemHammer";
+            public static final String ItemTongs = "Armory.Items.Tongs";
+            public static final String ItemNugget = "Armory.Items.Nugget";
+            public static final String ItemPlate = "Armory.Items.Plate";
         }
 
         public class Blocks
@@ -225,6 +229,7 @@ public class References
             public static final String INGOT = "Ingot";
             public static final String RING = "Ring";
             public static final String CHAIN = "Chain";
+            public static final String NUGGET = "Nugget";
             public static final String PLATE = "Plate";
         }
 
@@ -265,7 +270,7 @@ public class References
         public static final String InstalledAddons = "InstalledAddons";
         public static final String ArmorData = "ArmorData";
         public static final String RenderCompound = "RenderCompound";
-        public static final String RingMaterial = "RingMaterial";
+        public static final String Material = "Material";
 
         //Versioning used when there is a change in the NBT tag structure.
         public class Versioning {
@@ -342,6 +347,7 @@ public class References
                 public static final String TONGSTACKS = "Tongstacks";
                 public static final String ADDITIONALSTACKS = "Additionalstacks";
                 public static final String COOLSTACKS = "Coolingstacks";
+                public static final String CRAFTINGPROGRESS = "CraftingProgress";
             }
         }
     }

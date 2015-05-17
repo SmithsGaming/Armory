@@ -31,11 +31,11 @@ public class ComponentFluidTank extends AbstractGUIComponent
     float iMaxCapacity;
     GuiDirection iDirection;
 
-    public ComponentFluidTank(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeight, Color pColor, FluidStack pFluidStack, int pMaxCapacity, GuiDirection pDirection) {
+    public ComponentFluidTank(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeight, Color pColor, int pMaxCapacity, GuiDirection pDirection) {
         super(pGui, pInternalName, pLeft, pTop, pWidth, pHeight);
 
         iColor = pColor;
-        iFluidStack = pFluidStack;
+        iFluidStack = (FluidStack) pGui.getComponentRelatedObject(pInternalName);
         iMaxCapacity = pMaxCapacity;
         iDirection = pDirection;
     }

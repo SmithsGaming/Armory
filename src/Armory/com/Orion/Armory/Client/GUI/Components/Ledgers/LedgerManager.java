@@ -126,4 +126,15 @@ public class LedgerManager
         }
         return false;
     }
+
+    public boolean handleKeyTyped(char pKey, int pPara)
+    {
+        if (iLeftLedgerManager.handleKeyTyped(pKey, pPara))
+            return true;
+
+        if (iRightLedgerManager.handleKeyTyped(pKey, pPara))
+            return true;
+
+        return false;
+    }
 }

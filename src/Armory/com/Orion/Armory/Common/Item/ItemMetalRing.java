@@ -50,7 +50,7 @@ public class ItemMetalRing extends Item implements IHeatableItem
     //Function for getting the Icon from a render pass.
     @Override
     public IIcon getIcon(ItemStack pStack, int pRenderPass) {
-        String tMaterialID = pStack.getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
+        String tMaterialID = pStack.getTagCompound().getString(References.NBTTagCompoundData.Material);
         return iResources.get(tMaterialID).getIcon();
     }
 
@@ -69,7 +69,7 @@ public class ItemMetalRing extends Item implements IHeatableItem
     //Function that tells the renderer to use a certain color
     @Override
     public int getColorFromItemStack(ItemStack pStack, int pRenderPass) {
-        String tMaterialID = pStack.getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
+        String tMaterialID = pStack.getTagCompound().getString(References.NBTTagCompoundData.Material);
         return iResources.get(tMaterialID).getColor().getColor();
     }
 
@@ -101,7 +101,7 @@ public class ItemMetalRing extends Item implements IHeatableItem
             ItemStack tRingStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1);
 
             NBTTagCompound tStackCompound = new NBTTagCompound();
-            tStackCompound.setString(References.NBTTagCompoundData.RingMaterial, tMaterial.iInternalName);
+            tStackCompound.setString(References.NBTTagCompoundData.Material, tMaterial.iInternalName);
             tRingStack.setTagCompound(tStackCompound);
 
             HeatedItemFactory.getInstance().addHeatableItemstack(tMaterial.iInternalName, tRingStack);
@@ -113,7 +113,7 @@ public class ItemMetalRing extends Item implements IHeatableItem
     @Override
     public String getItemStackDisplayName(ItemStack pStack)
     {
-        String tMaterialID = pStack.getTagCompound().getString(References.NBTTagCompoundData.RingMaterial);
+        String tMaterialID = pStack.getTagCompound().getString(References.NBTTagCompoundData.Material);
         ArmorMaterialMedieval tMaterial = MedievalRegistry.getInstance().getMaterial(tMaterialID);
 
         return tMaterial.iVisibleNameColor + StatCollector.translateToLocal(tMaterial.iVisibleName) + " " + EnumChatFormatting.RESET + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name");

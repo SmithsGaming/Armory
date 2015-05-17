@@ -33,8 +33,10 @@ public class StandardAnvilRecipeComponent implements IAnvilRecipeComponent
     }
 
     @Override
-    public void setComponentTargetStack(ItemStack pNewTargetStack) {
+    public StandardAnvilRecipeComponent setComponentTargetStack(ItemStack pNewTargetStack) {
         iTargetItemStack = pNewTargetStack;
+
+        return this;
     }
 
     @Override
@@ -49,8 +51,10 @@ public class StandardAnvilRecipeComponent implements IAnvilRecipeComponent
     }
 
     @Override
-    public void setComponentStackUsage(int pNewUsage) {
+    public StandardAnvilRecipeComponent setComponentStackUsage(int pNewUsage) {
         iComponentUsage = pNewUsage;
+
+        return this;
     }
 
     @Override

@@ -16,8 +16,8 @@ import net.minecraft.item.ItemStack;
  * <p/>
  * Copyrighted according to Project specific license
  */
-public class ContainerArmorsAnvil extends ContainerArmory {
-    public ContainerArmorsAnvil(InventoryPlayer pPlayerInventory, TileEntityArmorsAnvil pTargetTE) {
+public class ContainerArmorsAnvilStandard extends ContainerArmory {
+    public ContainerArmorsAnvilStandard(InventoryPlayer pPlayerInventory, TileEntityArmorsAnvil pTargetTE) {
         super(pTargetTE);
 
         for (int tSlotIndex = 0; tSlotIndex < TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS; tSlotIndex ++)

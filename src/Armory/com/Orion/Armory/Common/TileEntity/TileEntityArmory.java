@@ -73,4 +73,9 @@ public abstract class TileEntityArmory extends TileEntity
     }
 
     public abstract float getProgressBarValue(String pProgressBarID);
+
+    public Object getGUIComponentRelatedObject(String pComponentID)
+    {
+        return null;
+    }
 }

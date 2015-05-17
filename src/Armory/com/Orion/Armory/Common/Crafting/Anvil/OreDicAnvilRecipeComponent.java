@@ -51,7 +51,7 @@ public class OreDicAnvilRecipeComponent implements IAnvilRecipeComponent {
     }
 
     @Override
-    public void setComponentTargetStack(ItemStack pNewTargetStack) {
+    public OreDicAnvilRecipeComponent setComponentTargetStack(ItemStack pNewTargetStack) {
         int[] tTargetIDs = OreDictionary.getOreIDs(pNewTargetStack);
 
         if (tTargetIDs.length == 0)
@@ -60,6 +60,8 @@ public class OreDicAnvilRecipeComponent implements IAnvilRecipeComponent {
         }
 
         iOreDicName = OreDictionary.getOreName(tTargetIDs[0]);
+
+        return this;
     }
 
     @Override
@@ -73,8 +75,10 @@ public class OreDicAnvilRecipeComponent implements IAnvilRecipeComponent {
     }
 
     @Override
-    public void setComponentStackUsage(int pNewUsage) {
-         iComponentUsage = pNewUsage;
+    public OreDicAnvilRecipeComponent setComponentStackUsage(int pNewUsage) {
+        iComponentUsage = pNewUsage;
+
+        return this;
     }
 
     @Override

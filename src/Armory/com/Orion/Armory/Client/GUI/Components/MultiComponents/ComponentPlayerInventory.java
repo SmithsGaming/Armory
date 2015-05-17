@@ -32,10 +32,10 @@ public class ComponentPlayerInventory extends AbstractGUIMultiComponent
 
             if (tRowIndex < 3)
             {
-                addComponent(new ComponentSlot(pGui, pInternalName + ".Slot." + tSlotIndex, 18, 18, 7 + tColumnIndex * 18, 7 + tRowIndex * 18, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
+                addComponent(new ComponentSlot(pGui, pInternalName + ".Slot." + tSlotIndex, tSlotIndex, 18, 18, 7 + tColumnIndex * 18, 7 + tRowIndex * 18, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
             }
             else {
-                addComponent(new ComponentSlot(pGui, pInternalName + ".Slot." + tSlotIndex, 18, 18, 7 + tColumnIndex * 18, 11 + tRowIndex * 18, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
+                addComponent(new ComponentSlot(pGui, pInternalName + ".Slot." + tSlotIndex, tSlotIndex, 18, 18, 7 + tColumnIndex * 18, 11 + tRowIndex * 18, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
             }
         }
     }

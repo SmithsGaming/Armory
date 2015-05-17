@@ -5,6 +5,8 @@ package com.Orion.Armory.Util.Client;
 /  Created on : 27/06/2014
 */
 
+import org.lwjgl.opengl.GL11;
+
 public class Color {
     private int iColorRed = 255;
     private int iColorGreen = 255;
@@ -164,6 +166,16 @@ public class Color {
     public Color Combine(Color pMixed, float pMixingScale)
     {
         return Combine(this, pMixed, pMixingScale);
+    }
+
+    public void performGLColor()
+    {
+        GL11.glColor4f(getColorRedFloat(), getColorGreenFloat(), getColorBlueFloat(), getAlphaFloat());
+    }
+
+    public static void resetGLColor()
+    {
+        GL11.glColor4f(1F, 1F, 1F, 1F);
     }
 
     public static Color Combine( Color pOriginal, Color pMixed, float pMixingScale)

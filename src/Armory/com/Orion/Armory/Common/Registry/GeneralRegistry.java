@@ -10,11 +10,8 @@ import com.Orion.Armory.Client.CreativeTab.MedievalTab;
 import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
+import com.Orion.Armory.Common.Item.*;
 import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
-import com.Orion.Armory.Common.Item.ItemFan;
-import com.Orion.Armory.Common.Item.ItemHeatedItem;
-import com.Orion.Armory.Common.Item.ItemMetalChain;
-import com.Orion.Armory.Common.Item.ItemMetalRing;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
@@ -93,6 +90,10 @@ public class GeneralRegistry {
         public static ItemHeatedItem iHeatedIngot = null;
         public static ItemMetalRing iMetalRing = null;
         public static ItemMetalChain iMetalChain = null;
+        public static ItemNugget iNugget = null;
+        public static ItemPlate iPlate = null;
         public static ItemFan iFan = null;
+        public static ItemHammer iHammer = null;
+        public static ItemTongs iTongs = null;
     }
 }
