@@ -61,11 +61,14 @@ public class HeatedAnvilRecipeComponent implements IAnvilRecipeComponent
 
     @Override
     public boolean isValidComponentForSlot(ItemStack pComparedItemStack) {
+        if (pComparedItemStack == null)
+            return false;
+
         if (!(pComparedItemStack.getItem() instanceof ItemHeatedItem))
         {
             return false;
         }
 
         return ((iInternalType.equals(HeatedItemFactory.getInstance().getType(pComparedItemStack))) && (iInternalName.equals(HeatedItemFactory.getInstance().getMaterialIDFromItemStack(pComparedItemStack))) && ((iMinTemp <= ItemHeatedItem.getItemTemperature(pComparedItemStack)) && (iMaxTemp >= ItemHeatedItem.getItemTemperature(pComparedItemStack))));
-    }
-}
+        }
+        }

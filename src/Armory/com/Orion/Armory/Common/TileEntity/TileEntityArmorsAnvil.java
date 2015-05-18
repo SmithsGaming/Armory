@@ -19,9 +19,11 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
+import scala.actors.threadpool.Arrays;
 
 import javax.naming.ldap.ExtendedRequest;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Orion
@@ -467,17 +469,44 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             return;
         }
 
-        for (int tSlotIndex = 0; tSlotIndex < MAX_CRAFTINGSLOTS; tSlotIndex++) {
-            if (iCraftingStacks[tSlotIndex] == null)
-                continue;
+        if (iCurrentValidRecipe.iIsShapeLess)
+        {
+            ArrayList<IAnvilRecipeComponent> tComponentList = new ArrayList<IAnvilRecipeComponent>(Arrays.asList(iCurrentValidRecipe.iComponents.clone()));
+            for (int tSlotIndex = 0; tSlotIndex < MAX_CRAFTINGSLOTS; tSlotIndex++) {
+                if (iCraftingStacks[tSlotIndex] != null)
+                {
+                    boolean tProcessedStack = false;
 
-            IAnvilRecipeComponent tTargetComponent = iCurrentValidRecipe.getComponent(tSlotIndex);
-            if (tTargetComponent == null)
-                continue;
+                    Iterator<IAnvilRecipeComponent> tIter = tComponentList.iterator();
+                    while (tIter.hasNext() && !tProcessedStack) {
+                        IAnvilRecipeComponent tComponent = tIter.next();
 
-            iCraftingStacks[tSlotIndex].stackSize = tTargetComponent.getResultingStackSizeForComponent(iCraftingStacks[tSlotIndex]);
-            if (iCraftingStacks[tSlotIndex].stackSize < 1)
-                iCraftingStacks[tSlotIndex] = null;
+                        if (tComponent != null) {
+                            iCraftingStacks[tSlotIndex].stackSize = tComponent.getResultingStackSizeForComponent(iCraftingStacks[tSlotIndex]);
+                            if (iCraftingStacks[tSlotIndex].stackSize == 0)
+                            {
+                                iCraftingStacks[tSlotIndex] = null;
+                            }
+
+                            tProcessedStack = true;
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            for (int tSlotIndex = 0; tSlotIndex < MAX_CRAFTINGSLOTS; tSlotIndex++) {
+                if (iCraftingStacks[tSlotIndex] == null)
+                    continue;
+
+                IAnvilRecipeComponent tTargetComponent = iCurrentValidRecipe.getComponent(tSlotIndex);
+                if (tTargetComponent == null)
+                    continue;
+
+                iCraftingStacks[tSlotIndex].stackSize = tTargetComponent.getResultingStackSizeForComponent(iCraftingStacks[tSlotIndex]);
+                if (iCraftingStacks[tSlotIndex].stackSize < 1)
+                    iCraftingStacks[tSlotIndex] = null;
+            }
         }
 
         for (int tSlotIndex = 0; tSlotIndex < MAX_ADDITIONALSLOTS; tSlotIndex++) {

@@ -22,12 +22,18 @@ public class AnvilRecipe
 
     public boolean iIsShapeLess = false;
 
-    IAnvilRecipeComponent[] iComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS];
-    IAnvilRecipeComponent[] iAdditionalComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS];
+    public IAnvilRecipeComponent[] iComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS];
+    public IAnvilRecipeComponent[] iAdditionalComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS];
 
     private ItemStack iResult;
 
     public boolean matchesRecipe(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents, int pHammerUsagesLeft, int pTongsUsagesLeft) {
+        if (pHammerUsagesLeft == 0)
+            pHammerUsagesLeft = 150;
+
+        if (pTongsUsagesLeft == 0)
+            pTongsUsagesLeft = 150;
+
         if ((iHammerUsage > 0) && (pHammerUsagesLeft) < iHammerUsage)
             return false;
 
@@ -64,15 +70,33 @@ public class AnvilRecipe
             for(ItemStack tStack:pCraftingSlotContents) {
                 boolean tFoundComponent = false;
 
+                if (tStack == null)
+                {
+                    continue;
+                }
+
                 Iterator<IAnvilRecipeComponent> tIter = tComponentList.iterator();
                 while (tIter.hasNext() && !tFoundComponent) {
-                    if (((IAnvilRecipeComponent) tIter).isValidComponentForSlot(tStack)) {
-                        tIter.remove();
-                        tFoundComponent = true;
+                    IAnvilRecipeComponent tComponent = tIter.next();
+
+                    if (tComponent != null) {
+                        if (tComponent.isValidComponentForSlot(tStack))
+                        {
+                            tIter.remove();
+                            tFoundComponent = true;
+                        }
                     }
                 }
 
                 if (!tFoundComponent)
+                    return false;
+                else
+                    continue;
+            }
+
+            for(IAnvilRecipeComponent tComponent: tComponentList)
+            {
+                if (tComponent != null)
                     return false;
             }
         }
