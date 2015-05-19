@@ -8,6 +8,7 @@ import com.Orion.Armory.Network.Messages.MessageTileEntityArmorsAnvil;
 import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
 import com.Orion.Armory.Network.NetworkManager;
 import com.Orion.Armory.Util.Core.Coordinate;
+import com.Orion.Armory.Util.Core.ItemStackHelper;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
@@ -137,7 +138,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
         if (pSlotID < MAX_OUTPUTSLOTS)
         {
-            iOutPutStacks[pSlotID] = pNewItemStack;
+            iOutPutStacks[0] = pNewItemStack;
             return;
         }
 
@@ -185,7 +186,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     @Override
     public String getInventoryName() {
-        return this.hasCustomInventoryName() ? this.iName : StatCollector.translateToLocal(References.InternalNames.Blocks.FirePit);
+        return this.hasCustomInventoryName() ? this.iName : StatCollector.translateToLocal(References.InternalNames.Blocks.ArmorsAnvil);
     }
 
     @Override
@@ -401,21 +402,29 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     @Override
     public void updateEntity()
     {
-        if (iCurrentValidRecipe != null)
-        {
-            iTEExist ++;
-            if(iTEExist == 20)
-            {
-                iCraftingProgress ++;
+        if (iCurrentValidRecipe != null) {
+            iTEExist++;
+            if (iTEExist == 20) {
+                iCraftingProgress++;
                 iTEExist = 0;
             }
 
-            if (iCraftingProgress == iCurrentValidRecipe.iTargetProgress)
-            {
-                iOutPutStacks[0] = iCurrentValidRecipe.getResult();
+            if (iCraftingProgress == iCurrentValidRecipe.iTargetProgress) {
+                if (iOutPutStacks[0] != null) {
+                    iOutPutStacks[0].stackSize += iCurrentValidRecipe.getResult().stackSize;
+                } else {
+                    iOutPutStacks[0] = iCurrentValidRecipe.getResult();
+                }
+
                 ProcessPerformedCrafting();
                 iCurrentValidRecipe = null;
                 iCraftingProgress = 0;
+
+            }
+
+            if (!worldObj.isRemote)
+            {
+                markDirty();
             }
         }
     }
@@ -442,22 +451,32 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     public void findValidRecipe()
     {
-        if (iHammerStacks[0] == null)
-        {
-            return;
-        }
+        int tHammerUsagesLeft = -1;
+        int tTongUsagesLeft = -1;
 
-        if (iTongStacks[0] == null)
-        {
-            return;
-        }
+        if (iHammerStacks[0] != null)
+            tHammerUsagesLeft = iHammerStacks[0].getItemDamage();
+
+        if (iTongStacks[0] != null)
+            tTongUsagesLeft = iTongStacks[0].getItemDamage();
 
         for(AnvilRecipe tRecipe : iRecipes)
         {
-            if(tRecipe.matchesRecipe(iCraftingStacks, iAdditionalCraftingStacks, iHammerStacks[0].getItemDamage(), iTongStacks[0].getItemDamage()))
+            if(tRecipe.matchesRecipe(iCraftingStacks, iAdditionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft))
             {
-                iCurrentValidRecipe = tRecipe;
-                return;
+                if (iOutPutStacks[0] != null)
+                {
+                    if (ItemStackHelper.equalsIgnoreStackSize(tRecipe.getResult(), iOutPutStacks[0]) && tRecipe.getResult().stackSize + iOutPutStacks[0].stackSize <= iOutPutStacks[0].getMaxStackSize())
+                    {
+                        iCurrentValidRecipe = tRecipe;
+                        return;
+                    }
+                }
+                else
+                {
+                    iCurrentValidRecipe = tRecipe;
+                    return;
+                }
             }
         }
 
@@ -522,24 +541,24 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
                 iAdditionalCraftingStacks[tSlotIndex] = null;
         }
 
-        if (iHammerStacks[0].isItemDamaged() == false)
-        {
-            iHammerStacks[0].setItemDamage(150);
-        }
-        iHammerStacks[0].setItemDamage(iHammerStacks[0].getItemDamage() - iCurrentValidRecipe.iHammerUsage);
-        if (iHammerStacks[0].getItemDamage() == 0)
-        {
-            iHammerStacks[0] = null;
+        if (iCurrentValidRecipe.iHammerUsage > 0) {
+            if (iHammerStacks[0].isItemDamaged() == false) {
+                iHammerStacks[0].setItemDamage(150);
+            }
+            iHammerStacks[0].setItemDamage(iHammerStacks[0].getItemDamage() - iCurrentValidRecipe.iHammerUsage);
+            if (iHammerStacks[0].getItemDamage() == 0) {
+                iHammerStacks[0] = null;
+            }
         }
 
-        if (iTongStacks[0].isItemDamaged() == false)
-        {
-            iTongStacks[0].setItemDamage(150);
-        }
-        iTongStacks[0].setItemDamage(iTongStacks[0].getItemDamage() - iCurrentValidRecipe.iTongUsage);
-        if (iTongStacks[0].getItemDamage() == 0)
-        {
-            iTongStacks[0] = null;
+        if (iCurrentValidRecipe.iTongUsage > 0) {
+            if (iTongStacks[0].isItemDamaged() == false) {
+                iTongStacks[0].setItemDamage(150);
+            }
+            iTongStacks[0].setItemDamage(iTongStacks[0].getItemDamage() - iCurrentValidRecipe.iTongUsage);
+            if (iTongStacks[0].getItemDamage() == 0) {
+                iTongStacks[0] = null;
+            }
         }
     }
 

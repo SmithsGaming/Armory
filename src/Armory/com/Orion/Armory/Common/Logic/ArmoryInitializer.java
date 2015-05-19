@@ -11,6 +11,7 @@ import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Crafting.Anvil.AnvilRecipe;
 import com.Orion.Armory.Common.Crafting.Anvil.HeatedAnvilRecipeComponent;
+import com.Orion.Armory.Common.Crafting.Anvil.OreDicAnvilRecipeComponent;
 import com.Orion.Armory.Common.Crafting.ChainCraftingRecipe;
 import com.Orion.Armory.Common.Crafting.MedievalArmorCraftingRecipe;
 import com.Orion.Armory.Common.Events.ModifyMaterialEvent;
@@ -42,7 +43,6 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -50,7 +50,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import tconstruct.tools.TinkerTools;
 
 import java.util.HashMap;
@@ -535,14 +535,75 @@ public class ArmoryInitializer
         {
             initializeAnvilRecipes();
 
-            GameRegistry.addRecipe(new ChainCraftingRecipe());
-            GameRegistry.addRecipe(new MedievalArmorCraftingRecipe());
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Items.iHammer, 1, 150), "  #", " / ", "/  ", '#', new ItemStack(Blocks.iron_block, 1), '/', new ItemStack(Items.stick, 1)));
 
-            GameRegistry.addShapedRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockFirePit, 1), "#=#", "#/#", "###", '#', new ItemStack(Items.iron_ingot, 1), '=', new ItemStack(Items.cauldron, 1), '/', new ItemStack(Blocks.furnace, 1));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockFirePit, 1), "#=#", "#/#", "###", '#', new ItemStack(Items.iron_ingot, 1), '=', new ItemStack(Items.cauldron, 1), '/', new ItemStack(Blocks.furnace, 1)));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockAnvil, 1), "BBB", " I ", "IBI", 'B', new ItemStack(Blocks.iron_block, 1), 'I', new ItemStack(Items.iron_ingot, 1)));
         }
 
-
         public static void initializeAnvilRecipes()
+        {
+            ItemStack tHammerStack = new ItemStack(GeneralRegistry.Items.iHammer, 1);
+            tHammerStack.setItemDamage(150);
+            AnvilRecipe tHammerRecipe = new AnvilRecipe().setCraftingSlotContent(3, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(7, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(9, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(13, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(14, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(8, (new OreDicAnvilRecipeComponent("stickWood", 1)))
+                    .setCraftingSlotContent(12, (new OreDicAnvilRecipeComponent("stickWood", 1)))
+                    .setCraftingSlotContent(16, (new OreDicAnvilRecipeComponent("stickWood", 1)))
+                    .setCraftingSlotContent(20, (new OreDicAnvilRecipeComponent("stickWood", 1)))
+                    .setProgress(4).setResult(tHammerStack).setHammerUsage(4).setTongUsage(0);
+            TileEntityArmorsAnvil.addRecipe(tHammerRecipe);
+
+            ItemStack tTongStack = new ItemStack(GeneralRegistry.Items.iTongs, 1);
+            tTongStack.setItemDamage(150);
+            AnvilRecipe tTongRecipe = new AnvilRecipe().setCraftingSlotContent(3, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(7, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(9, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(13, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(12, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.RING, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(11, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(15, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(17, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(21, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setProgress(4).setResult(tTongStack).setHammerUsage(4).setTongUsage(0);
+            TileEntityArmorsAnvil.addRecipe(tTongRecipe);
+
+            ItemStack tHeaterStack = new ItemStack(GeneralRegistry.Blocks.iBlockHeater, 1);
+            AnvilRecipe tHeaterRecipe = new AnvilRecipe().setCraftingSlotContent(6, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(7, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(8, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(11, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(13, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(16, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(17, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(18, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setProgress(20).setResult(tHeaterStack).setHammerUsage(10).setTongUsage(15);
+            TileEntityArmorsAnvil.addRecipe(tHeaterRecipe);
+
+            ItemStack tFanStack = new ItemStack(GeneralRegistry.Items.iFan, 1, Short.MAX_VALUE);
+            AnvilRecipe tFanRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(6, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(8, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(4, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(18, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(24, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(16, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(20, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(7, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(13, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(17, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(11, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setCraftingSlotContent(12, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
+                    .setProgress(12).setResult(tFanStack).setHammerUsage(10).setTongUsage(20);
+            TileEntityArmorsAnvil.addRecipe(tFanRecipe);
+
+            initializeMedievalAnvilRecipes();
+        }
+
+        public static void initializeMedievalAnvilRecipes()
         {
             for (ArmorMaterialMedieval tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values())
             {
@@ -681,22 +742,6 @@ public class ArmoryInitializer
                 TileEntityArmorsAnvil.addRecipe(tShoeRecipe);
             }
         }
-
-
-        /*
-        public static void initializeAnvilRecipes()
-        {
-            ItemStack tNuggetStack = new ItemStack(GeneralRegistry.Items.iNugget, 1);
-            NBTTagCompound pRingCompound = new NBTTagCompound();
-            pRingCompound.setString(References.NBTTagCompoundData.Material, InternalNames.Materials.Vanilla.IRON);
-            tNuggetStack.setTagCompound(pRingCompound);
-
-            AnvilRecipe tRingRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
-                    .setProgress(9).setResult(tNuggetStack).setHammerUsage(4).setTongUsage(1).setShapeLess();
-
-            TileEntityArmorsAnvil.addRecipe(tRingRecipe);
-        }
-        */
     }
 
     public static class SystemInit

@@ -351,11 +351,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             {
                 if (((TileEntityHeater) tHeater).iCurrentDirection == ForgeDirection.NORTH)
                 {
-                    tTotalHeatTerm += 0.1F;
-                    tTotalMaxTemp += 250F;
+                    if (((TileEntityHeater) tHeater).tryDamageFan(1)) {
+                        tTotalHeatTerm += 0.1F;
+                        tTotalMaxTemp += 250F;
+                    }
                 }
-
-            }               
+            }
         }
 
         if (iCurrentDirection != ForgeDirection.EAST)
@@ -365,8 +366,10 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             {
                 if (((TileEntityHeater) tHeater).iCurrentDirection == ForgeDirection.EAST)
                 {
-                    tTotalHeatTerm += 0.1F;
-                    tTotalMaxTemp += 250F;
+                    if (((TileEntityHeater) tHeater).tryDamageFan(1)) {
+                        tTotalHeatTerm += 0.1F;
+                        tTotalMaxTemp += 250F;
+                    }
                 }
             }
         }
@@ -378,8 +381,10 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             {
                 if (((TileEntityHeater) tHeater).iCurrentDirection == ForgeDirection.SOUTH)
                 {
-                    tTotalHeatTerm += 0.1F;
-                    tTotalMaxTemp += 250F;
+                    if (((TileEntityHeater) tHeater).tryDamageFan(1)) {
+                        tTotalHeatTerm += 0.1F;
+                        tTotalMaxTemp += 250F;
+                    }
                 }
             }
         }
@@ -391,8 +396,10 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             {
                 if (((TileEntityHeater) tHeater).iCurrentDirection == ForgeDirection.WEST)
                 {
-                    tTotalHeatTerm += 0.1F;
-                    tTotalMaxTemp += 250F;
+                    if (((TileEntityHeater) tHeater).tryDamageFan(1)) {
+                        tTotalHeatTerm += 0.1F;
+                        tTotalMaxTemp += 250F;
+                    }
                 }
             }
         }

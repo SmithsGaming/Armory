@@ -93,6 +93,14 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
     public void setInventorySlotContents(int pSlotID, ItemStack pNewItemStack) {
         iFanStack = pNewItemStack;
 
+        if (iFanStack != null)
+        {
+            if (iFanStack.getItemDamage() == 0)
+            {
+                iFanStack.setItemDamage(Short.MAX_VALUE);
+            }
+        }
+
         if (iFanStack == null)
         {
             iItemInSlotTicks = 0;
@@ -231,6 +239,20 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
         }
 
         return (tTargetTE instanceof TileEntityFirePit);
+    }
+
+    public boolean tryDamageFan(int damageAmount)
+    {
+        if (iFanStack == null)
+            return false;
+
+        iFanStack.setItemDamage(iFanStack.getItemDamage() - damageAmount);
+        if (iFanStack.getItemDamage() < 0)
+            iFanStack = null;
+
+        markDirty();
+
+        return true;
     }
 }
 

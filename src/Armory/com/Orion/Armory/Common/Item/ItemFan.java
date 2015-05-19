@@ -22,6 +22,7 @@ public class ItemFan extends Item
     public ItemFan()
     {
         setMaxStackSize(1);
+        setMaxDamage(Short.MAX_VALUE);
         setCreativeTab(GeneralRegistry.iTabArmoryComponents);
         setUnlocalizedName(References.InternalNames.Items.ItemFan);
     }
@@ -48,6 +49,6 @@ public class ItemFan extends Item
     @Override
     public double getDurabilityForDisplay(ItemStack pStack)
     {
-        return  1 - ((pStack.getItemDamage()) / Short.MAX_VALUE);
+        return  1 - (((float) pStack.getItemDamage()) / Short.MAX_VALUE);
     }
 }

@@ -21,19 +21,19 @@ public class OreDicAnvilRecipeComponent implements IAnvilRecipeComponent {
     private String iOreDicName;
     private int iComponentUsage;
 
-    OreDicAnvilRecipeComponent(ItemStack pTargetStack)
+    public OreDicAnvilRecipeComponent(ItemStack pTargetStack)
     {
         setComponentTargetStack(pTargetStack);
         setComponentStackUsage(1);
     }
 
-    OreDicAnvilRecipeComponent(ItemStack pTargetStack, int pComponentUsage)
+    public OreDicAnvilRecipeComponent(ItemStack pTargetStack, int pComponentUsage)
     {
         setComponentTargetStack(pTargetStack);
         setComponentStackUsage(pComponentUsage);
     }
 
-    OreDicAnvilRecipeComponent(String pOreDicName, int pComponentUsage)
+    public OreDicAnvilRecipeComponent(String pOreDicName, int pComponentUsage)
     {
         iOreDicName = pOreDicName;
         setComponentStackUsage(pComponentUsage);
@@ -86,9 +86,10 @@ public class OreDicAnvilRecipeComponent implements IAnvilRecipeComponent {
         ArrayList<ItemStack> tStacks = OreDictionary.getOres(iOreDicName);
         ItemStack tSingleton = ItemStackHelper.cloneItemStack(pComparedItemStack, 1);
 
-        if (tStacks.contains(tSingleton) && pComparedItemStack.stackSize >= iComponentUsage)
+        for (ItemStack tStack: tStacks)
         {
-            return true;
+            if (ItemStackHelper.equalsIgnoreStackSize(tSingleton, tStack) && pComparedItemStack.stackSize >= iComponentUsage)
+                return true;
         }
 
         return false;
