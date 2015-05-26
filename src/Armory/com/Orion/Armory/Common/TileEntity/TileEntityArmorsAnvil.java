@@ -402,6 +402,8 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     @Override
     public void updateEntity()
     {
+        boolean tUpdated = false;
+
         if (iCurrentValidRecipe != null) {
             iTEExist++;
             if (iTEExist == 20) {
@@ -409,20 +411,27 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
                 iTEExist = 0;
             }
 
-            if (iCraftingProgress == iCurrentValidRecipe.iTargetProgress) {
+
+            if ((iCraftingProgress == iCurrentValidRecipe.iTargetProgress) && !worldObj.isRemote) {
                 if (iOutPutStacks[0] != null) {
                     iOutPutStacks[0].stackSize += iCurrentValidRecipe.getResult().stackSize;
+
                 } else {
+                    System.out.println("New size: " + iCurrentValidRecipe.getResult().stackSize);
                     iOutPutStacks[0] = iCurrentValidRecipe.getResult();
+
+
                 }
 
                 ProcessPerformedCrafting();
                 iCurrentValidRecipe = null;
                 iCraftingProgress = 0;
 
+                tUpdated = true;
+
             }
 
-            if (!worldObj.isRemote)
+            if (!worldObj.isRemote && tUpdated)
             {
                 markDirty();
             }
@@ -466,11 +475,17 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             {
                 if (iOutPutStacks[0] != null)
                 {
-                    if (ItemStackHelper.equalsIgnoreStackSize(tRecipe.getResult(), iOutPutStacks[0]) && tRecipe.getResult().stackSize + iOutPutStacks[0].stackSize <= iOutPutStacks[0].getMaxStackSize())
+                    /*
+                    System.out.println("Size before: " + iOutPutStacks[0].stackSize);
+                    if ((tRecipe.getResult().stackSize + iOutPutStacks[0].stackSize) <= iOutPutStacks[0].getMaxStackSize())
                     {
-                        iCurrentValidRecipe = tRecipe;
-                        return;
+                        System.out.println("Size after: " + iOutPutStacks[0].stackSize);
+
                     }
+                    */
+
+                    iCurrentValidRecipe = tRecipe;
+                    return;
                 }
                 else
                 {

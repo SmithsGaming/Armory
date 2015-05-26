@@ -63,6 +63,7 @@ public class MessageTileEntityArmorsAnvil extends MessageTileEntityArmory implem
             iOutPutStacks[tSlotIndex] = ByteBufUtils.readItemStack(buf);
         }
 
+
         int tHammerStackAmount  = buf.readInt();
         for(int tCurrentStack = 0; tCurrentStack < tHammerStackAmount; tCurrentStack++)
         {
