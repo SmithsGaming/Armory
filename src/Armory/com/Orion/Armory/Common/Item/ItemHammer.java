@@ -2,14 +2,11 @@ package com.Orion.Armory.Common.Item;
 
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Client.TextureAddressHelper;
-import com.Orion.Armory.Util.Core.CircleHelper;
 import com.Orion.Armory.Util.References;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
 
 /**
  * Created by Orion
