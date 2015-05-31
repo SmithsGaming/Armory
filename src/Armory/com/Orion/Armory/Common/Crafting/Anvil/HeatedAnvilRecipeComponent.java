@@ -4,6 +4,7 @@ import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Core.ItemStackHelper;
+import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -20,11 +21,11 @@ public class HeatedAnvilRecipeComponent implements IAnvilRecipeComponent
     private float iMaxTemp;
 
     private String iInternalType;
-    private String iInternalName;
+    private String iMaterialName;
 
     public HeatedAnvilRecipeComponent(String pInternalName, String pInternalType, float pMinTemp, float pMaxTemp)
     {
-        iInternalName = pInternalName;
+        iMaterialName = pInternalName;
         iInternalType = pInternalType;
 
         iMinTemp = pMinTemp;
@@ -33,7 +34,7 @@ public class HeatedAnvilRecipeComponent implements IAnvilRecipeComponent
 
     @Override
     public ItemStack getComponentTargetStack() {
-        return null;
+        return HeatedItemFactory.getInstance().generateHeatedItem(iMaterialName, iInternalType, ((iMinTemp + iMaxTemp) / 2));
     }
 
     @Override
@@ -43,7 +44,7 @@ public class HeatedAnvilRecipeComponent implements IAnvilRecipeComponent
             GeneralRegistry.iLogger.error("Tried to register recipe with a non heatable Item." + ItemStackHelper.toString( pNewTargetStack));
         }
 
-        iInternalName = HeatedItemFactory.getInstance().getMaterialIDFromItemStack(pNewTargetStack);
+        iMaterialName = HeatedItemFactory.getInstance().getMaterialIDFromItemStack(pNewTargetStack);
         iInternalType = HeatedItemFactory.getInstance().getType(pNewTargetStack);
 
         return this;
@@ -69,6 +70,6 @@ public class HeatedAnvilRecipeComponent implements IAnvilRecipeComponent
             return false;
         }
 
-        return ((iInternalType.equals(HeatedItemFactory.getInstance().getType(pComparedItemStack))) && (iInternalName.equals(HeatedItemFactory.getInstance().getMaterialIDFromItemStack(pComparedItemStack))) && ((iMinTemp <= ItemHeatedItem.getItemTemperature(pComparedItemStack)) && (iMaxTemp >= ItemHeatedItem.getItemTemperature(pComparedItemStack))));
+        return ((iInternalType.equals(HeatedItemFactory.getInstance().getType(pComparedItemStack))) && (iMaterialName.equals(HeatedItemFactory.getInstance().getMaterialIDFromItemStack(pComparedItemStack))) && ((iMinTemp <= ItemHeatedItem.getItemTemperature(pComparedItemStack)) && (iMaxTemp >= ItemHeatedItem.getItemTemperature(pComparedItemStack))));
         }
         }

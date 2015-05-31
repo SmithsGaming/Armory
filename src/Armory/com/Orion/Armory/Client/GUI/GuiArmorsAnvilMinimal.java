@@ -19,8 +19,8 @@ import org.lwjgl.input.Keyboard;
  * <p/>
  * Copyrighted according to Project specific license
  */
-public class GuiAmorsAnvilMinimal extends ArmoryBaseGui {
-    public GuiAmorsAnvilMinimal(Container pTargetedContainer) {
+public class GuiArmorsAnvilMinimal extends ArmoryBaseGui {
+    public GuiArmorsAnvilMinimal(Container pTargetedContainer) {
         super(pTargetedContainer);
 
         this.xSize = 183;

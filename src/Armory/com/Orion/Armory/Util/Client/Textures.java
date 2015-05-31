@@ -185,6 +185,17 @@ public class Textures
             public static CustomResource HAMMERSLOT = new CustomResource("Gui.Basic.Slot.Hammer", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 18,0,18,18);
             public static CustomResource TONGSSLOT = new CustomResource("Gui.Basic.Slot.Tongs", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 36,0,18,18);
         }
+
+        public static class Compatibility
+        {
+            public static class NEI
+            {
+                public static class ArmorsAnvil
+                {
+                    public static CustomResource GUI = new CustomResource("Gui.Compatibility.NEI.Anvil.Gui", GUITEXTUREPATH + "NEI/ArmorsAnvil.png");
+                }
+            }
+        }
     }
 
     public static void registerIcons(IIconRegister pRegistrar)

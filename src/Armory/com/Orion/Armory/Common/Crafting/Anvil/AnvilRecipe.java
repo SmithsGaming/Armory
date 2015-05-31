@@ -25,8 +25,8 @@ public class AnvilRecipe
     public IAnvilRecipeComponent[] iComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS];
     public IAnvilRecipeComponent[] iAdditionalComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS];
 
-    private int iResultAmount = 1;
-    private ItemStack iResult;
+    protected int iResultAmount = 1;
+    protected ItemStack iResult;
 
     public boolean matchesRecipe(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents, int pHammerUsagesLeft, int pTongsUsagesLeft) {
         if (pHammerUsagesLeft == 0)
@@ -198,7 +198,7 @@ public class AnvilRecipe
         return this;
     }
 
-    public ItemStack getResult()
+    public ItemStack getResult(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents)
     {
         iResult.stackSize = iResultAmount;
         return iResult;

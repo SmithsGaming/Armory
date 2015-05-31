@@ -99,6 +99,8 @@ public class MedievalRegistry {
     public void registerUpgrade(ArmorUpgradeMedieval pUpgrade)
     {
         iArmorUpgrades.put(pUpgrade.getInternalName(), pUpgrade);
+
+        getArmor(pUpgrade.getParentName()).registerAddon(pUpgrade);
     }
 
     public ArmorUpgradeMedieval getUpgrade(String pUpgradeInternalName)

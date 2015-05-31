@@ -86,7 +86,7 @@ public class ItemHeatedItem extends Item
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item pArmorCore, CreativeTabs pCreativeTab, List pItemStacks)
+    public void getSubItems(Item pItem, CreativeTabs pCreativeTab, List pItemStacks)
     {
         Iterator<ItemStack> tStackIter = HeatedItemFactory.getInstance().getAllMappedStacks().iterator();
 
@@ -129,5 +129,26 @@ public class ItemHeatedItem extends Item
         }
 
         return 0F;
+    }
+
+    public static boolean areStacksEqualExceptTemp(ItemStack pFirstStack, ItemStack pSecondStack)
+    {
+        if (!(pFirstStack.getItem() instanceof ItemHeatedItem))
+        {
+            return false;
+        }
+
+        if (!(pSecondStack.getItem() instanceof ItemHeatedItem))
+        {
+            return false;
+        }
+
+        if (!pFirstStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.TYPE).equals(pSecondStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.TYPE)))
+            return false;
+
+        if (!pFirstStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID).equals(pSecondStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID)))
+            return false;
+
+        return true;
     }
 }

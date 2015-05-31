@@ -15,13 +15,13 @@ public class StandardAnvilRecipeComponent implements IAnvilRecipeComponent
     private ItemStack iTargetItemStack;
     private int iComponentUsage;
 
-    StandardAnvilRecipeComponent(ItemStack pTargetStack)
+    public StandardAnvilRecipeComponent(ItemStack pTargetStack)
     {
         setComponentTargetStack(pTargetStack);
         setComponentStackUsage(1);
     }
 
-    StandardAnvilRecipeComponent(ItemStack pTargetStack, int pComponentUsage)
+    public StandardAnvilRecipeComponent(ItemStack pTargetStack, int pComponentUsage)
     {
         setComponentTargetStack(pTargetStack);
         setComponentStackUsage(pComponentUsage);

@@ -109,6 +109,23 @@ public class ModelAExtendedChain extends ModelBiped
 
         bipedWaist.rotateAngleX = bipedBody.rotateAngleX;
         bipedWaist.rotateAngleY = bipedBody.rotateAngleY;
+
+        if (this.isSneak)
+        {
+            this.bipedBody.rotateAngleX = 0.5F;
+            this.bipedRightArm.rotateAngleX += 0.4F;
+            this.bipedLeftArm.rotateAngleX += 0.4F;
+            this.bipedRightLeg.rotationPointZ = 4.0F;
+            this.bipedLeftLeg.rotationPointZ = 4.0F;
+            this.bipedRightLeg.rotationPointY = 9.0F;
+            this.bipedLeftLeg.rotationPointY = 9.0F;
+            this.bipedRightFoot.rotationPointZ = this.bipedRightLeg.rotationPointZ;
+            this.bipedRightFoot.rotationPointX = this.bipedRightLeg.rotationPointX;
+            this.bipedLeftFoot.rotationPointZ = this.bipedLeftLeg.rotationPointZ;
+            this.bipedLeftFoot.rotationPointX = this.bipedLeftLeg.rotationPointX;
+            this.bipedHead.rotationPointY = 1.0F;
+            this.bipedHeadwear.rotationPointY = 1.0F;
+        }
     }
 
     @Override

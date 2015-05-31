@@ -18,6 +18,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.util.Constants;
+import scala.tools.nsc.typechecker.Implicits;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,8 +39,8 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
     //Data for the registering of MultiLayeredArmor
     protected String iInternalName = "";
     protected Integer iArmorPart = -1;
-    protected ArrayList<ArmorAddonPosition> iPossibleAddonPositions = new ArrayList<ArmorAddonPosition>();
-    protected ArrayList<MLAAddon> iPossibleAddons = new ArrayList<MLAAddon>();
+    protected HashMap<String, ArmorAddonPosition> iPossibleAddonPositions = new HashMap<String, ArmorAddonPosition>();
+    protected HashMap<String, MLAAddon> iPossibleAddons = new HashMap<String, MLAAddon>();
 
     ///#############################################Constructors########################################################
     //Standard constructor to created an ItemArmor. Sets the InternalName and stores the ArmorPart separately
@@ -64,22 +65,31 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
 
     //Registers the Addon to this Armor as its parent.
     public void registerAddon(MLAAddon pNewAddon) {
-        iPossibleAddons.add(pNewAddon);
+        iPossibleAddons.put(pNewAddon.getInternalName(), pNewAddon);
+    }
+
+    //Returns an MLAAddon with the given ID if registered.
+    public MLAAddon getAddon(String pAddonID)
+    {
+        if (!iPossibleAddons.containsKey(pAddonID))
+            return null;
+
+        return iPossibleAddons.get(pAddonID);
     }
 
     //Function to retrieve the complete addon list
     public ArrayList<MLAAddon> getAllowedAddons() {
-        return this.iPossibleAddons;
+        return new ArrayList<MLAAddon>(iPossibleAddons.values());
     }
 
     //Registers the AddonPostion to this armor part
     public void registerAddonPosition(ArmorAddonPosition pNewPosition) {
-        iPossibleAddonPositions.add(pNewPosition);
+        iPossibleAddonPositions.put(pNewPosition.getInternalName(), pNewPosition);
     }
 
     //Function to retrieve the complete AddonPosition list
     public ArrayList<ArmorAddonPosition> getAllowedPositions() {
-        return this.iPossibleAddonPositions;
+        return new ArrayList<ArmorAddonPosition>(iPossibleAddonPositions.values());
     }
 
     ///############################################Functions for handeling the ISpecialArmorRequirements################

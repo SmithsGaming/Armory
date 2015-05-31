@@ -67,4 +67,9 @@ public class NBTHelper {
     {
         return pItemStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.ArmorID);
     }
+
+    public static String getArmorBaseMaterialName(ItemStack pItemStack)
+    {
+        return  pItemStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.MaterialID);
+    }
 }

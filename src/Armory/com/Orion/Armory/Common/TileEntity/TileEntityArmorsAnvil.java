@@ -414,13 +414,10 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
             if ((iCraftingProgress == iCurrentValidRecipe.iTargetProgress) && !worldObj.isRemote) {
                 if (iOutPutStacks[0] != null) {
-                    iOutPutStacks[0].stackSize += iCurrentValidRecipe.getResult().stackSize;
+                    iOutPutStacks[0].stackSize += iCurrentValidRecipe.getResult(iCraftingStacks, iAdditionalCraftingStacks).stackSize;
 
                 } else {
-                    System.out.println("New size: " + iCurrentValidRecipe.getResult().stackSize);
-                    iOutPutStacks[0] = iCurrentValidRecipe.getResult();
-
-
+                    iOutPutStacks[0] = iCurrentValidRecipe.getResult(iCraftingStacks, iAdditionalCraftingStacks);
                 }
 
                 ProcessPerformedCrafting();
@@ -458,6 +455,8 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         iRecipes.add(pNewRecipe);
     }
 
+    public static ArrayList<AnvilRecipe> getRecipes() { return iRecipes; }
+
     public void findValidRecipe()
     {
         int tHammerUsagesLeft = -1;
@@ -475,17 +474,11 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             {
                 if (iOutPutStacks[0] != null)
                 {
-                    /*
-                    System.out.println("Size before: " + iOutPutStacks[0].stackSize);
-                    if ((tRecipe.getResult().stackSize + iOutPutStacks[0].stackSize) <= iOutPutStacks[0].getMaxStackSize())
+                    if ((tRecipe.getResult(iCraftingStacks, iAdditionalCraftingStacks).stackSize + iOutPutStacks[0].stackSize) <= iOutPutStacks[0].getMaxStackSize())
                     {
-                        System.out.println("Size after: " + iOutPutStacks[0].stackSize);
-
+                        iCurrentValidRecipe = tRecipe;
+                        return;
                     }
-                    */
-
-                    iCurrentValidRecipe = tRecipe;
-                    return;
                 }
                 else
                 {
@@ -579,6 +572,9 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     public AnvilState getCurrentState()
     {
+        return AnvilState.Standard;
+
+        /*
         boolean tFoundCoolingBasin = false;
         boolean tFoundHelperRack = false;
         if (iCurrentDirection == ForgeDirection.NORTH || iCurrentDirection == ForgeDirection.SOUTH)
@@ -649,6 +645,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             return AnvilState.Extended;
 
         return AnvilState.Standard;
+        */
     }
 
     public TileEntityCoolingBasin getCoolingBasin()

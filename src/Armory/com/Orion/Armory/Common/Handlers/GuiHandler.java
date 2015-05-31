@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.Handlers;
  *   Created on: 18-1-2015
  */
 
-import com.Orion.Armory.Client.GUI.GuiAmorsAnvilMinimal;
+import com.Orion.Armory.Client.GUI.GuiArmorsAnvilMinimal;
 import com.Orion.Armory.Client.GUI.GuiArmorsAnvilStandard;
 import com.Orion.Armory.Client.GUI.GuiFirePit;
 import com.Orion.Armory.Client.GUI.GuiHeater;
@@ -63,7 +63,7 @@ public class GuiHandler implements IGuiHandler
             TileEntityArmorsAnvil tAnvil = (TileEntityArmorsAnvil) pWorld.getTileEntity(pX, pY, pZ);
             if (tAnvil.getCurrentState() == TileEntityArmorsAnvil.AnvilState.Minimal)
             {
-                return new GuiAmorsAnvilMinimal(new ContainerArmorsAnvilMinimal(pPlayer.inventory, tAnvil));
+                return new GuiArmorsAnvilMinimal(new ContainerArmorsAnvilMinimal(pPlayer.inventory, tAnvil));
             }
             else if (tAnvil.getCurrentState() == TileEntityArmorsAnvil.AnvilState.Standard) {
                 return new GuiArmorsAnvilStandard(new ContainerArmorsAnvilStandard(pPlayer.inventory, tAnvil));

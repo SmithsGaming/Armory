@@ -7,11 +7,13 @@ package com.Orion.Armory.Common.Registry;
 
 import com.Orion.Armory.Client.CreativeTab.ComponentsTab;
 import com.Orion.Armory.Client.CreativeTab.MedievalTab;
+import com.Orion.Armory.Client.CreativeTab.MedievalUpgradeTab;
 import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Item.*;
 import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
+import com.Orion.Armory.Common.Item.Armor.TierMedieval.ItemUpgradeMedieval;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
@@ -33,11 +35,13 @@ public class GeneralRegistry {
     //public static PlatedTab iTabPlatedArmor;
     //public static QuantumTab iTabQuantumArmor;
     public static ComponentsTab iTabArmoryComponents;
+    public static MedievalUpgradeTab iTabMedievalUpgrades;
 
     public GeneralRegistry()
     {
         this.iTabMedievalArmor = new MedievalTab();
         this.iTabArmoryComponents = new ComponentsTab();
+        this.iTabMedievalUpgrades = new MedievalUpgradeTab();
         //TODO: Initialize all creative tabs once implemented properly
     }
 
@@ -95,5 +99,6 @@ public class GeneralRegistry {
         public static ItemFan iFan = null;
         public static ItemHammer iHammer = null;
         public static ItemTongs iTongs = null;
+        public static ItemUpgradeMedieval iMedievalUpgrades = null;
     }
 }

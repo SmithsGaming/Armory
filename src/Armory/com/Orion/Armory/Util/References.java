@@ -208,6 +208,7 @@ public class References
             public static final String ItemTongs = "Armory.Items.Tongs";
             public static final String ItemNugget = "Armory.Items.Nugget";
             public static final String ItemPlate = "Armory.Items.Plate";
+            public static final String ItemMedievalUpdrade = "Armory.Items.Medieval.Upgrade";
         }
 
         public class Blocks
@@ -234,21 +235,21 @@ public class References
         }
 
         public class GUIComponents
+    {
+        public class FirePit
         {
-            public class FirePit
-            {
-                public static final String FLAMEONE = "Flame1";
-                public static final String FLAMETWO = "Flame2";
-                public static final String FLAMETHREE = "Flame3";
-                public static final String FLAMEFOUR = "Flame4";
-                public static final String FLAMEFIVE = "Flame5";
-            }
-
-            public class Anvil
-            {
-                public static final String CRAFTINGPROGRESS = "CraftingProgress";
-            }
+            public static final String FLAMEONE = "Flame1";
+            public static final String FLAMETWO = "Flame2";
+            public static final String FLAMETHREE = "Flame3";
+            public static final String FLAMEFOUR = "Flame4";
+            public static final String FLAMEFIVE = "Flame5";
         }
+
+        public class Anvil
+        {
+            public static final String CRAFTINGPROGRESS = "CraftingProgress";
+        }
+    }
     }
 
     //General model addresses

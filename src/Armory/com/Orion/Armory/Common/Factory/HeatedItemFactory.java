@@ -22,6 +22,7 @@ public class HeatedItemFactory
     public static HeatedItemFactory iInstance = null;
     protected ArrayList<ItemStack> iHeatableItems = new ArrayList<ItemStack>();
     protected ArrayList<String> iMappedNames = new ArrayList<String>();
+    protected ArrayList<String> iMappedTypes = new ArrayList<String>();
 
     public static HeatedItemFactory getInstance()
     {
@@ -31,6 +32,31 @@ public class HeatedItemFactory
         }
 
         return iInstance;
+    }
+
+    public ItemStack generateHeatedItem(String pMaterialID, String pInternalTypeID, float pTemp)
+    {
+        ItemStack pBaseStack = getBaseStack(pMaterialID, pInternalTypeID);
+        if (pBaseStack == null)
+            return null;
+
+        ItemStack pHeatedStack = convertToHeatedIngot(pBaseStack);
+        ItemHeatedItem.setItemTemperature(pHeatedStack, pTemp);
+
+        return pHeatedStack;
+    }
+
+    public ItemStack getBaseStack(String pMaterialID, String pInternalTypeID)
+    {
+        for (int tStackIndex = 0; tStackIndex < iHeatableItems.size(); tStackIndex++)
+        {
+            if ((pMaterialID.equals(iMappedNames.get(tStackIndex))) && (pInternalTypeID.equals(iMappedTypes.get(tStackIndex))))
+            {
+                return iHeatableItems.get(tStackIndex);
+            }
+        }
+
+        return null;
     }
 
     public ItemStack convertToHeatedIngot(ItemStack pCooledIngotStack)
@@ -89,6 +115,15 @@ public class HeatedItemFactory
         {
             this.iHeatableItems.add(tSingledItemStack);
             this.iMappedNames.add(pMaterialName);
+
+            if (pNewItemStack.getItem() instanceof IHeatableItem)
+            {
+                iMappedTypes.add(((IHeatableItem) pNewItemStack.getItem()).getInternalType());
+            }
+            else
+            {
+                iMappedTypes.add(References.InternalNames.HeatedItemTypes.INGOT);
+            }
         }
     }
 

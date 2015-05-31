@@ -64,6 +64,11 @@ public class TranslationKeys
             public static final String InfoLine1 = "Armory.GUI.Heater.Ledger.InfoLine1";
             public static final String InfoLine2 = "Armory.GUI.Heater.Ledger.InfoLine2";
         }
+
+        public class NEI
+        {
+            public static final String AnvilRecipeName = "Armory.NEI.Compatibility.ArmorsAnvilRecipe";
+        }
     }
 }
 

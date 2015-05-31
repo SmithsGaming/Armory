@@ -27,7 +27,7 @@ public class ArmorUpgradeMedieval extends MLAAddon
 
     @Override
     public boolean validateCrafting(String pAddonIDToCheckAgainst, boolean pInstalled) {
-        ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MedievalRegistry.getInstance().getUpgrade(pAddonIDToCheckAgainst);
+        ArmorUpgradeMedieval tUpgrade = MedievalRegistry.getInstance().getUpgrade(pAddonIDToCheckAgainst);
         if ((this.getAddonPositionID() == tUpgrade.getAddonPositionID()) && (this.getInternalName() != pAddonIDToCheckAgainst))
         {
             return false;

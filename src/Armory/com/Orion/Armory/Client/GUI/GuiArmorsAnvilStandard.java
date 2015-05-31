@@ -54,8 +54,8 @@ public class GuiArmorsAnvilStandard extends ArmoryBaseGui {
 
         iComponents.addComponent(new ComponentBorder(this, "Gui.Anvil.AdditionalStacks.Background", 180, 51, 76, 32, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
         iComponents.addComponent(new ComponentSlot(this, "Gui.Anvil.AdditionalStacks.Slots.1", TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS + TileEntityArmorsAnvil.MAX_TONGSLOTS, 18,18,187,58, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
-        iComponents.addComponent(new ComponentSlot(this, "Gui.Anvil.AdditionalStacks.Slots.1", TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS + TileEntityArmorsAnvil.MAX_TONGSLOTS + 1, 18,18,209,58, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
-        iComponents.addComponent(new ComponentSlot(this, "Gui.Anvil.AdditionalStacks.Slots.1", TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS + TileEntityArmorsAnvil.MAX_TONGSLOTS + 2, 18,18,231,58, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
+        iComponents.addComponent(new ComponentSlot(this, "Gui.Anvil.AdditionalStacks.Slots.2", TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS + TileEntityArmorsAnvil.MAX_TONGSLOTS + 1, 18,18,209,58, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
+        iComponents.addComponent(new ComponentSlot(this, "Gui.Anvil.AdditionalStacks.Slots.3", TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS + TileEntityArmorsAnvil.MAX_TONGSLOTS + 2, 18,18,231,58, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
 
         iComponents.addComponent(new ComponentBorder(this, "Gui.Anvil.Cooling.Background", 180, 91, 76, 64, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
         iComponents.addComponent(new ComponentFluidTank(this, "Gui.Anvil.Cooling.Tank", 187, 98, 62, 18, Colors.DEFAULT, 4000, GuiDirection.HORIZONTAL));
