@@ -20,7 +20,7 @@ import cpw.mods.fml.relauncher.Side;
  */
 
 @Mod(modid = References.General.MOD_ID, name = "Armory", version = References.General.VERSION,
-        dependencies = "required-after:Forge@[10.13,);required-after:Mantle;after:ForgeMultipart;required-after:TConstruct;")
+        dependencies = "required-after:Forge@[10.13,);")
 public class Armory
 {
     // Instance of this mod use for internal and Forge references
@@ -31,16 +31,12 @@ public class Armory
     @SidedProxy(clientSide="com.Orion.Armory.Client.ArmoryClientProxy", serverSide="com.Orion.Armory.Common.ArmoryCommonProxy")
     public static ArmoryCommonProxy proxy;
 
-    // Data that is needed throughout the whole mod.
-    public static boolean iIsInitialized = false;
-
     //Stored to get the loaded side when needed
     public static Side iSide;
 
     @Mod.EventHandler
     public void preInit (FMLPreInitializationEvent event)
     {
-        proxy.initializeArmory();
         proxy.registerEventHandlers();
     }
 
@@ -49,6 +45,8 @@ public class Armory
     {
         NetworkManager.Init();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+
+        proxy.initializeArmory();
     }
 
     @Mod.EventHandler

@@ -78,18 +78,6 @@ if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
 group= "com.Orion.Armory"
 archivesBaseName = "Armory"
 
-//Points Gradle (and ForgeGradle) to the right directories:
-sourceSets {
-    main {
-        resources {
-            srcDir 'Resources'
-        }
-        java {
-            srcDir 'Source/Armory'
-        }
-    }
-}
-
 //IDea fix for
 idea {
     module {
@@ -110,7 +98,6 @@ minecraft {
 //Tells gradle which dependencies are needed for gradle and project
 dependencies {
     //Mod dependencies
-    //compile "com.Orion.OrionsBelt:OrionsBelt:"+ config.orionsbelt_version
     compile "mantle:Mantle:${config.minecraft_version}-${config.mantle_version}:deobf"
     compile "tconstruct:TConstruct:${config.minecraft_version}-${config.tconstruct_version}:deobf"
 
@@ -185,6 +172,41 @@ uploadArchives {
                 authentication(userName: "mavenrepo.orionminecraft.com|" + System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
             }
         }
+
+        pom {
+            groupId = project.group
+            version = project.version
+            artifactId = project.archivesBaseName
+        }
+
+        pom.project {
+            name project.archivesBaseName
+            packaging 'jar'
+            description 'Armory'
+            url 'https://github.com/SmithsModding/Armory'
+
+            scm {
+                url 'https://github.com/SmithsModding/Armory'
+                connection 'scm:git:git://github.com/SmithsModding/Armory.git'
+                developerConnection 'scm:git:git@github.com/SmithsModding/Armory.git'
+            }
+
+            issueManagement {
+                system 'github'
+                url 'https://github.com/SmithsModding/Armory/issues'
+            }
+
+            developers {
+                developer {
+                    id 'OrionDevelopment'
+                    name 'Orion'
+                    roles {
+                        role 'developer'
+                    }
+                }
+            }
+        }
+
     }
 }
 

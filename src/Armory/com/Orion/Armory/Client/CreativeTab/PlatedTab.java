@@ -1,6 +1,6 @@
 package com.Orion.Armory.Client.CreativeTab;
 
-import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
+import com.Orion.Armory.API.Armor.MLAAddon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;

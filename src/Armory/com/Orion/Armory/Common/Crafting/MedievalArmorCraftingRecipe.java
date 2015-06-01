@@ -6,7 +6,7 @@ package com.Orion.Armory.Common.Crafting;
  */
 
 import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
-import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
+import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.Common.Item.ItemMetalChain;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.References;

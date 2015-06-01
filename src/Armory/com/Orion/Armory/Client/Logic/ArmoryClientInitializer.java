@@ -5,6 +5,10 @@ package com.Orion.Armory.Client.Logic;
  *   Created on: 19-9-2014
  */
 
+import com.Orion.Armory.API.Armor.IArmorMaterial;
+import com.Orion.Armory.API.Armor.MultiLayeredArmor;
+import com.Orion.Armory.API.Events.Client.RegisterItemResourcesEvent;
+import com.Orion.Armory.API.Events.Client.RegisterMaterialResourceEvent;
 import com.Orion.Armory.Client.Renderer.Items.ItemHeatedIngotRenderer;
 import com.Orion.Armory.Client.Renderer.Items.ItemRendererAnvil;
 import com.Orion.Armory.Client.Renderer.Items.ItemRendererFirePit;
@@ -24,8 +28,10 @@ import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.client.registry.ClientRegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ArmoryClientInitializer extends ArmoryInitializer
 {
@@ -50,49 +56,13 @@ public class ArmoryClientInitializer extends ArmoryInitializer
     {
         public static void registerMaterialResources()
         {
-            //Helmet
-            ArmorMedieval tHelmet = (ArmorMedieval) MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET);
-            tHelmet.registerResource(Textures.MultiArmor.Materials.Iron.tHelmetResource);
-            tHelmet.registerResource(Textures.MultiArmor.Materials.Chain.tHelmetResource);
-            tHelmet.registerResource(Textures.MultiArmor.Materials.Obsidian.tHelmetResource);
-            tHelmet.registerResource(Textures.MultiArmor.Materials.Bronze.tHelmetResource);
-            tHelmet.registerResource(Textures.MultiArmor.Materials.Alumite.tHelmetResource);
-            tHelmet.registerResource(Textures.MultiArmor.Materials.Ardite.tHelmetResource);
-            tHelmet.registerResource(Textures.MultiArmor.Materials.Cobalt.tHelmetResource);
-            tHelmet.registerResource(Textures.MultiArmor.Materials.Manyullun.tHelmetResource);
-
-            //Chestplate
-            ArmorMedieval tChestplate = (ArmorMedieval) MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE);
-            tChestplate.registerResource(Textures.MultiArmor.Materials.Iron.tChestplateResource);
-            tChestplate.registerResource(Textures.MultiArmor.Materials.Chain.tChestplateResource);
-            tChestplate.registerResource(Textures.MultiArmor.Materials.Obsidian.tChestplateResource);
-            tChestplate.registerResource(Textures.MultiArmor.Materials.Bronze.tChestplateResource);
-            tChestplate.registerResource(Textures.MultiArmor.Materials.Alumite.tChestplateResource);
-            tChestplate.registerResource(Textures.MultiArmor.Materials.Ardite.tChestplateResource);
-            tChestplate.registerResource(Textures.MultiArmor.Materials.Cobalt.tChestplateResource);
-            tChestplate.registerResource(Textures.MultiArmor.Materials.Manyullun.tChestplateResource);
-
-            //Leggins
-            ArmorMedieval tLeggins = (ArmorMedieval) MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS);
-            tLeggins.registerResource(Textures.MultiArmor.Materials.Iron.tLegginsResource);
-            tLeggins.registerResource(Textures.MultiArmor.Materials.Chain.tLegginsResource);
-            tLeggins.registerResource(Textures.MultiArmor.Materials.Obsidian.tLegginsResource);
-            tLeggins.registerResource(Textures.MultiArmor.Materials.Bronze.tLegginsResource);
-            tLeggins.registerResource(Textures.MultiArmor.Materials.Alumite.tLegginsResource);
-            tLeggins.registerResource(Textures.MultiArmor.Materials.Ardite.tLegginsResource);
-            tLeggins.registerResource(Textures.MultiArmor.Materials.Cobalt.tLegginsResource);
-            tLeggins.registerResource(Textures.MultiArmor.Materials.Manyullun.tLegginsResource);
-
-            //Shoes
-            ArmorMedieval tShoes = (ArmorMedieval) MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES);
-            tShoes.registerResource(Textures.MultiArmor.Materials.Iron.tShoesResource);
-            tShoes.registerResource(Textures.MultiArmor.Materials.Chain.tShoesResource);
-            tShoes.registerResource(Textures.MultiArmor.Materials.Obsidian.tShoesResource);
-            tShoes.registerResource(Textures.MultiArmor.Materials.Bronze.tShoesResource);
-            tShoes.registerResource(Textures.MultiArmor.Materials.Alumite.tShoesResource);
-            tShoes.registerResource(Textures.MultiArmor.Materials.Ardite.tShoesResource);
-            tShoes.registerResource(Textures.MultiArmor.Materials.Cobalt.tShoesResource);
-            tShoes.registerResource(Textures.MultiArmor.Materials.Manyullun.tShoesResource);
+            for(IArmorMaterial tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values())
+            {
+                for (MultiLayeredArmor tArmor : MedievalRegistry.getInstance().getAllRegisteredArmors().values())
+                {
+                    MinecraftForge.EVENT_BUS.post(new RegisterMaterialResourceEvent(tMaterial, tArmor));
+                }
+            }
         }
 
         public static void registerUpgradeResources()
@@ -162,50 +132,37 @@ public class ArmoryClientInitializer extends ArmoryInitializer
         
         public static void registerRingResources()
         {
-            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.IronResource);
-            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.ChainResource);
-            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.ObsidianResource);
-            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.BronzeResource);
-            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.AlumiteResource);
-            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.CobaltResource);
-            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.ArditeResource);
-            GeneralRegistry.Items.iMetalRing.registerResource(Textures.Items.ItemRing.ManyullunResource);
+            for (IArmorMaterial tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values())
+            {
+                MinecraftForge.EVENT_BUS.post(new RegisterItemResourcesEvent(tMaterial, GeneralRegistry.Items.iMetalRing));
+            }
+
         }
         
         public static void registerChainResources()
         {
-            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.IronResource);
-            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.ChainResource);
-            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.ObsidianResource);
-            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.BronzeResource);
-            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.AlumiteResource);
-            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.CobaltResource);
-            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.ArditeResource);
-            GeneralRegistry.Items.iMetalChain.registerResource(Textures.Items.ItemChain.ManyullunResource);
+            for (IArmorMaterial tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values())
+            {
+                MinecraftForge.EVENT_BUS.post(new RegisterItemResourcesEvent(tMaterial, GeneralRegistry.Items.iMetalChain));
+            }
+
         }
 
         public static void registerNuggetResources()
         {
-            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.IronResource);
-            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.ChainResource);
-            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.ObsidianResource);
-            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.BronzeResource);
-            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.AlumiteResource);
-            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.CobaltResource);
-            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.ArditeResource);
-            GeneralRegistry.Items.iNugget.registerResource(Textures.Items.ItemNugget.ManyullunResource);
+            for (IArmorMaterial tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values())
+            {
+                MinecraftForge.EVENT_BUS.post(new RegisterItemResourcesEvent(tMaterial, GeneralRegistry.Items.iNugget));
+            }
+
         }
 
         public static void registerPlateResources()
         {
-            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.IronResource);
-            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.ChainResource);
-            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.ObsidianResource);
-            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.BronzeResource);
-            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.AlumiteResource);
-            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.CobaltResource);
-            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.ArditeResource);
-            GeneralRegistry.Items.iPlate.registerResource(Textures.Items.ItemPlate.ManyullunResource);
+            for (IArmorMaterial tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values())
+            {
+                MinecraftForge.EVENT_BUS.post(new RegisterItemResourcesEvent(tMaterial, GeneralRegistry.Items.iPlate));
+            }
         }
         
     }

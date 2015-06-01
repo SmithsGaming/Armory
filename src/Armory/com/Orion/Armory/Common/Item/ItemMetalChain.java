@@ -5,6 +5,7 @@ package com.Orion.Armory.Common.Item;
  *   Created on: 25-9-2014
  */
 
+import com.Orion.Armory.API.Item.IHeatableItem;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;

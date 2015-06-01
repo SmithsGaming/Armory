@@ -33,24 +33,7 @@ public class References
             public class Vanilla
             {
                 public static final String IRON = "Vanilla.Iron";
-                public static final String CHAIN = "Vanilla.Chain";
                 public static final String OBSIDIAN = "Vanilla.Obsidian";
-            }
-
-            public class Common
-            {
-                public static final String BRONZE = "Common.Bronze";
-            }
-
-            public class ModMaterials
-            {
-                public class TinkersConstruct
-                {
-                    public static final String ALUMITE = "TConstruct.Alumite";
-                    public static final String ARDITE = "TConstruct.Ardite";
-                    public static final String COBALT = "TConstruct.Cobalt";
-                    public static final String MANYULLUN = "TConstruct.Manyullun";
-                }
             }
         }
 

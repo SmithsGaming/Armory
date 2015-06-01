@@ -7,8 +7,8 @@ package com.Orion.Armory.Common.Item.Armor.TierMedieval;
 
 import com.Orion.Armory.Client.Models.ModelAExtendedChain;
 import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
-import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
-import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
+import com.Orion.Armory.API.Armor.MLAAddon;
+import com.Orion.Armory.API.Armor.MultiLayeredArmor;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.References;
@@ -96,39 +96,39 @@ public class ArmorMedieval extends MultiLayeredArmor {
 
         if (this.getInternalName().equals(References.InternalNames.Armor.MEDIEVALHELMET)) {
             HashMap<MLAAddon, Integer> tHelmetAddons = new HashMap<MLAAddon, Integer>();
-            tHelmetAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.TOP + "-" + References.InternalNames.Materials.Common.BRONZE), 1);
-            tHelmetAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.RIGHT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT), 1);
-            tHelmetAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.LEFT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT), 1);
+            tHelmetAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.TOP + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
+            tHelmetAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.RIGHT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
+            tHelmetAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.LEFT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
 
-            ItemStack tAddonHelmet = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tHelmetAddons, MedievalRegistry.getInstance().getMaterial(References.InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE).getBaseDurability(this.getInternalName()), References.InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE);
+            ItemStack tAddonHelmet = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tHelmetAddons, MedievalRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getInternalName()), References.InternalNames.Materials.Vanilla.IRON);
 
             pItemStacks.add(tAddonHelmet);
         } else if (this.getInternalName().equals(References.InternalNames.Armor.MEDIEVALCHESTPLATE)) {
             HashMap<MLAAddon, Integer> tChestplateAddons = new HashMap<MLAAddon, Integer>();
-            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.SHOULDERLEFT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE), 1);
-            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.SHOULDERRIGHT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE), 1);
-            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.FRONTLEFT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT), 1);
-            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.FRONTRIGHT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT), 1);
+            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.SHOULDERLEFT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
+            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.SHOULDERRIGHT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
+            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.FRONTLEFT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
+            tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.FRONTRIGHT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
             tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.BACKLEFT + "-" + References.InternalNames.Materials.Vanilla.IRON), 1);
             tChestplateAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.BACKRIGHT + "-" + References.InternalNames.Materials.Vanilla.IRON), 1);
 
-            ItemStack tAddonChestplate = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tChestplateAddons, MedievalRegistry.getInstance().getMaterial(References.InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN).getBaseDurability(this.getInternalName()), References.InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN);
+            ItemStack tAddonChestplate = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tChestplateAddons, MedievalRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getInternalName()), References.InternalNames.Materials.Vanilla.IRON);
 
             pItemStacks.add(tAddonChestplate);
         } else if (this.getInternalName().equals(References.InternalNames.Armor.MEDIEVALLEGGINGS)) {
             HashMap<MLAAddon, Integer> tLeggingAddons = new HashMap<MLAAddon, Integer>();
-            tLeggingAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.FRONTLEFT + "-" + References.InternalNames.Materials.Vanilla.CHAIN), 1);
-            tLeggingAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.FRONTRIGHT + "-" + References.InternalNames.Materials.Vanilla.CHAIN), 1);
-            tLeggingAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.BACKLEFT + "-" + References.InternalNames.Materials.Vanilla.CHAIN), 1);
-            tLeggingAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.BACKRIGHT + "-" + References.InternalNames.Materials.Vanilla.CHAIN), 1);
+            tLeggingAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.FRONTLEFT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
+            tLeggingAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.FRONTRIGHT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
+            tLeggingAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.BACKLEFT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
+            tLeggingAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.BACKRIGHT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
 
-            ItemStack tAddonLeggins = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tLeggingAddons, MedievalRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN).getBaseDurability(this.getInternalName()), References.InternalNames.Materials.Vanilla.OBSIDIAN);
+            ItemStack tAddonLeggins = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tLeggingAddons, MedievalRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getInternalName()), References.InternalNames.Materials.Vanilla.IRON);
 
             pItemStacks.add(tAddonLeggins);
         } else if (this.getInternalName().equals(References.InternalNames.Armor.MEDIEVALSHOES)) {
             HashMap<MLAAddon, Integer> tShoesAddons = new HashMap<MLAAddon, Integer>();
-            tShoesAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Shoes.LEFT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT), 1);
-            tShoesAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Shoes.RIGHT + "-" + References.InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT), 1);
+            tShoesAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Shoes.LEFT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
+            tShoesAddons.put(MedievalRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Shoes.RIGHT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
 
             ItemStack tAddonShoes = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tShoesAddons, MedievalRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getInternalName()), References.InternalNames.Materials.Vanilla.IRON);
 

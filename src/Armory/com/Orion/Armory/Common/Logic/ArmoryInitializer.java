@@ -5,21 +5,18 @@ package com.Orion.Armory.Common.Logic;
  *   Created on: 17-9-2014
  */
 
+import com.Orion.Armory.API.Events.Common.*;
 import com.Orion.Armory.Armory;
 import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Crafting.Anvil.*;
-import com.Orion.Armory.Common.Events.ModifyMaterialEvent;
-import com.Orion.Armory.Common.Events.RegisterArmorEvent;
-import com.Orion.Armory.Common.Events.RegisterMaterialsEvent;
-import com.Orion.Armory.Common.Events.RegisterUpgradesEvent;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Item.*;
-import com.Orion.Armory.Common.Item.Armor.Core.ArmorAddonPosition;
-import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
-import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
+import com.Orion.Armory.API.Armor.ArmorAddonPosition;
+import com.Orion.Armory.API.Armor.MLAAddon;
+import com.Orion.Armory.API.Armor.MultiLayeredArmor;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorUpgradeMedieval;
@@ -40,7 +37,6 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -49,7 +45,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import tconstruct.tools.TinkerTools;
 
 import java.util.HashMap;
 import java.util.ListIterator;
@@ -91,24 +86,12 @@ public class ArmoryInitializer
 
         private static void registerMaterials() {
             ArmorMaterialMedieval tIron = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", EnumChatFormatting.WHITE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.IRON, 1538, 0.225F, new ItemStack(Items.iron_ingot));
-            ArmorMaterialMedieval tChain = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.CHAIN, TranslationKeys.Materials.VisibleNames.Steel, "Steel", EnumChatFormatting.GRAY, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.CHAIN, 1148, 0.25F, new ItemStack(TinkerTools.materials, 1, 16));
             ArmorMaterialMedieval tObsidian = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", EnumChatFormatting.DARK_PURPLE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.OBSIDIAN, 998, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
-            ArmorMaterialMedieval tAlumite = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE, TranslationKeys.Materials.VisibleNames.Alumite, "Alumite", EnumChatFormatting.RED, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.ALUMITE, 1023, 0.2F, new ItemStack(TinkerTools.materials, 1, 15));
-            ArmorMaterialMedieval tArdite = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE, TranslationKeys.Materials.VisibleNames.Ardite, "Ardite", EnumChatFormatting.DARK_RED, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.ARDITE, 1752, 0.4F, new ItemStack(TinkerTools.materials, 1, 4));
-            ArmorMaterialMedieval tCobalt = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT, TranslationKeys.Materials.VisibleNames.Cobalt, "Cobalt", EnumChatFormatting.BLUE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.COBALT, 1635, 0.3F, new ItemStack(TinkerTools.materials, 1, 3));
-            ArmorMaterialMedieval tManyullun = new ArmorMaterialMedieval(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN, TranslationKeys.Materials.VisibleNames.Manyullun, "Manyullyn", EnumChatFormatting.LIGHT_PURPLE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.MANYULLUN, 2963, 0.489F, new ItemStack(TinkerTools.materials, 1, 5));
-            ArmorMaterialMedieval tBronze = new ArmorMaterialMedieval(InternalNames.Materials.Common.BRONZE, TranslationKeys.Materials.VisibleNames.Bronze, "Bronze", EnumChatFormatting.GOLD, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.BRONZE, 950, 0.186F, new ItemStack(TinkerTools.materials, 1, 13));
 
             MedievalRegistry.getInstance().registerMaterial(tIron);
-            MedievalRegistry.getInstance().registerMaterial(tChain);
             MedievalRegistry.getInstance().registerMaterial(tObsidian);
-            MedievalRegistry.getInstance().registerMaterial(tAlumite);
-            MedievalRegistry.getInstance().registerMaterial(tArdite);
-            MedievalRegistry.getInstance().registerMaterial(tCobalt);
-            MedievalRegistry.getInstance().registerMaterial(tManyullun);
-            MedievalRegistry.getInstance().registerMaterial(tBronze);
 
-            MinecraftForge.EVENT_BUS.register(new RegisterMaterialsEvent());
+            MinecraftForge.EVENT_BUS.post(new RegisterMaterialsEvent());
         }
 
         private static void registerAddonPositions() {
@@ -183,11 +166,15 @@ public class ArmoryInitializer
                 ArmorUpgradeMedieval tTopHead = new ArmorUpgradeMedieval(InternalNames.Upgrades.Helmet.TOP, InternalNames.Armor.MEDIEVALHELMET, InternalNames.AddonPositions.Helmet.TOP, tMaterial.iInternalName, "Head protection", "", 2.5F, 60, 1);
                 MedievalRegistry.getInstance().registerUpgrade(tTopHead);
 
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.TOP, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tTopHead)));
+
+                /*
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.TOP, false);
                 } else {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.TOP, true);
                 }
+                */
             }
         }
 
@@ -198,6 +185,10 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tEarProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tEarProtectionRight);
 
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.LEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tEarProtectionLeft)));
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.RIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tEarProtectionRight)));
+
+                /*
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.LEFT, false);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.RIGHT, false);
@@ -205,6 +196,7 @@ public class ArmoryInitializer
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.LEFT, true);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.RIGHT, true);
                 }
+                */
             }
         }
 
@@ -215,6 +207,10 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tShoulderPadLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tShoulderPadRight);
 
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERLEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tShoulderPadLeft)));
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tShoulderPadRight)));
+
+                /*
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT) || tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERLEFT, false);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT, false);
@@ -222,6 +218,7 @@ public class ArmoryInitializer
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERLEFT, true);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT, true);
                 }
+                */
             }
         }
 
@@ -232,6 +229,10 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tFrontChestProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tFrontChestProtectionRight);
 
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTLEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tFrontChestProtectionLeft)));
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTRIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tFrontChestProtectionRight)));
+
+                /*
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTLEFT, false);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTRIGHT, false);
@@ -239,6 +240,7 @@ public class ArmoryInitializer
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTLEFT, true);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTRIGHT, true);
                 }
+                */
             }
         }
 
@@ -249,6 +251,10 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tBackChestProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tBackChestProtectionRight);
 
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKLEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tBackChestProtectionLeft)));
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKRIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tBackChestProtectionRight)));
+
+                /*
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKLEFT, false);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKRIGHT, false);
@@ -256,6 +262,7 @@ public class ArmoryInitializer
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKLEFT, true);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKRIGHT, true);
                 }
+                */
             }
         }
 
@@ -266,6 +273,10 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tFrontLeggingsProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tFrontLeggingsProtectionRight);
 
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTLEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tFrontLeggingsProtectionLeft)));
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTRIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tFrontLeggingsProtectionRight)));
+
+                /*
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTLEFT, false);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTRIGHT, false);
@@ -273,6 +284,7 @@ public class ArmoryInitializer
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTLEFT, true);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTRIGHT, true);
                 }
+                */
             }
         }
 
@@ -283,6 +295,10 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tBackLeggingsProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tBackLeggingsProtectionRight);
 
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKLEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tBackLeggingsProtectionLeft)));
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKRIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tBackLeggingsProtectionRight)));
+
+                /*
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKLEFT, false);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKRIGHT, false);
@@ -290,6 +306,7 @@ public class ArmoryInitializer
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKLEFT, true);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKRIGHT, true);
                 }
+                */
             }
         }
 
@@ -300,6 +317,10 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tShoeProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tShoeProtectionRight);
 
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.LEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tShoeProtectionLeft)));
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.RIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tShoeProtectionRight)));
+
+                /*
                 if ((tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE)) || (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT)) || tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.LEFT, false);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.RIGHT, false);
@@ -307,6 +328,7 @@ public class ArmoryInitializer
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.LEFT, true);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.RIGHT, true);
                 }
+                */
             }
         }
 
@@ -323,36 +345,12 @@ public class ArmoryInitializer
                     tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALHELMET, 1.5F);
                     tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALHELMET, 50);
                     tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALHELMET, 1);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.CHAIN)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALHELMET, 2.0F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALHELMET, 60);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALHELMET, 1);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALHELMET, 2.0F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALHELMET, 100);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALHELMET, 2);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Common.BRONZE)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALHELMET, 1.0F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALHELMET, 100);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALHELMET, 0);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALHELMET, 2.5F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALHELMET, 100);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALHELMET, 2);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALHELMET, 3F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALHELMET, 140);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALHELMET, 2);
                 } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALHELMET, 3F);
                     tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALHELMET, 200);
                     tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALHELMET, 2);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALHELMET, 3.5F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALHELMET, 250);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALHELMET, 3);
                 } else {
-                    MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(InternalNames.Armor.MEDIEVALHELMET, tMaterial.iInternalName));
+                    MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(tMaterial, MedievalRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALHELMET)));
                 }
             }
 
@@ -364,36 +362,12 @@ public class ArmoryInitializer
                     tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALCHESTPLATE, 2.0F);
                     tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALCHESTPLATE, 50);
                     tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALCHESTPLATE, 1);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.CHAIN)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALCHESTPLATE, 2.5F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALCHESTPLATE, 60);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALCHESTPLATE, 1);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALCHESTPLATE, 2.5F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALCHESTPLATE, 100);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALCHESTPLATE, 2);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Common.BRONZE)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALCHESTPLATE, 1.5F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALCHESTPLATE, 100);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALCHESTPLATE, 0);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALCHESTPLATE, 3.0F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALCHESTPLATE, 100);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALCHESTPLATE, 2);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALCHESTPLATE, 3.5F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALCHESTPLATE, 140);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALCHESTPLATE, 2);
                 } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALCHESTPLATE, 3.5F);
                     tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALCHESTPLATE, 200);
                     tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALCHESTPLATE, 2);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALCHESTPLATE, 4.0F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALCHESTPLATE, 250);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALCHESTPLATE, 3);
                 } else {
-                    MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(InternalNames.Armor.MEDIEVALCHESTPLATE, tMaterial.iInternalName));
+                    MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(tMaterial, MedievalRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALCHESTPLATE)));
                 }
             }
         }
@@ -404,36 +378,12 @@ public class ArmoryInitializer
                     tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALLEGGINGS, 1.5F);
                     tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALLEGGINGS, 50);
                     tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALLEGGINGS, 1);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.CHAIN)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALLEGGINGS, 2.0F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALLEGGINGS, 60);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALLEGGINGS, 1);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALLEGGINGS, 2.0F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALLEGGINGS, 100);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALLEGGINGS, 2);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Common.BRONZE)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALLEGGINGS, 1.0F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALLEGGINGS, 100);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALLEGGINGS, 0);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALLEGGINGS, 2.5F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALLEGGINGS, 100);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALLEGGINGS, 2);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALLEGGINGS, 3F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALLEGGINGS, 140);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALLEGGINGS, 2);
                 } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALLEGGINGS, 3F);
                     tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALLEGGINGS, 200);
                     tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALLEGGINGS, 2);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALLEGGINGS, 3.5F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALLEGGINGS, 250);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALLEGGINGS, 3);
                 } else {
-                    MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(InternalNames.Armor.MEDIEVALLEGGINGS, tMaterial.iInternalName));
+                    MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(tMaterial, MedievalRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALLEGGINGS)));
                 }
             }
         }
@@ -444,36 +394,12 @@ public class ArmoryInitializer
                     tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALSHOES, 1.0F);
                     tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALSHOES, 50);
                     tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALSHOES, 1);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.CHAIN)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALSHOES, 1.5F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALSHOES, 60);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALSHOES, 1);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.ALUMITE)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALSHOES, 1.5F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALSHOES, 100);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALSHOES, 2);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Common.BRONZE)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALSHOES, 0.5F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALSHOES, 100);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALSHOES, 0);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALSHOES, 2.0F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALSHOES, 100);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALSHOES, 2);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALSHOES, 2.5F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALSHOES, 140);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALSHOES, 2);
                 } else if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALSHOES, 2.5F);
                     tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALSHOES, 200);
                     tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALSHOES, 2);
-                } else if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN)) {
-                    tMaterial.setBaseDamageAbsorption(InternalNames.Armor.MEDIEVALSHOES, 3.0F);
-                    tMaterial.setBaseDurability(InternalNames.Armor.MEDIEVALSHOES, 250);
-                    tMaterial.setMaxModifiersOnPart(InternalNames.Armor.MEDIEVALSHOES, 3);
                 } else {
-                    MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(InternalNames.Armor.MEDIEVALSHOES, tMaterial.iInternalName));
+                    MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(tMaterial, MedievalRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALSHOES)));
                 }
             }
         }
@@ -1029,7 +955,7 @@ public class ArmoryInitializer
         public static void initializeUpgradeRecipeSystem() {
             initializeUpgradeHelmetRecipeSystem();
             initializeUpgradeChestPlateRecipeSystem();
-            initializeUpgradeLegginsRecipeSystem();
+            initializeUpgradeLeggingsRecipeSystem();
             initializeUpgradeShoesRecipeSystem();
         }
 
@@ -1207,7 +1133,7 @@ public class ArmoryInitializer
             }
         }
 
-        public static void initializeUpgradeLegginsRecipeSystem() {
+        public static void initializeUpgradeLeggingsRecipeSystem() {
             for(ArmorMaterialMedieval tArmorMaterial : MedievalRegistry.getInstance().getArmorMaterials().values())
             {
                 for (ArmorMaterialMedieval tUpgradeMaterial : MedievalRegistry.getInstance().getArmorMaterials().values()) {

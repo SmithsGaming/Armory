@@ -1,12 +1,10 @@
 package com.Orion.Armory.Network.Messages;
 
 import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
-import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.item.ItemStack;
-import tconstruct.mechworks.logic.TileEntityLandmine;
 
 /**
  * Created by Orion

@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.Item.Armor.Core;
+package com.Orion.Armory.API.Armor;
 /*
 *   MultiLayeredArmor
 *   Created by: Orion
@@ -18,7 +18,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.util.Constants;
-import scala.tools.nsc.typechecker.Implicits;
 
 import java.util.ArrayList;
 import java.util.HashMap;

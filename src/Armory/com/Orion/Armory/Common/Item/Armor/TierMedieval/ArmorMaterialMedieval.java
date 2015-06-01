@@ -6,18 +6,20 @@ package com.Orion.Armory.Common.Item.Armor.TierMedieval;
 */
 
 
+import com.Orion.Armory.API.Armor.IArmorMaterial;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.Client.Color;
 import com.Orion.Armory.Util.Client.Colors;
+import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
 import java.security.InvalidParameterException;
 import java.util.HashMap;
 
-public class ArmorMaterialMedieval
+public class ArmorMaterialMedieval implements IArmorMaterial
 {
     public String iOreDicName;
     public String iInternalName;
@@ -50,6 +52,11 @@ public class ArmorMaterialMedieval
             GeneralRegistry.getInstance().setHeatCoefficient(pInternalName, pHeatCoefficient);
             HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
         }
+    }
+
+    @Override
+    public String getInternalMaterialName() {
+        return iInternalName;
     }
 
     public void registerNewActivePart(String pUpgradeInternalName, boolean pPartState)
@@ -99,6 +106,11 @@ public class ArmorMaterialMedieval
     }
 
     public int getMaxModifiersOnPart(String pTargetArmorInternalName) { return iPartModifiers.get(pTargetArmorInternalName);}
+
+    @Override
+    public String getType() {
+        return References.InternalNames.Tiers.MEDIEVAL;
+    }
 
     public void setColor(Color pColor)
     {

@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.Events;
+package com.Orion.Armory.API.Events.Common;
 /*
 *   RegisterMaterialsEvent (This event is used to notify other mods of moment to register their materials.)
 *   Created by: Orion

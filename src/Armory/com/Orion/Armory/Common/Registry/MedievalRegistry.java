@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.Registry;
  *   Created on: 24-9-2014
  */
 
-import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
+import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorUpgradeMedieval;

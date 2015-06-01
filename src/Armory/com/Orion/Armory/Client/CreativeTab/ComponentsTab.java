@@ -24,7 +24,7 @@ public class ComponentsTab extends CreativeTabs{
         {
             iItemStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1);
             NBTTagCompound tStackCompound = new NBTTagCompound();
-            tStackCompound.setString(References.NBTTagCompoundData.Material, References.InternalNames.Materials.Common.BRONZE);
+            tStackCompound.setString(References.NBTTagCompoundData.Material, References.InternalNames.Materials.Vanilla.OBSIDIAN);
 
             iItemStack.setTagCompound(tStackCompound);
         }

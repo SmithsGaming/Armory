@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.Item;
+package com.Orion.Armory.API.Item;
 
 /**
  * Created by Orion
@@ -7,7 +7,7 @@ package com.Orion.Armory.Common.Item;
  * <p/>
  * Copyrighted according to Project specific license
  */
-public interface IHeatableItem
+public interface IHeatableItem extends IResourceContainer
 {
     String getInternalType();
 }

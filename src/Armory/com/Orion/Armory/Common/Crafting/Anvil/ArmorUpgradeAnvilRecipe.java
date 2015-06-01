@@ -1,23 +1,19 @@
 package com.Orion.Armory.Common.Crafting.Anvil;
 
 import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
-import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
-import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
+import com.Orion.Armory.API.Armor.MLAAddon;
+import com.Orion.Armory.API.Armor.MultiLayeredArmor;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
 import com.Orion.Armory.Util.Armor.NBTHelper;
-import com.Orion.Armory.Util.Core.ItemStackHelper;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.AnvilUpdateEvent;
-import scala.actors.threadpool.Arrays;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * Created by Orion

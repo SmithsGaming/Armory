@@ -1,9 +1,6 @@
 package com.Orion.Armory.Client.CreativeTab;
 
-import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
-import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
-import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -11,8 +8,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
-import java.util.HashMap;
 
 /**
  * Created by Orion

@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.Events;
+package com.Orion.Armory.API.Events.Common;
 /*
 *   RegisterUpgradesEvent
 *   Created by: Orion

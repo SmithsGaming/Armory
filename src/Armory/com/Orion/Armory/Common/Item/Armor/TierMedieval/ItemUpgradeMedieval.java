@@ -1,7 +1,6 @@
 package com.Orion.Armory.Common.Item.Armor.TierMedieval;
 
-import com.Orion.Armory.Common.Factory.HeatedItemFactory;
-import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
+import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.Client.CustomResource;

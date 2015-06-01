@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.Factory;
 /  Created on : 03/10/2014
 */
 
-import com.Orion.Armory.Common.Item.IHeatableItem;
+import com.Orion.Armory.API.Item.IHeatableItem;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Core.ItemStackHelper;

@@ -5,8 +5,8 @@ package com.Orion.Armory.Common.Factory;
 /  Created on : 04/07/2014
 */
 
-import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
-import com.Orion.Armory.Common.Item.Armor.Core.MultiLayeredArmor;
+import com.Orion.Armory.API.Armor.MLAAddon;
+import com.Orion.Armory.API.Armor.MultiLayeredArmor;
 import com.Orion.Armory.Util.Armor.NBTHelper;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemStack;

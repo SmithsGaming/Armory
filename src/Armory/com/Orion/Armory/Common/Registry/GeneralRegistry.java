@@ -12,7 +12,7 @@ import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Item.*;
-import com.Orion.Armory.Common.Item.Armor.Core.MLAAddon;
+import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ItemUpgradeMedieval;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemArmor;
