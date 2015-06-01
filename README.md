@@ -29,5 +29,5 @@ Installation
       1. set ~/resources as 'Resources Root'
       2. set ~/src/api as 'Sources Root'
       3. Open the module settings and go to Module Dependencies
-      4) Remove the extract options from all of ChickenBones mod: (CCC CCL NEI)
-      5) Set teh Scope off al of ChickenBones mods to provided.
+      4. Remove the extract options from all of ChickenBones mod: (CCC CCL NEI)
+      5. Set the Scope off al of ChickenBones mods to provided.
