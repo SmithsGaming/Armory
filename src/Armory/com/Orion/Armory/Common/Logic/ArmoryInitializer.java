@@ -166,15 +166,13 @@ public class ArmoryInitializer
                 ArmorUpgradeMedieval tTopHead = new ArmorUpgradeMedieval(InternalNames.Upgrades.Helmet.TOP, InternalNames.Armor.MEDIEVALHELMET, InternalNames.AddonPositions.Helmet.TOP, tMaterial.iInternalName, "Head protection", "", 2.5F, 60, 1);
                 MedievalRegistry.getInstance().registerUpgrade(tTopHead);
 
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.TOP, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tTopHead)));
-
-                /*
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.TOP, false);
-                } else {
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.TOP, true);
                 }
-                */
+                else
+                {
+                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.TOP, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tTopHead)));
+                }
             }
         }
 
@@ -185,18 +183,8 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tEarProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tEarProtectionRight);
 
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.LEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tEarProtectionLeft)));
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.RIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tEarProtectionRight)));
-
-                /*
-                if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN)) {
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.LEFT, false);
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.RIGHT, false);
-                } else {
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.LEFT, true);
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.RIGHT, true);
-                }
-                */
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.LEFT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tEarProtectionLeft)));
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Helmet.RIGHT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tEarProtectionRight)));
             }
         }
 
@@ -207,18 +195,8 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tShoulderPadLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tShoulderPadRight);
 
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERLEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tShoulderPadLeft)));
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tShoulderPadRight)));
-
-                /*
-                if (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT) || tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN)) {
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERLEFT, false);
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT, false);
-                } else {
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERLEFT, true);
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT, true);
-                }
-                */
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERLEFT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tShoulderPadLeft)));
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tShoulderPadRight)));
             }
         }
 
@@ -229,18 +207,15 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tFrontChestProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tFrontChestProtectionRight);
 
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTLEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tFrontChestProtectionLeft)));
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTRIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tFrontChestProtectionRight)));
-
-                /*
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTLEFT, false);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTRIGHT, false);
-                } else {
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTLEFT, true);
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTRIGHT, true);
                 }
-                */
+                else
+                {
+                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTLEFT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tFrontChestProtectionLeft)));
+                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.FRONTRIGHT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tFrontChestProtectionRight)));
+                }
             }
         }
 
@@ -251,18 +226,15 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tBackChestProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tBackChestProtectionRight);
 
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKLEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tBackChestProtectionLeft)));
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKRIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tBackChestProtectionRight)));
-
-                /*
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKLEFT, false);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKRIGHT, false);
-                } else {
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKLEFT, true);
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKRIGHT, true);
                 }
-                */
+                else
+                {
+                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKLEFT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tBackChestProtectionLeft)));
+                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Chestplate.BACKRIGHT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tBackChestProtectionRight)));
+                }
             }
         }
 
@@ -273,18 +245,14 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tFrontLeggingsProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tFrontLeggingsProtectionRight);
 
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTLEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tFrontLeggingsProtectionLeft)));
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTRIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tFrontLeggingsProtectionRight)));
-
-                /*
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTLEFT, false);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTRIGHT, false);
-                } else {
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTLEFT, true);
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTRIGHT, true);
                 }
-                */
+                else {
+                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTLEFT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tFrontLeggingsProtectionLeft)));
+                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.FRONTRIGHT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tFrontLeggingsProtectionRight)));
+                }
             }
         }
 
@@ -295,18 +263,15 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tBackLeggingsProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tBackLeggingsProtectionRight);
 
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKLEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tBackLeggingsProtectionLeft)));
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKRIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tBackLeggingsProtectionRight)));
-
-                /*
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKLEFT, false);
                     tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKRIGHT, false);
-                } else {
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKLEFT, true);
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKRIGHT, true);
                 }
-                */
+                else
+                {
+                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKLEFT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tBackLeggingsProtectionLeft)));
+                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Leggings.BACKRIGHT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tBackLeggingsProtectionRight)));
+                }
             }
         }
 
@@ -317,18 +282,8 @@ public class ArmoryInitializer
                 MedievalRegistry.getInstance().registerUpgrade(tShoeProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tShoeProtectionRight);
 
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.LEFT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tShoeProtectionLeft)));
-                tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.RIGHT, MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tShoeProtectionRight)));
-
-                /*
-                if ((tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.ARDITE)) || (tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.COBALT)) || tMaterial.iInternalName.equals(InternalNames.Materials.ModMaterials.TinkersConstruct.MANYULLUN)) {
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.LEFT, false);
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.RIGHT, false);
-                } else {
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.LEFT, true);
-                    tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.RIGHT, true);
-                }
-                */
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.LEFT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tShoeProtectionLeft)));
+                tMaterial.registerNewActivePart(InternalNames.Upgrades.Shoes.RIGHT, !MinecraftForge.EVENT_BUS.post(new ActivateArmorAddonEvent(tMaterial, tShoeProtectionRight)));
             }
         }
 

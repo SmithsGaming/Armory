@@ -8,6 +8,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 
 /**
  * Created by Orion
@@ -23,7 +24,7 @@ public class MessageHandlerTileEntityFirePit extends MessageHandlerTileEntityArm
         super.onMessage(message, ctx);
 
         TileEntity tEntity = FMLClientHandler.instance().getClient().theWorld.getTileEntity(message.xCoord, message.yCoord, message.zCoord);
-        if (tEntity instanceof TileEntityArmory)
+        if (tEntity instanceof TileEntityFirePit)
         {
             ((TileEntityFirePit) tEntity).iIngotStacks = message.iIngotStacks;
             ((TileEntityFirePit) tEntity).iFuelStacks = message.iFuelStacks;
@@ -33,8 +34,6 @@ public class MessageHandlerTileEntityFirePit extends MessageHandlerTileEntityArm
             ((TileEntityFirePit) tEntity).iCurrentTemperature = message.iCurrentTemperature;
             ((TileEntityFirePit) tEntity).iLastAddedHeat = message.iLastAddedHeat;
             ((TileEntityFirePit) tEntity).iIsBurning = message.iIsBurning;
-
-            FMLClientHandler.instance().getClient().theWorld.setTileEntity(message.xCoord, message.yCoord, message.zCoord, tEntity);
         }
 
         return null;

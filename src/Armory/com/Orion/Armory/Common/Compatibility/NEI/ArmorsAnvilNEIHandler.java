@@ -159,10 +159,10 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
                 tAdditionalCraftingInput[tComponentIndex] = tComponent.getComponentTargetStack();
             }
 
-
-            if (tOriginalRecipe.getResult(tCraftingInput, tAdditionalCraftingInput).getItem() instanceof ItemHeatedItem)
+            ItemStack tResultStack = tOriginalRecipe.getResult(tCraftingInput, tAdditionalCraftingInput);
+            if (tResultStack.getItem() instanceof ItemHeatedItem)
             {
-                if (ItemHeatedItem.areStacksEqualExceptTemp(tOriginalRecipe.getResult(tCraftingInput, tAdditionalCraftingInput), result))
+                if (ItemHeatedItem.areStacksEqualExceptTemp(tResultStack, result))
                 {
                     arecipes.add(new CachedAnvilRecipe(tOriginalRecipe));
                     return;
@@ -170,7 +170,7 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
             }
             else
             {
-                if (ItemStackHelper.equalsIgnoreStackSize(tOriginalRecipe.getResult(tCraftingInput, tAdditionalCraftingInput), result))
+                if (ItemStackHelper.equalsIgnoreStackSize(tResultStack, result))
                 {
                     arecipes.add(new CachedAnvilRecipe(tOriginalRecipe));
                     return;

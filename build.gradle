@@ -87,7 +87,7 @@ idea {
 
 //Sets up the currect versions for minecraft and Forge
 minecraft {
-    version = config.minecraft_version.toString() + "-" + config.forge_version
+    version = config.forge_version.toString() + "-" + config.minecraft_version
     runDir = "run/assets"
 
     //Replacing stuff inside the code:
@@ -98,8 +98,9 @@ minecraft {
 //Tells gradle which dependencies are needed for gradle and project
 dependencies {
     //Mod dependencies
-    compile "mantle:Mantle:${config.minecraft_version}-${config.mantle_version}:deobf"
-    compile "tconstruct:TConstruct:${config.minecraft_version}-${config.tconstruct_version}:deobf"
+    compile "codechicken:CodeChickenLib:${config.minecraft_version}-${config.CCLIB_version}:dev"
+    compile "codechicken:CodeChickenCore:${config.minecraft_version}-${config.ccc_version}:dev"
+    compile "codechicken:NotEnoughItems:${config.minecraft_version}-${config.NEI_version}:dev"
 
     //Maven uploader
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'

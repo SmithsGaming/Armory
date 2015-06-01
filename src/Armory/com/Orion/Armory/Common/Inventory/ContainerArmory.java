@@ -104,4 +104,31 @@ public abstract class ContainerArmory extends Container
     {
         return;
     }
+
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotIndex) {
+        ItemStack newItemStack = null;
+        Slot slot = (Slot) inventorySlots.get(slotIndex);
+        if (slot != null && slot.getHasStack()) {
+            ItemStack itemStack = slot.getStack();
+            newItemStack = itemStack.copy();
+
+            if (slotIndex < getInventory().size()) {
+                if (!this.mergeItemStack(itemStack, getInventory().size(), inventorySlots.size(), false)) {
+                    return null;
+                }
+            } else if (!this.mergeItemStack(itemStack, 0, getInventory().size(), false)) {
+                return null;
+            }
+
+            if (itemStack.stackSize == 0) {
+                slot.putStack(null);
+            } else {
+                slot.onSlotChanged();
+            }
+        }
+
+        return newItemStack;
+    }
+
 }

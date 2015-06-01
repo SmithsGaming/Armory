@@ -572,9 +572,6 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     public AnvilState getCurrentState()
     {
-        return AnvilState.Standard;
-
-        /*
         boolean tFoundCoolingBasin = false;
         boolean tFoundHelperRack = false;
         if (iCurrentDirection == ForgeDirection.NORTH || iCurrentDirection == ForgeDirection.SOUTH)
@@ -645,7 +642,6 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             return AnvilState.Extended;
 
         return AnvilState.Standard;
-        */
     }
 
     public TileEntityCoolingBasin getCoolingBasin()
