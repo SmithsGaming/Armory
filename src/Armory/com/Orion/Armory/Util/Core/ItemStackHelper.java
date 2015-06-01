@@ -11,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import java.util.Comparator;
 
 public class ItemStackHelper
+
+
 {
     public static ItemStack cloneItemStack(ItemStack pItemStack, int pStackSize)
     {
@@ -62,31 +64,27 @@ public class ItemStackHelper
         return (iComparator.compare(pItemStack1, pItemStack2) == 0);
     }
 
-    public static boolean equalsIgnoreStackSize(ItemStack pItemStack1, ItemStack pItemStack2)
-    {
-        if (pItemStack1 != null && pItemStack2 != null)
-        {
+    public static boolean equalsIgnoreStackSize(ItemStack itemStack1, ItemStack itemStack2) {
+        if (itemStack1 != null && itemStack2 != null) {
             // Sort on itemID
-            if (Item.getIdFromItem(pItemStack1.getItem()) - Item.getIdFromItem(pItemStack2.getItem()) == 0)
-            {
+            if (Item.getIdFromItem(itemStack1.getItem()) - Item.getIdFromItem(itemStack2.getItem()) == 0) {
                 // Sort on item
-                if (pItemStack1.getItem() == pItemStack2.getItem())
-                {
+                if (itemStack1.getItem() == itemStack2.getItem()) {
                     // Then sort on meta
-                    if (pItemStack1.getItemDamage() == pItemStack2.getItemDamage())
-                    {
+                    if (itemStack1.getItemDamage() == itemStack2.getItemDamage()) {
                         // Then sort on NBT
-                        if (pItemStack1.hasTagCompound() && pItemStack2.hasTagCompound())
-                        {
+                        if (itemStack1.hasTagCompound() && itemStack2.hasTagCompound()) {
                             // Then sort on stack size
-                            if (ItemStack.areItemStackTagsEqual(pItemStack1, pItemStack2)) { return true; }
+                            if (ItemStack.areItemStackTagsEqual(itemStack1, itemStack2)) {
+                                return true;
+                            }
+                        } else {
+                            return true;
                         }
-                        else { return true; }
                     }
                 }
             }
         }
-
         return false;
     }
 
@@ -104,5 +102,4 @@ public class ItemStackHelper
 
         return "null";
     }
-
 }
