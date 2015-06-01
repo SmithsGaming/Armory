@@ -12,123 +12,85 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public abstract class ContainerArmory extends Container
-{
+public abstract class ContainerArmory extends Container {
     protected final int PLAYER_INVENTORY_ROWS = 3;
     protected final int PLAYER_INVENTORY_COLUMNS = 9;
+    protected int modSlots;
 
     public TileEntityArmory iTargetTE;
 
-    ContainerArmory(TileEntityArmory pTargetTE)
-    {
-         iTargetTE = pTargetTE;
+    ContainerArmory (TileEntityArmory pTargetTE, int modSlots) {
+        iTargetTE = pTargetTE;
+        this.modSlots = modSlots;
     }
 
     @Override
-    public boolean canInteractWith(EntityPlayer pPlayer) {
+    public boolean canInteractWith (EntityPlayer pPlayer) {
         return true;
     }
 
     @Override
-    protected boolean mergeItemStack(ItemStack pItemStack, int pSlotMin, int pSlotMax, boolean pAscending)
-    {
-        boolean tSlotFound = false;
-        int tCurrentSlotIndex = pAscending ? pSlotMax - 1 : pSlotMin;
+    protected boolean mergeItemStack (ItemStack itemStack, int slotMin, int slotMax, boolean ascending) {
+        boolean slotFound = false;
+        int currentSlotIndex = ascending ? slotMax - 1 : slotMin;
 
-        Slot tSlot;
-        ItemStack tSlotInStack;
+        Slot slot;
+        ItemStack stackInSlot;
 
-        if (pItemStack.isStackable())
-        {
-            while (pItemStack.stackSize > 0 && (!pAscending && tCurrentSlotIndex < pSlotMax || pAscending && tCurrentSlotIndex >= pSlotMin))
-            {
-                tSlot = (Slot) this.inventorySlots.get(tCurrentSlotIndex);
-                tSlotInStack = tSlot.getStack();
+        if (itemStack.isStackable()) {
+            while (itemStack.stackSize > 0 && (!ascending && currentSlotIndex < slotMax || ascending && currentSlotIndex >= slotMin)) {
+                slot = (Slot) this.inventorySlots.get(currentSlotIndex);
+                stackInSlot = slot.getStack();
 
-                if (tSlot.isItemValid(pItemStack) && ItemStackHelper.equalsIgnoreStackSize(pItemStack, tSlotInStack))
-                {
-                    int combinedStackSize = tSlotInStack.stackSize + pItemStack.stackSize;
-                    int slotStackSizeLimit = Math.min(tSlotInStack.getMaxStackSize(), tSlot.getSlotStackLimit());
+                if (slot.isItemValid(itemStack) && ItemStackHelper.equalsIgnoreStackSize(itemStack, stackInSlot)) {
+                    int combinedStackSize = stackInSlot.stackSize + itemStack.stackSize;
+                    int slotStackSizeLimit = Math.min(stackInSlot.getMaxStackSize(), slot.getSlotStackLimit());
 
-                    if (combinedStackSize <= slotStackSizeLimit)
-                    {
-                        pItemStack.stackSize = 0;
-                        tSlotInStack.stackSize = combinedStackSize;
-                        tSlot.onSlotChanged();
-                        tSlotFound = true;
-                    }
-                    else if (tSlotInStack.stackSize < slotStackSizeLimit)
-                    {
-                        pItemStack.stackSize -= slotStackSizeLimit - tSlotInStack.stackSize;
-                        tSlotInStack.stackSize = slotStackSizeLimit;
-                        tSlot.onSlotChanged();
-                        tSlotFound = true;
+                    if (combinedStackSize <= slotStackSizeLimit) {
+                        itemStack.stackSize = 0;
+                        stackInSlot.stackSize = combinedStackSize;
+                        slot.onSlotChanged();
+                        slotFound = true;
+                    } else if (stackInSlot.stackSize < slotStackSizeLimit) {
+                        itemStack.stackSize -= slotStackSizeLimit - stackInSlot.stackSize;
+                        stackInSlot.stackSize = slotStackSizeLimit;
+                        slot.onSlotChanged();
+                        slotFound = true;
                     }
                 }
 
-                tCurrentSlotIndex += pAscending ? -1 : 1;
+                currentSlotIndex += ascending ? -1 : 1;
             }
         }
 
-        if (pItemStack.stackSize > 0)
-        {
-            tCurrentSlotIndex = pAscending ? pSlotMax - 1 : pSlotMin;
+        if (itemStack.stackSize > 0) {
+            currentSlotIndex = ascending ? slotMax - 1 : slotMin;
 
-            while (!pAscending && tCurrentSlotIndex < pSlotMax || pAscending && tCurrentSlotIndex >= pSlotMin)
-            {
-                tSlot = (Slot) this.inventorySlots.get(tCurrentSlotIndex);
-                tSlotInStack = tSlot.getStack();
+            while (!ascending && currentSlotIndex < slotMax || ascending && currentSlotIndex >= slotMin) {
+                slot = (Slot) this.inventorySlots.get(currentSlotIndex);
+                stackInSlot = slot.getStack();
 
-                if (tSlot.isItemValid(pItemStack) && tSlotInStack == null)
-                {
-                    tSlot.putStack(ItemStackHelper.cloneItemStack(pItemStack, Math.min(pItemStack.stackSize, tSlot.getSlotStackLimit())));
-                    tSlot.onSlotChanged();
+                if (slot.isItemValid(itemStack) && stackInSlot == null) {
+                    slot.putStack(ItemStackHelper.cloneItemStack(itemStack, Math.min(itemStack.stackSize, slot.getSlotStackLimit())));
+                    slot.onSlotChanged();
 
-                    if (tSlot.getStack() != null)
-                    {
-                        pItemStack.stackSize -= tSlot.getStack().stackSize;
-                        tSlotFound = true;
+                    if (slot.getStack() != null) {
+                        itemStack.stackSize -= slot.getStack().stackSize;
+                        slotFound = true;
                     }
 
                     break;
                 }
 
-                tCurrentSlotIndex += pAscending ? -1 : 1;
+                currentSlotIndex += ascending ? -1 : 1;
             }
         }
 
-        return tSlotFound;
+        return slotFound;
     }
 
-    public void updateComponentResult(String pComponentID, Object pNewValue)
-    {
+    public void updateComponentResult (String pComponentID, Object pNewValue) {
         return;
-    }
-
-    @Override
-    public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotIndex) {
-        ItemStack newItemStack = null;
-        Slot slot = (Slot) inventorySlots.get(slotIndex);
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemStack = slot.getStack();
-            newItemStack = itemStack.copy();
-
-            if (slotIndex < getInventory().size()) {
-                if (!this.mergeItemStack(itemStack, getInventory().size(), inventorySlots.size(), false)) {
-                    return null;
-                }
-            } else if (!this.mergeItemStack(itemStack, 0, getInventory().size(), false)) {
-                return null;
-            }
-
-            if (itemStack.stackSize == 0) {
-                slot.putStack(null);
-            } else {
-                slot.onSlotChanged();
-            }
-        }
-
-        return newItemStack;
     }
 
 }
