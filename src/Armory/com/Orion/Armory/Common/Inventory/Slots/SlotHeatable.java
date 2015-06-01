@@ -24,4 +24,9 @@ public class SlotHeatable extends Slot
         if (pItemStack.getItem() instanceof ItemHeatedItem) { return true; }
         return HeatedItemFactory.getInstance().isHeatable(pItemStack);
     }
+
+    @Override
+    public int getSlotStackLimit() {
+        return 1;
+    }
 }
