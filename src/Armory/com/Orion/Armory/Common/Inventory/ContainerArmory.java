@@ -15,9 +15,8 @@ import net.minecraft.item.ItemStack;
 public abstract class ContainerArmory extends Container {
     protected final int PLAYER_INVENTORY_ROWS = 3;
     protected final int PLAYER_INVENTORY_COLUMNS = 9;
-    protected int modSlots;
-
     public TileEntityArmory iTargetTE;
+    protected int modSlots;
 
     ContainerArmory (TileEntityArmory pTargetTE, int modSlots) {
         iTargetTE = pTargetTE;
@@ -89,8 +88,8 @@ public abstract class ContainerArmory extends Container {
         return slotFound;
     }
 
-    public void updateComponentResult (String pComponentID, Object pNewValue) {
-        return;
+    public void updateComponentResult(String pComponentID, String pNewValue) {
+        iTargetTE.handleGuiComponentUpdate(pComponentID, pNewValue);
     }
 
 }

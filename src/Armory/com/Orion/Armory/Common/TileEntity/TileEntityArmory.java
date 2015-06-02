@@ -47,14 +47,14 @@ public abstract class TileEntityArmory extends TileEntity
         iCurrentDirection = ForgeDirection.getOrientation(pNewDirection);
     }
 
-    public void setDirection(ForgeDirection pNewDirection)
-    {
-        this.iCurrentDirection = pNewDirection;
-    }
-
     public ForgeDirection getDirection()
     {
         return this.iCurrentDirection;
+    }
+
+    public void setDirection(ForgeDirection pNewDirection)
+    {
+        this.iCurrentDirection = pNewDirection;
     }
 
     public boolean hasCustomName()
@@ -62,17 +62,20 @@ public abstract class TileEntityArmory extends TileEntity
         return iName != null && iName.length() > 0;
     }
 
-    public void setDisplayName(String pName)
-    {
-        this.iName = pName;
-    }
-
     public String getDisplayName()
     {
         return this.iName;
     }
 
+    public void setDisplayName(String pName)
+    {
+        this.iName = pName;
+    }
+
     public abstract float getProgressBarValue(String pProgressBarID);
+
+    public void handleGuiComponentUpdate(String pInputID, String pInput) {
+    }
 
     public Object getGUIComponentRelatedObject(String pComponentID)
     {

@@ -23,7 +23,7 @@ public interface IMLAFactory {
      * @param pData          Extra data for your factory
      * @return An Itemstack containing your now modified armor.
      */
-    public abstract ItemStack buildMLAArmor(MultiLayeredArmor pBaseArmor, ItemStack pBaseItemStack, HashMap<MLAAddon, Integer> pNewAddons, Integer pNewTotalDurability, String iInternalMaterialName, Object... pData);
+    ItemStack buildMLAArmor(MultiLayeredArmor pBaseArmor, ItemStack pBaseItemStack, HashMap<MLAAddon, Integer> pNewAddons, Integer pNewTotalDurability, String iInternalMaterialName, Object... pData);
 
     /**
      * Function used to create a new Armor ItemStack
@@ -33,5 +33,7 @@ public interface IMLAFactory {
      * @param pData      Extra data for your factory
      * @return A new ItemStack with full durability
      */
-    public abstract ItemStack buildNewMLAArmor(MultiLayeredArmor pBaseArmor, HashMap<MLAAddon, Integer> pAddons, Integer pTotalDurability, String iInternalMaterialName, Object... pData);
+    ItemStack buildNewMLAArmor(MultiLayeredArmor pBaseArmor, HashMap<MLAAddon, Integer> pAddons, Integer pTotalDurability, String iInternalMaterialName, Object... pData);
+
+    String getArmorGivenName(ItemStack pStack);
 }

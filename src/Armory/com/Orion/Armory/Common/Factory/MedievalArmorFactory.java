@@ -102,6 +102,11 @@ public class MedievalArmorFactory implements IMLAFactory {
         return tReturnItemStack;
     }
 
+    @Override
+    public String getArmorGivenName(ItemStack pStack) {
+        return null;
+    }
+
     private boolean validateOldAgainstNewAddons(HashMap<MLAAddon, Integer> pOldAddonMap, HashMap<MLAAddon, Integer> pNewAddonMap) {
         boolean tContinueCrafting = true;
         Iterator tInstalledIterator = pOldAddonMap.entrySet().iterator();

@@ -110,7 +110,7 @@ public class ModelAExtendedChain extends ModelBiped
         bipedWaist.rotateAngleX = bipedBody.rotateAngleX;
         bipedWaist.rotateAngleY = bipedBody.rotateAngleY;
 
-        if (this.isSneak)
+        if (par7Entity.isSneaking())
         {
             this.bipedBody.rotateAngleX = 0.5F;
             this.bipedRightArm.rotateAngleX += 0.4F;

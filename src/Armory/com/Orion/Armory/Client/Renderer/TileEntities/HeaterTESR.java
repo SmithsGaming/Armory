@@ -18,10 +18,9 @@ import org.lwjgl.opengl.GL11;
  */
 public class HeaterTESR extends TileEntitySpecialRenderer
 {
+    public final ModelHeater iModel = new ModelHeater();
     protected final ResourceLocation iHeaterTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/HeaterHull.png");
     protected final ResourceLocation iFanTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FanIron.png");
-
-    public final ModelHeater iModel = new ModelHeater();
 
     public HeaterTESR()
     {
@@ -55,9 +54,9 @@ public class HeaterTESR extends TileEntitySpecialRenderer
             float tRotationAngle = 0F;
             if (tIsHelpingAFirePit)
             {
-                if (pEntity.iItemInSlotTicks <= 100)
+                if (pEntity.iItemInSlotTicks <= 200)
                 {
-                    int tTickRotationPerSecond =(int) (720 * (pEntity.iItemInSlotTicks / 100F));
+                    int tTickRotationPerSecond = (int) (720 * (pEntity.iItemInSlotTicks / 200F));
                     int tTickRotation = (int) ((tTickRotationPerSecond / 20F) * pPartialTickTime);
 
                     tRotationAngle = pEntity.iLastRotationAngle + tTickRotation;
@@ -71,7 +70,7 @@ public class HeaterTESR extends TileEntitySpecialRenderer
                 }
                 else
                 {
-                    int tFullSpeedTime = pEntity.iItemInSlotTicks - 100;
+                    int tFullSpeedTime = pEntity.iItemInSlotTicks - 200;
                     int tRotationTick = tFullSpeedTime % 20;
 
                     tRotationAngle = tRotationTick * 36 + pPartialTickTime * 36;

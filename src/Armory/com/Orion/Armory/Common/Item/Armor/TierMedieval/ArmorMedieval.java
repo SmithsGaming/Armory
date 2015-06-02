@@ -5,10 +5,10 @@ package com.Orion.Armory.Common.Item.Armor.TierMedieval;
  *   Created on: 24-9-2014
  */
 
-import com.Orion.Armory.Client.Models.ModelAExtendedChain;
-import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.API.Armor.MultiLayeredArmor;
+import com.Orion.Armory.Client.Models.ModelAExtendedChain;
+import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.References;
@@ -21,6 +21,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.ISpecialArmor;
 
 import java.security.InvalidParameterException;
@@ -189,5 +191,15 @@ public class ArmorMedieval extends MultiLayeredArmor {
         }
 
         super.registerAddon(pNewAddon);
+    }
+
+    @Override
+    public String getItemStackDisplayName(ItemStack pStack) {
+        if (pStack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
+            return pStack.getTagCompound().getString(References.NBTTagCompoundData.CustomName);
+
+        ArmorMaterialMedieval tMaterial = MedievalRegistry.getInstance().getMaterial(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.MaterialID));
+
+        return tMaterial.iVisibleNameColor + StatCollector.translateToLocal(tMaterial.iVisibleName) + " " + EnumChatFormatting.RESET + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name");
     }
 }

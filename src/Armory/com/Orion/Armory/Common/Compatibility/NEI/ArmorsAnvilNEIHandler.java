@@ -2,9 +2,11 @@ package com.Orion.Armory.Common.Compatibility.NEI;
 
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import com.Orion.Armory.API.Item.IHeatableItem;
 import com.Orion.Armory.Client.GUI.GuiArmorsAnvilStandard;
 import com.Orion.Armory.Common.Crafting.Anvil.AnvilRecipe;
 import com.Orion.Armory.Common.Crafting.Anvil.IAnvilRecipeComponent;
+import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
@@ -33,70 +35,6 @@ import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
  */
 public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
 
-    public class CachedAnvilRecipe extends CachedRecipe {
-
-        PositionedStack iOutput;
-        ArrayList<PositionedStack> iInputs = new ArrayList<PositionedStack>();
-
-        public CachedAnvilRecipe(AnvilRecipe pOriginalRecipe) {
-            ItemStack[] tCraftingInput = new ItemStack[TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS];
-            ItemStack[] tAdditionalCraftingInput = new ItemStack[TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS];
-
-            for (int tComponentIndex = 0; tComponentIndex < TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS; tComponentIndex++) {
-                IAnvilRecipeComponent tComponent = pOriginalRecipe.getComponent(tComponentIndex);
-
-                if (tComponent == null)
-                    continue;
-
-                int tXCoord = 10 + ((tComponentIndex % 5) * 18);
-                int tYCoord = 8 + ((tComponentIndex / 5) * 18);
-
-                ItemStack tComponentStack = tComponent.getComponentTargetStack();
-                if (tComponentStack == null)
-                    return;
-
-                iInputs.add(new PositionedStack(tComponentStack, tXCoord, tYCoord));
-                tCraftingInput[tComponentIndex] = tComponent.getComponentTargetStack();
-            }
-
-            if (pOriginalRecipe.iHammerUsage > 0) {
-                iInputs.add(new PositionedStack(new ItemStack(GeneralRegistry.Items.iHammer, 1, 150), 140, 8));
-            }
-
-            if (pOriginalRecipe.iHammerUsage > 0) {
-                iInputs.add(new PositionedStack(new ItemStack(GeneralRegistry.Items.iTongs, 1, 150), 140, 80));
-            }
-
-            for (int tComponentIndex = 0; tComponentIndex < TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS; tComponentIndex++) {
-                IAnvilRecipeComponent tComponent = pOriginalRecipe.getAdditionalComponent(tComponentIndex);
-
-                if (tComponent == null)
-                    continue;
-
-                int tXCoord = 185 + ((tComponentIndex % 3) * 18);
-
-                ItemStack tComponentStack = tComponent.getComponentTargetStack();
-                if (tComponentStack == null)
-                    return;
-
-                iInputs.add(new PositionedStack(tComponentStack, tXCoord, 22));
-                tAdditionalCraftingInput[tComponentIndex] = tComponent.getComponentTargetStack();
-            }
-
-            iOutput = new PositionedStack(pOriginalRecipe.getResult(tCraftingInput, tAdditionalCraftingInput), 140, 44);
-        }
-
-        @Override
-        public List<PositionedStack> getIngredients() {
-            return iInputs;
-        }
-
-        @Override
-        public PositionedStack getResult() {
-            return iOutput;
-        }
-    }
-
     @Override
     public void drawBackground(int recipe) {
         GL11.glPushMatrix();
@@ -107,7 +45,7 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadTransferRects() {
-        transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(149, 32, 16, 16), getRecipeID()));
+        transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(17, 7, 16, 16), getRecipeID()));
     }
 
     @Override
@@ -211,10 +149,17 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
 
             if (tComponentStack.getItem() instanceof ItemHeatedItem)
             {
-                if (ItemHeatedItem.areStacksEqualExceptTemp(tComponent.getComponentTargetStack(), pIngredient))
+                if (pIngredient.getItem() instanceof IHeatableItem) {
+                    if (ItemHeatedItem.areStacksEqualExceptTemp(tComponent.getComponentTargetStack(), HeatedItemFactory.getInstance().convertToHeatedIngot(pIngredient))) {
+                        arecipes.add(new CachedAnvilRecipe(pOriginalRecipe));
+                        return;
+                    }
+                } else if (pIngredient.getItem() instanceof ItemHeatedItem)
                 {
-                    arecipes.add(new CachedAnvilRecipe(pOriginalRecipe));
-                    return;
+                    if (ItemHeatedItem.areStacksEqualExceptTemp(tComponent.getComponentTargetStack(), pIngredient)) {
+                        arecipes.add(new CachedAnvilRecipe(pOriginalRecipe));
+                        return;
+                    }
                 }
             }
             else
@@ -238,6 +183,70 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
                 arecipes.add(new CachedAnvilRecipe(pOriginalRecipe));
                 return;
             }
+        }
+    }
+
+    public class CachedAnvilRecipe extends CachedRecipe {
+
+        PositionedStack iOutput;
+        ArrayList<PositionedStack> iInputs = new ArrayList<PositionedStack>();
+
+        public CachedAnvilRecipe(AnvilRecipe pOriginalRecipe) {
+            ItemStack[] tCraftingInput = new ItemStack[TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS];
+            ItemStack[] tAdditionalCraftingInput = new ItemStack[TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS];
+
+            for (int tComponentIndex = 0; tComponentIndex < TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS; tComponentIndex++) {
+                IAnvilRecipeComponent tComponent = pOriginalRecipe.getComponent(tComponentIndex);
+
+                if (tComponent == null)
+                    continue;
+
+                int tXCoord = 10 + ((tComponentIndex % 5) * 18);
+                int tYCoord = 8 + ((tComponentIndex / 5) * 18);
+
+                ItemStack tComponentStack = tComponent.getComponentTargetStack();
+                if (tComponentStack == null)
+                    return;
+
+                iInputs.add(new PositionedStack(tComponentStack, tXCoord, tYCoord));
+                tCraftingInput[tComponentIndex] = tComponent.getComponentTargetStack();
+            }
+
+            if (pOriginalRecipe.iHammerUsage > 0) {
+                iInputs.add(new PositionedStack(new ItemStack(GeneralRegistry.Items.iHammer, 1, 150), 140, 8));
+            }
+
+            if (pOriginalRecipe.iTongUsage > 0) {
+                iInputs.add(new PositionedStack(new ItemStack(GeneralRegistry.Items.iTongs, 1, 150), 140, 80));
+            }
+
+            for (int tComponentIndex = 0; tComponentIndex < TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS; tComponentIndex++) {
+                IAnvilRecipeComponent tComponent = pOriginalRecipe.getAdditionalComponent(tComponentIndex);
+
+                if (tComponent == null)
+                    continue;
+
+                int tXCoord = 185 + ((tComponentIndex % 3) * 18);
+
+                ItemStack tComponentStack = tComponent.getComponentTargetStack();
+                if (tComponentStack == null)
+                    return;
+
+                iInputs.add(new PositionedStack(tComponentStack, tXCoord, 22));
+                tAdditionalCraftingInput[tComponentIndex] = tComponent.getComponentTargetStack();
+            }
+
+            iOutput = new PositionedStack(pOriginalRecipe.getResult(tCraftingInput, tAdditionalCraftingInput), 140, 44);
+        }
+
+        @Override
+        public List<PositionedStack> getIngredients() {
+            return iInputs;
+        }
+
+        @Override
+        public PositionedStack getResult() {
+            return iOutput;
         }
     }
 

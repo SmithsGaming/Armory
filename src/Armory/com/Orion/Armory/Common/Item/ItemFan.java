@@ -3,10 +3,15 @@ package com.Orion.Armory.Common.Item;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Client.TextureAddressHelper;
 import com.Orion.Armory.Util.References;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+
+import java.util.List;
 
 /**
  * Created by Orion
@@ -50,5 +55,20 @@ public class ItemFan extends Item
     public double getDurabilityForDisplay(ItemStack pStack)
     {
         return  1 - (((float) pStack.getItemDamage()) / Short.MAX_VALUE);
+    }
+
+    @Override
+    public boolean getHasSubtypes() {
+        return true;
+    }
+
+    /**
+     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
+     */
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void getSubItems(Item pFan, CreativeTabs pCreativeTab, List pItemStacks) {
+        ItemStack tFanStack = new ItemStack(pFan, 1, Short.MAX_VALUE);
+        pItemStacks.add(tFanStack);
     }
 }

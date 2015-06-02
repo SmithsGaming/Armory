@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
  */
 public class MessageTileEntityHeater extends MessageTileEntityArmory implements IMessage {
     public ItemStack iFanStack = null;
-    public boolean iIsBurning = false;
+    public int iItemInSlotTicks = 0;
 
     public TileEntityArmory iTargetTE;
 
@@ -27,6 +27,7 @@ public class MessageTileEntityHeater extends MessageTileEntityArmory implements 
         super(pEntity);
 
         this.iFanStack = pEntity.iFanStack;
+        this.iItemInSlotTicks = pEntity.iItemInSlotTicks;
 
         this.iTargetTE = pEntity;
     }
@@ -36,6 +37,7 @@ public class MessageTileEntityHeater extends MessageTileEntityArmory implements 
         super.fromBytes(buf);
 
         iFanStack = ByteBufUtils.readItemStack(buf);
+        iItemInSlotTicks = buf.readInt();
     }
 
     @Override
@@ -43,5 +45,6 @@ public class MessageTileEntityHeater extends MessageTileEntityArmory implements 
         super.toBytes(buf);
 
         ByteBufUtils.writeItemStack(buf, iFanStack);
+        buf.writeInt(iItemInSlotTicks);
     }
 }

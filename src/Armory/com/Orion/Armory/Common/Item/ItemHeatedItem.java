@@ -12,11 +12,13 @@ import com.Orion.Armory.Util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
 
 import java.util.Iterator;
 import java.util.List;
@@ -28,6 +30,36 @@ public class ItemHeatedItem extends Item
         setMaxStackSize(1);
         setCreativeTab(GeneralRegistry.iTabArmoryComponents);
         setUnlocalizedName(References.InternalNames.Items.ItemHeatedIngot);
+    }
+
+    public static void setItemTemperature(ItemStack pItemStack, float pNewTemp) {
+        if (pItemStack.getItem() instanceof ItemHeatedItem) {
+            pItemStack.getTagCompound().setFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE, pNewTemp);
+        }
+    }
+
+    public static float getItemTemperature(ItemStack pItemStack) {
+        if (pItemStack.getItem() instanceof ItemHeatedItem) {
+            return pItemStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE);
+        }
+
+        return 0F;
+    }
+
+    public static boolean areStacksEqualExceptTemp(ItemStack pFirstStack, ItemStack pSecondStack) {
+        if (!(pFirstStack.getItem() instanceof ItemHeatedItem)) {
+            return false;
+        }
+
+        if (!(pSecondStack.getItem() instanceof ItemHeatedItem)) {
+            return false;
+        }
+
+        if (!pFirstStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.TYPE).equals(pSecondStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.TYPE)))
+            return false;
+
+        return pFirstStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID).equals(pSecondStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID));
+
     }
 
     //Function for getting the Icon from a render pass.
@@ -113,42 +145,32 @@ public class ItemHeatedItem extends Item
         return tOriginalItemStack.getItem().getItemStackDisplayName(tOriginalItemStack);
     }
 
-    public static void setItemTemperature(ItemStack pItemStack, float pNewTemp)
-    {
-        if (pItemStack.getItem() instanceof ItemHeatedItem)
+    @Override
+    public void onUpdate(ItemStack pStack, World pWorldObj, Entity pEntity, int pSlotIndex, boolean pSelected) {
+
+        if (!(pEntity instanceof EntityPlayer))
+            return;
+
+        EntityPlayer tPlayer = (EntityPlayer) pEntity;
+
+        float tCurrentTemp = getItemTemperature(pStack);
+        float tNewTemp = tCurrentTemp - 0.2F;
+
+        setItemTemperature(pStack, tNewTemp);
+
+        if (tNewTemp < 20F)
         {
-            pItemStack.getTagCompound().setFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE, pNewTemp);
+            tPlayer.inventory.mainInventory[pSlotIndex] = HeatedItemFactory.getInstance().convertToCooledIngot(pStack);
+        } else {
+            for (ItemStack tStack : tPlayer.inventory.mainInventory) {
+                if (tStack == null)
+                    continue;
+
+                if (tStack.getItem() instanceof ItemTongs)
+                    return;
+            }
+
+            tPlayer.setFire(1);
         }
-    }
-
-    public static float getItemTemperature(ItemStack pItemStack)
-    {
-        if (pItemStack.getItem() instanceof ItemHeatedItem)
-        {
-            return pItemStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE);
-        }
-
-        return 0F;
-    }
-
-    public static boolean areStacksEqualExceptTemp(ItemStack pFirstStack, ItemStack pSecondStack)
-    {
-        if (!(pFirstStack.getItem() instanceof ItemHeatedItem))
-        {
-            return false;
-        }
-
-        if (!(pSecondStack.getItem() instanceof ItemHeatedItem))
-        {
-            return false;
-        }
-
-        if (!pFirstStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.TYPE).equals(pSecondStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.TYPE)))
-            return false;
-
-        if (!pFirstStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID).equals(pSecondStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID)))
-            return false;
-
-        return true;
     }
 }

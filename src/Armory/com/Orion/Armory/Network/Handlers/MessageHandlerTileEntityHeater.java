@@ -24,7 +24,8 @@ public class MessageHandlerTileEntityHeater extends MessageHandlerTileEntityArmo
         TileEntity tEntity = FMLClientHandler.instance().getClient().theWorld.getTileEntity(message.xCoord,message.yCoord,message.zCoord);
         if(tEntity instanceof TileEntityHeater)
         {
-        ((TileEntityHeater)tEntity).iFanStack=message.iFanStack;
+            ((TileEntityHeater) tEntity).iFanStack = message.iFanStack;
+            ((TileEntityHeater) tEntity).iItemInSlotTicks = message.iItemInSlotTicks;
         }
 
         return null;

@@ -25,15 +25,12 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
-    public float iPositiveHeat = 0.325F;
-    public float iNegativeHeat = -0.1F;
-
-    public float iPositiveHeatTerm = 0.325F;
-    public float iNegativeHeatTerm = -0.1F;
-
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
-
+    public float iPositiveHeat = 0.325F;
+    public float iNegativeHeat = -0.1F;
+    public float iPositiveHeatTerm = 0.325F;
+    public float iNegativeHeatTerm = -0.1F;
     public ItemStack[] iIngotStacks = new ItemStack[INGOTSTACKS_AMOUNT];
     public ItemStack[] iFuelStacks = new ItemStack[FUELSTACK_AMOUNT];
 
@@ -250,19 +247,32 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
     @Override
     public float getProgressBarValue(String pProgressBarID) {
-        //TODO: Implement flame progressbar
-        return 0;
+        int tSlotIndex = -1;
+
+        if (pProgressBarID.equals(References.InternalNames.GUIComponents.FirePit.FLAMEONE))
+            tSlotIndex = 0;
+        else if (pProgressBarID.equals(References.InternalNames.GUIComponents.FirePit.FLAMETWO))
+            tSlotIndex = 1;
+        else if (pProgressBarID.equals(References.InternalNames.GUIComponents.FirePit.FLAMETHREE))
+            tSlotIndex = 2;
+        else if (pProgressBarID.equals(References.InternalNames.GUIComponents.FirePit.FLAMEFOUR))
+            tSlotIndex = 3;
+        else if (pProgressBarID.equals(References.InternalNames.GUIComponents.FirePit.FLAMEFIVE))
+            tSlotIndex = 4;
+
+        if (tSlotIndex == -1)
+            return -1F;
+
+        if ((iFuelStackBurningTime[tSlotIndex] == 0) || (iFuelStackFuelAmount[tSlotIndex] == 0) || (iFuelStackBurningTime[tSlotIndex] < 0) || (iFuelStackFuelAmount[tSlotIndex] < 0))
+            return -1F;
+
+        return ((float) iFuelStackBurningTime[tSlotIndex] / (float) iFuelStackFuelAmount[tSlotIndex]);
     }
 
     //TODO: Implement new Heatexchange mechanism!
     @Override
     public void updateEntity()
     {
-        if (worldObj.isRemote)
-        {
-            return;
-        }
-
         iLastTemperature = iCurrentTemperature;
         iIsBurning = false;
 
@@ -277,7 +287,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
         iLastAddedHeat = iCurrentTemperature - iLastTemperature;
 
-        if (iLastAddedHeat != 0F)
+        if (!worldObj.isRemote)
         {
             markDirty();
         }
@@ -411,11 +421,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         
     public void heatIngots()
     {
-        if ((iLastAddedHeat == 0F) && (iCurrentTemperature == 20F)) {return;}
+        if ((iLastAddedHeat == 0F) && (iCurrentTemperature <= 20F) && (getIngotAmount() == 0)) {
+            return;
+        }
 
         iCurrentTemperature += iLastAddedHeat;
 
-        if (iCurrentTemperature > 21F)
+        if (iCurrentTemperature > 20F)
         {
             iCurrentTemperature += iNegativeHeatTerm;
         }
@@ -436,17 +448,26 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             float tSourceDifference = iNegativeHeatTerm - tCurrentStackCoefficient;
             float tTargetDifference = -1 * tSourceDifference + iNegativeHeatTerm;
 
-            if (tCurrentStackTemp <= iCurrentTemperature) {
+
+            if (tCurrentStackTemp < 20F) {
+                iIngotStacks[tIngotStackCount] = HeatedItemFactory.getInstance().convertToCooledIngot(iIngotStacks[tIngotStackCount]);
+            } else if (tCurrentStackTemp <= iCurrentTemperature) {
                 iCurrentTemperature += tSourceDifference;
                 ItemHeatedItem.setItemTemperature(iIngotStacks[tIngotStackCount], ItemHeatedItem.getItemTemperature(iIngotStacks[tIngotStackCount]) + tTargetDifference);
-            } else if (ItemHeatedItem.getItemTemperature(iIngotStacks[tIngotStackCount]) > iCurrentTemperature) {
-                if (tCurrentStackTemp <= 20F)
-                {
-                    iIngotStacks[tIngotStackCount] = HeatedItemFactory.getInstance().convertToCooledIngot(iIngotStacks[tIngotStackCount]);
-                }
 
+                float tMeltingPoint = GeneralRegistry.getInstance().getMeltingPoint(HeatedItemFactory.getInstance().getMaterialIDFromItemStack(iIngotStacks[tIngotStackCount]));
+                if (tCurrentStackTemp > tMeltingPoint)
+                {
+                    iIngotStacks[tIngotStackCount] = null;
+                }
+            } else if (ItemHeatedItem.getItemTemperature(iIngotStacks[tIngotStackCount]) > iCurrentTemperature) {
                 iCurrentTemperature += tTargetDifference;
                 ItemHeatedItem.setItemTemperature(iIngotStacks[tIngotStackCount], ItemHeatedItem.getItemTemperature(iIngotStacks[tIngotStackCount]) + tSourceDifference);
+
+                float tMeltingPoint = GeneralRegistry.getInstance().getMeltingPoint(HeatedItemFactory.getInstance().getMaterialIDFromItemStack(iIngotStacks[tIngotStackCount]));
+                if (tCurrentStackTemp > tMeltingPoint) {
+                    iIngotStacks[tIngotStackCount] = null;
+                }
             }
         }
     }

@@ -1,8 +1,8 @@
 package com.Orion.Armory.Common.Crafting.Anvil;
 
-import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.API.Armor.MultiLayeredArmor;
+import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
@@ -126,7 +126,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe
             tNewMaxDamage += tUpgrade.iExtraDurability;
         }
 
-        ItemStack tArmorStack = MedievalArmorFactory.getInstance().buildMLAArmor((MultiLayeredArmor) pCraftingSlotContents[12].getItem(), pCraftingSlotContents[12], tNewAddons, tNewMaxDamage, NBTHelper.getArmorBaseMaterialName(pCraftingSlotContents[12]));
+        ItemStack tArmorStack = MedievalArmorFactory.getInstance().buildMLAArmor((MultiLayeredArmor) pCraftingSlotContents[12].getItem(), pCraftingSlotContents[12], tNewAddons, tNewMaxDamage, NBTHelper.getArmorBaseMaterialName(pCraftingSlotContents[12]), "");
 
         return (!(tArmorStack == null));
     }

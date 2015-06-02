@@ -7,17 +7,27 @@ package com.Orion.Armory.Util;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
-import java.security.PublicKey;
-
 public class References
 {
+    public static class RenderIDs {
+        public static final int FirePitID = RenderingRegistry.getNextAvailableRenderId();
+        public static final int HeaterID = RenderingRegistry.getNextAvailableRenderId();
+        public static final int AnvilID = RenderingRegistry.getNextAvailableRenderId();
+    }
+
+    public static class GuiIDs {
+        public static int FIREPITID = 0;
+        public static int HEATERID = 1;
+        public static int ANVILID = 2;
+    }
+
     public class General
     {
         public static final String MOD_ID = "Armory";
         public static final String VERSION = "@VERSION@";
         public static final String MC_VERSION = "@MCVERSION";
     }
-    
+
     public class InternalNames
     {
         public class Armor
@@ -51,7 +61,7 @@ public class References
                 public static final String REINFORCED = "Armory.ReinforcedHelmet";
                 public static final String ELECTRIC = "Armory.ElectricHelmet";
             }
-            
+
             public class Chestplate
             {
                 public static final String SHOULDERLEFT = "Armory.ShoulderLeftChestplate";
@@ -67,8 +77,8 @@ public class References
                 public static final String AUTOREPAIR = "Armory.AutoRepairChestplate";
                 public static final String REINFORCED = "Armory.ReinforcedChestplate";
                 public static final String ELECTRIC = "Armory.ElectricChestplate";
-            }   
-            
+            }
+
             public class Leggings
             {
                 public static final String FRONTLEFT = "Armory.FrontLeftLeggings";
@@ -83,7 +93,7 @@ public class References
                 public static final String REINFORCED = "Armory.ReinforcedLeggings";
                 public static final String ELECTRIC = "Armory.ElectricLeggings";
             }
-            
+
             public class Shoes
             {
                 public static final String LEFT = "Armory.LeftShoes";
@@ -255,6 +265,7 @@ public class References
         public static final String ArmorData = "ArmorData";
         public static final String RenderCompound = "RenderCompound";
         public static final String Material = "Material";
+        public static final String CustomName = "Name";
 
         //Versioning used when there is a change in the NBT tag structure.
         public class Versioning {
@@ -321,6 +332,7 @@ public class References
             public class Heater
             {
                 public static final String FANSTACK = "FANSTACK";
+                public static final String TICKSINSLOT = "STACKTIMEINSLOT";
             }
 
             public class Anvil
@@ -334,20 +346,6 @@ public class References
                 public static final String CRAFTINGPROGRESS = "CraftingProgress";
             }
         }
-    }
-
-    public static class RenderIDs
-    {
-        public static final int FirePitID = RenderingRegistry.getNextAvailableRenderId();
-        public static final int HeaterID = RenderingRegistry.getNextAvailableRenderId();
-        public static final int AnvilID = RenderingRegistry.getNextAvailableRenderId();
-    }
-
-    public static class GuiIDs
-    {
-        public static int FIREPITID = 0;
-        public static int HEATERID = 1;
-        public static int ANVILID = 2;
     }
 
 }

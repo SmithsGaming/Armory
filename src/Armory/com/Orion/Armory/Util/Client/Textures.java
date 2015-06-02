@@ -8,10 +8,13 @@ package com.Orion.Armory.Util.Client;
 import com.Orion.Armory.Util.References;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
-import java.lang.management.BufferPoolMXBean;
-
 public class Textures
 {
+    public static void registerIcons(IIconRegister pRegistrar) {
+        Gui.Basic.INFOICON.addIcon(pRegistrar.registerIcon(Gui.Basic.INFOICON.getPrimaryLocation()));
+        Gui.FirePit.THERMOMETERICON.addIcon(pRegistrar.registerIcon(Gui.FirePit.THERMOMETERICON.getPrimaryLocation()));
+    }
+    
     public static class MultiArmor
     {
         public static class Materials {
@@ -30,7 +33,7 @@ public class Textures
             }
         }
     }
-    
+
     public static class Items
     {
         public static class ItemRing
@@ -44,7 +47,7 @@ public class Textures
             public static CustomResource IronResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:basic/16x Chain", "", Colors.Metals.IRON);
             public static CustomResource ObsidianResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:basic/16x Chain", "", Colors.Metals.OBSIDIAN);
         }
-        
+
         public static class ItemNugget
         {
             public static CustomResource IronResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:basic/16x Nugget", "", Colors.Metals.IRON);
@@ -64,9 +67,9 @@ public class Textures
 
         public static class Basic
         {
+            public static CustomResource INFOICON = new CustomResource("Gui.Basic.Ledgers.InfoIon", "armory:Gui-Icons/16x Info icon", Colors.DEFAULT);
             private static String BASICTEXTUREPATH = GUITEXTUREPATH + "Basic/";
             public static CustomResource LEDGERLEFT = new CustomResource("Gui.Basic.Ledgers.Left", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT);
-            public static CustomResource INFOICON = new CustomResource("Gui.Basic.Ledgers.InfoIon", "armory:Gui-Icons/16x Info icon", Colors.DEFAULT);
 
             public static class Slots
             {
@@ -75,12 +78,12 @@ public class Textures
 
             public static class Border
             {
-                private static String BORDERTEXTUREPATH = BASICTEXTUREPATH + "Border/";
                 public static CustomResource CENTER = new CustomResource("Gui.Basic.Border.Center", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 4, 4, 248, 248);
                 public static CustomResource STRAIGHTBORDERLIGHT = new CustomResource("Gui.Basic.Border.Border.Ligth", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 3, 0, 250, 3);
                 public static CustomResource STRAIGHTBORDERDARK = new CustomResource("Gui.Basic.Border.Border.Dark", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 3, 253, 250, 3);
                 public static CustomResource INWARTSCORNERLIGHT = new CustomResource("Gui.Basic.Border.Corner.Inwarts.Ligth", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 0, 0, 3, 3);
                 public static CustomResource INWARTSCORNERDARK = new CustomResource("Gui.Basic.Border.Corner.Inwarts.Dark", BASICTEXTUREPATH + "Ledger/ledger.png", Colors.DEFAULT, 252, 252, 4, 4);
+                private static String BORDERTEXTUREPATH = BASICTEXTUREPATH + "Border/";
                 public static CustomResource OUTWARTSCORNER = new CustomResource("Gui.Basic.Border.Corner.Outwarts", BORDERTEXTUREPATH + "OutwartsCornerBig.png", Colors.DEFAULT, 0, 0, 3, 3);
             }
 
@@ -89,6 +92,8 @@ public class Textures
                 private static String COMPONENTTEXTUREPATH = GUITEXTUREPATH + "Components/";
                 public static CustomResource ARROWEMPTY = new CustomResource("Gui.Basic.Components.Arrow.Empty", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 0,0,22, 16);
                 public static CustomResource ARROWFULL = new CustomResource("Gui.Basic.Components.Arrow.Full", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 22,0,22, 16);
+                public static CustomResource FLAMEEMPTY = new CustomResource("Gui.BAsic.Components.Flame.Empty", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 44, 0, 16, 16);
+                public static CustomResource FLAMEFULL = new CustomResource("Gui.BAsic.Components.Flame.Empty", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 60, 0, 16, 16);
             }
 
 
@@ -129,11 +134,5 @@ public class Textures
                 }
             }
         }
-    }
-
-    public static void registerIcons(IIconRegister pRegistrar)
-    {
-        Gui.Basic.INFOICON.addIcon(pRegistrar.registerIcon(Gui.Basic.INFOICON.getPrimaryLocation()));
-        Gui.FirePit.THERMOMETERICON.addIcon(pRegistrar.registerIcon(Gui.FirePit.THERMOMETERICON.getPrimaryLocation()));
     }
 }

@@ -7,7 +7,6 @@ import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.Textures;
-import com.Orion.Armory.Util.References;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -26,14 +25,11 @@ public class ComponentProgressBar extends AbstractGUIComponent
     CustomResource iForeground = Textures.Gui.Basic.Components.ARROWFULL;
 
     public ComponentProgressBar(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, Color pBackgroundColor, Color pForegroundColor) {
-        super(pGui, pInternalName, pLeft, pTop, Textures.Gui.Basic.Components.ARROWEMPTY.getWidth(), Textures.Gui.Basic.Components.ARROWEMPTY.getHeigth());
-
-        iForeGroundColor = pForegroundColor;
-        iBackGroundColor = pBackgroundColor;
+        this(pGui, pInternalName, pLeft, pTop, Textures.Gui.Basic.Components.ARROWEMPTY, Textures.Gui.Basic.Components.ARROWFULL, pBackgroundColor, pForegroundColor);
     }
 
     public ComponentProgressBar(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, CustomResource pBackground, CustomResource pForeground, Color pBackgroundColor, Color pForegroundColor) {
-        super(pGui, pInternalName, pLeft, pTop, Textures.Gui.Basic.Components.ARROWEMPTY.getWidth(), Textures.Gui.Basic.Components.ARROWEMPTY.getHeigth());
+        super(pGui, pInternalName, pLeft, pTop, pBackground.getWidth(), pBackground.getHeigth());
 
         iForeGroundColor = pForegroundColor;
         iBackGroundColor = pBackgroundColor;
@@ -44,7 +40,7 @@ public class ComponentProgressBar extends AbstractGUIComponent
 
     @Override
     public void onUpdate() {
-        iCompletePartToBeRendered = (int) (iGui.getProgressBarValue(this.getInternalName()) * Textures.Gui.Basic.Components.ARROWFULL.getWidth());
+        iCompletePartToBeRendered = (int) (iGui.getProgressBarValue(this.getInternalName()) * iBackground.getWidth());
     }
 
     @Override

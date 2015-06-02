@@ -4,11 +4,9 @@ import com.Orion.Armory.Common.Crafting.Anvil.AnvilRecipe;
 import com.Orion.Armory.Common.Crafting.Anvil.IAnvilRecipeComponent;
 import com.Orion.Armory.Common.Item.ItemHammer;
 import com.Orion.Armory.Common.Item.ItemTongs;
+import com.Orion.Armory.Network.Messages.MessageCustomInput;
 import com.Orion.Armory.Network.Messages.MessageTileEntityArmorsAnvil;
-import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
 import com.Orion.Armory.Network.NetworkManager;
-import com.Orion.Armory.Util.Core.Coordinate;
-import com.Orion.Armory.Util.Core.ItemStackHelper;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +20,6 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 import scala.actors.threadpool.Arrays;
 
-import javax.naming.ldap.ExtendedRequest;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -33,7 +30,7 @@ import java.util.Iterator;
  * <p/>
  * Copyrighted according to Project specific license
  */
-public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventory
+public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventory, ICustomInputHandler
 {
     public static int MAX_CRAFTINGSLOTS = 25;
     public static int MAX_OUTPUTSLOTS = 1;
@@ -42,19 +39,25 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     public static int MAX_ADDITIONALSLOTS = 3;
     public static int MAX_COOLSLOTS = 1;
     public static int MAX_SLOTS = MAX_CRAFTINGSLOTS + MAX_OUTPUTSLOTS + MAX_HAMMERSLOTS + MAX_TONGSLOTS + MAX_ADDITIONALSLOTS + MAX_COOLSLOTS;
-
+    private static ArrayList<AnvilRecipe> iRecipes = new ArrayList<AnvilRecipe>();
     public ItemStack[] iCraftingStacks = new ItemStack[MAX_CRAFTINGSLOTS];
     public ItemStack[] iOutPutStacks = new ItemStack[MAX_OUTPUTSLOTS];
     public ItemStack[] iHammerStacks = new ItemStack[MAX_HAMMERSLOTS];
     public ItemStack[] iTongStacks = new ItemStack[MAX_TONGSLOTS];
     public ItemStack[] iAdditionalCraftingStacks = new ItemStack[MAX_ADDITIONALSLOTS];
     public ItemStack[] iCoolStacks = new ItemStack[MAX_COOLSLOTS];
-
-    private int iTEExist = 0;
     public int iCraftingProgress = 0;
+    private String iInputName = "";
+    private int iTEExist = 0;
     private AnvilRecipe iCurrentValidRecipe;
 
-    private static ArrayList<AnvilRecipe> iRecipes = new ArrayList<AnvilRecipe>();
+    public static void addRecipe(AnvilRecipe pNewRecipe) {
+        iRecipes.add(pNewRecipe);
+    }
+
+    public static ArrayList<AnvilRecipe> getRecipes() {
+        return iRecipes;
+    }
 
     @Override
     public int getSizeInventory() {
@@ -400,6 +403,11 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     }
 
     @Override
+    public void handleGuiComponentUpdate(String pInputID, String pInput) {
+        NetworkManager.INSTANCE.sendToServer(new MessageCustomInput(pInputID, pInput, xCoord, yCoord, zCoord));
+    }
+
+    @Override
     public void updateEntity()
     {
         boolean tUpdated = false;
@@ -415,9 +423,11 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             if ((iCraftingProgress == iCurrentValidRecipe.iTargetProgress) && !worldObj.isRemote) {
                 if (iOutPutStacks[0] != null) {
                     iOutPutStacks[0].stackSize += iCurrentValidRecipe.getResult(iCraftingStacks, iAdditionalCraftingStacks).stackSize;
-
                 } else {
                     iOutPutStacks[0] = iCurrentValidRecipe.getResult(iCraftingStacks, iAdditionalCraftingStacks);
+                    if (!iInputName.equals("")) {
+                        iOutPutStacks[0].getTagCompound().setString(References.NBTTagCompoundData.CustomName, iInputName);
+                    }
                 }
 
                 ProcessPerformedCrafting();
@@ -449,13 +459,6 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
         return 1F;
     }
-
-    public static void addRecipe(AnvilRecipe pNewRecipe)
-    {
-        iRecipes.add(pNewRecipe);
-    }
-
-    public static ArrayList<AnvilRecipe> getRecipes() { return iRecipes; }
 
     public void findValidRecipe()
     {
@@ -741,6 +744,11 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     public Packet getDescriptionPacket()
     {
         return NetworkManager.INSTANCE.getPacketFrom(new MessageTileEntityArmorsAnvil(this));
+    }
+
+    @Override
+    public void HandleCustomInput(String pInputID, String pInput) {
+        iInputName = pInput;
     }
 
     public enum AnvilState

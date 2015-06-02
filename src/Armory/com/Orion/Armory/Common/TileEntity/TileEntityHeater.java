@@ -21,12 +21,11 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class TileEntityHeater extends TileEntityArmory implements IInventory
 {
     public ItemStack iFanStack = null;
+    public int iItemInSlotTicks = 0;
+    public float iLastRotationAngle = 0F;
     int iTargetX;
     int iTargetY;
     int iTargetZ;
-
-    public int iItemInSlotTicks = 0;
-    public float iLastRotationAngle = 0F;
 
     @Override
     public int getSizeInventory() {
@@ -155,10 +154,13 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
     {
         super.writeToNBT(pCompound);
 
+
         if (iFanStack != null)
         {
             pCompound.setTag(References.NBTTagCompoundData.TE.Heater.FANSTACK, iFanStack.writeToNBT(new NBTTagCompound()));
         }
+
+        pCompound.setInteger(References.NBTTagCompoundData.TE.Heater.TICKSINSLOT, iItemInSlotTicks);
     }
 
     @Override
@@ -175,14 +177,22 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
         {
             iFanStack = ItemStack.loadItemStackFromNBT(pCompound.getCompoundTag(References.NBTTagCompoundData.TE.Heater.FANSTACK));
         }
+
+        pCompound.setInteger(References.NBTTagCompoundData.TE.Heater.TICKSINSLOT, iItemInSlotTicks);
+
+        iTargetX = xCoord + iCurrentDirection.getOpposite().offsetX;
+        iTargetY = yCoord + iCurrentDirection.getOpposite().offsetY;
+        iTargetZ = zCoord + iCurrentDirection.getOpposite().offsetZ;
     }
 
     @Override
     public void updateEntity()
     {
-        if (IsContainingAFan())
+        if (IsHelpingAFirePit())
         {
             iItemInSlotTicks++;
+        } else {
+            iItemInSlotTicks = 0;
         }
     }
 
@@ -193,18 +203,26 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
 
     public boolean IsHelpingAFirePit()
     {
+        iTargetX = xCoord + iCurrentDirection.getOpposite().offsetX;
+        iTargetY = yCoord + iCurrentDirection.getOpposite().offsetY;
+        iTargetZ = zCoord + iCurrentDirection.getOpposite().offsetZ;
+
         if (!IsContainingAFan())
         {
             return false;
         }
 
         TileEntity tTargetTE = getWorldObj().getTileEntity(iTargetX, iTargetY, iTargetZ);
-        if (tTargetTE == null)
+
+
+        if (tTargetTE instanceof TileEntityFirePit)
         {
-            return false;
+            if (((TileEntityFirePit) tTargetTE).iCurrentDirection != iCurrentDirection)
+                return true;
         }
 
-        return (tTargetTE instanceof TileEntityFirePit);
+
+        return false;
     }
 
 
@@ -212,7 +230,6 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
     public void markDirty()
     {
         NetworkManager.INSTANCE.sendToAllAround(new MessageTileEntityHeater(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId,(double) this.xCoord,(double) this.yCoord,(double) this.zCoord, 128));
-        //worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
         super.markDirty();
         worldObj.func_147451_t(xCoord, yCoord, zCoord);

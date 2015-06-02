@@ -5,9 +5,11 @@ package com.Orion.Armory.Network;
  *   Created on: 13-1-2015
  */
 
+import com.Orion.Armory.Network.Handlers.MessageHandlerCustomInput;
 import com.Orion.Armory.Network.Handlers.MessageHandlerTileEntityArmorsAnvil;
 import com.Orion.Armory.Network.Handlers.MessageHandlerTileEntityFirePit;
 import com.Orion.Armory.Network.Handlers.MessageHandlerTileEntityHeater;
+import com.Orion.Armory.Network.Messages.MessageCustomInput;
 import com.Orion.Armory.Network.Messages.MessageTileEntityArmorsAnvil;
 import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
 import com.Orion.Armory.Network.Messages.MessageTileEntityHeater;
@@ -25,5 +27,6 @@ public class NetworkManager
         INSTANCE.registerMessage(MessageHandlerTileEntityFirePit.class, MessageTileEntityFirePit.class, 0, Side.CLIENT);
         INSTANCE.registerMessage(MessageHandlerTileEntityHeater.class, MessageTileEntityHeater.class, 1, Side.CLIENT);
         INSTANCE.registerMessage(MessageHandlerTileEntityArmorsAnvil.class, MessageTileEntityArmorsAnvil.class, 2, Side.CLIENT);
+        INSTANCE.registerMessage(MessageHandlerCustomInput.class, MessageCustomInput.class, 3, Side.SERVER);
     }
 }
