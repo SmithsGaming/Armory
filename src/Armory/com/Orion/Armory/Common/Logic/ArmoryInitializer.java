@@ -5,6 +5,9 @@ package com.Orion.Armory.Common.Logic;
  *   Created on: 17-9-2014
  */
 
+import com.Orion.Armory.API.Armor.ArmorAddonPosition;
+import com.Orion.Armory.API.Armor.MLAAddon;
+import com.Orion.Armory.API.Armor.MultiLayeredArmor;
 import com.Orion.Armory.API.Events.Common.*;
 import com.Orion.Armory.Armory;
 import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
@@ -13,14 +16,11 @@ import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Crafting.Anvil.*;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
-import com.Orion.Armory.Common.Item.*;
-import com.Orion.Armory.API.Armor.ArmorAddonPosition;
-import com.Orion.Armory.API.Armor.MLAAddon;
-import com.Orion.Armory.API.Armor.MultiLayeredArmor;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ItemUpgradeMedieval;
+import com.Orion.Armory.Common.Item.*;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
@@ -96,7 +96,7 @@ public class ArmoryInitializer
 
         private static void registerAddonPositions() {
             //Registering the positions to the helmet
-            ArmorMedieval tHelmet = (ArmorMedieval) MedievalRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALHELMET);
+            ArmorMedieval tHelmet = MedievalRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALHELMET);
             tHelmet.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Helmet.TOP, InternalNames.Armor.MEDIEVALHELMET, 1));
             tHelmet.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Helmet.LEFT, InternalNames.Armor.MEDIEVALHELMET, 1));
             tHelmet.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Helmet.RIGHT, InternalNames.Armor.MEDIEVALHELMET, 1));
@@ -108,7 +108,7 @@ public class ArmoryInitializer
             tHelmet.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Helmet.ELECTRIC, InternalNames.Armor.MEDIEVALHELMET, 1));
 
             //Registering the positions to the chestplate
-            ArmorMedieval tChestplate = (ArmorMedieval) MedievalRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALCHESTPLATE);
+            ArmorMedieval tChestplate = MedievalRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALCHESTPLATE);
             tChestplate.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Chestplate.SHOULDERLEFT, InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
             tChestplate.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Chestplate.SHOULDERRIGHT, InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
             tChestplate.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Chestplate.FRONTLEFT, InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
@@ -124,7 +124,7 @@ public class ArmoryInitializer
             tChestplate.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Chestplate.ELECTRIC, InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
 
             //Registering the positions to the leggins
-            ArmorMedieval tLeggins = (ArmorMedieval) MedievalRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALLEGGINGS);
+            ArmorMedieval tLeggins = MedievalRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALLEGGINGS);
             tLeggins.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Leggings.FRONTLEFT, InternalNames.Armor.MEDIEVALLEGGINGS, 1));
             tLeggins.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Leggings.FRONTRIGHT, InternalNames.Armor.MEDIEVALLEGGINGS, 1));
             tLeggins.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Leggings.BACKLEFT, InternalNames.Armor.MEDIEVALLEGGINGS, 1));
@@ -138,7 +138,7 @@ public class ArmoryInitializer
             tLeggins.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Leggings.ELECTRIC, InternalNames.Armor.MEDIEVALLEGGINGS, 1));
 
             //Registering the positions to the shoes
-            ArmorMedieval tShoes = (ArmorMedieval) MedievalRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALSHOES);
+            ArmorMedieval tShoes = MedievalRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALSHOES);
             tLeggins.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Shoes.LEFT, InternalNames.Armor.MEDIEVALSHOES, 1));
             tLeggins.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Shoes.RIGHT, InternalNames.Armor.MEDIEVALSHOES, 1));
             tLeggins.registerAddonPosition(new ArmorAddonPosition(InternalNames.AddonPositions.Shoes.FALLASSIST, InternalNames.Armor.MEDIEVALSHOES, 1));
@@ -448,7 +448,7 @@ public class ArmoryInitializer
                 pPlateCompound.setString(References.NBTTagCompoundData.Material, tMaterial.iInternalName);
                 tPlateStack.setTagCompound(pPlateCompound);
 
-                AnvilRecipe tPlateRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.iInternalName, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.95F)))
+                AnvilRecipe tPlateRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.iInternalName, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.8F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.8F * 0.95F)))
                         .setProgress(15).setResult(tPlateStack).setHammerUsage(15).setTongUsage(2).setShapeLess();
 
                 TileEntityArmorsAnvil.addRecipe(tPlateRecipe);

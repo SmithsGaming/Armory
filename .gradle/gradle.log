@@ -6,11 +6,34 @@
  MCP Data version : unknown
 ****************************
 Found AccessTransformer in api resources: TConstruct_at.cfg
-:ideaModule
-:ideaProject
-:ideaWorkspace
-:idea
+:compileApiJava UP-TO-DATE
+:processApiResources
+:apiClasses
+:sourceMainJava
+:compileJava
+Download http://files.minecraftforge.net/maven/org/scala-lang/scala-parser-combinators_2.11/1.0.1/scala-parser-combinators_2.11-1.0.1.jar
+Download http://files.minecraftforge.net/maven/org/scala-lang/scala-swing_2.11/1.0.1/scala-swing_2.11-1.0.1.jar
+Download http://files.minecraftforge.net/maven/org/scala-lang/scala-xml_2.11/1.0.2/scala-xml_2.11-1.0.2.jar
+warning: [options] bootstrap class path not set in conjunction with -source 1.6
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+:processResources
+:classes
+:jar
+:compileTestJava UP-TO-DATE
+:processTestResources UP-TO-DATE
+:testClasses UP-TO-DATE
+:test UP-TO-DATE
+:extractMcpData
+:getVersionJson
+:extractUserDev
+:genSrgs SKIPPED
+:reobf
+:assemble
+:check UP-TO-DATE
+:build
 
 BUILD SUCCESSFUL
 
-Total time: 17.048 secs
+Total time: 4 mins 12.897 secs
