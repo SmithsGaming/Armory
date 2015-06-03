@@ -75,6 +75,11 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadCraftingRecipes(ItemStack result) {
+        if (result.getItem() instanceof ItemHeatedItem) {
+            loadCraftingRecipes(HeatedItemFactory.getInstance().convertToCooledIngot(result));
+            return;
+        }
+
         for (AnvilRecipe tOriginalRecipe : TileEntityArmorsAnvil.getRecipes()) {
             ItemStack[] tCraftingInput = new ItemStack[TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS];
             ItemStack[] tAdditionalCraftingInput = new ItemStack[TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS];

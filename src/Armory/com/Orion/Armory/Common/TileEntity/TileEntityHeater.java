@@ -264,7 +264,7 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
             return false;
 
         iFanStack.setItemDamage(iFanStack.getItemDamage() - damageAmount);
-        if (iFanStack.getItemDamage() < 0)
+        if (iFanStack.getItemDamage() == 0)
             iFanStack = null;
 
         markDirty();

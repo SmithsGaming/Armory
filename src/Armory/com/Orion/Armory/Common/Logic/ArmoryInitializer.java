@@ -85,8 +85,8 @@ public class ArmoryInitializer
         }
 
         private static void registerMaterials() {
-            ArmorMaterialMedieval tIron = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", EnumChatFormatting.WHITE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.IRON, 1538, 0.225F, new ItemStack(Items.iron_ingot));
-            ArmorMaterialMedieval tObsidian = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", EnumChatFormatting.DARK_PURPLE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.OBSIDIAN, 998, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
+            ArmorMaterialMedieval tIron = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", EnumChatFormatting.WHITE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.IRON, 1865, 0.225F, new ItemStack(Items.iron_ingot));
+            ArmorMaterialMedieval tObsidian = new ArmorMaterialMedieval(InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", EnumChatFormatting.DARK_PURPLE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.OBSIDIAN, 1404, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
 
             MedievalRegistry.getInstance().registerMaterial(tIron);
             MedievalRegistry.getInstance().registerMaterial(tObsidian);
@@ -163,7 +163,7 @@ public class ArmoryInitializer
 
         private static void registerTopHead() {
             for (ArmorMaterialMedieval tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tTopHead = new ArmorUpgradeMedieval(InternalNames.Upgrades.Helmet.TOP, InternalNames.Armor.MEDIEVALHELMET, InternalNames.AddonPositions.Helmet.TOP, tMaterial.iInternalName, "Head protection", "", 2.5F, 60, 1);
+                ArmorUpgradeMedieval tTopHead = new ArmorUpgradeMedieval(InternalNames.Upgrades.Helmet.TOP, InternalNames.Armor.MEDIEVALHELMET, InternalNames.AddonPositions.Helmet.TOP, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Helmet.TopHead, "", 2.5F, 60, 1);
                 MedievalRegistry.getInstance().registerUpgrade(tTopHead);
 
                 if (tMaterial.iInternalName.equals(InternalNames.Materials.Vanilla.OBSIDIAN)) {
@@ -178,8 +178,8 @@ public class ArmoryInitializer
 
         private static void registerEarProtection() {
             for (ArmorMaterialMedieval tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tEarProtectionLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Helmet.LEFT, InternalNames.Armor.MEDIEVALHELMET, InternalNames.AddonPositions.Helmet.LEFT, tMaterial.iInternalName, "Ear protection left", "", 0.5F, 20, 1);
-                ArmorUpgradeMedieval tEarProtectionRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Helmet.RIGHT, InternalNames.Armor.MEDIEVALHELMET, InternalNames.AddonPositions.Helmet.RIGHT, tMaterial.iInternalName, "Ear protection right", "", 0.5F, 20, 1);
+                ArmorUpgradeMedieval tEarProtectionLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Helmet.LEFT, InternalNames.Armor.MEDIEVALHELMET, InternalNames.AddonPositions.Helmet.LEFT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Helmet.LeftEar, "", 0.5F, 20, 1);
+                ArmorUpgradeMedieval tEarProtectionRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Helmet.RIGHT, InternalNames.Armor.MEDIEVALHELMET, InternalNames.AddonPositions.Helmet.RIGHT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Helmet.RightEar, "", 0.5F, 20, 1);
                 MedievalRegistry.getInstance().registerUpgrade(tEarProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tEarProtectionRight);
 
@@ -190,8 +190,8 @@ public class ArmoryInitializer
 
         private static void registerShoulderPads() {
             for (ArmorMaterialMedieval tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tShoulderPadLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Chestplate.SHOULDERLEFT, InternalNames.Armor.MEDIEVALCHESTPLATE, InternalNames.AddonPositions.Chestplate.SHOULDERLEFT, tMaterial.iInternalName, "Shoulder pad left", "", 1F, 50, 1);
-                ArmorUpgradeMedieval tShoulderPadRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT, InternalNames.Armor.MEDIEVALCHESTPLATE, InternalNames.AddonPositions.Chestplate.SHOULDERRIGHT, tMaterial.iInternalName, "Shoulder pad right", "", 1F, 50, 1);
+                ArmorUpgradeMedieval tShoulderPadLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Chestplate.SHOULDERLEFT, InternalNames.Armor.MEDIEVALCHESTPLATE, InternalNames.AddonPositions.Chestplate.SHOULDERLEFT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Chestplate.ShoulderLeft, "", 1F, 50, 1);
+                ArmorUpgradeMedieval tShoulderPadRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT, InternalNames.Armor.MEDIEVALCHESTPLATE, InternalNames.AddonPositions.Chestplate.SHOULDERRIGHT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Chestplate.ShoulderRight, "", 1F, 50, 1);
                 MedievalRegistry.getInstance().registerUpgrade(tShoulderPadLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tShoulderPadRight);
 
@@ -202,8 +202,8 @@ public class ArmoryInitializer
 
         private static void registerFrontProtection() {
             for (ArmorMaterialMedieval tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tFrontChestProtectionLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Chestplate.FRONTLEFT, InternalNames.Armor.MEDIEVALCHESTPLATE, InternalNames.AddonPositions.Chestplate.FRONTLEFT, tMaterial.iInternalName, "Front chest protection left", "", 2F, 150, 1);
-                ArmorUpgradeMedieval tFrontChestProtectionRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Chestplate.FRONTRIGHT, InternalNames.Armor.MEDIEVALCHESTPLATE, InternalNames.AddonPositions.Chestplate.FRONTRIGHT, tMaterial.iInternalName, "Front chest protection right", "", 2F, 150, 1);
+                ArmorUpgradeMedieval tFrontChestProtectionLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Chestplate.FRONTLEFT, InternalNames.Armor.MEDIEVALCHESTPLATE, InternalNames.AddonPositions.Chestplate.FRONTLEFT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Chestplate.FrontLeft, "", 2F, 150, 1);
+                ArmorUpgradeMedieval tFrontChestProtectionRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Chestplate.FRONTRIGHT, InternalNames.Armor.MEDIEVALCHESTPLATE, InternalNames.AddonPositions.Chestplate.FRONTRIGHT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Chestplate.FrontRight, "", 2F, 150, 1);
                 MedievalRegistry.getInstance().registerUpgrade(tFrontChestProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tFrontChestProtectionRight);
 
@@ -221,8 +221,8 @@ public class ArmoryInitializer
 
         private static void registerBackProtection() {
             for (ArmorMaterialMedieval tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tBackChestProtectionLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Chestplate.BACKLEFT, InternalNames.Armor.MEDIEVALCHESTPLATE, InternalNames.AddonPositions.Chestplate.BACKLEFT, tMaterial.iInternalName, "Back chest protection left", "", 2F, 150, 1);
-                ArmorUpgradeMedieval tBackChestProtectionRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Chestplate.BACKRIGHT, InternalNames.Armor.MEDIEVALCHESTPLATE, InternalNames.AddonPositions.Chestplate.BACKRIGHT, tMaterial.iInternalName, "Back chest protection right", "", 2F, 150, 1);
+                ArmorUpgradeMedieval tBackChestProtectionLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Chestplate.BACKLEFT, InternalNames.Armor.MEDIEVALCHESTPLATE, InternalNames.AddonPositions.Chestplate.BACKLEFT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Chestplate.BackLeft, "", 2F, 150, 1);
+                ArmorUpgradeMedieval tBackChestProtectionRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Chestplate.BACKRIGHT, InternalNames.Armor.MEDIEVALCHESTPLATE, InternalNames.AddonPositions.Chestplate.BACKRIGHT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Chestplate.BackRight, "", 2F, 150, 1);
                 MedievalRegistry.getInstance().registerUpgrade(tBackChestProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tBackChestProtectionRight);
 
@@ -240,8 +240,8 @@ public class ArmoryInitializer
 
         private static void registerFrontLegProtection() {
             for (ArmorMaterialMedieval tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tFrontLeggingsProtectionLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Leggings.FRONTLEFT, InternalNames.Armor.MEDIEVALLEGGINGS, InternalNames.AddonPositions.Leggings.FRONTLEFT, tMaterial.iInternalName, "Front leg protection left", "", 1.5F, 125, 1);
-                ArmorUpgradeMedieval tFrontLeggingsProtectionRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Leggings.FRONTRIGHT, InternalNames.Armor.MEDIEVALLEGGINGS, InternalNames.AddonPositions.Leggings.FRONTRIGHT, tMaterial.iInternalName, "Front leg protection right", "", 1.5F, 125, 1);
+                ArmorUpgradeMedieval tFrontLeggingsProtectionLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Leggings.FRONTLEFT, InternalNames.Armor.MEDIEVALLEGGINGS, InternalNames.AddonPositions.Leggings.FRONTLEFT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Leggings.FrontLeft, "", 1.5F, 125, 1);
+                ArmorUpgradeMedieval tFrontLeggingsProtectionRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Leggings.FRONTRIGHT, InternalNames.Armor.MEDIEVALLEGGINGS, InternalNames.AddonPositions.Leggings.FRONTRIGHT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Leggings.FrontRight, "", 1.5F, 125, 1);
                 MedievalRegistry.getInstance().registerUpgrade(tFrontLeggingsProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tFrontLeggingsProtectionRight);
 
@@ -258,8 +258,8 @@ public class ArmoryInitializer
 
         private static void registerBackLegProtection() {
             for (ArmorMaterialMedieval tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tBackLeggingsProtectionLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Leggings.BACKLEFT, InternalNames.Armor.MEDIEVALLEGGINGS, InternalNames.AddonPositions.Leggings.BACKLEFT, tMaterial.iInternalName, "Back leg protection left", "", 2F, 150, 1);
-                ArmorUpgradeMedieval tBackLeggingsProtectionRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Leggings.BACKRIGHT, InternalNames.Armor.MEDIEVALLEGGINGS, InternalNames.AddonPositions.Leggings.BACKRIGHT, tMaterial.iInternalName, "Back leg protection right", "", 2F, 150, 1);
+                ArmorUpgradeMedieval tBackLeggingsProtectionLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Leggings.BACKLEFT, InternalNames.Armor.MEDIEVALLEGGINGS, InternalNames.AddonPositions.Leggings.BACKLEFT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Leggings.BackLeft, "", 2F, 150, 1);
+                ArmorUpgradeMedieval tBackLeggingsProtectionRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Leggings.BACKRIGHT, InternalNames.Armor.MEDIEVALLEGGINGS, InternalNames.AddonPositions.Leggings.BACKRIGHT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Leggings.BackRight, "", 2F, 150, 1);
                 MedievalRegistry.getInstance().registerUpgrade(tBackLeggingsProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tBackLeggingsProtectionRight);
 
@@ -277,8 +277,8 @@ public class ArmoryInitializer
 
         private static void registerShoeProtection() {
             for (ArmorMaterialMedieval tMaterial : MedievalRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tShoeProtectionLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Shoes.LEFT, InternalNames.Armor.MEDIEVALSHOES, InternalNames.AddonPositions.Shoes.LEFT, tMaterial.iInternalName, "Shoe protection left", "", 1F, 50, 1);
-                ArmorUpgradeMedieval tShoeProtectionRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Shoes.RIGHT, InternalNames.Armor.MEDIEVALSHOES, InternalNames.AddonPositions.Shoes.RIGHT, tMaterial.iInternalName, "Shoe protection right", "", 1F, 50, 1);
+                ArmorUpgradeMedieval tShoeProtectionLeft = new ArmorUpgradeMedieval(InternalNames.Upgrades.Shoes.LEFT, InternalNames.Armor.MEDIEVALSHOES, InternalNames.AddonPositions.Shoes.LEFT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Shoes.Left, "", 1F, 50, 1);
+                ArmorUpgradeMedieval tShoeProtectionRight = new ArmorUpgradeMedieval(InternalNames.Upgrades.Shoes.RIGHT, InternalNames.Armor.MEDIEVALSHOES, InternalNames.AddonPositions.Shoes.RIGHT, tMaterial.iInternalName, TranslationKeys.Items.MultiArmor.Upgrades.Shoes.Right, "", 1F, 50, 1);
                 MedievalRegistry.getInstance().registerUpgrade(tShoeProtectionLeft);
                 MedievalRegistry.getInstance().registerUpgrade(tShoeProtectionRight);
 
@@ -448,7 +448,7 @@ public class ArmoryInitializer
                 pPlateCompound.setString(References.NBTTagCompoundData.Material, tMaterial.iInternalName);
                 tPlateStack.setTagCompound(pPlateCompound);
 
-                AnvilRecipe tPlateRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.iInternalName, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.8F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.8F * 0.95F)))
+                AnvilRecipe tPlateRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.iInternalName, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.iInternalName) * 0.95F)))
                         .setProgress(15).setResult(tPlateStack).setHammerUsage(15).setTongUsage(2).setShapeLess();
 
                 TileEntityArmorsAnvil.addRecipe(tPlateRecipe);

@@ -43,9 +43,7 @@ public class GuiArmorsAnvilMinimal extends ArmoryBaseGui {
         //iComponents.addComponent(new ComponentPlayerInventory(this, "Gui.Anvil.Player", 44, 172, (TileEntityArmorsAnvil.MAX_SLOTS), ComponentBorder.CornerTypes.Outwarts));
 
         iComponents.addComponent(new ComponentPlayerInventory(this, "Gui.Anvil.Player", 4, 172, (28), ComponentBorder.CornerTypes.Outwarts));
-
-        //TODO: Add the information Ledger
-        this.iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.FirePit.InfoLine1, "", TranslationKeys.GUI.FirePit.InfoLine2, "", TranslationKeys.GUI.FirePit.InfoLine3}, Textures.Gui.Basic.INFOICON.getIcon()));
+        this.iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.Anvil.InfoLine1, "", TranslationKeys.GUI.Anvil.InfoLine2}, Textures.Gui.Basic.INFOICON.getIcon()));
 
         iComponents.addComponent(new ComponentExtendedCraftingGrid(this, "Gui.Anvil.ExtendedCrafting", 10, 51, 0, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS, Colors.DEFAULT, Colors.DEFAULT));
         iComponents.addComponent(new ComponentSlot(this, "Gui.Anvil.Tools.Slot.Hammer", TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS, 18, 18, 147, 58, Textures.Gui.Anvil.HAMMERSLOT, Colors.DEFAULT));

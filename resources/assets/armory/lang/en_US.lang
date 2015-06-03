@@ -14,18 +14,33 @@ Armory.GUI.FirePit.Ledger.LastAdded=Last added:
 Armory.GUI.Heater.Ledger.InfoLine1=The heater is an additional component of the FirePit.
 Armory.GUI.Heater.Ledger.InfoLine2=It raises both its efficiency and its maximum temperature.
 #
+#ArmorsAnvil GUi Specific information
+Armory.GUI.Anvil.Ledger.InfoLine1=The Blacksmiths Anvil is used by Smiths to craft several Items from hot Metals.
+Armory.GUI.Anvil.Ledger.InfoLine2=It takes some time to process and sometimes a Hammer and a pair of Tongs.
+#
+#NEI Compat
+Armory.NEI.Compatibility.ArmorsAnvilRecipe=Blacksmiths Anvil
+#
 #Blocks
 tile.Armory.Blocks.FirePit.name=FirePit
 tile.Armory.Blocks.Heater.name=FirePit - Heater Extension
-tile.Armory.Blocks.Anvil.name=Armors Anvil
+tile.Armory.Blocks.Anvil.name=Blacksmiths Anvil
 #
 #Items
 item.Armory.Items.HeatedFan.name=Heater extension Fan
 item.Armory.Items.Components.MetalRing.name=Ring
 item.Armory.Items.Components.MetalChain.name=Chain
+item.Armory.Helmet.Medieval.name=Medieval Helmet
+item.Armory.Chestplate.Medieval.name=Medieval Chestplate
+item.Armory.Leggins.Medieval.name=Medieval Leggings
+item.Armory.Shoes.Medieval.name=Medieval Shoes
+item.Armory.Items.ItemHammer.name=Smith's Hammer
+item.Armory.Items.Tongs.name=Smith's Tongs
+item.Armory.Items.Nugget.name=Nugget
+item.Armory.Items.Plate.name=Plate
 #
 #HeatedIngot Specific
-Armory.Items.HeatedIngot.Tooltip.Temperature=Current Temperature:
+Armory.Items.HeatedIngot.Tooltip.Temperature=Current Temperature
 #
 #Materials
 Armory.Materials.Vanilla.Iron=Iron
@@ -36,5 +51,23 @@ Armory.Materials.TConstruct.Ardite=Ardite
 Armory.Materials.TConstruct.Cobalt=Cobalt
 Armory.Materials.TConstruct.Manyullun=Manyullun
 Armory.Materials.Common.Bronze=Bronze
+#
+#MultiArmor Tier 1 Upgrades
+item.Armory.MultiArmor.Upgrade.Helmet.Top.name=Head Protector
+item.Armory.MultiArmor.Upgrade.Helmet.RightEar.name=Right ear Protector
+item.Armory.MultiArmor.Upgrade.Helmet.LeftEar.name=Left ear Protector
+item.Armory.MultiArmor.Upgrade.ChestPlate.ShoulderLeft.name=Left shoulder Protector Pad
+item.Armory.MultiArmor.Upgrade.ChestPlate.ShoulderRight.name=Right shoulder Protector Pad
+item.Armory.MultiArmor.Upgrade.ChestPlate.FrontLeft.name=Left stomach Protector
+item.Armory.MultiArmor.Upgrade.ChestPlate.FrontRight.name=Right stomach Protector
+item.Armory.MultiArmor.Upgrade.ChestPlate.BackLeft.name=Left back Protector
+item.Armory.MultiArmor.Upgrade.ChestPlate.BackRight.name=Right back Protector
+item.Armory.MultiArmor.Upgrade.Leggings.FrontLeft.name=Left front leg Protector
+item.Armory.MultiArmor.Upgrade.Leggings.FrontRight.name=Right front leg Protector
+item.Armory.MultiArmor.Upgrade.Leggings.BackLeft.name=Left calf Protector
+item.Armory.MultiArmor.Upgrade.Leggings.BackRight.name=Right calf Protector
+item.Armory.MultiArmor.Upgrade.Shoes.Left.name=Left foot Protector
+item.Armory.MultiArmor.Upgrade.Shoes.Right.name=Right foot Protector
+
 
 

@@ -414,6 +414,119 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             }
         }
 
+        if (iCurrentDirection == ForgeDirection.NORTH)
+        {
+            TileEntity tFirePitLeft = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord, zCoord + ForgeDirection.WEST.offsetZ);
+            TileEntity tFirePitRight = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord, zCoord + ForgeDirection.EAST.offsetZ);
+            if (tFirePitLeft instanceof TileEntityFirePit)
+            {
+                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).iCurrentDirection == iCurrentDirection)
+                {
+                    tTotalHeatTerm += 0.4F;
+                    tTotalMaxTemp += 600F;
+                }
+            }
+
+            if (tFirePitRight instanceof TileEntityFirePit)
+            {
+                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).iCurrentDirection == iCurrentDirection)
+                {
+                    tTotalHeatTerm += 0.4F;
+                    tTotalMaxTemp += 600F;
+                }
+            }
+        }
+
+        if (iCurrentDirection == ForgeDirection.SOUTH)
+        {
+            TileEntity tFirePitLeft = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord, zCoord + ForgeDirection.WEST.offsetZ);
+            TileEntity tFirePitRight = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord, zCoord + ForgeDirection.EAST.offsetZ);
+            if (tFirePitLeft instanceof TileEntityFirePit)
+            {
+                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).iCurrentDirection == iCurrentDirection)
+                {
+                    tTotalHeatTerm += 0.4F;
+                    tTotalMaxTemp += 600F;
+                }
+            }
+
+            if (tFirePitRight instanceof TileEntityFirePit)
+            {
+                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).iCurrentDirection == iCurrentDirection)
+                {
+                    tTotalHeatTerm += 0.4F;
+                    tTotalMaxTemp += 600F;
+                }
+            }
+        }
+
+        if (iCurrentDirection == ForgeDirection.WEST)
+        {
+            TileEntity tFirePitLeft = worldObj.getTileEntity(xCoord + ForgeDirection.SOUTH.offsetX, yCoord, zCoord + ForgeDirection.SOUTH.offsetZ);
+            TileEntity tFirePitRight = worldObj.getTileEntity(xCoord + ForgeDirection.NORTH.offsetX, yCoord, zCoord + ForgeDirection.NORTH.offsetZ);
+            if (tFirePitLeft instanceof TileEntityFirePit)
+            {
+                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).iCurrentDirection == iCurrentDirection)
+                {
+                    tTotalHeatTerm += 0.4F;
+                    tTotalMaxTemp += 600F;
+                }
+            }
+
+            if (tFirePitRight instanceof TileEntityFirePit)
+            {
+                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).iCurrentDirection == iCurrentDirection)
+                {
+                    tTotalHeatTerm += 0.4F;
+                    tTotalMaxTemp += 600F;
+                }
+            }
+        }
+
+        if (iCurrentDirection == ForgeDirection.EAST)
+        {
+            TileEntity tFirePitLeft = worldObj.getTileEntity(xCoord + ForgeDirection.NORTH.offsetX, yCoord, zCoord + ForgeDirection.NORTH.offsetZ);
+            TileEntity tFirePitRight = worldObj.getTileEntity(xCoord + ForgeDirection.SOUTH.offsetX, yCoord, zCoord + ForgeDirection.SOUTH.offsetZ);
+            if (tFirePitLeft instanceof TileEntityFirePit)
+            {
+                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).iCurrentDirection == iCurrentDirection)
+                {
+                    tTotalHeatTerm += 0.4F;
+                    tTotalMaxTemp += 600F;
+                }
+            }
+
+            if (tFirePitRight instanceof TileEntityFirePit)
+            {
+                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).iCurrentDirection == iCurrentDirection)
+                {
+                    tTotalHeatTerm += 0.4F;
+                    tTotalMaxTemp += 600F;
+                }
+            }
+        }
+
+        TileEntity tBelow1 =  worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
+        TileEntity tBelow2 =  worldObj.getTileEntity(xCoord, yCoord - 2, zCoord);
+        if (tBelow1 instanceof TileEntityFirePit)
+        {
+            if (((TileEntityFirePit) tBelow1).isBurning() && ((TileEntityFirePit) tBelow1).iCurrentDirection == iCurrentDirection)
+            {
+                tTotalHeatTerm += 0.55F;
+                tTotalMaxTemp += 750F;
+            }
+        }
+
+        if (tBelow2 instanceof TileEntityFirePit)
+        {
+            if (((TileEntityFirePit) tBelow2).isBurning() && ((TileEntityFirePit) tBelow2).iCurrentDirection == iCurrentDirection)
+            {
+                tTotalHeatTerm += 0.8F;
+                tTotalMaxTemp += 900F;
+            }
+        }
+
+
         iPositiveHeatTerm = tTotalHeatTerm;
         iNegativeHeatTerm = iNegativeHeat;
         iMaxTemperature = tTotalMaxTemp;
