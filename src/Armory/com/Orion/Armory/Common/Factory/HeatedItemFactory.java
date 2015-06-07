@@ -209,7 +209,7 @@ public class HeatedItemFactory
                     if (OreDictionary.getOreName(tRequestID).contains("heatable"))
                         continue;
 
-                    if (!(OreDictionary.getOreName(tRequestID).contains("ingot") && OreDictionary.getOreName(tRequestID).contains("plate") && OreDictionary.getOreName(tRequestID).contains("nugget") && OreDictionary.getOreName(tRequestID).contains("block")))
+                    if (!(OreDictionary.getOreName(tRequestID).contains("ingot") || OreDictionary.getOreName(tRequestID).contains("plate") || OreDictionary.getOreName(tRequestID).contains("nugget") || OreDictionary.getOreName(tRequestID).contains("block")))
                         continue;
 
 
