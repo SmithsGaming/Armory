@@ -8,9 +8,3 @@ script: ./gradlew build -i -S
 after_success:
   - ./gradlew uploadJars -S
   - ./gradlew createGithubBranches -S
-env:
-  global:
-  - secure: OnWoh4U2qFDAT9wKB6+fmgVC+is6lE7RaRiT1Tb4xfoeOjqhzVfsdUd9twGgDv0jKABLJPd5+8BiUfwXq9a+v0boLNFXpmz/q9f+UoKkYDXn/xONMFlgvPaRAOArceK3sHpiTOk82jzc7OzI9EgNi3HZYy5OD3/axGJMx96RVw==
-  - secure: A9e8GsyseDNNwXWHbEYa7RmEqO9v3nKVKZA5aDIUYCLjcZBSckFR5X9fDXd1pFnxTasQlFbU3UPR63C5Lm81lSVGrKXA8lLGH5JTAgVcvBcvUvvahYLkXXJYSatBF2p6EfhZWw1eqfZInvDmRcyz4wy4mLK2ZKZjpwYqQGEALrY=
-  - secure: gVbfaw5FUcoR4GrpBfZK5145gkog2lsxp+t6+hBk8XVxfYMKr59/oUN0V6OI9S/5kJ/XODLH2+JoYsSBYB2S1VRVsowCmQTnap6cLJHfI1BrL8jfxrJwxqaxt2zKR+Dwl9FSxP83Z8SeICt3csGNLlF2MWawlWLO8hwRso2oqj0=
-  - secure: P/mL4W0zH2aGxsRgPZ9AvTfOinsLiXp4h/WPkv6r74JMmgEHSSOIQfIyrgyozJB3XclJXZHtReOmWwx3rLhrMk/ON7Wp/2Fsmz/rakG9pX4KyyfU0DiV7fgsu7GJb2lPYIo3SC+P1Pq+sSZ0nEzZP+GEvX8/79O01sr5XkHmHaM=
