@@ -197,7 +197,6 @@ curse {
 
 curse.dependsOn {
     reobf
-    createChangeLog
 }
 
 //Function to upload completed project to the maven repo.
