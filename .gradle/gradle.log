@@ -6,11 +6,31 @@
  MCP Data version : unknown
 ****************************
 Found AccessTransformer in api resources: TConstruct_at.cfg
-:ideaModule
-:ideaProject
-:ideaWorkspace
-:idea
+All projects evaluated.
+Selected primary task 'curse' from project :
+Tasks to be executed: [task ':createChangeLog', task ':extractMcpData', task ':getVersionJson', task ':extractUserDev', task ':genSrgs', task ':compileApiJava', task ':processApiResources', task ':apiClasses', task ':sourceMainJava', task ':compileJava', task ':processResources', task ':classes', task ':jar', task ':reobf', task ':curse']
+:createChangeLog (Thread[main,5,main]) started.
+:createChangeLog
+Executing task ':createChangeLog' (up-to-date check took 0.001 secs) due to:
+  Task has not declared any outputs.
+Generating Changelog.
+Parsing Git Commits and processing them...
+Generated Log File.
+:createChangeLog FAILED
+:createChangeLog (Thread[main,5,main]) completed. Took 0.063 secs.
 
-BUILD SUCCESSFUL
+FAILURE: Build failed with an exception.
 
-Total time: 35.464 secs
+* Where:
+Build file 'D:\Development\Minecraft\Armory\build.gradle' line: 177
+
+* What went wrong:
+Execution failed for task ':createChangeLog'.
+> ChangeLog.txt (The system cannot find the file specified)
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --debug option to get more log output.
+
+BUILD FAILED
+
+Total time: 6.319 secs

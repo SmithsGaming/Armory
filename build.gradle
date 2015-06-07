@@ -61,8 +61,10 @@ repositories {
 }
 
 //Apply the gradle plugins.
+apply plugin: 'java'
 apply plugin: 'forge'
 apply plugin: 'maven'
+apply plugin: 'curseforge'
 
 //These configurations are needed for uploading to a MavenRepo:
 configurations {
@@ -77,6 +79,8 @@ if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
 }
 group= "com.Orion.Armory"
 archivesBaseName = "Armory"
+
+def ChangeLogText = "The changelog was not madeup during the BuildProcess."
 
 //IDea fix for
 idea {
@@ -158,8 +162,37 @@ task createDevSetup{
 //Set the dependencies properly for the createDevSetup task.
 tasks.createDevSetup.dependsOn("setupDevWorkspace", "setupDecompWorkspace", "copyChicken")
 
+import net.minecraftforge.gradle.delayed.*
+task('createChangeLog') << {
+        onlyIf(System.getenv().TRAVIS_BRANCH);
+
+        logger.lifecycle("Generating Changelog.")
+        logger.lifecycle("Parsing Git Commits and processing them...")
+        //Creates/Or checks out the new local branch.
+        def createGitLogCommand = "github_changelog_generator"
+        def createLocalProg = createGitLogCommand.execute();
+        createLocalProg.waitFor()
+
+        println("Generated Log File.")
+        ChangeLogText = new File("CHANGELOG.MD").text
+
+        logger.lifecycle("Loaded the changelog into memory. Done!")
+}
+
+curse {
+    onlyIf { System.getenv().CURSEAPIKEY }
+
+    projectId = System.getenv().CURSEPROJECTID ? System.getenv().CURSEPROJECTID : ''
+    apiKey = System.getenv().CURSEAPIKEY ? System.getenv().CURSEAPIKEY : ''
+    releaseType = config.release_type
+}
+
+curse.dependsOn {
+    reobf
+    createChangeLog
+}
+
 //Function to upload completed project to the maven repo.
-//TODO: Implement uploading to CurseForge
 uploadArchives {
     repositories.mavenDeployer {
         configuration = configurations.deployerJars
