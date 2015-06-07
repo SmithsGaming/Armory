@@ -7,6 +7,7 @@ import com.Orion.Armory.Common.Item.ItemTongs;
 import com.Orion.Armory.Network.Messages.MessageCustomInput;
 import com.Orion.Armory.Network.Messages.MessageTileEntityArmorsAnvil;
 import com.Orion.Armory.Network.NetworkManager;
+import com.Orion.Armory.Util.Core.ItemStackHelper;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
@@ -477,7 +478,12 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             {
                 if (iOutPutStacks[0] != null)
                 {
-                    if ((tRecipe.getResult(iCraftingStacks, iAdditionalCraftingStacks).stackSize + iOutPutStacks[0].stackSize) <= iOutPutStacks[0].getMaxStackSize())
+                    ItemStack tResultStack =  tRecipe.getResult(iCraftingStacks, iAdditionalCraftingStacks);
+
+                    if (!ItemStackHelper.equalsIgnoreStackSize(tResultStack, iOutPutStacks[0]))
+                        continue;
+
+                    if ((tResultStack.stackSize + iOutPutStacks[0].stackSize) <= iOutPutStacks[0].getMaxStackSize())
                     {
                         iCurrentValidRecipe = tRecipe;
                         return;
