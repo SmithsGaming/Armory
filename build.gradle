@@ -184,7 +184,15 @@ curse {
 
     projectId = System.getenv().CURSEPROJECTID ? System.getenv().CURSEPROJECTID : ''
     apiKey = System.getenv().CURSEAPIKEY ? System.getenv().CURSEAPIKEY : ''
-    releaseType = config.release_type
+    if (config.build_mode.equals("DEBUG"))
+    {
+        releaseType = "Alpha"
+    }
+    else
+    {
+        releaseType = "Beta"
+    }
+
 }
 
 curse.dependsOn {
