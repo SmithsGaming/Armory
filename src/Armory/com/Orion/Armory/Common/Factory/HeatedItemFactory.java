@@ -12,6 +12,7 @@ import com.Orion.Armory.Util.Core.ItemStackHelper;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -187,6 +188,47 @@ public class HeatedItemFactory
             if (ItemStackHelper.equalsIgnoreStackSize(tStackIter.next(), tSingledItemStack))
             {
                 return true;
+            }
+        }
+
+        int[] tSearchedOreDicIDs = OreDictionary.getOreIDs(pItemStack);
+        tStackIter = getAllMappedStacks().iterator();
+
+        while (tStackIter.hasNext())
+        {
+            ItemStack tMappedStack = tStackIter.next();
+            int[] tRequestedOreDicIDs = OreDictionary.getOreIDs(tMappedStack);
+
+            for(int tRequestID : tRequestedOreDicIDs)
+            {
+                for (int tSearchedID : tSearchedOreDicIDs)
+                {
+                    if (tRequestID != tSearchedID)
+                        continue;
+
+                    if (OreDictionary.getOreName(tRequestID).contains("heatable"))
+                        continue;
+
+                    if (!(OreDictionary.getOreName(tRequestID).contains("ingot") && OreDictionary.getOreName(tRequestID).contains("plate") && OreDictionary.getOreName(tRequestID).contains("nugget") && OreDictionary.getOreName(tRequestID).contains("block")))
+                        continue;
+
+
+                    this.iHeatableItems.add(tSingledItemStack);
+                    this.iMappedNames.add(getMaterialIDFromItemStack(tMappedStack));
+
+                    if (tSingledItemStack.getItem() instanceof IHeatableItem)
+                    {
+                        iMappedTypes.add(((IHeatableItem) tSingledItemStack.getItem()).getInternalType());
+                    }
+                    else
+                    {
+                        iMappedTypes.add(References.InternalNames.HeatedItemTypes.INGOT);
+                    }
+
+                    GeneralRegistry.iLogger.info("OreDic Support for the FirePit added: " + ItemStackHelper.toString(tSingledItemStack) + " as " + getMaterialIDFromItemStack(tMappedStack) + ".");
+
+                    return true;
+                }
             }
         }
 
