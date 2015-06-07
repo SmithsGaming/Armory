@@ -180,8 +180,6 @@ task('createChangeLog') << {
 }
 
 curse {
-    onlyIf { System.getenv().CURSEAPIKEY }
-
     projectId = System.getenv().CURSEPROJECTID ? System.getenv().CURSEPROJECTID : ''
     apiKey = System.getenv().CURSEAPIKEY ? System.getenv().CURSEAPIKEY : ''
     if (config.build_mode.equals("DEBUG"))
@@ -192,7 +190,6 @@ curse {
     {
         releaseType = "Beta"
     }
-
 }
 
 curse.dependsOn {
