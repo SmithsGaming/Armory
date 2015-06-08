@@ -1,8 +1,12 @@
 package com.Orion.Armory.Common.Item.Armor.TierMedieval;
 
 import com.Orion.Armory.API.Armor.MLAAddon;
+import com.Orion.Armory.API.Armor.MultiLayeredArmor;
+import com.Orion.Armory.API.Materials.IArmorMaterial;
+import com.Orion.Armory.Common.Addons.ArmorUpgradeMedieval;
+import com.Orion.Armory.Common.Material.ArmorMaterial;
+import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
-import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.relauncher.Side;
@@ -39,7 +43,7 @@ public class ItemUpgradeMedieval extends Item
     //Function for getting the Icon from a render pass.
     @Override
     public IIcon getIcon(ItemStack pStack, int pRenderPass) {
-        ArmorMedieval tArmor = MedievalRegistry.getInstance().getArmor(pStack.getTagCompound().getString(References.NBTTagCompoundData.Armor.ArmorID));
+        MultiLayeredArmor tArmor = MaterialRegistry.getInstance().getArmor(pStack.getTagCompound().getString(References.NBTTagCompoundData.Armor.ArmorID));
         ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) tArmor.getAddon(pStack.getTagCompound().getString(References.NBTTagCompoundData.Addons.AddonID));
 
         return tUpgrade.getResource().getIcon();
@@ -60,7 +64,7 @@ public class ItemUpgradeMedieval extends Item
     //Function that tells the renderer to use a certain color
     @Override
     public int getColorFromItemStack(ItemStack pStack, int pRenderPass) {
-        ArmorMedieval tArmor = MedievalRegistry.getInstance().getArmor(pStack.getTagCompound().getString(References.NBTTagCompoundData.Armor.ArmorID));
+        MultiLayeredArmor tArmor = MaterialRegistry.getInstance().getArmor(pStack.getTagCompound().getString(References.NBTTagCompoundData.Armor.ArmorID));
         ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) tArmor.getAddon(pStack.getTagCompound().getString(References.NBTTagCompoundData.Addons.AddonID));
 
         return tUpgrade.getResource().getColor().getColor();
@@ -77,7 +81,7 @@ public class ItemUpgradeMedieval extends Item
     @Override
     public void getSubItems(Item pUpgrade, CreativeTabs pCreativeTab, List pItemStacks)
     {
-        ArmorMedieval tHelmet = MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET);
+        MultiLayeredArmor tHelmet = MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET);
         for (MLAAddon tAddon: tHelmet.getAllowedAddons())
         {
             ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) tAddon;
@@ -91,7 +95,7 @@ public class ItemUpgradeMedieval extends Item
             pItemStacks.add(tUpgradeStack);
         }
 
-        ArmorMedieval tChestPlate = MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE);
+        MultiLayeredArmor tChestPlate = MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE);
         for (MLAAddon tAddon: tChestPlate.getAllowedAddons())
         {
             ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) tAddon;
@@ -105,7 +109,7 @@ public class ItemUpgradeMedieval extends Item
             pItemStacks.add(tUpgradeStack);
         }
 
-        ArmorMedieval tLeggins = MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS);
+        MultiLayeredArmor tLeggins = MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS);
         for (MLAAddon tAddon: tLeggins.getAllowedAddons())
         {
             ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) tAddon;
@@ -119,7 +123,7 @@ public class ItemUpgradeMedieval extends Item
             pItemStacks.add(tUpgradeStack);
         }
 
-        ArmorMedieval tSHoes = MedievalRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES);
+        MultiLayeredArmor tSHoes = MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES);
         for (MLAAddon tAddon: tSHoes.getAllowedAddons())
         {
             ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) tAddon;
@@ -137,12 +141,12 @@ public class ItemUpgradeMedieval extends Item
     @Override
     public String getItemStackDisplayName(ItemStack pStack)
     {
-        ArmorMedieval tArmor = MedievalRegistry.getInstance().getArmor(pStack.getTagCompound().getString(References.NBTTagCompoundData.Armor.ArmorID));
+        MultiLayeredArmor tArmor = MaterialRegistry.getInstance().getArmor(pStack.getTagCompound().getString(References.NBTTagCompoundData.Armor.ArmorID));
         ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) tArmor.getAddon(pStack.getTagCompound().getString(References.NBTTagCompoundData.Addons.AddonID));
         String tMaterialID = tUpgrade.iMaterialInternalName;
-        ArmorMaterialMedieval tMaterial = MedievalRegistry.getInstance().getMaterial(tMaterialID);
+        IArmorMaterial tMaterial = MaterialRegistry.getInstance().getMaterial(tMaterialID);
 
-        return tMaterial.iVisibleNameColor + StatCollector.translateToLocal(tMaterial.iVisibleName) + " " + EnumChatFormatting.RESET + StatCollector.translateToLocal(tUpgrade.iVisibleName + ".name");
+        return tMaterial.getVisibleNameColor() + StatCollector.translateToLocal(tMaterial.getVisibleName()) + " " + EnumChatFormatting.RESET + StatCollector.translateToLocal(tUpgrade.iVisibleName + ".name");
     }
 
 }

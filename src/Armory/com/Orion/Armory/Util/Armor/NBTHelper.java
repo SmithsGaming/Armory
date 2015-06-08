@@ -8,7 +8,10 @@ package com.Orion.Armory.Util.Armor;
 import com.Orion.Armory.API.Armor.ArmorAddonPosition;
 import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.API.Armor.MultiLayeredArmor;
+import com.Orion.Armory.API.Materials.IArmorMaterial;
+import com.Orion.Armory.Common.Addons.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
+import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,6 +19,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class NBTHelper {
@@ -71,5 +75,31 @@ public class NBTHelper {
     public static String getArmorBaseMaterialName(ItemStack pItemStack)
     {
         return  pItemStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.MaterialID);
+    }
+
+    public static  HashMap<ArmorUpgradeMedieval, Integer> getInstalledArmorMedievalUpgradesOnItemStack(ItemStack pBaseArmor)
+    {
+        HashMap<MLAAddon, Integer> tInstalledAddons = NBTHelper.getAddonMap(pBaseArmor);
+        HashMap<ArmorUpgradeMedieval, Integer> tInstalledUpgrades = new HashMap<ArmorUpgradeMedieval, Integer>();
+        Iterator tIterator = tInstalledAddons.entrySet().iterator();
+
+        while(tIterator.hasNext())
+        {
+            Map.Entry<MLAAddon, Integer> tEntry = (Map.Entry<MLAAddon, Integer>) tIterator.next();
+            if (tEntry.getKey() instanceof ArmorUpgradeMedieval)
+            {
+                tInstalledUpgrades.put((ArmorUpgradeMedieval) tEntry.getKey(), tEntry.getValue());
+            }
+        }
+
+        return tInstalledUpgrades;
+    }
+
+    public static IArmorMaterial getBaseMaterialOfItemStack(ItemStack pArmorStack)
+    {
+        if (!(pArmorStack.getItem() instanceof MultiLayeredArmor))
+            return null;
+
+        return MaterialRegistry.getInstance().getMaterial(pArmorStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.MaterialID));
     }
 }

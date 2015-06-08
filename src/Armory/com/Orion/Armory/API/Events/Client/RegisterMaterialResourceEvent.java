@@ -1,8 +1,7 @@
 package com.Orion.Armory.API.Events.Client;
 
-import com.Orion.Armory.API.Armor.IArmorMaterial;
+import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.API.Armor.MultiLayeredArmor;
-import com.Orion.Armory.Util.Client.GUI.MultiComponentTexture;
 import cpw.mods.fml.common.eventhandler.Event;
 
 /**

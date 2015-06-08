@@ -8,12 +8,14 @@ package com.Orion.Armory.Common.Registry;
 import com.Orion.Armory.Client.CreativeTab.ComponentsTab;
 import com.Orion.Armory.Client.CreativeTab.MedievalTab;
 import com.Orion.Armory.Client.CreativeTab.MedievalUpgradeTab;
+import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
 import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Item.*;
 import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ItemUpgradeMedieval;
+import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
@@ -54,7 +56,7 @@ public class GeneralRegistry {
     public MLAAddon getMLAAddon(String pAddonID, String pTier)
     {
         if (pTier.equals(References.InternalNames.Tiers.MEDIEVAL)) {
-            return MedievalRegistry.getInstance().getUpgrade(pAddonID);
+            return MedievalAddonRegistry.getInstance().getUpgrade(pAddonID);
         } else {
             return null;
         }

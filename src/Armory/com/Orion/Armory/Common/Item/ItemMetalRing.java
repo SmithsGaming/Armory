@@ -6,10 +6,11 @@ package com.Orion.Armory.Common.Item;
  */
 
 import com.Orion.Armory.API.Item.IHeatableItem;
+import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
-import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMaterialMedieval;
+import com.Orion.Armory.Common.Material.ArmorMaterial;
+import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
-import com.Orion.Armory.Common.Registry.MedievalRegistry;
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.relauncher.Side;
@@ -98,14 +99,14 @@ public class ItemMetalRing extends Item implements IHeatableItem
     @Override
     public void getSubItems(Item pRing, CreativeTabs pCreativeTab, List pItemStacks)
     {
-        for(ArmorMaterialMedieval tMaterial: MedievalRegistry.getInstance().getArmorMaterials().values()){
+        for(IArmorMaterial tMaterial: MaterialRegistry.getInstance().getArmorMaterials().values()){
             ItemStack tRingStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1);
 
             NBTTagCompound tStackCompound = new NBTTagCompound();
-            tStackCompound.setString(References.NBTTagCompoundData.Material, tMaterial.iInternalName);
+            tStackCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getInternalMaterialName());
             tRingStack.setTagCompound(tStackCompound);
 
-            HeatedItemFactory.getInstance().addHeatableItemstack(tMaterial.iInternalName, tRingStack);
+            HeatedItemFactory.getInstance().addHeatableItemstack(tMaterial.getInternalMaterialName(), tRingStack);
 
             pItemStacks.add(tRingStack);
         }
@@ -115,9 +116,9 @@ public class ItemMetalRing extends Item implements IHeatableItem
     public String getItemStackDisplayName(ItemStack pStack)
     {
         String tMaterialID = pStack.getTagCompound().getString(References.NBTTagCompoundData.Material);
-        ArmorMaterialMedieval tMaterial = MedievalRegistry.getInstance().getMaterial(tMaterialID);
+        IArmorMaterial tMaterial = MaterialRegistry.getInstance().getMaterial(tMaterialID);
 
-        return tMaterial.iVisibleNameColor + StatCollector.translateToLocal(tMaterial.iVisibleName) + " " + EnumChatFormatting.RESET + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name");
+        return tMaterial.getVisibleNameColor() + StatCollector.translateToLocal(tMaterial.getVisibleName()) + " " + EnumChatFormatting.RESET + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name");
     }
 
     @Override

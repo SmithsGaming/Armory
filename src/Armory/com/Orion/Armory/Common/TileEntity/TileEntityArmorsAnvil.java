@@ -1,7 +1,7 @@
 package com.Orion.Armory.Common.TileEntity;
 
-import com.Orion.Armory.Common.Crafting.Anvil.AnvilRecipe;
-import com.Orion.Armory.Common.Crafting.Anvil.IAnvilRecipeComponent;
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.IAnvilRecipeComponent;
 import com.Orion.Armory.Common.Item.ItemHammer;
 import com.Orion.Armory.Common.Item.ItemTongs;
 import com.Orion.Armory.Network.Messages.MessageCustomInput;

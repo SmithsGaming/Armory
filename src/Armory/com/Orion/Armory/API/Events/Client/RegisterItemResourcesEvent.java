@@ -1,6 +1,6 @@
 package com.Orion.Armory.API.Events.Client;
 
-import com.Orion.Armory.API.Armor.IArmorMaterial;
+import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.API.Item.IResourceContainer;
 import cpw.mods.fml.common.eventhandler.Event;
 

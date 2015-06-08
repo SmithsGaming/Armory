@@ -5,32 +5,44 @@
  R4wk, ZeuX, IngisKahn, bspkrs
  MCP Data version : unknown
 ****************************
-Found AccessTransformer in api resources: TConstruct_at.cfg
-All projects evaluated.
-Selected primary task 'curse' from project :
-Tasks to be executed: [task ':createChangeLog', task ':extractMcpData', task ':getVersionJson', task ':extractUserDev', task ':genSrgs', task ':compileApiJava', task ':processApiResources', task ':apiClasses', task ':sourceMainJava', task ':compileJava', task ':processResources', task ':classes', task ':jar', task ':reobf', task ':curse']
-:createChangeLog (Thread[main,5,main]) started.
-:createChangeLog
-Executing task ':createChangeLog' (up-to-date check took 0.001 secs) due to:
-  Task has not declared any outputs.
-Generating Changelog.
-Parsing Git Commits and processing them...
-Generated Log File.
-:createChangeLog FAILED
-:createChangeLog (Thread[main,5,main]) completed. Took 0.063 secs.
+Found AccessTransformer in main resources: Armory_at.cfg
+:extractMcpData UP-TO-DATE
+:getVersionJson
+:extractUserDev UP-TO-DATE
+:genSrgs SKIPPED
+:extractNatives UP-TO-DATE
+:getAssetsIndex
+:getAssets
+:makeStart
+[ant:javac] warning: [options] bootstrap class path not set in conjunction with -source 1.6
+[ant:javac] 1 warning
+:downloadMcpTools SKIPPED
+:downloadClient SKIPPED
+:downloadServer SKIPPED
+:mergeJars SKIPPED
+:deobfuscateJar
+Applying SpecialSource...
+Applying Exceptor...
+:decompile
+:processSources
+Injecting fml files
+Applying fml patches
+Applying forge patches
+:remapJar
+:extractMinecraftSrc
+:recompMinecraftNote: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
 
-FAILURE: Build failed with an exception.
+:repackMinecraft
+:setupDecompWorkspace
+:copyChicken UP-TO-DATE
+:ideaModule
+:ideaProject
+:ideaWorkspace
+:idea
 
-* Where:
-Build file 'D:\Development\Minecraft\Armory\build.gradle' line: 177
+BUILD SUCCESSFUL
 
-* What went wrong:
-Execution failed for task ':createChangeLog'.
-> ChangeLog.txt (The system cannot find the file specified)
-
-* Try:
-Run with --stacktrace option to get the stack trace. Run with --debug option to get more log output.
-
-BUILD FAILED
-
-Total time: 6.319 secs
+Total time: 3 mins 13.247 secs

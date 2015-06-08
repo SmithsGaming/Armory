@@ -94,12 +94,7 @@ public class HeatedItemFactory
     {
         if (!(pHeatedItemStack.getItem() instanceof ItemHeatedItem))
         {
-            if (isHeatable(pHeatedItemStack))
-            {
-                return pHeatedItemStack;
-            }
-
-            throw new InvalidParameterException("The given parameter is not a heatable item. Please report this to the modder!");
+            return pHeatedItemStack;
         }
 
         ItemStack tReturnStack = ItemStack.loadItemStackFromNBT(pHeatedItemStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.HeatedIngot.ORIGINALITEM));

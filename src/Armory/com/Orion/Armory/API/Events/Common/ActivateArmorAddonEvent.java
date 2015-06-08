@@ -1,10 +1,8 @@
 package com.Orion.Armory.API.Events.Common;
 
-import com.Orion.Armory.API.Armor.IArmorMaterial;
+import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.API.Armor.MLAAddon;
 import cpw.mods.fml.common.eventhandler.*;
-
-import java.awt.*;
 
 /**
  * Created by Orion
