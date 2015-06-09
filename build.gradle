@@ -162,30 +162,19 @@ task createDevSetup{
 //Set the dependencies properly for the createDevSetup task.
 tasks.createDevSetup.dependsOn("setupDevWorkspace", "setupDecompWorkspace", "copyChicken")
 
-import net.minecraftforge.gradle.delayed.*
-task('createChangeLog') << {
-        onlyIf(System.getenv().TRAVIS_BRANCH);
-
-        logger.lifecycle("Generating Changelog.")
-        logger.lifecycle("Parsing Git Commits and processing them...")
-        //Creates/Or checks out the new local branch.
-        def createGitLogCommand = "github_changelog_generator"
-        def createLocalProg = createGitLogCommand.execute();
-        createLocalProg.waitFor()
-
-        println("Generated Log File.")
-        ChangeLogText = new File("CHANGELOG.MD").text
-
-        logger.lifecycle("Loaded the changelog into memory. Done!")
+task getChangeLog(type: Exec) {
+    commandLine "git log --pretty -10 "
+    standardOutput = new ByteArrayOutputStream()
+    ext.commitMsg = {
+        return standardOutput.toString()
+    }
 }
 
 curse {
-    onlyIf { (System.getenv().CURSEAPIKEY != null) }
+    onlyIf { ((System.getenv().CURSEAPIKEY != null) && (!config.build_mode.equals("SYNC"))) }
 
     projectId = System.getenv().CURSEPROJECTID
     apiKey = System.getenv().CURSEAPIKEY
-
-    println(apiKey)
 
     if (config.build_mode.equals("DEBUG"))
     {
@@ -199,6 +188,7 @@ curse {
 
 curse.dependsOn {
     reobf
+    getChangeLog
 }
 
 //Function to upload completed project to the maven repo.
