@@ -1,5 +1,7 @@
 package com.Orion.Armory.Util.Client;
 
+import com.Orion.Armory.Util.References;
+
 /**
  * Created by Orion
  * Created on 4/16/2015
@@ -111,6 +113,16 @@ public class TranslationKeys
         {
             public static final String AnvilRecipeName = "Armory.NEI.Compatibility.ArmorsAnvilRecipe";
         }
+    }
+
+    public static final class Messages
+    {
+        public static final class Commands
+        {
+            public static final String BASEUSAGE = References.InternalNames.Commands.BASECOMMAND + ".usage";
+            public static final String GIVEHEATEDUSAGE = References.InternalNames.Commands.GIVEHEATED + ".usage";
+        }
+
     }
 }
 

@@ -1,6 +1,7 @@
 package com.Orion.Armory;
 
 import com.Orion.Armory.Common.ArmoryCommonProxy;
+import com.Orion.Armory.Common.Command.CommandArmory;
 import com.Orion.Armory.Common.Handlers.GuiHandler;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
 import com.Orion.Armory.Network.NetworkManager;
@@ -10,6 +11,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 
@@ -54,4 +56,11 @@ public class Armory
     {
         ArmoryInitializer.postInitializeServer();
     }
+
+    @Mod.EventHandler
+    public void onServerStarting(FMLServerStartingEvent event)
+    {
+        event.registerServerCommand(new CommandArmory());
+    }
+
 }

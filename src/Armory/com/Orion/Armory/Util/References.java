@@ -9,28 +9,28 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class References
 {
-    public static class RenderIDs {
+    public static final class RenderIDs {
         public static final int FirePitID = RenderingRegistry.getNextAvailableRenderId();
         public static final int HeaterID = RenderingRegistry.getNextAvailableRenderId();
         public static final int AnvilID = RenderingRegistry.getNextAvailableRenderId();
     }
 
-    public static class GuiIDs {
+    public static final class GuiIDs {
         public static int FIREPITID = 0;
         public static int HEATERID = 1;
         public static int ANVILID = 2;
     }
 
-    public class General
+    public static final  class General
     {
         public static final String MOD_ID = "Armory";
         public static final String VERSION = "@VERSION@";
         public static final String MC_VERSION = "@MCVERSION";
     }
 
-    public class InternalNames
+    public static final  class InternalNames
     {
-        public class Armor
+        public static final  class Armor
         {
             public static final String MEDIEVALHELMET = "Armory.Helmet.Medieval";
             public static final String MEDIEVALCHESTPLATE = "Armory.Chestplate.Medieval";
@@ -38,18 +38,18 @@ public class References
             public static final String MEDIEVALSHOES = "Armory.Shoes.Medieval";
         }
 
-        public class Materials
+        public static final  class Materials
         {
-            public class Vanilla
+            public static final  class Vanilla
             {
                 public static final String IRON = "Vanilla.Iron";
                 public static final String OBSIDIAN = "Vanilla.Obsidian";
             }
         }
 
-        public class AddonPositions
+        public static final  class AddonPositions
         {
-            public class Helmet
+            public static final  class Helmet
             {
                 public static final String TOP = "Armory.TopHelmet";
                 public static final String LEFT = "Armory.LeftHelmet";
@@ -62,7 +62,7 @@ public class References
                 public static final String ELECTRIC = "Armory.ElectricHelmet";
             }
 
-            public class Chestplate
+            public static final  class Chestplate
             {
                 public static final String SHOULDERLEFT = "Armory.ShoulderLeftChestplate";
                 public static final String SHOULDERRIGHT = "Armory.ShoulderRightChestplate";
@@ -79,7 +79,7 @@ public class References
                 public static final String ELECTRIC = "Armory.ElectricChestplate";
             }
 
-            public class Leggings
+            public static final  class Leggings
             {
                 public static final String FRONTLEFT = "Armory.FrontLeftLeggings";
                 public static final String FRONTRIGHT = "Armory.FrontRightLeggings";
@@ -94,7 +94,7 @@ public class References
                 public static final String ELECTRIC = "Armory.ElectricLeggings";
             }
 
-            public class Shoes
+            public static final  class Shoes
             {
                 public static final String LEFT = "Armory.LeftShoes";
                 public static final String RIGHT = "Armory.RightShoes";
@@ -106,16 +106,16 @@ public class References
             }
         }
 
-        public class Upgrades
+        public static final  class Upgrades
         {
-            public class Helmet
+            public static final  class Helmet
             {
                 public static final String TOP = "Armory.TopHelmet";
                 public static final String LEFT = "Armory.LeftHelmet";
                 public static final String RIGHT = "Armory.RightHelmet";
             }
 
-            public class Chestplate
+            public static final  class Chestplate
             {
                 public static final String SHOULDERLEFT = "Armory.ShoulderLeftChestplate";
                 public static final String SHOULDERRIGHT = "Armory.ShoulderRightChestplate";
@@ -125,7 +125,7 @@ public class References
                 public static final String BACKRIGHT = "Armory.BackrightChestplate";
             }
 
-            public class Leggings
+            public static final  class Leggings
             {
                 public static final String FRONTLEFT = "Armory.FrontLeftLeggings";
                 public static final String FRONTRIGHT = "Armory.FrontRightLeggings";
@@ -133,16 +133,16 @@ public class References
                 public static final String BACKRIGHT = "Armory.BackRightLeggings";
             }
 
-            public class Shoes
+            public static final  class Shoes
             {
                 public static final String LEFT = "Armory.LeftShoes";
                 public static final String RIGHT = "Armory.RightShoes";
             }
         }
 
-        public class Modifiers
+        public static final  class Modifiers
         {
-            public class Helmet
+            public static final  class Helmet
             {
                 public static final String AQUABREATHING = "Armory.AquaBreathingHelmet";
                 public static final String NIGHTSIGHT = "Armory.NightsightHelmet";
@@ -152,7 +152,7 @@ public class References
                 public static final String ELECTRIC = "Armory.ElectricHelmet";
             }
 
-            public class Chestplate
+            public static final  class Chestplate
             {
                 public static final String STRENGTH = "Armory.StrengthChestplate";
                 public static final String HASTE = "Armory.HasteChestplate";
@@ -163,7 +163,7 @@ public class References
                 public static final String ELECTRIC = "Armory.ElectricChestplate";
             }
 
-            public class Leggins
+            public static final  class Leggins
             {
                 public static final String SPEED = "Armory.SpeedLegigns";
                 public static final String JUMPASSIST = "Armory.JumpAssistLeggins";
@@ -174,7 +174,7 @@ public class References
                 public static final String ELECTRIC = "Armory.ElectricLeggins";
             }
 
-            public class Shoes
+            public static final  class Shoes
             {
                 public static final String FALLASSIST = "Armory.FallAssistShoes";
                 public static final String SWIMASSIST = "Armory.SwimAssistShoes";
@@ -184,14 +184,14 @@ public class References
             }
         }
 
-        public class Tiers
+        public static final  class Tiers
         {
             public static final String MEDIEVAL = "Amrory.Tiers.Medieval";
             public static final String PLATED = "Armory.Tiers.Plated";
             public static final String QUANTUM = "Armory.Tiers.Quantum";
         }
 
-        public class Items
+        public static final  class Items
         {
             public static final String ItemMetalRing = "Armory.Items.Components.MetalRing";
             public static final String ItemMetalChain = "Armory.Items.Components.MetalChain";
@@ -204,21 +204,21 @@ public class References
             public static final String ItemMedievalUpdrade = "Armory.Items.Medieval.Upgrade";
         }
 
-        public class Blocks
+        public static final  class Blocks
         {
             public static final String FirePit = "Armory.Blocks.FirePit";
             public static final String Heater = "Armory.Blocks.Heater";
             public static final String ArmorsAnvil = "Armory.Blocks.Anvil";
         }
 
-        public class TileEntities
+        public static final  class TileEntities
         {
             public static final String FirePitContainer = "container.Armory.FirePit";
             public static final String HeaterComponent = "container.Armory.Heater";
             public static final String ArmorsAnvil = "container.Armory.Anvil";
         }
 
-        public class HeatedItemTypes
+        public static final  class HeatedItemTypes
         {
             public static final String INGOT = "Ingot";
             public static final String RING = "Ring";
@@ -227,22 +227,28 @@ public class References
             public static final String PLATE = "Plate";
         }
 
-        public class GUIComponents
-    {
-        public class FirePit
+        public static final  class GUIComponents
         {
-            public static final String FLAMEONE = "Flame1";
-            public static final String FLAMETWO = "Flame2";
-            public static final String FLAMETHREE = "Flame3";
-            public static final String FLAMEFOUR = "Flame4";
-            public static final String FLAMEFIVE = "Flame5";
+            public static final  class FirePit
+            {
+                public static final String FLAMEONE = "Flame1";
+                public static final String FLAMETWO = "Flame2";
+                public static final String FLAMETHREE = "Flame3";
+                public static final String FLAMEFOUR = "Flame4";
+                public static final String FLAMEFIVE = "Flame5";
+            }
+
+            public static final  class Anvil
+            {
+                public static final String CRAFTINGPROGRESS = "CraftingProgress";
+            }
         }
 
-        public class Anvil
+        public static final class Commands
         {
-            public static final String CRAFTINGPROGRESS = "CraftingProgress";
+            public static final String BASECOMMAND = General.MOD_ID.toLowerCase();
+            public static final String GIVEHEATED = "Give-Heated-Item";
         }
-    }
     }
 
     //General model addresses

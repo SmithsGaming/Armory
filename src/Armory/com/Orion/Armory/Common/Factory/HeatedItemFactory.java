@@ -151,6 +151,8 @@ public class HeatedItemFactory
         return iHeatableItems;
     }
 
+    public ArrayList<String> getAllMappedTypes() { return  iMappedTypes; }
+
     public float getMeltingPointFromMaterial(ItemStack pItemStack)
     {
         return this.getMeltingPointFromMaterial(this.getMaterialIDFromItemStack(pItemStack));
