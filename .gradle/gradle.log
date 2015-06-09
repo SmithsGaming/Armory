@@ -1,3 +1,7 @@
+5c0ef4c5-d585-4c1a-930d-d120f6fbbdbe
+5c0ef4c5-d585-4c1a-930d-d120f6fbbdbe
+231229
+231229
 ****************************
  Powered By MCP:             
  http://mcp.ocean-labs.de/   
@@ -6,43 +10,34 @@
  MCP Data version : unknown
 ****************************
 Found AccessTransformer in main resources: Armory_at.cfg
+:compileApiJava UP-TO-DATE
+:processApiResources UP-TO-DATE
+:apiClasses UP-TO-DATE
+:sourceMainJava
+:compileJavawarning: [options] bootstrap class path not set in conjunction with -source 1.6
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+
+:processResources
+:classes
+:jar
+:compileTestJava UP-TO-DATE
+:processTestResources UP-TO-DATE
+:testClasses UP-TO-DATE
+:test UP-TO-DATE
 :extractMcpData UP-TO-DATE
 :getVersionJson
 :extractUserDev UP-TO-DATE
 :genSrgs SKIPPED
-:extractNatives UP-TO-DATE
-:getAssetsIndex
-:getAssets
-:makeStart
-[ant:javac] warning: [options] bootstrap class path not set in conjunction with -source 1.6
-[ant:javac] 1 warning
-:downloadMcpTools SKIPPED
-:downloadClient SKIPPED
-:downloadServer SKIPPED
-:mergeJars SKIPPED
-:deobfuscateJar
-Applying SpecialSource...
-Applying Exceptor...
-:decompile
-:processSources
-Injecting fml files
-Applying fml patches
-Applying forge patches
-:remapJar
-:extractMinecraftSrc
-:recompMinecraftNote: Some input files use or override a deprecated API.
-Note: Recompile with -Xlint:deprecation for details.
-Note: Some input files use unchecked or unsafe operations.
-Note: Recompile with -Xlint:unchecked for details.
-
-:repackMinecraft
-:setupDecompWorkspace
-:copyChicken UP-TO-DATE
-:ideaModule
-:ideaProject
-:ideaWorkspace
-:idea
+:reobf
+:assemble
+:check UP-TO-DATE
+:build
+:curse
+Uploading D:\Development\Minecraft\Armory\build\libs\Armory-1.0.0-null.jar to https://minecraft.curseforge.com/api/projects/231229/upload-file
+File uploaded to CurseForge succesfully with ID: 2242041
 
 BUILD SUCCESSFUL
 
-Total time: 3 mins 13.247 secs
+Total time: 25.578 secs
