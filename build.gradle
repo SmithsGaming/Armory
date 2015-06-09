@@ -162,11 +162,12 @@ task createDevSetup{
 //Set the dependencies properly for the createDevSetup task.
 tasks.createDevSetup.dependsOn("setupDevWorkspace", "setupDecompWorkspace", "copyChicken")
 
-task getChangeLog(type: Exec) {
-    commandLine "git log --pretty -10 "
-    standardOutput = new ByteArrayOutputStream()
-    ext.commitMsg = {
-        return standardOutput.toString()
+task getChangeLog() {
+    def commandLine = "git log --pretty -10 ".execute()
+    commandLine.waitFor()
+
+    ext.changelog = {
+        return commandLine.OutputStream.toString()
     }
 }
 
@@ -175,6 +176,7 @@ curse {
 
     projectId = System.getenv().CURSEPROJECTID
     apiKey = System.getenv().CURSEAPIKEY
+    changelog = getChangeLog.changelog
 
     if (config.build_mode.equals("DEBUG"))
     {
