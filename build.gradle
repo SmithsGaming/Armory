@@ -171,7 +171,7 @@ task getChangeLog(type: Exec) {
 }
 
 curse {
-    onlyIf { ((System.getenv().CURSEAPIKEY != null) && (!config.build_mode.equals("SYNC"))) }
+    onlyIf { ((System.getenv().CURSEAPIKEY != null) && (!config.build_mode.equals("SYNC")) && (System.getenv().TRAVIS_BRANCH.contains("Minecraft"))) }
 
     projectId = System.getenv().CURSEPROJECTID
     apiKey = System.getenv().CURSEAPIKEY
