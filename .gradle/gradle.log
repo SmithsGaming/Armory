@@ -6,22 +6,10 @@
  MCP Data version : unknown
 ****************************
 Found AccessTransformer in main resources: Armory_at.cfg
-:getChangeLog UP-TO-DATE
-:extractMcpData UP-TO-DATE
-:getVersionJson
-:extractUserDev UP-TO-DATE
-:genSrgs SKIPPED
-:compileApiJava UP-TO-DATE
-:processApiResources UP-TO-DATE
-:apiClasses UP-TO-DATE
-:sourceMainJava UP-TO-DATE
-:compileJava UP-TO-DATE
-:processResources UP-TO-DATE
-:classes UP-TO-DATE
-:jar
-:reobf
-:curse SKIPPED
+:createGithubBranches
+Current active buildmode: RELEASE
+
 
 BUILD SUCCESSFUL
 
-Total time: 16.427 secs
+Total time: 24.178 secs

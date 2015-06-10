@@ -166,7 +166,7 @@ task createDevSetup{
 tasks.createDevSetup.dependsOn("setupDevWorkspace", "setupDecompWorkspace", "copyChicken")
 
 curse {
-    onlyIf { ((System.getenv().CURSEAPIKEY != null) && (!build_mode.equals("SYNC")) && (!build_mode.toString().equals("RELEASE"))) }
+    onlyIf { ((System.getenv().CURSEAPIKEY != null) && (!build_mode.toString().trim().equals("SYNC")) && (!build_mode.toString().trim().equals("RELEASE"))) }
 
     projectId = System.getenv().CURSEPROJECTID
     apiKey = System.getenv().CURSEAPIKEY
@@ -242,7 +242,7 @@ uploadArchives {
 task('createGithubBranches') << {
     logger.lifecycle("Current active buildmode: " + build_mode.toString())
 
-    if ((System.getenv().TRAVIS_BRANCH.toString().contains("Development")) && (build_mode.toString().equals("RELEASE")))
+    if ((System.getenv().TRAVIS_BRANCH.toString().contains("Development")) && (build_mode.toString().trim().equals("RELEASE")))
     {
         build_file.text = build_file.text.replace("RELEASE", "DEBUG")
 
