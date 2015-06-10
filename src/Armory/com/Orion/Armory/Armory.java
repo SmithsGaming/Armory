@@ -2,8 +2,11 @@ package com.Orion.Armory;
 
 import com.Orion.Armory.Common.ArmoryCommonProxy;
 import com.Orion.Armory.Common.Command.CommandArmory;
+import com.Orion.Armory.Common.Config.ArmorDataConfigHandler;
 import com.Orion.Armory.Common.Handlers.GuiHandler;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
+import com.Orion.Armory.Network.ConfigNetworkManager;
 import com.Orion.Armory.Network.NetworkManager;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.common.Mod;
@@ -40,12 +43,15 @@ public class Armory
     public void preInit (FMLPreInitializationEvent event)
     {
         proxy.registerEventHandlers();
+
+        ArmorDataConfigHandler.init(event.getSuggestedConfigurationFile());
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
         NetworkManager.Init();
+        ConfigNetworkManager.Init();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
         proxy.initializeArmory();

@@ -54,6 +54,11 @@ public class MaterialRegistry implements IMaterialRegistry{
         return iArmorMaterials;
     }
 
+    @Override
+    public void setAllArmorMaterials(HashMap<String, IArmorMaterial> pNewMaterials) {
+        iArmorMaterials = pNewMaterials;
+    }
+
     public void registerMaterial(IArmorMaterial pMaterial)
     {
         iArmorMaterials.put(pMaterial.getInternalMaterialName(), pMaterial);

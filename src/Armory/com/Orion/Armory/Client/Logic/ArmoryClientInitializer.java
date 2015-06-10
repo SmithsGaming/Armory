@@ -17,8 +17,6 @@ import com.Orion.Armory.Client.Renderer.TileEntities.AnvilTESR;
 import com.Orion.Armory.Client.Renderer.TileEntities.FirePitTESR;
 import com.Orion.Armory.Client.Renderer.TileEntities.HeaterTESR;
 import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
-import com.Orion.Armory.Common.Material.ArmorMaterial;
-import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;

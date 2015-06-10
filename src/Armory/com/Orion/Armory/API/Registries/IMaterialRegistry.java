@@ -45,6 +45,13 @@ public interface IMaterialRegistry
     HashMap<String, IArmorMaterial> getArmorMaterials();
 
     /**
+     * Sets all the Materials at once.
+     *
+     * @param pNewMaterials A new HashMap with Material Definitions.
+     */
+    void setAllArmorMaterials(HashMap<String, IArmorMaterial> pNewMaterials);
+
+    /**
      * Function to register a new Material to this registry
      *
      * @param pMaterial The new Material you want to register

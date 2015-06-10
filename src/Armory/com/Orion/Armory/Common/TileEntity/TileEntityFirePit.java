@@ -7,6 +7,7 @@ package com.Orion.Armory.Common.TileEntity;
 
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
+import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
 import com.Orion.Armory.Network.NetworkManager;
@@ -556,7 +557,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             }
 
             float tCurrentStackTemp = ItemHeatedItem.getItemTemperature(iIngotStacks[tIngotStackCount]);
-            float tCurrentStackCoefficient = GeneralRegistry.getInstance().getHeatCoefficient(HeatedItemFactory.getInstance().getMaterialIDFromItemStack(iIngotStacks[tIngotStackCount]));
+            float tCurrentStackCoefficient = MaterialRegistry.getInstance().getMaterial(HeatedItemFactory.getInstance().getMaterialIDFromItemStack(iIngotStacks[tIngotStackCount])).getHeatCoefficient();
 
             float tSourceDifference = iNegativeHeatTerm - tCurrentStackCoefficient;
             float tTargetDifference = -1 * tSourceDifference + iNegativeHeatTerm;
@@ -568,7 +569,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
                 iCurrentTemperature += tSourceDifference;
                 ItemHeatedItem.setItemTemperature(iIngotStacks[tIngotStackCount], ItemHeatedItem.getItemTemperature(iIngotStacks[tIngotStackCount]) + tTargetDifference);
 
-                float tMeltingPoint = GeneralRegistry.getInstance().getMeltingPoint(HeatedItemFactory.getInstance().getMaterialIDFromItemStack(iIngotStacks[tIngotStackCount]));
+                float tMeltingPoint = HeatedItemFactory.getInstance().getMeltingPointFromMaterial(iIngotStacks[tIngotStackCount]);
                 if (tCurrentStackTemp > tMeltingPoint)
                 {
                     iIngotStacks[tIngotStackCount] = null;
@@ -577,7 +578,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
                 iCurrentTemperature += tTargetDifference;
                 ItemHeatedItem.setItemTemperature(iIngotStacks[tIngotStackCount], ItemHeatedItem.getItemTemperature(iIngotStacks[tIngotStackCount]) + tSourceDifference);
 
-                float tMeltingPoint = GeneralRegistry.getInstance().getMeltingPoint(HeatedItemFactory.getInstance().getMaterialIDFromItemStack(iIngotStacks[tIngotStackCount]));
+                float tMeltingPoint = HeatedItemFactory.getInstance().getMeltingPointFromMaterial(iIngotStacks[tIngotStackCount]);
                 if (tCurrentStackTemp > tMeltingPoint) {
                     iIngotStacks[tIngotStackCount] = null;
                 }

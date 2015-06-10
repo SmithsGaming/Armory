@@ -1,7 +1,9 @@
 package com.Orion.Armory.Common;
 
 
+import com.Orion.Armory.Common.Event.ArmoryDataSyncerEventHandler;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 /**
  * Created by Orion on 26-4-2014
@@ -15,6 +17,8 @@ public class ArmoryCommonProxy
         ArmoryInitializer.InitializeServer();
     }
 
-    public void registerEventHandlers(){}
+    public void registerEventHandlers(){
+        FMLCommonHandler.instance().bus().register(new ArmoryDataSyncerEventHandler());
+    }
 
 }

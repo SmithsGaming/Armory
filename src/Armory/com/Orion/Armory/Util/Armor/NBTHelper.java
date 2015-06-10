@@ -10,6 +10,7 @@ import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.API.Armor.MultiLayeredArmor;
 import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Common.Addons.ArmorUpgradeMedieval;
+import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Util.References;
@@ -33,11 +34,20 @@ public class NBTHelper {
             NBTTagCompound tPositionCompound = tAddonsCompound.getCompoundTag(tPossiblePosition.getInternalName());
 
             if (!tPositionCompound.hasNoTags()) {
-                tAddonMap.put(GeneralRegistry.getInstance().getMLAAddon(tPositionCompound.getString(References.NBTTagCompoundData.Addons.AddonID), tTier), tPositionCompound.getInteger(References.NBTTagCompoundData.Addons.AddonInstalledAmount));
+                tAddonMap.put(getMLAAddon(tPositionCompound.getString(References.NBTTagCompoundData.Addons.AddonID), tTier), tPositionCompound.getInteger(References.NBTTagCompoundData.Addons.AddonInstalledAmount));
             }
         }
 
         return tAddonMap;
+    }
+
+    public static MLAAddon getMLAAddon(String pAddonID, String pTier)
+    {
+        if (pTier.equals(References.InternalNames.Tiers.MEDIEVAL)) {
+            return MedievalAddonRegistry.getInstance().getUpgrade(pAddonID);
+        } else {
+            return null;
+        }
     }
 
     public static NBTTagCompound createAddonListCompound(HashMap<MLAAddon, Integer> pAddonMap) {

@@ -20,6 +20,7 @@ import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
 import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
+import com.Orion.Armory.Common.Config.ArmorDataConfigHandler;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Material.ArmorMaterial;
@@ -52,9 +53,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ListIterator;
+import java.util.*;
 
 public class ArmoryInitializer
 {
@@ -65,6 +64,7 @@ public class ArmoryInitializer
         SystemInit.RegisterBlocks();
         SystemInit.RegisterItems();
         SystemInit.RegisterTileEntities();
+        SystemInit.loadMaterialConfig();
         MedievalInitialization.prepareGame();
     }
 
@@ -93,8 +93,8 @@ public class ArmoryInitializer
         }
 
         private static void registerMaterials() {
-            ArmorMaterial tIron = new ArmorMaterial(InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", EnumChatFormatting.WHITE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.IRON, 1865, 0.225F, new ItemStack(Items.iron_ingot));
-            ArmorMaterial tObsidian = new ArmorMaterial(InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", EnumChatFormatting.DARK_PURPLE, true, new HashMap<String, Float>(), new HashMap<String, Integer>(), new HashMap<String, Integer>(), new HashMap<String, Boolean>(), Colors.Metals.OBSIDIAN, 1404, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
+            ArmorMaterial tIron = new ArmorMaterial(InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", EnumChatFormatting.WHITE, true, Colors.Metals.IRON, 1865, 0.225F, new ItemStack(Items.iron_ingot));
+            ArmorMaterial tObsidian = new ArmorMaterial(InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", EnumChatFormatting.DARK_PURPLE, true, Colors.Metals.OBSIDIAN, 1404, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
 
             MaterialRegistry.getInstance().registerMaterial(tIron);
             MaterialRegistry.getInstance().registerMaterial(tObsidian);
@@ -489,7 +489,7 @@ public class ArmoryInitializer
 
                 TileEntityArmorsAnvil.addRecipe(tChainRecipe);
 
-                if (!tMaterial.isBaseArmorMaterial())
+                if (!tMaterial.getIsBaseArmorMaterial())
                     continue;
                 
                 ItemStack tChestplateStack = MedievalArmorFactory.getInstance().buildNewMLAArmor(MaterialRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALCHESTPLATE), new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(InternalNames.Armor.MEDIEVALCHESTPLATE), tMaterial.getInternalMaterialName());
@@ -605,7 +605,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(8, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(10, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(14, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -624,7 +624,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(18, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(23, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -643,7 +643,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(16, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(21, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -667,7 +667,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(3, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(4, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(9, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -687,7 +687,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(1, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(2, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(5, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -709,7 +709,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(15, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(16, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(21, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -731,7 +731,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(19, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(18, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(23, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -753,7 +753,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(15, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(16, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(20, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -775,7 +775,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(18, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(19, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(24, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -800,7 +800,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(16, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(21, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -821,7 +821,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(18, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(23, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -843,7 +843,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(12, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(16, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -865,7 +865,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(18, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -890,7 +890,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(15, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(16, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(20, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -911,7 +911,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(18, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(19, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setCraftingSlotContent(24, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
-                            .setResult(tUpgradeStack).setHammerUsage((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 300).setTongUsage((int) (GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) - 1000) / 300).setProgress((int) GeneralRegistry.getInstance().getMeltingPoint(tMaterial.getInternalMaterialName()) / 100);
+                            .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
                     TileEntityArmorsAnvil.addRecipe(tRecipe);
                 }
@@ -1274,6 +1274,21 @@ public class ArmoryInitializer
             GameRegistry.registerTileEntity(TileEntityFirePit.class, InternalNames.TileEntities.FirePitContainer);
             GameRegistry.registerTileEntity(TileEntityHeater.class, InternalNames.TileEntities.HeaterComponent);
             GameRegistry.registerTileEntity(TileEntityArmorsAnvil.class, InternalNames.TileEntities.ArmorsAnvil);
+        }
+
+        public static void loadMaterialConfig()
+        {
+            GeneralRegistry.iLogger.info("Started loading custom ArmorMaterial Values from Config.");
+            ArmorDataConfigHandler tConfigHandler = new ArmorDataConfigHandler();
+
+            tConfigHandler.loadIsBaseArmorMaterial();
+            tConfigHandler.loadTemperatureCoefficient();
+            tConfigHandler.loadMeltingPoint();
+            tConfigHandler.loadActiveParts();
+            tConfigHandler.loadBaseDamageAbsorptions();
+            tConfigHandler.loadPartModifiers();
+            tConfigHandler.loadBaseDurability();
+            GeneralRegistry.iLogger.info("Loading of the custom ArmorMaterial Values has succesfully been performed!");
         }
 
         public static void removeRecipes()

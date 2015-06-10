@@ -9,7 +9,6 @@ package com.Orion.Armory.Common.Material;
 import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
-import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Client.Color;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.References;
@@ -21,35 +20,32 @@ import java.util.HashMap;
 
 public class ArmorMaterial implements IArmorMaterial
 {
-    public String iOreDicName;
-    public String iInternalName;
-    public String iVisibleName;
-    public EnumChatFormatting iVisibleNameColor;
-    public boolean iBaseArmorMaterial;
-    public Color iColor = Colors.Metals.IRON;
-    public HashMap<String, Boolean> iActiveParts = new HashMap<String, Boolean>();
-    public HashMap<String, Float> iBaseDamageAbsorption = new HashMap<String, Float>();
-    public HashMap<String, Integer> iBaseDurability = new HashMap<String, Integer>();
-    public HashMap<String, Integer> iPartModifiers = new HashMap<String, Integer>();
+    private String iOreDicName;
+    private String iInternalName;
+    private String iVisibleName;
+    private EnumChatFormatting iVisibleNameColor;
+    private boolean iBaseArmorMaterial;
+    private Color iColor = Colors.Metals.IRON;
+    private HashMap<String, Boolean> iActiveParts = new HashMap<String, Boolean>();
+    private HashMap<String, Float> iBaseDamageAbsorption = new HashMap<String, Float>();
+    private HashMap<String, Integer> iBaseDurability = new HashMap<String, Integer>();
+    private HashMap<String, Integer> iPartModifiers = new HashMap<String, Integer>();
+    private float iMeltingPoint;
+    private float iHeatCoefficient;
 
     //Constructor
-    public ArmorMaterial(String pInternalName, String pVisibleName, String pOreDicName, EnumChatFormatting pVisibleNameColor, boolean pBaseArmorMaterial, HashMap<String, Float> pBaseDamageAbsorption, HashMap<String, Integer> pBaseDurability, HashMap<String, Integer> pPartModifiers, HashMap<String, Boolean> pActiveParts, Color pColor, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack)
+    public ArmorMaterial(String pInternalName, String pVisibleName, String pOreDicName, EnumChatFormatting pVisibleNameColor, boolean pBaseArmorMaterial, Color pColor, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack)
     {
         iOreDicName = pOreDicName;
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
         iVisibleNameColor = pVisibleNameColor;
         iBaseArmorMaterial = pBaseArmorMaterial;
-        iBaseDamageAbsorption = pBaseDamageAbsorption;
-        iBaseDurability = pBaseDurability;
-        iPartModifiers = pPartModifiers;
-        iActiveParts = pActiveParts;
         iColor = pColor;
+        iMeltingPoint = pMeltingPoint;
+        iHeatCoefficient = pHeatCoefficient;
 
-        if (GeneralRegistry.getInstance().getMeltingPoint(pInternalName) == -1)
-        {
-            GeneralRegistry.getInstance().setMeltingPoint(pInternalName, pMeltingPoint);
-            GeneralRegistry.getInstance().setHeatCoefficient(pInternalName, pHeatCoefficient);
+        if (!HeatedItemFactory.getInstance().isHeatable(pBaseItemStack)){
             HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
         }
     }
@@ -86,6 +82,11 @@ public class ArmorMaterial implements IArmorMaterial
         return iActiveParts.get(pUpgradeInternalName);
     }
 
+    @Override
+    public HashMap<String, Boolean> getAllPartStates() {
+        return iActiveParts;
+    }
+
     public void setBaseDamageAbsorption(String pTargetArmorInternalName, Float pBaseDamageAbsorption)
     {
         iBaseDamageAbsorption.put(pTargetArmorInternalName, pBaseDamageAbsorption);
@@ -94,6 +95,11 @@ public class ArmorMaterial implements IArmorMaterial
     public Float getBaseDamageAbsorption(String pTargetArmorInternalName)
     {
         return iBaseDamageAbsorption.get(pTargetArmorInternalName);
+    }
+
+    @Override
+    public HashMap<String, Float> getAllBaseDamageAbsorbtionValues() {
+        return iBaseDamageAbsorption;
     }
 
     public void setBaseDurability(String pTargetArmorInternalName, int pBaseDurability)
@@ -108,12 +114,22 @@ public class ArmorMaterial implements IArmorMaterial
         return 100;
     }
 
+    @Override
+    public HashMap<String, Integer> getAllBaseDurabilityValues() {
+        return iBaseDurability;
+    }
+
     public void setMaxModifiersOnPart(String pTargetArmorInternalName, int pMaxModifiers)
     {
         iPartModifiers.put(pTargetArmorInternalName, pMaxModifiers);
     }
 
     public int getMaxModifiersOnPart(String pTargetArmorInternalName) { return iPartModifiers.get(pTargetArmorInternalName);}
+
+    @Override
+    public HashMap<String, Integer> getAllMaxModifiersAmounts() {
+        return iPartModifiers;
+    }
 
     @Override
     public String getType() {
@@ -145,8 +161,33 @@ public class ArmorMaterial implements IArmorMaterial
         return iVisibleNameColor;
     }
 
-    public boolean isBaseArmorMaterial()
-    {
+    @Override
+    public boolean getIsBaseArmorMaterial() {
         return iBaseArmorMaterial;
+    }
+
+    @Override
+    public float getMeltingPoint() {
+        return iMeltingPoint;
+    }
+
+    @Override
+    public float getHeatCoefficient() {
+        return iHeatCoefficient;
+    }
+
+    @Override
+    public void setIsBaseArmorMaterial(boolean pNewState) {
+        iBaseArmorMaterial = pNewState;
+    }
+
+    @Override
+    public void setMeltingPoint(float pNewMeltingPoint) {
+        iMeltingPoint = pNewMeltingPoint;
+    }
+
+    @Override
+    public void setHeatCoefficient(float pNewCoefficient) {
+        iHeatCoefficient = pNewCoefficient;
     }
 }

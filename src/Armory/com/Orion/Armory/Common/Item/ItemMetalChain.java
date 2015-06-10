@@ -8,7 +8,6 @@ package com.Orion.Armory.Common.Item;
 import com.Orion.Armory.API.Item.IHeatableItem;
 import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
-import com.Orion.Armory.Common.Material.ArmorMaterial;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Client.CustomResource;
@@ -93,7 +92,6 @@ public class ItemMetalChain extends Item implements IHeatableItem
     }
 
 
-    @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(Item pRing, CreativeTabs pCreativeTab, List pItemStacks)
     {

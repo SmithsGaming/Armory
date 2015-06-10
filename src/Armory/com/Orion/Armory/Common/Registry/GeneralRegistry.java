@@ -29,8 +29,6 @@ public class GeneralRegistry {
     protected static GeneralRegistry iInstance;
     public static Logger iLogger = LogManager.getLogger("Armory");
     public static ItemArmor.ArmorMaterial iArmorMaterial = EnumHelper.addArmorMaterial("Armory-Dummy", 100, new int[]{0, 0, 0, 0}, 0);
-    private static HashMap<String, Float> iMeltingPoints = new HashMap<String, Float>();
-    private static HashMap<String, Float> iHeatCoefficients = new HashMap<String, Float>();
 
     // Tabs for the creative inventory
     public static MedievalTab iTabMedievalArmor;
@@ -44,44 +42,12 @@ public class GeneralRegistry {
         this.iTabMedievalArmor = new MedievalTab();
         this.iTabArmoryComponents = new ComponentsTab();
         this.iTabMedievalUpgrades = new MedievalUpgradeTab();
-        //TODO: Initialize all creative tabs once implemented properly
     }
 
     public static GeneralRegistry getInstance()
     {
         if (iInstance == null) iInstance = new GeneralRegistry();
         return iInstance;
-    }
-
-    public MLAAddon getMLAAddon(String pAddonID, String pTier)
-    {
-        if (pTier.equals(References.InternalNames.Tiers.MEDIEVAL)) {
-            return MedievalAddonRegistry.getInstance().getUpgrade(pAddonID);
-        } else {
-            return null;
-        }
-    }
-
-    public float getMeltingPoint(String pMaterialName)
-    {
-        if (!(iMeltingPoints.containsKey(pMaterialName))) {return -1;}
-        return iMeltingPoints.get(pMaterialName);
-    }
-
-    public void setMeltingPoint(String pMaterialPoint, float pMeltingPoint)
-    {
-        iMeltingPoints.put(pMaterialPoint, pMeltingPoint);
-    }
-
-    public float getHeatCoefficient(String pMaterialName)
-    {
-        if (!(iHeatCoefficients.containsKey(pMaterialName))) {return -1;}
-        return iHeatCoefficients.get(pMaterialName);
-    }
-
-    public void setHeatCoefficient(String pMaterialName, float pCoefficient)
-    {
-        iHeatCoefficients.put(pMaterialName, pCoefficient);
     }
 
     public static class Blocks

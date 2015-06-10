@@ -95,7 +95,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
      public void getSubItems(Item pArmorCore, CreativeTabs pCreativeTab, List pItemStacks)
     {
         for(IArmorMaterial tMaterial: MaterialRegistry.getInstance().getArmorMaterials().values()){
-            if (!tMaterial.isBaseArmorMaterial())
+            if (!tMaterial.getIsBaseArmorMaterial())
                 continue;
 
             ItemStack tStandardArmor = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(this.getInternalName()), tMaterial.getInternalMaterialName());

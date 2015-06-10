@@ -7,6 +7,7 @@ package com.Orion.Armory.Common.Factory;
 
 import com.Orion.Armory.API.Item.IHeatableItem;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
+import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Core.ItemStackHelper;
 import com.Orion.Armory.Util.References;
@@ -143,7 +144,7 @@ public class HeatedItemFactory
 
     public float getMeltingPointFromMaterial(String pMaterialName)
     {
-        return GeneralRegistry.getInstance().getMeltingPoint(pMaterialName);
+        return MaterialRegistry.getInstance().getMaterial(pMaterialName).getMeltingPoint();
     }
 
     public ArrayList<ItemStack> getAllMappedStacks()

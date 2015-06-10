@@ -162,23 +162,14 @@ task createDevSetup{
 //Set the dependencies properly for the createDevSetup task.
 tasks.createDevSetup.dependsOn("setupDevWorkspace", "setupDecompWorkspace", "copyChicken")
 
-task getChangeLog() {
-    def commandLine = "git log --pretty -10 ".execute()
-    commandLine.waitFor()
-
-    ext.changelog = {
-        return commandLine.OutputStream.toString()
-    }
-}
-
 curse {
-    onlyIf { ((System.getenv().CURSEAPIKEY != null) && (!config.build_mode.equals("SYNC")) && (System.getenv().TRAVIS_BRANCH.contains("Minecraft"))) }
+    onlyIf { ((System.getenv().CURSEAPIKEY != null) && (!config.build_mode.equals("SYNC")) && (!config.build_mode.toString().equals("RELEASE"))) }
 
     projectId = System.getenv().CURSEPROJECTID
     apiKey = System.getenv().CURSEAPIKEY
-    changelog = getChangeLog.changelog
+    changelog = "Check out: " + "https://github.com/" + System.getenv().TRAVIS_REPO_SLUG.toString() + "/commits/" + System.getenv().TRAVIS_BRANCH.toString() + " for all Changes."
 
-    if (config.build_mode.equals("DEBUG"))
+    if (System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
     {
         releaseType = "Alpha"
     }
@@ -190,7 +181,6 @@ curse {
 
 curse.dependsOn {
     reobf
-    getChangeLog
 }
 
 //Function to upload completed project to the maven repo.
@@ -249,6 +239,11 @@ uploadArchives {
 task('createGithubBranches') << {
     if ((System.getenv().TRAVIS_BRANCH.toString().contains("Development")) && (config.build_mode.toString().equals("RELEASE")))
     {
+        ant.propertyfile(
+                file: "build.properties") {
+            entry( key: "build_mode", value: "DEBUG")
+        }
+
         logger.lifecycle("Uploading code to the corresponding Minecraft version branch. Creating branch if needed.")
         logger.lifecycle("Creating local branch.")
         //Creates/Or checks out the new local branch.

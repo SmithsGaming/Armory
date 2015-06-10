@@ -4,7 +4,6 @@ import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.API.Armor.MultiLayeredArmor;
 import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Common.Addons.ArmorUpgradeMedieval;
-import com.Orion.Armory.Common.Material.ArmorMaterial;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Client.CustomResource;

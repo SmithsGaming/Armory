@@ -60,6 +60,8 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         return iRecipes;
     }
 
+    public static void clearAllStoredRecipes() { iRecipes.clear(); }
+
     @Override
     public int getSizeInventory() {
         return MAX_CRAFTINGSLOTS + MAX_OUTPUTSLOTS + MAX_HAMMERSLOTS+ MAX_TONGSLOTS;
