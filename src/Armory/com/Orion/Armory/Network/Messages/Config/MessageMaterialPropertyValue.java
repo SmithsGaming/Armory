@@ -1,6 +1,5 @@
 package com.Orion.Armory.Network.Messages.Config;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import io.netty.buffer.ByteBuf;
