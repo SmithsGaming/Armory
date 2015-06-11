@@ -145,6 +145,19 @@ processResources
     exclude '**/Thumbs.db'
 }
 
+task devJar(type: Jar, dependsOn: 'classes') {
+    from(sourceSets.main.output) {
+        include '**'
+    }
+
+    extension = 'jar'
+    classifier = 'dev'
+}
+
+artifacts {
+    archives devJar
+}
+
 //The following function comes with thanks to AbrarSyed:
 //Copying the coremod dependencies from the classpath to the mods directory so the system can load them in a Dev Env.
 //This is not executed during build!
@@ -176,6 +189,8 @@ curse {
                 {
                     releaseType = "Beta"
                 }
+
+                additionalArtifact devJar
             }
             else
             {
@@ -250,8 +265,6 @@ uploadArchives {
 task('createGithubBranches') << {
     if ((System.getenv().TRAVIS_BRANCH.toString().contains("Development")) && (build_mode.toString().trim().equals("RELEASE")))
     {
-        build_file.text = build_file.text.replace("RELEASE", "DEBUG")
-
         logger.lifecycle("Uploading code to the corresponding Minecraft version branch. Creating branch if needed.")
         logger.lifecycle("Creating local branch.")
         //Creates/Or checks out the new local branch.
