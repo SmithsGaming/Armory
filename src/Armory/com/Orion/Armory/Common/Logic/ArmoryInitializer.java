@@ -68,12 +68,12 @@ public class ArmoryInitializer
         SystemInit.RegisterTileEntities();
         SystemInit.loadMaterialConfig();
         MedievalInitialization.prepareGame();
+        SystemInit.initializeOreDic();
     }
 
-    public static void postInitializeServer()
-    {
+    public static void postInitializeServer() {
         SystemInit.removeRecipes();
-        SystemInit.initializeOreDic();
+        HeatedItemFactory.getInstance().reloadAllItemStackOreDic();
     }
 
     public static class MedievalInitialization {
@@ -1298,29 +1298,35 @@ public class ArmoryInitializer
             if (!ArmoryConfig.enableHardModeNuggetRemoval)
                 return;
 
-            ListIterator<IRecipe> iterator = CraftingManager.getInstance().getRecipeList().listIterator();
-            while (iterator.hasNext())
+            ListIterator<IRecipe> tIterator = CraftingManager.getInstance().getRecipeList().listIterator();
+            while (tIterator.hasNext())
             {
-                IRecipe r = iterator.next();
-                int[] tOreID = OreDictionary.getOreIDs(r.getRecipeOutput());
+                IRecipe tRecipe = tIterator.next();
+                tryRemoveRecipeFromGame(tRecipe, tIterator);
+            }
+        }
 
-                for (int tID: tOreID)
+        private static void tryRemoveRecipeFromGame(IRecipe pRecipe, Iterator pIterator)
+        {
+            int[] tOreID = OreDictionary.getOreIDs(pRecipe.getRecipeOutput());
+
+            for (int tID: tOreID)
+            {
+                String pOreDicID = OreDictionary.getOreName(tID);
+                if (pOreDicID.contains("nugget"))
                 {
-                    String pOreDicID = OreDictionary.getOreName(tID);
-                    if (pOreDicID.contains("nugget"))
+                    for(IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
                     {
-                        for(IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
+                        if (pOreDicID.toLowerCase().contains(tMaterial.getOreDicName().toLowerCase()))
                         {
-                            if (pOreDicID.toLowerCase().contains(tMaterial.getOreDicName().toLowerCase()))
+                            try
                             {
-                                try
-                                {
-                                    iterator.remove();
-                                }
-                                catch (IllegalStateException ex)
-                                {
-                                    GeneralRegistry.iLogger.info("Could not remove recipe of: " + ItemStackHelper.toString(r.getRecipeOutput()));
-                                }
+                                pIterator.remove();
+                                return;
+                            }
+                            catch (IllegalStateException ex)
+                            {
+                                GeneralRegistry.iLogger.info("Could not remove recipe of: " + ItemStackHelper.toString(pRecipe.getRecipeOutput()));
                             }
                         }
                     }
@@ -1361,7 +1367,7 @@ public class ArmoryInitializer
             for (ItemStack tNugget : tNuggets)
             {
                 String tMaterial = tNugget.getTagCompound().getString(References.NBTTagCompoundData.Material);
-                OreDictionary.registerOre("chain" + MaterialRegistry.getInstance().getMaterial(tMaterial).getOreDicName(), tNugget);
+                OreDictionary.registerOre("nugget" + MaterialRegistry.getInstance().getMaterial(tMaterial).getOreDicName(), tNugget);
             }
         }
     }

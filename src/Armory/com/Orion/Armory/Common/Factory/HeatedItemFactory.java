@@ -5,6 +5,7 @@ package com.Orion.Armory.Common.Factory;
 /  Created on : 03/10/2014
 */
 
+import codechicken.nei.ItemQuantityField;
 import com.Orion.Armory.API.Item.IHeatableItem;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
@@ -17,6 +18,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class HeatedItemFactory
@@ -120,6 +122,47 @@ public class HeatedItemFactory
             else
             {
                 iMappedTypes.add(References.InternalNames.HeatedItemTypes.INGOT);
+            }
+        }
+
+        reloadItemStackOreDic(tSingledItemStack, pMaterialName);
+    }
+
+    public void reloadAllItemStackOreDic()
+    {
+        ArrayList<ItemStack> tHeatableItems = new ArrayList<ItemStack>(iHeatableItems);
+        ArrayList<String> tMappedNames = new ArrayList<String>(iMappedNames);
+
+        Iterator<ItemStack> tStackIter = tHeatableItems.iterator();
+        Iterator<String> tNameIter = tMappedNames.iterator();
+
+        while(tStackIter.hasNext())
+        {
+            reloadItemStackOreDic(tStackIter.next(), tNameIter.next());
+        }
+    }
+
+    public void reloadItemStackOreDic(ItemStack pStack, String pMaterialName)
+    {
+        int[] tOreIDs = OreDictionary.getOreIDs(pStack);
+        for (int tOreID : tOreIDs)
+        {
+            for(ItemStack tStack : OreDictionary.getOres(OreDictionary.getOreName(tOreID)))
+            {
+                if (!isHeatable(tStack))
+                {
+                    this.iHeatableItems.add(tStack);
+                    this.iMappedNames.add(pMaterialName);
+
+                    if (tStack.getItem() instanceof IHeatableItem)
+                    {
+                        iMappedTypes.add(((IHeatableItem) tStack.getItem()).getInternalType());
+                    }
+                    else
+                    {
+                        iMappedTypes.add(References.InternalNames.HeatedItemTypes.INGOT);
+                    }
+                }
             }
         }
     }
