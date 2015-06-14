@@ -37,6 +37,7 @@ import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.TextureAddressHelper;
 import com.Orion.Armory.Util.Client.TranslationKeys;
+import com.Orion.Armory.Util.Core.ItemStackHelper;
 import com.Orion.Armory.Util.References;
 import com.Orion.Armory.Util.References.InternalNames;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -1312,7 +1313,14 @@ public class ArmoryInitializer
                         {
                             if (pOreDicID.toLowerCase().contains(tMaterial.getOreDicName().toLowerCase()))
                             {
-                                iterator.remove();
+                                try
+                                {
+                                    iterator.remove();
+                                }
+                                catch (IllegalStateException ex)
+                                {
+                                    GeneralRegistry.iLogger.info("Could not remove recipe of: " + ItemStackHelper.toString(r.getRecipeOutput()));
+                                }
                             }
                         }
                     }
