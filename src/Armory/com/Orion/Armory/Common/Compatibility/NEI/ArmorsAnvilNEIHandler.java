@@ -3,6 +3,7 @@ package com.Orion.Armory.Common.Compatibility.NEI;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 import com.Orion.Armory.API.Item.IHeatableItem;
+import com.Orion.Armory.Client.GUI.GuiArmorsAnvilMinimal;
 import com.Orion.Armory.Client.GUI.GuiArmorsAnvilStandard;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.IAnvilRecipeComponent;
@@ -60,7 +61,7 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
 
     @Override
     public Class<? extends GuiContainer> getGuiClass() {
-        return GuiArmorsAnvilStandard.class;
+        return GuiArmorsAnvilMinimal.class;
     }
 
     @Override

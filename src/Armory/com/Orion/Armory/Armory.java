@@ -3,6 +3,7 @@ package com.Orion.Armory;
 import com.Orion.Armory.Common.ArmoryCommonProxy;
 import com.Orion.Armory.Common.Command.CommandArmory;
 import com.Orion.Armory.Common.Config.ArmorDataConfigHandler;
+import com.Orion.Armory.Common.Config.ArmoryConfig;
 import com.Orion.Armory.Common.Handlers.GuiHandler;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
@@ -25,7 +26,7 @@ import cpw.mods.fml.relauncher.Side;
  */
 
 @Mod(modid = References.General.MOD_ID, name = "Armory", version = References.General.VERSION,
-        dependencies = "required-after:Forge@[10.13,);")
+        dependencies = "required-after:Forge@[10.13,);after:TConstruct")
 public class Armory
 {
     // Instance of this mod use for internal and Forge references
@@ -44,6 +45,7 @@ public class Armory
     {
         proxy.registerEventHandlers();
 
+        ArmoryConfig.ConfigHandler.init(event.getSuggestedConfigurationFile());
         ArmorDataConfigHandler.init(event.getSuggestedConfigurationFile());
     }
 

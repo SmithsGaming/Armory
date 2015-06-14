@@ -155,12 +155,16 @@ public class ArmorMedieval extends MultiLayeredArmor {
         switch(pArmorSlot)
         {
             case 0:
+                tModel = new ModelAExtendedChain(1.5F, pItemStack);
+
                 tModel.bipedHead.showModel = true;
                 tModel.bipedBody.showModel = tModel.bipedRightArm.showModel = tModel.bipedLeftArm.showModel = false;
                 tModel.bipedWaist.showModel = tModel.bipedRightLeg.showModel = tModel.bipedLeftLeg.showModel = false;
                 tModel.bipedRightFoot.showModel = tModel.bipedLeftFoot.showModel = false;
                 break;
             case 1:
+                tModel = new ModelAExtendedChain(1.5F, pItemStack);
+
                 tModel.bipedHead.showModel = false;
                 tModel.bipedBody.showModel = tModel.bipedRightArm.showModel = tModel.bipedLeftArm.showModel = true;
                 tModel.bipedWaist.showModel = tModel.bipedRightLeg.showModel = tModel.bipedLeftLeg.showModel = false;
@@ -173,6 +177,8 @@ public class ArmorMedieval extends MultiLayeredArmor {
                 tModel.bipedRightFoot.showModel = tModel.bipedLeftFoot.showModel = false;
                 break;
             case 3:
+                tModel = new ModelAExtendedChain(1.5F, pItemStack);
+
                 tModel.bipedHead.showModel = false;
                 tModel.bipedBody.showModel = tModel.bipedRightArm.showModel = tModel.bipedLeftArm.showModel = false;
                 tModel.bipedWaist.showModel = tModel.bipedRightLeg.showModel = tModel.bipedLeftLeg.showModel = false;

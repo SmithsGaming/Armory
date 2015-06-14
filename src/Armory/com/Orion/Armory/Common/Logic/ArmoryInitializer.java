@@ -21,6 +21,7 @@ import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Config.ArmorDataConfigHandler;
+import com.Orion.Armory.Common.Config.ArmoryConfig;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Material.ArmorMaterial;
@@ -1293,6 +1294,9 @@ public class ArmoryInitializer
 
         public static void removeRecipes()
         {
+            if (!ArmoryConfig.enableHardModeNuggetRemoval)
+                return;
+
             ListIterator<IRecipe> iterator = CraftingManager.getInstance().getRecipeList().listIterator();
             while (iterator.hasNext())
             {

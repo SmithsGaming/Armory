@@ -1,3 +1,5 @@
+Cannot run the CurseUpload sequence. No API-Key was available.Cannot run the CurseUpload sequence. No API-Key was available.
+
 ****************************
  Powered By MCP:             
  http://mcp.ocean-labs.de/   
@@ -6,10 +8,111 @@
  MCP Data version : unknown
 ****************************
 Found AccessTransformer in main resources: Armory_at.cfg
-:createGithubBranches
-Current active buildmode: RELEASE
-
+:extractMcpData
+:getVersionJson
+:extractUserDev
+:genSrgs
+:extractNatives
+:getAssetsIndex
+:getAssets
+Current status: 1/686   0%
+Current status: 43/686   6%
+Current status: 57/686   8%
+Current status: 72/686   10%
+Current status: 84/686   12%
+Current status: 96/686   13%
+Current status: 113/686   16%
+Current status: 124/686   18%
+Current status: 128/686   18%
+Current status: 131/686   19%
+Current status: 133/686   19%
+Current status: 134/686   19%
+Current status: 136/686   19%
+Current status: 139/686   20%
+Current status: 148/686   21%
+Current status: 166/686   24%
+Current status: 185/686   26%
+Current status: 210/686   30%
+Current status: 246/686   35%
+Current status: 263/686   38%
+Current status: 269/686   39%
+Current status: 274/686   39%
+Current status: 285/686   41%
+Current status: 290/686   42%
+Current status: 301/686   43%
+Current status: 321/686   46%
+Current status: 355/686   51%
+Current status: 365/686   53%
+Current status: 370/686   53%
+Current status: 375/686   54%
+Current status: 380/686   55%
+Current status: 386/686   56%
+Current status: 394/686   57%
+Current status: 400/686   58%
+Current status: 410/686   59%
+Current status: 415/686   60%
+Current status: 422/686   61%
+Current status: 428/686   62%
+Current status: 432/686   62%
+Current status: 436/686   63%
+Current status: 445/686   64%
+Current status: 453/686   66%
+Current status: 461/686   67%
+Current status: 466/686   67%
+Current status: 480/686   69%
+Current status: 488/686   71%
+Current status: 497/686   72%
+Current status: 504/686   73%
+Current status: 506/686   73%
+Current status: 512/686   74%
+Current status: 518/686   75%
+Current status: 523/686   76%
+Current status: 530/686   77%
+Current status: 538/686   78%
+Current status: 548/686   79%
+Current status: 555/686   80%
+Current status: 561/686   81%
+Current status: 565/686   82%
+Current status: 569/686   82%
+Current status: 573/686   83%
+Current status: 579/686   84%
+Current status: 584/686   85%
+Current status: 590/686   86%
+Current status: 609/686   88%
+Current status: 629/686   91%
+Current status: 639/686   93%
+Current status: 643/686   93%
+Current status: 647/686   94%
+Current status: 651/686   94%
+Current status: 656/686   95%
+Current status: 663/686   96%
+Current status: 673/686   98%
+Current status: 683/686   99%
+Current status: 686/686   100%
+Current status: 686/686   100%
+:makeStart
+[ant:javac] warning: [options] bootstrap class path not set in conjunction with -source 1.6
+[ant:javac] 1 warning
+:downloadMcpTools
+:downloadClient
+:downloadServer
+:mergeJars
+:deobfuscateJar
+Applying SpecialSource...
+Applying Exceptor...
+:decompile SKIPPED
+:processSources SKIPPED
+:remapJar SKIPPED
+:extractMinecraftSrc SKIPPED
+:recompMinecraft SKIPPED
+:repackMinecraft SKIPPED
+:setupDecompWorkspace
+:copyChicken UP-TO-DATE
+:ideaModule
+:ideaProject
+:ideaWorkspace
+:idea
 
 BUILD SUCCESSFUL
 
-Total time: 24.178 secs
+Total time: 2 mins 16.581 secs
