@@ -49,7 +49,7 @@ public class Color {
     }
 
     public Color(int pColor) {
-        iAlpha = pColor >> 32 & 255;
+        iAlpha = pColor >> 24 & 255;
         iColorRed = pColor >> 16 & 255;
         iColorGreen = pColor >> 8 & 255;
         iColorBlue = pColor & 255;
