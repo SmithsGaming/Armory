@@ -2,7 +2,7 @@ package com.Orion.Armory.Client.GUI.Components;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
-import com.Orion.Armory.Util.Client.Color;
+import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.GUI.GuiDirection;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
@@ -11,9 +11,6 @@ import com.Orion.Armory.Util.Client.GUI.UIRotation;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.Core.Rectangle;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
 

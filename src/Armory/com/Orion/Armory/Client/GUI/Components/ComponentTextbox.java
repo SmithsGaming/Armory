@@ -3,14 +3,12 @@ package com.Orion.Armory.Client.GUI.Components;
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
-import com.Orion.Armory.Util.Client.Color;
+import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Core.Rectangle;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiTextField;
 import org.lwjgl.opengl.GL11;
-
-import javax.xml.parsers.FactoryConfigurationError;
 
 /**
  * Created by Orion

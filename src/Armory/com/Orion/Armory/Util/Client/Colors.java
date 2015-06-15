@@ -5,6 +5,8 @@ package com.Orion.Armory.Util.Client;
 *   Created on: 27-6-2014
 */
 
+import com.Orion.Armory.Util.Client.Color.Color;
+
 public final class Colors
 {
     public static Color DEFAULT = new Color(255, 255, 255, 255);

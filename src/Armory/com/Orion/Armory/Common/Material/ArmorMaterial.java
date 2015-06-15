@@ -9,7 +9,8 @@ package com.Orion.Armory.Common.Material;
 import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
-import com.Orion.Armory.Util.Client.Color;
+import com.Orion.Armory.Util.Client.Color.Color;
+import com.Orion.Armory.Util.Client.Color.ColorSampler;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemStack;
@@ -34,14 +35,14 @@ public class ArmorMaterial implements IArmorMaterial
     private float iHeatCoefficient;
 
     //Constructor
-    public ArmorMaterial(String pInternalName, String pVisibleName, String pOreDicName, EnumChatFormatting pVisibleNameColor, boolean pBaseArmorMaterial, Color pColor, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack)
+    public ArmorMaterial(String pInternalName, String pVisibleName, String pOreDicName, boolean pBaseArmorMaterial, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack)
     {
         iOreDicName = pOreDicName;
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
-        iVisibleNameColor = pVisibleNameColor;
+        iColor = ColorSampler.getColorSampleFromItemStack(pBaseItemStack);
+        iVisibleNameColor = ColorSampler.getChatColorSample(iColor);
         iBaseArmorMaterial = pBaseArmorMaterial;
-        iColor = pColor;
         iMeltingPoint = pMeltingPoint;
         iHeatCoefficient = pHeatCoefficient;
 

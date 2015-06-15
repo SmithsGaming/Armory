@@ -2,7 +2,7 @@ package com.Orion.Armory.Client.GUI.Components.Ledgers;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
-import com.Orion.Armory.Util.Client.Color;
+import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.SessionVars;

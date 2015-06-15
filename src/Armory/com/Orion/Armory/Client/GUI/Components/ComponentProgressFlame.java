@@ -1,7 +1,7 @@
 package com.Orion.Armory.Client.GUI.Components;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
-import com.Orion.Armory.Util.Client.Color;
+import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.Textures;
 import org.lwjgl.opengl.GL11;

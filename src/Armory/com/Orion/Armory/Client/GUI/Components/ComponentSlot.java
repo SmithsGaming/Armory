@@ -8,16 +8,13 @@ package com.Orion.Armory.Client.GUI.Components;
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
-import com.Orion.Armory.Common.TileEntity.TileEntityArmory;
 import com.Orion.Armory.Util.Client.*;
+import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.GUI.MultiComponentTexture;
-import com.Orion.Armory.Util.Client.GUI.TextureComponent;
-import com.Orion.Armory.Util.Client.GUI.UIRotation;
 import com.Orion.Armory.Util.Core.Coordinate;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
 public class ComponentSlot extends AbstractGUIComponent

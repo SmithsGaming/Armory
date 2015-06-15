@@ -1,6 +1,6 @@
 package com.Orion.Armory.API.Materials;
 
-import com.Orion.Armory.Util.Client.Color;
+import com.Orion.Armory.Util.Client.Color.Color;
 import net.minecraft.util.EnumChatFormatting;
 
 import java.util.HashMap;

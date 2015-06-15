@@ -5,6 +5,7 @@ package com.Orion.Armory.Util.Client;
 /  Created on : 15/06/2014
 */
 
+import com.Orion.Armory.Util.Client.Color.Color;
 import net.minecraft.util.IIcon;
 
 import java.util.ArrayList;

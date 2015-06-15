@@ -15,6 +15,7 @@ import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Armor.NBTHelper;
+import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -79,6 +80,18 @@ public class ArmorMedieval extends MultiLayeredArmor {
         pStack.setItemDamage((int) ((float)pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.CurrentDurability)/ pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.TotalDurability) * 100));
 
         ((EntityPlayer) pEntity).inventory.armorInventory[pSlot] = pStack;
+    }
+
+    @Override
+    public int getColorFromItemStack(ItemStack pStack, int pRenderPass) {
+        if (pRenderPass == 0)
+        {
+            CustomResource tResource = this.getResource(pStack, pRenderPass);
+            return MaterialRegistry.getInstance().getMaterial(tResource.getInternalName()).getColor().getColor();
+        }
+        else {
+            return super.getColorFromItemStack(pStack, pRenderPass);
+        }
     }
 
     @Override

@@ -95,8 +95,8 @@ public class ArmoryInitializer
         }
 
         private static void registerMaterials() {
-            ArmorMaterial tIron = new ArmorMaterial(InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", EnumChatFormatting.WHITE, true, Colors.Metals.IRON, 1865, 0.225F, new ItemStack(Items.iron_ingot));
-            ArmorMaterial tObsidian = new ArmorMaterial(InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", EnumChatFormatting.DARK_PURPLE, true, Colors.Metals.OBSIDIAN, 1404, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
+            ArmorMaterial tIron = new ArmorMaterial(InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", true, 1865, 0.225F, new ItemStack(Items.iron_ingot));
+            ArmorMaterial tObsidian = new ArmorMaterial(InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", true, 1404, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
 
             MaterialRegistry.getInstance().registerMaterial(tIron);
             MaterialRegistry.getInstance().registerMaterial(tObsidian);

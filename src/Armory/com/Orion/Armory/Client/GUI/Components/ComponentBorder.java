@@ -8,11 +8,11 @@ package com.Orion.Armory.Client.GUI.Components;
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
 import com.Orion.Armory.Util.Client.*;
+import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.GUI.TextureComponent;
 import com.Orion.Armory.Util.Client.GUI.UIRotation;
 import com.Orion.Armory.Util.Core.Coordinate;
-import com.Orion.Armory.Util.Core.Rectangle;
 import org.lwjgl.opengl.GL11;
 
 

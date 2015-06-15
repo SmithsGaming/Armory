@@ -7,7 +7,7 @@ package com.Orion.Armory.Client.Renderer.Items;
 
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
-import com.Orion.Armory.Util.Client.Color;
+import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.Colors;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
