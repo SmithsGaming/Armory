@@ -1,8 +1,10 @@
 package com.Orion.Armory.Network.Messages.Config;
 
+import com.Orion.Armory.Util.Client.Color.Color;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.util.EnumChatFormatting;
 
 /**
  * Created by Orion
@@ -55,6 +57,10 @@ public class MessageMaterialPropertyValue implements IMessage
                 iServerSidedValue[tPara] = buf.readBoolean();
             else if(iParameterTypes[tPara].equals("Integer"))
                 iServerSidedValue[tPara] = buf.readInt();
+            else if (iParameterTypes[tPara].equals("Color"))
+                iServerSidedValue[tPara] = new Color(buf.readInt(), buf.readInt(), buf.readInt(), buf.readInt());
+            else if (iParameterTypes[tPara].equals("EnumChatFormatting"))
+                iServerSidedValue[tPara] = EnumChatFormatting.getValueByName(ByteBufUtils.readUTF8String(buf));
             else
                 iServerSidedValue[tPara] = null;
         }
@@ -82,6 +88,14 @@ public class MessageMaterialPropertyValue implements IMessage
                 buf.writeBoolean((Boolean) iServerSidedValue[tPara]);
             else if(iParameterTypes[tPara].equals("Integer"))
                 buf.writeInt((Integer) iServerSidedValue[tPara]);
+            else if(iParameterTypes[tPara].equals("Color")) {
+                buf.writeInt(((Color) iServerSidedValue[tPara]).getColorRedInt());
+                buf.writeInt(((Color) iServerSidedValue[tPara]).getColorGreenInt());
+                buf.writeInt(((Color) iServerSidedValue[tPara]).getColorBlueInt());
+                buf.writeInt(((Color) iServerSidedValue[tPara]).getAlphaInt());
+            }
+            else if(iParameterTypes[tPara].equals("EnumChatFormatting"))
+                ByteBufUtils.writeUTF8String(buf, ((EnumChatFormatting) iServerSidedValue[tPara]).getFriendlyName().toUpperCase());
         }
     }
 }

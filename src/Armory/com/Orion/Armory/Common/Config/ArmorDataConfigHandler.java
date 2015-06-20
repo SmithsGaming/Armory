@@ -3,6 +3,8 @@ package com.Orion.Armory.Common.Config;
 import com.Orion.Armory.API.Materials.IArmorConfigurator;
 import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
+import com.Orion.Armory.Util.Client.Color.Color;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
@@ -139,4 +141,34 @@ public class ArmorDataConfigHandler implements IArmorConfigurator
                 tGlobalMaterialConfig.save();
         }
     }
+
+    @Override
+    public void loadColorSettings() {
+        String[] tEnumNames = new String[16];
+
+        for(int tFormattingIndex = 0; tFormattingIndex < 16; tFormattingIndex ++)
+        {
+            tEnumNames[tFormattingIndex] = EnumChatFormatting.values()[tFormattingIndex].getFriendlyName();
+        }
+
+        for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
+        {
+            Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "\\Armory\\Material Configuration\\" + tMaterial.getInternalMaterialName() + "\\Global.cfg"), true);
+
+            int tColorRed = tGlobalMaterialConfig.getInt("MaterialColor-Red", "Colors", tMaterial.getColor().getColorRedInt(), 0, 255, "Sets the Red channel on the material color. Used for the color of the Armor.");
+            int tColorGreen = tGlobalMaterialConfig.getInt("MaterialColor-Green", "Colors", tMaterial.getColor().getColorRedInt(), 0, 255, "Sets the Green channel on the material color. Used for the color of the Armor.");
+            int tColorBlue = tGlobalMaterialConfig.getInt("MaterialColor-Blue", "Colors", tMaterial.getColor().getColorRedInt(), 0, 255, "Sets the Blue channel on the material color. Used for the color of the Armor.");
+            int tColorAlpha = tGlobalMaterialConfig.getInt("MaterialColor-Alpha", "Colors", tMaterial.getColor().getColorRedInt(), 0, 255, "Sets the Alpha channel on the material color. Used for the color of the Armor.");
+
+            String tEnumFormatting = tGlobalMaterialConfig.getString("ToolTip-Material-Color", "Colors", tMaterial.getVisibleNameColor().name(), "WHITE", tEnumNames);
+
+            tMaterial.setColor(new Color(tColorRed, tColorGreen, tColorBlue, tColorAlpha));
+            tMaterial.setVisibleNameColor(EnumChatFormatting.getValueByName(tEnumFormatting.toUpperCase()));
+
+            if (tGlobalMaterialConfig.hasChanged())
+                tGlobalMaterialConfig.save();
+        }
+    }
+
+
 }

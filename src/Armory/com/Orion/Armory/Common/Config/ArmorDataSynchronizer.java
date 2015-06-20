@@ -85,4 +85,11 @@ public class ArmorDataSynchronizer{
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
             ConfigNetworkManager.INSTANCE.sendTo(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setMeltingPoint", new String[] {"Float"}, new Object[] {tMaterial.getMeltingPoint() } ), (EntityPlayerMP) pConnectingPlayer);
     }
+
+    public void loadColorSettings(EntityPlayer pConnectingPlayer) {
+        for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
+            ConfigNetworkManager.INSTANCE.sendTo(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setColor", new String[]{"Color"}, new Object[]{tMaterial.getColor()}), (EntityPlayerMP) pConnectingPlayer);
+            ConfigNetworkManager.INSTANCE.sendTo(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setVisibleNameColor", new String[]{"EnumChatFormatting"}, new Object[]{tMaterial.getVisibleNameColor()}), (EntityPlayerMP) pConnectingPlayer);
+        }
+    }
 }

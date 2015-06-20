@@ -184,6 +184,11 @@ public class ArmorMaterial implements IArmorMaterial
     }
 
     @Override
+    public void setVisibleNameColor(EnumChatFormatting pFormatting) {
+        iVisibleNameColor = pFormatting;
+    }
+
+    @Override
     public boolean getIsBaseArmorMaterial() {
         return iBaseArmorMaterial;
     }

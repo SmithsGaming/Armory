@@ -54,6 +54,8 @@ public interface IArmorMaterial
 
      EnumChatFormatting getVisibleNameColor();
 
+     void setVisibleNameColor(EnumChatFormatting pFormatting);
+
      boolean getIsBaseArmorMaterial();
 
      float getMeltingPoint();

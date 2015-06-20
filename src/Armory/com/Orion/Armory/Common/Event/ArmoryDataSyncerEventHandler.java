@@ -31,6 +31,7 @@ public class ArmoryDataSyncerEventHandler
         tSynchronizer.loadIsBaseArmorMaterial(pEvent.player);
         tSynchronizer.loadMeltingPoint(pEvent.player);
         tSynchronizer.loadTemperatureCoefficient(pEvent.player);
+        tSynchronizer.loadColorSettings(pEvent.player);
 
         ConfigNetworkManager.INSTANCE.sendTo(new MessageConfigSyncCompleted(), (EntityPlayerMP) pEvent.player);
         GeneralRegistry.iLogger.info("Ended property sync.");

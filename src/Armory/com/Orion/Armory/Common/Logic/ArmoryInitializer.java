@@ -1290,6 +1290,8 @@ public class ArmoryInitializer
             tConfigHandler.loadBaseDamageAbsorptions();
             tConfigHandler.loadPartModifiers();
             tConfigHandler.loadBaseDurability();
+            tConfigHandler.loadColorSettings();
+
             GeneralRegistry.iLogger.info("Loading of the custom ArmorMaterial Values has succesfully been performed!");
         }
 
