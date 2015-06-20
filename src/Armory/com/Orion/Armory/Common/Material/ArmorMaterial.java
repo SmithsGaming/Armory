@@ -9,6 +9,7 @@ package com.Orion.Armory.Common.Material;
 import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.Color.ColorSampler;
 import com.Orion.Armory.Util.Client.Colors;
@@ -49,6 +50,26 @@ public class ArmorMaterial implements IArmorMaterial
         if (!HeatedItemFactory.getInstance().isHeatable(pBaseItemStack)){
             HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
         }
+
+        GeneralRegistry.iLogger.info("Initialized Material: " + iInternalName + ", with ItemColor: " + iColor.toString() + ", with EnumChatFormatting: " + iVisibleNameColor.name());
+    }
+
+    public ArmorMaterial(String pInternalName, String pVisibleName, String pOreDicName, EnumChatFormatting pVisibileNameColor, boolean pBaseArmorMaterial, float pMeltingPoint, float pHeatCoefficient, Color pMaterialColor, ItemStack pBaseItemStack)
+    {
+        iOreDicName = pOreDicName;
+        iInternalName = pInternalName;
+        iVisibleName = pVisibleName;
+        iColor = pMaterialColor;
+        iVisibleNameColor = pVisibileNameColor;
+        iBaseArmorMaterial = pBaseArmorMaterial;
+        iMeltingPoint = pMeltingPoint;
+        iHeatCoefficient = pHeatCoefficient;
+
+        if (!HeatedItemFactory.getInstance().isHeatable(pBaseItemStack)){
+            HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
+        }
+
+        GeneralRegistry.iLogger.info("Initialized Material: " + iInternalName + ", with ItemColor: " + iColor.toString() + ", with EnumChatFormatting: " + iVisibleNameColor.name());
     }
 
     @Override

@@ -145,6 +145,12 @@ processResources
     exclude '**/Thumbs.db'
 }
 
+jar {
+        manifest {
+        attributes 'FMLAT': 'armory_at.cfg'
+    }
+}
+
 task devJar(type: Jar, dependsOn: 'classes') {
     from(sourceSets.main.output) {
         include '**'

@@ -35,6 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ArmorMedieval extends MultiLayeredArmor {
+
     public ArmorMedieval(String pInternalName, int pArmorPart) {
         super(pInternalName, GeneralRegistry.iArmorMaterial, 1, pArmorPart,15);
         this.setUnlocalizedName(pInternalName);

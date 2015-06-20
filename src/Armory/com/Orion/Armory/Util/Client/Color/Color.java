@@ -60,7 +60,7 @@ public class Color {
     }
 
     public float getColorRedFloat() {
-        return (float) (this.iColorRed / 255F);
+        return (this.iColorRed / 255F);
     }
 
     public int getColorGreenInt() {
@@ -68,7 +68,7 @@ public class Color {
     }
 
     public float getColorGreenFloat() {
-        return (float) (this.iColorGreen / 255F);
+        return (this.iColorGreen / 255F);
     }
 
     public int getColorBlueInt() {
@@ -76,7 +76,7 @@ public class Color {
     }
 
     public float getColorBlueFloat() {
-        return (float) (this.iColorBlue / 255F);
+        return  (this.iColorBlue / 255F);
     }
 
     public int getAlphaInt() {
@@ -84,7 +84,7 @@ public class Color {
     }
 
     public float getAlphaFloat() {
-        return (float) (this.iAlpha / 255F);
+        return (this.iAlpha / 255F);
     }
 
     public int getColor() {
@@ -168,6 +168,49 @@ public class Color {
         return Combine(this, pMixed, pMixingScale);
     }
 
+    public double getAngleInDegrees()
+    {
+        ColorVector tRedVec = new ColorVector(iColorRed * Math.cos(Math.toRadians(0)), iColorRed * Math.sin(Math.toRadians(0)));
+        ColorVector tGreenVec = new ColorVector(iColorGreen * Math.cos(Math.toRadians(120)), iColorGreen * Math.sin(Math.toRadians(120)));
+        ColorVector tBlueVec = new ColorVector(iColorBlue * Math.cos(Math.toRadians(240)), iColorBlue * Math.sin(Math.toRadians(240)));
+
+        ColorVector tColorVec = new ColorVector(tRedVec.iColorX + tBlueVec.iColorX + tGreenVec.iColorX, tRedVec.iColorY + tBlueVec.iColorY + tGreenVec.iColorY);
+
+        if (tColorVec.iColorY == 0)
+        {
+            if (tColorVec.iColorX < -10)
+            {
+                return 90;
+            }
+            else if (tColorVec.iColorX > 10)
+            {
+                return 270;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        if (tColorVec.iColorX == 0)
+        {
+            if (tColorVec.iColorY < -10)
+            {
+                return 180;
+            }
+            else if (tColorVec.iColorY > 10)
+            {
+                return 0;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        return 360 - (Math.atan((((float) tColorVec.iColorX) / ((float) tColorVec.iColorY))) * (180 / Math.PI));
+    }
+
     public void performGLColor()
     {
         GL11.glColor4f(getColorRedFloat(), getColorGreenFloat(), getColorBlueFloat(), getAlphaFloat());
@@ -186,5 +229,10 @@ public class Color {
         int tBlueColor = (int) ((1 - pMixingScale) * pOriginal.iColorBlue + pMixingScale * pMixed .iColorBlue);
 
         return new Color(tRedColor, tGreenColor, tBlueColor, tAlpha);
+    }
+
+    @Override
+    public String toString() {
+        return "R" + iColorRed + "-G" + iColorGreen + "-B" + iColorBlue;
     }
 }

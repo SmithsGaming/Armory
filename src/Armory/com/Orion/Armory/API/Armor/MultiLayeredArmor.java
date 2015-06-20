@@ -151,7 +151,6 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
     ///#############################################Resource control functions##########################################
     //Function for registering a new resource the Item may need to render it
     public void registerResource(CustomResource pResource) {
-        GeneralRegistry.iLogger.info("Registering resource: " + pResource.getInternalName() + ". To: " + this.getInternalName());
         iResources.put(pResource.getInternalName(), pResource);
     }
 
