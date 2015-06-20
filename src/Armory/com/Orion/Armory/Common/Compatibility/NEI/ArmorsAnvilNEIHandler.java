@@ -151,6 +151,9 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
             if (tComponent == null)
                 continue;
 
+            if (tComponent.getComponentTargetStack() == null)
+                continue;
+
             ItemStack tComponentStack = tComponent.getComponentTargetStack();
 
             if (tComponentStack.getItem() instanceof ItemHeatedItem)
