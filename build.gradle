@@ -147,7 +147,7 @@ processResources
 
 jar {
         manifest {
-        attributes 'FMLAT': 'armory_at.cfg'
+        attributes 'FMLAT': 'Armory_at.cfg'
     }
 }
 
