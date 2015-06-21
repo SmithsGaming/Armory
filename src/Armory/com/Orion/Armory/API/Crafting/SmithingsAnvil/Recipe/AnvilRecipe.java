@@ -3,9 +3,9 @@ package com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.IAnvilRecipeComponent;
 import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
 import net.minecraft.item.ItemStack;
-import scala.actors.threadpool.Arrays;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -97,6 +97,7 @@ public class AnvilRecipe
             }
 
             for(IAnvilRecipeComponent tComponent: tComponentList)
+
             {
                 if (tComponent != null)
                     return false;
