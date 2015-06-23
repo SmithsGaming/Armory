@@ -1,5 +1,6 @@
 package com.Orion.Armory.Util.Client.GUI;
 
+import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.Core.Rectangle;
 import net.minecraft.client.Minecraft;
@@ -42,7 +43,7 @@ public final class GuiHelper
         renderBorder(pComponents.iSideComponents[0], pWidth - (pComponents.iCornerComponents[0].iWidth  * 2), pComponents.iSideComponents[0].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent()));
         renderBorder(pComponents.iSideComponents[1], pComponents.iSideComponents[1].iWidth, pHeight -  (pComponents.iCornerComponents[0].iHeight * 2), new Coordinate(pElementCoordinate.getXComponent() + (pWidth - pComponents.iCenterComponent.iWidth), pElementCoordinate.getYComponent() + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
         renderBorder(pComponents.iSideComponents[2], pWidth - (pComponents.iCornerComponents[0].iWidth  * 2), pComponents.iSideComponents[2].iHeight , new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent() + (pComponents.iCornerComponents[0].iHeight * 2), pElementCoordinate.getZComponent()));
-        renderBorder(pComponents.iSideComponents[3], pComponents.iSideComponents[3].iWidth, pHeight -  (pComponents.iCornerComponents[0].iHeight * 2), new Coordinate(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent() + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
+        renderBorder(pComponents.iSideComponents[3], pComponents.iSideComponents[3].iWidth, pHeight - (pComponents.iCornerComponents[0].iHeight * 2), new Coordinate(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent() + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
    }
 
     public static void drawRectangleStretched(TextureComponent pCenterComponent, TextureComponent[] pSideComponents, TextureComponent[] pCornerComponents, int pWidth, int pHeight, Coordinate pElementCoordinate)
@@ -221,23 +222,26 @@ public final class GuiHelper
         tessellator.draw();
     }
 
-    public static void drawColoredRect(Rectangle pRectangle, int pColor)
+    public static void drawColoredRect(Rectangle pRectangle, Color pColor)
     {
-        float f3 = (float)(pColor >> 24 & 255) / 255.0F;
-        float f = (float)(pColor >> 16 & 255) / 255.0F;
-        float f1 = (float)(pColor >> 8 & 255) / 255.0F;
-        float f2 = (float)(pColor & 255) / 255.0F;
+        drawGradiendColoredRect(pRectangle, pColor, pColor);
+    }
+
+    public static void drawGradiendColoredRect(Rectangle pRectangle, Color pColorStart, Color pColorEnd)
+    {
         Tessellator tessellator = Tessellator.instance;
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        GL11.glColor4f(f, f1, f2, f3);
+        pColorStart.performGLColor();
         tessellator.startDrawingQuads();
-        tessellator.addVertex((double)pRectangle.getTopLeftCoord().getXComponent(), (double)pRectangle.getLowerRightCoord().getYComponent(), 0.0D);
+        tessellator.addVertex((double) pRectangle.getTopLeftCoord().getXComponent(), (double) pRectangle.getLowerRightCoord().getYComponent(), 0.0D);
         tessellator.addVertex((double)pRectangle.getLowerRightCoord().getXComponent(), (double)pRectangle.getLowerRightCoord().getYComponent(), 0.0D);
+        pColorEnd.performGLColor();
         tessellator.addVertex((double)pRectangle.getLowerRightCoord().getXComponent(), (double)pRectangle.getTopLeftCoord().getYComponent(), 0.0D);
         tessellator.addVertex((double)pRectangle.getTopLeftCoord().getXComponent(), (double)pRectangle.getTopLeftCoord().getYComponent(), 0.0D);
         tessellator.draw();
+        Color.resetGLColor();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glDisable(GL11.GL_BLEND);
     }

@@ -6,6 +6,9 @@ package com.Orion.Armory.Client.GUI.Components.Core;
 */
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
+import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
+import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTipProvider;
+import com.Orion.Armory.Client.GUI.Components.ToolTips.ToolTipRenderer;
 import com.Orion.Armory.Util.Core.Rectangle;
 import org.lwjgl.opengl.GL11;
 
@@ -23,6 +26,31 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
     public int iTop = 0;
 
     String iInternalName;
+
+    @Override
+    public Rectangle getToolTipVisibileArea() {
+        return new Rectangle(-1,-1,1,1);
+    }
+
+    @Override
+    public void setToolTipVisibleArea(Rectangle pNewArea) {
+        return;
+    }
+
+    @Override
+    public Rectangle getOccupiedArea() {
+        return new Rectangle(-1,-1,1,1);
+    }
+
+    @Override
+    public ArrayList<IToolTip> getToolTipLines() {
+        return new ArrayList<IToolTip>();
+    }
+
+    @Override
+    public ArmoryBaseGui getBaseGui() {
+        return iGui;
+    }
 
     public AbstractGUIMultiComponent(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeigth)
     {
@@ -66,6 +94,11 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
     @Override
     public void drawComponents() {
         iSubComponents.drawComponents();
+    }
+
+    @Override
+    public void drawComponentToolTips(int pMouseX, int pMouseY) {
+        iSubComponents.drawComponentToolTips(pMouseX, pMouseY);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.Orion.Armory.Client.GUI.Components.Core;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
+import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTipProvider;
+import com.Orion.Armory.Client.GUI.Components.ToolTips.ToolTipRenderer;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -55,6 +57,15 @@ public class StandardComponentManager implements IComponentManager
             tComponent.onUpdate();
 
             tComponent.draw(iGui.guiLeft, iGui.guiTop);
+        }
+    }
+
+    @Override
+    public void drawComponentToolTips(int pMouseX, int pMouseY) {
+        for (IGUIComponent tComponent : iComponents)
+        {
+            if (ToolTipRenderer.renderToolTip(tComponent, pMouseX, pMouseY))
+                return;
         }
     }
 

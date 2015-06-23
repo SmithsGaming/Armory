@@ -5,7 +5,9 @@ package com.Orion.Armory.Client.GUI.Components.Core;
 /  Created on : 27-4-2015
 */
 
-public interface IGUIComponent
+import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTipProvider;
+
+public interface IGUIComponent extends IToolTipProvider
 {
     public abstract void onUpdate();
 

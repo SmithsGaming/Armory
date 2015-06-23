@@ -2,12 +2,17 @@ package com.Orion.Armory.Client.GUI.Components;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
+import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
+import com.Orion.Armory.Client.GUI.Components.ToolTips.StandardToolTip;
 import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.Textures;
+import com.Orion.Armory.Util.Core.Rectangle;
 import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
 
 /**
  * Created by Orion
@@ -23,6 +28,35 @@ public class ComponentProgressBar extends AbstractGUIComponent
     Color iBackGroundColor = Colors.DEFAULT;
     CustomResource iBackground = Textures.Gui.Basic.Components.ARROWEMPTY;
     CustomResource iForeground = Textures.Gui.Basic.Components.ARROWFULL;
+
+    @Override
+    public Rectangle getOccupiedArea() {
+        return super.getOccupiedArea();
+    }
+
+    @Override
+    public ArmoryBaseGui getBaseGui() {
+        return super.getBaseGui();
+    }
+
+    @Override
+    public Rectangle getToolTipVisibileArea() {
+        return super.getOccupiedArea();
+    }
+
+    @Override
+    public ArrayList<IToolTip> getToolTipLines() {
+        ArrayList<IToolTip> tToolTips = new ArrayList<IToolTip>();
+
+        tToolTips.add(new StandardToolTip(this, "Progress : " + iGui.getProgressBarValue(this.getInternalName()) * 100 + "%"));
+
+        return tToolTips;
+    }
+
+    @Override
+    public void setToolTipVisibleArea(Rectangle pNewArea) {
+        super.setToolTipVisibleArea(pNewArea);
+    }
 
     public ComponentProgressBar(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, Color pBackgroundColor, Color pForegroundColor) {
         this(pGui, pInternalName, pLeft, pTop, Textures.Gui.Basic.Components.ARROWEMPTY, Textures.Gui.Basic.Components.ARROWFULL, pBackgroundColor, pForegroundColor);

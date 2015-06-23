@@ -17,6 +17,8 @@ public interface IComponentManager
 
     public void drawComponents();
 
+    public void drawComponentToolTips(int pMouseX, int pMouseY);
+
     public boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton);
 
     public boolean handleKeyTyped(char pKey, int pPara);
