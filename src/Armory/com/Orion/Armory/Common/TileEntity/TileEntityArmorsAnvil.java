@@ -593,7 +593,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     public AnvilState getCurrentState()
     {
-        boolean DEBUG = true;
+        boolean DEBUG = false;
         if(DEBUG)
             return AnvilState.Standard;
 
