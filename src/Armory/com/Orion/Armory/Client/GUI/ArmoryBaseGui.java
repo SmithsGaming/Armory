@@ -11,15 +11,25 @@ import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
 import com.Orion.Armory.Common.TileEntity.TileEntityArmory;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import org.lwjgl.opengl.GL11;
+
+import java.util.List;
 
 public abstract class ArmoryBaseGui extends GuiContainer {
     LedgerManager iLedgers = new LedgerManager(this);
     StandardComponentManager iComponents = new StandardComponentManager(this);
 
     TileEntityArmory iBaseTE;
+
+    @Override
+    public void initGui() {
+        super.initGui();
+
+        GuiHelper.calcScaleFactor();
+    }
 
     public ArmoryBaseGui(Container pTargetedContainer) {
         super(pTargetedContainer);
@@ -58,6 +68,8 @@ public abstract class ArmoryBaseGui extends GuiContainer {
         iComponents.drawComponents();
 
         drawGuiContainerBackGroundFeatures(pFloat, pMouseX, pMouseY);
+
+        iComponents.drawComponentToolTips(pMouseX, pMouseY);
 
         GL11.glPopMatrix();
     }
@@ -102,6 +114,12 @@ public abstract class ArmoryBaseGui extends GuiContainer {
     public Object getComponentRelatedObject(String pComponentID)
     {
         return iBaseTE.getGUIComponentRelatedObject(pComponentID);
+    }
+
+    @Override
+    public void drawHoveringText(List pToolTipLines, int pX, int pY, FontRenderer pFontRenderer)
+    {
+        super.drawHoveringText(pToolTipLines, pX, pY, pFontRenderer);
     }
 }
 

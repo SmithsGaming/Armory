@@ -19,9 +19,11 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
-import scala.actors.threadpool.Arrays;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -123,6 +125,14 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         }
 
         return tItemStack;
+    }
+
+    @Override
+    public Object getGUIComponentRelatedObject(String pComponentID) {
+        if (pComponentID.equals("Gui.Anvil.Cooling.Tank"))
+            return new FluidStack(FluidRegistry.WATER, 3500);
+
+        return null;
     }
 
     @Override
@@ -583,6 +593,10 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     public AnvilState getCurrentState()
     {
+        boolean DEBUG = true;
+        if(DEBUG)
+            return AnvilState.Standard;
+
         boolean tFoundCoolingBasin = false;
         boolean tFoundHelperRack = false;
         if (iCurrentDirection == ForgeDirection.NORTH || iCurrentDirection == ForgeDirection.SOUTH)

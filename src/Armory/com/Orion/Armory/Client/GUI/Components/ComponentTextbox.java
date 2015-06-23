@@ -2,6 +2,7 @@ package com.Orion.Armory.Client.GUI.Components;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
+import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
 import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.CustomResource;
@@ -9,6 +10,8 @@ import com.Orion.Armory.Util.Core.Rectangle;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiTextField;
 import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
 
 /**
  * Created by Orion
@@ -48,7 +51,32 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
     }
 
     @Override
+    public ArmoryBaseGui getBaseGui() {
+        return iGui;
+    }
+
+    @Override
     public String getInternalName() {
+        return iInternalName;
+    }
+
+    @Override
+    public Rectangle getToolTipVisibileArea() {
+        return new Rectangle(-1,-1,0,0);
+    }
+
+    @Override
+    public void setToolTipVisibleArea(Rectangle pNewArea) {
+         return;
+    }
+
+    @Override
+    public Rectangle getOccupiedArea() {
+        return getToolTipVisibileArea();
+    }
+
+    @Override
+    public ArrayList<IToolTip> getToolTipLines() {
         return null;
     }
 

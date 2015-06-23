@@ -122,6 +122,23 @@ public class ColorSampler
         return tCurrentFormatting;
     }
 
+    public static EnumChatFormatting getSimpleChatColor(Color pSource)
+    {
+        String tFormat = "\u00a7";
+
+        if (pSource.getColor() == -1) {
+            tFormat = tFormat + "7";
+        } else {
+            tFormat = tFormat + Integer.toHexString(pSource.getColor());
+        }
+
+        for (EnumChatFormatting tFormatting : EnumChatFormatting.values())
+            if (tFormatting.toString().toLowerCase().equals(tFormat.toLowerCase()))
+                return tFormatting;
+
+        return EnumChatFormatting.RESET;
+    }
+
     private static double colorDistance(Color pColor1, Color pColor2)
     {
         if ((pColor1.getColorRedInt() > pColor1.getColorBlueInt() * 2) && (pColor1.getColorRedInt() > pColor1.getColorGreenInt() * 2))

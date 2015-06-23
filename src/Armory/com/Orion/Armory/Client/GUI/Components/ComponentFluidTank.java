@@ -2,7 +2,10 @@ package com.Orion.Armory.Client.GUI.Components;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
+import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
+import com.Orion.Armory.Client.GUI.Components.ToolTips.StandardToolTip;
 import com.Orion.Armory.Util.Client.Color.Color;
+import com.Orion.Armory.Util.Client.Color.ColorSampler;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.GUI.GuiDirection;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
@@ -11,8 +14,11 @@ import com.Orion.Armory.Util.Client.GUI.UIRotation;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.Core.Rectangle;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
 
 /**
  * Created by Orion
@@ -56,7 +62,7 @@ public class ComponentFluidTank extends AbstractGUIComponent
                     tHeight *= 2;
                 }
 
-                GuiHelper.drawColoredRect(new Rectangle(iLeft + tIter, iTop + 1, 1, tHeight), Colors.General.RED.getColor());
+                GuiHelper.drawColoredRect(new Rectangle(iLeft + tIter, iTop + 1, 1, tHeight), Colors.General.RED);
             }
         }
         else
@@ -69,9 +75,45 @@ public class ComponentFluidTank extends AbstractGUIComponent
                     tWidth *= 2;
                 }
 
-                GuiHelper.drawColoredRect(new Rectangle(iLeft + 1, iTop + tIter, tWidth, 1), Colors.General.RED.getColor());
+                GuiHelper.drawColoredRect(new Rectangle(iLeft + 1, iTop + tIter, tWidth, 1), Colors.General.RED);
             }
         }
+    }
+
+    @Override
+    public ArrayList<IToolTip> getToolTipLines() {
+        ArrayList<IToolTip> tToolTips = new ArrayList<IToolTip>();
+
+        if (iFluidStack != null)
+        {
+            tToolTips.add(new StandardToolTip(this, ColorSampler.getSimpleChatColor(new Color(iFluidStack.getFluid().getColor())) + iFluidStack.getLocalizedName() + EnumChatFormatting.RESET));
+
+            if ((iFluidStack.amount / iMaxCapacity) >= (2/3))
+            {
+                tToolTips.add(new StandardToolTip(this,"  Amount: " + EnumChatFormatting.GREEN + iFluidStack.amount + EnumChatFormatting.RESET + " mB."));
+            } else if ((iFluidStack.amount / iMaxCapacity) >= (1/5))
+            {
+                tToolTips.add(new StandardToolTip(this,"  Amount: " + EnumChatFormatting.YELLOW + iFluidStack.amount + EnumChatFormatting.RESET + " mB."));
+            } else
+            {
+                tToolTips.add(new StandardToolTip(this,"  Amount: " + EnumChatFormatting.RED + iFluidStack.amount + EnumChatFormatting.RESET + " mB."));
+            }
+
+            tToolTips.add(new StandardToolTip(this, "  Capacity: " + iMaxCapacity +" mB."));
+        }
+        else
+        {
+            tToolTips.add(new StandardToolTip(this, EnumChatFormatting.RESET + "No liquid to cool available!" + EnumChatFormatting.RESET));
+
+            tToolTips.add(new StandardToolTip(this, "  Capacity: " + iMaxCapacity +" mB."));
+        }
+
+        return tToolTips;
+    }
+
+    @Override
+    public Rectangle getToolTipVisibileArea() {
+        return super.getOccupiedArea();
     }
 
     @Override
