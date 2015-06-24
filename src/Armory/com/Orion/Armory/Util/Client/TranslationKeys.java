@@ -113,6 +113,15 @@ public class TranslationKeys
         {
             public static final String AnvilRecipeName = "Armory.NEI.Compatibility.ArmorsAnvilRecipe";
         }
+
+        public class Components
+        {
+            public static final String PROGRESSFLAMEFUELLEFT = "Armory.GUI.Components.Flame.ToolTip";
+            public static final String PROGRESSBARPROGRESS = "Armory.GUI.Components.ProgressBar.ToolTip";
+            public static final String FLUIDTANKAMOUNT = "Armory.Gui.Components.FluidTank.ToolTip.Amount";
+            public static final String FLUIDTANKCAPACITY = "Armory.Gui.Components.FluidTank.ToolTip.Capacity";
+            public static final String FLUIDTANKNOLIQUID = "Armory.Gui.Components.FluidTank.ToolTip.NoLiquid";
+        }
     }
 
     public static final class Messages

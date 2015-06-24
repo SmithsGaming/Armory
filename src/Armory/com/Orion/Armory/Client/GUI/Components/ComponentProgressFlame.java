@@ -1,10 +1,16 @@
 package com.Orion.Armory.Client.GUI.Components;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
+import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
+import com.Orion.Armory.Client.GUI.Components.ToolTips.StandardToolTip;
 import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.Textures;
+import com.Orion.Armory.Util.Client.TranslationKeys;
+import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
 
 /**
  * Created by Orion
@@ -22,6 +28,23 @@ public class ComponentProgressFlame extends ComponentProgressBar {
     @Override
     public void onUpdate() {
         iCompletePartToBeRendered = (int) (iGui.getProgressBarValue(this.getInternalName()) * iBackground.getHeigth());
+    }
+
+    @Override
+    public ArrayList<IToolTip> getToolTipLines() {
+        ArrayList<IToolTip> tToolTips = new ArrayList<IToolTip>();
+
+        float tProgress = iGui.getProgressBarValue(this.getInternalName());
+        if (tProgress < 0)
+        {
+            tToolTips.add(new StandardToolTip(this, StatCollector.translateToLocal(TranslationKeys.GUI.Components.PROGRESSFLAMEFUELLEFT) + ": 0%"));
+        }
+        else
+        {
+            tToolTips.add(new StandardToolTip(this, StatCollector.translateToLocal(TranslationKeys.GUI.Components.PROGRESSFLAMEFUELLEFT) + ": " + Math.round((1 - tProgress) * 100) + "%"));
+        }
+
+        return tToolTips;
     }
 
     @Override

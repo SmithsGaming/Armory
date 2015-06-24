@@ -12,9 +12,11 @@ import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.GUI.TextureComponent;
 import com.Orion.Armory.Util.Client.GUI.UIRotation;
 import com.Orion.Armory.Util.Client.Textures;
+import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.Core.Rectangle;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
 
@@ -90,22 +92,22 @@ public class ComponentFluidTank extends AbstractGUIComponent
 
             if ((iFluidStack.amount / iMaxCapacity) >= (2/3))
             {
-                tToolTips.add(new StandardToolTip(this,"  Amount: " + EnumChatFormatting.GREEN + iFluidStack.amount + EnumChatFormatting.RESET + " mB."));
+                tToolTips.add(new StandardToolTip(this,"  " + StatCollector.translateToLocal(TranslationKeys.GUI.Components.FLUIDTANKAMOUNT) + ": " + EnumChatFormatting.GREEN + iFluidStack.amount + EnumChatFormatting.RESET + " mB."));
             } else if ((iFluidStack.amount / iMaxCapacity) >= (1/5))
             {
-                tToolTips.add(new StandardToolTip(this,"  Amount: " + EnumChatFormatting.YELLOW + iFluidStack.amount + EnumChatFormatting.RESET + " mB."));
+                tToolTips.add(new StandardToolTip(this,"  " + StatCollector.translateToLocal(TranslationKeys.GUI.Components.FLUIDTANKAMOUNT) + ": " + EnumChatFormatting.YELLOW + iFluidStack.amount + EnumChatFormatting.RESET + " mB."));
             } else
             {
-                tToolTips.add(new StandardToolTip(this,"  Amount: " + EnumChatFormatting.RED + iFluidStack.amount + EnumChatFormatting.RESET + " mB."));
+                tToolTips.add(new StandardToolTip(this,"  " + StatCollector.translateToLocal(TranslationKeys.GUI.Components.FLUIDTANKAMOUNT) + ": " + EnumChatFormatting.RED + iFluidStack.amount + EnumChatFormatting.RESET + " mB."));
             }
 
-            tToolTips.add(new StandardToolTip(this, "  Capacity: " + iMaxCapacity +" mB."));
+            tToolTips.add(new StandardToolTip(this, "  " + StatCollector.translateToLocal(TranslationKeys.GUI.Components.FLUIDTANKCAPACITY) + ": " + iMaxCapacity +" mB."));
         }
         else
         {
-            tToolTips.add(new StandardToolTip(this, EnumChatFormatting.RESET + "No liquid to cool available!" + EnumChatFormatting.RESET));
+            tToolTips.add(new StandardToolTip(this, EnumChatFormatting.RESET + StatCollector.translateToLocal(TranslationKeys.GUI.Components.FLUIDTANKNOLIQUID) + EnumChatFormatting.RESET));
 
-            tToolTips.add(new StandardToolTip(this, "  Capacity: " + iMaxCapacity +" mB."));
+            tToolTips.add(new StandardToolTip(this, "  " + StatCollector.translateToLocal(TranslationKeys.GUI.Components.FLUIDTANKCAPACITY) + ": " + iMaxCapacity +" mB."));
         }
 
         return tToolTips;

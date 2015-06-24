@@ -1,5 +1,6 @@
 package com.Orion.Armory.Client.GUI.Components.ToolTips;
 
+import com.Orion.Armory.Client.GUI.Components.Core.IComponentManager;
 import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Core.Rectangle;
@@ -19,10 +20,13 @@ public final class ToolTipRenderer {
 
     public static boolean renderToolTip(IToolTipProvider pProvider, int pMouseX, int pMouseY)
     {
+        if (pProvider instanceof IComponentManager)
+            return ((IComponentManager) pProvider).drawComponentToolTips(pMouseX, pMouseY);
+
         int tScaledMouseX = pMouseX / GuiHelper.GUISCALE;
         int tScaledMouseY = pMouseY / GuiHelper.GUISCALE;
 
-        if (!(pProvider.getToolTipVisibileArea().contains(pMouseX - pProvider.getBaseGui().guiLeft, pMouseY - pProvider.getBaseGui().guiTop)))
+        if (!(pProvider.getToolTipVisibileArea().contains(pMouseX, pMouseY)))
             return false;
 
         ArrayList<String> tLines = new ArrayList<String>();
@@ -31,7 +35,7 @@ public final class ToolTipRenderer {
             tLines.add(pProvider.getToolTipLines().get(tLineIndex).getToolTipLine());
         }
 
-        pProvider.getBaseGui().drawHoveringText(tLines, pMouseX - 110, pMouseY + 8, Minecraft.getMinecraft().fontRenderer);
+        pProvider.getBaseGui().drawHoveringText(tLines, pMouseX - 8, pMouseY + 20, Minecraft.getMinecraft().fontRenderer);
 
         return true;
     }

@@ -9,7 +9,9 @@ import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.Textures;
+import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.Core.Rectangle;
+import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -48,7 +50,7 @@ public class ComponentProgressBar extends AbstractGUIComponent
     public ArrayList<IToolTip> getToolTipLines() {
         ArrayList<IToolTip> tToolTips = new ArrayList<IToolTip>();
 
-        tToolTips.add(new StandardToolTip(this, "Progress : " + iGui.getProgressBarValue(this.getInternalName()) * 100 + "%"));
+        tToolTips.add(new StandardToolTip(this, StatCollector.translateToLocal(TranslationKeys.GUI.Components.PROGRESSBARPROGRESS) + ": " + iGui.getProgressBarValue(this.getInternalName()) * 100 + "%"));
 
         return tToolTips;
     }

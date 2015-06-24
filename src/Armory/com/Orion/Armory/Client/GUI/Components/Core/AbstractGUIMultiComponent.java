@@ -97,8 +97,15 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
     }
 
     @Override
-    public void drawComponentToolTips(int pMouseX, int pMouseY) {
-        iSubComponents.drawComponentToolTips(pMouseX, pMouseY);
+    public boolean drawComponentToolTips(int pMouseX, int pMouseY) {
+       boolean tResult;
+
+        GL11.glPushMatrix();
+        GL11.glTranslatef(iLeft, iTop, 0F);
+        tResult = iSubComponents.drawComponentToolTips(pMouseX - iLeft, pMouseY - iTop);
+        GL11.glPopMatrix();
+
+        return tResult;
     }
 
     @Override

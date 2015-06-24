@@ -21,6 +21,13 @@ Armory.GUI.Anvil.Ledger.InfoLine2=It takes some time to process and sometimes a 
 #NEI Compat
 Armory.NEI.Compatibility.ArmorsAnvilRecipe=Blacksmiths Anvil
 #
+#UI Components
+Armory.GUI.Components.Flame.ToolTip=Fuel left
+Armory.GUI.Components.ProgressBar.ToolTip=Progress
+Armory.Gui.Components.FluidTank.ToolTip.Amount=Amount
+Armory.Gui.Components.FluidTank.ToolTip.Capacity=Capacity
+Armory.Gui.Components.FluidTank.ToolTip.NoLiquid=No fluid in the tank.
+#
 #Blocks
 tile.Armory.Blocks.FirePit.name=FirePit
 tile.Armory.Blocks.Heater.name=FirePit - Heater Extension

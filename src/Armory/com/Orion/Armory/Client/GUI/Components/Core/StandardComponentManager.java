@@ -61,12 +61,14 @@ public class StandardComponentManager implements IComponentManager
     }
 
     @Override
-    public void drawComponentToolTips(int pMouseX, int pMouseY) {
+    public boolean drawComponentToolTips(int pMouseX, int pMouseY) {
         for (IGUIComponent tComponent : iComponents)
         {
             if (ToolTipRenderer.renderToolTip(tComponent, pMouseX, pMouseY))
-                return;
+                return true;
         }
+
+        return false;
     }
 
     public boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton)

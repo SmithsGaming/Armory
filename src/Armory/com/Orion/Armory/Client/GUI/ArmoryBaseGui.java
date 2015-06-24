@@ -69,7 +69,7 @@ public abstract class ArmoryBaseGui extends GuiContainer {
 
         drawGuiContainerBackGroundFeatures(pFloat, pMouseX, pMouseY);
 
-        iComponents.drawComponentToolTips(pMouseX, pMouseY);
+        iComponents.drawComponentToolTips(pMouseX - guiLeft, pMouseY - guiTop);
 
         GL11.glPopMatrix();
     }
