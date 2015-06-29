@@ -1,7 +1,7 @@
 package com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe;
 
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.IAnvilRecipeComponent;
-import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
+import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;

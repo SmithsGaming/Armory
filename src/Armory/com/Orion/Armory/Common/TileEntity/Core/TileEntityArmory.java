@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.TileEntity;
+package com.Orion.Armory.Common.TileEntity.Core;
 /*
  *   TileEntityArmory
  *   Created by: Orion
@@ -12,8 +12,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class TileEntityArmory extends TileEntity
 {
-    protected String iName = "";
-    protected ForgeDirection iCurrentDirection;
+    private String iName = "";
+    private ForgeDirection iCurrentDirection;
 
     @Override
     public void readFromNBT(NBTTagCompound pCompound) {

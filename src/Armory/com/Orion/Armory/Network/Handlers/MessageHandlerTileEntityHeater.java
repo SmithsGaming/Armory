@@ -1,6 +1,6 @@
 package com.Orion.Armory.Network.Handlers;
 
-import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
+import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityHeater;
 import com.Orion.Armory.Network.Messages.MessageTileEntityHeater;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

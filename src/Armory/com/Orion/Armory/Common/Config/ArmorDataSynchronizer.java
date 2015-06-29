@@ -4,6 +4,7 @@ import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Network.ConfigNetworkManager;
 import com.Orion.Armory.Network.Messages.Config.MessageMaterialPropertyValue;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
@@ -21,7 +22,7 @@ public class ArmorDataSynchronizer{
 
     public void loadIsBaseArmorMaterial(EntityPlayer pConnectingPlayer) {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
-            ConfigNetworkManager.INSTANCE.sendTo(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setIsBaseArmorMaterial", new String[] {"Boolean"}, new Object[] {tMaterial.getIsBaseArmorMaterial() } ), (EntityPlayerMP) pConnectingPlayer);
+            sendMessage(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setIsBaseArmorMaterial", new String[]{"Boolean"}, new Object[]{tMaterial.getIsBaseArmorMaterial()}), (EntityPlayerMP) pConnectingPlayer);
     }
 
     public void loadActiveParts(EntityPlayer pConnectingPlayer) {
@@ -32,7 +33,7 @@ public class ArmorDataSynchronizer{
             {
                 Map.Entry<String, Boolean> tEntry = (Map.Entry<String, Boolean>) tIter.next();
 
-                ConfigNetworkManager.INSTANCE.sendTo(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "modifyPartState", new String[] {"String", "Boolean"}, new Object[] {tEntry.getKey(), tEntry.getValue()}), (EntityPlayerMP) pConnectingPlayer);
+                sendMessage(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "modifyPartState", new String[]{"String", "Boolean"}, new Object[]{tEntry.getKey(), tEntry.getValue()}), (EntityPlayerMP) pConnectingPlayer);
             }
         }
     }
@@ -45,7 +46,7 @@ public class ArmorDataSynchronizer{
             {
                 Map.Entry<String, Float> tEntry = (Map.Entry<String, Float>) tIter.next();
 
-                ConfigNetworkManager.INSTANCE.sendTo(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setBaseDamageAbsorption", new String[] {"String", "Float"}, new Object[] {tEntry.getKey(), tEntry.getValue()}), (EntityPlayerMP) pConnectingPlayer);
+                sendMessage(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setBaseDamageAbsorption", new String[]{"String", "Float"}, new Object[]{tEntry.getKey(), tEntry.getValue()}), (EntityPlayerMP) pConnectingPlayer);
             }
         }
     }
@@ -58,7 +59,7 @@ public class ArmorDataSynchronizer{
             {
                 Map.Entry<String, Integer> tEntry = (Map.Entry<String, Integer>) tIter.next();
 
-                ConfigNetworkManager.INSTANCE.sendTo(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setMaxModifiersOnPart", new String[] {"String", "Integer"}, new Object[] {tEntry.getKey(), tEntry.getValue()}), (EntityPlayerMP) pConnectingPlayer);
+                sendMessage(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setMaxModifiersOnPart", new String[]{"String", "Integer"}, new Object[]{tEntry.getKey(), tEntry.getValue()}), (EntityPlayerMP) pConnectingPlayer);
             }
         }
     }
@@ -71,25 +72,29 @@ public class ArmorDataSynchronizer{
             {
                 Map.Entry<String, Integer> tEntry = (Map.Entry<String, Integer>) tIter.next();
 
-                ConfigNetworkManager.INSTANCE.sendTo(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setBaseDurability", new String[] {"String", "Integer"}, new Object[] {tEntry.getKey(), tEntry.getValue()}), (EntityPlayerMP) pConnectingPlayer);
+                sendMessage(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setBaseDurability", new String[]{"String", "Integer"}, new Object[]{tEntry.getKey(), tEntry.getValue()}), (EntityPlayerMP) pConnectingPlayer);
             }
         }
     }
 
     public void loadTemperatureCoefficient(EntityPlayer pConnectingPlayer) {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
-            ConfigNetworkManager.INSTANCE.sendTo(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setHeatCoefficient", new String[] {"Float"}, new Object[] {tMaterial.getHeatCoefficient() } ), (EntityPlayerMP) pConnectingPlayer);
+            sendMessage(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setHeatCoefficient", new String[]{"Float"}, new Object[]{tMaterial.getHeatCoefficient()}), (EntityPlayerMP) pConnectingPlayer);
     }
 
     public void loadMeltingPoint(EntityPlayer pConnectingPlayer) {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
-            ConfigNetworkManager.INSTANCE.sendTo(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setMeltingPoint", new String[] {"Float"}, new Object[] {tMaterial.getMeltingPoint() } ), (EntityPlayerMP) pConnectingPlayer);
+            sendMessage(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setMeltingPoint", new String[]{"Float"}, new Object[]{tMaterial.getMeltingPoint()}), (EntityPlayerMP) pConnectingPlayer);
     }
 
-    public void loadColorSettings(EntityPlayer pConnectingPlayer) {
-        for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-            ConfigNetworkManager.INSTANCE.sendTo(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setColor", new String[]{"Color"}, new Object[]{tMaterial.getColor()}), (EntityPlayerMP) pConnectingPlayer);
-            ConfigNetworkManager.INSTANCE.sendTo(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setVisibleNameColor", new String[]{"EnumChatFormatting"}, new Object[]{tMaterial.getVisibleNameColor()}), (EntityPlayerMP) pConnectingPlayer);
+    public void sendMessage(IMessage pMessage, EntityPlayerMP pPlayer)
+    {
+        if (pPlayer == null)
+        {
+            ConfigNetworkManager.INSTANCE.sendToServer(pMessage);
+            return;
         }
+        
+        ConfigNetworkManager.INSTANCE.sendTo(pMessage, pPlayer);
     }
 }

@@ -7,7 +7,7 @@ package com.Orion.Armory.Common.Inventory;
 
 import com.Orion.Armory.Common.Inventory.Slots.SlotFuelInput;
 import com.Orion.Armory.Common.Inventory.Slots.SlotHeatable;
-import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
+import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;

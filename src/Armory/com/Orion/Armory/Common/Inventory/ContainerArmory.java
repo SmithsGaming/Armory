@@ -5,7 +5,7 @@ package com.Orion.Armory.Common.Inventory;
  *   Created on: 16-1-2015
  */
 
-import com.Orion.Armory.Common.TileEntity.TileEntityArmory;
+import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Util.Core.ItemStackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

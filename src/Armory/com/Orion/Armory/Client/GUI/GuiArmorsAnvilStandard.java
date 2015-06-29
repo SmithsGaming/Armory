@@ -4,7 +4,7 @@ import com.Orion.Armory.Client.GUI.Components.*;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.InfoLedger;
 import com.Orion.Armory.Client.GUI.Components.MultiComponents.ComponentExtendedCraftingGrid;
 import com.Orion.Armory.Client.GUI.Components.MultiComponents.ComponentPlayerInventory;
-import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
+import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.GUI.GuiDirection;
 import com.Orion.Armory.Util.Client.Textures;

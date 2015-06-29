@@ -1,10 +1,6 @@
 package com.Orion.Armory.Common.Inventory;
 
-import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
-import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
-import com.Orion.Armory.Common.TileEntity.TileEntityArmory;
-import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
-import com.Orion.Armory.Util.Client.Textures;
+import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;

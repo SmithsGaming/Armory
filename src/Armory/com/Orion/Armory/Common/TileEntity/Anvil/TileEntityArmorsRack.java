@@ -1,4 +1,6 @@
-package com.Orion.Armory.Common.TileEntity;
+package com.Orion.Armory.Common.TileEntity.Anvil;
+
+import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 
 /**
  * Created by Orion
@@ -7,10 +9,7 @@ package com.Orion.Armory.Common.TileEntity;
  * <p/>
  * Copyrighted according to Project specific license
  */
-public class TileEntityCoolingBasin extends TileEntityArmory
-{
-
-
+public class TileEntityArmorsRack extends TileEntityArmory {
     @Override
     public float getProgressBarValue(String pProgressBarID) {
         return 0;

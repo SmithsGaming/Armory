@@ -1,6 +1,6 @@
 package com.Orion.Armory.Network.Handlers;
 
-import com.Orion.Armory.Common.TileEntity.ICustomInputHandler;
+import com.Orion.Armory.Common.TileEntity.Core.ICustomInputHandler;
 import com.Orion.Armory.Network.Messages.MessageCustomInput;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;

@@ -1,6 +1,6 @@
 package com.Orion.Armory.Network.Handlers;
 
-import com.Orion.Armory.Common.TileEntity.TileEntityArmory;
+import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Network.Messages.MessageTileEntityArmory;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

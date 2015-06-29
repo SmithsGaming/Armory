@@ -6,8 +6,10 @@ package com.Orion.Armory.Common.Blocks;
 */
 
 import com.Orion.Armory.Armory;
-import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
+import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import com.Orion.Armory.Util.References;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,6 +19,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Random;
 
 public class BlockFirePit extends BlockContainer
 {
@@ -30,6 +34,7 @@ public class BlockFirePit extends BlockContainer
         return new TileEntityFirePit();
     }
 
+    @Override
     public void onBlockPlacedBy(World pWorld, int pX, int pY, int pZ, EntityLivingBase pPlacingEntity, ItemStack pItemStack)
     {
         int l = MathHelper.floor_double((double) (pPlacingEntity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
@@ -98,5 +103,4 @@ public class BlockFirePit extends BlockContainer
             return true;
         }
     }
-
 }

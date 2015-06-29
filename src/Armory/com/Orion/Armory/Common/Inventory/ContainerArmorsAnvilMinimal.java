@@ -2,15 +2,11 @@ package com.Orion.Armory.Common.Inventory;
 
 import com.Orion.Armory.Common.Item.ItemHammer;
 import com.Orion.Armory.Common.Item.ItemTongs;
-import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
-import com.Orion.Armory.Util.Client.Textures;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 
 /**
  * Created by Orion

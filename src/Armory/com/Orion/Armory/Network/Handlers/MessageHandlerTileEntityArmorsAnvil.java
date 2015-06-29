@@ -1,9 +1,8 @@
 package com.Orion.Armory.Network.Handlers;
 
-import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
-import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
+import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
+import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import com.Orion.Armory.Network.Messages.MessageTileEntityArmorsAnvil;
-import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;

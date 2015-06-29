@@ -1,0 +1,83 @@
+# Blender MTL File: 'BlockModel.blend'
+# Material Count: 9
+
+newmtl None
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\CoalField.png
+
+newmtl None_DarkSheet.png
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd Textures\DarkSheet.png
+
+newmtl None_DestroyedMetalBasin.png
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd Textures\DestroyedMetalBasin.png
+
+newmtl None_DestroyedMetalBasinCloser.png
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd Textures\DestroyedMetalBasinCloser.png
+
+newmtl None_DestroyedMetalWall.png
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd Textures\DestroyedMetalWall.png
+
+newmtl None_FuelBasinBottom.png
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd Textures\FuelBasinBottom.png
+
+newmtl None_FuelBasinCorner.png
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd Textures\FuelBasinCorner.png
+
+newmtl None_FuelBasinWall.png
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd Textures\FuelBasinWall.png
+
+newmtl None_IngotHolderRim.png
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd Textures\IngotHolderRim.png

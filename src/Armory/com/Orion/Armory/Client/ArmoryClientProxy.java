@@ -15,6 +15,11 @@ import net.minecraftforge.common.MinecraftForge;
 public class ArmoryClientProxy extends ArmoryCommonProxy
 {
     @Override
+    public void preInitializeArmory() {
+        Armory.iSide = Side.CLIENT;
+    }
+
+    @Override
     public void initializeArmory()
     {
         Armory.iSide = Side.CLIENT;

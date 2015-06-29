@@ -1,6 +1,6 @@
 package com.Orion.Armory.Network.Messages;
 
-import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
+import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import io.netty.buffer.ByteBuf;

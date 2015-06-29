@@ -43,6 +43,7 @@ public class Armory
     @Mod.EventHandler
     public void preInit (FMLPreInitializationEvent event)
     {
+        proxy.preInitializeArmory();
         proxy.registerEventHandlers();
 
         ArmoryConfig.ConfigHandler.init(event.getSuggestedConfigurationFile());

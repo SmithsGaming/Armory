@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.TileEntity;
+package com.Orion.Armory.Common.TileEntity.FirePit;
 /*
 /  TileEntityFirePit
 /  Created by : Orion
@@ -8,10 +8,11 @@ package com.Orion.Armory.Common.TileEntity;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
-import com.Orion.Armory.Common.Registry.GeneralRegistry;
+import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
 import com.Orion.Armory.Network.NetworkManager;
 import com.Orion.Armory.Util.References;
+import com.sun.org.apache.bcel.internal.generic.IINC;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -23,15 +24,21 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
+import scala.tools.nsc.typechecker.Macros;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
+
     public float iPositiveHeat = 0.325F;
     public float iNegativeHeat = -0.1F;
     public float iPositiveHeatTerm = 0.325F;
     public float iNegativeHeatTerm = -0.1F;
+
     public ItemStack[] iIngotStacks = new ItemStack[INGOTSTACKS_AMOUNT];
     public ItemStack[] iFuelStacks = new ItemStack[FUELSTACK_AMOUNT];
 
@@ -117,12 +124,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
     @Override
     public String getInventoryName() {
-        return this.hasCustomInventoryName() ? this.iName : StatCollector.translateToLocal(References.InternalNames.Blocks.FirePit);
+        return this.hasCustomInventoryName() ? this.getDisplayName() : StatCollector.translateToLocal(References.InternalNames.Blocks.FirePit);
     }
 
     @Override
     public boolean hasCustomInventoryName() {
-        return ((this.iName.length() > 0) && this.iName.isEmpty() == false);
+        return ((this.getDisplayName().length() > 0) && this.getDisplayName().isEmpty() == false);
     }
 
     @Override
@@ -163,6 +170,10 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
         return false;
     }
+
+
+
+
 
     @Override
     public void readFromNBT(NBTTagCompound pCompound)
@@ -219,11 +230,6 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         NBTTagList tFuelList = new NBTTagList();
         for(int tStack = 0; tStack < FUELSTACK_AMOUNT; tStack++)
         {
-            if (iFuelStacks[tStack] == null)
-            {
-                continue;
-            }
-
             NBTTagCompound iFuelCompound = new NBTTagCompound();
             iFuelCompound.setInteger(References.NBTTagCompoundData.TE.Basic.SLOT, tStack);
             try {
@@ -232,10 +238,15 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             }
             catch(Exception ex)
             {
-                iFuelCompound.setInteger(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, 0);
-                iFuelCompound.setInteger(References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT, 0);
+                iFuelCompound.setInteger(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, -1);
+                iFuelCompound.setInteger(References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT, -1);
             }
-            iFuelStacks[tStack].writeToNBT(iFuelCompound);
+
+            if (iFuelStacks[tStack] != null)
+            {
+                iFuelStacks[tStack].writeToNBT(iFuelCompound);
+            }
+
             tFuelList.appendTag(iFuelCompound);
         }
         pCompound.setTag(References.NBTTagCompoundData.TE.FirePit.FUELITEMSTACKS, tFuelList);
@@ -245,6 +256,9 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         pCompound.setFloat(References.NBTTagCompoundData.TE.FirePit.MAXTEMPERATURE, iMaxTemperature);
         pCompound.setFloat(References.NBTTagCompoundData.TE.FirePit.LASTADDEDHEAT, iLastAddedHeat);
     }
+
+
+
 
     @Override
     public float getProgressBarValue(String pProgressBarID) {
@@ -270,7 +284,10 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         return ((float) iFuelStackBurningTime[tSlotIndex] / (float) iFuelStackFuelAmount[tSlotIndex]);
     }
 
-    //TODO: Implement new Heatexchange mechanism!
+
+
+
+
     @Override
     public void updateEntity()
     {
@@ -279,9 +296,14 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
         heatFurnace();
 
-        if (iLastAddedHeat > 0F)
+        iIsBurning = false;
+        for(int tStack = 0; tStack < FUELSTACK_AMOUNT; tStack++)
         {
-            iIsBurning = true;
+            if (iFuelStackBurningTime[tStack] > -1)
+            {
+                iIsBurning = true;
+                break;
+            }
         }
 
         heatIngots();
@@ -294,7 +316,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         }
     }
 
-    public void heatFurnace() {
+    public void heatFurnace()
+    {
         calculateHeatTerms();
 
         iLastAddedHeat = 0F;
@@ -355,12 +378,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         float tTotalMaxTemp = 1500F;
         float tTotalHeatTerm = iPositiveHeat;
         
-        if (iCurrentDirection != ForgeDirection.NORTH)
+        if (getDirection() != ForgeDirection.NORTH)
         {
             TileEntity tHeater = worldObj.getTileEntity(xCoord + ForgeDirection.NORTH.offsetX, yCoord, zCoord + ForgeDirection.NORTH.offsetZ);
             if (tHeater instanceof TileEntityHeater)
             {
-                if (((TileEntityHeater) tHeater).iCurrentDirection == ForgeDirection.NORTH)
+                if (((TileEntityHeater) tHeater).getDirection() == ForgeDirection.NORTH)
                 {
                     if (((TileEntityHeater) tHeater).tryDamageFan(1)) {
                         tTotalHeatTerm += 0.1F;
@@ -370,12 +393,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             }
         }
 
-        if (iCurrentDirection != ForgeDirection.EAST)
+        if (getDirection() != ForgeDirection.EAST)
         {
             TileEntity tHeater = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord, zCoord + ForgeDirection.EAST.offsetZ);
             if (tHeater instanceof TileEntityHeater)
             {
-                if (((TileEntityHeater) tHeater).iCurrentDirection == ForgeDirection.EAST)
+                if (((TileEntityHeater) tHeater).getDirection() == ForgeDirection.EAST)
                 {
                     if (((TileEntityHeater) tHeater).tryDamageFan(1)) {
                         tTotalHeatTerm += 0.1F;
@@ -385,12 +408,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             }
         }
         
-        if (iCurrentDirection != ForgeDirection.SOUTH)
+        if (getDirection() != ForgeDirection.SOUTH)
         {
             TileEntity tHeater = worldObj.getTileEntity(xCoord + ForgeDirection.SOUTH.offsetX, yCoord, zCoord + ForgeDirection.SOUTH.offsetZ);
             if (tHeater instanceof TileEntityHeater)
             {
-                if (((TileEntityHeater) tHeater).iCurrentDirection == ForgeDirection.SOUTH)
+                if (((TileEntityHeater) tHeater).getDirection() == ForgeDirection.SOUTH)
                 {
                     if (((TileEntityHeater) tHeater).tryDamageFan(1)) {
                         tTotalHeatTerm += 0.1F;
@@ -400,12 +423,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             }
         }
         
-        if (iCurrentDirection != ForgeDirection.WEST)
+        if (getDirection() != ForgeDirection.WEST)
         {
             TileEntity tHeater = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord, zCoord + ForgeDirection.WEST.offsetZ);
             if (tHeater instanceof TileEntityHeater)
             {
-                if (((TileEntityHeater) tHeater).iCurrentDirection == ForgeDirection.WEST)
+                if (((TileEntityHeater) tHeater).getDirection() == ForgeDirection.WEST)
                 {
                     if (((TileEntityHeater) tHeater).tryDamageFan(1)) {
                         tTotalHeatTerm += 0.1F;
@@ -415,13 +438,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             }
         }
 
-        if (iCurrentDirection == ForgeDirection.NORTH)
+        if (getDirection() == ForgeDirection.NORTH)
         {
             TileEntity tFirePitLeft = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord, zCoord + ForgeDirection.WEST.offsetZ);
             TileEntity tFirePitRight = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord, zCoord + ForgeDirection.EAST.offsetZ);
             if (tFirePitLeft instanceof TileEntityFirePit)
             {
-                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).iCurrentDirection == iCurrentDirection)
+                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).getDirection() == getDirection())
                 {
                     tTotalHeatTerm += 0.4F;
                     tTotalMaxTemp += 600F;
@@ -430,7 +453,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
             if (tFirePitRight instanceof TileEntityFirePit)
             {
-                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).iCurrentDirection == iCurrentDirection)
+                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).getDirection() == getDirection())
                 {
                     tTotalHeatTerm += 0.4F;
                     tTotalMaxTemp += 600F;
@@ -438,13 +461,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             }
         }
 
-        if (iCurrentDirection == ForgeDirection.SOUTH)
+        if (getDirection() == ForgeDirection.SOUTH)
         {
             TileEntity tFirePitLeft = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord, zCoord + ForgeDirection.WEST.offsetZ);
             TileEntity tFirePitRight = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord, zCoord + ForgeDirection.EAST.offsetZ);
             if (tFirePitLeft instanceof TileEntityFirePit)
             {
-                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).iCurrentDirection == iCurrentDirection)
+                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).getDirection() == getDirection())
                 {
                     tTotalHeatTerm += 0.4F;
                     tTotalMaxTemp += 600F;
@@ -453,7 +476,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
             if (tFirePitRight instanceof TileEntityFirePit)
             {
-                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).iCurrentDirection == iCurrentDirection)
+                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).getDirection() == getDirection())
                 {
                     tTotalHeatTerm += 0.4F;
                     tTotalMaxTemp += 600F;
@@ -461,13 +484,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             }
         }
 
-        if (iCurrentDirection == ForgeDirection.WEST)
+        if (getDirection() == ForgeDirection.WEST)
         {
             TileEntity tFirePitLeft = worldObj.getTileEntity(xCoord + ForgeDirection.SOUTH.offsetX, yCoord, zCoord + ForgeDirection.SOUTH.offsetZ);
             TileEntity tFirePitRight = worldObj.getTileEntity(xCoord + ForgeDirection.NORTH.offsetX, yCoord, zCoord + ForgeDirection.NORTH.offsetZ);
             if (tFirePitLeft instanceof TileEntityFirePit)
             {
-                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).iCurrentDirection == iCurrentDirection)
+                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).getDirection() == getDirection())
                 {
                     tTotalHeatTerm += 0.4F;
                     tTotalMaxTemp += 600F;
@@ -476,7 +499,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
             if (tFirePitRight instanceof TileEntityFirePit)
             {
-                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).iCurrentDirection == iCurrentDirection)
+                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).getDirection() == getDirection())
                 {
                     tTotalHeatTerm += 0.4F;
                     tTotalMaxTemp += 600F;
@@ -484,13 +507,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
             }
         }
 
-        if (iCurrentDirection == ForgeDirection.EAST)
+        if (getDirection() == ForgeDirection.EAST)
         {
             TileEntity tFirePitLeft = worldObj.getTileEntity(xCoord + ForgeDirection.NORTH.offsetX, yCoord, zCoord + ForgeDirection.NORTH.offsetZ);
             TileEntity tFirePitRight = worldObj.getTileEntity(xCoord + ForgeDirection.SOUTH.offsetX, yCoord, zCoord + ForgeDirection.SOUTH.offsetZ);
             if (tFirePitLeft instanceof TileEntityFirePit)
             {
-                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).iCurrentDirection == iCurrentDirection)
+                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).getDirection() == getDirection())
                 {
                     tTotalHeatTerm += 0.4F;
                     tTotalMaxTemp += 600F;
@@ -499,7 +522,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
             if (tFirePitRight instanceof TileEntityFirePit)
             {
-                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).iCurrentDirection == iCurrentDirection)
+                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).getDirection() == getDirection())
                 {
                     tTotalHeatTerm += 0.4F;
                     tTotalMaxTemp += 600F;
@@ -511,7 +534,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         TileEntity tBelow2 =  worldObj.getTileEntity(xCoord, yCoord - 2, zCoord);
         if (tBelow1 instanceof TileEntityFirePit)
         {
-            if (((TileEntityFirePit) tBelow1).isBurning() && ((TileEntityFirePit) tBelow1).iCurrentDirection == iCurrentDirection)
+            if (((TileEntityFirePit) tBelow1).isBurning() && ((TileEntityFirePit) tBelow1).getDirection() == getDirection())
             {
                 tTotalHeatTerm += 0.55F;
                 tTotalMaxTemp += 750F;
@@ -520,7 +543,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
         if (tBelow2 instanceof TileEntityFirePit)
         {
-            if (((TileEntityFirePit) tBelow2).isBurning() && ((TileEntityFirePit) tBelow2).iCurrentDirection == iCurrentDirection)
+            if (((TileEntityFirePit) tBelow2).isBurning() && ((TileEntityFirePit) tBelow2).getDirection() == getDirection())
             {
                 tTotalHeatTerm += 0.8F;
                 tTotalMaxTemp += 900F;
@@ -587,22 +610,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
     }
 
 
-    public int getFuelAmount()
-    {
-        int tFuelAmount = 0;
 
-        for (int tFuelStackIndex = 0; tFuelStackIndex < FUELSTACK_AMOUNT; tFuelStackIndex++)
-        {
-            if (iIngotStacks[tFuelStackIndex] == null)
-            {
-                continue;
-            }
-
-            tFuelAmount++;
-        }
-
-        return tFuelAmount;
-    }
 
     public int getIngotAmount()
     {
@@ -621,26 +629,6 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         return tIngotAmount;
     }
 
-    public int getHeatableIngotAmount()
-    {
-        int tIngotAmount = 0;
-
-        for (int tIngotStackIndex = 0; tIngotStackIndex < INGOTSTACKS_AMOUNT; tIngotStackIndex++)
-        {
-            if (iIngotStacks[tIngotStackIndex] == null)
-            {
-                continue;
-            }
-
-            if(ItemHeatedItem.getItemTemperature(iIngotStacks[tIngotStackIndex]) < iMaxTemperature)
-            {
-                tIngotAmount++;
-            }
-        }
-
-        return tIngotAmount;
-    }
-
     public boolean isBurning() {return iIsBurning; }
 
     @Override
@@ -652,6 +640,11 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         super.markDirty();
         worldObj.func_147451_t(xCoord, yCoord, zCoord);
     }
+
+
+
+
+
 
     @Override
     public Packet getDescriptionPacket()

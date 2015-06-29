@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.TileEntity;
+package com.Orion.Armory.Common.TileEntity.Core;
 
 /**
  * Created by Orion

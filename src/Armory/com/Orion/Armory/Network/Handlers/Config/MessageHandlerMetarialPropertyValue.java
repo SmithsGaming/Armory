@@ -1,10 +1,7 @@
 package com.Orion.Armory.Network.Handlers.Config;
 
 import com.Orion.Armory.API.Materials.IArmorMaterial;
-import com.Orion.Armory.Common.Logic.ArmoryInitializer;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
-import com.Orion.Armory.Common.Registry.GeneralRegistry;
-import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
 import com.Orion.Armory.Network.Messages.Config.MessageMaterialPropertyValue;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -37,7 +34,7 @@ public class MessageHandlerMetarialPropertyValue implements IMessageHandler<Mess
                         tMethod.setAccessible(true);
                         tMethod.invoke(tMaterial, message.iServerSidedValue);
 
-                        return null;
+                        break;
                     } catch (InvocationTargetException x) {
                         return null;
                     } catch (IllegalAccessException e) {
@@ -46,6 +43,8 @@ public class MessageHandlerMetarialPropertyValue implements IMessageHandler<Mess
                 }
             }
         }
+
+
 
         return null;
     }

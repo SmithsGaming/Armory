@@ -10,7 +10,7 @@ import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Addons.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
-import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
+import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import com.Orion.Armory.Util.Armor.NBTHelper;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemStack;

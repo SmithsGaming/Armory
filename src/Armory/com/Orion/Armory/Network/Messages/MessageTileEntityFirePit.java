@@ -5,7 +5,7 @@ package com.Orion.Armory.Network.Messages;
  *   Created on: 19-1-2015
  */
 
-import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
+import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import io.netty.buffer.ByteBuf;

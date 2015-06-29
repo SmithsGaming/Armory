@@ -12,7 +12,7 @@ import com.Orion.Armory.Client.GUI.Components.Ledgers.InfoLedger;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.Ledger;
 import com.Orion.Armory.Client.GUI.Components.MultiComponents.ComponentPlayerInventory;
 import com.Orion.Armory.Common.Inventory.ContainerFirepit;
-import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
+import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.StringUtils;
 import com.Orion.Armory.Util.Client.Textures;

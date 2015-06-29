@@ -5,11 +5,10 @@ package com.Orion.Armory.Client.GUI;
 /  Created on : 15/01/2015
 */
 
-import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
 import com.Orion.Armory.Client.GUI.Components.Core.StandardComponentManager;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
-import com.Orion.Armory.Common.TileEntity.TileEntityArmory;
+import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;

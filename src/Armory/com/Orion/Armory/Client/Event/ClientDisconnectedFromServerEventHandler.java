@@ -1,10 +1,7 @@
 package com.Orion.Armory.Client.Event;
 
-import com.Orion.Armory.Common.Config.ArmorDataConfigHandler;
-import com.Orion.Armory.Common.Config.ArmorDataSynchronizer;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
-import com.Orion.Armory.Common.Registry.GeneralRegistry;
-import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
+import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent;
 

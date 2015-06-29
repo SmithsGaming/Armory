@@ -31,10 +31,9 @@ import com.Orion.Armory.Common.Item.Armor.TierMedieval.ItemUpgradeMedieval;
 import com.Orion.Armory.Common.Item.*;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
-import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
-import com.Orion.Armory.Common.TileEntity.TileEntityFirePit;
-import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
-import com.Orion.Armory.Util.Client.Colors;
+import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
+import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
+import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityHeater;
 import com.Orion.Armory.Util.Client.TextureAddressHelper;
 import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.Core.ItemStackHelper;
@@ -50,7 +49,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -61,7 +59,6 @@ public class ArmoryInitializer
 {
     public static void InitializeServer()
     {
-        Armory.iSide = Side.SERVER;
         MedievalInitialization.Initialize();
         SystemInit.RegisterBlocks();
         SystemInit.RegisterItems();

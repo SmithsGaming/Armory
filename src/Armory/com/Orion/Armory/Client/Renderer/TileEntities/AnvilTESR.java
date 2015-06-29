@@ -1,9 +1,7 @@
 package com.Orion.Armory.Client.Renderer.TileEntities;
 
 import com.Orion.Armory.Client.Models.ModelAnvil;
-import com.Orion.Armory.Client.Models.ModelHeater;
-import com.Orion.Armory.Common.TileEntity.TileEntityArmorsAnvil;
-import com.Orion.Armory.Common.TileEntity.TileEntityHeater;
+import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import com.Orion.Armory.Util.References;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

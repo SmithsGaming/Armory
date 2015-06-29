@@ -1,10 +1,12 @@
-package com.Orion.Armory.Common.TileEntity;
+package com.Orion.Armory.Common.TileEntity.FirePit;
 /*
  *   TileEntityHeater
  *   Created by: Orion
  *   Created on: 12-10-2014
  */
 
+import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
+import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import com.Orion.Armory.Network.Messages.MessageTileEntityHeater;
 import com.Orion.Armory.Network.NetworkManager;
 import com.Orion.Armory.Util.References;
@@ -116,12 +118,12 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
 
     @Override
     public String getInventoryName() {
-        return this.hasCustomInventoryName() ? this.iName : StatCollector.translateToLocal(References.InternalNames.Blocks.FirePit);
+        return this.hasCustomInventoryName() ? this.getDisplayName() : StatCollector.translateToLocal(References.InternalNames.Blocks.FirePit);
     }
 
     @Override
     public boolean hasCustomInventoryName() {
-        return ((this.iName.length() > 0) && this.iName.isEmpty() == false);
+        return ((this.getDisplayName().length() > 0) && this.getDisplayName().isEmpty() == false);
     }
 
     @Override
@@ -180,9 +182,9 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
 
         pCompound.setInteger(References.NBTTagCompoundData.TE.Heater.TICKSINSLOT, iItemInSlotTicks);
 
-        iTargetX = xCoord + iCurrentDirection.getOpposite().offsetX;
-        iTargetY = yCoord + iCurrentDirection.getOpposite().offsetY;
-        iTargetZ = zCoord + iCurrentDirection.getOpposite().offsetZ;
+        iTargetX = xCoord + getDirection().getOpposite().offsetX;
+        iTargetY = yCoord + getDirection().getOpposite().offsetY;
+        iTargetZ = zCoord + getDirection().getOpposite().offsetZ;
     }
 
     @Override
@@ -203,9 +205,9 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
 
     public boolean IsHelpingAFirePit()
     {
-        iTargetX = xCoord + iCurrentDirection.getOpposite().offsetX;
-        iTargetY = yCoord + iCurrentDirection.getOpposite().offsetY;
-        iTargetZ = zCoord + iCurrentDirection.getOpposite().offsetZ;
+        iTargetX = xCoord + getDirection().getOpposite().offsetX;
+        iTargetY = yCoord + getDirection().getOpposite().offsetY;
+        iTargetZ = zCoord + getDirection().getOpposite().offsetZ;
 
         if (!IsContainingAFan())
         {
@@ -217,7 +219,7 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
 
         if (tTargetTE instanceof TileEntityFirePit)
         {
-            if (((TileEntityFirePit) tTargetTE).iCurrentDirection != iCurrentDirection)
+            if (((TileEntityFirePit) tTargetTE).getDirection() != getDirection())
                 return true;
         }
 
@@ -243,7 +245,7 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
 
     public boolean validateTarget()
     {
-        ForgeDirection oppositeDirection = iCurrentDirection.getOpposite();
+        ForgeDirection oppositeDirection = getDirection().getOpposite();
 
         iTargetX = this.xCoord + oppositeDirection.offsetX;
         iTargetY = this.yCoord + oppositeDirection.offsetY;

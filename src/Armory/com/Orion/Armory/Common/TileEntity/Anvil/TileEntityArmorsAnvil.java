@@ -1,9 +1,11 @@
-package com.Orion.Armory.Common.TileEntity;
+package com.Orion.Armory.Common.TileEntity.Anvil;
 
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.IAnvilRecipeComponent;
 import com.Orion.Armory.Common.Item.ItemHammer;
 import com.Orion.Armory.Common.Item.ItemTongs;
+import com.Orion.Armory.Common.TileEntity.Core.ICustomInputHandler;
+import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Network.Messages.MessageCustomInput;
 import com.Orion.Armory.Network.Messages.MessageTileEntityArmorsAnvil;
 import com.Orion.Armory.Network.NetworkManager;
@@ -202,12 +204,12 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     @Override
     public String getInventoryName() {
-        return this.hasCustomInventoryName() ? this.iName : StatCollector.translateToLocal(References.InternalNames.Blocks.ArmorsAnvil);
+        return this.hasCustomInventoryName() ? this.getDisplayName() : StatCollector.translateToLocal(References.InternalNames.Blocks.ArmorsAnvil);
     }
 
     @Override
     public boolean hasCustomInventoryName() {
-        return ((this.iName.length() > 0) && this.iName.isEmpty() == false);
+        return ((this.getDisplayName().length() > 0) && this.getDisplayName().isEmpty() == false);
     }
 
     @Override
@@ -599,7 +601,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
         boolean tFoundCoolingBasin = false;
         boolean tFoundHelperRack = false;
-        if (iCurrentDirection == ForgeDirection.NORTH || iCurrentDirection == ForgeDirection.SOUTH)
+        if (getDirection() == ForgeDirection.NORTH || getDirection() == ForgeDirection.SOUTH)
         {
             TileEntity tLeftTE = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord + ForgeDirection.EAST.offsetY, zCoord + ForgeDirection.EAST.offsetZ);
             TileEntity tRightTE = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord + ForgeDirection.WEST.offsetY, zCoord + ForgeDirection.WEST.offsetZ);
@@ -671,7 +673,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     public TileEntityCoolingBasin getCoolingBasin()
     {
-        if (iCurrentDirection == ForgeDirection.NORTH || iCurrentDirection == ForgeDirection.SOUTH)
+        if (getDirection() == ForgeDirection.NORTH || getDirection() == ForgeDirection.SOUTH)
         {
             TileEntity tLeftTE = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord + ForgeDirection.EAST.offsetY, zCoord + ForgeDirection.EAST.offsetZ);
             TileEntity tRightTE = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord + ForgeDirection.WEST.offsetY, zCoord + ForgeDirection.WEST.offsetZ);
@@ -713,7 +715,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     public TileEntityArmorsRack getRack()
     {
-        if (iCurrentDirection == ForgeDirection.NORTH || iCurrentDirection == ForgeDirection.SOUTH)
+        if (getDirection() == ForgeDirection.NORTH || getDirection() == ForgeDirection.SOUTH)
         {
             TileEntity tLeftTE = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord + ForgeDirection.EAST.offsetY, zCoord + ForgeDirection.EAST.offsetZ);
             TileEntity tRightTE = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord + ForgeDirection.WEST.offsetY, zCoord + ForgeDirection.WEST.offsetZ);
