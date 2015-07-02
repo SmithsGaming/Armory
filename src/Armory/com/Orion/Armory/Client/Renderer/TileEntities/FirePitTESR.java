@@ -6,7 +6,9 @@ package com.Orion.Armory.Client.Renderer.TileEntities;
  */
 
 import com.Orion.Armory.Client.Models.ModelFirePit;
+import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureComponent;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
+import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -66,10 +68,53 @@ public class FirePitTESR extends TileEntitySpecialRenderer
         }
 
         TileEntityFirePit tTEFirePit = (TileEntityFirePit) pEntity;
-        renderTEModelAt(tTEFirePit, pX, pY, pZ, pPartialTickTime);
+        if (tTEFirePit.isSlaved())
+            return;
+
+        renderTEModelAt(tTEFirePit, pX, pY, pZ, pPartialTickTime, false);
+
+        if (tTEFirePit.getSlaveEntities() == null)
+            return;
+
+        ArrayList<Coordinate> tNonExistingCoordinates = new ArrayList<Coordinate>();
+        for(Coordinate tCoordinate : tTEFirePit.getSlaveEntities().keySet())
+        {
+            TileEntity tEntity = tTEFirePit.getWorldObj().getTileEntity(tCoordinate.getXComponent(), tCoordinate.getYComponent(), tCoordinate.getZComponent());
+            if (tEntity == null) {
+                tNonExistingCoordinates.add(tCoordinate);
+                continue;
+            }
+
+            if (!(tEntity instanceof IStructureComponent)) {
+                tNonExistingCoordinates.add(tCoordinate);
+                continue;
+            }
+
+            if (!((IStructureComponent) tEntity).getStructureType().equals(tTEFirePit.getStructureType())) {
+                tNonExistingCoordinates.add(tCoordinate);
+                continue;
+            }
+        }
+
+        for (Coordinate tCoordinate : tNonExistingCoordinates)
+        {
+            tTEFirePit.removeSlave(tCoordinate);
+        }
+
+        for(Coordinate tCoordinate : tTEFirePit.getSlaveEntities().keySet())
+        {
+            renderTEModelAt(((TileEntityFirePit) tTEFirePit.getSlaveEntities().get(tCoordinate)), pX + (tCoordinate.getXComponent() - tTEFirePit.xCoord), pY + (tCoordinate.getYComponent() - tTEFirePit.yCoord),  pZ + (tCoordinate.getZComponent() - tTEFirePit.zCoord), pPartialTickTime, false);
+        }
+
+        renderTEModelAt(tTEFirePit, pX, pY, pZ, pPartialTickTime, true);
+
+        for(Coordinate tCoordinate : tTEFirePit.getSlaveEntities().keySet())
+        {
+            renderTEModelAt(((TileEntityFirePit) tTEFirePit.getSlaveEntities().get(tCoordinate)), pX + (tCoordinate.getXComponent() - tTEFirePit.xCoord), pY + (tCoordinate.getYComponent() - tTEFirePit.yCoord),  pZ + (tCoordinate.getZComponent() - tTEFirePit.zCoord), pPartialTickTime, true);
+        }
     }
 
-    private void renderTEModelAt(TileEntityFirePit pEntity, double pX, double pY, double pZ, float pPartialTickTime)
+    private void renderTEModelAt(TileEntityFirePit pEntity, double pX, double pY, double pZ, float pPartialTickTime, boolean pSeeThroughMode)
     {
         boolean tIsBurning = pEntity.isBurning();
 
@@ -78,40 +123,24 @@ public class FirePitTESR extends TileEntitySpecialRenderer
 
         scaleTranslateRotateTEModel(pX, pY, pZ, pEntity.getDirection());
 
-        TileEntity tSouthNeighborEntity = pEntity.getWorldObj().getTileEntity(pEntity.xCoord + ForgeDirection.SOUTH.offsetX, pEntity.yCoord + ForgeDirection.SOUTH.offsetY, pEntity.zCoord + ForgeDirection.SOUTH.offsetZ);
-        if (tSouthNeighborEntity instanceof TileEntityFirePit)
+        if (!pSeeThroughMode)
         {
-            GL11.glPushMatrix();
-            GL11.glTranslated(ForgeDirection.SOUTH.offsetX, ForgeDirection.SOUTH.offsetY, ForgeDirection.SOUTH.offsetZ);
+            if(tIsBurning)
+            {
+                bindTexture(iCoalSurfaceTexture);
+                iModelFirePit.renderPart("Fuel_Plane");
 
-            renderNeighborFirePit((TileEntityFirePit) tSouthNeighborEntity);
-
-            GL11.glPopMatrix();
-        }
-
-        TileEntity tWestNeighborEntity = pEntity.getWorldObj().getTileEntity(pEntity.xCoord + ForgeDirection.WEST.offsetX, pEntity.yCoord + ForgeDirection.WEST.offsetY, pEntity.zCoord + ForgeDirection.WEST.offsetY);
-        if (tWestNeighborEntity instanceof TileEntityFirePit)
-        {
-            GL11.glPushMatrix();
-            GL11.glTranslated(ForgeDirection.WEST.offsetX, ForgeDirection.WEST.offsetY, ForgeDirection.WEST.offsetZ);
-
-            renderNeighborFirePit((TileEntityFirePit) tWestNeighborEntity);
-
-            GL11.glPopMatrix();
-        }
-
-        if(tIsBurning)
-        {
-            bindTexture(iCoalSurfaceTexture);
-            iModelFirePit.renderPart("Fuel_Plane");
-
-            renderFirePit(pEntity);
+                renderNonSeeThroughFirePit(pEntity);
+            }
+            else
+            {
+                renderNonSeeThroughFirePit(pEntity);
+            }
         }
         else
         {
-            renderFirePit(pEntity);
+            renderSeeThroughFirePit(pEntity);
         }
-
 
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glPopMatrix();
@@ -119,10 +148,10 @@ public class FirePitTESR extends TileEntitySpecialRenderer
 
     private void scaleTranslateRotateTEModel(double x, double y, double z, ForgeDirection orientation)
     {
-        GL11.glTranslated(x +0.5, y, z + 0.5);
+        GL11.glTranslated(x + 0.5, y, z + 0.5);
     }
 
-    private void renderFirePit(TileEntityFirePit pEntity)
+    private void renderNonSeeThroughFirePit(TileEntityFirePit pEntity)
     {
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(iFuelBasinBottomTexture);
         iModelFirePit.renderPart("FuelHolderBottom_Cube.001");
@@ -160,12 +189,6 @@ public class FirePitTESR extends TileEntitySpecialRenderer
         renderMultiBlockComponent(pEntity, "DestroyedMetalBasinWallNegY_Cube.020", true);
         renderMultiBlockComponent(pEntity, "DestroyedMetalBasinWallPosY_Cube.018", true);
 
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(iDestroyedMetalWallTexture);
-        renderMultiBlockComponent(pEntity, "DestroyedMetalHolderWallNegX_Cube.004", true);
-        renderMultiBlockComponent(pEntity, "DestroyedMetalHolderWallPosX_Cube.014", true);
-        renderMultiBlockComponent(pEntity, "DestroyedMetalHolderWallNegY_Cube.015", true);
-        renderMultiBlockComponent(pEntity, "DestroyedMetalHolderWallPosY_Cube.013", true);
-
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(iDarkTexture);
         renderMultiBlockComponent(pEntity, "IngotHolderCornerPosXNegY_Cube.028", true);
         renderMultiBlockComponent(pEntity, "IngotHolderCornerPosXPosY_Cube.029", true);
@@ -188,18 +211,13 @@ public class FirePitTESR extends TileEntitySpecialRenderer
         renderMultiBlockComponent(pEntity, "IngotHolderRimPosY_Cube.037", true);
     }
 
-    private void renderNeighborFirePit(TileEntityFirePit pNeigborEntity)
+    private void renderSeeThroughFirePit(TileEntityFirePit pEntity)
     {
-        if (pNeigborEntity.iIsBurning)
-        {
-            bindTexture(iCoalSurfaceTexture);
-            iModelFirePit.renderPart("Fuel_Plane");
-        }
-        else
-        {
-            FMLClientHandler.instance().getClient().renderEngine.bindTexture(iFuelBasinBottomTexture);
-            iModelFirePit.renderPart("FuelHolderBottom_Cube.001");
-        }
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(iDestroyedMetalWallTexture);
+        renderMultiBlockComponent(pEntity, "DestroyedMetalHolderWallNegX_Cube.004", true);
+        renderMultiBlockComponent(pEntity, "DestroyedMetalHolderWallPosX_Cube.014", true);
+        renderMultiBlockComponent(pEntity, "DestroyedMetalHolderWallNegY_Cube.015", true);
+        renderMultiBlockComponent(pEntity, "DestroyedMetalHolderWallPosY_Cube.013", true);
     }
 
     private void renderMultiBlockComponent(TileEntityFirePit pEntity, String pComponentName, boolean pDefaultRender)

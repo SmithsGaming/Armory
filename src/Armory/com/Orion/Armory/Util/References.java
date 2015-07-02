@@ -216,6 +216,11 @@ public class References
             public static final String FirePitContainer = "container.Armory.FirePit";
             public static final String HeaterComponent = "container.Armory.Heater";
             public static final String ArmorsAnvil = "container.Armory.Anvil";
+
+            public static final class Structures
+            {
+                public static final String FirePit = "Structure.Armory.FirePit";
+            }
         }
 
         public static final  class HeatedItemTypes
@@ -321,6 +326,20 @@ public class References
                 public static final String DIRECTION = "Direction";
                 public static final String NAME = "Name";
                 public static final String SLOT = "Slot";
+                public static final String STRUCTUREDATA = "Structure";
+
+                public class Structures
+                {
+                    public static final String COORDINATES = "Coordinates";
+                    public static final String ISSLAVE = "IsSlave";
+                }
+
+                public class Coordinate
+                {
+                    public static final String XCOORD = "XCoord";
+                    public static final String YCOORD = "YCoord";
+                    public static final String ZCOORD = "ZCoord";
+                }
             }
 
             public class FirePit

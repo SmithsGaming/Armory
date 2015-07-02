@@ -17,9 +17,9 @@ public class Rectangle
     public Rectangle() {
     }
 
-    public Rectangle(int pTopLeftXCoord, int pTopLeftYCoord, int pWidth, int pHeigth) {
-        iTopLeftCoord = new Coordinate(pTopLeftXCoord, pTopLeftYCoord);
-        iLowerRightCoord = new Coordinate(pTopLeftXCoord + pWidth, pTopLeftYCoord + pHeigth);
+    public Rectangle(int pTopLeftXCoord, int pTopLeftZCoord, int pWidth, int pHeigth) {
+        iTopLeftCoord = new Coordinate(pTopLeftXCoord, pTopLeftZCoord);
+        iLowerRightCoord = new Coordinate(pTopLeftXCoord + pWidth, pTopLeftZCoord + pHeigth);
         
         this.iWidth = pWidth;
         this.iHeigth = pHeigth;
@@ -33,27 +33,28 @@ public class Rectangle
         return this.iLowerRightCoord;
     }
 
-    public void set(int pTopLeftXCoord, int pTopLeftYCoord, int pWidth, int pHeigth) {
-        iTopLeftCoord = new Coordinate(pTopLeftXCoord, pTopLeftYCoord);
-        iLowerRightCoord = new Coordinate(pTopLeftXCoord + pWidth, pTopLeftYCoord + pHeigth);
+    public void set(int pTopLeftXCoord, int pTopLeftZCoord, int pWidth, int pHeigth) {
+        iTopLeftCoord = new Coordinate(pTopLeftXCoord, pTopLeftZCoord);
+        iLowerRightCoord = new Coordinate(pTopLeftXCoord + pWidth, pTopLeftZCoord + pHeigth);
 
         this.iWidth = pWidth;
         this.iHeigth = pHeigth;
     }
 
-    public Rectangle offset(int pDeltaX, int pDeltaY) {
+    public Rectangle offset(int pDeltaX, int pDeltaZ) {
         this.iTopLeftCoord.iXCoord += pDeltaX;
-        this.iTopLeftCoord.iYCoord += pDeltaY;
+        this.iTopLeftCoord.iYCoord += pDeltaZ;
 
         this.iLowerRightCoord.iXCoord += pDeltaX;
-        this.iLowerRightCoord.iYCoord += pDeltaY;
+        this.iLowerRightCoord.iYCoord += pDeltaZ;
 
         return this;
     }
 
-    public Rectangle include(Coordinate pCoord)
+
+    public Rectangle includeHorizontal(Coordinate pCoord)
     {
-        return this.include(pCoord.getXComponent(), pCoord.getYComponent());
+        return this.include(pCoord.getXComponent(), pCoord.getZComponent());
     }
 
     public Rectangle include(int pXCoord, int pYCoord) {
@@ -81,19 +82,25 @@ public class Rectangle
         return this.include(pRectangleToInclude.getLowerRightCoord().getXComponent(), pRectangleToInclude.getLowerRightCoord().getYComponent());
     }
 
-    public Rectangle expand(int px, int py) {
-        if(px > 0) {
-            this.iWidth += px;
+    //TODO: Redo expand function because the corners are not recalculated!
+    //Or recalculate the Corners on demand
+    public Rectangle expand(int pDeltaX, int pDetlaZ) {
+        if(pDeltaX > 0) {
+            this.iWidth += pDeltaX;
+            iLowerRightCoord = new Coordinate(iTopLeftCoord.getXComponent() + iWidth, iTopLeftCoord.getYComponent() + iHeigth);
         } else {
-            this.getTopLeftCoord().iXCoord += px;
-            this.iWidth -= px;
+            this.getTopLeftCoord().iXCoord += pDeltaX;
+            this.iWidth -= pDeltaX;
+            iLowerRightCoord = new Coordinate(iTopLeftCoord.getXComponent() + iWidth, iTopLeftCoord.getYComponent() + iHeigth);
         }
 
-        if(py > 0) {
-            this.iHeigth += py;
+        if(pDetlaZ > 0) {
+            this.iHeigth += pDetlaZ;
+            iLowerRightCoord = new Coordinate(iTopLeftCoord.getXComponent() + iWidth, iTopLeftCoord.getYComponent() + iHeigth);
         } else {
-            this.getTopLeftCoord().iYCoord += py;
-            this.iHeigth -= py;
+            this.getTopLeftCoord().iYCoord += pDetlaZ;
+            this.iHeigth -= pDetlaZ;
+            iLowerRightCoord = new Coordinate(iTopLeftCoord.getXComponent() + iWidth, iTopLeftCoord.getYComponent() + iHeigth);
         }
 
         return this;
@@ -104,8 +111,8 @@ public class Rectangle
         return this.contains(pCoord.getXComponent(), pCoord.getYComponent());
     }
 
-    public boolean contains(int pXCoord, int pYCoord) {
-        return this.getTopLeftCoord().getXComponent() <= pXCoord && pXCoord < this.getTopLeftCoord().getXComponent() + this.iWidth && this.getTopLeftCoord().getYComponent() <= pYCoord && pYCoord < this.getTopLeftCoord().getYComponent() + this.iHeigth;
+    public boolean contains(int pXCoord, int pZCoord) {
+        return this.getTopLeftCoord().getXComponent() <= pXCoord && pXCoord < this.getTopLeftCoord().getXComponent() + this.iWidth && this.getTopLeftCoord().getYComponent() <= pZCoord && pZCoord < this.getTopLeftCoord().getYComponent() + this.iHeigth;
     }
 
     public boolean intersects(Rectangle pRectangleToCheck) {

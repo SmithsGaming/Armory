@@ -446,7 +446,7 @@ public class ArmoryInitializer
                 tRingStack.setTagCompound(pRingCompound);
 
                 AnvilRecipe tRingRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.95F)))
-                        .setProgress(9).setResult(tRingStack).setHammerUsage(4).setTongUsage(1).setShapeLess();
+                        .setProgress(9).setResult(tRingStack).setHammerUsage(4).setTongUsage(0).setShapeLess();
 
                 TileEntityArmorsAnvil.addRecipe(tRingRecipe);
 

@@ -5,31 +5,38 @@ package com.Orion.Armory.Common.TileEntity.FirePit;
 /  Created on : 02/10/2014
 */
 
+import com.Orion.Armory.Client.Renderer.TileEntities.FirePitTESR;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
+import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureComponent;
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
 import com.Orion.Armory.Network.NetworkManager;
+import com.Orion.Armory.Util.Core.Coordinate;
+import com.Orion.Armory.Util.Core.NBTHelper;
+import com.Orion.Armory.Util.Core.Rectangle;
 import com.Orion.Armory.Util.References;
-import com.sun.org.apache.bcel.internal.generic.IINC;
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
-import scala.tools.nsc.typechecker.Macros;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TileEntityFirePit extends TileEntityArmory implements IInventory {
+public class TileEntityFirePit extends TileEntityArmory implements IInventory, IStructureComponent {
 
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
@@ -50,6 +57,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
     public float iLastTemperature = 20;
     public float iLastAddedHeat = 0;
     public boolean iIsBurning = false;
+
+    IStructureComponent iMasterComponent;
+    HashMap<Coordinate, IStructureComponent> iSlaveComponents;
+    Rectangle iStructureBounds;
+    boolean iIsSlavesInitialized = false;
+    ArrayList<Coordinate> iNBTCoordinates = new ArrayList<Coordinate>();
 
     public TileEntityFirePit()
     {
@@ -205,6 +218,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         iCurrentTemperature = pCompound.getFloat(References.NBTTagCompoundData.TE.FirePit.CURRENTTEMPERATURE);
         iMaxTemperature = pCompound.getFloat(References.NBTTagCompoundData.TE.FirePit.MAXTEMPERATURE);
         iLastAddedHeat = pCompound.getFloat(References.NBTTagCompoundData.TE.FirePit.LASTADDEDHEAT);
+
+        readStructureFromNBT(pCompound);
     }
 
     @Override
@@ -255,6 +270,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         pCompound.setFloat(References.NBTTagCompoundData.TE.FirePit.CURRENTTEMPERATURE, iCurrentTemperature);
         pCompound.setFloat(References.NBTTagCompoundData.TE.FirePit.MAXTEMPERATURE, iMaxTemperature);
         pCompound.setFloat(References.NBTTagCompoundData.TE.FirePit.LASTADDEDHEAT, iLastAddedHeat);
+
+        writeStructureToNBT(pCompound);
     }
 
 
@@ -291,6 +308,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
     @Override
     public void updateEntity()
     {
+        if (!iIsSlavesInitialized)
+        {
+            regenTECoordinate();
+            iIsSlavesInitialized = true;
+        }
+
         iLastTemperature = iCurrentTemperature;
         iIsBurning = false;
 
@@ -631,6 +654,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
 
     public boolean isBurning() {return iIsBurning; }
 
+
+    /*
     @Override
     public void markDirty()
     {
@@ -640,15 +665,167 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory {
         super.markDirty();
         worldObj.func_147451_t(xCoord, yCoord, zCoord);
     }
-
-
-
-
+    */
 
 
     @Override
-    public Packet getDescriptionPacket()
+    public Packet getDescriptionPacket() {
+        NBTTagCompound syncData = new NBTTagCompound();
+        this.writeToNBT(syncData);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, syncData);
+    }
+
+    @Override
+    public void onDataPacket(net.minecraft.network.NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        this.readFromNBT(pkt.func_148857_g());
+    }
+
+    @Override
+    public String getStructureType() {
+        return References.InternalNames.TileEntities.Structures.FirePit;
+    }
+
+    @Override
+    public HashMap<Coordinate, IStructureComponent> getSlaveEntities() {
+        return iSlaveComponents;
+    }
+
+    @Override
+    public void registerNewSlave(TileEntity pNewSlaveEntity) throws InvalidArgumentException {
+        if (!(pNewSlaveEntity instanceof IStructureComponent))
+            throw new InvalidArgumentException(new String[]{"The given TE is not a Slaveble type."});
+
+        if (!(((IStructureComponent) pNewSlaveEntity).getStructureType().equals(this.getStructureType())))
+            throw new InvalidArgumentException(new String[]{"The given TE is not of the correct structure type!"});
+
+        if (iSlaveComponents.containsKey(new Coordinate(pNewSlaveEntity.xCoord, pNewSlaveEntity.yCoord, pNewSlaveEntity.zCoord))) {
+            throw new InvalidArgumentException(new String[]{"There is already a TE registered to that Coordinate"});
+        }
+
+        iSlaveComponents.put(new Coordinate(pNewSlaveEntity.xCoord, pNewSlaveEntity.yCoord, pNewSlaveEntity.zCoord), (IStructureComponent) pNewSlaveEntity);
+
+        if (!iStructureBounds.contains(pNewSlaveEntity.xCoord, pNewSlaveEntity.yCoord))
+        {
+            iStructureBounds.includeHorizontal(new Coordinate(pNewSlaveEntity.xCoord, pNewSlaveEntity.yCoord, pNewSlaveEntity.zCoord));
+        }
+    }
+
+    @Override
+    public void removeSlave(Coordinate pSlaveCoordinate) {
+        iSlaveComponents.remove(pSlaveCoordinate);
+    }
+
+    @Override
+    public Rectangle getStructureSpace() {
+        if (isSlaved())
+            return getMasterEntity().getStructureSpace();
+
+        return iStructureBounds;
+    }
+
+    @Override
+    public void initiateAsMasterEntity() {
+         iStructureBounds = new Rectangle(this.xCoord, this.zCoord, 0, 0);
+         iMasterComponent = null;
+         iSlaveComponents = new HashMap<Coordinate, IStructureComponent>();
+    }
+
+
+    @Override
+    public float getDistanceToMasterEntity() {
+        if (!isSlaved())
+            return 0;
+
+        TileEntityFirePit tMasterEntity = (TileEntityFirePit) getMasterEntity();
+
+        return (float) Math.sqrt(Math.pow(tMasterEntity.xCoord, 2) + Math.pow(tMasterEntity.zCoord, 2));
+    }
+
+    @Override
+    public boolean isSlaved() {
+        return iMasterComponent != null;
+    }
+
+    @Override
+    public IStructureComponent getMasterEntity() {
+        return iMasterComponent;
+    }
+
+    @Override
+    public void initiateAsSlaveEntity(IStructureComponent pMasterEntity) {
+        iMasterComponent = pMasterEntity;
+    }
+
+    @Override
+    public void writeStructureToNBT(NBTTagCompound pTileEntityCompound) {
+        NBTTagCompound tStructureCompound = new NBTTagCompound();
+        tStructureCompound.setBoolean(References.NBTTagCompoundData.TE.Basic.Structures.ISSLAVE, isSlaved());
+
+        if (!isSlaved())
+        {
+            NBTTagList tSlaveList = new NBTTagList();
+            for (Coordinate tSlaveCoord : iSlaveComponents.keySet())
+            {
+                NBTTagCompound tCoordinateCompound = NBTHelper.writeCoordinateToNBT(tSlaveCoord);
+                tSlaveList.appendTag(tCoordinateCompound);
+            }
+
+            tStructureCompound.setTag(References.NBTTagCompoundData.TE.Basic.Structures.COORDINATES, tSlaveList);
+        }
+
+        pTileEntityCompound.setTag(References.NBTTagCompoundData.TE.Basic.STRUCTUREDATA, tStructureCompound);
+    }
+
+    @Override
+    public void readStructureFromNBT(NBTTagCompound pTileEntityCompound) {
+        NBTTagCompound tStructureCompound = pTileEntityCompound.getCompoundTag(References.NBTTagCompoundData.TE.Basic.STRUCTUREDATA);
+
+        if (tStructureCompound.getBoolean(References.NBTTagCompoundData.TE.Basic.Structures.ISSLAVE))
+            return;
+
+        NBTTagList tSlaveList = tStructureCompound.getTagList(References.NBTTagCompoundData.TE.Basic.Structures.COORDINATES, 10);
+        for (int tTagIndex = 0; tTagIndex < tSlaveList.tagCount(); tTagIndex ++)
+        {
+            Coordinate tSlaveCoordinate = NBTHelper.readCoordinateFromNBT(tSlaveList.getCompoundTagAt(tTagIndex));
+
+            iNBTCoordinates.add(tSlaveCoordinate);
+        }
+    }
+
+    @Override
+    public TileEntitySpecialRenderer getRenderer(IStructureComponent pComponentToBeRendered) {
+        return new FirePitTESR();
+    }
+
+    public void regenTECoordinate()
     {
-        return NetworkManager.INSTANCE.getPacketFrom(new MessageTileEntityFirePit(this));
+        for(Coordinate tStoredCoordinate : iNBTCoordinates)
+        {
+            TileEntity tSlaveEntity = worldObj.getTileEntity(tStoredCoordinate.getXComponent(), tStoredCoordinate.getYComponent(), tStoredCoordinate.getZComponent());
+
+            if (tSlaveEntity == null)
+            {
+                GeneralRegistry.iLogger.error("Failed to reregister a TE from NBT. No TE exists on the stored coordinates!");
+                continue;
+            }
+
+            ((IStructureComponent) tSlaveEntity).initiateAsSlaveEntity(this);
+            try{
+                this.registerNewSlave(tSlaveEntity);
+            }
+            catch(Exception IAEx)
+            {
+                GeneralRegistry.iLogger.error("Failed to reregister a TE from NBT", IAEx);
+                continue;
+            }
+        }
     }
 }
+
+
+
+/*
+
+
+
+ */

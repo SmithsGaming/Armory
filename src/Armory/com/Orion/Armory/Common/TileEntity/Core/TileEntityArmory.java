@@ -13,7 +13,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public abstract class TileEntityArmory extends TileEntity
 {
     private String iName = "";
-    private ForgeDirection iCurrentDirection;
+    private ForgeDirection iCurrentDirection = ForgeDirection.UNKNOWN;
 
     @Override
     public void readFromNBT(NBTTagCompound pCompound) {
