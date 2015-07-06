@@ -169,7 +169,7 @@ public abstract class Ledger extends AbstractGUIComponent
         {
             return;
         }
-        Rectangle tScissorBox = new Rectangle(pX + getOriginOffSet() - 4,pY + iCurrentYExtension, iCurrentXExtension, iCurrentYExtension );
+        Rectangle tScissorBox = new Rectangle(pX + getOriginOffSet() - 4, 0,pY + iCurrentYExtension, iCurrentXExtension, iCurrentYExtension );
         GuiHelper.enableScissor(tScissorBox);
 
         drawHeaderText(pX, pY, Minecraft.getMinecraft().fontRenderer);

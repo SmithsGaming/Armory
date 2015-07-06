@@ -64,7 +64,7 @@ public class ComponentFluidTank extends AbstractGUIComponent
                     tHeight *= 2;
                 }
 
-                GuiHelper.drawColoredRect(new Rectangle(iLeft + tIter, iTop + 1, 1, tHeight), Colors.General.RED);
+                GuiHelper.drawColoredRect(new Rectangle(iLeft + tIter, 0, iTop + 1, 1, tHeight), Colors.General.RED);
             }
         }
         else
@@ -77,7 +77,7 @@ public class ComponentFluidTank extends AbstractGUIComponent
                     tWidth *= 2;
                 }
 
-                GuiHelper.drawColoredRect(new Rectangle(iLeft + 1, iTop + tIter, tWidth, 1), Colors.General.RED);
+                GuiHelper.drawColoredRect(new Rectangle(iLeft + 1, 0, iTop + tIter, tWidth, 1), Colors.General.RED);
             }
         }
     }
@@ -148,10 +148,10 @@ public class ComponentFluidTank extends AbstractGUIComponent
         GL11.glPushMatrix();
         Rectangle tScissorBox = null;
         if (iDirection == GuiDirection.HORIZONTAL)
-            tScissorBox = new Rectangle(pX + iLeft + 1, pY + iTop + iHeight -1,(int) ((iWidth - 2) * (iFluidStack.amount / iMaxCapacity)), iHeight - 2);
+            tScissorBox = new Rectangle(pX + iLeft + 1, 0, pY + iTop + iHeight -1,(int) ((iWidth - 2) * (iFluidStack.amount / iMaxCapacity)), iHeight - 2);
 
         if (iDirection == GuiDirection.VERTICAL)
-            tScissorBox = new Rectangle(pX + iLeft + 1, pY + iTop + iHeight -1, (iWidth - 2),(int) ((iHeight - 2) * (iFluidStack.amount / iMaxCapacity)));
+            tScissorBox = new Rectangle(pX + iLeft + 1, 0, pY + iTop + iHeight -1, (iWidth - 2),(int) ((iHeight - 2) * (iFluidStack.amount / iMaxCapacity)));
 
         GuiHelper.enableScissor(tScissorBox);
         GuiHelper.drawFluid(iFluidStack, iLeft + 1, iTop + 1, (int) zLevel, iWidth - 2, iHeight);

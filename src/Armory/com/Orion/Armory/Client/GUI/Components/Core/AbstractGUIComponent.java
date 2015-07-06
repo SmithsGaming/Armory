@@ -31,7 +31,7 @@ public abstract class AbstractGUIComponent extends Gui implements IGUIComponent
 
     @Override
     public Rectangle getOccupiedArea() {
-        return new Rectangle(iLeft, iTop, iWidth, iHeight);
+        return new Rectangle(iLeft,0, iTop, iWidth, iHeight);
     }
 
     @Override
@@ -41,7 +41,7 @@ public abstract class AbstractGUIComponent extends Gui implements IGUIComponent
 
     @Override
     public Rectangle getToolTipVisibileArea() {
-        return new Rectangle(-1,-1,1,1);
+        return new Rectangle(-1,0,-1,1,1);
     }
 
     @Override
@@ -96,7 +96,7 @@ public abstract class AbstractGUIComponent extends Gui implements IGUIComponent
 
     public boolean checkIfPointIsInComponent(int pTargetX, int pTargetY)
     {
-        Rectangle tComponentBounds = new Rectangle(iLeft, iTop, iWidth, iHeight);
+        Rectangle tComponentBounds = new Rectangle(iLeft, 0, iTop, iWidth, iHeight);
 
         return tComponentBounds.contains(pTargetX, pTargetY);
     }

@@ -5,6 +5,9 @@ package com.Orion.Armory.Network.Messages;
  *   Created on: 19-1-2015
  */
 
+import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureComponent;
+import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureData;
+import com.Orion.Armory.Common.TileEntity.FirePit.FirePitStructureData;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -16,17 +19,15 @@ public class MessageTileEntityFirePit extends MessageTileEntityArmory implements
     public ItemStack[] iIngotStacks = new ItemStack[TileEntityFirePit.INGOTSTACKS_AMOUNT];
     public ItemStack[] iFuelStacks = new ItemStack[TileEntityFirePit.FUELSTACK_AMOUNT];
 
-    public Integer[] iFuelStackBurningTime = new Integer[TileEntityFirePit.FUELSTACK_AMOUNT];
-    public Integer[] iFuelStackFuelAmount = new Integer[TileEntityFirePit.FUELSTACK_AMOUNT];
-
     public float iMaxTemperature;
     public float iCurrentTemperature;
     public float iLastAddedHeat = 0;
     public boolean iIsBurning = false;
 
     public TileEntityFirePit iTargetTE;
-
     public MessageTileEntityFirePit() {}
+
+    public IStructureData iData;
 
     public MessageTileEntityFirePit(TileEntityFirePit pEntity)
     {
@@ -34,12 +35,11 @@ public class MessageTileEntityFirePit extends MessageTileEntityArmory implements
 
         this.iIngotStacks = pEntity.iIngotStacks;
         this.iFuelStacks = pEntity.iFuelStacks;
-        this.iFuelStackBurningTime = pEntity.iFuelStackBurningTime;
-        this.iFuelStackFuelAmount = pEntity.iFuelStackFuelAmount;
         this.iMaxTemperature = pEntity.iMaxTemperature;
         this.iCurrentTemperature = pEntity.iCurrentTemperature;
         this.iLastAddedHeat = pEntity.iLastAddedHeat;
         this.iIsBurning = pEntity.iIsBurning;
+        this.iData = pEntity.getStructureRelevantData();
 
         this.iTargetTE = pEntity;
     }
@@ -65,9 +65,13 @@ public class MessageTileEntityFirePit extends MessageTileEntityArmory implements
         {
             int tSlotIndex = buf.readInt();
             iFuelStacks[tSlotIndex] = ByteBufUtils.readItemStack(buf);
-            iFuelStackBurningTime[tSlotIndex] = buf.readInt();
-            iFuelStackFuelAmount[tSlotIndex] = buf.readInt();
         }
+
+        if (iData == null)
+        {
+            iData = new FirePitStructureData();
+        }
+        iData.fromBytes(buf);
     }
 
     @Override
@@ -92,18 +96,12 @@ public class MessageTileEntityFirePit extends MessageTileEntityArmory implements
         for (int tCurrentStack = 0; tCurrentStack < TileEntityFirePit.FUELSTACK_AMOUNT; tCurrentStack++) {
             buf.writeInt(tCurrentStack);
             ByteBufUtils.writeItemStack(buf, iFuelStacks[tCurrentStack]);
-
-            if (iFuelStackBurningTime[tCurrentStack] == null) {
-                buf.writeInt(-1);
-            } else {
-                buf.writeInt(iFuelStackBurningTime[tCurrentStack]);
-            }
-
-            if (iFuelStackFuelAmount[tCurrentStack] == null) {
-                buf.writeInt(-1);
-            } else {
-                buf.writeInt(iFuelStackFuelAmount[tCurrentStack]);
-            }
         }
+
+        if (iData == null)
+        {
+            iData = new FirePitStructureData();
+        }
+        iData.toBytes(buf);
     }
 }

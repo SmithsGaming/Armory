@@ -9,6 +9,7 @@ import com.Orion.Armory.Common.Logic.ArmoryInitializer;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Network.ConfigNetworkManager;
 import com.Orion.Armory.Network.NetworkManager;
+import com.Orion.Armory.Network.StructureNetworkManager;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -55,6 +56,7 @@ public class Armory
     {
         NetworkManager.Init();
         ConfigNetworkManager.Init();
+        StructureNetworkManager.Init();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
         proxy.initializeArmory();

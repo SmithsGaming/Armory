@@ -1,7 +1,9 @@
 package com.Orion.Armory.Network.Handlers;
 
+import com.Orion.Armory.Common.TileEntity.FirePit.FirePitStructureData;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
+import com.Orion.Armory.Util.References;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -26,12 +28,12 @@ public class MessageHandlerTileEntityFirePit extends MessageHandlerTileEntityArm
         {
             ((TileEntityFirePit) tEntity).iIngotStacks = message.iIngotStacks;
             ((TileEntityFirePit) tEntity).iFuelStacks = message.iFuelStacks;
-            ((TileEntityFirePit) tEntity).iFuelStackBurningTime = message.iFuelStackBurningTime;
-            ((TileEntityFirePit) tEntity).iFuelStackFuelAmount = message.iFuelStackFuelAmount;
             ((TileEntityFirePit) tEntity).iMaxTemperature = message.iMaxTemperature;
             ((TileEntityFirePit) tEntity).iCurrentTemperature = message.iCurrentTemperature;
             ((TileEntityFirePit) tEntity).iLastAddedHeat = message.iLastAddedHeat;
             ((TileEntityFirePit) tEntity).iIsBurning = message.iIsBurning;
+
+            ((TileEntityFirePit) tEntity).setStructureData(message.iData);
         }
 
         return null;

@@ -235,11 +235,11 @@ public final class GuiHelper
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         pColorStart.performGLColor();
         tessellator.startDrawingQuads();
-        tessellator.addVertex((double) pRectangle.getTopLeftCoord().getXComponent(), (double) pRectangle.getLowerRightCoord().getYComponent(), 0.0D);
-        tessellator.addVertex((double)pRectangle.getLowerRightCoord().getXComponent(), (double)pRectangle.getLowerRightCoord().getYComponent(), 0.0D);
+        tessellator.addVertex((double) pRectangle.getTopLeftCoord().getXComponent(), (double) pRectangle.getLowerRightCoord().getZComponent(), 0.0D);
+        tessellator.addVertex((double)pRectangle.getLowerRightCoord().getXComponent(), (double)pRectangle.getLowerRightCoord().getZComponent(), 0.0D);
         pColorEnd.performGLColor();
-        tessellator.addVertex((double)pRectangle.getLowerRightCoord().getXComponent(), (double)pRectangle.getTopLeftCoord().getYComponent(), 0.0D);
-        tessellator.addVertex((double)pRectangle.getTopLeftCoord().getXComponent(), (double)pRectangle.getTopLeftCoord().getYComponent(), 0.0D);
+        tessellator.addVertex((double)pRectangle.getLowerRightCoord().getXComponent(), (double)pRectangle.getTopLeftCoord().getZComponent(), 0.0D);
+        tessellator.addVertex((double)pRectangle.getTopLeftCoord().getXComponent(), (double)pRectangle.getTopLeftCoord().getZComponent(), 0.0D);
         tessellator.draw();
         Color.resetGLColor();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -270,7 +270,7 @@ public final class GuiHelper
 
         GL11.glPushAttrib(GL11.GL_SCISSOR_BIT);
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
-        GL11.glScissor(pTargetRectangle.getTopLeftCoord().getXComponent() * GUISCALE, ((DISPLAYHEIGHT - pTargetRectangle.getTopLeftCoord().getYComponent()) * GUISCALE), (pTargetRectangle.iWidth) * GUISCALE, (pTargetRectangle.iHeigth) * GUISCALE);
+        GL11.glScissor(pTargetRectangle.getTopLeftCoord().getXComponent() * GUISCALE, ((DISPLAYHEIGHT - pTargetRectangle.getTopLeftCoord().getZComponent()) * GUISCALE), (pTargetRectangle.iWidth) * GUISCALE, (pTargetRectangle.iHeigth) * GUISCALE);
     }
 
     public static void disableScissor()

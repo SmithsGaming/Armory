@@ -9,11 +9,16 @@ import com.Orion.Armory.Client.Renderer.TileEntities.FirePitTESR;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
+import com.Orion.Armory.Common.PathFinding.IPathComponent;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureComponent;
+import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureData;
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
+import com.Orion.Armory.Network.Messages.Structure.MessageOnCreateSlaveEntity;
+import com.Orion.Armory.Network.Messages.Structure.MessageOnUpdateMasterData;
 import com.Orion.Armory.Network.NetworkManager;
+import com.Orion.Armory.Network.StructureNetworkManager;
 import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.Core.NBTHelper;
 import com.Orion.Armory.Util.Core.Rectangle;
@@ -30,6 +35,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -49,8 +55,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     public ItemStack[] iIngotStacks = new ItemStack[INGOTSTACKS_AMOUNT];
     public ItemStack[] iFuelStacks = new ItemStack[FUELSTACK_AMOUNT];
 
-    public Integer[] iFuelStackBurningTime = new Integer[FUELSTACK_AMOUNT];
-    public Integer[] iFuelStackFuelAmount = new Integer[FUELSTACK_AMOUNT];
+    //public Integer[] iFuelStackBurningTime = new Integer[FUELSTACK_AMOUNT];
+    //public Integer[] iFuelStackFuelAmount = new Integer[FUELSTACK_AMOUNT];
 
     public float iMaxTemperature = 1500;
     public float iCurrentTemperature = 20;
@@ -61,8 +67,14 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     IStructureComponent iMasterComponent;
     HashMap<Coordinate, IStructureComponent> iSlaveComponents;
     Rectangle iStructureBounds;
+    IStructureData iData = new FirePitStructureData();
+
+    boolean iInitialSetupPacketSend = false;
     boolean iIsSlavesInitialized = false;
     ArrayList<Coordinate> iNBTCoordinates = new ArrayList<Coordinate>();
+    Coordinate iMasterLocation;
+
+    float iHeuristicPathFindingDistance = 0;
 
     public TileEntityFirePit()
     {
@@ -202,24 +214,17 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             iIngotStacks[tSlotIndex] = ItemStack.loadItemStackFromNBT(tStackCompound);
         }
 
-        NBTTagList tFuelList = pCompound.getTagList(References.NBTTagCompoundData.TE.FirePit.FUELITEMSTACKS, 10);
-        for (int tStack = 0; tStack < tFuelList.tagCount(); tStack++)
-        {
-            NBTTagCompound tStackCompound = tFuelList.getCompoundTagAt(tStack);
-            Integer tSlotIndex = tStackCompound.getInteger(References.NBTTagCompoundData.TE.Basic.SLOT);
-
-            iFuelStackBurningTime[tSlotIndex] = tStackCompound.getInteger(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME);
-            iFuelStackFuelAmount[tSlotIndex] = tStackCompound.getInteger(References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT);
-
-            iFuelStacks[tSlotIndex] = ItemStack.loadItemStackFromNBT(tStackCompound);
-        }
-
         iIsBurning = pCompound.getBoolean(References.NBTTagCompoundData.TE.FirePit.CURRENTLYBURNING);
         iCurrentTemperature = pCompound.getFloat(References.NBTTagCompoundData.TE.FirePit.CURRENTTEMPERATURE);
         iMaxTemperature = pCompound.getFloat(References.NBTTagCompoundData.TE.FirePit.MAXTEMPERATURE);
         iLastAddedHeat = pCompound.getFloat(References.NBTTagCompoundData.TE.FirePit.LASTADDEDHEAT);
 
-        readStructureFromNBT(pCompound);
+        if (!iInitialSetupPacketSend) {
+            readStructureFromNBT(pCompound);
+            iInitialSetupPacketSend = true;
+        }
+
+        iData.readFromNBT(pCompound);
     }
 
     @Override
@@ -242,63 +247,35 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         }
         pCompound.setTag(References.NBTTagCompoundData.TE.FirePit.INGOTITEMSTACKS, tIngotList);
 
-        NBTTagList tFuelList = new NBTTagList();
-        for(int tStack = 0; tStack < FUELSTACK_AMOUNT; tStack++)
-        {
-            NBTTagCompound iFuelCompound = new NBTTagCompound();
-            iFuelCompound.setInteger(References.NBTTagCompoundData.TE.Basic.SLOT, tStack);
-            try {
-                iFuelCompound.setInteger(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, iFuelStackBurningTime[tStack]);
-                iFuelCompound.setInteger(References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT, iFuelStackFuelAmount[tStack]);
-            }
-            catch(Exception ex)
-            {
-                iFuelCompound.setInteger(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, -1);
-                iFuelCompound.setInteger(References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT, -1);
-            }
-
-            if (iFuelStacks[tStack] != null)
-            {
-                iFuelStacks[tStack].writeToNBT(iFuelCompound);
-            }
-
-            tFuelList.appendTag(iFuelCompound);
-        }
-        pCompound.setTag(References.NBTTagCompoundData.TE.FirePit.FUELITEMSTACKS, tFuelList);
-
         pCompound.setBoolean(References.NBTTagCompoundData.TE.FirePit.CURRENTLYBURNING, iIsBurning);
         pCompound.setFloat(References.NBTTagCompoundData.TE.FirePit.CURRENTTEMPERATURE, iCurrentTemperature);
         pCompound.setFloat(References.NBTTagCompoundData.TE.FirePit.MAXTEMPERATURE, iMaxTemperature);
         pCompound.setFloat(References.NBTTagCompoundData.TE.FirePit.LASTADDEDHEAT, iLastAddedHeat);
 
         writeStructureToNBT(pCompound);
+        iData.writeToNBT(pCompound);
     }
 
 
+    @Override
+    public AxisAlignedBB getRenderBoundingBox() {
+        if (isSlaved())
+            return super.getRenderBoundingBox();
 
+        if (iStructureBounds == null)
+            return super.getRenderBoundingBox();
+
+        //return iStructureBounds.toBoundingBox();
+        return super.getRenderBoundingBox();
+    }
 
     @Override
     public float getProgressBarValue(String pProgressBarID) {
-        int tSlotIndex = -1;
-
-        if (pProgressBarID.equals(References.InternalNames.GUIComponents.FirePit.FLAMEONE))
-            tSlotIndex = 0;
-        else if (pProgressBarID.equals(References.InternalNames.GUIComponents.FirePit.FLAMETWO))
-            tSlotIndex = 1;
-        else if (pProgressBarID.equals(References.InternalNames.GUIComponents.FirePit.FLAMETHREE))
-            tSlotIndex = 2;
-        else if (pProgressBarID.equals(References.InternalNames.GUIComponents.FirePit.FLAMEFOUR))
-            tSlotIndex = 3;
-        else if (pProgressBarID.equals(References.InternalNames.GUIComponents.FirePit.FLAMEFIVE))
-            tSlotIndex = 4;
-
-        if (tSlotIndex == -1)
+        IStructureData tData = getStructureRelevantData();
+        if ((Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) <  1F)
             return -1F;
 
-        if ((iFuelStackBurningTime[tSlotIndex] == 0) || (iFuelStackFuelAmount[tSlotIndex] == 0) || (iFuelStackBurningTime[tSlotIndex] < 0) || (iFuelStackFuelAmount[tSlotIndex] < 0))
-            return -1F;
-
-        return ((float) iFuelStackBurningTime[tSlotIndex] / (float) iFuelStackFuelAmount[tSlotIndex]);
+        return 1 - ((Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) / (Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT));
     }
 
 
@@ -308,26 +285,20 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     @Override
     public void updateEntity()
     {
-        if (!iIsSlavesInitialized)
+        if (((iMasterLocation != null) && (iMasterComponent == null)) || (!iIsSlavesInitialized))
         {
-            regenTECoordinate();
+            regenStructure();
             iIsSlavesInitialized = true;
         }
+
+        IStructureData tData = getStructureRelevantData();
 
         iLastTemperature = iCurrentTemperature;
         iIsBurning = false;
 
         heatFurnace();
 
-        iIsBurning = false;
-        for(int tStack = 0; tStack < FUELSTACK_AMOUNT; tStack++)
-        {
-            if (iFuelStackBurningTime[tStack] > -1)
-            {
-                iIsBurning = true;
-                break;
-            }
-        }
+        iIsBurning = ((Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F);
 
         heatIngots();
 
@@ -335,7 +306,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
         if (!worldObj.isRemote)
         {
-            markDirty();
+            this.markDirty();
         }
     }
 
@@ -345,14 +316,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
         iLastAddedHeat = 0F;
 
-        for (int tFuelStackIndex = 0; tFuelStackIndex < FUELSTACK_AMOUNT; tFuelStackIndex++) {
-            if (iFuelStackBurningTime[tFuelStackIndex] == null)
-            {
-                iFuelStackBurningTime[tFuelStackIndex] = -1;
-            }
+        IStructureData tData = getStructureRelevantData();
 
-            if (iFuelStackBurningTime[tFuelStackIndex] == -1)
-            {
+        if ((Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) < 1F)
+        {
+            for (int tFuelStackIndex = 0; tFuelStackIndex < FUELSTACK_AMOUNT; tFuelStackIndex++) {
+
                 if (iFuelStacks[tFuelStackIndex] == null)
                 {
                     continue;
@@ -362,35 +331,26 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
                 //Check if the stack is a valid Fuel in the Furnace
                 if ((tTargetedFuelStack != null) && (TileEntityFurnace.isItemFuel(tTargetedFuelStack))) {
+                    --tTargetedFuelStack.stackSize;
 
-                    //Update the Fuelstack if a new piece of fuel is needed.
-                    if (iFuelStackBurningTime[tFuelStackIndex] == -1) {
-                        --tTargetedFuelStack.stackSize;
+                    tData.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, (Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) + TileEntityFurnace.getItemBurnTime(tTargetedFuelStack));
 
-                        iFuelStackBurningTime[tFuelStackIndex] = 0;
-
-                        iFuelStackFuelAmount[tFuelStackIndex] = TileEntityFurnace.getItemBurnTime(tTargetedFuelStack);
-
-                        if (tTargetedFuelStack.stackSize == 0) {
-                            iFuelStacks[tFuelStackIndex] = tTargetedFuelStack.getItem().getContainerItem(tTargetedFuelStack);
-                        }
+                    if (tTargetedFuelStack.stackSize == 0) {
+                        iFuelStacks[tFuelStackIndex] = tTargetedFuelStack.getItem().getContainerItem(tTargetedFuelStack);
                     }
 
                 }
+
             }
 
-            if (iFuelStackBurningTime[tFuelStackIndex] > -1)
-            {
+            tData.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT, tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME));
+        }
 
-                ++iFuelStackBurningTime[tFuelStackIndex];
+        if ((Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F)
+        {
 
-                //Process depleted fuelstack
-                if (iFuelStackBurningTime[tFuelStackIndex].intValue() == iFuelStackFuelAmount[tFuelStackIndex].intValue()) {
-                    iFuelStackBurningTime[tFuelStackIndex] = -1;
-                }
-
-                iLastAddedHeat += iPositiveHeatTerm;
-            }
+            tData.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, (Object) ( (Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) - 1F));
+            iLastAddedHeat += iPositiveHeatTerm;
         }
 
         iLastAddedHeat *=  (1-(iCurrentTemperature / iMaxTemperature))    ;
@@ -655,18 +615,16 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     public boolean isBurning() {return iIsBurning; }
 
 
-    /*
+
     @Override
     public void markDirty()
     {
-        NetworkManager.INSTANCE.sendToAllAround(new MessageTileEntityFirePit(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId,(double) this.xCoord,(double) this.yCoord,(double) this.zCoord, 128));
-        //worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        //NetworkManager.INSTANCE.sendToAllAround(new MessageTileEntityFirePit(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId,(double) this.xCoord,(double) this.yCoord,(double) this.zCoord, 128));
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
         super.markDirty();
         worldObj.func_147451_t(xCoord, yCoord, zCoord);
     }
-    */
-
 
     @Override
     public Packet getDescriptionPacket() {
@@ -679,6 +637,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     public void onDataPacket(net.minecraft.network.NetworkManager net, S35PacketUpdateTileEntity pkt) {
         this.readFromNBT(pkt.func_148857_g());
     }
+
+
 
     @Override
     public String getStructureType() {
@@ -693,16 +653,21 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     @Override
     public void registerNewSlave(TileEntity pNewSlaveEntity) throws InvalidArgumentException {
         if (!(pNewSlaveEntity instanceof IStructureComponent))
-            throw new InvalidArgumentException(new String[]{"The given TE is not a Slaveble type."});
+            throw new InvalidArgumentException(new String[]{"The given TE is not a Slaveble type." + pNewSlaveEntity.xCoord + "-" + pNewSlaveEntity.yCoord + "-" + pNewSlaveEntity.zCoord});
 
         if (!(((IStructureComponent) pNewSlaveEntity).getStructureType().equals(this.getStructureType())))
-            throw new InvalidArgumentException(new String[]{"The given TE is not of the correct structure type!"});
+            throw new InvalidArgumentException(new String[]{"The given TE is not of the correct structure type!" + pNewSlaveEntity.xCoord + "-" + pNewSlaveEntity.yCoord + "-" + pNewSlaveEntity.zCoord});
 
         if (iSlaveComponents.containsKey(new Coordinate(pNewSlaveEntity.xCoord, pNewSlaveEntity.yCoord, pNewSlaveEntity.zCoord))) {
-            throw new InvalidArgumentException(new String[]{"There is already a TE registered to that Coordinate"});
+            throw new InvalidArgumentException(new String[]{"There is already a TE registered to that Coordinate" + pNewSlaveEntity.xCoord + "-" + pNewSlaveEntity.yCoord + "-" + pNewSlaveEntity.zCoord});
         }
 
         iSlaveComponents.put(new Coordinate(pNewSlaveEntity.xCoord, pNewSlaveEntity.yCoord, pNewSlaveEntity.zCoord), (IStructureComponent) pNewSlaveEntity);
+
+        if (iStructureBounds == null)
+        {
+            iStructureBounds = new Rectangle(xCoord, yCoord, zCoord, 0,0);
+        }
 
         if (!iStructureBounds.contains(pNewSlaveEntity.xCoord, pNewSlaveEntity.yCoord))
         {
@@ -725,9 +690,30 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     @Override
     public void initiateAsMasterEntity() {
-         iStructureBounds = new Rectangle(this.xCoord, this.zCoord, 0, 0);
-         iMasterComponent = null;
-         iSlaveComponents = new HashMap<Coordinate, IStructureComponent>();
+        iStructureBounds = new Rectangle(this.xCoord, this.yCoord, this.zCoord, 0, 0);
+        iMasterComponent = null;
+        iMasterLocation = null;
+        iSlaveComponents = new HashMap<Coordinate, IStructureComponent>();
+        iData = new FirePitStructureData();
+    }
+
+    @Override
+    public IStructureData getStructureRelevantData() {
+        if (isSlaved())
+            return getMasterEntity().getStructureRelevantData();
+
+        return iData;
+    }
+
+    @Override
+    public void setStructureData(IStructureData pNewData) {
+        if (isSlaved())
+        {
+            getMasterEntity().setStructureData(pNewData);
+            return;
+        }
+
+        iData = pNewData;
     }
 
 
@@ -748,6 +734,9 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     @Override
     public IStructureComponent getMasterEntity() {
+        if (iMasterComponent == null)
+            return this;
+
         return iMasterComponent;
     }
 
@@ -755,6 +744,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     public void initiateAsSlaveEntity(IStructureComponent pMasterEntity) {
         iMasterComponent = pMasterEntity;
     }
+
+    @Override
+    public boolean countsAsConnectingComponent() {
+        return true;
+    }
+
+
 
     @Override
     public void writeStructureToNBT(NBTTagCompound pTileEntityCompound) {
@@ -772,6 +768,10 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
             tStructureCompound.setTag(References.NBTTagCompoundData.TE.Basic.Structures.COORDINATES, tSlaveList);
         }
+        else
+        {
+            tStructureCompound.setTag(References.NBTTagCompoundData.TE.Basic.Structures.MASTERTE, NBTHelper.writeCoordinateToNBT(iMasterComponent.getLocation()));
+        }
 
         pTileEntityCompound.setTag(References.NBTTagCompoundData.TE.Basic.STRUCTUREDATA, tStructureCompound);
     }
@@ -781,15 +781,37 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         NBTTagCompound tStructureCompound = pTileEntityCompound.getCompoundTag(References.NBTTagCompoundData.TE.Basic.STRUCTUREDATA);
 
         if (tStructureCompound.getBoolean(References.NBTTagCompoundData.TE.Basic.Structures.ISSLAVE))
-            return;
-
-        NBTTagList tSlaveList = tStructureCompound.getTagList(References.NBTTagCompoundData.TE.Basic.Structures.COORDINATES, 10);
-        for (int tTagIndex = 0; tTagIndex < tSlaveList.tagCount(); tTagIndex ++)
         {
+            iMasterLocation = NBTHelper.readCoordinateFromNBT(tStructureCompound.getCompoundTag(References.NBTTagCompoundData.TE.Basic.Structures.MASTERTE));
+            return;
+        }
+
+        initiateAsMasterEntity();
+        NBTTagList tSlaveList = tStructureCompound.getTagList(References.NBTTagCompoundData.TE.Basic.Structures.COORDINATES, 10);
+        for (int tTagIndex = 0; tTagIndex < tSlaveList.tagCount(); tTagIndex++) {
             Coordinate tSlaveCoordinate = NBTHelper.readCoordinateFromNBT(tSlaveList.getCompoundTagAt(tTagIndex));
 
-            iNBTCoordinates.add(tSlaveCoordinate);
+            if (iSlaveComponents.containsKey(tSlaveCoordinate))
+                continue;
+
+            if (iIsSlavesInitialized)
+            {
+                try {
+                    registerNewSlave(worldObj.getTileEntity(tSlaveCoordinate.getXComponent(), tSlaveCoordinate.getYComponent(), tSlaveCoordinate.getZComponent()));
+                } catch (InvalidArgumentException e) {
+                    GeneralRegistry.iLogger.error("Failed to create a Master Slave link from NBTSync", e);
+                }
+            }
+            else
+            {
+                iNBTCoordinates.add(tSlaveCoordinate);
+            }
         }
+    }
+
+    @Override
+    public Coordinate getLocation() {
+        return new Coordinate(this.xCoord, this.yCoord, this.zCoord);
     }
 
     @Override
@@ -797,8 +819,26 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         return new FirePitTESR();
     }
 
-    public void regenTECoordinate()
+
+
+    public void regenStructure()
     {
+        if (iMasterComponent != null)
+            return;
+
+        if (iMasterLocation != null)
+        {
+            TileEntity tMasterEntity = worldObj.getTileEntity(iMasterLocation.getXComponent(), iMasterLocation.getYComponent(), iMasterLocation.getZComponent());
+            if (tMasterEntity == null)
+                return;
+
+            initiateAsSlaveEntity((IStructureComponent) tMasterEntity);
+            StructureNetworkManager.INSTANCE.sendToAllAround(new MessageOnCreateSlaveEntity(this, (IStructureComponent) tMasterEntity), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId,(double) this.xCoord,(double) this.yCoord,(double) this.zCoord, 128));
+            return;
+        }
+
+        initiateAsMasterEntity();
+
         for(Coordinate tStoredCoordinate : iNBTCoordinates)
         {
             TileEntity tSlaveEntity = worldObj.getTileEntity(tStoredCoordinate.getXComponent(), tStoredCoordinate.getYComponent(), tStoredCoordinate.getZComponent());
@@ -812,13 +852,68 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             ((IStructureComponent) tSlaveEntity).initiateAsSlaveEntity(this);
             try{
                 this.registerNewSlave(tSlaveEntity);
+                StructureNetworkManager.INSTANCE.sendToAllAround(new MessageOnCreateSlaveEntity((IStructureComponent) tSlaveEntity, this), new NetworkRegistry.TargetPoint(tSlaveEntity.getWorldObj().provider.dimensionId, (double) tSlaveEntity.xCoord, (double) tSlaveEntity.yCoord, (double) tSlaveEntity.zCoord, 128));
             }
             catch(Exception IAEx)
             {
-                GeneralRegistry.iLogger.error("Failed to reregister a TE from NBT", IAEx);
                 continue;
             }
         }
+        StructureNetworkManager.INSTANCE.sendToAllAround(new MessageOnUpdateMasterData(this), new NetworkRegistry.TargetPoint(getWorldObj().provider.dimensionId, (double) xCoord, (double) yCoord, (double) zCoord, 128));
+    }
+
+
+
+    @Override
+    public float getHeuristicDistance() {
+        return iHeuristicPathFindingDistance;
+    }
+
+    @Override
+    public void setHeuristicDistance(float pNewDistance) {
+        iHeuristicPathFindingDistance = pNewDistance;
+    }
+
+
+
+    @Override
+    public ArrayList<IPathComponent> getValidPathableNeighborComponents() {
+        ArrayList<IPathComponent> tPathableComponents = new ArrayList<IPathComponent>();
+
+        for(ForgeDirection tNeigborDirection : ForgeDirection.values())
+        {
+            if ((tNeigborDirection == ForgeDirection.UP) || (tNeigborDirection == ForgeDirection.DOWN) || (tNeigborDirection == ForgeDirection.UNKNOWN))
+                continue;
+
+            TileEntity tNeighborEntity = getWorldObj().getTileEntity(xCoord + tNeigborDirection.offsetX, yCoord + tNeigborDirection.offsetY, zCoord + tNeigborDirection.offsetZ);
+            if (tNeighborEntity == null)
+                continue;
+
+            if (!(tNeighborEntity instanceof IStructureComponent))
+                continue;
+
+            if (!((IStructureComponent) tNeighborEntity).getStructureType().equals(getStructureType()))
+                continue;
+
+            if (!((IStructureComponent) tNeighborEntity).countsAsConnectingComponent())
+                continue;
+
+            tPathableComponents.add((IPathComponent) tNeighborEntity);
+        }
+
+        return tPathableComponents;
+    }
+
+
+    @Override
+    public int compareTo(IPathComponent pComponent) {
+        if (pComponent.getHeuristicDistance() > getHeuristicDistance())
+            return -1;
+
+        if (pComponent.getHeuristicDistance() < getHeuristicDistance())
+            return 1;
+
+        return 0;
     }
 }
 

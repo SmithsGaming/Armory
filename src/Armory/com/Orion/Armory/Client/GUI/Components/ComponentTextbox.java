@@ -62,7 +62,7 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
 
     @Override
     public Rectangle getToolTipVisibileArea() {
-        return new Rectangle(-1,-1,0,0);
+        return new Rectangle(-1,0,-1,0,0);
     }
 
     @Override
@@ -123,7 +123,7 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
 
     @Override
     public boolean checkIfPointIsInComponent(int pTargetX, int pTargetY) {
-        Rectangle tBox = new Rectangle(this.xPosition, this.yPosition, this.width, this.height);
+        Rectangle tBox = new Rectangle(this.xPosition, 0, this.yPosition, this.width, this.height);
         return tBox.contains(pTargetX, pTargetY);
     }
 

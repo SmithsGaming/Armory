@@ -5,6 +5,7 @@ package com.Orion.Armory.Util.Core;
 /  Created on : 27-4-2015
 */
 
+import io.netty.buffer.ByteBuf;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
@@ -22,6 +23,33 @@ public class Coordinate
         this(pXCoord, pYCoord, 0);
     }
 
+    @Override
+    public String toString() {
+        return "Coordinate{" +
+                "iXCoord=" + iXCoord +
+                ", iYCoord=" + iYCoord +
+                ", iZCoord=" + iZCoord +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Coordinate that = (Coordinate) o;
+
+        if (iXCoord != that.iXCoord) return false;
+        if (iYCoord != that.iYCoord) return false;
+        return iZCoord == that.iZCoord;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getXComponent() + getYComponent() + getZComponent();
+    }
+
     public Coordinate(int pXCoord, int pYCoord, int pZCoord)
     {
         iXCoord = pXCoord;
@@ -35,29 +63,26 @@ public class Coordinate
 
     public int getZComponent() { return iZCoord; }
 
-    public ArrayList<ForgeDirection> getDirection(Coordinate pCenter)
+    public Coordinate moveCoordiante(ForgeDirection pDirection, int pDistance)
     {
-        if ((this.getXComponent() == pCenter.getXComponent()) && (this.getYComponent() == pCenter.getYComponent()) && (this.getZComponent() == pCenter.getZComponent()))
-            return (ArrayList<ForgeDirection>) Arrays.asList(new ForgeDirection[] {ForgeDirection.UNKNOWN});
+        return new Coordinate(getXComponent() + (pDistance * pDirection.offsetX), getYComponent() + (pDistance * pDirection.offsetY), getZComponent() + (pDistance * pDirection.offsetZ));
+    }
 
-        Coordinate tNormalizedVector = new Coordinate(this.getXComponent() - pCenter.getXComponent(), this.getYComponent() - pCenter.getYComponent(), this.getZComponent() - pCenter.getZComponent());
+    public float getDistanceTo(Coordinate pCoordinate)
+    {
+        return (float) Math.sqrt(Math.pow(getXComponent() - pCoordinate.getXComponent(), 2) + Math.pow(getYComponent() - pCoordinate.getYComponent(), 2) + Math.pow(getZComponent() - pCoordinate.getZComponent(), 2));
+    }
 
-        int tSignX = (int) Math.signum(tNormalizedVector.getXComponent());
-        int tSignY = (int) Math.signum(tNormalizedVector.getYComponent());
-        int tSignZ = (int) Math.signum(tNormalizedVector.getZComponent());
+    public static Coordinate fromBytes(ByteBuf pData)
+    {
+        return new Coordinate(pData.readInt(), pData.readInt(), pData.readInt());
+    }
 
-        ArrayList<ForgeDirection> tDirectionList = new ArrayList<ForgeDirection>();
-
-        for(ForgeDirection tDirection : ForgeDirection.values())
-        {
-            if (((tSignX != 0) && (tDirection.offsetX == tSignX)) || ((tSignY != 0) && (tDirection.offsetY == tSignY)) || ((tSignZ != 0) && (tDirection.offsetZ == tSignZ)))
-                tDirectionList.add(tDirection);
-        }
-
-        if (tDirectionList.size() == 0)
-            tDirectionList.add(ForgeDirection.UNKNOWN);
-
-        return tDirectionList;
+    public void toBytes(ByteBuf pDataOut)
+    {
+        pDataOut.writeInt(getXComponent());
+        pDataOut.writeInt(getYComponent());
+        pDataOut.writeInt(getZComponent());
     }
 }
 

@@ -1,5 +1,6 @@
 package com.Orion.Armory.Common.TileEntity.Core.Multiblock;
 
+import com.Orion.Armory.Common.PathFinding.IPathComponent;
 import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.Core.Rectangle;
 import com.sun.javaws.exceptions.InvalidArgumentException;
@@ -20,7 +21,7 @@ import java.util.HashMap;
  * <p/>
  * Copyrighted according to Project specific license
  */
-public interface IStructureComponent
+public interface IStructureComponent extends IPathComponent
 {
     String getStructureType();
 
@@ -34,6 +35,9 @@ public interface IStructureComponent
 
     void initiateAsMasterEntity();
 
+    IStructureData getStructureRelevantData();
+
+    void setStructureData(IStructureData pNewData);
 
 
     float getDistanceToMasterEntity();
@@ -44,12 +48,13 @@ public interface IStructureComponent
 
     void initiateAsSlaveEntity(IStructureComponent pMasterEntity);
 
+    boolean countsAsConnectingComponent();
+
 
 
     void writeStructureToNBT(NBTTagCompound pTileEntityCompound);
 
     void readStructureFromNBT(NBTTagCompound pTileEntityCompound);
-
 
     @SideOnly(Side.CLIENT)
     TileEntitySpecialRenderer getRenderer(IStructureComponent pComponentToBeRendered);

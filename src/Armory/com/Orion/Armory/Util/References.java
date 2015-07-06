@@ -332,6 +332,8 @@ public class References
                 {
                     public static final String COORDINATES = "Coordinates";
                     public static final String ISSLAVE = "IsSlave";
+                    public static final String MASTERTE = "MasterTE";
+                    public static final String DATA = "StructureData";
                 }
 
                 public class Coordinate

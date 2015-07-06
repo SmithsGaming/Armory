@@ -72,41 +72,6 @@ public class GuiFirePit extends com.Orion.Armory.Client.GUI.ArmoryBaseGui
 
        }
 
-    @Override
-    protected void drawGuiContainerBackGroundFeatures(float pFloat, int pMouseX, int pMouseY) {
-        TileEntityFirePit teFirePit = ((ContainerFirepit) inventorySlots).GetTileEntity();
-
-        for (int tFuelSlotIndex = 0; tFuelSlotIndex < TileEntityFirePit.FUELSTACK_AMOUNT; tFuelSlotIndex++)
-        {
-            if ((teFirePit.iFuelStackBurningTime[tFuelSlotIndex] == null) || (teFirePit.iFuelStackFuelAmount[tFuelSlotIndex] == null))
-            {
-                continue;
-            }
-
-            if (teFirePit.iFuelStackBurningTime[tFuelSlotIndex] == -1)
-            {
-                continue;
-            }
-
-            int tBurningPercentage = (int) ((float)teFirePit.iFuelStackBurningTime[tFuelSlotIndex] * 14 / (float)teFirePit.iFuelStackFuelAmount[tFuelSlotIndex]);
-            if (tBurningPercentage == 14)
-            {
-                continue;
-            }
-
-            int tXFlamePos = 45 + (18 * tFuelSlotIndex);
-            int tYFlamePos = 48 + tBurningPercentage;
-
-            GL11.glPushMatrix();
-            GL11.glTranslatef(tXFlamePos, tYFlamePos, 0F);
-
-            drawTexturedModalRect(0,0, FLAMEXPOS, FLAMEYPOS + tBurningPercentage, 14, 14);
-
-            GL11.glPopMatrix();
-        }
-
-
-    }
 
     protected class TemperatureLedger extends Ledger {
         String[] iTranslatedInfoText;

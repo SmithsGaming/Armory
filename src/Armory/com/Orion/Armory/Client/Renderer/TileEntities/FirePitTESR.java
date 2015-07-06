@@ -8,9 +8,12 @@ package com.Orion.Armory.Client.Renderer.TileEntities;
 import com.Orion.Armory.Client.Models.ModelFirePit;
 import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureComponent;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
+import com.Orion.Armory.Util.Client.Color.Color;
+import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.client.FMLClientHandler;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -71,35 +74,12 @@ public class FirePitTESR extends TileEntitySpecialRenderer
         if (tTEFirePit.isSlaved())
             return;
 
+        Colors.General.RED.performGLColor();
         renderTEModelAt(tTEFirePit, pX, pY, pZ, pPartialTickTime, false);
+        Color.resetGLColor();
 
         if (tTEFirePit.getSlaveEntities() == null)
             return;
-
-        ArrayList<Coordinate> tNonExistingCoordinates = new ArrayList<Coordinate>();
-        for(Coordinate tCoordinate : tTEFirePit.getSlaveEntities().keySet())
-        {
-            TileEntity tEntity = tTEFirePit.getWorldObj().getTileEntity(tCoordinate.getXComponent(), tCoordinate.getYComponent(), tCoordinate.getZComponent());
-            if (tEntity == null) {
-                tNonExistingCoordinates.add(tCoordinate);
-                continue;
-            }
-
-            if (!(tEntity instanceof IStructureComponent)) {
-                tNonExistingCoordinates.add(tCoordinate);
-                continue;
-            }
-
-            if (!((IStructureComponent) tEntity).getStructureType().equals(tTEFirePit.getStructureType())) {
-                tNonExistingCoordinates.add(tCoordinate);
-                continue;
-            }
-        }
-
-        for (Coordinate tCoordinate : tNonExistingCoordinates)
-        {
-            tTEFirePit.removeSlave(tCoordinate);
-        }
 
         for(Coordinate tCoordinate : tTEFirePit.getSlaveEntities().keySet())
         {
@@ -120,6 +100,7 @@ public class FirePitTESR extends TileEntitySpecialRenderer
 
         GL11.glPushMatrix();
         GL11.glEnable(GL11.GL_BLEND);
+        OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ZERO);
 
         scaleTranslateRotateTEModel(pX, pY, pZ, pEntity.getDirection());
 
