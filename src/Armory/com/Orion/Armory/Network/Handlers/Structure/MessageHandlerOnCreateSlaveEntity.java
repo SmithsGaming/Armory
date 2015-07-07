@@ -1,9 +1,7 @@
 package com.Orion.Armory.Network.Handlers.Structure;
 
-import com.Orion.Armory.Common.Registry.GeneralRegistry;
-import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureComponent;
+import com.Orion.Armory.API.Structures.IStructureComponent;
 import com.Orion.Armory.Network.Messages.Structure.MessageOnCreateSlaveEntity;
-import com.Orion.Armory.Util.Core.Coordinate;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;

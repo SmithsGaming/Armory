@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.TileEntity.Core.Multiblock;
+package com.Orion.Armory.API.Structures;
 
 import com.Orion.Armory.Common.PathFinding.IPathComponent;
 import com.Orion.Armory.Common.PathFinding.PathFinder;
@@ -8,7 +8,6 @@ import com.Orion.Armory.Network.Messages.Structure.MessageOnCreateSlaveEntity;
 import com.Orion.Armory.Network.Messages.Structure.MessageOnUpdateMasterData;
 import com.Orion.Armory.Network.StructureNetworkManager;
 import com.Orion.Armory.Util.Core.Coordinate;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

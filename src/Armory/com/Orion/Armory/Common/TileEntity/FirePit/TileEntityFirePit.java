@@ -5,19 +5,18 @@ package com.Orion.Armory.Common.TileEntity.FirePit;
 /  Created on : 02/10/2014
 */
 
+import com.Orion.Armory.API.Structures.IStructureComponentRenderer;
 import com.Orion.Armory.Client.Renderer.TileEntities.FirePitTESR;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.PathFinding.IPathComponent;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
-import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureComponent;
-import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureData;
+import com.Orion.Armory.API.Structures.IStructureComponent;
+import com.Orion.Armory.API.Structures.IStructureData;
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
-import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
 import com.Orion.Armory.Network.Messages.Structure.MessageOnCreateSlaveEntity;
 import com.Orion.Armory.Network.Messages.Structure.MessageOnUpdateMasterData;
-import com.Orion.Armory.Network.NetworkManager;
 import com.Orion.Armory.Network.StructureNetworkManager;
 import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.Core.NBTHelper;
@@ -25,7 +24,8 @@ import com.Orion.Armory.Util.Core.Rectangle;
 import com.Orion.Armory.Util.References;
 import com.sun.javaws.exceptions.InvalidArgumentException;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -42,15 +42,16 @@ import net.minecraftforge.common.util.ForgeDirection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TileEntityFirePit extends TileEntityArmory implements IInventory, IStructureComponent {
+public class TileEntityFirePit extends TileEntityArmory implements IInventory, IFirePitComponent {
 
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
+    public static float POSITIVEHEAT = 0.325F;
+    public static float NEGATIVEHEAT = -0.1F;
+    public static int STRUCTURECOMPONENTADDITION = 450;
 
-    public float iPositiveHeat = 0.325F;
-    public float iNegativeHeat = -0.1F;
-    public float iPositiveHeatTerm = 0.325F;
-    public float iNegativeHeatTerm = -0.1F;
+    public float iPositiveHeatTerm = 0.625F;
+    public float iNegativeHeatTerm = -0.25F;
 
     public ItemStack[] iIngotStacks = new ItemStack[INGOTSTACKS_AMOUNT];
     public ItemStack[] iFuelStacks = new ItemStack[FUELSTACK_AMOUNT];
@@ -73,6 +74,9 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     boolean iIsSlavesInitialized = false;
     ArrayList<Coordinate> iNBTCoordinates = new ArrayList<Coordinate>();
     Coordinate iMasterLocation;
+
+    @SideOnly(Side.CLIENT)
+    IStructureComponentRenderer iRenderer;
 
     float iHeuristicPathFindingDistance = 0;
 
@@ -265,8 +269,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         if (iStructureBounds == null)
             return super.getRenderBoundingBox();
 
-        //return iStructureBounds.toBoundingBox();
-        return super.getRenderBoundingBox();
+        return iStructureBounds.toBoundingBox();
+        //return super.getRenderBoundingBox();
     }
 
     @Override
@@ -358,185 +362,26 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     private void calculateHeatTerms()
     {
-        float tTotalMaxTemp = 1500F;
-        float tTotalHeatTerm = iPositiveHeat;
-        
-        if (getDirection() != ForgeDirection.NORTH)
+        iMaxTemperature = 1500;
+        iPositiveHeatTerm = POSITIVEHEAT;
+        iNegativeHeatTerm = NEGATIVEHEAT;
+
+        for (ForgeDirection tDirection : ForgeDirection.values())
         {
-            TileEntity tHeater = worldObj.getTileEntity(xCoord + ForgeDirection.NORTH.offsetX, yCoord, zCoord + ForgeDirection.NORTH.offsetZ);
-            if (tHeater instanceof TileEntityHeater)
+            if ((tDirection == ForgeDirection.UNKNOWN) || (tDirection == ForgeDirection.DOWN) || (tDirection == ForgeDirection.UP))
+                continue;
+
+            TileEntity tEntity = worldObj.getTileEntity(xCoord + tDirection.offsetX, yCoord, zCoord + tDirection.offsetZ);
+            if (tEntity instanceof IFirePitComponent)
             {
-                if (((TileEntityHeater) tHeater).getDirection() == ForgeDirection.NORTH)
+                if (((IFirePitComponent) tEntity).canInfluenceTE(getLocation()))
                 {
-                    if (((TileEntityHeater) tHeater).tryDamageFan(1)) {
-                        tTotalHeatTerm += 0.1F;
-                        tTotalMaxTemp += 250F;
-                    }
+                    iPositiveHeatTerm += ((IFirePitComponent) tEntity).getPositiveInflunce();
+                    iNegativeHeatTerm += ((IFirePitComponent) tEntity).getNegativeInfluece();
+                    iMaxTemperature += ((IFirePitComponent) tEntity).getMaxTempInfluence();
                 }
             }
         }
-
-        if (getDirection() != ForgeDirection.EAST)
-        {
-            TileEntity tHeater = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord, zCoord + ForgeDirection.EAST.offsetZ);
-            if (tHeater instanceof TileEntityHeater)
-            {
-                if (((TileEntityHeater) tHeater).getDirection() == ForgeDirection.EAST)
-                {
-                    if (((TileEntityHeater) tHeater).tryDamageFan(1)) {
-                        tTotalHeatTerm += 0.1F;
-                        tTotalMaxTemp += 250F;
-                    }
-                }
-            }
-        }
-        
-        if (getDirection() != ForgeDirection.SOUTH)
-        {
-            TileEntity tHeater = worldObj.getTileEntity(xCoord + ForgeDirection.SOUTH.offsetX, yCoord, zCoord + ForgeDirection.SOUTH.offsetZ);
-            if (tHeater instanceof TileEntityHeater)
-            {
-                if (((TileEntityHeater) tHeater).getDirection() == ForgeDirection.SOUTH)
-                {
-                    if (((TileEntityHeater) tHeater).tryDamageFan(1)) {
-                        tTotalHeatTerm += 0.1F;
-                        tTotalMaxTemp += 250F;
-                    }
-                }
-            }
-        }
-        
-        if (getDirection() != ForgeDirection.WEST)
-        {
-            TileEntity tHeater = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord, zCoord + ForgeDirection.WEST.offsetZ);
-            if (tHeater instanceof TileEntityHeater)
-            {
-                if (((TileEntityHeater) tHeater).getDirection() == ForgeDirection.WEST)
-                {
-                    if (((TileEntityHeater) tHeater).tryDamageFan(1)) {
-                        tTotalHeatTerm += 0.1F;
-                        tTotalMaxTemp += 250F;
-                    }
-                }
-            }
-        }
-
-        if (getDirection() == ForgeDirection.NORTH)
-        {
-            TileEntity tFirePitLeft = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord, zCoord + ForgeDirection.WEST.offsetZ);
-            TileEntity tFirePitRight = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord, zCoord + ForgeDirection.EAST.offsetZ);
-            if (tFirePitLeft instanceof TileEntityFirePit)
-            {
-                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).getDirection() == getDirection())
-                {
-                    tTotalHeatTerm += 0.4F;
-                    tTotalMaxTemp += 600F;
-                }
-            }
-
-            if (tFirePitRight instanceof TileEntityFirePit)
-            {
-                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).getDirection() == getDirection())
-                {
-                    tTotalHeatTerm += 0.4F;
-                    tTotalMaxTemp += 600F;
-                }
-            }
-        }
-
-        if (getDirection() == ForgeDirection.SOUTH)
-        {
-            TileEntity tFirePitLeft = worldObj.getTileEntity(xCoord + ForgeDirection.WEST.offsetX, yCoord, zCoord + ForgeDirection.WEST.offsetZ);
-            TileEntity tFirePitRight = worldObj.getTileEntity(xCoord + ForgeDirection.EAST.offsetX, yCoord, zCoord + ForgeDirection.EAST.offsetZ);
-            if (tFirePitLeft instanceof TileEntityFirePit)
-            {
-                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).getDirection() == getDirection())
-                {
-                    tTotalHeatTerm += 0.4F;
-                    tTotalMaxTemp += 600F;
-                }
-            }
-
-            if (tFirePitRight instanceof TileEntityFirePit)
-            {
-                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).getDirection() == getDirection())
-                {
-                    tTotalHeatTerm += 0.4F;
-                    tTotalMaxTemp += 600F;
-                }
-            }
-        }
-
-        if (getDirection() == ForgeDirection.WEST)
-        {
-            TileEntity tFirePitLeft = worldObj.getTileEntity(xCoord + ForgeDirection.SOUTH.offsetX, yCoord, zCoord + ForgeDirection.SOUTH.offsetZ);
-            TileEntity tFirePitRight = worldObj.getTileEntity(xCoord + ForgeDirection.NORTH.offsetX, yCoord, zCoord + ForgeDirection.NORTH.offsetZ);
-            if (tFirePitLeft instanceof TileEntityFirePit)
-            {
-                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).getDirection() == getDirection())
-                {
-                    tTotalHeatTerm += 0.4F;
-                    tTotalMaxTemp += 600F;
-                }
-            }
-
-            if (tFirePitRight instanceof TileEntityFirePit)
-            {
-                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).getDirection() == getDirection())
-                {
-                    tTotalHeatTerm += 0.4F;
-                    tTotalMaxTemp += 600F;
-                }
-            }
-        }
-
-        if (getDirection() == ForgeDirection.EAST)
-        {
-            TileEntity tFirePitLeft = worldObj.getTileEntity(xCoord + ForgeDirection.NORTH.offsetX, yCoord, zCoord + ForgeDirection.NORTH.offsetZ);
-            TileEntity tFirePitRight = worldObj.getTileEntity(xCoord + ForgeDirection.SOUTH.offsetX, yCoord, zCoord + ForgeDirection.SOUTH.offsetZ);
-            if (tFirePitLeft instanceof TileEntityFirePit)
-            {
-                if (((TileEntityFirePit) tFirePitLeft).isBurning() && ((TileEntityFirePit) tFirePitLeft).getDirection() == getDirection())
-                {
-                    tTotalHeatTerm += 0.4F;
-                    tTotalMaxTemp += 600F;
-                }
-            }
-
-            if (tFirePitRight instanceof TileEntityFirePit)
-            {
-                if (((TileEntityFirePit) tFirePitRight).isBurning() && ((TileEntityFirePit) tFirePitRight).getDirection() == getDirection())
-                {
-                    tTotalHeatTerm += 0.4F;
-                    tTotalMaxTemp += 600F;
-                }
-            }
-        }
-
-        TileEntity tBelow1 =  worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
-        TileEntity tBelow2 =  worldObj.getTileEntity(xCoord, yCoord - 2, zCoord);
-        if (tBelow1 instanceof TileEntityFirePit)
-        {
-            if (((TileEntityFirePit) tBelow1).isBurning() && ((TileEntityFirePit) tBelow1).getDirection() == getDirection())
-            {
-                tTotalHeatTerm += 0.55F;
-                tTotalMaxTemp += 750F;
-            }
-        }
-
-        if (tBelow2 instanceof TileEntityFirePit)
-        {
-            if (((TileEntityFirePit) tBelow2).isBurning() && ((TileEntityFirePit) tBelow2).getDirection() == getDirection())
-            {
-                tTotalHeatTerm += 0.8F;
-                tTotalMaxTemp += 900F;
-            }
-        }
-
-
-        iPositiveHeatTerm = tTotalHeatTerm;
-        iNegativeHeatTerm = iNegativeHeat;
-        iMaxTemperature = tTotalMaxTemp;
     }
         
     public void heatIngots()
@@ -666,10 +511,10 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
         if (iStructureBounds == null)
         {
-            iStructureBounds = new Rectangle(xCoord, yCoord, zCoord, 0,0);
+            iStructureBounds = new Rectangle(xCoord, yCoord + 1, zCoord, 0,0);
         }
 
-        if (!iStructureBounds.contains(pNewSlaveEntity.xCoord, pNewSlaveEntity.yCoord))
+        if (!iStructureBounds.contains(pNewSlaveEntity.xCoord, pNewSlaveEntity.zCoord))
         {
             iStructureBounds.includeHorizontal(new Coordinate(pNewSlaveEntity.xCoord, pNewSlaveEntity.yCoord, pNewSlaveEntity.zCoord));
         }
@@ -690,7 +535,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     @Override
     public void initiateAsMasterEntity() {
-        iStructureBounds = new Rectangle(this.xCoord, this.yCoord, this.zCoord, 0, 0);
+        iStructureBounds = new Rectangle(this.xCoord, this.yCoord + 1, this.zCoord, 0, 0);
         iMasterComponent = null;
         iMasterLocation = null;
         iSlaveComponents = new HashMap<Coordinate, IStructureComponent>();
@@ -815,8 +660,11 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     }
 
     @Override
-    public TileEntitySpecialRenderer getRenderer(IStructureComponent pComponentToBeRendered) {
-        return new FirePitTESR();
+    public IStructureComponentRenderer getRenderer(IStructureComponent pComponentToBeRendered) {
+        if (iRenderer == null)
+            iRenderer = new FirePitTESR();
+
+        return iRenderer;
     }
 
 
@@ -914,6 +762,26 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             return 1;
 
         return 0;
+    }
+
+    @Override
+    public float getPositiveInflunce() {
+        return POSITIVEHEAT;
+    }
+
+    @Override
+    public float getNegativeInfluece() {
+        return NEGATIVEHEAT;
+    }
+
+    @Override
+    public int getMaxTempInfluence() {
+        return (int) ((int) iCurrentTemperature / 3.25F);
+    }
+
+    @Override
+    public boolean canInfluenceTE(Coordinate tTECoordinate) {
+        return true;
     }
 }
 

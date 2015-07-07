@@ -6,16 +6,9 @@ package com.Orion.Armory.Common.Blocks;
 */
 
 import com.Orion.Armory.Armory;
-import com.Orion.Armory.Common.Registry.GeneralRegistry;
-import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureComponent;
-import com.Orion.Armory.Common.TileEntity.Core.Multiblock.StructureManager;
+import com.Orion.Armory.API.Structures.StructureManager;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
-import com.Orion.Armory.Util.Core.Coordinate;
-import com.Orion.Armory.Util.Core.Rectangle;
 import com.Orion.Armory.Util.References;
-import com.sun.javaws.exceptions.InvalidArgumentException;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -23,13 +16,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 public class BlockFirePit extends BlockContainer
 {

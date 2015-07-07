@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.TileEntity.Core.Multiblock;
+package com.Orion.Armory.API.Structures;
 
 import com.Orion.Armory.Common.PathFinding.IPathComponent;
 import com.Orion.Armory.Util.Core.Coordinate;
@@ -9,9 +9,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -57,5 +55,5 @@ public interface IStructureComponent extends IPathComponent
     void readStructureFromNBT(NBTTagCompound pTileEntityCompound);
 
     @SideOnly(Side.CLIENT)
-    TileEntitySpecialRenderer getRenderer(IStructureComponent pComponentToBeRendered);
+    IStructureComponentRenderer getRenderer(IStructureComponent pComponentToBeRendered);
 }

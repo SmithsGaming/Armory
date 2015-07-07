@@ -1,4 +1,4 @@
-package com.Orion.Armory.Common.TileEntity.Core.Multiblock;
+package com.Orion.Armory.API.Structures;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;

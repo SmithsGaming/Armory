@@ -19,12 +19,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
+import java.util.Properties;
 
 public class GeneralRegistry {
     //iInstance, iLogger and dummy iArmorMaterial.
     protected static GeneralRegistry iInstance;
     public static Logger iLogger = LogManager.getLogger("Armory");
     public static ItemArmor.ArmorMaterial iArmorMaterial = EnumHelper.addArmorMaterial("Armory-Dummy", 100, new int[]{0, 0, 0, 0}, 0);
+    public static boolean iIsInDevEnvironment = false;
 
     // Tabs for the creative inventory
     public static MedievalTab iTabMedievalArmor;
@@ -38,6 +40,9 @@ public class GeneralRegistry {
         this.iTabMedievalArmor = new MedievalTab();
         this.iTabArmoryComponents = new ComponentsTab();
         this.iTabMedievalUpgrades = new MedievalUpgradeTab();
+
+        Properties tSysProp = System.getProperties();
+        iIsInDevEnvironment = Boolean.parseBoolean(tSysProp.getProperty("Armory.Dev", "false"));
     }
 
     public static GeneralRegistry getInstance()

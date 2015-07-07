@@ -1,7 +1,7 @@
 package com.Orion.Armory.Common.TileEntity.FirePit;
 
-import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureComponent;
-import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureData;
+import com.Orion.Armory.API.Structures.IStructureComponent;
+import com.Orion.Armory.API.Structures.IStructureData;
 import com.Orion.Armory.Util.References;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;

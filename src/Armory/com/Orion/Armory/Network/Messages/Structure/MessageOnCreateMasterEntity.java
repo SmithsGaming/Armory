@@ -1,7 +1,6 @@
 package com.Orion.Armory.Network.Messages.Structure;
 
-import com.Orion.Armory.Common.PathFinding.IPathComponent;
-import com.Orion.Armory.Common.TileEntity.Core.Multiblock.IStructureComponent;
+import com.Orion.Armory.API.Structures.IStructureComponent;
 import com.Orion.Armory.Util.Core.Coordinate;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import io.netty.buffer.ByteBuf;
