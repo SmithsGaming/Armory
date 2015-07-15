@@ -1,7 +1,13 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Common.TileEntity.Anvil;
 
-import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.IAnvilRecipeComponent;
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
 import com.Orion.Armory.Common.Item.ItemHammer;
 import com.Orion.Armory.Common.Item.ItemTongs;
 import com.Orion.Armory.Common.TileEntity.Core.ICustomInputHandler;
@@ -16,7 +22,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
@@ -28,13 +33,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-/**
- * Created by Orion
- * Created on 02.05.2015
- * 00:24
- * <p/>
- * Copyrighted according to Project specific license
- */
 public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventory, ICustomInputHandler
 {
     public static int MAX_CRAFTINGSLOTS = 25;
@@ -260,60 +258,6 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     {
         super.readFromNBT(pCompound);
 
-        NBTTagList tCraftingList = pCompound.getTagList(References.NBTTagCompoundData.TE.Anvil.CRAFTINGSTACKS, 10);
-        for (int tStack = 0; tStack < tCraftingList.tagCount(); tStack++)
-        {
-            NBTTagCompound tStackCompound = tCraftingList.getCompoundTagAt(tStack);
-            Integer tSlotIndex = tStackCompound.getInteger(References.NBTTagCompoundData.TE.Basic.SLOT);
-
-            iCraftingStacks[tSlotIndex] = ItemStack.loadItemStackFromNBT(tStackCompound);
-        }
-
-        NBTTagList tOutputList = pCompound.getTagList(References.NBTTagCompoundData.TE.Anvil.OUTPUTSTACKS, 10);
-        for (int tStack = 0; tStack < tOutputList.tagCount(); tStack++)
-        {
-            NBTTagCompound tStackCompound = tOutputList.getCompoundTagAt(tStack);
-            Integer tSlotIndex = tStackCompound.getInteger(References.NBTTagCompoundData.TE.Basic.SLOT);
-
-            iOutPutStacks[tSlotIndex] = ItemStack.loadItemStackFromNBT(tStackCompound);
-        }
-
-        NBTTagList tHammerList = pCompound.getTagList(References.NBTTagCompoundData.TE.Anvil.HAMMERSTACKS, 10);
-        for (int tStack = 0; tStack < tHammerList.tagCount(); tStack++)
-        {
-            NBTTagCompound tStackCompound = tHammerList.getCompoundTagAt(tStack);
-            Integer tSlotIndex = tStackCompound.getInteger(References.NBTTagCompoundData.TE.Basic.SLOT);
-
-            iHammerStacks[tSlotIndex] = ItemStack.loadItemStackFromNBT(tStackCompound);
-        }
-
-        NBTTagList tTongList = pCompound.getTagList(References.NBTTagCompoundData.TE.Anvil.TONGSTACKS, 10);
-        for (int tStack = 0; tStack < tTongList.tagCount(); tStack++)
-        {
-            NBTTagCompound tStackCompound = tTongList.getCompoundTagAt(tStack);
-            Integer tSlotIndex = tStackCompound.getInteger(References.NBTTagCompoundData.TE.Basic.SLOT);
-
-            iTongStacks[tSlotIndex] = ItemStack.loadItemStackFromNBT(tStackCompound);
-        }
-
-        NBTTagList tAdditionalCraftingList = pCompound.getTagList(References.NBTTagCompoundData.TE.Anvil.ADDITIONALSTACKS, 10);
-        for (int tStack = 0; tStack < tAdditionalCraftingList.tagCount(); tStack++)
-        {
-            NBTTagCompound tStackCompound = tAdditionalCraftingList.getCompoundTagAt(tStack);
-            Integer tSlotIndex = tStackCompound.getInteger(References.NBTTagCompoundData.TE.Basic.SLOT);
-
-            iAdditionalCraftingStacks[tSlotIndex] = ItemStack.loadItemStackFromNBT(tStackCompound);
-        }
-
-        NBTTagList tCoolList = pCompound.getTagList(References.NBTTagCompoundData.TE.Anvil.COOLSTACKS, 10);
-        for (int tStack = 0; tStack < tCoolList.tagCount(); tStack++)
-        {
-            NBTTagCompound tStackCompound = tCoolList.getCompoundTagAt(tStack);
-            Integer tSlotIndex = tStackCompound.getInteger(References.NBTTagCompoundData.TE.Basic.SLOT);
-
-            iCoolStacks[tSlotIndex] = ItemStack.loadItemStackFromNBT(tStackCompound);
-        }
-
         iCraftingProgress = pCompound.getInteger(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS);
 
         findValidRecipe();
@@ -323,96 +267,6 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     public void writeToNBT(NBTTagCompound pCompound)
     {
         super.writeToNBT(pCompound);
-
-        NBTTagList tCraftingList = new NBTTagList();
-        for(int tStack = 0; tStack < MAX_CRAFTINGSLOTS; tStack++)
-        {
-            if (iCraftingStacks[tStack] == null)
-            {
-                continue;
-            }
-
-            NBTTagCompound tIngotCompound = new NBTTagCompound();
-            tIngotCompound.setInteger(References.NBTTagCompoundData.TE.Basic.SLOT, tStack);
-            iCraftingStacks[tStack].writeToNBT(tIngotCompound);
-            tCraftingList.appendTag(tIngotCompound);
-        }
-        pCompound.setTag(References.NBTTagCompoundData.TE.Anvil.CRAFTINGSTACKS, tCraftingList);
-
-        NBTTagList tOutputList = new NBTTagList();
-        for(int tStack = 0; tStack < MAX_OUTPUTSLOTS; tStack++)
-        {
-            if (iOutPutStacks[tStack] == null)
-            {
-                continue;
-            }
-
-            NBTTagCompound tIngotCompound = new NBTTagCompound();
-            tIngotCompound.setInteger(References.NBTTagCompoundData.TE.Basic.SLOT, tStack);
-            iOutPutStacks[tStack].writeToNBT(tIngotCompound);
-            tOutputList.appendTag(tIngotCompound);
-        }
-        pCompound.setTag(References.NBTTagCompoundData.TE.Anvil.OUTPUTSTACKS, tOutputList);
-
-        NBTTagList tHammerList = new NBTTagList();
-        for(int tStack = 0; tStack < MAX_HAMMERSLOTS; tStack++)
-        {
-            if (iHammerStacks[tStack] == null)
-            {
-                continue;
-            }
-
-            NBTTagCompound tIngotCompound = new NBTTagCompound();
-            tIngotCompound.setInteger(References.NBTTagCompoundData.TE.Basic.SLOT, tStack);
-            iHammerStacks[tStack].writeToNBT(tIngotCompound);
-            tHammerList.appendTag(tIngotCompound);
-        }
-        pCompound.setTag(References.NBTTagCompoundData.TE.Anvil.HAMMERSTACKS, tHammerList);
-
-        NBTTagList tTongList = new NBTTagList();
-        for(int tStack = 0; tStack < MAX_TONGSLOTS; tStack++)
-        {
-            if (iTongStacks[tStack] == null)
-            {
-                continue;
-            }
-
-            NBTTagCompound tIngotCompound = new NBTTagCompound();
-            tIngotCompound.setInteger(References.NBTTagCompoundData.TE.Basic.SLOT, tStack);
-            iTongStacks[tStack].writeToNBT(tIngotCompound);
-            tTongList.appendTag(tIngotCompound);
-        }
-        pCompound.setTag(References.NBTTagCompoundData.TE.Anvil.TONGSTACKS, tTongList);
-
-        NBTTagList tAdditionalList = new NBTTagList();
-        for(int tStack = 0; tStack < MAX_ADDITIONALSLOTS; tStack++)
-        {
-            if (iAdditionalCraftingStacks[tStack] == null)
-            {
-                continue;
-            }
-
-            NBTTagCompound tIngotCompound = new NBTTagCompound();
-            tIngotCompound.setInteger(References.NBTTagCompoundData.TE.Basic.SLOT, tStack);
-            iAdditionalCraftingStacks[tStack].writeToNBT(tIngotCompound);
-            tAdditionalList.appendTag(tIngotCompound);
-        }
-        pCompound.setTag(References.NBTTagCompoundData.TE.Anvil.ADDITIONALSTACKS, tAdditionalList);
-
-        NBTTagList tCoolingList = new NBTTagList();
-        for(int tStack = 0; tStack < MAX_COOLSLOTS; tStack++)
-        {
-            if (iCoolStacks[tStack] == null)
-            {
-                continue;
-            }
-
-            NBTTagCompound tIngotCompound = new NBTTagCompound();
-            tIngotCompound.setInteger(References.NBTTagCompoundData.TE.Basic.SLOT, tStack);
-            iCoolStacks[tStack].writeToNBT(tIngotCompound);
-            tCoolingList.appendTag(tIngotCompound);
-        }
-        pCompound.setTag(References.NBTTagCompoundData.TE.Anvil.COOLSTACKS, tCoolingList);
 
         pCompound.setInteger(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS, iCraftingProgress);
     }

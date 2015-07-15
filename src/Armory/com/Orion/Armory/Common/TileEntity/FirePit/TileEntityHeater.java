@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Common.TileEntity.FirePit;
 /*
  *   TileEntityHeater
@@ -6,11 +12,10 @@ package com.Orion.Armory.Common.TileEntity.FirePit;
  */
 
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
-import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import com.Orion.Armory.Network.Messages.MessageTileEntityHeater;
 import com.Orion.Armory.Network.NetworkManager;
+import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.References;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -20,7 +25,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityHeater extends TileEntityArmory implements IInventory
+import java.util.Random;
+
+public class TileEntityHeater extends TileEntityArmory implements IInventory, IFirePitComponent
 {
     public ItemStack iFanStack = null;
     public int iItemInSlotTicks = 0;
@@ -156,12 +163,6 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
     {
         super.writeToNBT(pCompound);
 
-
-        if (iFanStack != null)
-        {
-            pCompound.setTag(References.NBTTagCompoundData.TE.Heater.FANSTACK, iFanStack.writeToNBT(new NBTTagCompound()));
-        }
-
         pCompound.setInteger(References.NBTTagCompoundData.TE.Heater.TICKSINSLOT, iItemInSlotTicks);
     }
 
@@ -175,16 +176,7 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
     {
         super.readFromNBT(pCompound);
 
-        if (pCompound.hasKey(References.NBTTagCompoundData.TE.Heater.FANSTACK))
-        {
-            iFanStack = ItemStack.loadItemStackFromNBT(pCompound.getCompoundTag(References.NBTTagCompoundData.TE.Heater.FANSTACK));
-        }
-
         pCompound.setInteger(References.NBTTagCompoundData.TE.Heater.TICKSINSLOT, iItemInSlotTicks);
-
-        iTargetX = xCoord + getDirection().getOpposite().offsetX;
-        iTargetY = yCoord + getDirection().getOpposite().offsetY;
-        iTargetZ = zCoord + getDirection().getOpposite().offsetZ;
     }
 
     @Override
@@ -205,9 +197,9 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
 
     public boolean IsHelpingAFirePit()
     {
-        iTargetX = xCoord + getDirection().getOpposite().offsetX;
-        iTargetY = yCoord + getDirection().getOpposite().offsetY;
-        iTargetZ = zCoord + getDirection().getOpposite().offsetZ;
+        iTargetX = xCoord;
+        iTargetY = yCoord + 1;
+        iTargetZ = zCoord;
 
         if (!IsContainingAFan())
         {
@@ -217,25 +209,11 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
         TileEntity tTargetTE = getWorldObj().getTileEntity(iTargetX, iTargetY, iTargetZ);
 
 
-        if (tTargetTE instanceof TileEntityFirePit)
-        {
-            if (((TileEntityFirePit) tTargetTE).getDirection() != getDirection())
-                return true;
-        }
+        return tTargetTE instanceof TileEntityFirePit;
 
 
-        return false;
     }
 
-
-    @Override
-    public void markDirty()
-    {
-        NetworkManager.INSTANCE.sendToAllAround(new MessageTileEntityHeater(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId,(double) this.xCoord,(double) this.yCoord,(double) this.zCoord, 128));
-
-        super.markDirty();
-        worldObj.func_147451_t(xCoord, yCoord, zCoord);
-    }
 
     @Override
     public Packet getDescriptionPacket()
@@ -265,13 +243,35 @@ public class TileEntityHeater extends TileEntityArmory implements IInventory
         if (iFanStack == null)
             return false;
 
-        iFanStack.setItemDamage(iFanStack.getItemDamage() - damageAmount);
-        if (iFanStack.getItemDamage() == 0)
-            iFanStack = null;
+        Random tRand = new Random();
 
-        markDirty();
+        if (tRand.nextInt(128) == 0) {
+            iFanStack.setItemDamage(iFanStack.getItemDamage() - damageAmount);
+            if (iFanStack.getItemDamage() == 0)
+                iFanStack = null;
+        }
 
         return true;
+    }
+
+    @Override
+    public float getPositiveInflunce() {
+        return 2.85F;
+    }
+
+    @Override
+    public float getNegativeInfluece() {
+        return 1.0F;
+    }
+
+    @Override
+    public int getMaxTempInfluence() {
+        return 1450;
+    }
+
+    @Override
+    public boolean canInfluenceTE(Coordinate tTECoordinate) {
+        return ((tTECoordinate.getYComponent() - yCoord) == 1) && tryDamageFan(1);
     }
 }
 

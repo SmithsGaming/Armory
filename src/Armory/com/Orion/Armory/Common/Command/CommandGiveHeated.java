@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Common.Command;
 
 import com.Orion.Armory.API.Materials.IArmorMaterial;
@@ -8,22 +14,14 @@ import com.Orion.Armory.Util.References;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
-import net.minecraft.command.server.CommandBanIp;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Orion
- * Created on 09.06.2015
- * 10:12
- * <p/>
- * Copyrighted according to Project specific license
- */
 public class CommandGiveHeated extends CommandBase
 {
     @Override
@@ -78,18 +76,17 @@ public class CommandGiveHeated extends CommandBase
     @Override
     public List addTabCompletionOptions(ICommandSender pCommandSender, String[] pArguments)
     {
-        if (pArguments.length == 3)
+        if (pArguments.length == 1)
         {
-            return getMaterialCompletionOptions("");
+            return getListOfStringsMatchingLastWord(pArguments, this.getPlayers());
         }
-        else if (pArguments.length == 4)
+        if (pArguments.length == 2)
         {
-            if (MaterialRegistry.getInstance().getMaterial(pArguments[1]) == null)
+            if (!MaterialRegistry.getInstance().getArmorMaterials().containsKey(pArguments[1]))
                 return getMaterialCompletionOptions(pArguments[1]);
 
             return getTypeCompletionOptions("");
-        }
-        else if (pArguments.length == 5)
+        } else if (pArguments.length == 3)
         {
             if (!HeatedItemFactory.getInstance().getAllMappedTypes().contains(pArguments[2]))
                 return getTypeCompletionOptions(pArguments[2]);
@@ -128,5 +125,9 @@ public class CommandGiveHeated extends CommandBase
         }
 
         return tTabCompletionOptions;
+    }
+
+    protected String[] getPlayers() {
+        return MinecraftServer.getServer().getAllUsernames();
     }
 }

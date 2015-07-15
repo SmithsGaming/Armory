@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Client.Renderer.Items;
 
 import com.Orion.Armory.Client.Models.ModelHeater;
@@ -8,16 +14,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
-/**
- * Created by Orion
- * Created on 23.04.2015
- * 13:55
- * <p/>
- * Copyrighted according to Project specific license
- */
 public class ItemRendererHeater implements IItemRenderer {
-    protected final ResourceLocation iHeaterTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/HeaterHull.png");
-    protected final ResourceLocation iFanTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FanIron.png");
+    protected final ResourceLocation iHeaterTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/Heater.png");
+    protected final ResourceLocation iFanTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/Fan.png");
 
     private final ModelHeater iModelHeater;
 
@@ -39,19 +38,19 @@ public class ItemRendererHeater implements IItemRenderer {
     public void renderItem(IItemRenderer.ItemRenderType itemRenderType, ItemStack itemStack, Object... data) {
         switch (itemRenderType) {
             case ENTITY: {
-                renderHeater(-0.5F, -0.38F, 0.5F, itemRenderType);
+                renderHeater(0F, 0F, 0.5F, itemRenderType);
                 return;
             }
             case EQUIPPED: {
-                renderHeater(0.0F, 0.0F, 1.0F, itemRenderType);
+                renderHeater(0.5F, 0.0F, 1.5F, itemRenderType);
                 return;
             }
             case EQUIPPED_FIRST_PERSON: {
-                renderHeater(0.0F, 0.0F, 1.0F, itemRenderType);
+                renderHeater(-1.5F, 0.0F, 1.5F, itemRenderType);
                 return;
             }
             case INVENTORY: {
-                renderHeater(-1.0F, -0.9F, 0.0F, itemRenderType);
+                renderHeater(0F, -0.5F, 0F, itemRenderType);
                 return;
             }
             default:
@@ -65,21 +64,14 @@ public class ItemRendererHeater implements IItemRenderer {
         // Scale, Translate, Rotate
         GL11.glScalef(1F, 1F, 1F);
 
-        if (pRenderType == ItemRenderType.INVENTORY)
-        {
-            GL11.glTranslatef(pX + 1, pY + 1, pZ);
-            GL11.glRotatef(90F, 0F, 1F, 0F);
-        }
-        else
-        {
-            GL11.glTranslatef(pX, pY + 1, pZ);
-        }
+        GL11.glTranslatef(pX, pY, pZ);
+
 
         // Bind texture
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(iHeaterTexture);
 
         // Render
-        iModelHeater.renderPart("Hull_Cube");
+        iModelHeater.renderPart("Heater_Cube");
 
         // Bind texture
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(iFanTexture);

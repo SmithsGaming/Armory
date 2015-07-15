@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Common.Blocks;
 /*
  *   BlockHeater
@@ -6,22 +12,21 @@ package com.Orion.Armory.Common.Blocks;
  */
 
 import com.Orion.Armory.Armory;
+import com.Orion.Armory.Common.Item.ItemFan;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityHeater;
 import com.Orion.Armory.Util.References;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockHeater extends BlockContainer
+public class BlockHeater extends BlockArmoryInventory
 {
     public BlockHeater() {
-        super(Material.iron);
+        super(References.InternalNames.Blocks.Heater, Material.iron);
     }
 
     @Override
@@ -31,35 +36,14 @@ public class BlockHeater extends BlockContainer
 
     public void onBlockPlacedBy(World pWorld, int pX, int pY, int pZ, EntityLivingBase pPlacingEntity, ItemStack pItemStack)
     {
-        int l = MathHelper.floor_double((double) (pPlacingEntity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
         TileEntityHeater tTE = (TileEntityHeater) pWorld.getTileEntity(pX, pY, pZ);
 
-        if (l == 0)
-        {
-            tTE.setDirection(ForgeDirection.NORTH);
-        }
-
-        if (l == 1)
-        {
-            tTE.setDirection(ForgeDirection.EAST);
-        }
-
-        if (l == 2)
-        {
-            tTE.setDirection(ForgeDirection.SOUTH);
-        }
-
-        if (l == 3)
-        {
-            tTE.setDirection(ForgeDirection.WEST);
-        }
+        tTE.setDirection(ForgeDirection.UP);
 
         if (pItemStack.hasDisplayName())
         {
             tTE.setDisplayName(pItemStack.getDisplayName());
         }
-
-        tTE.validateTarget();
     }
 
     @Override
@@ -81,6 +65,11 @@ public class BlockHeater extends BlockContainer
     }
 
     @Override
+    public boolean canPlaceBlockAt(World pWorld, int pX, int pY, int pZ) {
+        return (pWorld.getBlock(pX, pY + 1, pZ) instanceof BlockFirePit);
+    }
+
+    @Override
     public boolean onBlockActivated(World pWorld, int pX, int pY, int pZ, EntityPlayer pPlayer, int pFaceHit, float par7, float par8, float par9)
     {
         if (pPlayer.isSneaking())
@@ -90,6 +79,20 @@ public class BlockHeater extends BlockContainer
         else
         {
             if (!pWorld.isRemote) {
+                TileEntityHeater tEntity = (TileEntityHeater) pWorld.getTileEntity(pX, pY, pZ);
+                if (tEntity.getStackInSlot(0) == null) {
+                    if (!(pPlayer.getCurrentEquippedItem() == null)) {
+                        if ((pPlayer.getCurrentEquippedItem().getItem() instanceof ItemFan)) {
+
+                            tEntity.setInventorySlotContents(0, pPlayer.getCurrentEquippedItem());
+                            pPlayer.inventory.mainInventory[pPlayer.inventory.currentItem] = null;
+
+                            return true;
+                        }
+                    }
+
+                }
+
                 if (pWorld.getTileEntity(pX, pY, pZ) instanceof TileEntityHeater) {
                     pPlayer.openGui(Armory.instance, References.GuiIDs.HEATERID, pWorld, pX, pY, pZ);
                 }

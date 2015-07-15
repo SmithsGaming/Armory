@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Util;
 /*
 *   References
@@ -252,7 +258,7 @@ public class References
         public static final class Commands
         {
             public static final String BASECOMMAND = General.MOD_ID.toLowerCase();
-            public static final String GIVEHEATED = "Give-Heated-Item";
+            public static final String GIVEHEATED = "give-heated-item";
         }
     }
 
@@ -327,6 +333,7 @@ public class References
                 public static final String NAME = "Name";
                 public static final String SLOT = "Slot";
                 public static final String STRUCTUREDATA = "Structure";
+                public static final String INVENTORY = "Inventory";
 
                 public class Structures
                 {

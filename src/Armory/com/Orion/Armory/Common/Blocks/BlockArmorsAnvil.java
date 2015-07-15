@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Common.Blocks;
 /*
 /  BlockFirePit
@@ -8,7 +14,6 @@ package com.Orion.Armory.Common.Blocks;
 import com.Orion.Armory.Armory;
 import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import com.Orion.Armory.Util.References;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,11 +23,10 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockArmorsAnvil extends BlockContainer
+public class BlockArmorsAnvil extends BlockArmoryInventory
 {
     public BlockArmorsAnvil() {
-        super(Material.anvil);
-        setBlockName(References.InternalNames.Blocks.FirePit);
+        super(References.InternalNames.Blocks.ArmorsAnvil, Material.anvil);
     }
 
     @Override

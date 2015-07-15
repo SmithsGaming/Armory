@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Util.Core;
 /*
 /  Rectangle
@@ -9,12 +15,10 @@ import net.minecraft.util.AxisAlignedBB;
 
 public class Rectangle
 {
-    private Coordinate iTopLeftCoord;
-    private Coordinate iLowerRightCoord;
-    
-    
     public int iWidth;
     public int iHeigth;
+    private Coordinate iTopLeftCoord;
+    private Coordinate iLowerRightCoord;
 
     public Rectangle() {
     }
@@ -153,8 +157,8 @@ public class Rectangle
 
     public AxisAlignedBB toBoundingBox()
     {
-        int tDiffX = 0;
-        int tDiffZ = 0;
+        int tDiffX = 1;
+        int tDiffZ = 1;
 
         if (iWidth < 0)
             tDiffX = 1;
@@ -163,10 +167,7 @@ public class Rectangle
             tDiffZ = 1;
 
 
-
-
-
-        return AxisAlignedBB.getBoundingBox(iTopLeftCoord.getXComponent() - tDiffX, iTopLeftCoord.getYComponent(), iTopLeftCoord.getZComponent() - tDiffZ, iLowerRightCoord.getXComponent() + tDiffX, iLowerRightCoord.getYComponent(), iLowerRightCoord.getZComponent() + tDiffZ);
+        return AxisAlignedBB.getBoundingBox(iTopLeftCoord.getXComponent() - tDiffX, iTopLeftCoord.getYComponent() - 1, iTopLeftCoord.getZComponent() - tDiffZ, iLowerRightCoord.getXComponent() + tDiffX, iLowerRightCoord.getYComponent(), iLowerRightCoord.getZComponent() + tDiffZ);
     }
 
     public int area() {

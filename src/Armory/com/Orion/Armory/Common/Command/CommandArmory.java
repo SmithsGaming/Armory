@@ -1,24 +1,33 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Common.Command;
 
 import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.References;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.server.MinecraftServer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Orion
- * Created on 09.06.2015
- * 10:03
- * <p/>
- * Copyrighted according to Project specific license
- */
 public class CommandArmory extends CommandBase {
 
     private static List<CommandBase> modCommands = new ArrayList<CommandBase>();
     private static List<String> commands = new ArrayList<String>();
+
+    static {
+        modCommands.add(new CommandGiveHeated());
+
+        for (CommandBase commandBase : modCommands) {
+            commands.add(commandBase.getCommandName());
+        }
+    }
 
     @Override
     public String getCommandName()
@@ -60,7 +69,7 @@ public class CommandArmory extends CommandBase {
             {
                 if (command.getCommandName().equalsIgnoreCase(pArguments[0]))
                 {
-                    return command.addTabCompletionOptions(pCommandSender, pArguments);
+                    return command.addTabCompletionOptions(pCommandSender, Arrays.copyOfRange(pArguments, 1, pArguments.length));
                 }
             }
         }
@@ -68,13 +77,8 @@ public class CommandArmory extends CommandBase {
         return null;
     }
 
-    static
+    public String[] getPlayers()
     {
-        modCommands.add(new CommandGiveHeated());
-
-        for (CommandBase commandBase : modCommands)
-        {
-            commands.add(commandBase.getCommandName());
-        }
+        return MinecraftServer.getServer().getAllUsernames();
     }
 }

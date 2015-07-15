@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Common.Blocks;
 /*
 /  BlockFirePit
@@ -5,26 +11,23 @@ package com.Orion.Armory.Common.Blocks;
 /  Created on : 02/10/2014
 */
 
-import com.Orion.Armory.Armory;
 import com.Orion.Armory.API.Structures.StructureManager;
+import com.Orion.Armory.Armory;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import com.Orion.Armory.Util.References;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockFirePit extends BlockContainer
+public class BlockFirePit extends BlockArmoryInventory
 {
     public BlockFirePit() {
-        super(Material.iron);
-        setBlockName(References.InternalNames.Blocks.FirePit);
-        setHardness(5F);
-        setResistance(10F);
+        super(References.InternalNames.Blocks.FirePit, Material.iron);
     }
 
     @Override
@@ -46,6 +49,20 @@ public class BlockFirePit extends BlockContainer
     }
 
     @Override
+    public void onNeighborBlockChange(World pWorld, int pX, int pY, int pZ, Block pBlock) {
+        TileEntityFirePit tEntity = (TileEntityFirePit) pWorld.getTileEntity(pX, pY, pZ);
+
+        for (ForgeDirection tDirection : ForgeDirection.values()) {
+            if (tDirection == ForgeDirection.UNKNOWN || tDirection == ForgeDirection.DOWN || tDirection == ForgeDirection.UP)
+                continue;
+
+            tEntity.setSideValid(tDirection, pWorld.getBlock(pX + tDirection.offsetX, pY + tDirection.offsetY, pZ + tDirection.offsetZ) instanceof BlockFirePit);
+        }
+
+        super.onNeighborBlockChange(pWorld, pX, pY, pZ, pBlock);
+    }
+
+    @Override
     public void onBlockPlacedBy(World pWorld, int pX, int pY, int pZ, EntityLivingBase pPlacingEntity, ItemStack pItemStack)
     {
         TileEntityFirePit tTE = (TileEntityFirePit) pWorld.getTileEntity(pX, pY, pZ);
@@ -60,6 +77,8 @@ public class BlockFirePit extends BlockContainer
                 StructureManager.createStructureComponent(tTE);
             }
         }
+
+        onNeighborBlockChange(pWorld, pX, pY, pZ, this);
     }
 
     @Override

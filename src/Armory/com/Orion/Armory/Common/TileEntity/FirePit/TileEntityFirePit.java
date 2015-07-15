@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Common.TileEntity.FirePit;
 /*
 /  TileEntityFirePit
@@ -5,15 +11,15 @@ package com.Orion.Armory.Common.TileEntity.FirePit;
 /  Created on : 02/10/2014
 */
 
+import com.Orion.Armory.API.Structures.IStructureComponent;
 import com.Orion.Armory.API.Structures.IStructureComponentRenderer;
+import com.Orion.Armory.API.Structures.IStructureData;
 import com.Orion.Armory.Client.Renderer.TileEntities.FirePitTESR;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.PathFinding.IPathComponent;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
-import com.Orion.Armory.API.Structures.IStructureComponent;
-import com.Orion.Armory.API.Structures.IStructureData;
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Network.Messages.Structure.MessageOnCreateSlaveEntity;
 import com.Orion.Armory.Network.Messages.Structure.MessageOnUpdateMasterData;
@@ -42,28 +48,25 @@ import net.minecraftforge.common.util.ForgeDirection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TileEntityFirePit extends TileEntityArmory implements IInventory, IFirePitComponent {
+public class TileEntityFirePit extends TileEntityArmory implements IInventory, IFirePitComponent, IStructureComponent {
 
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
-    public static float POSITIVEHEAT = 0.325F;
-    public static float NEGATIVEHEAT = -0.1F;
-    public static int STRUCTURECOMPONENTADDITION = 450;
+    public static float POSITIVEHEAT = 1.625F;
+    public static float NEGATIVEHEAT = 0.45F;
+    public static int STRUCTURECOMPONENTADDITION = 850;
 
     public float iPositiveHeatTerm = 0.625F;
     public float iNegativeHeatTerm = -0.25F;
-
     public ItemStack[] iIngotStacks = new ItemStack[INGOTSTACKS_AMOUNT];
     public ItemStack[] iFuelStacks = new ItemStack[FUELSTACK_AMOUNT];
-
-    //public Integer[] iFuelStackBurningTime = new Integer[FUELSTACK_AMOUNT];
-    //public Integer[] iFuelStackFuelAmount = new Integer[FUELSTACK_AMOUNT];
-
     public float iMaxTemperature = 1500;
     public float iCurrentTemperature = 20;
     public float iLastTemperature = 20;
     public float iLastAddedHeat = 0;
     public boolean iIsBurning = false;
+    float iHeatedProcentage;
+    HashMap<ForgeDirection, Boolean> iMappedBlocksForRender = new HashMap<ForgeDirection, Boolean>();
 
     IStructureComponent iMasterComponent;
     HashMap<Coordinate, IStructureComponent> iSlaveComponents;
@@ -78,11 +81,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     @SideOnly(Side.CLIENT)
     IStructureComponentRenderer iRenderer;
 
-    float iHeuristicPathFindingDistance = 0;
-
     public TileEntityFirePit()
     {
-
     }
 
     @Override
@@ -209,13 +209,9 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     {
         super.readFromNBT(pCompound);
 
-        NBTTagList tIngotList = pCompound.getTagList(References.NBTTagCompoundData.TE.FirePit.INGOTITEMSTACKS, 10);
-        for (int tStack = 0; tStack < tIngotList.tagCount(); tStack++)
+        for (ForgeDirection tSide : ForgeDirection.values())
         {
-            NBTTagCompound tStackCompound = tIngotList.getCompoundTagAt(tStack);
-            Integer tSlotIndex = tStackCompound.getInteger(References.NBTTagCompoundData.TE.Basic.SLOT);
-
-            iIngotStacks[tSlotIndex] = ItemStack.loadItemStackFromNBT(tStackCompound);
+            setSideValid(tSide, pCompound.getBoolean(tSide.name()));
         }
 
         iIsBurning = pCompound.getBoolean(References.NBTTagCompoundData.TE.FirePit.CURRENTLYBURNING);
@@ -223,10 +219,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         iMaxTemperature = pCompound.getFloat(References.NBTTagCompoundData.TE.FirePit.MAXTEMPERATURE);
         iLastAddedHeat = pCompound.getFloat(References.NBTTagCompoundData.TE.FirePit.LASTADDEDHEAT);
 
-        if (!iInitialSetupPacketSend) {
-            readStructureFromNBT(pCompound);
-            iInitialSetupPacketSend = true;
-        }
+        readStructureFromNBT(pCompound);
 
         iData.readFromNBT(pCompound);
     }
@@ -250,6 +243,23 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             tIngotList.appendTag(tIngotCompound);
         }
         pCompound.setTag(References.NBTTagCompoundData.TE.FirePit.INGOTITEMSTACKS, tIngotList);
+
+        NBTTagList tFuelList = new NBTTagList();
+        for (int tStack = 0; tStack < FUELSTACK_AMOUNT; tStack++) {
+            if (iFuelStacks[tStack] == null) {
+                continue;
+            }
+
+            NBTTagCompound tFuelCompound = new NBTTagCompound();
+            tFuelCompound.setInteger(References.NBTTagCompoundData.TE.Basic.SLOT, tStack);
+            iFuelStacks[tStack].writeToNBT(tFuelCompound);
+            tFuelList.appendTag(tFuelCompound);
+        }
+        pCompound.setTag(References.NBTTagCompoundData.TE.FirePit.FUELITEMSTACKS, tFuelList);
+
+        for (ForgeDirection tSide : ForgeDirection.values()) {
+            pCompound.setBoolean(tSide.name(), getSideValid(tSide));
+        }
 
         pCompound.setBoolean(References.NBTTagCompoundData.TE.FirePit.CURRENTLYBURNING, iIsBurning);
         pCompound.setFloat(References.NBTTagCompoundData.TE.FirePit.CURRENTTEMPERATURE, iCurrentTemperature);
@@ -353,31 +363,34 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         if ((Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F)
         {
 
-            tData.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, (Object) ( (Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) - 1F));
+            tData.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, (Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) - 1F);
             iLastAddedHeat += iPositiveHeatTerm;
         }
 
-        iLastAddedHeat *=  (1-(iCurrentTemperature / iMaxTemperature))    ;
+        //iLastAddedHeat = iLastAddedHeat * (1-(iCurrentTemperature / (iMaxTemperature)));
+
+        iHeatedProcentage = Math.round((iCurrentTemperature / iMaxTemperature) * 100) / 100F;
+        iLastAddedHeat = iLastAddedHeat * (1 - iHeatedProcentage);
     }
 
     private void calculateHeatTerms()
     {
         iMaxTemperature = 1500;
         iPositiveHeatTerm = POSITIVEHEAT;
-        iNegativeHeatTerm = NEGATIVEHEAT;
+        iNegativeHeatTerm = -NEGATIVEHEAT;
 
         for (ForgeDirection tDirection : ForgeDirection.values())
         {
-            if ((tDirection == ForgeDirection.UNKNOWN) || (tDirection == ForgeDirection.DOWN) || (tDirection == ForgeDirection.UP))
+            if ((tDirection == ForgeDirection.UNKNOWN))
                 continue;
 
-            TileEntity tEntity = worldObj.getTileEntity(xCoord + tDirection.offsetX, yCoord, zCoord + tDirection.offsetZ);
+            TileEntity tEntity = worldObj.getTileEntity(xCoord + tDirection.offsetX, yCoord + tDirection.offsetY, zCoord + tDirection.offsetZ);
             if (tEntity instanceof IFirePitComponent)
             {
                 if (((IFirePitComponent) tEntity).canInfluenceTE(getLocation()))
                 {
                     iPositiveHeatTerm += ((IFirePitComponent) tEntity).getPositiveInflunce();
-                    iNegativeHeatTerm += ((IFirePitComponent) tEntity).getNegativeInfluece();
+                    iNegativeHeatTerm -= ((IFirePitComponent) tEntity).getNegativeInfluece();
                     iMaxTemperature += ((IFirePitComponent) tEntity).getMaxTempInfluence();
                 }
             }
@@ -394,7 +407,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
         if (iCurrentTemperature > 20F)
         {
-            iCurrentTemperature += iNegativeHeatTerm;
+            iCurrentTemperature += (iNegativeHeatTerm * iHeatedProcentage);
         }
 
         for (int tIngotStackCount = 0; tIngotStackCount < INGOTSTACKS_AMOUNT; tIngotStackCount ++) {
@@ -459,6 +472,16 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     public boolean isBurning() {return iIsBurning; }
 
+    public boolean getSideValid(ForgeDirection pDirection) {
+        if (!iMappedBlocksForRender.containsKey(pDirection))
+            iMappedBlocksForRender.put(pDirection, false);
+
+        return iMappedBlocksForRender.get(pDirection);
+    }
+
+    public void setSideValid(ForgeDirection pDirection, boolean iValid) {
+        iMappedBlocksForRender.put(pDirection, iValid);
+    }
 
 
     @Override
@@ -498,13 +521,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     @Override
     public void registerNewSlave(TileEntity pNewSlaveEntity) throws InvalidArgumentException {
         if (!(pNewSlaveEntity instanceof IStructureComponent))
-            throw new InvalidArgumentException(new String[]{"The given TE is not a Slaveble type." + pNewSlaveEntity.xCoord + "-" + pNewSlaveEntity.yCoord + "-" + pNewSlaveEntity.zCoord});
+            return;
 
         if (!(((IStructureComponent) pNewSlaveEntity).getStructureType().equals(this.getStructureType())))
-            throw new InvalidArgumentException(new String[]{"The given TE is not of the correct structure type!" + pNewSlaveEntity.xCoord + "-" + pNewSlaveEntity.yCoord + "-" + pNewSlaveEntity.zCoord});
+            return;
 
         if (iSlaveComponents.containsKey(new Coordinate(pNewSlaveEntity.xCoord, pNewSlaveEntity.yCoord, pNewSlaveEntity.zCoord))) {
-            throw new InvalidArgumentException(new String[]{"There is already a TE registered to that Coordinate" + pNewSlaveEntity.xCoord + "-" + pNewSlaveEntity.yCoord + "-" + pNewSlaveEntity.zCoord});
+            return;
         }
 
         iSlaveComponents.put(new Coordinate(pNewSlaveEntity.xCoord, pNewSlaveEntity.yCoord, pNewSlaveEntity.zCoord), (IStructureComponent) pNewSlaveEntity);
@@ -712,17 +735,6 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
 
 
-    @Override
-    public float getHeuristicDistance() {
-        return iHeuristicPathFindingDistance;
-    }
-
-    @Override
-    public void setHeuristicDistance(float pNewDistance) {
-        iHeuristicPathFindingDistance = pNewDistance;
-    }
-
-
 
     @Override
     public ArrayList<IPathComponent> getValidPathableNeighborComponents() {
@@ -752,18 +764,6 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         return tPathableComponents;
     }
 
-
-    @Override
-    public int compareTo(IPathComponent pComponent) {
-        if (pComponent.getHeuristicDistance() > getHeuristicDistance())
-            return -1;
-
-        if (pComponent.getHeuristicDistance() < getHeuristicDistance())
-            return 1;
-
-        return 0;
-    }
-
     @Override
     public float getPositiveInflunce() {
         return POSITIVEHEAT;
@@ -776,19 +776,11 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     @Override
     public int getMaxTempInfluence() {
-        return (int) ((int) iCurrentTemperature / 3.25F);
+        return STRUCTURECOMPONENTADDITION;
     }
 
     @Override
     public boolean canInfluenceTE(Coordinate tTECoordinate) {
-        return true;
+        return (yCoord == tTECoordinate.getYComponent());
     }
 }
-
-
-
-/*
-
-
-
- */

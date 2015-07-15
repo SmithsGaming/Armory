@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Client.Renderer.TileEntities;
 /*
  *   FirePitTESR
@@ -17,7 +23,6 @@ import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.client.FMLClientHandler;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -33,20 +38,7 @@ import java.util.HashMap;
 
 public class FirePitTESR extends TileEntitySpecialRenderer implements IStructureComponentRenderer
 {
-    protected final ResourceLocation iDarkTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/DarkSheet.png");
-    protected final ResourceLocation iLightTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/LightSheet.png");
-    protected final ResourceLocation iDestroyedMetalBasinTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/DestroyedMetalBasin.png");
-    protected final ResourceLocation iDestroyedMetalWallTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/DestroyedMetalWall.png");
-    protected final ResourceLocation iFuelBasinBottomTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/FuelBasinBottom.png");
-    protected final ResourceLocation iFuelBasinWallTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/FuelBasinWall.png");
-    protected final ResourceLocation iIngotHolderRimTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/IngotHolderRim.png");
-
-    protected final ResourceLocation iCoalSurfaceTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/CoalField.png");
-
     protected static final HashMap<String, ForgeDirection> iDirectionMapping = new HashMap<String, ForgeDirection>();
-
-    public final ModelFirePit iModelFirePit = new ModelFirePit();
-    public final RenderItem iItemRenderer;
 
     static{
         iDirectionMapping.put("NegX", ForgeDirection.WEST);
@@ -54,6 +46,17 @@ public class FirePitTESR extends TileEntitySpecialRenderer implements IStructure
         iDirectionMapping.put("NegY", ForgeDirection.SOUTH);
         iDirectionMapping.put("PosY", ForgeDirection.NORTH);
     }
+
+    public final ModelFirePit iModelFirePit = new ModelFirePit();
+    public final RenderItem iItemRenderer;
+    protected final ResourceLocation iDarkTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/DarkSheet.png");
+    protected final ResourceLocation iLightTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/LightSheet.png");
+    protected final ResourceLocation iDestroyedMetalBasinTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/DestroyedMetalBasin.png");
+    protected final ResourceLocation iDestroyedMetalWallTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/DestroyedMetalWall.png");
+    protected final ResourceLocation iFuelBasinBottomTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/FuelBasinBottom.png");
+    protected final ResourceLocation iFuelBasinWallTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/FuelBasinWall.png");
+    protected final ResourceLocation iIngotHolderRimTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/IngotHolderRim.png");
+    protected final ResourceLocation iCoalSurfaceTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FirePit/CoalField.png");
 
     public FirePitTESR()
     {
@@ -232,19 +235,10 @@ public class FirePitTESR extends TileEntitySpecialRenderer implements IStructure
         {
             if (pComponentName.contains(tSide))
             {
-                TileEntity tEntity = pEntity.getWorldObj().getTileEntity(pEntity.xCoord + iDirectionMapping.get(tSide).offsetX, pEntity.yCoord + iDirectionMapping.get(tSide).offsetY, pEntity.zCoord + iDirectionMapping.get(tSide).offsetZ);
-                if (tEntity == null)
-                {
-                    tSidedComponents.add(false);
-                }
-                else if (tEntity instanceof TileEntityFirePit)
-                {
+                if (pEntity.getSideValid(iDirectionMapping.get(tSide)))
                     tSidedComponents.add(true);
-                }
                 else
-                {
                     tSidedComponents.add(false);
-                }
             }
         }
 

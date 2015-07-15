@@ -75,6 +75,9 @@ item.Armory.MultiArmor.Upgrade.Leggings.BackLeft.name=Left calf Protector
 item.Armory.MultiArmor.Upgrade.Leggings.BackRight.name=Right calf Protector
 item.Armory.MultiArmor.Upgrade.Shoes.Left.name=Left foot Protector
 item.Armory.MultiArmor.Upgrade.Shoes.Right.name=Right foot Protector
-
+#
+#Commands
+armory.usage=Central command for Armory related instructions, most of them are OP only.
+give-heated-item.usage=Gives heated Items. Syntax: <MaterialID> <ItemType> <Temperature>
 
 

@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
+
 package com.Orion.Armory.Client.Renderer.TileEntities;
 
 import com.Orion.Armory.Client.Models.ModelHeater;
@@ -9,18 +15,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
-/**
- * Created by Orion
- * Created on 23.04.2015
- * 10:37
- * <p/>
- * Copyrighted according to Project specific license
- */
 public class HeaterTESR extends TileEntitySpecialRenderer
 {
     public final ModelHeater iModel = new ModelHeater();
-    protected final ResourceLocation iHeaterTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/HeaterHull.png");
-    protected final ResourceLocation iFanTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/FanIron.png");
+    protected final ResourceLocation iHeaterTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/Heater.png");
+    protected final ResourceLocation iFanTexture = new ResourceLocation(References.General.MOD_ID + ":" + "textures/blocks/Fan.png");
 
     public HeaterTESR()
     {
@@ -47,7 +46,7 @@ public class HeaterTESR extends TileEntitySpecialRenderer
         scaleTranslateRotateTEModel(pX, pY, pZ, pEntity.getDirection());
 
         this.bindTexture(iHeaterTexture);
-        iModel.renderPart("Hull_Cube");
+        iModel.renderPart("Heater_Cube");
 
         if(tIsContainingAFan)
         {
@@ -82,7 +81,7 @@ public class HeaterTESR extends TileEntitySpecialRenderer
                 }
             }
 
-            GL11.glRotatef(tRotationAngle, 1F, 0F, 0F);
+            GL11.glRotatef(tRotationAngle, 0F, 1F, 0F);
             this.bindTexture(iFanTexture);
             iModel.renderPart("Fan_Cylinder");
         }
@@ -91,24 +90,6 @@ public class HeaterTESR extends TileEntitySpecialRenderer
 
     private void scaleTranslateRotateTEModel(double x, double y, double z, ForgeDirection orientation)
     {
-        if (orientation == ForgeDirection.NORTH)
-        {
-            GL11.glTranslated(x + 0.5F, y + 0.5F, z + 0.5F);
-            GL11.glRotatef(-90F, 0F, 1F, 0F);
-        }
-        else if (orientation == ForgeDirection.EAST)
-        {
-            GL11.glTranslated(x + 0.5F, y + 0.5F, z + 0.5F);
-            GL11.glRotatef(180F, 0F, 1F, 0F);
-        }
-        else if (orientation == ForgeDirection.SOUTH)
-        {
-            GL11.glTranslated(x + 0.5F, y + 0.5F, z + 0.5F);
-            GL11.glRotatef(90F, 0F, 1F, 0F);
-        }
-        else if (orientation == ForgeDirection.WEST)
-        {
-            GL11.glTranslated(x + 0.5F, y + 0.5F, z + 0.5F);
-        }
+        GL11.glTranslatef((float) x + 0.5F, (float) y, (float) z + 0.5F);
     }
 }
