@@ -28,7 +28,6 @@ import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.Core.NBTHelper;
 import com.Orion.Armory.Util.Core.Rectangle;
 import com.Orion.Armory.Util.References;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -519,7 +518,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     }
 
     @Override
-    public void registerNewSlave(TileEntity pNewSlaveEntity) throws InvalidArgumentException {
+    public void registerNewSlave(TileEntity pNewSlaveEntity) {
         if (!(pNewSlaveEntity instanceof IStructureComponent))
             return;
 
@@ -664,11 +663,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
             if (iIsSlavesInitialized)
             {
-                try {
-                    registerNewSlave(worldObj.getTileEntity(tSlaveCoordinate.getXComponent(), tSlaveCoordinate.getYComponent(), tSlaveCoordinate.getZComponent()));
-                } catch (InvalidArgumentException e) {
-                    GeneralRegistry.iLogger.error("Failed to create a Master Slave link from NBTSync", e);
-                }
+                registerNewSlave(worldObj.getTileEntity(tSlaveCoordinate.getXComponent(), tSlaveCoordinate.getYComponent(), tSlaveCoordinate.getZComponent()));
             }
             else
             {
