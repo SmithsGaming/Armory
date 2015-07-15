@@ -1,16 +1,13 @@
-package com.Orion.Armory.Common.PathFinding;
+/*
+ * Copyright (c) 2015.
+ *
+ * Copyrighted by SmithsModding according to the project License
+ */
 
-import javafx.util.Pair;
+package com.Orion.Armory.Common.PathFinding;
 
 import java.util.ArrayList;
 
-/**
- * Created by Orion
- * Created on 03.07.2015
- * 14:42
- * <p/>
- * Copyrighted according to Project specific license
- */
 public class Path {
 
     ArrayList<IPathComponent> iComponents;
