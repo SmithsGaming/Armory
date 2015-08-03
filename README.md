@@ -4,8 +4,8 @@ TC-Armory
 Armors Mod for Minecraft
 
 ## Last Build Status:
-Development: [![Build Status](https://travis-ci.org/SmithsModding/Armory.svg?branch=Development)](https://travis-ci.org/SmithsModding/Armory)
-Minecraft 1.7.10: [![Build Status](https://travis-ci.org/SmithsModding/Armory.svg?branch=Minecraft-1.7.10)](https://travis-ci.org/SmithsModding/Armory)
+  * Development: [![Build Status](https://travis-ci.org/SmithsModding/Armory.svg?branch=Development)](https://travis-ci.org/SmithsModding/Armory)
+  * Minecraft 1.7.10: [![Build Status](https://travis-ci.org/SmithsModding/Armory.svg?branch=Minecraft-1.7.10)](https://travis-ci.org/SmithsModding/Armory)
 
 ## Recommended:
 SmithsModding - Weaponry
