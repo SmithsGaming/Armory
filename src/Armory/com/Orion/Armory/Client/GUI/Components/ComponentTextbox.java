@@ -22,19 +22,20 @@ import java.util.ArrayList;
  */
 public class ComponentTextbox extends GuiTextField implements IGUIComponent
 {
-    private ArmoryBaseGui iGui;
     String iInternalName;
-
+    String iInputID;
+    private ArmoryBaseGui iGui;
     private boolean iUseDefaultBackground = true;
     private CustomResource iBackGround;
 
-    public ComponentTextbox(ArmoryBaseGui pGui, String pInternalName, FontRenderer pFontRenderer, int pX, int pY, int pWidth, int pHeight) {
+    public ComponentTextbox(ArmoryBaseGui pGui, String pInternalName, FontRenderer pFontRenderer, int pX, int pY, int pWidth, int pHeight, String pInputID) {
         super(pFontRenderer, pX, pY, pWidth, pHeight);
         iGui = pGui;
         iInternalName = pInternalName;
+        iInputID = pInputID;
     }
 
-    public ComponentTextbox(ArmoryBaseGui pGui, String pInternalName, FontRenderer pFontRenderer, int pX, int pY, int pWidth, int pHeight, CustomResource pBackground) {
+    public ComponentTextbox(ArmoryBaseGui pGui, String pInternalName, FontRenderer pFontRenderer, int pX, int pY, int pWidth, int pHeight, String pInputID, CustomResource pBackground) {
         super(pFontRenderer, pX, pY, pWidth, pHeight);
         iGui = pGui;
         iInternalName = pInternalName;
@@ -43,6 +44,7 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
 
         iUseDefaultBackground = false;
         iBackGround = pBackground;
+        iInputID = pInputID;
     }
 
     @Override
@@ -137,7 +139,7 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
     public boolean handleKeyTyped(char pKey, int pPara) {
         if (this.textboxKeyTyped(pKey, pPara))
         {
-            ((ContainerArmory) iGui.inventorySlots).updateComponentResult(iInternalName, this.getText());
+            ((ContainerArmory) iGui.inventorySlots).updateComponentResult(this, iInputID, this.getText());
             return true;
         }
 

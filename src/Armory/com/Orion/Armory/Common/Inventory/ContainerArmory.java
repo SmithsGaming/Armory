@@ -5,6 +5,7 @@ package com.Orion.Armory.Common.Inventory;
  *   Created on: 16-1-2015
  */
 
+import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Util.Core.ItemStackHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +19,7 @@ public abstract class ContainerArmory extends Container {
     public TileEntityArmory iTargetTE;
     protected int modSlots;
 
-    ContainerArmory (TileEntityArmory pTargetTE, int modSlots) {
+    public ContainerArmory(TileEntityArmory pTargetTE, int modSlots) {
         iTargetTE = pTargetTE;
         this.modSlots = modSlots;
     }
@@ -88,7 +89,7 @@ public abstract class ContainerArmory extends Container {
         return slotFound;
     }
 
-    public void updateComponentResult(String pComponentID, String pNewValue) {
+    public void updateComponentResult(IGUIComponent pComponent, String pComponentID, String pNewValue) {
         iTargetTE.handleGuiComponentUpdate(pComponentID, pNewValue);
     }
 

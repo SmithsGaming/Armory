@@ -12,6 +12,23 @@ import com.Orion.Armory.Util.References;
 public class TranslationKeys
 {
 
+    public static final class Messages {
+        public static final class Commands {
+            public static final String BASEUSAGE = References.InternalNames.Commands.BASECOMMAND + ".usage";
+            public static final String GIVEHEATEDUSAGE = References.InternalNames.Commands.GIVEHEATED + ".usage";
+        }
+
+    }
+
+    public static final class Knowledge {
+        public static final class AnvilRecipeKnowledge {
+            public static final String Tier1 = "Armory.Knowledge.AnvilRecipeKnowledge.Tier1";
+            public static final String Tier2 = "Armory.Knowledge.AnvilRecipeKnowledge.Tier2";
+            public static final String Tier3 = "Armory.Knowledge.AnvilRecipeKnowledge.Tier3";
+            public static final String Tier4 = "Armory.Knowledge.AnvilRecipeKnowledge.Tier4";
+        }
+    }
+
     public class Items
     {
 
@@ -122,16 +139,6 @@ public class TranslationKeys
             public static final String FLUIDTANKCAPACITY = "Armory.Gui.Components.FluidTank.ToolTip.Capacity";
             public static final String FLUIDTANKNOLIQUID = "Armory.Gui.Components.FluidTank.ToolTip.NoLiquid";
         }
-    }
-
-    public static final class Messages
-    {
-        public static final class Commands
-        {
-            public static final String BASEUSAGE = References.InternalNames.Commands.BASECOMMAND + ".usage";
-            public static final String GIVEHEATEDUSAGE = References.InternalNames.Commands.GIVEHEATED + ".usage";
-        }
-
     }
 }
 

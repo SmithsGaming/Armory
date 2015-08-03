@@ -2,10 +2,11 @@ package com.Orion.Armory.Common.Compatibility.NEI;
 
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.AnvilRecipeRegistry;
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.IAnvilRecipeComponent;
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
 import com.Orion.Armory.API.Item.IHeatableItem;
 import com.Orion.Armory.Client.GUI.GuiArmorsAnvilMinimal;
-import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
-import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.IAnvilRecipeComponent;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
@@ -80,7 +81,7 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
             return;
         }
 
-        for (AnvilRecipe tOriginalRecipe : TileEntityArmorsAnvil.getRecipes()) {
+        for (AnvilRecipe tOriginalRecipe : AnvilRecipeRegistry.getInstance().getRecipes()) {
             ItemStack[] tCraftingInput = new ItemStack[TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS];
             ItemStack[] tAdditionalCraftingInput = new ItemStack[TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS];
 
@@ -125,7 +126,7 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
     @Override
     public void loadCraftingRecipes(String outputId, Object... results) {
         if (outputId.equals(getRecipeID())) {
-            for (AnvilRecipe recipe : TileEntityArmorsAnvil.getRecipes()) {
+            for (AnvilRecipe recipe : AnvilRecipeRegistry.getInstance().getRecipes()) {
                 arecipes.add(new CachedAnvilRecipe(recipe));
             }
         } else {
@@ -136,7 +137,7 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
     @Override
     public void loadUsageRecipes(ItemStack pIngredient)
     {
-        for (AnvilRecipe tOriginalRecipe : TileEntityArmorsAnvil.getRecipes())
+        for (AnvilRecipe tOriginalRecipe : AnvilRecipeRegistry.getInstance().getRecipes())
         {
             validateUsageRecipe(tOriginalRecipe, pIngredient);
         }
@@ -220,11 +221,11 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
                 tCraftingInput[tComponentIndex] = tComponent.getComponentTargetStack();
             }
 
-            if (pOriginalRecipe.iHammerUsage > 0) {
+            if (pOriginalRecipe.getUsesHammer()) {
                 iInputs.add(new PositionedStack(new ItemStack(GeneralRegistry.Items.iHammer, 1, 150), 140, 8));
             }
 
-            if (pOriginalRecipe.iTongUsage > 0) {
+            if (pOriginalRecipe.getUsesTongs()) {
                 iInputs.add(new PositionedStack(new ItemStack(GeneralRegistry.Items.iTongs, 1, 150), 140, 80));
             }
 

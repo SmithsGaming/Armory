@@ -1,14 +1,12 @@
 package com.Orion.Armory.Network.Handlers.Config;
 
-import com.Orion.Armory.Armory;
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.AnvilRecipeRegistry;
 import com.Orion.Armory.Common.Config.ArmoryConfig;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
-import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import com.Orion.Armory.Network.Messages.Config.MessageConfigSyncCompleted;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
 
 /**
  * Created by Orion
@@ -21,7 +19,7 @@ public class MessageHandlerConfigSyncCompleted implements IMessageHandler<Messag
 
     @Override
     public IMessage onMessage(MessageConfigSyncCompleted message, MessageContext ctx) {
-        TileEntityArmorsAnvil.clearAllStoredRecipes();
+        AnvilRecipeRegistry.getInstance().clearAllStoredRecipes();
         ArmoryInitializer.MedievalInitialization.initializeAnvilRecipes();
 
         ArmoryConfig.materialPropertiesSet = true;

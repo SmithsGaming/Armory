@@ -4,10 +4,10 @@ import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.API.Armor.MultiLayeredArmor;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.IAnvilRecipeComponent;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.StandardAnvilRecipeComponent;
+import com.Orion.Armory.Common.Addons.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
 import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
-import com.Orion.Armory.Common.Addons.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
@@ -58,10 +58,10 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe
         if (pTongsUsagesLeft == 0)
             pTongsUsagesLeft = 150;
 
-        if ((iHammerUsage > 0) && (pHammerUsagesLeft) < iHammerUsage)
+        if ((getUsesHammer()) && (pHammerUsagesLeft) < getHammerUsage())
             return false;
 
-        if ((iTongUsage > 0) && (pTongsUsagesLeft < iTongUsage))
+        if ((getUsesTongs()) && (pTongsUsagesLeft < getTongsUsage()))
             return false;
 
         if (pCraftingSlotContents.length > TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS) {
@@ -79,12 +79,12 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe
             ItemStack tSlotContent = pCraftingSlotContents[tSlotID];
 
             if (tSlotContent != null) {
-                if (iComponents[tSlotID] == null) {
+                if (getComponents()[tSlotID] == null) {
                     return false;
-                } else if (!iComponents[tSlotID].isValidComponentForSlot(tSlotContent)) {
+                } else if (!getComponent(tSlotID).isValidComponentForSlot(tSlotContent)) {
                     return false;
                 }
-            } else if (iComponents[tSlotID] != null) {
+            } else if (getComponents()[tSlotID] != null) {
                 return false;
             }
         }
@@ -93,12 +93,12 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe
             ItemStack tSlotContent = pAdditionalSlotContents[tSlotID];
 
             if (tSlotContent != null) {
-                if (iAdditionalComponents[tSlotID] == null) {
+                if (getAdditionalComponents()[tSlotID] == null) {
                     return false;
-                } else if (!iAdditionalComponents[tSlotID].isValidComponentForSlot(tSlotContent)) {
+                } else if (!getAdditionalComponents()[tSlotID].isValidComponentForSlot(tSlotContent)) {
                     return false;
                 }
-            } else if (iAdditionalComponents[tSlotID] != null) {
+            } else if (getAdditionalComponents()[tSlotID] != null) {
                 return false;
             }
         }
@@ -158,7 +158,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe
             return null;
         }
 
-        return iComponents[pComponentIndex];
+        return getComponents()[pComponentIndex];
     }
 
     @Override
@@ -172,7 +172,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe
         if (pSlotIndex == 12)
             return null;
 
-        iComponents[pSlotIndex] = pComponent;
+        getComponents()[pSlotIndex] = pComponent;
 
         return this;
     }

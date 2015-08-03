@@ -25,17 +25,17 @@ public class References
         public static int FIREPITID = 0;
         public static int HEATERID = 1;
         public static int ANVILID = 2;
+        public static int SMITHINGSGUIDE = 50;
+        public static int SMITHINGSGUIDEINVENTORY = 51;
     }
 
-    public static final  class General
-    {
+    public static final class General {
         public static final String MOD_ID = "Armory";
         public static final String VERSION = "@VERSION@";
         public static final String MC_VERSION = "@MCVERSION";
     }
 
-    public static final  class InternalNames
-    {
+    public static final class InternalNames {
         public static final  class Armor
         {
             public static final String MEDIEVALHELMET = "Armory.Helmet.Medieval";
@@ -251,8 +251,32 @@ public class References
 
             public static final  class Anvil
             {
+                public static final String BACKGROUND = "Gui.Anvil.Background";
+                public static final String PLAYERINVENTORY = "Gui.Anvil.Player";
+                public static final String EXTENDEDCRAFTING = "Gui.Anvil.ExtendedCrafting";
+                public static final String HAMMERSLOT = "Gui.Anvil.Tools.Slot.Hammer";
+                public static final String TONGSLOT = "Gui.Anvil.Tools.Slot.Tongs";
+                public static final String LOGO = "Gui.Anvil.Logo";
+                public static final String TEXTBOXBORDER = "Gui,Anvil.Name.Border";
+                public static final String TEXTBOX = "Gui.Anvil.Name.Textbox";
                 public static final String CRAFTINGPROGRESS = "CraftingProgress";
+                public static final String SMITHINGSGUIDEBORDER = "Gui,Anvil.Guide.Border";
+                public static final String SMITHINGSGUIDESLOT = "Gui.Anvil.Guide.Slot";
             }
+        }
+
+        public static final class InputHandlers {
+            public static final class Anvil {
+                public static final String ITEMNAME = "Input.Anvil.ItemName";
+                public static final String PLAYEROPENGUI = "Input.Anvil.OpenGUI";
+                public static final String PLAYERCLOSEGUI = "Inpur.Anvil.CloseGUI";
+            }
+        }
+
+        public static final class ExtendedEntityProperties {
+            public static final String KNOWLEDGE = "Armory.Crafting.Knowledge";
+            public static final String ANVILRECIPEEXPERIENCE = "Armory.Crafting.Knowledge.AnvilRecipeExperience";
+
         }
 
         public static final class Commands
@@ -262,9 +286,7 @@ public class References
         }
     }
 
-    //General model addresses
-    public class Models
-    {
+    public class Models {
         public class ModelLocations
         {
             protected final static String iModelLocation = "models/";
@@ -275,7 +297,6 @@ public class References
         }
     }
 
-    //NBTTag compound version
     public class NBTTagCompoundData {
         //Stack addon naming
         public static final String InstalledAddons = "InstalledAddons";
@@ -315,6 +336,20 @@ public class References
         public class Rendering {
             public static final String MaxRenderPasses = "RenderPasses";
             public static final String ResourceIDs = "ResourceIDs";
+        }
+
+        public class KnowledgeCrafting {
+            public static final String ExperienceCompound = "CraftingExperience";
+        }
+
+        public class Item {
+            public class ItemInventory {
+                public static final String ID = "UUID";
+                public static final String OPEN = "Open";
+                public static final String INVENTORY = "Inventory";
+                public static final String SLOTID = "SlotIndex";
+                public static final String STACK = "StackData";
+            }
         }
 
         public class HeatedIngot

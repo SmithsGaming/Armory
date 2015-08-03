@@ -17,17 +17,19 @@ import java.util.Iterator;
  */
 public class AnvilRecipe
 {
-    public int iTargetProgress;
-    public int iHammerUsage;
-    public int iTongUsage;
-
-    public boolean iIsShapeLess = false;
-
-    public IAnvilRecipeComponent[] iComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS];
-    public IAnvilRecipeComponent[] iAdditionalComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS];
-
     protected int iResultAmount = 1;
     protected ItemStack iResult;
+    private int iTargetProgress;
+    private int iHammerUsage;
+    private int iTongUsage;
+    private String iKnowledgeName;
+    private String iBlueprintName;
+    private boolean iIsShapeLess = false;
+    private IAnvilRecipeComponent[] iComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS];
+    private IAnvilRecipeComponent[] iAdditionalComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS];
+
+    public AnvilRecipe() {
+    }
 
     public boolean matchesRecipe(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents, int pHammerUsagesLeft, int pTongsUsagesLeft) {
         if (pHammerUsagesLeft == 0)
@@ -180,13 +182,6 @@ public class AnvilRecipe
         return this;
     }
 
-    public AnvilRecipe setHammerUsage(int pNewUsage)
-    {
-        iHammerUsage = pNewUsage;
-
-        return this;
-    }
-
     public AnvilRecipe setTongUsage(int pNewUsage)
     {
         iTongUsage = pNewUsage;
@@ -200,11 +195,76 @@ public class AnvilRecipe
         return this;
     }
 
+    public AnvilRecipe setBluePrintName(String pName) {
+        iBlueprintName = pName;
+        return this;
+    }
+
     public ItemStack getResult(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents)
     {
         iResult.stackSize = iResultAmount;
         return iResult;
     }
+
+    public boolean isShapeless() {
+        return iIsShapeLess;
+    }
+
+    public IAnvilRecipeComponent[] getComponents() {
+        return iComponents;
+    }
+
+    public IAnvilRecipeComponent[] getAdditionalComponents() {
+        return iAdditionalComponents;
+    }
+
+    public int getMinimumProgress() {
+        return iTargetProgress;
+    }
+
+    public int getHammerUsage() {
+        return iHammerUsage;
+    }
+
+    public AnvilRecipe setHammerUsage(int pNewUsage) {
+        iHammerUsage = pNewUsage;
+
+        return this;
+    }
+
+    public boolean getUsesHammer() {
+        return iHammerUsage > 0;
+    }
+
+    public int getTongsUsage() {
+        return iTongUsage;
+    }
+
+    public boolean getUsesTongs() {
+        return iTongUsage > 0;
+    }
+
+    public String getKnowledgeName() {
+        return iKnowledgeName;
+    }
+
+    public AnvilRecipe setKnowledgeName(String pName) {
+        iKnowledgeName = pName;
+        return this;
+    }
+
+    public boolean getRequiresKnowledge() {
+        return iKnowledgeName == null;
+    }
+
+    public String getBlueprintName() {
+        return iBlueprintName;
+    }
+
+    public boolean getRequiresBlueprint() {
+        return iBlueprintName != null;
+    }
+
 
 }
 

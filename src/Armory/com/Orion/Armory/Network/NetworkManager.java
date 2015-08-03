@@ -5,14 +5,8 @@ package com.Orion.Armory.Network;
  *   Created on: 13-1-2015
  */
 
-import com.Orion.Armory.Network.Handlers.MessageHandlerCustomInput;
-import com.Orion.Armory.Network.Handlers.MessageHandlerTileEntityArmorsAnvil;
-import com.Orion.Armory.Network.Handlers.MessageHandlerTileEntityFirePit;
-import com.Orion.Armory.Network.Handlers.MessageHandlerTileEntityHeater;
-import com.Orion.Armory.Network.Messages.MessageCustomInput;
-import com.Orion.Armory.Network.Messages.MessageTileEntityArmorsAnvil;
-import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
-import com.Orion.Armory.Network.Messages.MessageTileEntityHeater;
+import com.Orion.Armory.Network.Handlers.*;
+import com.Orion.Armory.Network.Messages.*;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -28,5 +22,6 @@ public class NetworkManager
         INSTANCE.registerMessage(MessageHandlerTileEntityHeater.class, MessageTileEntityHeater.class, 1, Side.CLIENT);
         INSTANCE.registerMessage(MessageHandlerTileEntityArmorsAnvil.class, MessageTileEntityArmorsAnvil.class, 2, Side.CLIENT);
         INSTANCE.registerMessage(MessageHandlerCustomInput.class, MessageCustomInput.class, 3, Side.SERVER);
+        INSTANCE.registerMessage(MessageHandlerKnowledgeUpdate.class, MessageKnowledgeUpdate.class, 4, Side.CLIENT);
     }
 }

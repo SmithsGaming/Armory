@@ -6,8 +6,13 @@
 
 package com.Orion.Armory.Common.TileEntity.Anvil;
 
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.AnvilRecipeRegistry;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.IAnvilRecipeComponent;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
+import com.Orion.Armory.API.Knowledge.IBluePrintContainerItem;
+import com.Orion.Armory.API.Knowledge.IBluePrintItem;
+import com.Orion.Armory.API.Knowledge.IKnowledgedGameElement;
+import com.Orion.Armory.API.Knowledge.KnowledgeEntityProperty;
 import com.Orion.Armory.Common.Item.ItemHammer;
 import com.Orion.Armory.Common.Item.ItemTongs;
 import com.Orion.Armory.Common.TileEntity.Core.ICustomInputHandler;
@@ -29,9 +34,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
+import java.util.*;
 
 public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventory, ICustomInputHandler
 {
@@ -41,32 +44,26 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     public static int MAX_TONGSLOTS = 1;
     public static int MAX_ADDITIONALSLOTS = 3;
     public static int MAX_COOLSLOTS = 1;
-    public static int MAX_SLOTS = MAX_CRAFTINGSLOTS + MAX_OUTPUTSLOTS + MAX_HAMMERSLOTS + MAX_TONGSLOTS + MAX_ADDITIONALSLOTS + MAX_COOLSLOTS;
-    private static ArrayList<AnvilRecipe> iRecipes = new ArrayList<AnvilRecipe>();
+    public static int MAX_BLUEPRINTLIBRARYSLOTS = 1;
+    public static int MAX_SLOTS = MAX_CRAFTINGSLOTS + MAX_OUTPUTSLOTS + MAX_HAMMERSLOTS + MAX_TONGSLOTS + MAX_ADDITIONALSLOTS + MAX_COOLSLOTS + MAX_BLUEPRINTLIBRARYSLOTS;
     public ItemStack[] iCraftingStacks = new ItemStack[MAX_CRAFTINGSLOTS];
     public ItemStack[] iOutPutStacks = new ItemStack[MAX_OUTPUTSLOTS];
     public ItemStack[] iHammerStacks = new ItemStack[MAX_HAMMERSLOTS];
     public ItemStack[] iTongStacks = new ItemStack[MAX_TONGSLOTS];
     public ItemStack[] iAdditionalCraftingStacks = new ItemStack[MAX_ADDITIONALSLOTS];
     public ItemStack[] iCoolStacks = new ItemStack[MAX_COOLSLOTS];
+    public ItemStack[] iBluePrintLibraryStacks = new ItemStack[MAX_BLUEPRINTLIBRARYSLOTS];
+
     public int iCraftingProgress = 0;
     private String iInputName = "";
     private int iTEExist = 0;
     private AnvilRecipe iCurrentValidRecipe;
 
-    public static void addRecipe(AnvilRecipe pNewRecipe) {
-        iRecipes.add(pNewRecipe);
-    }
-
-    public static ArrayList<AnvilRecipe> getRecipes() {
-        return iRecipes;
-    }
-
-    public static void clearAllStoredRecipes() { iRecipes.clear(); }
+    private HashMap<UUID, EntityPlayer> iConnectedPlayers = new HashMap<UUID, EntityPlayer>();
 
     @Override
     public int getSizeInventory() {
-        return MAX_CRAFTINGSLOTS + MAX_OUTPUTSLOTS + MAX_HAMMERSLOTS+ MAX_TONGSLOTS;
+        return MAX_CRAFTINGSLOTS + MAX_OUTPUTSLOTS + MAX_HAMMERSLOTS + MAX_TONGSLOTS + MAX_BLUEPRINTLIBRARYSLOTS;
     }
 
     @Override
@@ -91,13 +88,18 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
         pSlotID -= MAX_TONGSLOTS;
 
-        if (pSlotID > MAX_ADDITIONALSLOTS)
+        if (pSlotID < MAX_ADDITIONALSLOTS)
             return iAdditionalCraftingStacks[pSlotID];
 
         pSlotID -= MAX_ADDITIONALSLOTS;
 
         if (pSlotID < MAX_COOLSLOTS)
             return iCoolStacks[pSlotID];
+
+        pSlotID -= MAX_COOLSLOTS;
+
+        if (pSlotID < MAX_BLUEPRINTLIBRARYSLOTS)
+            return iBluePrintLibraryStacks[pSlotID];
 
         return null;
     }
@@ -195,6 +197,15 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             iCoolStacks[pSlotID] = pNewItemStack;
             iCraftingProgress = 0;
             iCurrentValidRecipe = null;
+            return;
+        }
+
+        pSlotID -= MAX_COOLSLOTS;
+
+        if (pSlotID < MAX_BLUEPRINTLIBRARYSLOTS) {
+            iCoolStacks[pSlotID] = pNewItemStack;
+            iCraftingProgress = 0;
+            iCurrentValidRecipe = null;
             findValidRecipe();
             return;
         }
@@ -250,6 +261,22 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         if (pSlotID < MAX_TONGSLOTS)
             return (pTargetStack.getItem() instanceof ItemTongs);
 
+
+        pSlotID -= MAX_TONGSLOTS;
+
+        if (pSlotID > MAX_ADDITIONALSLOTS)
+            return false;
+
+        pSlotID -= MAX_ADDITIONALSLOTS;
+
+        if (pSlotID < MAX_COOLSLOTS)
+            return false;
+
+        pSlotID -= MAX_COOLSLOTS;
+
+        if (pSlotID < MAX_BLUEPRINTLIBRARYSLOTS)
+            return false;
+
         return false;
     }
 
@@ -289,7 +316,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             }
 
 
-            if ((iCraftingProgress == iCurrentValidRecipe.iTargetProgress) && !worldObj.isRemote) {
+            if ((iCraftingProgress == iCurrentValidRecipe.getMinimumProgress()) && !worldObj.isRemote) {
                 if (iOutPutStacks[0] != null) {
                     iOutPutStacks[0].stackSize += iCurrentValidRecipe.getResult(iCraftingStacks, iAdditionalCraftingStacks).stackSize;
                 } else {
@@ -323,7 +350,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
                 return 0F;
             }
 
-            return ((float)iCraftingProgress / (float) iCurrentValidRecipe.iTargetProgress);
+            return ((float) iCraftingProgress / (float) iCurrentValidRecipe.getMinimumProgress());
         }
 
         return 1F;
@@ -340,27 +367,71 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         if (iTongStacks[0] != null)
             tTongUsagesLeft = iTongStacks[0].getItemDamage();
 
-        for(AnvilRecipe tRecipe : iRecipes)
-        {
-            if(tRecipe.matchesRecipe(iCraftingStacks, iAdditionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft))
-            {
-                if (iOutPutStacks[0] != null)
-                {
-                    ItemStack tResultStack =  tRecipe.getResult(iCraftingStacks, iAdditionalCraftingStacks);
+        for (AnvilRecipe tRecipe : AnvilRecipeRegistry.getInstance().getRecipes()) {
+            if (tRecipe.matchesRecipe(iCraftingStacks, iAdditionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft)) {
+                if (iOutPutStacks[0] != null) {
+                    ItemStack tResultStack = tRecipe.getResult(iCraftingStacks, iAdditionalCraftingStacks);
 
                     if (!ItemStackHelper.equalsIgnoreStackSize(tResultStack, iOutPutStacks[0]))
                         continue;
 
-                    if ((tResultStack.stackSize + iOutPutStacks[0].stackSize) <= iOutPutStacks[0].getMaxStackSize())
-                    {
+                    if ((tResultStack.stackSize + iOutPutStacks[0].stackSize) <= iOutPutStacks[0].getMaxStackSize()) {
+                        if (tRecipe.getRequiresBlueprint()) {
+                            if (iBluePrintLibraryStacks[0] == null)
+                                continue;
+
+                            if (!(iBluePrintLibraryStacks[0].getItem() instanceof IBluePrintContainerItem))
+                                continue;
+
+                            ArrayList<ItemStack> tBluePrints = ((IBluePrintContainerItem) iBluePrintLibraryStacks[0].getItem()).getStoredBluePrints(iBluePrintLibraryStacks[0]);
+
+                            for (ItemStack tBluePrintStack : tBluePrints) {
+                                IBluePrintItem tBluePrint = (IBluePrintItem) tBluePrintStack.getItem();
+
+                                if (tRecipe.getBlueprintName().equals(tBluePrint.getBlueprintID(tBluePrintStack)) && tBluePrint.getBluePrintQuality(tBluePrintStack) > 0F) {
+                                    if (tRecipe.getRequiresKnowledge() && getAverageKnowledgeFloatValue(tRecipe.getKnowledgeName(), true) > 0F) {
+                                        iCurrentValidRecipe = tRecipe;
+                                        return;
+                                    } else if (!tRecipe.getRequiresKnowledge()) {
+                                        iCurrentValidRecipe = tRecipe;
+                                        return;
+                                    }
+
+                                }
+                            }
+                        } else if (!tRecipe.getRequiresBlueprint()) {
+                            iCurrentValidRecipe = tRecipe;
+                            return;
+                        }
+                    }
+                } else {
+                    if (tRecipe.getRequiresBlueprint()) {
+                        if (iBluePrintLibraryStacks[0] == null)
+                            continue;
+
+                        if (!(iBluePrintLibraryStacks[0].getItem() instanceof IBluePrintContainerItem))
+                            continue;
+
+                        ArrayList<ItemStack> tBluePrints = ((IBluePrintContainerItem) iBluePrintLibraryStacks[0].getItem()).getStoredBluePrints(iBluePrintLibraryStacks[0]);
+
+                        for (ItemStack tBluePrintStack : tBluePrints) {
+                            IBluePrintItem tBluePrint = (IBluePrintItem) tBluePrintStack.getItem();
+
+                            if (tRecipe.getBlueprintName().equals(tBluePrint.getBlueprintID(tBluePrintStack)) && tBluePrint.getBluePrintQuality(tBluePrintStack) > 0F) {
+                                if (tRecipe.getRequiresKnowledge() && getAverageKnowledgeFloatValue(tRecipe.getKnowledgeName(), true) > 0F) {
+                                    iCurrentValidRecipe = tRecipe;
+                                    return;
+                                } else if (!tRecipe.getRequiresKnowledge()) {
+                                    iCurrentValidRecipe = tRecipe;
+                                    return;
+                                }
+
+                            }
+                        }
+                    } else if (!tRecipe.getRequiresBlueprint()) {
                         iCurrentValidRecipe = tRecipe;
                         return;
                     }
-                }
-                else
-                {
-                    iCurrentValidRecipe = tRecipe;
-                    return;
                 }
             }
         }
@@ -373,9 +444,9 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             return;
         }
 
-        if (iCurrentValidRecipe.iIsShapeLess)
+        if (iCurrentValidRecipe.getUsesHammer())
         {
-            ArrayList<IAnvilRecipeComponent> tComponentList = new ArrayList<IAnvilRecipeComponent>(Arrays.asList(iCurrentValidRecipe.iComponents.clone()));
+            ArrayList<IAnvilRecipeComponent> tComponentList = new ArrayList<IAnvilRecipeComponent>(Arrays.asList(iCurrentValidRecipe.getComponents().clone()));
             for (int tSlotIndex = 0; tSlotIndex < MAX_CRAFTINGSLOTS; tSlotIndex++) {
                 if (iCraftingStacks[tSlotIndex] != null)
                 {
@@ -426,21 +497,21 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
                 iAdditionalCraftingStacks[tSlotIndex] = null;
         }
 
-        if (iCurrentValidRecipe.iHammerUsage > 0) {
+        if (iCurrentValidRecipe.getUsesHammer()) {
             if (iHammerStacks[0].isItemDamaged() == false) {
                 iHammerStacks[0].setItemDamage(150);
             }
-            iHammerStacks[0].setItemDamage(iHammerStacks[0].getItemDamage() - iCurrentValidRecipe.iHammerUsage);
+            iHammerStacks[0].setItemDamage(iHammerStacks[0].getItemDamage() - iCurrentValidRecipe.getHammerUsage());
             if (iHammerStacks[0].getItemDamage() == 0) {
                 iHammerStacks[0] = null;
             }
         }
 
-        if (iCurrentValidRecipe.iTongUsage > 0) {
+        if (iCurrentValidRecipe.getUsesTongs()) {
             if (iTongStacks[0].isItemDamaged() == false) {
                 iTongStacks[0].setItemDamage(150);
             }
-            iTongStacks[0].setItemDamage(iTongStacks[0].getItemDamage() - iCurrentValidRecipe.iTongUsage);
+            iTongStacks[0].setItemDamage(iTongStacks[0].getItemDamage() - iCurrentValidRecipe.getTongsUsage());
             if (iTongStacks[0].getItemDamage() == 0) {
                 iTongStacks[0] = null;
             }
@@ -609,6 +680,51 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         return null;
     }
 
+    public void registerNewWatchingPlayer(UUID pPlayerID) {
+        if (!iConnectedPlayers.containsKey(pPlayerID)) {
+            EntityPlayer pPlayer = getWorldObj().func_152378_a(pPlayerID);
+            iConnectedPlayers.put(pPlayerID, pPlayer);
+        }
+    }
+
+    public void removeWatchingPlayer(UUID pPlayerID) {
+        if (iConnectedPlayers.containsKey(pPlayerID))
+            iConnectedPlayers.remove(pPlayerID);
+    }
+
+    public float getAverageKnowledgeFloatValue(String pKnowledgeID, boolean pUseUnknownPlayers) {
+        float tTotalKnowledgeValue = 0F;
+        int tTotalPlayerCount = 0;
+
+        for (EntityPlayer pPlayer : iConnectedPlayers.values()) {
+            KnowledgeEntityProperty tKnowledgeCollection = (new KnowledgeEntityProperty()).get(pPlayer);
+            if (tKnowledgeCollection == null) {
+                if (pUseUnknownPlayers) {
+                    tTotalPlayerCount++;
+                }
+
+                continue;
+            }
+
+            IKnowledgedGameElement tKnowledge = tKnowledgeCollection.getKnowledge(pKnowledgeID);
+
+            if ((tKnowledge == null || (tKnowledge != null && tKnowledge.getExperienceLevel() == 0F)) && pUseUnknownPlayers) {
+                tTotalPlayerCount++;
+                continue;
+            }
+
+            if ((tKnowledge != null && tKnowledge.getExperienceLevel() > 0F)) {
+                tTotalKnowledgeValue += tKnowledge.getExperienceLevel();
+                tTotalPlayerCount++;
+            }
+        }
+
+        if (tTotalPlayerCount == 0)
+            return 0F;
+
+        return tTotalKnowledgeValue / tTotalPlayerCount;
+    }
+
     @Override
     public void markDirty()
     {
@@ -626,7 +742,13 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     @Override
     public void HandleCustomInput(String pInputID, String pInput) {
-        iInputName = pInput;
+        if (pInputID.equals(References.InternalNames.InputHandlers.Anvil.ITEMNAME)) {
+            iInputName = pInput;
+        } else if (pInputID.equals(References.InternalNames.InputHandlers.Anvil.PLAYEROPENGUI)) {
+            registerNewWatchingPlayer(UUID.fromString(pInput));
+        } else if (pInputID.equals(References.InternalNames.InputHandlers.Anvil.PLAYERCLOSEGUI)) {
+            removeWatchingPlayer(UUID.fromString(pInput));
+        }
     }
 
     public enum AnvilState

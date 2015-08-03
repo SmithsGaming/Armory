@@ -79,5 +79,11 @@ item.Armory.MultiArmor.Upgrade.Shoes.Right.name=Right foot Protector
 #Commands
 armory.usage=Central command for Armory related instructions, most of them are OP only.
 give-heated-item.usage=Gives heated Items. Syntax: <MaterialID> <ItemType> <Temperature>
+#
+#AnvilRecipeKnowledge
+Armory.Knowledge.AnvilRecipeKnowledge.Tier1=Complete Amateur
+Armory.Knowledge.AnvilRecipeKnowledge.Tier2=Poor Blacksmith
+Armory.Knowledge.AnvilRecipeKnowledge.Tier3=Good Blacksmith
+Armory.Knowledge.AnvilRecipeKnowledge.Tier4=Professional Blacksmith
 
 

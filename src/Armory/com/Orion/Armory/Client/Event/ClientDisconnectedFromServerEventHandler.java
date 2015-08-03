@@ -1,7 +1,7 @@
 package com.Orion.Armory.Client.Event;
 
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.AnvilRecipeRegistry;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
-import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent;
 
@@ -18,7 +18,7 @@ public class ClientDisconnectedFromServerEventHandler
     public void ClientDisconnectedFromServerEventHandler(FMLNetworkEvent.ClientDisconnectionFromServerEvent pEvent) {
         ArmoryInitializer.SystemInit.loadMaterialConfig();
 
-        TileEntityArmorsAnvil.clearAllStoredRecipes();
+        AnvilRecipeRegistry.getInstance().clearAllStoredRecipes();
         ArmoryInitializer.MedievalInitialization.initializeAnvilRecipes();
     }
 }

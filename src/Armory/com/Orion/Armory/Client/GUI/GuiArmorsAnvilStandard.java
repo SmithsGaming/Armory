@@ -9,6 +9,7 @@ import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.GUI.GuiDirection;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Client.TranslationKeys;
+import com.Orion.Armory.Util.References;
 import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.Container;
 import org.lwjgl.input.Keyboard;
@@ -64,7 +65,7 @@ public class GuiArmorsAnvilStandard extends ArmoryBaseGui {
 
         iComponents.addComponent(new ComponentImage(this, "Gui.Anvil.Logo", 17, 7, Textures.Gui.Anvil.HAMMER));
         iComponents.addComponent(new ComponentBorder(this, "Gui,Anvil.Name.Border", 61, 7, 150, 30, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
-        iComponents.addComponent(new ComponentTextbox(this, "Gui.Anvil.Name.Textbox", Minecraft.getMinecraft().fontRenderer, 65, 11, 142, 22));
+        iComponents.addComponent(new ComponentTextbox(this, "Gui.Anvil.Name.Textbox", Minecraft.getMinecraft().fontRenderer, 65, 11, 142, 22, References.InternalNames.InputHandlers.Anvil.ITEMNAME));
     }
 
     /**

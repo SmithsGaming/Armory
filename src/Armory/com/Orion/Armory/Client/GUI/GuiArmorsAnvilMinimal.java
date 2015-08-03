@@ -1,13 +1,19 @@
 package com.Orion.Armory.Client.GUI;
 
-import com.Orion.Armory.Client.GUI.Components.*;
+import com.Orion.Armory.Client.GUI.Components.ComponentBorder;
+import com.Orion.Armory.Client.GUI.Components.ComponentImage;
+import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
+import com.Orion.Armory.Client.GUI.Components.ComponentTextbox;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.InfoLedger;
 import com.Orion.Armory.Client.GUI.Components.MultiComponents.ComponentExtendedCraftingGrid;
 import com.Orion.Armory.Client.GUI.Components.MultiComponents.ComponentPlayerInventory;
 import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
+import com.Orion.Armory.Network.Messages.MessageCustomInput;
+import com.Orion.Armory.Network.NetworkManager;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Client.TranslationKeys;
+import com.Orion.Armory.Util.References;
 import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.Container;
 import org.lwjgl.input.Keyboard;
@@ -23,7 +29,7 @@ public class GuiArmorsAnvilMinimal extends ArmoryBaseGui {
     public GuiArmorsAnvilMinimal(Container pTargetedContainer) {
         super(pTargetedContainer);
 
-        this.xSize = 183;
+        this.xSize = 215;
         this.ySize = 255;
 
     }
@@ -39,19 +45,20 @@ public class GuiArmorsAnvilMinimal extends ArmoryBaseGui {
             return;
         }
 
-        iComponents.addComponent(new ComponentBorder(this, "Gui.Anvil.Background", 0, 0, xSize, ySize - 80, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
-        //iComponents.addComponent(new ComponentPlayerInventory(this, "Gui.Anvil.Player", 44, 172, (TileEntityArmorsAnvil.MAX_SLOTS), ComponentBorder.CornerTypes.Outwarts));
+        iComponents.addComponent(new ComponentBorder(this, References.InternalNames.GUIComponents.Anvil.BACKGROUND, 0, 0, xSize, ySize - 80, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
+        iComponents.addComponent(new ComponentPlayerInventory(this, References.InternalNames.GUIComponents.Anvil.PLAYERINVENTORY, 20, 172, (28), ComponentBorder.CornerTypes.Outwarts));
+        iComponents.addComponent(new ComponentExtendedCraftingGrid(this, References.InternalNames.GUIComponents.Anvil.EXTENDEDCRAFTING, 26, 51, 0, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS, Colors.DEFAULT, Colors.DEFAULT));
+        iComponents.addComponent(new ComponentSlot(this, References.InternalNames.GUIComponents.Anvil.HAMMERSLOT, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS, 18, 18, 163, 58, Textures.Gui.Anvil.HAMMERSLOT, Colors.DEFAULT));
+        iComponents.addComponent(new ComponentSlot(this, References.InternalNames.GUIComponents.Anvil.TONGSLOT, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS, 18, 18, 163, 130, Textures.Gui.Anvil.TONGSSLOT, Colors.DEFAULT));
+        iComponents.addComponent(new ComponentImage(this, References.InternalNames.GUIComponents.Anvil.LOGO, 17, 7, Textures.Gui.Anvil.HAMMER));
+        iComponents.addComponent(new ComponentBorder(this, References.InternalNames.GUIComponents.Anvil.SMITHINGSGUIDEBORDER, 178, 7, 30, 30, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
+        iComponents.addComponent(new ComponentSlot(this, References.InternalNames.GUIComponents.Anvil.SMITHINGSGUIDESLOT, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS + TileEntityArmorsAnvil.MAX_TONGSLOTS + TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS + TileEntityArmorsAnvil.MAX_COOLSLOTS, 18, 18, 184, 13, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
+        iComponents.addComponent(new ComponentBorder(this, References.InternalNames.GUIComponents.Anvil.TEXTBOXBORDER, 61, 7, 111, 30, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
+        iComponents.addComponent(new ComponentTextbox(this, References.InternalNames.GUIComponents.Anvil.TEXTBOX, Minecraft.getMinecraft().fontRenderer, 65, 11, 102, 22, References.InternalNames.InputHandlers.Anvil.ITEMNAME));
 
-        iComponents.addComponent(new ComponentPlayerInventory(this, "Gui.Anvil.Player", 4, 172, (28), ComponentBorder.CornerTypes.Outwarts));
-        this.iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.Anvil.InfoLine1, "", TranslationKeys.GUI.Anvil.InfoLine2}, Textures.Gui.Basic.INFOICON.getIcon()));
+        iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.Anvil.InfoLine1, "", TranslationKeys.GUI.Anvil.InfoLine2}, Textures.Gui.Basic.INFOICON.getIcon()));
 
-        iComponents.addComponent(new ComponentExtendedCraftingGrid(this, "Gui.Anvil.ExtendedCrafting", 10, 51, 0, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS, Colors.DEFAULT, Colors.DEFAULT));
-        iComponents.addComponent(new ComponentSlot(this, "Gui.Anvil.Tools.Slot.Hammer", TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS, 18, 18, 147, 58, Textures.Gui.Anvil.HAMMERSLOT, Colors.DEFAULT));
-        iComponents.addComponent(new ComponentSlot(this, "Gui.Anvil.Tools.Slot.Tongs", TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS, 18, 18, 147, 130, Textures.Gui.Anvil.TONGSSLOT, Colors.DEFAULT));
-
-        iComponents.addComponent(new ComponentImage(this, "Gui.Anvil.Logo", 17, 7, Textures.Gui.Anvil.HAMMER));
-        iComponents.addComponent(new ComponentBorder(this, "Gui,Anvil.Name.Border", 61, 7, 111, 30, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts));
-        iComponents.addComponent(new ComponentTextbox(this, "Gui.Anvil.Name.Textbox", Minecraft.getMinecraft().fontRenderer, 65, 11, 102, 22));
+        NetworkManager.INSTANCE.sendToServer(new MessageCustomInput("Gui.Connect", Minecraft.getMinecraft().thePlayer.getGameProfile().getId().toString(), this.iBaseTE.xCoord, this.iBaseTE.yCoord, this.iBaseTE.zCoord));
     }
 
     /**
@@ -61,5 +68,6 @@ public class GuiArmorsAnvilMinimal extends ArmoryBaseGui {
     {
         super.onGuiClosed();
         Keyboard.enableRepeatEvents(false);
+        NetworkManager.INSTANCE.sendToServer(new MessageCustomInput("Gui.Disconnect", Minecraft.getMinecraft().thePlayer.getGameProfile().getId().toString(), this.iBaseTE.xCoord, this.iBaseTE.yCoord, this.iBaseTE.zCoord));
     }
 }
