@@ -13,18 +13,12 @@ import io.netty.buffer.ByteBuf;
  */
 public class MessageCustomInput implements IMessage {
 
-    public int iXCoord, iYCoord, iZCoord;
-
     public String iInputID;
     public String iInput;
 
-    public MessageCustomInput(String pInputID, String pInput, int pXCoord, int pYCoord, int pZCoord) {
+    public MessageCustomInput(String pInputID, String pInput) {
         iInput = pInput;
         iInputID = pInputID;
-
-        iXCoord = pXCoord;
-        iYCoord = pYCoord;
-        iZCoord = pZCoord;
     }
 
     public MessageCustomInput() {
@@ -35,10 +29,6 @@ public class MessageCustomInput implements IMessage {
         iInputID = ByteBufUtils.readUTF8String(buf);
 
         iInput = ByteBufUtils.readUTF8String(buf);
-
-        iXCoord = buf.readInt();
-        iYCoord = buf.readInt();
-        iZCoord = buf.readInt();
     }
 
     @Override
@@ -46,9 +36,5 @@ public class MessageCustomInput implements IMessage {
         ByteBufUtils.writeUTF8String(buf, iInputID);
 
         ByteBufUtils.writeUTF8String(buf, iInput);
-
-        buf.writeInt(iXCoord);
-        buf.writeInt(iYCoord);
-        buf.writeInt(iZCoord);
     }
 }

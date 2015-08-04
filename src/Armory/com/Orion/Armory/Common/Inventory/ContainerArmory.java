@@ -6,14 +6,17 @@ package com.Orion.Armory.Common.Inventory;
  */
 
 import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
+import com.Orion.Armory.Common.TileEntity.Core.ICustomInputHandler;
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
+import com.Orion.Armory.Network.Messages.MessageCustomInput;
+import com.Orion.Armory.Network.NetworkManager;
 import com.Orion.Armory.Util.Core.ItemStackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public abstract class ContainerArmory extends Container {
+public abstract class ContainerArmory extends Container implements ICustomInputHandler {
     protected final int PLAYER_INVENTORY_ROWS = 3;
     protected final int PLAYER_INVENTORY_COLUMNS = 9;
     public TileEntityArmory iTargetTE;
@@ -90,7 +93,7 @@ public abstract class ContainerArmory extends Container {
     }
 
     public void updateComponentResult(IGUIComponent pComponent, String pComponentID, String pNewValue) {
-        iTargetTE.handleGuiComponentUpdate(pComponentID, pNewValue);
+        NetworkManager.INSTANCE.sendToServer(new MessageCustomInput(pComponentID, pNewValue));
     }
 
 }

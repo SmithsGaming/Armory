@@ -101,4 +101,9 @@ public class ContainerArmorsAnvilMinimal extends ContainerArmory {
 
         return newItemStack;
     }
+
+    @Override
+    public void HandleCustomInput(String pInputID, String pInput) {
+        iTargetTE.handleGuiComponentUpdate(pInputID, pInput);
+    }
 }

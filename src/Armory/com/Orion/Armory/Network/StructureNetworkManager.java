@@ -1,16 +1,8 @@
 package com.Orion.Armory.Network;
 
-import com.Orion.Armory.Network.Handlers.MessageHandlerCustomInput;
-import com.Orion.Armory.Network.Handlers.MessageHandlerTileEntityArmorsAnvil;
-import com.Orion.Armory.Network.Handlers.MessageHandlerTileEntityFirePit;
-import com.Orion.Armory.Network.Handlers.MessageHandlerTileEntityHeater;
 import com.Orion.Armory.Network.Handlers.Structure.MessageHandlerOnCreateMasterEntity;
 import com.Orion.Armory.Network.Handlers.Structure.MessageHandlerOnCreateSlaveEntity;
 import com.Orion.Armory.Network.Handlers.Structure.MessageHandlerOnUpdateMasterData;
-import com.Orion.Armory.Network.Messages.MessageCustomInput;
-import com.Orion.Armory.Network.Messages.MessageTileEntityArmorsAnvil;
-import com.Orion.Armory.Network.Messages.MessageTileEntityFirePit;
-import com.Orion.Armory.Network.Messages.MessageTileEntityHeater;
 import com.Orion.Armory.Network.Messages.Structure.MessageOnCreateMasterEntity;
 import com.Orion.Armory.Network.Messages.Structure.MessageOnCreateSlaveEntity;
 import com.Orion.Armory.Network.Messages.Structure.MessageOnUpdateMasterData;
