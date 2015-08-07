@@ -43,4 +43,8 @@ public class ContainerSmithingsGuideBlueprints extends ContainerArmory {
     }
 
 
+    @Override
+    public void HandleCustomInput(String pInputID, String pInput) {
+
+    }
 }

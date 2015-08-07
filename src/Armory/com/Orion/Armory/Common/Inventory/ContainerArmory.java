@@ -96,4 +96,8 @@ public abstract class ContainerArmory extends Container implements ICustomInputH
         NetworkManager.INSTANCE.sendToServer(new MessageCustomInput(pComponentID, pNewValue));
     }
 
+    @Override
+    public void HandleCustomInput(String pInputID, String pInput) {
+
+    }
 }

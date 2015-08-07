@@ -300,7 +300,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     @Override
     public void handleGuiComponentUpdate(String pInputID, String pInput) {
-        NetworkManager.INSTANCE.sendToServer(new MessageCustomInput(pInputID, pInput, xCoord, yCoord, zCoord));
+        NetworkManager.INSTANCE.sendToServer(new MessageCustomInput(pInputID, pInput));
     }
 
     @Override

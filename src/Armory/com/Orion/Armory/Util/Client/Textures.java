@@ -122,6 +122,7 @@ public class Textures
             public static CustomResource HAMMER = new CustomResource("Gui.Basic.Image.Hammer", Basic.Images.IMAGETEXTUREPATH + "AnvilHammer.png", Colors.DEFAULT, 0,0,30, 30);
             public static CustomResource HAMMERSLOT = new CustomResource("Gui.Basic.Slot.Hammer", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 18,0,18,18);
             public static CustomResource TONGSSLOT = new CustomResource("Gui.Basic.Slot.Tongs", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 36,0,18,18);
+            public static CustomResource BOOKSLOT = new CustomResource("Gui.Basic.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 54, 0, 18, 18);
         }
 
         public static class Compatibility

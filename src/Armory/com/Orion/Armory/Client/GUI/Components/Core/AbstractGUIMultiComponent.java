@@ -7,8 +7,6 @@ package com.Orion.Armory.Client.GUI.Components.Core;
 
 import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
-import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTipProvider;
-import com.Orion.Armory.Client.GUI.Components.ToolTips.ToolTipRenderer;
 import com.Orion.Armory.Util.Core.Rectangle;
 import org.lwjgl.opengl.GL11;
 
@@ -16,16 +14,27 @@ import java.util.ArrayList;
 
 public abstract class AbstractGUIMultiComponent implements IComponentManager, IGUIComponent
 {
-    StandardComponentManager iSubComponents;
-
-    protected ArmoryBaseGui iGui;
-
     public int iHeight = 0;
     public int iWidth = 0;
     public int iLeft = 0;
     public int iTop = 0;
-
+    protected ArmoryBaseGui iGui;
+    StandardComponentManager iSubComponents;
     String iInternalName;
+
+    public AbstractGUIMultiComponent(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeigth) {
+        iSubComponents = new StandardComponentManager(pGui);
+
+        iGui = pGui;
+
+        iLeft = pLeft;
+        iTop = pTop;
+
+        iWidth = pWidth;
+        iHeight = pHeigth;
+
+        iInternalName = pInternalName;
+    }
 
     @Override
     public Rectangle getToolTipVisibileArea() {
@@ -51,22 +60,6 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
     public ArmoryBaseGui getBaseGui() {
         return iGui;
     }
-
-    public AbstractGUIMultiComponent(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeigth)
-    {
-        iSubComponents = new StandardComponentManager(pGui);
-
-        iGui = pGui;
-
-        iLeft = pLeft;
-        iTop = pTop;
-
-        iWidth = pWidth;
-        iHeight = pHeigth;
-
-        iInternalName = pInternalName;
-    }
-
 
     public String getInternalName() {
         return iInternalName;

@@ -63,4 +63,9 @@ public class ContainerHeater extends ContainerArmory {
     public TileEntityHeater getTileEntity () {
         return iTEHeater;
     }
+
+    @Override
+    public void HandleCustomInput(String pInputID, String pInput) {
+
+    }
 }

@@ -4,6 +4,7 @@ import com.Orion.Armory.API.Knowledge.IBluePrintContainerItem;
 import com.Orion.Armory.Common.Item.ItemHammer;
 import com.Orion.Armory.Common.Item.ItemTongs;
 import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
+import com.Orion.Armory.Common.TileEntity.Core.ICustomInputHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
@@ -104,6 +105,6 @@ public class ContainerArmorsAnvilMinimal extends ContainerArmory {
 
     @Override
     public void HandleCustomInput(String pInputID, String pInput) {
-        iTargetTE.handleGuiComponentUpdate(pInputID, pInput);
+        ((ICustomInputHandler) iTargetTE).HandleCustomInput(pInputID, pInput);
     }
 }

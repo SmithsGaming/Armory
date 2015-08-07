@@ -254,6 +254,7 @@ public class References
                 public static final String BACKGROUND = "Gui.Anvil.Background";
                 public static final String PLAYERINVENTORY = "Gui.Anvil.Player";
                 public static final String EXTENDEDCRAFTING = "Gui.Anvil.ExtendedCrafting";
+                public static final String TOOLSLOTBORDER = "Gui.Anvil.Tools.Border";
                 public static final String HAMMERSLOT = "Gui.Anvil.Tools.Slot.Hammer";
                 public static final String TONGSLOT = "Gui.Anvil.Tools.Slot.Tongs";
                 public static final String LOGO = "Gui.Anvil.Logo";
@@ -294,6 +295,7 @@ public class References
             public final static String FirePit = iModelLocation + "FirePit.obj";
             public final static String Heater = iModelLocation + "Heater.obj";
             public final static String Anvil = iModelLocation + "ArmorsAnvil.obj";
+            public final static String SmithingsGuide = iModelLocation + "Book.obj";
         }
     }
 
