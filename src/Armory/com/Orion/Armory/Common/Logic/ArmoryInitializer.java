@@ -28,6 +28,7 @@ import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ItemUpgradeMedieval;
 import com.Orion.Armory.Common.Item.*;
+import com.Orion.Armory.Common.Item.Knowledge.ItemSmithingsGuide;
 import com.Orion.Armory.Common.Material.ArmorMaterial;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
@@ -1253,6 +1254,7 @@ public class ArmoryInitializer
             GeneralRegistry.Items.iHammer = new ItemHammer();
             GeneralRegistry.Items.iTongs = new ItemTongs();
             GeneralRegistry.Items.iMedievalUpgrades = new ItemUpgradeMedieval();
+            GeneralRegistry.Items.iSmithingsGuide = new ItemSmithingsGuide();
 
             for(MultiLayeredArmor tCore: MaterialRegistry.getInstance().getAllRegisteredArmors().values())
             {
@@ -1268,6 +1270,7 @@ public class ArmoryInitializer
             GameRegistry.registerItem(GeneralRegistry.Items.iHammer, InternalNames.Items.ItemHammer);
             GameRegistry.registerItem(GeneralRegistry.Items.iTongs, InternalNames.Items.ItemTongs);
             GameRegistry.registerItem(GeneralRegistry.Items.iMedievalUpgrades, InternalNames.Items.ItemMedievalUpdrade);
+            GameRegistry.registerItem(GeneralRegistry.Items.iSmithingsGuide, InternalNames.Items.ItemSmithingsGuide);
         }
 
         public static void RegisterTileEntities()

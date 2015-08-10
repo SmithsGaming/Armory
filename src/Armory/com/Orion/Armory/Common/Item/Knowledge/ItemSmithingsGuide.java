@@ -9,6 +9,7 @@ package com.Orion.Armory.Common.Item.Knowledge;
 import com.Orion.Armory.API.Item.InventoryItem;
 import com.Orion.Armory.API.Knowledge.IBluePrintContainerItem;
 import com.Orion.Armory.Common.Inventory.Items.InventorySmithingsGuideBlueprints;
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.References;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -18,6 +19,12 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 
 public class ItemSmithingsGuide extends InventoryItem implements IBluePrintContainerItem {
+
+    public ItemSmithingsGuide() {
+        this.setMaxStackSize(1);
+        this.setCreativeTab(GeneralRegistry.iTabArmoryComponents);
+        this.setUnlocalizedName(References.InternalNames.Items.ItemSmithingsGuide);
+    }
 
     @Override
     public ItemStack onItemRightClick(ItemStack pStack, World pWorld, EntityPlayer pPlayer) {

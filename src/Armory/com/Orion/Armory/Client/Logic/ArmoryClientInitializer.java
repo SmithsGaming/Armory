@@ -5,14 +5,11 @@ package com.Orion.Armory.Client.Logic;
  *   Created on: 19-9-2014
  */
 
-import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.API.Armor.MultiLayeredArmor;
 import com.Orion.Armory.API.Events.Client.RegisterItemResourcesEvent;
 import com.Orion.Armory.API.Events.Client.RegisterMaterialResourceEvent;
-import com.Orion.Armory.Client.Renderer.Items.ItemHeatedIngotRenderer;
-import com.Orion.Armory.Client.Renderer.Items.ItemRendererAnvil;
-import com.Orion.Armory.Client.Renderer.Items.ItemRendererFirePit;
-import com.Orion.Armory.Client.Renderer.Items.ItemRendererHeater;
+import com.Orion.Armory.API.Materials.IArmorMaterial;
+import com.Orion.Armory.Client.Renderer.Items.*;
 import com.Orion.Armory.Client.Renderer.TileEntities.AnvilTESR;
 import com.Orion.Armory.Client.Renderer.TileEntities.FirePitTESR;
 import com.Orion.Armory.Client.Renderer.TileEntities.HeaterTESR;
@@ -172,6 +169,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockHeater), new ItemRendererHeater());
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockAnvil), new ItemRendererAnvil());
             MinecraftForgeClient.registerItemRenderer(GeneralRegistry.Items.iHeatedIngot, new ItemHeatedIngotRenderer());
+            MinecraftForgeClient.registerItemRenderer(GeneralRegistry.Items.iSmithingsGuide, new ItemRendererSmithingsGuide());
         }
 
 

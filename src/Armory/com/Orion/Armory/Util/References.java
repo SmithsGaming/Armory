@@ -208,6 +208,7 @@ public class References
             public static final String ItemNugget = "Armory.Items.Nugget";
             public static final String ItemPlate = "Armory.Items.Plate";
             public static final String ItemMedievalUpdrade = "Armory.Items.Medieval.Upgrade";
+            public static final String ItemSmithingsGuide = "Armory.Items.SmithingsGuide";
         }
 
         public static final  class Blocks
