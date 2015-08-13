@@ -296,7 +296,7 @@ public class References
             public final static String FirePit = iModelLocation + "FirePit.obj";
             public final static String Heater = iModelLocation + "Heater.obj";
             public final static String Anvil = iModelLocation + "ArmorsAnvil.obj";
-            public final static String SmithingsGuide = iModelLocation + "Book.obj";
+            public final static String SmithingsGuide = iModelLocation + "Book - Less Vertices.obj";
         }
     }
 
@@ -339,6 +339,9 @@ public class References
         public class Rendering {
             public static final String MaxRenderPasses = "RenderPasses";
             public static final String ResourceIDs = "ResourceIDs";
+            public static final String OpenState = "ItemOpen";
+            public static final String TicksSinceOpen = "SinceOpen";
+            public static final String TicksSinceClose = "SinceClose";
         }
 
         public class KnowledgeCrafting {
