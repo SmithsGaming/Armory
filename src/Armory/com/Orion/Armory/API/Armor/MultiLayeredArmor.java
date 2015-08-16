@@ -4,7 +4,7 @@ package com.Orion.Armory.API.Armor;
 *   Created by: Orion
 *   Created on: 28-6-2014
 */
-import com.Orion.Armory.Common.Registry.GeneralRegistry;
+
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.References;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -25,12 +25,11 @@ import java.util.Iterator;
 import java.util.Map;
 
 public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArmor {
+    //Stores the blank icon used for rendering empty layers part of items that contain not the max amount of parts
+    public static IIcon iBlankIcon;
     ///Values needed for the Vanilla renderer
     //Stores the MaxRenderPasses a Armorpiece of this kind needs to render all its components
     public int iMaxRenderPasses;
-    //Stores the blank icon used for rendering empty layers part of items that contain not the max amount of parts
-    public IIcon iBlankIcon;
-
     //Hashmaps for storing the Resources needed for rendering.
     //The CustomResource object stores both the Colors, Icons and TileEntities-textures
     public HashMap<String, CustomResource> iResources = new HashMap<String, CustomResource>();

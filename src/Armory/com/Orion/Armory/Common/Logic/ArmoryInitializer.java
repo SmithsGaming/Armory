@@ -53,10 +53,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.ListIterator;
+import java.util.*;
 
 public class ArmoryInitializer
 {
@@ -68,7 +65,7 @@ public class ArmoryInitializer
         SystemInit.RegisterTileEntities();
         SystemInit.loadMaterialConfig();
         MedievalInitialization.prepareGame();
-        SystemInit.initializeOreDic();
+        //SystemInit.initializeOreDic();
     }
 
     public static void postInitializeServer() {
@@ -463,10 +460,19 @@ public class ArmoryInitializer
 
                 AnvilRecipeRegistry.getInstance().addRecipe(tPlateRecipe);
 
-                ItemStack tNuggetStack = new ItemStack(GeneralRegistry.Items.iNugget, 9);
-                NBTTagCompound pNuggetCompound = new NBTTagCompound();
-                pNuggetCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getInternalMaterialName());
-                tNuggetStack.setTagCompound(pNuggetCompound);
+                ItemStack tNuggetStack;
+                if (OreDictionary.doesOreNameExist("nugget" + tMaterial.getOreDicName())) {
+                    List<ItemStack> tStacks = OreDictionary.getOres("nugget" + tMaterial.getOreDicName());
+
+                    tNuggetStack = tStacks.get(tStacks.size() - 1);
+                    tNuggetStack.stackSize = 9;
+                } else {
+                    tNuggetStack = new ItemStack(GeneralRegistry.Items.iNugget, 9);
+
+                    NBTTagCompound pNuggetCompound = new NBTTagCompound();
+                    pNuggetCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getInternalMaterialName());
+                    tNuggetStack.setTagCompound(pNuggetCompound);
+                }
 
                 AnvilRecipe tNuggetRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.INGOT, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F) * 0.95F)))
                         .setProgress(6).setResult(tNuggetStack).setHammerUsage(4).setTongUsage(0).setShapeLess();
