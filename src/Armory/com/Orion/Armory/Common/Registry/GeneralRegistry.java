@@ -31,7 +31,6 @@ public class GeneralRegistry {
     //public static QuantumTab iTabQuantumArmor;
     public static ComponentsTab iTabArmoryComponents;
     public static MedievalUpgradeTab iTabMedievalUpgrades;
-    //iInstance, iLogger and dummy iArmorMaterial.
     protected static GeneralRegistry iInstance;
 
     public GeneralRegistry()
