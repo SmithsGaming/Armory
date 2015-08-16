@@ -25,17 +25,17 @@ public class ContainerArmorsAnvilMinimal extends ContainerArmory {
             int tRowIndex = ((tSlotIndex) / 5);
             int tColumnIndex = (tSlotIndex) % 5;
 
-            addSlotToContainer(new Slot(pTargetTE, tSlotIndex, 34 + 18 * tColumnIndex, 59 + 18 * tRowIndex));
+            addSlotToContainer(new Slot(pTargetTE, tSlotIndex, 18 + 18 * tColumnIndex, 59 + 18 * tRowIndex));
         }
 
-        addSlotToContainer(new Slot(pTargetTE, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS, 164, 95) {
+        addSlotToContainer(new Slot(pTargetTE, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS, 148, 95) {
             @Override
             public boolean isItemValid (ItemStack pItemStack) {
                 return false;
             }
         });
 
-        addSlotToContainer(new Slot(pTargetTE, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS, 164, 59) {
+        addSlotToContainer(new Slot(pTargetTE, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS, 185, 110) {
 
             @Override
             public boolean isItemValid (ItemStack pItemStack) {
@@ -43,7 +43,7 @@ public class ContainerArmorsAnvilMinimal extends ContainerArmory {
             }
         });
 
-        addSlotToContainer(new Slot(pTargetTE, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS, 164, 131) {
+        addSlotToContainer(new Slot(pTargetTE, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS, 185, 132) {
 
             @Override
             public boolean isItemValid (ItemStack pItemStack) {
@@ -51,7 +51,7 @@ public class ContainerArmorsAnvilMinimal extends ContainerArmory {
             }
         });
 
-        addSlotToContainer(new Slot(pTargetTE, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS + TileEntityArmorsAnvil.MAX_TONGSLOTS + TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS + TileEntityArmorsAnvil.MAX_COOLSLOTS, 185, 14) {
+        addSlotToContainer(new Slot(pTargetTE, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS + TileEntityArmorsAnvil.MAX_TONGSLOTS + TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS + TileEntityArmorsAnvil.MAX_COOLSLOTS, 185, 58) {
 
             @Override
             public boolean isItemValid(ItemStack pItemStack) {

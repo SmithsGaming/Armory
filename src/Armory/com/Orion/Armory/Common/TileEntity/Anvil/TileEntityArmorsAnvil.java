@@ -203,7 +203,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         pSlotID -= MAX_COOLSLOTS;
 
         if (pSlotID < MAX_BLUEPRINTLIBRARYSLOTS) {
-            iCoolStacks[pSlotID] = pNewItemStack;
+            iBluePrintLibraryStacks[pSlotID] = pNewItemStack;
             iCraftingProgress = 0;
             iCurrentValidRecipe = null;
             findValidRecipe();

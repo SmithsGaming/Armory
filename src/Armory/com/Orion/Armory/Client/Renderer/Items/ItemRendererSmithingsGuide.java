@@ -8,8 +8,6 @@ package com.Orion.Armory.Client.Renderer.Items;
 
 import com.Orion.Armory.Client.Handler.ArmoryClientTickHandler;
 import com.Orion.Armory.Client.Models.ModelItemSmithingsGuide;
-import com.Orion.Armory.Util.Client.Color.Color;
-import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.References;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
@@ -54,6 +52,7 @@ public class ItemRendererSmithingsGuide implements IItemRenderer {
         GL11.glRotatef(80F, 1F, 0F, 0F);
         GL11.glRotatef(100F, 0F, 0F, 1F);
         GL11.glRotatef(50F, 0F, 1F, 0F);
+        GL11.glRotatef(-60F, 1F, 0F, 0F);
 
         renderBook(pStack, pPartialTickTime);
 
@@ -63,11 +62,12 @@ public class ItemRendererSmithingsGuide implements IItemRenderer {
     private void renderItemInHand(ItemStack pStack, float pPartialTickTime) {
         GL11.glPushMatrix();
 
-        GL11.glTranslatef(0.25F, 0.4F, 0.1F);
+        GL11.glTranslatef(0.50F, 0.4F, 0.1F);
 
         GL11.glRotatef(80F, 1F, 0F, 0F);
-        GL11.glRotatef(180F, 0F, 0F, 1F);
+        GL11.glRotatef(100F, 0F, 0F, 1F);
         GL11.glRotatef(50F, 0F, 1F, 0F);
+        GL11.glRotatef(-90F, 1F, 0F, 0F);
 
         renderBook(pStack, pPartialTickTime);
 
@@ -83,55 +83,6 @@ public class ItemRendererSmithingsGuide implements IItemRenderer {
     }
 
     private void renderItemInInventory(ItemStack pStack, float pPartialTickTime) {
-        GL11.glPushMatrix();
-
-        float openingAngle = 0F;
-        float bookRotationAngle = 0F;
-        float bookMovement = 0F;
-
-        if (!(pStack.getTagCompound() == null)) {
-            if ((pStack.getTagCompound().hasKey(References.NBTTagCompoundData.Rendering.OpenState))) {
-                if (pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceOpen) < 4) {
-                    if (pStack.getTagCompound().getBoolean(References.NBTTagCompoundData.Rendering.OpenState)) {
-                        openingAngle = (135F / iTicksForOpenCloseAnimation) * pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceOpen) + (135F / iTicksForOpenCloseAnimation) * pPartialTickTime;
-                        bookRotationAngle = (30F / iTicksForOpenCloseAnimation) * pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceOpen) + (30F / iTicksForOpenCloseAnimation) * pPartialTickTime;
-                    }
-                } else {
-                    openingAngle = 135F;
-                    bookRotationAngle = 30F;
-                }
-            }
-        }
-
-
-        GL11.glTranslatef(8F, 8F, 8F);
-        GL11.glScalef(20F, 20F, 20F);
-
-        GL11.glRotatef(-90F, 0F, 1F, 0F);
-        GL11.glRotatef(180F, 1F, 0F, 0F);
-        GL11.glRotatef(75F, 0F, 0F, 1F);
-
-        GL11.glPushMatrix();
-        GL11.glRotatef(bookRotationAngle, 1F, 0F, 0F);
-
-        Colors.General.RED.performGLColor();
-        Minecraft.getMinecraft().renderEngine.bindTexture(iRightTexture);
-        iModel.renderPart("RightSide_Cube.002");
-
-        GL11.glTranslatef(0F, -0.1F, -0.25F);
-        GL11.glRotatef(360 - openingAngle, 1F, 0F, 0F);
-
-        Colors.General.GREEN.performGLColor();
-        Minecraft.getMinecraft().renderEngine.bindTexture(iLeftTexture);
-        iModel.renderPart("LeftSide_Cube.003");
-
-        Color.resetGLColor();
-        GL11.glPopMatrix();
-
-        GL11.glPopMatrix();
-    }
-
-    private void renderBook(ItemStack pStack, float pPartialTickTime) {
         float openingAngle = 0F;
         float bookRotationAngle = 0F;
 
@@ -143,16 +94,40 @@ public class ItemRendererSmithingsGuide implements IItemRenderer {
                             openingAngle = (135F / iTicksForOpenCloseAnimation) * pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceOpen) + (135F / iTicksForOpenCloseAnimation) * pPartialTickTime;
                             bookRotationAngle = (30F / iTicksForOpenCloseAnimation) * pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceOpen) + (30F / iTicksForOpenCloseAnimation) * pPartialTickTime;
                         }
+
+                        if (openingAngle > 135F)
+                            openingAngle = 135F;
+
+                        if (openingAngle < 0F)
+                            openingAngle = 0F;
+
+                        if (bookRotationAngle > 30F)
+                            bookRotationAngle = 30F;
+
+                        if (bookRotationAngle < 0F)
+                            bookRotationAngle = 0F;
                     } else {
                         openingAngle = 135F;
                         bookRotationAngle = 30F;
                     }
                 } else {
                     if (pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceClose) > 0) {
-                        if (pStack.getTagCompound().getBoolean(References.NBTTagCompoundData.Rendering.OpenState)) {
-                            openingAngle = (135F / iTicksForOpenCloseAnimation) * pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceClose) + (135F / iTicksForOpenCloseAnimation) * pPartialTickTime;
-                            bookRotationAngle = (30F / iTicksForOpenCloseAnimation) * pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceClose) + (30F / iTicksForOpenCloseAnimation) * pPartialTickTime;
+                        if (!pStack.getTagCompound().getBoolean(References.NBTTagCompoundData.Rendering.OpenState)) {
+                            openingAngle = (135F / iTicksForOpenCloseAnimation) * pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceClose) - (135F / iTicksForOpenCloseAnimation) * pPartialTickTime;
+                            bookRotationAngle = (30F / iTicksForOpenCloseAnimation) * pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceClose) - (30F / iTicksForOpenCloseAnimation) * pPartialTickTime;
                         }
+
+                        if (openingAngle > 135F)
+                            openingAngle = 135F;
+
+                        if (openingAngle < 0F)
+                            openingAngle = 0F;
+
+                        if (bookRotationAngle > 30F)
+                            bookRotationAngle = 30F;
+
+                        if (bookRotationAngle < 0F)
+                            bookRotationAngle = 0F;
                     } else {
                         openingAngle = 0F;
                         bookRotationAngle = 0F;
@@ -161,17 +136,104 @@ public class ItemRendererSmithingsGuide implements IItemRenderer {
             }
         }
 
+        float horizontalBookMovement = (float) ((openingAngle / 135) * 3.5);
+
+
+
         GL11.glPushMatrix();
-        GL11.glRotatef(-1 * bookRotationAngle, 1F, 0F, 0F);
+
+        GL11.glTranslatef(3.5F + horizontalBookMovement, 8F, 4F);
+        GL11.glScalef(17F, 20F, 20F);
+
+        GL11.glRotatef(-90F, 1F, 0F, 0F);
+        GL11.glRotatef(90F, 0F, 1F, 0F);
+
+        GL11.glRotatef(-bookRotationAngle / 2, 1F, 0F, 0F);
+
+        GL11.glPushMatrix();
 
         Minecraft.getMinecraft().renderEngine.bindTexture(iRightTexture);
         iModel.renderPart("RightSide_Cube.002");
 
-        GL11.glTranslatef(0F, 0.1F, -0.25F);
-        GL11.glRotatef(360 - openingAngle, 1F, 0F, 0F);
+        GL11.glRotatef(180F, 0F, 0F, 1F);
+        GL11.glTranslatef(0F, 0.2F, 0F);
+        GL11.glRotatef(openingAngle, 1F, 0F, 0F);
 
         Minecraft.getMinecraft().renderEngine.bindTexture(iLeftTexture);
-        iModel.renderPart("LeftSide_Cube.003");
+        iModel.renderPart("RightSide_Cube.002");
+
+        GL11.glPopMatrix();
+
+        GL11.glPopMatrix();
+    }
+
+    private void renderBook(ItemStack pStack, float pPartialTickTime) {
+        float openingAngle = 0F;
+        float bookRotationAngle = 0F;
+
+
+        if (!(pStack.getTagCompound() == null)) {
+            if ((pStack.getTagCompound().hasKey(References.NBTTagCompoundData.Rendering.OpenState))) {
+                if (pStack.getTagCompound().getBoolean(References.NBTTagCompoundData.Rendering.OpenState)) {
+                    if (pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceOpen) < 6) {
+                        if (pStack.getTagCompound().getBoolean(References.NBTTagCompoundData.Rendering.OpenState)) {
+                            openingAngle = (135F / iTicksForOpenCloseAnimation) * pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceOpen) + (135F / iTicksForOpenCloseAnimation) * pPartialTickTime;
+                            bookRotationAngle = (30F / iTicksForOpenCloseAnimation) * pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceOpen) + (30F / iTicksForOpenCloseAnimation) * pPartialTickTime;
+                        }
+
+                        if (openingAngle > 135F)
+                            openingAngle = 135F;
+
+                        if (openingAngle < 0F)
+                            openingAngle = 0F;
+
+                        if (bookRotationAngle > 30F)
+                            bookRotationAngle = 30F;
+
+                        if (bookRotationAngle < 0F)
+                            bookRotationAngle = 0F;
+                    } else {
+                        openingAngle = 135F;
+                        bookRotationAngle = 30F;
+                    }
+                } else {
+                    if (pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceClose) > 0) {
+                        if (!pStack.getTagCompound().getBoolean(References.NBTTagCompoundData.Rendering.OpenState)) {
+                            openingAngle = (135F / iTicksForOpenCloseAnimation) * pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceClose) - (135F / iTicksForOpenCloseAnimation) * pPartialTickTime;
+                            bookRotationAngle = (30F / iTicksForOpenCloseAnimation) * pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceClose) - (30F / iTicksForOpenCloseAnimation) * pPartialTickTime;
+                        }
+
+                        if (openingAngle > 135F)
+                            openingAngle = 135F;
+
+                        if (openingAngle < 0F)
+                            openingAngle = 0F;
+
+                        if (bookRotationAngle > 30F)
+                            bookRotationAngle = 30F;
+
+                        if (bookRotationAngle < 0F)
+                            bookRotationAngle = 0F;
+                    } else {
+                        openingAngle = 0F;
+                        bookRotationAngle = 0F;
+                    }
+                }
+            }
+        }
+
+
+        GL11.glPushMatrix();
+        GL11.glRotatef(-bookRotationAngle, 1F, 0F, 0F);
+
+        Minecraft.getMinecraft().renderEngine.bindTexture(iRightTexture);
+        iModel.renderPart("RightSide_Cube.002");
+
+        GL11.glRotatef(180F, 0F, 0F, 1F);
+        GL11.glRotatef(openingAngle, 1F, 0F, 0F);
+
+        Minecraft.getMinecraft().renderEngine.bindTexture(iLeftTexture);
+        iModel.renderPart("RightSide_Cube.002");
 
         GL11.glPopMatrix();
     }

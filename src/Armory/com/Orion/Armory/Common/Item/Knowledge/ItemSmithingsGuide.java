@@ -76,6 +76,29 @@ public class ItemSmithingsGuide extends InventoryItem implements IBluePrintConta
     }
 
     @Override
+    public Entity createEntity(World pWorld, Entity pThrowingEntity, ItemStack pStack) {
+        if (pStack.getTagCompound() == null)
+            pStack.setTagCompound(new NBTTagCompound());
+
+        if (!(pStack.getTagCompound().hasKey(References.NBTTagCompoundData.Rendering.OpenState))) {
+            pStack.getTagCompound().setBoolean(References.NBTTagCompoundData.Rendering.OpenState, false);
+            pStack.getTagCompound().setInteger(References.NBTTagCompoundData.Rendering.TicksSinceClose, 0);
+
+            return super.createEntity(pWorld, pThrowingEntity, pStack);
+        } else {
+            if (pStack.getTagCompound().getBoolean(References.NBTTagCompoundData.Rendering.OpenState)) {
+                pStack.getTagCompound().removeTag(References.NBTTagCompoundData.Rendering.TicksSinceOpen);
+                pStack.getTagCompound().setBoolean(References.NBTTagCompoundData.Rendering.OpenState, false);
+                pStack.getTagCompound().setInteger(References.NBTTagCompoundData.Rendering.TicksSinceClose, 0);
+            } else {
+                pStack.getTagCompound().setBoolean(References.NBTTagCompoundData.Rendering.OpenState, false);
+                pStack.getTagCompound().setInteger(References.NBTTagCompoundData.Rendering.TicksSinceOpen, 0);
+            }
+        }
+        return super.createEntity(pWorld, pThrowingEntity, pStack);
+    }
+
+    @Override
     public Integer getInventoryGuiIndex(EntityPlayer pPlayer) {
         if (pPlayer.isSneaking())
             return References.GuiIDs.SMITHINGSGUIDEINVENTORY;

@@ -296,7 +296,7 @@ public class References
             public final static String FirePit = iModelLocation + "FirePit.obj";
             public final static String Heater = iModelLocation + "Heater.obj";
             public final static String Anvil = iModelLocation + "ArmorsAnvil.obj";
-            public final static String SmithingsGuide = iModelLocation + "Book - Less Vertices.obj";
+            public final static String SmithingsGuide = iModelLocation + "Book - Single Sided.obj";
         }
     }
 
