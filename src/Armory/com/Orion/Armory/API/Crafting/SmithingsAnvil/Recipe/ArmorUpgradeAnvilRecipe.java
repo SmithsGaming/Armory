@@ -12,8 +12,10 @@ import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import com.Orion.Armory.Util.Armor.NBTHelper;
+import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.References;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +32,8 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe
     private String iArmorType;
     private String iArmorMaterial;
     private ArrayList<Integer> iUpgradeComponents = new ArrayList<Integer>(TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS);
+
+    private String iTranslatedUpgrades = "";
 
     public ArmorUpgradeAnvilRecipe(String pArmorType, String pArmorMaterial)
     {
@@ -191,6 +195,28 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe
             iUpgradeComponents.add(pSlotIndex);
 
         return setCraftingSlotContent(pSlotIndex, pComponent);
+    }
+
+    @Override
+    public String getTranslateResultName() {
+        if (iResult == null) {
+            iResult = MedievalArmorFactory.getInstance().buildNewMLAArmor(MaterialRegistry.getInstance().getArmor(iArmorType), new HashMap<MLAAddon, Integer>(), MaterialRegistry.getInstance().getMaterial(iArmorMaterial).getBaseDurability(iArmorType), iArmorMaterial);
+        }
+
+        if (iTranslatedUpgrades == "") {
+            for (int tStackIndex : iUpgradeComponents) {
+                ItemStack tStack = (getComponent(tStackIndex)).getComponentTargetStack();
+
+                iTranslatedUpgrades += tStack.getItem().getItemStackDisplayName(tStack);
+
+                if ((iUpgradeComponents.get(tStackIndex) + 1) != iUpgradeComponents.size()) {
+                    iTranslatedUpgrades += ", ";
+                }
+            }
+        }
+
+
+        return StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Upgrade1) + " " + iResult.getItem().getItemStackDisplayName(iResult) + " " + StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Upgrade2) + " " + iTranslatedUpgrades;
     }
 
     @Override

@@ -106,3 +106,6 @@ Armory.Knowledge.Blueprint.Creative=Printed By The Almighty Blacksmith!
 #
 #Blueprint Tooltip
 Armory.Knowledge.BluePrint.Quality=  - Quality:
+Armory.Knowledge.BluePrint.Produces=  - Produces:
+Armory.Knowledge.BluePrint.Produces.Upgrade.1=1 Upgraded
+Armory.Knowledge.BluePrint.Produces.Upgrade.2=with

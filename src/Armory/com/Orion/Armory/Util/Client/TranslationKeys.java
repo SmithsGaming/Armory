@@ -39,6 +39,10 @@ public class TranslationKeys
 
         public static final class Blueprint {
             public static final String Quality = "Armory.Knowledge.BluePrint.Quality";
+            public static final String Produces = "Armory.Knowledge.BluePrint.Produces";
+
+            public static final String Upgrade1 = "Armory.Knowledge.BluePrint.Produces.Upgrade.1";
+            public static final String Upgrade2 = "Armory.Knowledge.BluePrint.Produces.Upgrade.2";
 
             public static final String Tier1 = "Armory.Knowledge.Blueprint.Tier1";
             public static final String Tier2 = "Armory.Knowledge.Blueprint.Tier2";

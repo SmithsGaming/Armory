@@ -265,6 +265,8 @@ public class AnvilRecipe
         return iBlueprintName != null;
     }
 
-
+    public String getTranslateResultName() {
+        return iResult.getItem().getItemStackDisplayName(iResult);
+    }
 }
 

@@ -401,6 +401,145 @@ public class ArmoryInitializer
             BlueprintRegistry.getInstance().registerNewBluePrint(new EasyBlueprint(InternalNames.Recipes.Anvil.TONGS, InternalNames.Recipes.Anvil.TONGS));
             BlueprintRegistry.getInstance().registerNewBluePrint(new HardBlueprint(InternalNames.Recipes.Anvil.HEATER, InternalNames.Recipes.Anvil.HEATER));
             BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.FAN, InternalNames.Recipes.Anvil.FAN));
+
+            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
+                BlueprintRegistry.getInstance().registerNewBluePrint(new EasyBlueprint(InternalNames.Recipes.Anvil.RING + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.RING + tMaterial.getOreDicName()));
+                BlueprintRegistry.getInstance().registerNewBluePrint(new EasyBlueprint(InternalNames.Recipes.Anvil.CHAIN + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHAIN + tMaterial.getOreDicName()));
+                BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.NUGGET + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.NUGGET + tMaterial.getOreDicName()));
+                BlueprintRegistry.getInstance().registerNewBluePrint(new HardBlueprint(InternalNames.Recipes.Anvil.PLATE + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.PLATE + tMaterial.getOreDicName()));
+
+                if (!tMaterial.getIsBaseArmorMaterial())
+                    continue;
+
+                BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMET + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMET + tMaterial.getOreDicName()));
+                BlueprintRegistry.getInstance().registerNewBluePrint(new HardBlueprint(InternalNames.Recipes.Anvil.CHESTPLATE + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATE + tMaterial.getOreDicName()));
+                BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGS + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGS + tMaterial.getOreDicName()));
+                BlueprintRegistry.getInstance().registerNewBluePrint(new EasyBlueprint(InternalNames.Recipes.Anvil.SHOES + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.SHOES + tMaterial.getOreDicName()));
+            }
+
+            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
+                if (tMaterial.getPartState(InternalNames.Upgrades.Helmet.TOP)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMETTOP + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMETTOP + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Helmet.LEFT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMETLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMETLEFT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Helmet.RIGHT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMETRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMETRIGHT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.SHOULDERLEFT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATESHOULDERLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATESHOULDERLEFT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATESHOULDERRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATESHOULDERRIGHT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.BACKRIGHT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEBACKRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEBACKRIGHT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.BACKLEFT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEBACKLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEBACKLEFT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.FRONTLEFT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEFRONTLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEFRONTLEFT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.FRONTRIGHT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEFRONTRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEFRONTRIGHT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Leggings.BACKRIGHT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSBACKRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSBACKRIGHT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Leggings.BACKLEFT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSBACKLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSBACKLEFT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Leggings.FRONTRIGHT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSFRONTRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSFRONTRIGHT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Leggings.FRONTLEFT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSFRONTLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSFRONTLEFT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Shoes.LEFT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.SHOESLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.SHOESLEFT + tMaterial.getOreDicName()));
+                }
+
+                if (tMaterial.getPartState(InternalNames.Upgrades.Shoes.RIGHT)) {
+                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.SHOESRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.SHOESRIGHT + tMaterial.getOreDicName()));
+                }
+
+                for (IArmorMaterial tUpgradeMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Helmet.TOP)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMETUPGRADETOP + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMETUPGRADETOP + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Helmet.LEFT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMETUPGRADELEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMETUPGRADELEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Helmet.RIGHT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMETUPGRADERIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMETUPGRADERIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.SHOULDERLEFT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADESHOULDERLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEUPGRADESHOULDERLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADESHOULDERRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEUPGRADESHOULDERRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.BACKRIGHT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEBACKRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEBACKRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.BACKLEFT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEBACKLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEBACKLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.FRONTLEFT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEFRONTLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEFRONTLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.FRONTRIGHT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEFRONTRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEFRONTRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Leggings.BACKRIGHT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSUPGRADEBACKRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSUPGRADEBACKRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Leggings.BACKLEFT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSUPGRADEBACKLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSUPGRADEBACKLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Leggings.FRONTRIGHT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSUPGRADEFRONTRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSUPGRADEFRONTRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Leggings.FRONTLEFT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSUPGRADEFRONTLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSUPGRADEFRONTLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Shoes.LEFT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.SHOESUPGRADELEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.SHOESUPGRADELEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+
+                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Shoes.RIGHT)) {
+                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.SHOESUPGRADERIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.SHOESUPGRADERIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
+                    }
+                }
+            }
         }
 
         public static void initializeAnvilRecipes() {

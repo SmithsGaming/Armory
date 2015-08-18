@@ -6,6 +6,8 @@
 
 package com.Orion.Armory.Common.Item.Knowledge;
 
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.AnvilRecipeRegistry;
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
 import com.Orion.Armory.API.Knowledge.BlueprintRegistry;
 import com.Orion.Armory.API.Knowledge.IBluePrintItem;
 import com.Orion.Armory.API.Knowledge.IBlueprint;
@@ -26,6 +28,9 @@ import net.minecraft.util.StatCollector;
 import java.util.List;
 
 public class ItemBlueprint extends ItemResource implements IBluePrintItem {
+
+    public static final String UNKNOWN = EnumChatFormatting.DARK_RED + "" + EnumChatFormatting.ITALIC + "UNKNOWN" + EnumChatFormatting.RESET;
+
     public ItemBlueprint() {
         this.setMaxStackSize(1);
         this.setCreativeTab(GeneralRegistry.iTabBlueprints);
@@ -84,7 +89,7 @@ public class ItemBlueprint extends ItemResource implements IBluePrintItem {
         IBlueprint tPrint = BlueprintRegistry.getInstance().getBlueprint(getBlueprintID(pStack));
 
         if (tPrint == null)
-            return EnumChatFormatting.DARK_RED + "" + EnumChatFormatting.ITALIC + "UNKNOWN" + EnumChatFormatting.RESET;
+            return UNKNOWN;
 
         return tPrint.getTranslatedQuality(getBluePrintQuality(pStack));
     }
@@ -94,5 +99,19 @@ public class ItemBlueprint extends ItemResource implements IBluePrintItem {
         super.addInformation(pStack, pPlayer, pTags, pAdvancedTooltip);
 
         pTags.add(StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Quality) + " " + getTranslatedBluePrintQuality(pStack));
+
+        IBlueprint tPrint = BlueprintRegistry.getInstance().getBlueprint(getBlueprintID(pStack));
+        if (tPrint == null) {
+            pTags.add(StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Produces) + " " + UNKNOWN + " (" + getBlueprintID(pStack) + ")");
+        } else {
+            AnvilRecipe tRecipe = AnvilRecipeRegistry.getInstance().getRecipe(tPrint.getRecipeID());
+
+            if (tRecipe != null) {
+                pTags.add(StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Produces) + " " + tRecipe.getTranslateResultName());
+            } else {
+                pTags.add(StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Produces) + " " + UNKNOWN + " (" + getBlueprintID(pStack) + ")");
+            }
+        }
+
     }
 }
