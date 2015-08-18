@@ -1,15 +1,17 @@
 package com.Orion.Armory.Client.CreativeTab;
 
+import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
 import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
-import com.Orion.Armory.API.Armor.MLAAddon;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
+import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 
 import java.util.HashMap;
 
@@ -41,8 +43,8 @@ public class MedievalTab extends CreativeTabs{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getTranslatedTabLabel() {
-		return super.getTranslatedTabLabel();
-	}
+        return StatCollector.translateToLocal(TranslationKeys.CreativeTabs.Medieval);
+    }
 
     @Override
     public Item getTabIconItem() {

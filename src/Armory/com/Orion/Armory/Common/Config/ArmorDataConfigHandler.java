@@ -28,6 +28,18 @@ public class ArmorDataConfigHandler implements IArmorConfigurator
     }
 
     @Override
+    public void loadIDs() {
+        for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
+            Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "\\Armory\\Material Configuration\\" + tMaterial.getInternalMaterialName() + "\\Global.cfg"), true);
+
+            tMaterial.setMaterialID(tGlobalMaterialConfig.getInt("MaterialID", "Global", tMaterial.getMaterialID(), 0, Short.MAX_VALUE, "The internalID of the Material. NO TWO MATERIALS SHOULD HAVE THE SAME ID!."));
+
+            if (tGlobalMaterialConfig.hasChanged())
+                tGlobalMaterialConfig.save();
+        }
+    }
+
+    @Override
     public void loadIsBaseArmorMaterial() {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
         {

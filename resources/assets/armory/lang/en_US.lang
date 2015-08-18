@@ -1,3 +1,9 @@
+#Creative tabs
+Armory.Tabs.Components=Armory - Components
+Armory.Tabs.Blueprint=Armory - Blueprints
+Armory.Tabs.Medieval=Armory - Medieval armor
+Armory.Tabs.Medieval.Upgrade=Armory - Medieval upgrades
+#
 #General GUI Elements
 Armory.GUI.InfoTitel=Information
 #
@@ -45,6 +51,8 @@ item.Armory.Items.ItemHammer.name=Smith's Hammer
 item.Armory.Items.Tongs.name=Smith's Tongs
 item.Armory.Items.Nugget.name=Nugget
 item.Armory.Items.Plate.name=Plate
+item.Armory.Items.SmithingsGuide.name=Smithing's Guide
+item.Armory.Items.Blueprint.name=Blacksmiths's Blueprint
 #
 #HeatedIngot Specific
 Armory.Items.HeatedIngot.Tooltip.Temperature=Current Temperature
@@ -85,5 +93,16 @@ Armory.Knowledge.AnvilRecipeKnowledge.Tier1=Complete Amateur
 Armory.Knowledge.AnvilRecipeKnowledge.Tier2=Poor Blacksmith
 Armory.Knowledge.AnvilRecipeKnowledge.Tier3=Good Blacksmith
 Armory.Knowledge.AnvilRecipeKnowledge.Tier4=Professional Blacksmith
-
-
+Armory.Knowledge.AnvilRecipeKnowledge.Tier5=War Hero
+Armory.Knowledge.AnvilRecipeKnowledge.Creative=Assigned By God!
+#
+#Blueprint Quality
+Armory.Knowledge.Blueprint.Tier1=Food smudges all over it
+Armory.Knowledge.Blueprint.Tier2=Extremely poor handwriting
+Armory.Knowledge.Blueprint.Tier3=Readable piece of paper
+Armory.Knowledge.Blueprint.Tier4=Bestseller
+Armory.Knowledge.Blueprint.Tier5=Sells for a million dollars.
+Armory.Knowledge.Blueprint.Creative=Printed By The Almighty Blacksmith!
+#
+#Blueprint Tooltip
+Armory.Knowledge.BluePrint.Quality=  - Quality:

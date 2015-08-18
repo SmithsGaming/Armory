@@ -1,7 +1,5 @@
 package com.Orion.Armory.API.Materials;
 
-import java.util.HashMap;
-
 /**
  * Created by Orion
  * Created on 09.06.2015
@@ -11,6 +9,7 @@ import java.util.HashMap;
  */
 public interface IArmorConfigurator
 {
+    void loadIDs();
 
     void loadIsBaseArmorMaterial();
 

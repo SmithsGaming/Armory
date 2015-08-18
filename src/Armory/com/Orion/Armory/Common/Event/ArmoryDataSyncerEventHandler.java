@@ -24,6 +24,7 @@ public class ArmoryDataSyncerEventHandler
         GeneralRegistry.iLogger.info("Started sending properties to the Client.");
         ArmorDataSynchronizer tSynchronizer = new ArmorDataSynchronizer();
 
+        tSynchronizer.loadIDs(pEvent.player);
         tSynchronizer.loadBaseDurability(pEvent.player);
         tSynchronizer.loadPartModifiers(pEvent.player);
         tSynchronizer.loadBaseDamageAbsorptions(pEvent.player);

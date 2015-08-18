@@ -12,6 +12,13 @@ import com.Orion.Armory.Util.References;
 public class TranslationKeys
 {
 
+    public static final class CreativeTabs {
+        public static final String Blueprint = "Armory.Tabs.Blueprint";
+        public static final String Components = "Armory.Tabs.Components";
+        public static final String Medieval = "Armory.Tabs.Medieval";
+        public static final String MedievalUpgrade = "Armory.Tabs.Medieval.Upgrade";
+    }
+
     public static final class Messages {
         public static final class Commands {
             public static final String BASEUSAGE = References.InternalNames.Commands.BASECOMMAND + ".usage";
@@ -26,6 +33,19 @@ public class TranslationKeys
             public static final String Tier2 = "Armory.Knowledge.AnvilRecipeKnowledge.Tier2";
             public static final String Tier3 = "Armory.Knowledge.AnvilRecipeKnowledge.Tier3";
             public static final String Tier4 = "Armory.Knowledge.AnvilRecipeKnowledge.Tier4";
+            public static final String Tier5 = "Armory.Knowledge.AnvilRecipeKnowledge.Tier4";
+            public static final String CreativeTier = "Armory.Knowledge.AnvilRecipeKnowledge.Creative";
+        }
+
+        public static final class Blueprint {
+            public static final String Quality = "Armory.Knowledge.BluePrint.Quality";
+
+            public static final String Tier1 = "Armory.Knowledge.Blueprint.Tier1";
+            public static final String Tier2 = "Armory.Knowledge.Blueprint.Tier2";
+            public static final String Tier3 = "Armory.Knowledge.Blueprint.Tier3";
+            public static final String Tier4 = "Armory.Knowledge.Blueprint.Tier4";
+            public static final String Tier5 = "Armory.Knowledge.Blueprint.Tier4";
+            public static final String CreativeTier = "Armory.Knowledge.Blueprint.Creative";
         }
     }
 

@@ -81,7 +81,7 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
             return;
         }
 
-        for (AnvilRecipe tOriginalRecipe : AnvilRecipeRegistry.getInstance().getRecipes()) {
+        for (AnvilRecipe tOriginalRecipe : AnvilRecipeRegistry.getInstance().getRecipes().values()) {
             ItemStack[] tCraftingInput = new ItemStack[TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS];
             ItemStack[] tAdditionalCraftingInput = new ItemStack[TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS];
 
@@ -126,7 +126,7 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
     @Override
     public void loadCraftingRecipes(String outputId, Object... results) {
         if (outputId.equals(getRecipeID())) {
-            for (AnvilRecipe recipe : AnvilRecipeRegistry.getInstance().getRecipes()) {
+            for (AnvilRecipe recipe : AnvilRecipeRegistry.getInstance().getRecipes().values()) {
                 arecipes.add(new CachedAnvilRecipe(recipe));
             }
         } else {
@@ -137,7 +137,7 @@ public class ArmorsAnvilNEIHandler extends TemplateRecipeHandler {
     @Override
     public void loadUsageRecipes(ItemStack pIngredient)
     {
-        for (AnvilRecipe tOriginalRecipe : AnvilRecipeRegistry.getInstance().getRecipes())
+        for (AnvilRecipe tOriginalRecipe : AnvilRecipeRegistry.getInstance().getRecipes().values())
         {
             validateUsageRecipe(tOriginalRecipe, pIngredient);
         }

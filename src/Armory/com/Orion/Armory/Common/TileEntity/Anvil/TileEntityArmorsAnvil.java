@@ -367,7 +367,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         if (iTongStacks[0] != null)
             tTongUsagesLeft = iTongStacks[0].getItemDamage();
 
-        for (AnvilRecipe tRecipe : AnvilRecipeRegistry.getInstance().getRecipes()) {
+        for (AnvilRecipe tRecipe : AnvilRecipeRegistry.getInstance().getRecipes().values()) {
             if (tRecipe.matchesRecipe(iCraftingStacks, iAdditionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft)) {
                 if (iOutPutStacks[0] != null) {
                     ItemStack tResultStack = tRecipe.getResult(iCraftingStacks, iAdditionalCraftingStacks);

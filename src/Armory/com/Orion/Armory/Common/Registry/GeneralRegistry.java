@@ -5,6 +5,7 @@ package com.Orion.Armory.Common.Registry;
  *   Created on: 24-9-2014
  */
 
+import com.Orion.Armory.Client.CreativeTab.BlueprintTab;
 import com.Orion.Armory.Client.CreativeTab.ComponentsTab;
 import com.Orion.Armory.Client.CreativeTab.MedievalTab;
 import com.Orion.Armory.Client.CreativeTab.MedievalUpgradeTab;
@@ -13,6 +14,7 @@ import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ItemUpgradeMedieval;
 import com.Orion.Armory.Common.Item.*;
+import com.Orion.Armory.Common.Item.Knowledge.ItemBlueprint;
 import com.Orion.Armory.Common.Item.Knowledge.ItemSmithingsGuide;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
@@ -30,6 +32,7 @@ public class GeneralRegistry {
     //public static PlatedTab iTabPlatedArmor;
     //public static QuantumTab iTabQuantumArmor;
     public static ComponentsTab iTabArmoryComponents;
+    public static BlueprintTab iTabBlueprints;
     public static MedievalUpgradeTab iTabMedievalUpgrades;
     protected static GeneralRegistry iInstance;
 
@@ -38,6 +41,7 @@ public class GeneralRegistry {
         iTabMedievalArmor = new MedievalTab();
         iTabArmoryComponents = new ComponentsTab();
         iTabMedievalUpgrades = new MedievalUpgradeTab();
+        iTabBlueprints = new BlueprintTab();
 
         Properties tSysProp = System.getProperties();
         iIsInDevEnvironment = Boolean.parseBoolean(tSysProp.getProperty("Armory.Dev", "false"));
@@ -69,5 +73,6 @@ public class GeneralRegistry {
         public static ItemUpgradeMedieval iMedievalUpgrades = null;
 
         public static ItemSmithingsGuide iSmithingsGuide = null;
+        public static ItemBlueprint iBlueprints = null;
     }
 }

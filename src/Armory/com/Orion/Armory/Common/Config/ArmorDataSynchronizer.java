@@ -20,6 +20,11 @@ import java.util.Map;
  */
 public class ArmorDataSynchronizer{
 
+    public void loadIDs(EntityPlayer pConnectingPlayer) {
+        for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
+            sendMessage(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setMaterialID", new String[]{"Integer"}, new Object[]{tMaterial.getMaterialID()}), (EntityPlayerMP) pConnectingPlayer);
+    }
+
     public void loadIsBaseArmorMaterial(EntityPlayer pConnectingPlayer) {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
             sendMessage(new MessageMaterialPropertyValue(tMaterial.getInternalMaterialName(), "setIsBaseArmorMaterial", new String[]{"Boolean"}, new Object[]{tMaterial.getIsBaseArmorMaterial()}), (EntityPlayerMP) pConnectingPlayer);

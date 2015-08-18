@@ -36,6 +36,8 @@ public class Textures
 
     public static class Items
     {
+        public static CustomResource Blueprint = new CustomResource(References.InternalNames.Items.ItemBlueprint, "armory:basic/32x Blueprint", "", Colors.DEFAULT);
+
         public static class ItemRing
         {
             public static CustomResource IronResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:basic/16x Ring", "", Colors.Metals.IRON);

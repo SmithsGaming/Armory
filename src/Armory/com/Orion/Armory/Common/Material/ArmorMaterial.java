@@ -24,6 +24,9 @@ import java.util.HashMap;
 
 public class ArmorMaterial implements IArmorMaterial
 {
+    private static int iLastUsedID = 0;
+
+    int iMaterialID;
     private String iOreDicName;
     private String iInternalName;
     private String iVisibleName;
@@ -57,6 +60,9 @@ public class ArmorMaterial implements IArmorMaterial
             HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
         }
 
+        setMaterialID(iLastUsedID);
+        iLastUsedID++;
+
         if (iColor != null)
         {
             GeneralRegistry.iLogger.info("Initialized Material: " + iInternalName + ", with ItemColor: " + iColor.toString() + ", with EnumChatFormatting: " + iVisibleNameColor.name());
@@ -82,7 +88,20 @@ public class ArmorMaterial implements IArmorMaterial
             HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
         }
 
+        setMaterialID(iLastUsedID);
+        iLastUsedID++;
+
         GeneralRegistry.iLogger.info("Initialized Material: " + iInternalName + ", with ItemColor: " + iColor.toString() + ", with EnumChatFormatting: " + iVisibleNameColor.name());
+    }
+
+    @Override
+    public int getMaterialID() {
+        return iMaterialID;
+    }
+
+    @Override
+    public void setMaterialID(int pNewID) {
+        iMaterialID = pNewID;
     }
 
     @Override
@@ -171,14 +190,14 @@ public class ArmorMaterial implements IArmorMaterial
         return References.InternalNames.Tiers.MEDIEVAL;
     }
 
-    public void setColor(Color pColor)
-    {
-        this.iColor = pColor;
-    }
-
     public Color getColor()
     {
         return this.iColor;
+    }
+
+    public void setColor(Color pColor)
+    {
+        this.iColor = pColor;
     }
 
     public String getOreDicName()
@@ -207,23 +226,23 @@ public class ArmorMaterial implements IArmorMaterial
     }
 
     @Override
-    public float getMeltingPoint() {
-        return iMeltingPoint;
-    }
-
-    @Override
-    public float getHeatCoefficient() {
-        return iHeatCoefficient;
-    }
-
-    @Override
     public void setIsBaseArmorMaterial(boolean pNewState) {
         iBaseArmorMaterial = pNewState;
     }
 
     @Override
+    public float getMeltingPoint() {
+        return iMeltingPoint;
+    }
+
+    @Override
     public void setMeltingPoint(float pNewMeltingPoint) {
         iMeltingPoint = pNewMeltingPoint;
+    }
+
+    @Override
+    public float getHeatCoefficient() {
+        return iHeatCoefficient;
     }
 
     @Override

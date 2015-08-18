@@ -31,3 +31,4 @@ run
 *.iws
 *.iml
 *.db
+src/Armory/com/Orion/Armory/Common/Item/Knowledge/ItemBluePrint.java

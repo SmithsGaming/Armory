@@ -14,6 +14,10 @@ import java.util.HashMap;
  */
 public interface IArmorMaterial
 {
+     int getMaterialID();
+
+     void setMaterialID(int pNewID);
+
      String getInternalMaterialName();
 
      void registerNewActivePart(String pUpgradeInternalName, boolean pPartState);
@@ -44,9 +48,9 @@ public interface IArmorMaterial
 
      String getType();
 
-     void setColor(Color pColor);
-
      Color getColor();
+
+     void setColor(Color pColor);
 
      String getOreDicName();
 
@@ -58,13 +62,13 @@ public interface IArmorMaterial
 
      boolean getIsBaseArmorMaterial();
 
-     float getMeltingPoint();
-
-     float getHeatCoefficient();
-
      void setIsBaseArmorMaterial(boolean pNewState);
 
+     float getMeltingPoint();
+
      void setMeltingPoint(float pNewMeltingPoint);
+
+     float getHeatCoefficient();
 
      void setHeatCoefficient(float pNewCoefficient);
 }

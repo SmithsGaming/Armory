@@ -15,6 +15,7 @@ import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.StandardAnvilReci
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.ArmorUpgradeAnvilRecipe;
 import com.Orion.Armory.API.Events.Common.*;
+import com.Orion.Armory.API.Knowledge.BlueprintRegistry;
 import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Common.Addons.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
@@ -28,7 +29,11 @@ import com.Orion.Armory.Common.Factory.MedievalArmorFactory;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ItemUpgradeMedieval;
 import com.Orion.Armory.Common.Item.*;
+import com.Orion.Armory.Common.Item.Knowledge.ItemBlueprint;
 import com.Orion.Armory.Common.Item.Knowledge.ItemSmithingsGuide;
+import com.Orion.Armory.Common.Knowledge.BasicBlueprint;
+import com.Orion.Armory.Common.Knowledge.EasyBlueprint;
+import com.Orion.Armory.Common.Knowledge.HardBlueprint;
 import com.Orion.Armory.Common.Material.ArmorMaterial;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
@@ -53,7 +58,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 public class ArmoryInitializer
 {
@@ -65,7 +73,7 @@ public class ArmoryInitializer
         SystemInit.RegisterTileEntities();
         SystemInit.loadMaterialConfig();
         MedievalInitialization.prepareGame();
-        //SystemInit.initializeOreDic();
+        SystemInit.initializeOreDic();
     }
 
     public static void postInitializeServer() {
@@ -367,12 +375,32 @@ public class ArmoryInitializer
         }
 
         public static void prepareGame() {
+            prepareKnowledgeSystem();
+
             initializeAnvilRecipes();
 
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Items.iHammer, 1, 150), "  #", " / ", "/  ", '#', new ItemStack(Blocks.iron_block, 1), '/', new ItemStack(Items.stick, 1)));
 
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockFirePit, 1), "#=#", "#/#", "###", '#', new ItemStack(Items.iron_ingot, 1), '=', new ItemStack(Items.cauldron, 1), '/', new ItemStack(Blocks.furnace, 1)));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockAnvil, 1), "BBB", " I ", "IBI", 'B', new ItemStack(Blocks.iron_block, 1), 'I', new ItemStack(Items.iron_ingot, 1)));
+        }
+
+        public static void prepareKnowledgeSystem() {
+            registerKnowledge();
+            registerBlueprints();
+
+            MinecraftForge.EVENT_BUS.post(new RegisterKnowledgeEvent());
+        }
+
+        public static void registerKnowledge() {
+
+        }
+
+        public static void registerBlueprints() {
+            BlueprintRegistry.getInstance().registerNewBluePrint(new EasyBlueprint(InternalNames.Recipes.Anvil.HAMMER, InternalNames.Recipes.Anvil.HAMMER));
+            BlueprintRegistry.getInstance().registerNewBluePrint(new EasyBlueprint(InternalNames.Recipes.Anvil.TONGS, InternalNames.Recipes.Anvil.TONGS));
+            BlueprintRegistry.getInstance().registerNewBluePrint(new HardBlueprint(InternalNames.Recipes.Anvil.HEATER, InternalNames.Recipes.Anvil.HEATER));
+            BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.FAN, InternalNames.Recipes.Anvil.FAN));
         }
 
         public static void initializeAnvilRecipes() {
@@ -388,7 +416,7 @@ public class ArmoryInitializer
                     .setCraftingSlotContent(16, (new OreDicAnvilRecipeComponent("stickWood", 1)))
                     .setCraftingSlotContent(20, (new OreDicAnvilRecipeComponent("stickWood", 1)))
                     .setProgress(4).setResult(tHammerStack).setHammerUsage(4).setTongUsage(0);
-            AnvilRecipeRegistry.getInstance().addRecipe(tHammerRecipe);
+            AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.HAMMER, tHammerRecipe);
 
             ItemStack tTongStack = new ItemStack(GeneralRegistry.Items.iTongs, 1);
             tTongStack.setItemDamage(150);
@@ -402,7 +430,7 @@ public class ArmoryInitializer
                     .setCraftingSlotContent(17, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
                     .setCraftingSlotContent(21, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
                     .setProgress(4).setResult(tTongStack).setHammerUsage(4).setTongUsage(0);
-            AnvilRecipeRegistry.getInstance().addRecipe(tTongRecipe);
+            AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.TONGS, tTongRecipe);
 
             ItemStack tHeaterStack = new ItemStack(GeneralRegistry.Blocks.iBlockHeater, 1);
             AnvilRecipe tHeaterRecipe = new AnvilRecipe().setCraftingSlotContent(6, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
@@ -414,7 +442,7 @@ public class ArmoryInitializer
                     .setCraftingSlotContent(17, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
                     .setCraftingSlotContent(18, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
                     .setProgress(20).setResult(tHeaterStack).setHammerUsage(10).setTongUsage(15);
-            AnvilRecipeRegistry.getInstance().addRecipe(tHeaterRecipe);
+            AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.HEATER, tHeaterRecipe);
 
             ItemStack tFanStack = new ItemStack(GeneralRegistry.Items.iFan, 1, Short.MAX_VALUE);
             AnvilRecipe tFanRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
@@ -431,7 +459,7 @@ public class ArmoryInitializer
                     .setCraftingSlotContent(11, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
                     .setCraftingSlotContent(12, (new HeatedAnvilRecipeComponent(InternalNames.Materials.Vanilla.IRON, InternalNames.HeatedItemTypes.PLATE, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(InternalNames.Materials.Vanilla.IRON) * 0.5F * 0.95F)))
                     .setProgress(12).setResult(tFanStack).setHammerUsage(10).setTongUsage(20);
-            AnvilRecipeRegistry.getInstance().addRecipe(tFanRecipe);
+            AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.FAN, tFanRecipe);
 
             initializeMedievalArmorAnvilRecipes();
             initializeMedievalUpgradeAnvilRecipes();
@@ -440,7 +468,7 @@ public class ArmoryInitializer
 
         public static void initializeMedievalArmorAnvilRecipes() {
             for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                ItemStack tRingStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1);
+                ItemStack tRingStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1, tMaterial.getMaterialID());
                 NBTTagCompound pRingCompound = new NBTTagCompound();
                 pRingCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getInternalMaterialName());
                 tRingStack.setTagCompound(pRingCompound);
@@ -448,9 +476,9 @@ public class ArmoryInitializer
                 AnvilRecipe tRingRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.95F)))
                         .setProgress(9).setResult(tRingStack).setHammerUsage(4).setTongUsage(0).setShapeLess();
 
-                AnvilRecipeRegistry.getInstance().addRecipe(tRingRecipe);
+                AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.RING + tMaterial.getOreDicName(), tRingRecipe);
 
-                ItemStack tPlateStack = new ItemStack(GeneralRegistry.Items.iPlate, 1);
+                ItemStack tPlateStack = new ItemStack(GeneralRegistry.Items.iPlate, 1, tMaterial.getMaterialID());
                 NBTTagCompound pPlateCompound = new NBTTagCompound();
                 pPlateCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getInternalMaterialName());
                 tPlateStack.setTagCompound(pPlateCompound);
@@ -458,28 +486,19 @@ public class ArmoryInitializer
                 AnvilRecipe tPlateRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.INGOT, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.95F)))
                         .setProgress(15).setResult(tPlateStack).setHammerUsage(15).setTongUsage(2).setShapeLess();
 
-                AnvilRecipeRegistry.getInstance().addRecipe(tPlateRecipe);
+                AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.PLATE + tMaterial.getOreDicName(), tPlateRecipe);
 
-                ItemStack tNuggetStack;
-                if (OreDictionary.doesOreNameExist("nugget" + tMaterial.getOreDicName())) {
-                    List<ItemStack> tStacks = OreDictionary.getOres("nugget" + tMaterial.getOreDicName());
-
-                    tNuggetStack = tStacks.get(tStacks.size() - 1);
-                    tNuggetStack.stackSize = 9;
-                } else {
-                    tNuggetStack = new ItemStack(GeneralRegistry.Items.iNugget, 9);
-
-                    NBTTagCompound pNuggetCompound = new NBTTagCompound();
-                    pNuggetCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getInternalMaterialName());
-                    tNuggetStack.setTagCompound(pNuggetCompound);
-                }
+                ItemStack tNuggetStack = new ItemStack(GeneralRegistry.Items.iNugget, 9, tMaterial.getMaterialID());
+                NBTTagCompound pNuggetCompound = new NBTTagCompound();
+                pNuggetCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getInternalMaterialName());
+                tNuggetStack.setTagCompound(pNuggetCompound);
 
                 AnvilRecipe tNuggetRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.INGOT, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F) * 0.95F)))
                         .setProgress(6).setResult(tNuggetStack).setHammerUsage(4).setTongUsage(0).setShapeLess();
 
-                AnvilRecipeRegistry.getInstance().addRecipe(tNuggetRecipe);
+                AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.NUGGET + tMaterial.getOreDicName(), tNuggetRecipe);
 
-                ItemStack tChainStack = new ItemStack(GeneralRegistry.Items.iMetalChain, 1);
+                ItemStack tChainStack = new ItemStack(GeneralRegistry.Items.iMetalChain, 1, tMaterial.getMaterialID());
                 NBTTagCompound tChainCompound = new NBTTagCompound();
                 tChainCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getInternalMaterialName());
                 tChainStack.setTagCompound(tChainCompound);
@@ -495,7 +514,7 @@ public class ArmoryInitializer
                         .setCraftingSlotContent(22, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.RING, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
                         .setProgress(10).setResult(tChainStack).setHammerUsage(16).setTongUsage(16);
 
-                AnvilRecipeRegistry.getInstance().addRecipe(tChainRecipe);
+                AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHAIN + tMaterial.getOreDicName(), tChainRecipe);
 
                 if (!tMaterial.getIsBaseArmorMaterial())
                     continue;
@@ -523,7 +542,7 @@ public class ArmoryInitializer
                         .setCraftingSlotContent(23, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.RING, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(24, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.CHAIN, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
                         .setProgress(20).setResult(tChestplateStack).setHammerUsage(38).setTongUsage(24);
-                AnvilRecipeRegistry.getInstance().addRecipe(tChestplateRecipe);
+                AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATE + tMaterial.getOreDicName(), tChestplateRecipe);
 
                 ItemStack tHelmetStack = MedievalArmorFactory.getInstance().buildNewMLAArmor(MaterialRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALHELMET), new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(InternalNames.Armor.MEDIEVALHELMET), tMaterial.getInternalMaterialName());
                 AnvilRecipe tHelmetRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.CHAIN, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
@@ -540,7 +559,7 @@ public class ArmoryInitializer
                         .setCraftingSlotContent(12, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.RING, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(14, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.CHAIN, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
                         .setProgress(20).setResult(tHelmetStack).setHammerUsage(28).setTongUsage(16);
-                AnvilRecipeRegistry.getInstance().addRecipe(tHelmetRecipe);
+                AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.HELMET + tMaterial.getOreDicName(), tHelmetRecipe);
 
                 ItemStack tPantsStack = MedievalArmorFactory.getInstance().buildNewMLAArmor(MaterialRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALLEGGINGS), new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(InternalNames.Armor.MEDIEVALLEGGINGS), tMaterial.getInternalMaterialName());
                 AnvilRecipe tPantsRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.CHAIN, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
@@ -570,7 +589,7 @@ public class ArmoryInitializer
                         .setCraftingSlotContent(23, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.RING, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(24, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.CHAIN, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
                         .setProgress(20).setResult(tPantsStack).setHammerUsage(28).setTongUsage(16);
-                AnvilRecipeRegistry.getInstance().addRecipe(tPantsRecipe);
+                AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.LEGGINGS + tMaterial.getOreDicName(), tPantsRecipe);
 
                 ItemStack tShoeStack = MedievalArmorFactory.getInstance().buildNewMLAArmor(MaterialRegistry.getInstance().getArmor(InternalNames.Armor.MEDIEVALSHOES), new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(InternalNames.Armor.MEDIEVALSHOES), tMaterial.getInternalMaterialName());
                 AnvilRecipe tShoeRecipe = new AnvilRecipe().setCraftingSlotContent(6, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.CHAIN, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
@@ -584,7 +603,7 @@ public class ArmoryInitializer
                         .setCraftingSlotContent(18, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.CHAIN, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(19, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.CHAIN, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
                         .setProgress(20).setResult(tShoeStack).setHammerUsage(28).setTongUsage(16);
-                AnvilRecipeRegistry.getInstance().addRecipe(tShoeRecipe);
+                AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.SHOES + tMaterial.getOreDicName(), tShoeRecipe);
             }
         }
 
@@ -615,7 +634,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(14, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.HELMETTOP + tMaterial.getOreDicName(), tRecipe);
                 }
 
                 if (tMaterial.getPartState(InternalNames.Upgrades.Helmet.LEFT)) {
@@ -634,7 +653,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(23, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.HELMETLEFT + tMaterial.getOreDicName(), tRecipe);
                 }
 
                 if (tMaterial.getPartState(InternalNames.Upgrades.Helmet.RIGHT)) {
@@ -653,7 +672,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(21, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.HELMETRIGHT + tMaterial.getOreDicName(), tRecipe);
                 }
             }
         }
@@ -677,7 +696,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(9, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATESHOULDERLEFT + tMaterial.getOreDicName(), tRecipe);
                 }
 
                 if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT)) {
@@ -697,7 +716,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(5, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATESHOULDERRIGHT + tMaterial.getOreDicName(), tRecipe);
                 }
 
                 if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.BACKRIGHT)) {
@@ -719,7 +738,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(21, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATEBACKRIGHT + tMaterial.getOreDicName(), tRecipe);
                 }
 
                 if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.BACKLEFT)) {
@@ -741,7 +760,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(23, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATEBACKLEFT + tMaterial.getOreDicName(), tRecipe);
                 }
 
                 if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.FRONTRIGHT)) {
@@ -763,7 +782,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(20, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATEFRONTRIGHT + tMaterial.getOreDicName(), tRecipe);
                 }
 
                 if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.FRONTLEFT)) {
@@ -785,7 +804,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(24, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATEFRONTLEFT + tMaterial.getOreDicName(), tRecipe);
                 }
             }
         }
@@ -810,7 +829,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(21, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.LEGGINGSBACKRIGHT + tMaterial.getOreDicName(), tRecipe);
                 }
 
                 if (tMaterial.getPartState(InternalNames.Upgrades.Leggings.BACKLEFT)) {
@@ -831,7 +850,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(23, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.LEGGINGSBACKLEFT + tMaterial.getOreDicName(), tRecipe);
                 }
 
                 if (tMaterial.getPartState(InternalNames.Upgrades.Leggings.FRONTRIGHT)) {
@@ -853,7 +872,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.LEGGINGSFRONTRIGHT + tMaterial.getOreDicName(), tRecipe);
                 }
 
                 if (tMaterial.getPartState(InternalNames.Upgrades.Leggings.FRONTLEFT)) {
@@ -875,7 +894,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(18, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.LEGGINGSFRONTLEFT + tMaterial.getOreDicName(), tRecipe);
                 }
             }
         }
@@ -900,7 +919,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(20, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.SHOESLEFT + tMaterial.getOreDicName(), tRecipe);
                 }
 
                 if (tMaterial.getPartState(InternalNames.Upgrades.Shoes.RIGHT)) {
@@ -921,7 +940,7 @@ public class ArmoryInitializer
                             .setCraftingSlotContent(24, new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.NUGGET, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.85F, HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.5F * 0.95F))
                             .setResult(tUpgradeStack).setHammerUsage((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 300).setTongUsage((int) (MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() - 1000) / 300).setProgress((int) MaterialRegistry.getInstance().getMaterial(tMaterial.getInternalMaterialName()).getMeltingPoint() / 100);
 
-                    AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                    AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.SHOESRIGHT + tMaterial.getOreDicName(), tRecipe);
                 }
             }
         }
@@ -951,7 +970,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(2, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(8).setHammerUsage(5).setTongUsage(4);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.HELMETUPGRADETOP + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
 
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Helmet.LEFT)) {
@@ -969,7 +988,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(10, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(8).setHammerUsage(5).setTongUsage(4);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.HELMETUPGRADELEFT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
 
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Helmet.RIGHT)) {
@@ -987,7 +1006,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(14, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(8).setHammerUsage(5).setTongUsage(4);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.HELMETUPGRADERIGHT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
                 }
             }
@@ -1011,7 +1030,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(6, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(8);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADESHOULDERLEFT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
 
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT)) {
@@ -1029,7 +1048,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(8, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(8);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADESHOULDERRIGHT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
 
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.BACKRIGHT)) {
@@ -1047,7 +1066,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(18, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(8);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEBACKRIGHT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
 
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.BACKLEFT)) {
@@ -1065,7 +1084,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(16, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(8);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEBACKLEFT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
 
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.FRONTRIGHT)) {
@@ -1083,7 +1102,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(18, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(8);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEFRONTRIGHT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
 
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.FRONTLEFT)) {
@@ -1101,7 +1120,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(16, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(8);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEFRONTLEFT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
                 }
             }
@@ -1126,7 +1145,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(18, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(6);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.LEGGINGSUPGRADEBACKRIGHT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
 
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Leggings.BACKLEFT)) {
@@ -1144,7 +1163,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(16, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(6);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.LEGGINGSUPGRADEBACKLEFT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
 
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Leggings.FRONTRIGHT)) {
@@ -1162,7 +1181,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(8, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(6);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.LEGGINGSUPGRADEFRONTRIGHT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
 
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Leggings.FRONTLEFT)) {
@@ -1180,7 +1199,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(6, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(6);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.LEGGINGSUPGRADEFRONTLEFT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
                 }
             }
@@ -1205,7 +1224,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(6, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(8).setHammerUsage(4).setTongUsage(5);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.SHOESUPGRADELEFT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
 
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Shoes.RIGHT)) {
@@ -1223,7 +1242,7 @@ public class ArmoryInitializer
                                 .setUpgradeCraftingSlotComponent(8, new StandardAnvilRecipeComponent(tUpgradeStack))
                                 .setProgress(8).setHammerUsage(4).setTongUsage(5);
 
-                        AnvilRecipeRegistry.getInstance().addRecipe(tRecipe);
+                        AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.SHOESUPGRADERIGHT + tArmorMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), tRecipe);
                     }
                 }
             }
@@ -1261,6 +1280,7 @@ public class ArmoryInitializer
             GeneralRegistry.Items.iTongs = new ItemTongs();
             GeneralRegistry.Items.iMedievalUpgrades = new ItemUpgradeMedieval();
             GeneralRegistry.Items.iSmithingsGuide = new ItemSmithingsGuide();
+            GeneralRegistry.Items.iBlueprints = new ItemBlueprint();
 
             for(MultiLayeredArmor tCore: MaterialRegistry.getInstance().getAllRegisteredArmors().values())
             {
@@ -1277,6 +1297,7 @@ public class ArmoryInitializer
             GameRegistry.registerItem(GeneralRegistry.Items.iTongs, InternalNames.Items.ItemTongs);
             GameRegistry.registerItem(GeneralRegistry.Items.iMedievalUpgrades, InternalNames.Items.ItemMedievalUpdrade);
             GameRegistry.registerItem(GeneralRegistry.Items.iSmithingsGuide, InternalNames.Items.ItemSmithingsGuide);
+            GameRegistry.registerItem(GeneralRegistry.Items.iBlueprints, InternalNames.Items.ItemBlueprint);
         }
 
         public static void RegisterTileEntities()
@@ -1291,6 +1312,7 @@ public class ArmoryInitializer
             GeneralRegistry.iLogger.info("Started loading custom ArmorMaterial Values from Config.");
             ArmorDataConfigHandler tConfigHandler = new ArmorDataConfigHandler();
 
+            tConfigHandler.loadIDs();
             tConfigHandler.loadIsBaseArmorMaterial();
             tConfigHandler.loadTemperatureCoefficient();
             tConfigHandler.loadMeltingPoint();

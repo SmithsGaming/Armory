@@ -8,11 +8,11 @@ package com.Orion.Armory.API.Crafting.SmithingsAnvil;
 
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AnvilRecipeRegistry {
     private static AnvilRecipeRegistry INSTANCE;
-    private ArrayList<AnvilRecipe> iRecipes = new ArrayList<AnvilRecipe>();
+    private HashMap<String, AnvilRecipe> iRecipes = new HashMap<String, AnvilRecipe>();
 
     public static AnvilRecipeRegistry getInstance() {
         if (INSTANCE == null)
@@ -21,11 +21,15 @@ public class AnvilRecipeRegistry {
         return INSTANCE;
     }
 
-    public void addRecipe(AnvilRecipe pNewRecipe) {
-        iRecipes.add(pNewRecipe);
+    public void addRecipe(String pID, AnvilRecipe pNewRecipe) {
+        iRecipes.put(pID, pNewRecipe);
     }
 
-    public ArrayList<AnvilRecipe> getRecipes() {
+    public AnvilRecipe getRecipe(String pID) {
+        return iRecipes.get(pID);
+    }
+
+    public HashMap<String, AnvilRecipe> getRecipes() {
         return iRecipes;
     }
 

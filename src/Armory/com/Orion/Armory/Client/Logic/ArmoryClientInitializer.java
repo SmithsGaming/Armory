@@ -44,7 +44,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer
         MedievalClientInitialization.registerNuggetResources();
         MedievalClientInitialization.registerPlateResources();
         MedievalInitialization.prepareGame();
-        //ArmoryInitializer.SystemInit.initializeOreDic();
+        ArmoryInitializer.SystemInit.initializeOreDic();
     }
     
     public static class MedievalClientInitialization
