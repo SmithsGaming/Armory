@@ -22,8 +22,8 @@ public final class Colors
         public static Color LIGHTBLUE = new Color(120, 158, 255);
         public static Color LICHTGREEN = new Color(102, 255, 122);
         public static Color GRAY = new Color(170, 170, 170);
-        public static Color BROWN = new Color(69, 14, 14);
-        public static Color PAPERYELLOW = new Color(249, 255, 181);
+        public static Color BROWN = new Color(136, 65, 0);
+        public static Color PAPERYELLOW = new Color(231, 204, 134);
 
         public static Color ELECTRICBLUE = new Color(45, 206, 250);
     }

@@ -13,6 +13,6 @@ public class TileEntityBookBinder extends TileEntityArmory {
 
     @Override
     public float getProgressBarValue(String pProgressBarID) {
-        return 0;
+        return 1F;
     }
 }

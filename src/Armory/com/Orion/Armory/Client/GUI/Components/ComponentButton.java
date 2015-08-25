@@ -52,13 +52,7 @@ public class ComponentButton extends AbstractGUIComponent {
             }
         }
 
-        /*if (iHost.getComponentRelatedObject(getInternalName() + ".enabled") != null && (Integer) iHost.getComponentRelatedObject(getInternalName() + ".enabled") > 0)
-            iIsEnabled = true;
-        else
-            iIsEnabled = false;
-*/
-
-        iIsEnabled = true;
+        iIsEnabled = iHost.getComponentRelatedObject(getInternalName() + ".enabled") != null && (Integer) iHost.getComponentRelatedObject(getInternalName() + ".enabled") > 0;
     }
 
     @Override

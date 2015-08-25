@@ -22,19 +22,18 @@ public class GuiBookBinder extends ArmoryBaseTabbedGui {
 
     @Override
     public int getXOrigin() {
-        return 100;
+        return guiLeft;
     }
 
     @Override
     public int getYOrigin() {
-        return 24;
+        return guiTop;
     }
 
     @Override
     protected void initializeTabManager() {
         getTabManager().clearTabs();
 
-        getTabManager().registerTab(new TabBookBinder(References.InternalNames.GUIComponents.BookBinder.TabBookBinder, new ItemStack(GeneralRegistry.Items.iSmithingsGuide, 1), StatCollector.translateToLocal(TranslationKeys.GUI.BookBinder.ToolTipTabBookBinder)));
         getTabManager().registerTab(new TabBookBinder(References.InternalNames.GUIComponents.BookBinder.TabBookBinder, new ItemStack(GeneralRegistry.Items.iSmithingsGuide, 1), StatCollector.translateToLocal(TranslationKeys.GUI.BookBinder.ToolTipTabBookBinder)));
     }
 

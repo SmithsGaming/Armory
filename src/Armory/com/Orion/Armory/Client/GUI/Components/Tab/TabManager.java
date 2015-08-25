@@ -38,8 +38,10 @@ public class TabManager implements ITabbedHost {
 
         iTabs.add(pNewTab);
 
-        if (iTabs.size() == 1)
+        if (iTabs.size() == 1) {
             iActiveTab = iTabs.get(0);
+            iHost.onActiveTabChanged();
+        }
     }
 
     public void clearTabs() {
@@ -59,6 +61,7 @@ public class TabManager implements ITabbedHost {
             return;
 
         iActiveTab = iNewActiveTab;
+        iHost.onActiveTabChanged();
     }
 
     public boolean handleMouseClick(int pMouseX, int pMouseY, int pMouseButton) {
@@ -72,8 +75,10 @@ public class TabManager implements ITabbedHost {
                 if (tTabIndex >= iTabs.size() || tTabIndex < 0)
                     return false;
 
-                if (pMouseButton == 0)
+                if (pMouseButton == 0) {
                     iActiveTab = iTabs.get(tTabIndex);
+                    iHost.onActiveTabChanged();
+                }
 
                 return true;
             }
@@ -148,8 +153,11 @@ public class TabManager implements ITabbedHost {
     }
 
     public void renderTabsForeground(int pMouseX, int pMouseY) {
+        if (iTabs.size() < 2)
+            return;
+
         for (Tab tTab : iTabs) {
-            ToolTipRenderer.renderToolTip(tTab, pMouseX - iHost.getXOrigin(), pMouseY - iHost.getYOrigin());
+            ToolTipRenderer.renderToolTipAt(tTab, pMouseX - iHost.getXOrigin(), pMouseY - iHost.getYOrigin(), pMouseX, pMouseY);
         }
     }
 
@@ -198,16 +206,30 @@ public class TabManager implements ITabbedHost {
 
     @Override
     public int getXSize() {
-        return iHost.getXSize();
+        if (iActiveTab == null)
+            return iHost.getXSize();
+
+        return iActiveTab.getXSize();
     }
 
     @Override
     public int getYSize() {
-        return iHost.getYSize();
+        if (iActiveTab == null)
+            return iHost.getYSize();
+
+        if (iTabs.size() == 1)
+            return iActiveTab.getYSize();
+
+        return iActiveTab.getYSize() + TABSIZEY;
     }
 
     @Override
     public TabManager getTabManager() {
         return this;
+    }
+
+    @Override
+    public void onActiveTabChanged() {
+        iHost.onActiveTabChanged();
     }
 }

@@ -133,6 +133,11 @@ public class ComponentTab implements IGUIComponent, ITabbedHost {
     }
 
     @Override
+    public void onActiveTabChanged() {
+        return;
+    }
+
+    @Override
     public LedgerManager getLedgerManager() {
         return iInternalTabManager.getLedgerManager();
     }

@@ -17,6 +17,10 @@ public final class ToolTipRenderer {
 
     public static boolean renderToolTip(IToolTipProvider pProvider, int pMouseX, int pMouseY)
     {
+        return renderToolTipAt(pProvider, pMouseX, pMouseY, pMouseX - 8, pMouseY + 20);
+    }
+
+    public static boolean renderToolTipAt(IToolTipProvider pProvider, int pMouseX, int pMouseY, int pX, int pY) {
         if (pProvider instanceof IComponentManager)
             return ((IComponentManager) pProvider).drawComponentToolTips(pMouseX, pMouseY);
 
@@ -33,8 +37,7 @@ public final class ToolTipRenderer {
             tLines.add(pProvider.getToolTipLines().get(tLineIndex).getToolTipLine());
         }
 
-        //pProvider.getComponentHost().drawHoveringText(tLines, pMouseX - 8, pMouseY + 20, Minecraft.getMinecraft().fontRenderer);
-        pProvider.getComponentHost().drawHoveringText(tLines, 50, 50, Minecraft.getMinecraft().fontRenderer);
+        pProvider.getComponentHost().drawHoveringText(tLines, pX, pY, Minecraft.getMinecraft().fontRenderer);
         RenderHelper.enableGUIStandardItemLighting();
 
         return true;

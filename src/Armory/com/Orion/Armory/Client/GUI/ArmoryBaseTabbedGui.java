@@ -8,6 +8,7 @@ package com.Orion.Armory.Client.GUI;
 
 import com.Orion.Armory.Client.GUI.Components.Tab.ITabbedHost;
 import com.Orion.Armory.Client.GUI.Components.Tab.TabManager;
+import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import net.minecraft.inventory.Container;
 import org.lwjgl.opengl.GL11;
 
@@ -20,10 +21,19 @@ public abstract class ArmoryBaseTabbedGui extends ArmoryBaseGui implements ITabb
     }
 
     @Override
+    public void onActiveTabChanged() {
+        guiLeft = (GuiHelper.DISPLAYWIDTH - getTabManager().getXSize()) / 2;
+        guiTop = (GuiHelper.DISPLAYHEIGHT - getTabManager().getYSize()) / 2;
+
+        xSize = getTabManager().getXSize();
+        ySize = getTabManager().getYSize();
+    }
+
+    @Override
     public void initGui() {
         super.initGui();
-
         initializeTabManager();
+        onActiveTabChanged();
     }
 
     @Override
@@ -51,7 +61,11 @@ public abstract class ArmoryBaseTabbedGui extends ArmoryBaseGui implements ITabb
     protected void drawGuiContainerForegroundLayer(int pMouseX, int pMouseY) {
         super.drawGuiContainerForegroundLayer(pMouseX, pMouseY);
 
+        GL11.glPushMatrix();
+        GL11.glTranslatef(-guiLeft, -guiTop, 0F);
+
         iTabManager.renderTabsForeground(pMouseX, pMouseY);
+        GL11.glPopMatrix();
     }
 
     @Override

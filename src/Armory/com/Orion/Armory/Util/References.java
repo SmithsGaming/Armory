@@ -286,6 +286,8 @@ public class References
 
                     public static final String BOOKSLOT = "Gui.BookBinder.TabBookBinder.BookSlot";
                     public static final String BOOKCONTENTS = "Gui.BookBinder.TabBookBinder.BookContents";
+
+                    public static final String PLAYERINVENTORY = "Gui.BookBinder.TabBookBinder.PlayerInventory";
                 }
             }
         }

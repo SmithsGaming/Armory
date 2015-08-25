@@ -11,4 +11,6 @@ import com.Orion.Armory.Client.GUI.Components.Ledgers.ILedgerHost;
 public interface ITabbedHost extends ILedgerHost {
 
     TabManager getTabManager();
+
+    void onActiveTabChanged();
 }
