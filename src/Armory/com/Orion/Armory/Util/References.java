@@ -272,6 +272,22 @@ public class References
                 public static final String SMITHINGSGUIDEBORDER = "Gui,Anvil.Guide.Border";
                 public static final String SMITHINGSGUIDESLOT = "Gui.Anvil.Guide.Slot";
             }
+
+            public static final class BookBinder {
+                public static final String TabBookBinder = "Gui.BookBinder.Tab.BookBinder";
+
+                public static final class TabBook {
+                    public static final String BACKGROUND = "Gui.BookBinder.TabBookBinder.Background";
+
+                    public static final String BORDERBOOKSLOT = "Gui.BookBinder.TabBookBinder.Border.BookSlot";
+                    public static final String BORDERBLUEPRINTS = "Gui.BookBinder.TabBookBinder.Border.Blueprints";
+
+                    public static final String PROGRESSARROW = "Gui.BookBinder.TabBookBinder.ProgressArrow";
+
+                    public static final String BOOKSLOT = "Gui.BookBinder.TabBookBinder.BookSlot";
+                    public static final String BOOKCONTENTS = "Gui.BookBinder.TabBookBinder.BookContents";
+                }
+            }
         }
 
         public static final class InputHandlers {

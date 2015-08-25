@@ -8,23 +8,37 @@ package com.Orion.Armory.Client.GUI.Components;
 
 import com.Orion.Armory.Client.GUI.Components.Core.IComponentHost;
 import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
+import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
+import com.Orion.Armory.Client.GUI.Components.Tab.ITabbedHost;
 import com.Orion.Armory.Client.GUI.Components.Tab.TabManager;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
 import com.Orion.Armory.Client.Handler.ArmoryClientTickHandler;
+import com.Orion.Armory.Common.Inventory.ContainerArmory;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Core.Rectangle;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Mouse;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ComponentTab implements IGUIComponent {
+public class ComponentTab implements IGUIComponent, ITabbedHost {
 
-    TabManager iInternalTabManager;
+    TabManager iInternalTabManager = new TabManager(this);
     IComponentHost iHost;
     String iInternalName;
 
     int iLeft;
     int iTop;
+
+    public ComponentTab(IComponentHost pHost, String pInternalName, int pLeft, int pTop) {
+        iHost = pHost;
+        iInternalName = pInternalName;
+
+        iLeft = pLeft;
+        iTop = pTop;
+    }
 
     @Override
     public void onUpdate() {
@@ -111,5 +125,60 @@ public class ComponentTab implements IGUIComponent {
     @Override
     public boolean requiresForcedInput() {
         return true;
+    }
+
+    @Override
+    public TabManager getTabManager() {
+        return iInternalTabManager;
+    }
+
+    @Override
+    public LedgerManager getLedgerManager() {
+        return iInternalTabManager.getLedgerManager();
+    }
+
+    @Override
+    public ContainerArmory getContainer() {
+        return iHost.getContainer();
+    }
+
+    @Override
+    public Object getComponentRelatedObject(String pComponentID) {
+        return iHost.getComponentRelatedObject(pComponentID);
+    }
+
+    @Override
+    public float getProgressBarValue(String pProgressBarID) {
+        return iHost.getProgressBarValue(pProgressBarID);
+    }
+
+    @Override
+    public ItemStack getItemStackInSlot(int pSlotIndex) {
+        return iHost.getItemStackInSlot(pSlotIndex);
+    }
+
+    @Override
+    public int getXOrigin() {
+        return iLeft;
+    }
+
+    @Override
+    public int getYOrigin() {
+        return iTop;
+    }
+
+    @Override
+    public int getXSize() {
+        return getWidth();
+    }
+
+    @Override
+    public int getYSize() {
+        return getHeight();
+    }
+
+    @Override
+    public void drawHoveringText(List pToolTipLines, int pX, int pY, FontRenderer pFontRenderer) {
+        iHost.drawHoveringText(pToolTipLines, pX, pY, pFontRenderer);
     }
 }

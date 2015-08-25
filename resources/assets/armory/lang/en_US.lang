@@ -24,6 +24,9 @@ Armory.GUI.Heater.Ledger.InfoLine2=It raises both its efficiency and its maximum
 Armory.GUI.Anvil.Ledger.InfoLine1=The Blacksmiths Anvil is used by Smiths to craft several Items from hot Metals.
 Armory.GUI.Anvil.Ledger.InfoLine2=It takes some time to process and sometimes a Hammer and a pair of Tongs.
 #
+#BookBinder specific information
+Armory.Gui.BookBinder.Tabs.BookBinder.ToolTip=Bind new blueprints into your Smithings Guide
+#
 #NEI Compat
 Armory.NEI.Compatibility.ArmorsAnvilRecipe=Blacksmiths Anvil
 #

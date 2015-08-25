@@ -1,7 +1,6 @@
 package com.Orion.Armory.Client.GUI.Components.ToolTips;
 
 import com.Orion.Armory.Client.GUI.Components.Core.IComponentManager;
-import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderHelper;
 
@@ -21,9 +20,6 @@ public final class ToolTipRenderer {
         if (pProvider instanceof IComponentManager)
             return ((IComponentManager) pProvider).drawComponentToolTips(pMouseX, pMouseY);
 
-        int tScaledMouseX = pMouseX / GuiHelper.GUISCALE;
-        int tScaledMouseY = pMouseY / GuiHelper.GUISCALE;
-
         if (!(pProvider.getToolTipVisibileArea().contains(pMouseX, pMouseY)))
             return false;
 
@@ -37,7 +33,8 @@ public final class ToolTipRenderer {
             tLines.add(pProvider.getToolTipLines().get(tLineIndex).getToolTipLine());
         }
 
-        pProvider.getComponentHost().drawHoveringText(tLines, pMouseX - 8, pMouseY + 20, Minecraft.getMinecraft().fontRenderer);
+        //pProvider.getComponentHost().drawHoveringText(tLines, pMouseX - 8, pMouseY + 20, Minecraft.getMinecraft().fontRenderer);
+        pProvider.getComponentHost().drawHoveringText(tLines, 50, 50, Minecraft.getMinecraft().fontRenderer);
         RenderHelper.enableGUIStandardItemLighting();
 
         return true;

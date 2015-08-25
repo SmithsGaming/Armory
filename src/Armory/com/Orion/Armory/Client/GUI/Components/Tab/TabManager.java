@@ -83,7 +83,7 @@ public class TabManager implements ITabbedHost {
     }
 
     public void renderTabsBackground(float pPartialTickTime, int pMouseX, int pMouseY) {
-        if (iTabs.size() == -1) {
+        if (iTabs.size() == 1) {
             if (iActiveTab == null)
                 iActiveTab = iTabs.get(0);
 
@@ -98,50 +98,49 @@ public class TabManager implements ITabbedHost {
                 if (iActiveTab != tTab) {
                     GL11.glPushMatrix();
 
-                    GL11.glTranslatef(4 + iHost.getXOrigin() + tRenderedTabs * TABSIZEX, iHost.getYOrigin(), 0);
+                    GL11.glTranslatef(4 + tRenderedTabs * TABSIZEX, 0, 0);
                     GL11.glRotatef(180, 0F, 0F, 1F);
 
                     GL11.glTranslatef(-TABSIZEX, -TABSIZEY - 2, 0);
 
                     ComponentBorder iTabBorder = new ComponentBorder(this, References.InternalNames.GUIComponents.TAB + tRenderedTabs, 0, 0, TABSIZEX, TABSIZEY, Colors.General.GRAY, ComponentBorder.CornerTypes.Outwarts);
-                    iTabBorder.drawBackGround(iHost.getXOrigin(), iHost.getYOrigin());
+                    iTabBorder.drawBackGround(0, 0);
                     Color.resetGLColor();
 
-                    GL11.glRotatef(180F, 0F, 0F, 1F);
-                    GL11.glTranslatef(-TABSIZEX, -TABSIZEY, 0);
+                    GL11.glPopMatrix();
 
                     GL11.glPushMatrix();
+                    GL11.glTranslatef(4 + tRenderedTabs * TABSIZEX, 2, 0);
                     GuiHelper.drawItemStack(tTab.getIconStack(), 4, 4);
                     GL11.glDisable(GL11.GL_LIGHTING);
                     GL11.glEnable(GL11.GL_ALPHA_TEST);
                     GL11.glPopMatrix();
 
-                    GL11.glPopMatrix();
                 }
 
                 tRenderedTabs++;
             }
 
+            GL11.glPushMatrix();
+            GL11.glTranslatef(0F, TABSIZEY - 3, 0F);
             iActiveTab.getComponents().drawComponents();
+            GL11.glPopMatrix();
 
             GL11.glPushMatrix();
-
-            GL11.glTranslatef(4 + iHost.getXOrigin() + iTabs.indexOf(iActiveTab) * TABSIZEX, iHost.getYOrigin(), 0);
+            GL11.glTranslatef(4 + iTabs.indexOf(iActiveTab) * TABSIZEX, 0, 0);
             GL11.glRotatef(180, 0F, 0F, 1F);
-
             GL11.glTranslatef(-TABSIZEX, -TABSIZEY, 0);
 
             ComponentBorder iTabBorder = new ComponentBorder(this, References.InternalNames.GUIComponents.TAB + iTabs.indexOf(iActiveTab), 0, 0, TABSIZEX, TABSIZEY, Colors.DEFAULT, ComponentBorder.CornerTypes.Outwarts);
-            iTabBorder.drawBackGround(iHost.getXOrigin(), iHost.getYOrigin());
+            iTabBorder.drawBackGround(0, 0);
 
-            GL11.glRotatef(180F, 0F, 0F, 1F);
-            GL11.glTranslatef(-TABSIZEX, -TABSIZEY, 0);
+            GL11.glPopMatrix();
+
             GL11.glPushMatrix();
+            GL11.glTranslatef(4 + iTabs.indexOf(iActiveTab) * TABSIZEX, 0, 0);
             GuiHelper.drawItemStack(iActiveTab.getIconStack(), 4, 4);
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_ALPHA_TEST);
-            GL11.glPopMatrix();
-
             GL11.glPopMatrix();
         }
 

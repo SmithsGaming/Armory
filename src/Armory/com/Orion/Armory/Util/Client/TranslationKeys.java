@@ -150,6 +150,10 @@ public class TranslationKeys
             public static final String InfoLine2 = "Armory.GUI.Anvil.Ledger.InfoLine2";
         }
 
+        public class BookBinder {
+            public static final String ToolTipTabBookBinder = "Armory.Gui.BookBinder.Tabs.BookBinder.ToolTip";
+        }
+
         public class NEI
         {
             public static final String AnvilRecipeName = "Armory.NEI.Compatibility.ArmorsAnvilRecipe";

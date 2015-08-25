@@ -43,7 +43,7 @@ public class NEIGuiTabHandler extends INEIGuiAdapter
             }
 
 
-            Rectangle4i bounds = new Rectangle4i(abg.guiLeft, gui.guiTop, ((ArmoryBaseGui) gui).getWidth(), ((ArmoryBaseGui) gui).getHeigth());
+            Rectangle4i bounds = new Rectangle4i(((ArmoryBaseGui) gui).getXOrigin(), ((ArmoryBaseGui) gui).getYOrigin(), ((ArmoryBaseGui) gui).getWidth(), ((ArmoryBaseGui) gui).getHeigth());
             if (bounds.intersects(rect)) {
                 return true;
             }
