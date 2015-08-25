@@ -1,5 +1,6 @@
-package com.Orion.Armory.Client.GUI;
+package com.Orion.Armory.Client.GUI.Implementation.ArmorsAnvil;
 
+import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.ComponentBorder;
 import com.Orion.Armory.Client.GUI.Components.ComponentImage;
 import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
@@ -57,7 +58,7 @@ public class GuiArmorsAnvilMinimal extends ArmoryBaseGui {
         iComponents.addComponent(new ComponentSlot(this, References.InternalNames.GUIComponents.Anvil.SMITHINGSGUIDESLOT, TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS + TileEntityArmorsAnvil.MAX_OUTPUTSLOTS + TileEntityArmorsAnvil.MAX_HAMMERSLOTS + TileEntityArmorsAnvil.MAX_TONGSLOTS + TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS + TileEntityArmorsAnvil.MAX_COOLSLOTS, 18, 18, 184, 57, Textures.Gui.Anvil.BOOKSLOT, Colors.DEFAULT));
         iComponents.addComponent(new ComponentTextbox(this, References.InternalNames.GUIComponents.Anvil.TEXTBOX, Minecraft.getMinecraft().fontRenderer, 65, 11, 102, 22, References.InternalNames.InputHandlers.Anvil.ITEMNAME));
 
-        iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.Anvil.InfoLine1, "", TranslationKeys.GUI.Anvil.InfoLine2}, Textures.Gui.Basic.INFOICON.getIcon()));
+        getLedgerManager().addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.Anvil.InfoLine1, "", TranslationKeys.GUI.Anvil.InfoLine2}, Textures.Gui.Basic.INFOICON.getIcon()));
 
         NetworkManager.INSTANCE.sendToServer(new MessageCustomInput("Gui.Connect", Minecraft.getMinecraft().thePlayer.getGameProfile().getId().toString()));
     }

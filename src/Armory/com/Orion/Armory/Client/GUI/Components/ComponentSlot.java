@@ -5,15 +5,15 @@ package com.Orion.Armory.Client.GUI.Components;
 /  Created on : 26-4-2015
 */
 
-import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
-import com.Orion.Armory.Common.Inventory.ContainerArmory;
-import com.Orion.Armory.Util.Client.*;
+import com.Orion.Armory.Client.GUI.Components.Core.IComponentHost;
 import com.Orion.Armory.Util.Client.Color.Color;
+import com.Orion.Armory.Util.Client.Colors;
+import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.GUI.MultiComponentTexture;
+import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Core.Coordinate;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import org.lwjgl.opengl.GL11;
 
@@ -24,8 +24,8 @@ public class ComponentSlot extends AbstractGUIComponent
     private Color iColor;
     private int iSlotID;
 
-    public ComponentSlot(ArmoryBaseGui pGui, String pInternalName, int pSlotID, int pHeight, int pWidth, int pLeft, int pTop, CustomResource pSlotResource, Color pColor, CustomResource pIconResource) {
-        super(pGui, pInternalName, pLeft, pTop, pWidth, pHeight);
+    public ComponentSlot(IComponentHost pHost, String pInternalName, int pSlotID, int pHeight, int pWidth, int pLeft, int pTop, CustomResource pSlotResource, Color pColor, CustomResource pIconResource) {
+        super(pHost, pInternalName, pLeft, pTop, pWidth, pHeight);
 
         iSlotResource = pSlotResource;
         iColor = pColor;
@@ -33,18 +33,18 @@ public class ComponentSlot extends AbstractGUIComponent
         iIconResource = pIconResource;
     }
 
-    public ComponentSlot(ArmoryBaseGui pGui, String pInternalName, int pSlotID, int pHeight, int pWidth, int pLeft, int pTop, CustomResource pSlotResource, Color pColor) {
-        this(pGui, pInternalName, pSlotID, pHeight, pWidth, pLeft, pTop, pSlotResource, pColor, null);
+    public ComponentSlot(IComponentHost pHost, String pInternalName, int pSlotID, int pHeight, int pWidth, int pLeft, int pTop, CustomResource pSlotResource, Color pColor) {
+        this(pHost, pInternalName, pSlotID, pHeight, pWidth, pLeft, pTop, pSlotResource, pColor, null);
     }
 
-    public ComponentSlot(ArmoryBaseGui pGui, String pInternalName, Slot pContainerSlot)
+    public ComponentSlot(IComponentHost pHost, String pInternalName, Slot pContainerSlot)
     {
-        this(pGui, pInternalName, pContainerSlot, Textures.Gui.Basic.Slots.DEFAULT);
+        this(pHost, pInternalName, pContainerSlot, Textures.Gui.Basic.Slots.DEFAULT);
     }
 
-    public ComponentSlot(ArmoryBaseGui pGui, String pInternalName, Slot pContainerSlot, CustomResource pSlotResource)
+    public ComponentSlot(IComponentHost pHost, String pInternalName, Slot pContainerSlot, CustomResource pSlotResource)
     {
-        this(pGui, pInternalName, pContainerSlot.getSlotIndex(), 18, 18, pContainerSlot.xDisplayPosition -1, pContainerSlot.yDisplayPosition -1, pSlotResource, Colors.DEFAULT);
+        this(pHost, pInternalName, pContainerSlot.getSlotIndex(), 18, 18, pContainerSlot.xDisplayPosition - 1, pContainerSlot.yDisplayPosition - 1, pSlotResource, Colors.DEFAULT);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ComponentSlot extends AbstractGUIComponent
 
         GuiHelper.drawRectangleStretched(new MultiComponentTexture(iSlotResource, iSlotResource.getWidth(), iSlotResource.getHeigth(), 1, 1), iWidth, iHeight, new Coordinate(iLeft, iTop, (int) this.zLevel));
 
-        if ((iIconResource != null) && (((IInventory) ((ContainerArmory) iGui.inventorySlots).iTargetTE).getStackInSlot(iSlotID) == null))
+        if ((iIconResource != null) && ((getComponentHost().getItemStackInSlot(iSlotID)) == null))
         {
             GuiHelper.bindTexture(iIconResource.getPrimaryLocation());
             drawTexturedModalRect(iLeft + 1, iTop + 1, 0,0, iWidth, iTop);
@@ -74,10 +74,6 @@ public class ComponentSlot extends AbstractGUIComponent
         GL11.glPopMatrix();
     }
 
-    @Override
-    public void drawToolTips(int pMouseX, int pMouseY) {
-        //NOOP
-    }
 
     @Override
     public boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton) {

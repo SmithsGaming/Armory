@@ -1,7 +1,5 @@
 package com.Orion.Armory.Client.GUI.Components.Ledgers;
 
-import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
-import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
 import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
 import com.Orion.Armory.Client.GUI.Components.Core.StandardComponentManager;
 
@@ -19,13 +17,13 @@ public class LedgerManager
     StandardComponentManager iLeftLedgerManager;
     StandardComponentManager iRightLedgerManager;
 
-    ArmoryBaseGui iGui;
+    ILedgerHost pHost;
 
-    public LedgerManager(ArmoryBaseGui pGui) {
-        iGui = pGui;
+    public LedgerManager(ILedgerHost pHost) {
+        this.pHost = pHost;
 
-        iLeftLedgerManager = new StandardComponentManager(pGui);
-        iRightLedgerManager = new StandardComponentManager(pGui);
+        iLeftLedgerManager = new StandardComponentManager(pHost);
+        iRightLedgerManager = new StandardComponentManager(pHost);
     }
 
     public ArrayList<IGUIComponent> getLeftLedgers()
@@ -50,7 +48,7 @@ public class LedgerManager
         iRightLedgerManager.addComponent(pNewLedger);
     }
 
-    public Ledger getLedgetAt(int pTargetX, int pTargetY)
+    public Ledger getLedgerAt(int pTargetX, int pTargetY)
     {
         Ledger tLeftFoundLedger = (Ledger) iLeftLedgerManager.getComponentAt(pTargetX, pTargetY);
 
@@ -71,23 +69,23 @@ public class LedgerManager
 
     public void drawLedgers()
     {
-        int tYPos = iGui.guiTop + 8;
+        int tYPos = pHost.getYOrigin() + 8;
         for(int i = 0; i < iLeftLedgerManager.getComponents().size(); i++)
         {
             Ledger tLedger = (Ledger) iLeftLedgerManager.getComponents().get(i);
             tLedger.onUpdate();
 
-            tLedger.draw(iGui.guiLeft, tYPos);
+            tLedger.draw(pHost.getXOrigin(), tYPos);
             tYPos += tLedger.getHeight();
         }
 
-        tYPos = iGui.guiTop + 8;
+        tYPos = pHost.getYOrigin() + 8;
         for(int i = 0; i < iRightLedgerManager.getComponents().size(); i++)
         {
             Ledger tLedger = (Ledger) iRightLedgerManager.getComponents().get(i);
             tLedger.onUpdate();
 
-            tLedger.draw(iGui.guiLeft + iGui.xSize, tYPos);
+            tLedger.draw(pHost.getXOrigin() + pHost.getXSize(), tYPos);
             tYPos += tLedger.getHeight();
         }
     }
@@ -97,7 +95,7 @@ public class LedgerManager
 
         if (pMouseButton == 0) {
 
-            Ledger ledger = this.getLedgetAt(pMouseX, pMouseY);
+            Ledger ledger = this.getLedgerAt(pMouseX, pMouseY);
 
             // Default action only if the mouse click was not handled by the
             // ledger itself.
@@ -132,9 +130,7 @@ public class LedgerManager
         if (iLeftLedgerManager.handleKeyTyped(pKey, pPara))
             return true;
 
-        if (iRightLedgerManager.handleKeyTyped(pKey, pPara))
-            return true;
+        return iRightLedgerManager.handleKeyTyped(pKey, pPara);
 
-        return false;
     }
 }

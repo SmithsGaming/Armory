@@ -6,7 +6,7 @@ import com.Orion.Armory.API.Crafting.SmithingsAnvil.AnvilRecipeRegistry;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.IAnvilRecipeComponent;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
 import com.Orion.Armory.API.Item.IHeatableItem;
-import com.Orion.Armory.Client.GUI.GuiArmorsAnvilMinimal;
+import com.Orion.Armory.Client.GUI.Implementation.ArmorsAnvil.GuiArmorsAnvilMinimal;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Item.ItemHeatedItem;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;

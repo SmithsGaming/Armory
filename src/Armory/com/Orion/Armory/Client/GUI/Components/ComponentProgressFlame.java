@@ -1,6 +1,6 @@
 package com.Orion.Armory.Client.GUI.Components;
 
-import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
+import com.Orion.Armory.Client.GUI.Components.Core.IComponentHost;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.StandardToolTip;
 import com.Orion.Armory.Util.Client.Color.Color;
@@ -21,20 +21,20 @@ import java.util.ArrayList;
  */
 public class ComponentProgressFlame extends ComponentProgressBar {
 
-    public ComponentProgressFlame(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, Color pBackgroundColor, Color pForegroundColor) {
-        super(pGui, pInternalName, pLeft, pTop, Textures.Gui.Basic.Components.FLAMEEMPTY, Textures.Gui.Basic.Components.FLAMEFULL, pBackgroundColor, pForegroundColor);
+    public ComponentProgressFlame(IComponentHost pHost, String pInternalName, int pLeft, int pTop, Color pBackgroundColor, Color pForegroundColor) {
+        super(pHost, pInternalName, pLeft, pTop, Textures.Gui.Basic.Components.FLAMEEMPTY, Textures.Gui.Basic.Components.FLAMEFULL, pBackgroundColor, pForegroundColor);
     }
 
     @Override
     public void onUpdate() {
-        iCompletePartToBeRendered = (int) (iGui.getProgressBarValue(this.getInternalName()) * iBackground.getHeigth());
+        iCompletePartToBeRendered = (int) (iHost.getProgressBarValue(this.getInternalName()) * iBackground.getHeigth());
     }
 
     @Override
     public ArrayList<IToolTip> getToolTipLines() {
         ArrayList<IToolTip> tToolTips = new ArrayList<IToolTip>();
 
-        float tProgress = iGui.getProgressBarValue(this.getInternalName());
+        float tProgress = iHost.getProgressBarValue(this.getInternalName());
         if (tProgress < 0)
         {
             tToolTips.add(new StandardToolTip(this, StatCollector.translateToLocal(TranslationKeys.GUI.Components.PROGRESSFLAMEFUELLEFT) + ": 0%"));

@@ -1,13 +1,8 @@
 package com.Orion.Armory.Client.GUI.Components.Core;
 
-import codechicken.lib.vec.Rectangle4i;
-import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
-import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTipProvider;
 import com.Orion.Armory.Util.Core.Rectangle;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 
@@ -20,14 +15,25 @@ import java.util.ArrayList;
  */
 public abstract class AbstractGUIComponent extends Gui implements IGUIComponent
 {
-    protected ArmoryBaseGui iGui;
-
     public int iHeight = 0;
     public int iWidth = 0;
     public int iLeft = 0;
     public int iTop = 0;
-
+    protected IComponentHost iHost;
     String iInternalName;
+
+    public AbstractGUIComponent(IComponentHost pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeight) {
+        super();
+
+        iHost = pGui;
+
+        iInternalName = pInternalName;
+
+        iHeight = pHeight;
+        iWidth = pWidth;
+        iLeft = pLeft;
+        iTop = pTop;
+    }
 
     @Override
     public Rectangle getOccupiedArea() {
@@ -35,8 +41,8 @@ public abstract class AbstractGUIComponent extends Gui implements IGUIComponent
     }
 
     @Override
-    public ArmoryBaseGui getBaseGui() {
-        return iGui;
+    public IComponentHost getComponentHost() {
+        return iHost;
     }
 
     @Override
@@ -52,20 +58,6 @@ public abstract class AbstractGUIComponent extends Gui implements IGUIComponent
     @Override
     public void setToolTipVisibleArea(Rectangle pNewArea) {
         return;
-    }
-
-    public AbstractGUIComponent(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeight)
-    {
-        super();
-
-        iGui = pGui;
-
-        iInternalName = pInternalName;
-
-        iHeight = pHeight;
-        iWidth = pWidth;
-        iLeft = pLeft;
-        iTop = pTop;
     }
 
     public String getInternalName()
@@ -91,8 +83,6 @@ public abstract class AbstractGUIComponent extends Gui implements IGUIComponent
     public abstract void drawForeGround(int pX, int pY);
 
     public abstract void drawBackGround(int pX, int pY);
-
-    public abstract void drawToolTips(int pMouseX, int pMouseY);
 
     public boolean checkIfPointIsInComponent(int pTargetX, int pTargetY)
     {

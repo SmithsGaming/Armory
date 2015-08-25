@@ -5,13 +5,14 @@ package com.Orion.Armory.Client.GUI.Components;
 /  Created on : 27-4-2015
 */
 
-import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
-import com.Orion.Armory.Util.Client.*;
+import com.Orion.Armory.Client.GUI.Components.Core.IComponentHost;
 import com.Orion.Armory.Util.Client.Color.Color;
+import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.GUI.TextureComponent;
 import com.Orion.Armory.Util.Client.GUI.UIRotation;
+import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Core.Coordinate;
 import org.lwjgl.opengl.GL11;
 
@@ -21,8 +22,8 @@ public class ComponentBorder extends AbstractGUIComponent
     Color iBackGroundColor;
     CornerTypes iUpperCornerType;
 
-    public ComponentBorder(ArmoryBaseGui pGui, String pInternalName,int pLeft, int pTop, int pWidth, int pHeight, Color pBackGroundColor, CornerTypes pUpperCornerType) {
-        super(pGui, pInternalName, pLeft, pTop, pWidth, pHeight);
+    public ComponentBorder(IComponentHost pHost, String pInternalName, int pLeft, int pTop, int pWidth, int pHeight, Color pBackGroundColor, CornerTypes pUpperCornerType) {
+        super(pHost, pInternalName, pLeft, pTop, pWidth, pHeight);
 
         iBackGroundColor = pBackGroundColor;
         iUpperCornerType = pUpperCornerType;
@@ -241,7 +242,7 @@ public class ComponentBorder extends AbstractGUIComponent
         }
 
         GuiHelper.bindTexture(tResource.getPrimaryLocation());
-        drawTexturedModalRect(pCornerXPos-3, pCornerYPos, tResource.getU(), tResource.getV(),6, tResource.getHeigth());
+        drawTexturedModalRect(pCornerXPos - 3, pCornerYPos, tResource.getU(), tResource.getV(), 6, tResource.getHeigth());
 
         GL11.glPopMatrix();
     }
@@ -315,11 +316,6 @@ public class ComponentBorder extends AbstractGUIComponent
         GL11.glPopMatrix();
     }
 
-
-    @Override
-    public void drawToolTips(int pMouseX, int pMouseY) {
-        //NOOP
-    }
 
     public boolean checkIfPointIsInComponent(int pTargetX, int pTargetY)
     {

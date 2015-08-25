@@ -20,6 +20,7 @@ import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Common.Addons.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
 import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
+import com.Orion.Armory.Common.Blocks.BlockBookBinder;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Config.ArmorDataConfigHandler;
@@ -40,6 +41,7 @@ import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityHeater;
+import com.Orion.Armory.Common.TileEntity.TileEntityBookBinder;
 import com.Orion.Armory.Util.Client.TextureAddressHelper;
 import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.Core.ItemStackHelper;
@@ -383,6 +385,7 @@ public class ArmoryInitializer
 
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockFirePit, 1), "#=#", "#/#", "###", '#', new ItemStack(Items.iron_ingot, 1), '=', new ItemStack(Items.cauldron, 1), '/', new ItemStack(Blocks.furnace, 1)));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockAnvil, 1), "BBB", " I ", "IBI", 'B', new ItemStack(Blocks.iron_block, 1), 'I', new ItemStack(Items.iron_ingot, 1)));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBookBinder, 1), "APA", "BGB", "AOA", 'A', new ItemStack(Blocks.log2, 1, 0), 'P', new ItemStack(Blocks.planks, 1, 4), 'B', new ItemStack(Blocks.stonebrick, 1, 0), 'G', new ItemStack(Items.gold_ingot, 1), 'O', new ItemStack(Blocks.planks, 1, 0)));
         }
 
         public static void prepareKnowledgeSystem() {
@@ -1392,19 +1395,22 @@ public class ArmoryInitializer
     {
         public static void RegisterBlocks()
         {
-            GeneralRegistry.Blocks.iBlockFirePit = (BlockFirePit) new BlockFirePit().setHardness(1F).setStepSound(Block.soundTypeMetal)
+            GeneralRegistry.Blocks.iBlockFirePit = (BlockFirePit) new BlockFirePit().setHardness(2.5F).setStepSound(Block.soundTypeMetal)
                     .setBlockName(InternalNames.Blocks.FirePit).setCreativeTab(GeneralRegistry.iTabArmoryComponents).setBlockTextureName(TextureAddressHelper.getTextureAddress("DarkSteelPartical"));
 
-            GeneralRegistry.Blocks.iBlockHeater = (BlockHeater) new BlockHeater().setHardness(1F).setStepSound(Block.soundTypeMetal)
+            GeneralRegistry.Blocks.iBlockHeater = (BlockHeater) new BlockHeater().setHardness(2F).setStepSound(Block.soundTypeMetal)
                     .setBlockName(InternalNames.Blocks.Heater).setCreativeTab(GeneralRegistry.iTabArmoryComponents).setBlockTextureName(TextureAddressHelper.getTextureAddress("DarkSteelPartical"));
 
-            GeneralRegistry.Blocks.iBlockAnvil = (BlockArmorsAnvil) new BlockArmorsAnvil().setHardness(1F).setStepSound(Block.soundTypeAnvil)
+            GeneralRegistry.Blocks.iBlockAnvil = (BlockArmorsAnvil) new BlockArmorsAnvil().setHardness(2F).setStepSound(Block.soundTypeAnvil)
                     .setBlockName(InternalNames.Blocks.ArmorsAnvil).setCreativeTab(GeneralRegistry.iTabArmoryComponents).setBlockTextureName(TextureAddressHelper.getTextureAddress("DarkSteelPartical"));
 
+            GeneralRegistry.Blocks.iBookBinder = (BlockBookBinder) new BlockBookBinder().setHardness(1F).setStepSound(Block.soundTypeWood)
+                    .setBlockName(InternalNames.Blocks.BookBinder).setCreativeTab(GeneralRegistry.iTabArmoryComponents).setBlockTextureName(TextureAddressHelper.getTextureAddress("DarkSteelPartical"));
 
             GameRegistry.registerBlock(GeneralRegistry.Blocks.iBlockFirePit, InternalNames.Blocks.FirePit);
             GameRegistry.registerBlock(GeneralRegistry.Blocks.iBlockHeater, InternalNames.Blocks.Heater);
             GameRegistry.registerBlock(GeneralRegistry.Blocks.iBlockAnvil, InternalNames.Blocks.ArmorsAnvil);
+            GameRegistry.registerBlock(GeneralRegistry.Blocks.iBookBinder, InternalNames.Blocks.BookBinder);
         }
 
         public static void RegisterItems()
@@ -1444,6 +1450,7 @@ public class ArmoryInitializer
             GameRegistry.registerTileEntity(TileEntityFirePit.class, InternalNames.TileEntities.FirePitContainer);
             GameRegistry.registerTileEntity(TileEntityHeater.class, InternalNames.TileEntities.HeaterComponent);
             GameRegistry.registerTileEntity(TileEntityArmorsAnvil.class, InternalNames.TileEntities.ArmorsAnvil);
+            GameRegistry.registerTileEntity(TileEntityBookBinder.class, InternalNames.TileEntities.BookBinder);
         }
 
         public static void loadMaterialConfig()

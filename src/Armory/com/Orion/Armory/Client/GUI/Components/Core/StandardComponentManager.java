@@ -1,9 +1,6 @@
 package com.Orion.Armory.Client.GUI.Components.Core;
 
-import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
-import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTipProvider;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.ToolTipRenderer;
-import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 
@@ -16,13 +13,13 @@ import java.util.ArrayList;
  */
 public class StandardComponentManager implements IComponentManager
 {
-    protected ArmoryBaseGui iGui;
+    protected IComponentHost iHost;
     ArrayList<IGUIComponent> iComponents = new ArrayList<IGUIComponent>();
     ArrayList<Integer> iForcedInputComponents = new ArrayList<Integer>();
 
-    public StandardComponentManager(ArmoryBaseGui pGui)
+    public StandardComponentManager(IComponentHost pHost)
     {
-        this.iGui = pGui;
+        this.iHost = pHost;
     }
 
     public ArrayList<IGUIComponent> getComponents()
@@ -56,7 +53,7 @@ public class StandardComponentManager implements IComponentManager
             IGUIComponent tComponent = iComponents.get(i);
             tComponent.onUpdate();
 
-            tComponent.draw(iGui.guiLeft, iGui.guiTop);
+            tComponent.draw(iHost.getXOrigin(), iHost.getYOrigin());
         }
     }
 
@@ -115,5 +112,12 @@ public class StandardComponentManager implements IComponentManager
         }
 
         return false;
+    }
+
+    @Override
+    public void onUpdate() {
+        for (IGUIComponent tComponent : iComponents) {
+            tComponent.onUpdate();
+        }
     }
 }

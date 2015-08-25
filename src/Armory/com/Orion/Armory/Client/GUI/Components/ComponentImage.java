@@ -1,7 +1,7 @@
 package com.Orion.Armory.Client.GUI.Components;
 
-import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
+import com.Orion.Armory.Client.GUI.Components.Core.IComponentHost;
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import org.lwjgl.opengl.GL11;
@@ -17,8 +17,8 @@ public class ComponentImage extends AbstractGUIComponent {
 
     CustomResource iTargetResource;
 
-    public ComponentImage(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, CustomResource pTargetResource) {
-        super(pGui, pInternalName, pLeft, pTop, pTargetResource.getWidth(), pTargetResource.getHeigth());
+    public ComponentImage(IComponentHost pHost, String pInternalName, int pLeft, int pTop, CustomResource pTargetResource) {
+        super(pHost, pInternalName, pLeft, pTop, pTargetResource.getWidth(), pTargetResource.getHeigth());
         iTargetResource = pTargetResource;
     }
 
@@ -42,11 +42,6 @@ public class ComponentImage extends AbstractGUIComponent {
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();
-    }
-
-    @Override
-    public void drawToolTips(int pMouseX, int pMouseY) {
-
     }
 
     @Override

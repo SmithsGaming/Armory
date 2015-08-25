@@ -9,27 +9,25 @@ import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTipProvider;
 
 public interface IGUIComponent extends IToolTipProvider
 {
-    public abstract void onUpdate();
+    void onUpdate();
 
-    public String getInternalName();
+    String getInternalName();
 
-    public int getHeight();
+    int getHeight();
 
-    public int getWidth();
+    int getWidth();
 
-    public void draw(int pX, int pY);
+    void draw(int pX, int pY);
 
-    public abstract void drawForeGround(int pX, int pY);
+    void drawForeGround(int pX, int pY);
 
-    public abstract void drawBackGround(int pX, int pY);
+    void drawBackGround(int pX, int pY);
 
-    public abstract void drawToolTips(int pMouseX, int pMouseY);
+    boolean checkIfPointIsInComponent(int pTargetX, int pTargetY);
 
-    public boolean checkIfPointIsInComponent(int pTargetX, int pTargetY);
+    boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton);
 
-    public abstract boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton);
+    boolean handleKeyTyped(char pKey, int pPara);
 
-    public boolean handleKeyTyped(char pKey, int pPara);
-
-    public boolean requiresForcedInput();
+    boolean requiresForcedInput();
 }

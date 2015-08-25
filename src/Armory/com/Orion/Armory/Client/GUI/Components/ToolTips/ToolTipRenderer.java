@@ -1,11 +1,9 @@
 package com.Orion.Armory.Client.GUI.Components.ToolTips;
 
 import com.Orion.Armory.Client.GUI.Components.Core.IComponentManager;
-import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
-import com.Orion.Armory.Util.Core.Rectangle;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.RenderHelper;
 
 import java.util.ArrayList;
 
@@ -30,12 +28,17 @@ public final class ToolTipRenderer {
             return false;
 
         ArrayList<String> tLines = new ArrayList<String>();
+
+        if (tLines == null)
+            return false;
+
         for (int tLineIndex = 0; tLineIndex < pProvider.getToolTipLines().size(); tLineIndex ++)
         {
             tLines.add(pProvider.getToolTipLines().get(tLineIndex).getToolTipLine());
         }
 
-        pProvider.getBaseGui().drawHoveringText(tLines, pMouseX - 8, pMouseY + 20, Minecraft.getMinecraft().fontRenderer);
+        pProvider.getComponentHost().drawHoveringText(tLines, pMouseX - 8, pMouseY + 20, Minecraft.getMinecraft().fontRenderer);
+        RenderHelper.enableGUIStandardItemLighting();
 
         return true;
     }

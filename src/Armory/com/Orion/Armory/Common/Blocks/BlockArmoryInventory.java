@@ -9,10 +9,6 @@ package com.Orion.Armory.Common.Blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -29,7 +25,7 @@ public abstract class BlockArmoryInventory extends BlockContainer {
 
     @Override
     public void breakBlock(World pWorld, int pX, int pY, int pZ, Block pBlock, int pMeta) {
-        IInventory tContent = (IInventory) pWorld.getTileEntity(pX, pY, pZ);
+/*        IInventory tContent = (IInventory) pWorld.getTileEntity(pX, pY, pZ);
 
         if (tContent != null) {
             for (int tStackIndex = 0; tStackIndex < tContent.getSizeInventory(); ++tStackIndex) {
@@ -64,6 +60,6 @@ public abstract class BlockArmoryInventory extends BlockContainer {
             pWorld.func_147453_f(pX, pY, pZ, pBlock);
         }
 
-        super.breakBlock(pWorld, pX, pY, pZ, pBlock, pMeta);
+        super.breakBlock(pWorld, pX, pY, pZ, pBlock, pMeta);*/
     }
 }

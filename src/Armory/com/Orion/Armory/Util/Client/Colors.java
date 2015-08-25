@@ -21,6 +21,7 @@ public final class Colors
         public static Color ORANGE = new Color(255, 150, 35);
         public static Color LIGHTBLUE = new Color(120, 158, 255);
         public static Color LICHTGREEN = new Color(102, 255, 122);
+        public static Color GRAY = new Color(170, 170, 170);
 
         public static Color ELECTRICBLUE = new Color(45, 206, 250);
     }

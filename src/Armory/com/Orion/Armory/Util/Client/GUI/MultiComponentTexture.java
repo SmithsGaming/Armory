@@ -1,7 +1,6 @@
 package com.Orion.Armory.Util.Client.GUI;
 
 import com.Orion.Armory.Util.Client.CustomResource;
-import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Core.Coordinate;
 
 /**
@@ -34,8 +33,8 @@ public class MultiComponentTexture
         iCornerComponents[3] = new TextureComponent(pSource.getPrimaryLocation(), pSource.getU(), pSource.getV() + pTotalHeight - pCornerHeight, pCornerWidth, pCornerHeight, new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
 
         iSideComponents[0] = new TextureComponent(pSource.getPrimaryLocation(), pSource.getU() + pCornerWidth                    , pSource.getV()                                   , pTotalWidth - (pCornerWidth * 2)  , pCornerHeight                     , new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
-        iSideComponents[1] = new TextureComponent(pSource.getPrimaryLocation(), pSource.getU() + pTotalWidth - (pCornerWidth)    , pSource.getV() + pCornerHeight                   , pCornerWidth                      , pTotalHeight - (pCornerHeight * 2), new UIRotation(false, false, false, 0), new Coordinate(15,0,0));
-        iSideComponents[2] = new TextureComponent(pSource.getPrimaryLocation(), pSource.getU() + pCornerWidth                    , pSource.getV() + pTotalHeight - pCornerHeight    , pTotalWidth - (pCornerWidth * 2)  , pCornerHeight                     , new UIRotation(false, false, false, 0), new Coordinate(0,15,0));
+        iSideComponents[1] = new TextureComponent(pSource.getPrimaryLocation(), pSource.getU() + pTotalWidth - (pCornerWidth), pSource.getV() + pCornerHeight, pCornerWidth, pTotalHeight - (pCornerHeight * 2), new UIRotation(false, false, false, 0), new Coordinate(0, 0, 0));
+        iSideComponents[2] = new TextureComponent(pSource.getPrimaryLocation(), pSource.getU() + pCornerWidth, pSource.getV() + pTotalHeight - pCornerHeight, pTotalWidth - (pCornerWidth * 2), pCornerHeight, new UIRotation(false, false, false, 0), new Coordinate(0, 0, 0));
         iSideComponents[3] = new TextureComponent(pSource.getPrimaryLocation(), pSource.getU()                                   , pSource.getV() + pCornerHeight                   , pCornerWidth                      , pTotalHeight - (pCornerHeight * 2), new UIRotation(false, false, false, 0), new Coordinate(0,0,0));
     }
 

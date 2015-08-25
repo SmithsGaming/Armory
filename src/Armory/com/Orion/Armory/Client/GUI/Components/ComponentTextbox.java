@@ -1,9 +1,8 @@
 package com.Orion.Armory.Client.GUI.Components;
 
-import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
+import com.Orion.Armory.Client.GUI.Components.Core.IComponentHost;
 import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
-import com.Orion.Armory.Common.Inventory.ContainerArmory;
 import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Core.Rectangle;
@@ -24,20 +23,20 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
 {
     String iInternalName;
     String iInputID;
-    private ArmoryBaseGui iGui;
+    private IComponentHost iHost;
     private boolean iUseDefaultBackground = true;
     private CustomResource iBackGround;
 
-    public ComponentTextbox(ArmoryBaseGui pGui, String pInternalName, FontRenderer pFontRenderer, int pX, int pY, int pWidth, int pHeight, String pInputID) {
+    public ComponentTextbox(IComponentHost pHost, String pInternalName, FontRenderer pFontRenderer, int pX, int pY, int pWidth, int pHeight, String pInputID) {
         super(pFontRenderer, pX, pY, pWidth, pHeight);
-        iGui = pGui;
+        iHost = pHost;
         iInternalName = pInternalName;
         iInputID = pInputID;
     }
 
-    public ComponentTextbox(ArmoryBaseGui pGui, String pInternalName, FontRenderer pFontRenderer, int pX, int pY, int pWidth, int pHeight, String pInputID, CustomResource pBackground) {
+    public ComponentTextbox(IComponentHost pHost, String pInternalName, FontRenderer pFontRenderer, int pX, int pY, int pWidth, int pHeight, String pInputID, CustomResource pBackground) {
         super(pFontRenderer, pX, pY, pWidth, pHeight);
-        iGui = pGui;
+        iHost = pHost;
         iInternalName = pInternalName;
 
         setEnableBackgroundDrawing(false);
@@ -53,8 +52,8 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
     }
 
     @Override
-    public ArmoryBaseGui getBaseGui() {
-        return iGui;
+    public IComponentHost getComponentHost() {
+        return iHost;
     }
 
     @Override
@@ -111,16 +110,10 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
     @Override
     public void drawBackGround(int pX, int pY) {
         GL11.glPushMatrix();
+
         iBackGround.getColor().performGLColor();
 
-
-
         Color.resetGLColor();
-    }
-
-    @Override
-    public void drawToolTips(int pMouseX, int pMouseY) {
-        //NOOP
     }
 
     @Override
@@ -139,7 +132,7 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
     public boolean handleKeyTyped(char pKey, int pPara) {
         if (this.textboxKeyTyped(pKey, pPara))
         {
-            ((ContainerArmory) iGui.inventorySlots).updateComponentResult(this, iInputID, this.getText());
+            iHost.getContainer().updateComponentResult(this, iInputID, this.getText());
             return true;
         }
 

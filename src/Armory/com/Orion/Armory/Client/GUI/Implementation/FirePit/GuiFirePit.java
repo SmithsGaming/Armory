@@ -1,4 +1,4 @@
-package com.Orion.Armory.Client.GUI;
+package com.Orion.Armory.Client.GUI.Implementation.FirePit;
 /*
  *   GuiFirePit
  *   Created by: Orion
@@ -22,7 +22,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.opengl.GL11;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -60,8 +59,8 @@ public class GuiFirePit extends com.Orion.Armory.Client.GUI.ArmoryBaseGui
         iComponents.addComponent(new ComponentProgressFlame(this, References.InternalNames.GUIComponents.FirePit.FLAMEFOUR, 98, 40, Colors.DEFAULT, Colors.DEFAULT));
         iComponents.addComponent(new ComponentProgressFlame(this, References.InternalNames.GUIComponents.FirePit.FLAMEFIVE, 116, 40, Colors.DEFAULT, Colors.DEFAULT));
 
-        this.iLedgers.addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.FirePit.InfoLine1, "", TranslationKeys.GUI.FirePit.InfoLine2, "", TranslationKeys.GUI.FirePit.InfoLine3}, Textures.Gui.Basic.INFOICON.getIcon()));
-        this.iLedgers.addLedgerRight(new TemperatureLedger(this));
+        this.getLedgerManager().addLedgerLeft(new InfoLedger(this, TranslationKeys.GUI.InformationTitel, new String[]{TranslationKeys.GUI.FirePit.InfoLine1, "", TranslationKeys.GUI.FirePit.InfoLine2, "", TranslationKeys.GUI.FirePit.InfoLine3}, Textures.Gui.Basic.INFOICON.getIcon()));
+        this.getLedgerManager().addLedgerRight(new TemperatureLedger(this));
 
         for(int tSlotIndex = 0;tSlotIndex < (TileEntityFirePit.FUELSTACK_AMOUNT + TileEntityFirePit.INGOTSTACKS_AMOUNT); tSlotIndex++)
         {
@@ -71,7 +70,6 @@ public class GuiFirePit extends com.Orion.Armory.Client.GUI.ArmoryBaseGui
         }
 
        }
-
 
     protected class TemperatureLedger extends Ledger {
         String[] iTranslatedInfoText;

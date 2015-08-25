@@ -1,7 +1,7 @@
 package com.Orion.Armory.Client.GUI.Components;
 
-import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
+import com.Orion.Armory.Client.GUI.Components.Core.IComponentHost;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.StandardToolTip;
 import com.Orion.Armory.Util.Client.Color.Color;
@@ -36,11 +36,11 @@ public class ComponentFluidTank extends AbstractGUIComponent
     float iMaxCapacity;
     GuiDirection iDirection;
 
-    public ComponentFluidTank(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeight, Color pColor, int pMaxCapacity, GuiDirection pDirection) {
-        super(pGui, pInternalName, pLeft, pTop, pWidth, pHeight);
+    public ComponentFluidTank(IComponentHost pHost, String pInternalName, int pLeft, int pTop, int pWidth, int pHeight, Color pColor, int pMaxCapacity, GuiDirection pDirection) {
+        super(pHost, pInternalName, pLeft, pTop, pWidth, pHeight);
 
         iColor = pColor;
-        iFluidStack = (FluidStack) pGui.getComponentRelatedObject(pInternalName);
+        iFluidStack = (FluidStack) pHost.getComponentRelatedObject(pInternalName);
         iMaxCapacity = pMaxCapacity;
         iDirection = pDirection;
     }
@@ -158,11 +158,6 @@ public class ComponentFluidTank extends AbstractGUIComponent
         GuiHelper.disableScissor();
 
         GL11.glPopMatrix();
-    }
-
-    @Override
-    public void drawToolTips(int pMouseX, int pMouseY) {
-
     }
 
     @Override

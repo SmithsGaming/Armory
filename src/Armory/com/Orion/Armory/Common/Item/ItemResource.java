@@ -78,6 +78,10 @@ public abstract class ItemResource extends Item {
         }
 
         String tMaterialID = pStack.getTagCompound().getString(References.NBTTagCompoundData.Material);
+
+        if (!tMaterialID.equals(References.InternalNames.Materials.Vanilla.IRON) && pStack.getItemDamage() == 0)
+            pStack.setItemDamage(MaterialRegistry.getInstance().getMaterial(tMaterialID).getMaterialID());
+
         return iResources.get(tMaterialID);
     }
 

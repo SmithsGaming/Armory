@@ -1,7 +1,6 @@
 package com.Orion.Armory.Util.Client.GUI;
 
 import com.Orion.Armory.Util.Client.CustomResource;
-import com.Orion.Armory.Util.Client.GUI.UIRotation;
 import com.Orion.Armory.Util.Core.Coordinate;
 import net.minecraft.client.renderer.texture.TextureMap;
 
@@ -46,5 +45,9 @@ public class TextureComponent
         iHeight = pResource.getHeigth();
         iRotation = pRotation;
         iRelativeTranslation = pRelativeTranslation;
+    }
+
+    public TextureComponent(CustomResource pResource) {
+        this(pResource, new UIRotation(false, false, false, 0F), new Coordinate(0, 0, 0));
     }
 }

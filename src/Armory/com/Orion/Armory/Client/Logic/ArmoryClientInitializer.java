@@ -11,6 +11,7 @@ import com.Orion.Armory.API.Events.Client.RegisterMaterialResourceEvent;
 import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Client.Renderer.Items.*;
 import com.Orion.Armory.Client.Renderer.TileEntities.AnvilTESR;
+import com.Orion.Armory.Client.Renderer.TileEntities.BookBinderTESR;
 import com.Orion.Armory.Client.Renderer.TileEntities.FirePitTESR;
 import com.Orion.Armory.Client.Renderer.TileEntities.HeaterTESR;
 import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
@@ -20,6 +21,7 @@ import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityHeater;
+import com.Orion.Armory.Common.TileEntity.TileEntityBookBinder;
 import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -169,6 +171,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockFirePit), new ItemRendererFirePit());
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockHeater), new ItemRendererHeater());
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockAnvil), new ItemRendererAnvil());
+            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBookBinder), new ItemRendererBookBinder());
             MinecraftForgeClient.registerItemRenderer(GeneralRegistry.Items.iHeatedIngot, new ItemHeatedIngotRenderer());
             MinecraftForgeClient.registerItemRenderer(GeneralRegistry.Items.iSmithingsGuide, new ItemRendererSmithingsGuide());
         }
@@ -179,6 +182,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFirePit.class, new FirePitTESR());
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHeater.class, new HeaterTESR());
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityArmorsAnvil.class, new AnvilTESR());
+            ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBookBinder.class, new BookBinderTESR());
         }
     }
     

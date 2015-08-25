@@ -4,10 +4,13 @@ import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.Core.Rectangle;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
@@ -25,6 +28,7 @@ public final class GuiHelper
     public static int DISPLAYHEIGHT;
     public static int DISPLAYWIDTH;
     public static int GUISCALE;
+    protected static RenderItem ITEMRENDERER = new RenderItem();
 
     public static void drawRectangleStretched(TextureComponent pCenterComponent, int pWidth, int pHeight, Coordinate pElementCoordinate)
     {
@@ -36,13 +40,13 @@ public final class GuiHelper
         renderCenter(pComponents.iCenterComponent, pWidth - pComponents.iCornerComponents[0].iWidth - pComponents.iCornerComponents[1].iWidth, pHeight - pComponents.iCornerComponents[0].iHeight - pComponents.iCornerComponents[3].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent() + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
 
         renderCorner(pComponents.iCornerComponents[0], pElementCoordinate);
-        renderCorner(pComponents.iCornerComponents[1], new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCenterComponent.iWidth + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent()));
-        renderCorner(pComponents.iCornerComponents[2], new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCenterComponent.iWidth  + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent() + pComponents.iCenterComponent.iHeight  + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
-        renderCorner(pComponents.iCornerComponents[3], new Coordinate(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent() + pComponents.iCenterComponent.iHeight  + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
+        renderCorner(pComponents.iCornerComponents[1], new Coordinate(pElementCoordinate.getXComponent() + pWidth - pComponents.iCornerComponents[1].iWidth, pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent()));
+        renderCorner(pComponents.iCornerComponents[2], new Coordinate(pElementCoordinate.getXComponent() + pWidth - pComponents.iCornerComponents[2].iWidth, pElementCoordinate.getYComponent() + pComponents.iCenterComponent.iHeight + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
+        renderCorner(pComponents.iCornerComponents[3], new Coordinate(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent() + pComponents.iCenterComponent.iHeight + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
 
-        renderBorder(pComponents.iSideComponents[0], pWidth - (pComponents.iCornerComponents[0].iWidth  * 2), pComponents.iSideComponents[0].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent()));
-        renderBorder(pComponents.iSideComponents[1], pComponents.iSideComponents[1].iWidth, pHeight -  (pComponents.iCornerComponents[0].iHeight * 2), new Coordinate(pElementCoordinate.getXComponent() + (pWidth - pComponents.iCenterComponent.iWidth), pElementCoordinate.getYComponent() + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
-        renderBorder(pComponents.iSideComponents[2], pWidth - (pComponents.iCornerComponents[0].iWidth  * 2), pComponents.iSideComponents[2].iHeight , new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent() + (pComponents.iCornerComponents[0].iHeight * 2), pElementCoordinate.getZComponent()));
+        renderBorder(pComponents.iSideComponents[0], pWidth - (pComponents.iCornerComponents[0].iWidth * 2), pComponents.iSideComponents[0].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent()));
+        renderBorder(pComponents.iSideComponents[1], pComponents.iSideComponents[1].iWidth, pHeight - pComponents.iCornerComponents[0].iHeight - pComponents.iCornerComponents[2].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pWidth - pComponents.iSideComponents[1].iWidth, pElementCoordinate.getYComponent() + pComponents.iCornerComponents[1].iHeight, pElementCoordinate.getZComponent()));
+        renderBorder(pComponents.iSideComponents[2], pWidth - pComponents.iCornerComponents[2].iWidth - pComponents.iCornerComponents[3].iWidth, pComponents.iSideComponents[2].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent() + (pHeight - pComponents.iSideComponents[2].iHeight), pElementCoordinate.getZComponent()));
         renderBorder(pComponents.iSideComponents[3], pComponents.iSideComponents[3].iWidth, pHeight - (pComponents.iCornerComponents[0].iHeight * 2), new Coordinate(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent() + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
    }
 
@@ -113,8 +117,8 @@ public final class GuiHelper
             while(tDrawnHeight < (pHeight))
             {
                 int tHeightToRender = pHeight - tDrawnHeight;
-                if (tHeightToRender >= pComponent.iWidth)
-                    tHeightToRender = pComponent.iWidth;
+                if (tHeightToRender >= pComponent.iHeight)
+                    tHeightToRender = pComponent.iHeight;
 
                 if (pWidth <= pComponent.iWidth)
                 {
@@ -130,14 +134,14 @@ public final class GuiHelper
                         if (tWidthToRender >= pComponent.iWidth)
                             tWidthToRender = pComponent.iWidth;
 
-                        if (pHeight < pComponent.iHeight)
+                        if (pHeight <= pComponent.iHeight)
                         {
                             drawTexturedModalRect(tDrawnWidth, 0, 0, pComponent.iU, pComponent.iV, tWidthToRender, tHeightToRender);
                             tDrawnWidth += tWidthToRender;
                         }
                         else
                         {
-                            drawTexturedModalRect(tDrawnWidth, tDrawnHeight, 0, pComponent.iU, pComponent.iV, tWidthToRender, pComponent.iHeight);
+                            drawTexturedModalRect(tDrawnWidth, tDrawnHeight, 0, pComponent.iU, pComponent.iV, tWidthToRender, tHeightToRender);
                             tDrawnWidth += pComponent.iWidth;
                         }
                     }
@@ -170,7 +174,7 @@ public final class GuiHelper
 
         bindTexture(pComponent.iAddress);
 
-        if(pWidth <= pComponent.iWidth)
+        if (pWidth <= pComponent.iWidth && pHeight <= pComponent.iHeight)
         {
             drawTexturedModalRect(0, 0, 0, pComponent.iU, pComponent.iV, pWidth, pHeight);
         }
@@ -180,7 +184,15 @@ public final class GuiHelper
             int tDrawnWidth = 0;
             if (pWidth <= pComponent.iWidth)
             {
-                drawTexturedModalRect(tDrawnWidth, tDrawnHeigth, 0, pComponent.iU, pComponent.iV, pWidth, pHeight);
+                while (pHeight > tDrawnHeigth) {
+                    int tDrawableHeight = pHeight - tDrawnHeigth;
+                    if (tDrawableHeight > pComponent.iHeight)
+                        tDrawableHeight = pComponent.iHeight;
+
+                    drawTexturedModalRect(0, tDrawnHeigth, 0, pComponent.iU, pComponent.iV, pWidth, tDrawableHeight);
+
+                    tDrawnHeigth += tDrawableHeight;
+                }
             }
             else
             {
@@ -244,6 +256,15 @@ public final class GuiHelper
         Color.resetGLColor();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glDisable(GL11.GL_BLEND);
+    }
+
+    public static void drawItemStack(ItemStack pStack, int pX, int pY) {
+        GL11.glTranslatef(0.0F, 0.0F, 32.0F);
+        FontRenderer font = null;
+        if (pStack != null) font = pStack.getItem().getFontRenderer(pStack);
+        if (font == null) font = Minecraft.getMinecraft().fontRenderer;
+        ITEMRENDERER.renderItemAndEffectIntoGUI(font, Minecraft.getMinecraft().getTextureManager(), pStack, pX, pY);
+        ITEMRENDERER.renderItemOverlayIntoGUI(font, Minecraft.getMinecraft().getTextureManager(), pStack, pX, pY);
     }
 
     public static void bindTexture(String pTextureAddress)

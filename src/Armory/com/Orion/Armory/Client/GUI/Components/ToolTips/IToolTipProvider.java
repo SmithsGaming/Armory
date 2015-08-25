@@ -1,6 +1,6 @@
 package com.Orion.Armory.Client.GUI.Components.ToolTips;
 
-import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
+import com.Orion.Armory.Client.GUI.Components.Core.IComponentHost;
 import com.Orion.Armory.Util.Core.Rectangle;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public interface IToolTipProvider
 {
-    ArmoryBaseGui getBaseGui();
+    IComponentHost getComponentHost();
 
     String getInternalName();
 

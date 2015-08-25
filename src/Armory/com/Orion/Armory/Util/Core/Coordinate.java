@@ -8,10 +8,6 @@ package com.Orion.Armory.Util.Core;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-
 public class Coordinate
 {
     int iXCoord;
@@ -21,6 +17,17 @@ public class Coordinate
     public Coordinate(int pXCoord, int pYCoord)
     {
         this(pXCoord, pYCoord, 0);
+    }
+
+
+    public Coordinate(int pXCoord, int pYCoord, int pZCoord) {
+        iXCoord = pXCoord;
+        iYCoord = pYCoord;
+        iZCoord = pZCoord;
+    }
+
+    public static Coordinate fromBytes(ByteBuf pData) {
+        return new Coordinate(pData.readInt(), pData.readInt(), pData.readInt());
     }
 
     @Override
@@ -50,13 +57,6 @@ public class Coordinate
         return getXComponent() + getYComponent() + getZComponent();
     }
 
-    public Coordinate(int pXCoord, int pYCoord, int pZCoord)
-    {
-        iXCoord = pXCoord;
-        iYCoord = pYCoord;
-        iZCoord = pZCoord;
-    }
-
     public int getXComponent() { return iXCoord; }
 
     public int getYComponent() { return iYCoord; }
@@ -71,11 +71,6 @@ public class Coordinate
     public float getDistanceTo(Coordinate pCoordinate)
     {
         return (float) Math.sqrt(Math.pow(getXComponent() - pCoordinate.getXComponent(), 2) + Math.pow(getYComponent() - pCoordinate.getYComponent(), 2) + Math.pow(getZComponent() - pCoordinate.getZComponent(), 2));
-    }
-
-    public static Coordinate fromBytes(ByteBuf pData)
-    {
-        return new Coordinate(pData.readInt(), pData.readInt(), pData.readInt());
     }
 
     public void toBytes(ByteBuf pDataOut)

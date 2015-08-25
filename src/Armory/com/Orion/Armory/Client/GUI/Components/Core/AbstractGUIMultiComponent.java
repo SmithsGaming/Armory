@@ -5,7 +5,6 @@ package com.Orion.Armory.Client.GUI.Components.Core;
 /  Created on : 27-4-2015
 */
 
-import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
 import com.Orion.Armory.Util.Core.Rectangle;
 import org.lwjgl.opengl.GL11;
@@ -18,14 +17,14 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
     public int iWidth = 0;
     public int iLeft = 0;
     public int iTop = 0;
-    protected ArmoryBaseGui iGui;
-    StandardComponentManager iSubComponents;
+    protected IComponentHost iHost;
+    protected StandardComponentManager iSubComponents;
     String iInternalName;
 
-    public AbstractGUIMultiComponent(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeigth) {
-        iSubComponents = new StandardComponentManager(pGui);
+    public AbstractGUIMultiComponent(IComponentHost pHost, String pInternalName, int pLeft, int pTop, int pWidth, int pHeigth) {
+        iSubComponents = new StandardComponentManager(pHost);
 
-        iGui = pGui;
+        iHost = pHost;
 
         iLeft = pLeft;
         iTop = pTop;
@@ -57,8 +56,8 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
     }
 
     @Override
-    public ArmoryBaseGui getBaseGui() {
-        return iGui;
+    public IComponentHost getComponentHost() {
+        return iHost;
     }
 
     public String getInternalName() {
@@ -103,10 +102,7 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
 
     @Override
     public void onUpdate() {
-        for(int i = 0; i < iSubComponents.getComponents().size(); i++) {
-            IGUIComponent tComponent = iSubComponents.getComponents().get(i);
-            tComponent.onUpdate();
-        }
+        iSubComponents.onUpdate();
     }
 
     @Override
@@ -136,11 +132,6 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
 
     @Override
     public void drawBackGround(int pX, int pY) {
-        //NOOP
-    }
-
-    @Override
-    public void drawToolTips(int pMouseX, int pMouseY) {
         //NOOP
     }
 

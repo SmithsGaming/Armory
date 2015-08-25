@@ -6,6 +6,7 @@ package com.Orion.Armory.Client.GUI;
 */
 
 import com.Orion.Armory.Client.GUI.Components.Core.StandardComponentManager;
+import com.Orion.Armory.Client.GUI.Components.Ledgers.ILedgerHost;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
@@ -13,15 +14,22 @@ import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;
 
-public abstract class ArmoryBaseGui extends GuiContainer {
+public abstract class ArmoryBaseGui extends GuiContainer implements ILedgerHost {
+    protected StandardComponentManager iComponents = new StandardComponentManager(this);
     LedgerManager iLedgers = new LedgerManager(this);
-    StandardComponentManager iComponents = new StandardComponentManager(this);
-
     TileEntityArmory iBaseTE;
+
+    public ArmoryBaseGui(Container pTargetedContainer) {
+        super(pTargetedContainer);
+
+        iBaseTE = ((ContainerArmory) pTargetedContainer).iTargetTE;
+    }
 
     @Override
     public void initGui() {
@@ -30,13 +38,8 @@ public abstract class ArmoryBaseGui extends GuiContainer {
         GuiHelper.calcScaleFactor();
     }
 
-    public ArmoryBaseGui(Container pTargetedContainer) {
-        super(pTargetedContainer);
-
-        iBaseTE = ((ContainerArmory) pTargetedContainer).iTargetTE;
-    }
-
-    public LedgerManager Ledgers() {
+    @Override
+    public LedgerManager getLedgerManager() {
         return iLedgers;
     }
 
@@ -47,6 +50,26 @@ public abstract class ArmoryBaseGui extends GuiContainer {
 
     public int getWidth() {
         return xSize;
+    }
+
+    @Override
+    public int getXOrigin() {
+        return guiLeft;
+    }
+
+    @Override
+    public int getYOrigin() {
+        return guiTop;
+    }
+
+    @Override
+    public int getXSize() {
+        return this.xSize;
+    }
+
+    @Override
+    public int getYSize() {
+        return this.ySize;
     }
 
     public int getHeigth() {
@@ -81,9 +104,6 @@ public abstract class ArmoryBaseGui extends GuiContainer {
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         GuiHelper.calcScaleFactor();
 
-        int mX = (mouseX / GuiHelper.GUISCALE);
-        int mY = (mouseY / GuiHelper.GUISCALE);
-
         super.mouseClicked(mouseX, mouseY, mouseButton);
 
         // / Handle ledger clicks
@@ -91,7 +111,10 @@ public abstract class ArmoryBaseGui extends GuiContainer {
             return;
         }
 
-        iComponents.handleMouseClicked(mX, mY, mouseButton);
+        mouseX -= guiLeft;
+        mouseY -= guiTop;
+
+        iComponents.handleMouseClicked(mouseX, mouseY, mouseButton);
     }
 
     protected void keyTyped(char pKey, int pPara)
@@ -105,11 +128,18 @@ public abstract class ArmoryBaseGui extends GuiContainer {
         super.keyTyped(pKey, pPara);
     }
 
+    @Override
     public float getProgressBarValue(String pProgressBarID)
     {
         return iBaseTE.getProgressBarValue(pProgressBarID);
     }
 
+    @Override
+    public ContainerArmory getContainer() {
+        return (ContainerArmory) inventorySlots;
+    }
+
+    @Override
     public Object getComponentRelatedObject(String pComponentID)
     {
         return iBaseTE.getGUIComponentRelatedObject(pComponentID);
@@ -119,6 +149,14 @@ public abstract class ArmoryBaseGui extends GuiContainer {
     public void drawHoveringText(List pToolTipLines, int pX, int pY, FontRenderer pFontRenderer)
     {
         super.drawHoveringText(pToolTipLines, pX, pY, pFontRenderer);
+    }
+
+    @Override
+    public ItemStack getItemStackInSlot(int pSlotIndex) {
+        if (iBaseTE instanceof IInventory)
+            return ((IInventory) iBaseTE).getStackInSlot(pSlotIndex);
+
+        return null;
     }
 }
 

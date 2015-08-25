@@ -10,6 +10,7 @@ import com.Orion.Armory.Client.CreativeTab.ComponentsTab;
 import com.Orion.Armory.Client.CreativeTab.MedievalTab;
 import com.Orion.Armory.Client.CreativeTab.MedievalUpgradeTab;
 import com.Orion.Armory.Common.Blocks.BlockArmorsAnvil;
+import com.Orion.Armory.Common.Blocks.BlockBookBinder;
 import com.Orion.Armory.Common.Blocks.BlockFirePit;
 import com.Orion.Armory.Common.Blocks.BlockHeater;
 import com.Orion.Armory.Common.Item.Armor.TierMedieval.ItemUpgradeMedieval;
@@ -58,6 +59,7 @@ public class GeneralRegistry {
         public static BlockFirePit iBlockFirePit = null;
         public static BlockHeater iBlockHeater = null;
         public static BlockArmorsAnvil iBlockAnvil = null;
+        public static BlockBookBinder iBookBinder = null;
     }
 
     public static class Items

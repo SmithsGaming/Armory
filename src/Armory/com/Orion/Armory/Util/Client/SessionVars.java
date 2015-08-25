@@ -9,13 +9,13 @@ public final class SessionVars {
 
     private static Class iLastOpenenedLedger;
 
+    public static Class getLastOpenenedLedger()
+    {
+        return iLastOpenenedLedger;
+    }
+
     public static void setLastOpenenedLedger(Class pLedger)
     {
         iLastOpenenedLedger = pLedger;
-    }
-
-    public static Class getLastOpenenedLedger(Class pLedger)
-    {
-        return iLastOpenenedLedger;
     }
 }

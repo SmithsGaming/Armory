@@ -9,17 +9,19 @@ import java.util.ArrayList;
 
 public interface IComponentManager
 {
-    public ArrayList<IGUIComponent> getComponents();
+    ArrayList<IGUIComponent> getComponents();
 
-    public void addComponent(IGUIComponent pNewComponent);
+    void addComponent(IGUIComponent pNewComponent);
 
-    public IGUIComponent getComponentAt(int pTargetX, int pTargetY);
+    IGUIComponent getComponentAt(int pTargetX, int pTargetY);
 
-    public void drawComponents();
+    void drawComponents();
 
-    public boolean drawComponentToolTips(int pMouseX, int pMouseY);
+    boolean drawComponentToolTips(int pMouseX, int pMouseY);
 
-    public boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton);
+    boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton);
 
-    public boolean handleKeyTyped(char pKey, int pPara);
+    boolean handleKeyTyped(char pKey, int pPara);
+
+    void onUpdate();
 }

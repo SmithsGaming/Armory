@@ -22,9 +22,9 @@ public class NEIGuiTabHandler extends INEIGuiAdapter
 
             rect = new Rectangle4i(x, y, w, h);
 
-            for(int i = 0; i < abg.Ledgers().getLeftLedgers().size(); i++)
+            for (int i = 0; i < abg.getLedgerManager().getLeftLedgers().size(); i++)
             {
-                Ledger tLedger = (Ledger) abg.Ledgers().getLeftLedgers().get(i);
+                Ledger tLedger = (Ledger) abg.getLedgerManager().getLeftLedgers().get(i);
 
                 Rectangle4i bounds = new Rectangle4i(tLedger.iLastXOrigin + tLedger.getOriginOffSet(), tLedger.iLastYOrigin, tLedger.getWidth(), tLedger.getHeight());
                 if (bounds.intersects(rect)){
@@ -32,9 +32,9 @@ public class NEIGuiTabHandler extends INEIGuiAdapter
                 }
             }
 
-            for(int i = 0; i < abg.Ledgers().getRightLedgers().size(); i++)
+            for (int i = 0; i < abg.getLedgerManager().getRightLedgers().size(); i++)
             {
-                Ledger tLedger = (Ledger) abg.Ledgers().getRightLedgers().get(i);
+                Ledger tLedger = (Ledger) abg.getLedgerManager().getRightLedgers().get(i);
 
                 Rectangle4i bounds = new Rectangle4i(tLedger.iLastXOrigin + tLedger.getOriginOffSet(), tLedger.iLastYOrigin, tLedger.getWidth(), tLedger.getHeight());
                 if (bounds.intersects(rect)) {

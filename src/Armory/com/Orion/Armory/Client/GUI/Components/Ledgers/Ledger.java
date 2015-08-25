@@ -50,6 +50,9 @@ public abstract class Ledger extends AbstractGUIComponent
     public Ledger(ArmoryBaseGui pGui, String pInternalName)
     {
         super(pGui,pInternalName, 0, 0, 0, 0);
+
+        if (SessionVars.getLastOpenenedLedger() == this.getClass())
+            setFullyOpen();
     }
 
     @Override
@@ -64,14 +67,7 @@ public abstract class Ledger extends AbstractGUIComponent
             iCurrentXExtension -= 4;
         }
 
-        if (iCurrentYExtension > iMaxHeightClosed)
-        {
-            iClosed = false;
-        }
-        else
-        {
-            iClosed = true;
-        }
+        iClosed = iCurrentYExtension <= iMaxHeightClosed;
 
 
         if (iOpen && iCurrentYExtension < iMaxHeightOpen)

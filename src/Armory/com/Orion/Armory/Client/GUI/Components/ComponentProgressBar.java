@@ -1,7 +1,7 @@
 package com.Orion.Armory.Client.GUI.Components;
 
-import com.Orion.Armory.Client.GUI.ArmoryBaseGui;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIComponent;
+import com.Orion.Armory.Client.GUI.Components.Core.IComponentHost;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.StandardToolTip;
 import com.Orion.Armory.Util.Client.Color.Color;
@@ -31,14 +31,28 @@ public class ComponentProgressBar extends AbstractGUIComponent
     CustomResource iBackground = Textures.Gui.Basic.Components.ARROWEMPTY;
     CustomResource iForeground = Textures.Gui.Basic.Components.ARROWFULL;
 
+    public ComponentProgressBar(IComponentHost pHost, String pInternalName, int pLeft, int pTop, Color pBackgroundColor, Color pForegroundColor) {
+        this(pHost, pInternalName, pLeft, pTop, Textures.Gui.Basic.Components.ARROWEMPTY, Textures.Gui.Basic.Components.ARROWFULL, pBackgroundColor, pForegroundColor);
+    }
+
+    public ComponentProgressBar(IComponentHost pHost, String pInternalName, int pLeft, int pTop, CustomResource pBackground, CustomResource pForeground, Color pBackgroundColor, Color pForegroundColor) {
+        super(pHost, pInternalName, pLeft, pTop, pBackground.getWidth(), pBackground.getHeigth());
+
+        iForeGroundColor = pForegroundColor;
+        iBackGroundColor = pBackgroundColor;
+
+        iForeground = pForeground;
+        iBackground = pBackground;
+    }
+
     @Override
     public Rectangle getOccupiedArea() {
         return super.getOccupiedArea();
     }
 
     @Override
-    public ArmoryBaseGui getBaseGui() {
-        return super.getBaseGui();
+    public IComponentHost getComponentHost() {
+        return super.getComponentHost();
     }
 
     @Override
@@ -50,7 +64,7 @@ public class ComponentProgressBar extends AbstractGUIComponent
     public ArrayList<IToolTip> getToolTipLines() {
         ArrayList<IToolTip> tToolTips = new ArrayList<IToolTip>();
 
-        tToolTips.add(new StandardToolTip(this, StatCollector.translateToLocal(TranslationKeys.GUI.Components.PROGRESSBARPROGRESS) + ": " + iGui.getProgressBarValue(this.getInternalName()) * 100 + "%"));
+        tToolTips.add(new StandardToolTip(this, StatCollector.translateToLocal(TranslationKeys.GUI.Components.PROGRESSBARPROGRESS) + ": " + iHost.getProgressBarValue(this.getInternalName()) * 100 + "%"));
 
         return tToolTips;
     }
@@ -60,23 +74,9 @@ public class ComponentProgressBar extends AbstractGUIComponent
         super.setToolTipVisibleArea(pNewArea);
     }
 
-    public ComponentProgressBar(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, Color pBackgroundColor, Color pForegroundColor) {
-        this(pGui, pInternalName, pLeft, pTop, Textures.Gui.Basic.Components.ARROWEMPTY, Textures.Gui.Basic.Components.ARROWFULL, pBackgroundColor, pForegroundColor);
-    }
-
-    public ComponentProgressBar(ArmoryBaseGui pGui, String pInternalName, int pLeft, int pTop, CustomResource pBackground, CustomResource pForeground, Color pBackgroundColor, Color pForegroundColor) {
-        super(pGui, pInternalName, pLeft, pTop, pBackground.getWidth(), pBackground.getHeigth());
-
-        iForeGroundColor = pForegroundColor;
-        iBackGroundColor = pBackgroundColor;
-
-        iForeground = pForeground;
-        iBackground = pBackground;
-    }
-
     @Override
     public void onUpdate() {
-        iCompletePartToBeRendered = (int) (iGui.getProgressBarValue(this.getInternalName()) * iBackground.getWidth());
+        iCompletePartToBeRendered = (int) (iHost.getProgressBarValue(this.getInternalName()) * iBackground.getWidth());
     }
 
     @Override
@@ -103,11 +103,6 @@ public class ComponentProgressBar extends AbstractGUIComponent
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();
-    }
-
-    @Override
-    public void drawToolTips(int pMouseX, int pMouseY) {
-        //NOOP
     }
 
     @Override

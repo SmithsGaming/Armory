@@ -19,12 +19,14 @@ public class References
         public static final int FirePitID = RenderingRegistry.getNextAvailableRenderId();
         public static final int HeaterID = RenderingRegistry.getNextAvailableRenderId();
         public static final int AnvilID = RenderingRegistry.getNextAvailableRenderId();
+        public static final int BookBinderId = RenderingRegistry.getNextAvailableRenderId();
     }
 
     public static final class GuiIDs {
         public static int FIREPITID = 0;
         public static int HEATERID = 1;
         public static int ANVILID = 2;
+        public static int BOOKBINDERID = 3;
         public static int SMITHINGSGUIDE = 50;
         public static int SMITHINGSGUIDEINVENTORY = 51;
     }
@@ -217,6 +219,7 @@ public class References
             public static final String FirePit = "Armory.Blocks.FirePit";
             public static final String Heater = "Armory.Blocks.Heater";
             public static final String ArmorsAnvil = "Armory.Blocks.Anvil";
+            public static final String BookBinder = "Armory.Blocks.Binder";
         }
 
         public static final  class TileEntities
@@ -224,6 +227,7 @@ public class References
             public static final String FirePitContainer = "container.Armory.FirePit";
             public static final String HeaterComponent = "container.Armory.Heater";
             public static final String ArmorsAnvil = "container.Armory.Anvil";
+            public static final String BookBinder = "conainer.Armory.BookBinder";
 
             public static final class Structures
             {
@@ -242,6 +246,8 @@ public class References
 
         public static final  class GUIComponents
         {
+            public static final String TAB = "Armory.Gui.BAse.Tab.";
+
             public static final  class FirePit
             {
                 public static final String FLAMEONE = "Flame1";
@@ -355,6 +361,7 @@ public class References
             public final static String Heater = iModelLocation + "Heater.obj";
             public final static String Anvil = iModelLocation + "ArmorsAnvil.obj";
             public final static String SmithingsGuide = iModelLocation + "Book - Single Sided.obj";
+            public final static String BookBinder = iModelLocation + "Binder.obj";
         }
     }
 

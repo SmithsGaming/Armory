@@ -209,7 +209,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe
 
                 iTranslatedUpgrades += tStack.getItem().getItemStackDisplayName(tStack);
 
-                if ((iUpgradeComponents.get(tStackIndex) + 1) != iUpgradeComponents.size()) {
+                if ((iUpgradeComponents.indexOf(tStackIndex) + 1) != iUpgradeComponents.size()) {
                     iTranslatedUpgrades += ", ";
                 }
             }
