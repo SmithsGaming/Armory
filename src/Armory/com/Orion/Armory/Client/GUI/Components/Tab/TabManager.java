@@ -66,7 +66,7 @@ public class TabManager implements ITabbedHost {
 
     public boolean handleMouseClick(int pMouseX, int pMouseY, int pMouseButton) {
         if (iTabs.size() == 1)
-            return iActiveTab.getComponents().handleMouseClicked(pMouseX - TABSIZEX, pMouseY, pMouseButton);
+            return iActiveTab.getComponents().handleMouseClicked(pMouseX, pMouseY, pMouseButton);
 
         if (pMouseY < TABSIZEY && pMouseY >= 0) {
             if (pMouseX > 0 && pMouseX < iTabs.size() * TABSIZEX) {

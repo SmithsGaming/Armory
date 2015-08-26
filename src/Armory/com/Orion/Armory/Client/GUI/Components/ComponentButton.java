@@ -13,6 +13,8 @@ import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Core.Coordinate;
+import net.minecraft.client.Minecraft;
+import org.lwjgl.opengl.GL11;
 
 public class ComponentButton extends AbstractGUIComponent {
 
@@ -53,6 +55,8 @@ public class ComponentButton extends AbstractGUIComponent {
         }
 
         iIsEnabled = iHost.getComponentRelatedObject(getInternalName() + ".enabled") != null && (Integer) iHost.getComponentRelatedObject(getInternalName() + ".enabled") > 0;
+
+        iIsEnabled = true;
     }
 
     @Override
@@ -63,11 +67,31 @@ public class ComponentButton extends AbstractGUIComponent {
     @Override
     public void drawBackGround(int pX, int pY) {
         if (!iIsEnabled) {
-            GuiHelper.drawRectangleStretched(Textures.Gui.Basic.Components.Button.Disabled.TEXTURE, getWidth(), getHeight(), new Coordinate(pX + iLeft, pY + iTop, (int) zLevel));
+            GuiHelper.drawRectangleStretched(Textures.Gui.Basic.Components.Button.Disabled.TEXTURE, getWidth(), getHeight(), new Coordinate(iLeft, iTop, (int) zLevel));
         } else if (iUpdateTicksSinceLastClick > 0) {
-            GuiHelper.drawRectangleStretched(Textures.Gui.Basic.Components.Button.Clicked.TEXTURE, getWidth(), getHeight(), new Coordinate(pX + iLeft, pY + iTop, (int) zLevel));
+            GuiHelper.drawRectangleStretched(Textures.Gui.Basic.Components.Button.Clicked.TEXTURE, getWidth(), getHeight(), new Coordinate(iLeft, iTop, (int) zLevel));
         } else {
-            GuiHelper.drawRectangleStretched(Textures.Gui.Basic.Components.Button.Standard.TEXTURE, getWidth(), getHeight(), new Coordinate(pX + iLeft, pY + iTop, (int) zLevel));
+            GuiHelper.drawRectangleStretched(Textures.Gui.Basic.Components.Button.Standard.TEXTURE, getWidth(), getHeight(), new Coordinate(iLeft, iTop, (int) zLevel));
+        }
+
+        if (iForegroundResource != null) {
+            int tX = (iWidth - iForegroundResource.getWidth()) / 2;
+            int tY = (iHeight - iForegroundResource.getHeigth()) / 2;
+
+            GL11.glPopMatrix();
+            iForegroundResource.getColor().performGLColor();
+            GuiHelper.bindTexture(iForegroundResource.getPrimaryLocation());
+            GuiHelper.drawTexturedModalRect(iLeft + tX, iTop + tY, 0, iForegroundResource.getU(), iForegroundResource.getV(), iForegroundResource.getWidth(), iForegroundResource.getHeigth());
+            Color.resetGLColor();
+            GL11.glPopMatrix();
+        } else {
+            int tX = (iWidth - Minecraft.getMinecraft().fontRenderer.getStringWidth(iForegroundText)) / 2;
+            int tY = (iHeight - Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT) / 2;
+
+            GL11.glPushMatrix();
+            Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(iForegroundText, iLeft + tX, iTop + tY, iTextColor.getColor());
+            Color.resetGLColor();
+            GL11.glPopMatrix();
         }
     }
 

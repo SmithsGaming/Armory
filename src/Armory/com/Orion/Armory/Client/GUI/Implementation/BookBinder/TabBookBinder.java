@@ -7,6 +7,7 @@
 package com.Orion.Armory.Client.GUI.Implementation.BookBinder;
 
 import com.Orion.Armory.Client.GUI.Components.ComponentBorder;
+import com.Orion.Armory.Client.GUI.Components.ComponentButton;
 import com.Orion.Armory.Client.GUI.Components.ComponentProgressBar;
 import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
 import com.Orion.Armory.Client.GUI.Components.Core.StandardComponentManager;
@@ -41,6 +42,9 @@ public class TabBookBinder extends Tab {
         getComponents().addComponent(new ComponentProgressBar(pHost, References.InternalNames.GUIComponents.BookBinder.TabBook.PROGRESSARROW, 38, 12, Colors.DEFAULT, Colors.DEFAULT));
 
         getComponents().addComponent(new ComponentPlayerInventory(pHost, References.InternalNames.GUIComponents.BookBinder.TabBook.PLAYERINVENTORY, 37, 115, 1, ComponentBorder.CornerTypes.Outwarts));
+        getComponents().addComponent(new ComponentButton(pHost, "TestButton", 68, 10, 25, 25, "TestButton", "Hello", Colors.DEFAULT));
+        getComponents().addComponent(new ComponentButton(pHost, "TestButton", 68, 38, 25, 25, "TestButton", "Hello", Colors.DEFAULT));
+
 
 
     }

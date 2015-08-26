@@ -41,8 +41,8 @@ public final class GuiHelper
 
         renderCorner(pComponents.iCornerComponents[0], pElementCoordinate);
         renderCorner(pComponents.iCornerComponents[1], new Coordinate(pElementCoordinate.getXComponent() + pWidth - pComponents.iCornerComponents[1].iWidth, pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent()));
-        renderCorner(pComponents.iCornerComponents[2], new Coordinate(pElementCoordinate.getXComponent() + pWidth - pComponents.iCornerComponents[2].iWidth, pElementCoordinate.getYComponent() + pComponents.iCenterComponent.iHeight + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
-        renderCorner(pComponents.iCornerComponents[3], new Coordinate(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent() + pComponents.iCenterComponent.iHeight + pComponents.iCornerComponents[0].iHeight, pElementCoordinate.getZComponent()));
+        renderCorner(pComponents.iCornerComponents[2], new Coordinate(pElementCoordinate.getXComponent() + pWidth - pComponents.iCornerComponents[2].iWidth, pElementCoordinate.getYComponent() + pHeight - pComponents.iCornerComponents[2].iHeight, pElementCoordinate.getZComponent()));
+        renderCorner(pComponents.iCornerComponents[3], new Coordinate(pElementCoordinate.getXComponent(), pElementCoordinate.getYComponent() + pHeight - pComponents.iCornerComponents[3].iHeight, pElementCoordinate.getZComponent()));
 
         renderBorder(pComponents.iSideComponents[0], pWidth - (pComponents.iCornerComponents[0].iWidth * 2), pComponents.iSideComponents[0].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pComponents.iCornerComponents[0].iWidth, pElementCoordinate.getYComponent(), pElementCoordinate.getZComponent()));
         renderBorder(pComponents.iSideComponents[1], pComponents.iSideComponents[1].iWidth, pHeight - pComponents.iCornerComponents[0].iHeight - pComponents.iCornerComponents[2].iHeight, new Coordinate(pElementCoordinate.getXComponent() + pWidth - pComponents.iSideComponents[1].iWidth, pElementCoordinate.getYComponent() + pComponents.iCornerComponents[1].iHeight, pElementCoordinate.getZComponent()));
@@ -122,9 +122,8 @@ public final class GuiHelper
 
                 if (pWidth <= pComponent.iWidth)
                 {
-                    drawTexturedModalRect(tDrawnWidth, tDrawnHeight, 0, pComponent.iU, pComponent.iV, pWidth, tHeightToRender);
-                    tDrawnWidth += (pWidth);
-                    tDrawnHeight += pComponent.iHeight;
+                    drawTexturedModalRect(0, tDrawnHeight, 0, pComponent.iU, pComponent.iV, pWidth, tHeightToRender);
+                    tDrawnHeight += tHeightToRender;
                 }
                 else
                 {
