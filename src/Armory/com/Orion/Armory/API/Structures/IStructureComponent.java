@@ -51,6 +51,5 @@ public interface IStructureComponent extends IPathComponent
 
     void readStructureFromNBT(NBTTagCompound pTileEntityCompound);
 
-    @SideOnly(Side.CLIENT)
     IStructureComponentRenderer getRenderer(IStructureComponent pComponentToBeRendered);
 }
