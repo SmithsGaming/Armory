@@ -120,7 +120,7 @@ public abstract class AbstractGUIMultiComponent implements IComponentManager, IG
         GL11.glPushMatrix();
         GL11.glTranslatef(iLeft, iTop, 0F);
 
-        iSubComponents.drawComponents();
+        drawComponents();
 
         GL11.glPopMatrix();
     }

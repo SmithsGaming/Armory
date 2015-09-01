@@ -5,6 +5,7 @@ package com.Orion.Armory.Client.GUI;
 /  Created on : 15/01/2015
 */
 
+import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
 import com.Orion.Armory.Client.GUI.Components.Core.StandardComponentManager;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.ILedgerHost;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
@@ -65,6 +66,11 @@ public abstract class ArmoryBaseGui extends GuiContainer implements ILedgerHost 
     @Override
     public int getXSize() {
         return this.xSize;
+    }
+
+    @Override
+    public void updateComponentResult(IGUIComponent pComponent, String pComponentID, String pNewValue) {
+        getContainer().updateComponentResult(pComponent, pComponentID, pNewValue);
     }
 
     @Override

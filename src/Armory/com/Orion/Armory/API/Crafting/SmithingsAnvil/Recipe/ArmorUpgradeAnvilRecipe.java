@@ -216,7 +216,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe
         }
 
 
-        return StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Upgrade1) + " " + iResult.getItem().getItemStackDisplayName(iResult) + " " + StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Upgrade2) + " " + iTranslatedUpgrades;
+        return StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Upgrade1) + " " + iResult.getItem().getItemStackDisplayName(iResult) + " " + StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Upgrade2) + " " + iTranslatedUpgrades;
     }
 
     @Override

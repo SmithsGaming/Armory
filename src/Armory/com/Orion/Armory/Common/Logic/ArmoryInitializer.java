@@ -1426,6 +1426,7 @@ public class ArmoryInitializer
             GeneralRegistry.Items.iMedievalUpgrades = new ItemUpgradeMedieval();
             GeneralRegistry.Items.iSmithingsGuide = new ItemSmithingsGuide();
             GeneralRegistry.Items.iBlueprints = new ItemBlueprint();
+            GeneralRegistry.Items.iLabel = new ItemGuideLabel();
 
             for(MultiLayeredArmor tCore: MaterialRegistry.getInstance().getAllRegisteredArmors().values())
             {
@@ -1443,6 +1444,7 @@ public class ArmoryInitializer
             GameRegistry.registerItem(GeneralRegistry.Items.iMedievalUpgrades, InternalNames.Items.ItemMedievalUpdrade);
             GameRegistry.registerItem(GeneralRegistry.Items.iSmithingsGuide, InternalNames.Items.ItemSmithingsGuide);
             GameRegistry.registerItem(GeneralRegistry.Items.iBlueprints, InternalNames.Items.ItemBlueprint);
+            GameRegistry.registerItem(GeneralRegistry.Items.iLabel, InternalNames.Items.ItemGuideLabel);
         }
 
         public static void RegisterTileEntities()

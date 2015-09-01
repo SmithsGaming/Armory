@@ -36,25 +36,29 @@ public class TranslationKeys
             public static final String Tier5 = "Armory.Knowledge.AnvilRecipeKnowledge.Tier4";
             public static final String CreativeTier = "Armory.Knowledge.AnvilRecipeKnowledge.Creative";
         }
-
-        public static final class Blueprint {
-            public static final String Quality = "Armory.Knowledge.BluePrint.Quality";
-            public static final String Produces = "Armory.Knowledge.BluePrint.Produces";
-
-            public static final String Upgrade1 = "Armory.Knowledge.BluePrint.Produces.Upgrade.1";
-            public static final String Upgrade2 = "Armory.Knowledge.BluePrint.Produces.Upgrade.2";
-
-            public static final String Tier1 = "Armory.Knowledge.Blueprint.Tier1";
-            public static final String Tier2 = "Armory.Knowledge.Blueprint.Tier2";
-            public static final String Tier3 = "Armory.Knowledge.Blueprint.Tier3";
-            public static final String Tier4 = "Armory.Knowledge.Blueprint.Tier4";
-            public static final String Tier5 = "Armory.Knowledge.Blueprint.Tier4";
-            public static final String CreativeTier = "Armory.Knowledge.Blueprint.Creative";
-        }
     }
 
     public class Items
     {
+        public final class Label {
+            public static final String LabelName = "Armory.Items.Label.GroupName";
+            public static final String Logo = "Armory.Items.Label.Logo";
+        }
+
+        public final class Blueprint {
+            public static final String Quality = "Armory.Items.BluePrint.Quality";
+            public static final String Produces = "Armory.Items.BluePrint.Produces";
+
+            public static final String Upgrade1 = "Armory.Items.BluePrint.Produces.Upgrade.1";
+            public static final String Upgrade2 = "Armory.Items.BluePrint.Produces.Upgrade.2";
+
+            public static final String Tier1 = "Armory.Items.Blueprint.Tier1";
+            public static final String Tier2 = "Armory.Items.Blueprint.Tier2";
+            public static final String Tier3 = "Armory.Items.Blueprint.Tier3";
+            public static final String Tier4 = "Armory.Items.Blueprint.Tier4";
+            public static final String Tier5 = "Armory.Items.Blueprint.Tier4";
+            public static final String CreativeTier = "Armory.Items.Blueprint.Creative";
+        }
 
         public class HeatedIngot
         {

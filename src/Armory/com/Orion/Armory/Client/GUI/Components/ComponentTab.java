@@ -77,10 +77,7 @@ public class ComponentTab implements IGUIComponent, ITabbedHost {
 
     @Override
     public int getHeight() {
-        if (iInternalTabManager.getActiveTab() == null)
-            return TabManager.TABSIZEY;
-
-        return iInternalTabManager.getActiveTab().getYSize() + TabManager.TABSIZEY;
+        return iInternalTabManager.getYSize();
     }
 
     @Override
@@ -160,6 +157,11 @@ public class ComponentTab implements IGUIComponent, ITabbedHost {
     @Override
     public ItemStack getItemStackInSlot(int pSlotIndex) {
         return iHost.getItemStackInSlot(pSlotIndex);
+    }
+
+    @Override
+    public void updateComponentResult(IGUIComponent pComponent, String pComponentID, String pNewValue) {
+        getContainer().updateComponentResult(pComponent, pComponentID, pNewValue);
     }
 
     @Override

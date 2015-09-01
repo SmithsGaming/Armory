@@ -27,6 +27,7 @@ public class AnvilRecipe
     private boolean iIsShapeLess = false;
     private IAnvilRecipeComponent[] iComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS];
     private IAnvilRecipeComponent[] iAdditionalComponents = new IAnvilRecipeComponent[TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS];
+    private String iInternalID;
 
     public AnvilRecipe() {
     }
@@ -123,6 +124,13 @@ public class AnvilRecipe
         return true;
     }
 
+    public void onRecipeUsed(TileEntityArmorsAnvil pEntity) {
+    }
+
+    public String getInternalID() {
+        return iInternalID;
+    }
+
     public IAnvilRecipeComponent getComponent(int pComponentIndex)
     {
         if (pComponentIndex >= TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS)
@@ -141,6 +149,12 @@ public class AnvilRecipe
         }
 
         return iAdditionalComponents[pComponentIndex];
+    }
+
+    public AnvilRecipe setInternalName(String pNewInternalID) {
+        this.iInternalID = pNewInternalID;
+
+        return this;
     }
 
     public AnvilRecipe setCraftingSlotContent(int pSlotIndex, IAnvilRecipeComponent pComponent)

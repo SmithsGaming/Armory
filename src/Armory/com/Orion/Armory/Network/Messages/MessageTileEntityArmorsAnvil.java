@@ -22,7 +22,9 @@ public class MessageTileEntityArmorsAnvil extends MessageTileEntityArmory implem
     public ItemStack[] iAdditionalCraftingStacks = new ItemStack[TileEntityArmorsAnvil.MAX_ADDITIONALSLOTS];
     public ItemStack[] iCoolStacks = new ItemStack[TileEntityArmorsAnvil.MAX_COOLSLOTS];
 
+    public int iConnectedPlayers = 0;
     public int iCraftingProgress = 0;
+    public String iCurrentValidRecipeID = "";
 
     public MessageTileEntityArmorsAnvil(TileEntityArmorsAnvil pTargetTE)
     {
@@ -36,6 +38,10 @@ public class MessageTileEntityArmorsAnvil extends MessageTileEntityArmory implem
         iCoolStacks = pTargetTE.iAdditionalCraftingStacks;
 
         iCraftingProgress = pTargetTE.iCraftingProgress;
+        iConnectedPlayers = pTargetTE.getConnectedPlayerCount();
+
+        if (pTargetTE.iCurrentValidRecipe != null)
+            iCurrentValidRecipeID = pTargetTE.iCurrentValidRecipe.getInternalID();
     }
 
     public MessageTileEntityArmorsAnvil() {}
@@ -46,6 +52,8 @@ public class MessageTileEntityArmorsAnvil extends MessageTileEntityArmory implem
         super.fromBytes(buf);
 
         iCraftingProgress = buf.readInt();
+        iConnectedPlayers = buf.readInt();
+        iCurrentValidRecipeID = ByteBufUtils.readUTF8String(buf);
 
         int tCraftingStackAmount  = buf.readInt();
         for(int tCurrentStack = 0; tCurrentStack < tCraftingStackAmount; tCurrentStack++)
@@ -96,6 +104,8 @@ public class MessageTileEntityArmorsAnvil extends MessageTileEntityArmory implem
         super.toBytes(buf);
 
         buf.writeInt(iCraftingProgress);
+        buf.writeInt(iConnectedPlayers);
+        ByteBufUtils.writeUTF8String(buf, iCurrentValidRecipeID);
 
         buf.writeInt(getCraftingStackAmount());
         for (int tCurrentStack = 0; tCurrentStack < TileEntityArmorsAnvil.MAX_CRAFTINGSLOTS; tCurrentStack++) {

@@ -7,6 +7,7 @@
 package com.Orion.Armory.Client.GUI.Components.Tab;
 
 import com.Orion.Armory.Client.GUI.Components.ComponentBorder;
+import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.ToolTipRenderer;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
@@ -173,12 +174,17 @@ public class TabManager implements ITabbedHost {
 
     @Override
     public float getProgressBarValue(String pProgressBarID) {
-        return 0;
+        return iHost.getProgressBarValue(pProgressBarID);
     }
 
     @Override
     public ItemStack getItemStackInSlot(int pSlotIndex) {
         return iHost.getItemStackInSlot(pSlotIndex);
+    }
+
+    @Override
+    public void updateComponentResult(IGUIComponent pComponent, String pComponentID, String pNewValue) {
+        getContainer().updateComponentResult(pComponent, pComponentID, pNewValue);
     }
 
     @Override
@@ -201,6 +207,9 @@ public class TabManager implements ITabbedHost {
 
     @Override
     public int getYOrigin() {
+        if (iTabs.size() == 1)
+            return iHost.getYOrigin();
+
         return iHost.getYOrigin() + TABSIZEY - 3;
     }
 

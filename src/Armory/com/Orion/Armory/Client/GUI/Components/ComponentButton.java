@@ -78,7 +78,7 @@ public class ComponentButton extends AbstractGUIComponent {
             int tX = (iWidth - iForegroundResource.getWidth()) / 2;
             int tY = (iHeight - iForegroundResource.getHeigth()) / 2;
 
-            GL11.glPopMatrix();
+            GL11.glPushMatrix();
             iForegroundResource.getColor().performGLColor();
             GuiHelper.bindTexture(iForegroundResource.getPrimaryLocation());
             GuiHelper.drawTexturedModalRect(iLeft + tX, iTop + tY, 0, iForegroundResource.getU(), iForegroundResource.getV(), iForegroundResource.getWidth(), iForegroundResource.getHeigth());
@@ -105,5 +105,9 @@ public class ComponentButton extends AbstractGUIComponent {
         }
 
         return false;
+    }
+
+    public boolean IsClicked() {
+        return iUpdateTicksSinceLastClick == 5;
     }
 }

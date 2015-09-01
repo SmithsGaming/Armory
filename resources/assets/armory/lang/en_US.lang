@@ -25,7 +25,7 @@ Armory.GUI.Anvil.Ledger.InfoLine1=The Blacksmiths Anvil is used by Smiths to cra
 Armory.GUI.Anvil.Ledger.InfoLine2=It takes some time to process and sometimes a Hammer and a pair of Tongs.
 #
 #BookBinder specific information
-Armory.Gui.BookBinder.Tabs.BookBinder.ToolTip=Bind new blueprints into your Smithings Guide
+Armory.Gui.BookBinder.Tabs.BookBinder.ToolTip=Bind new blueprints into your Smithing's Guide
 #
 #NEI Compat
 Armory.NEI.Compatibility.ArmorsAnvilRecipe=Blacksmiths Anvil
@@ -41,6 +41,7 @@ Armory.Gui.Components.FluidTank.ToolTip.NoLiquid=No fluid in the tank.
 tile.Armory.Blocks.FirePit.name=FirePit
 tile.Armory.Blocks.Heater.name=FirePit - Heater Extension
 tile.Armory.Blocks.Anvil.name=Blacksmiths Anvil
+tile.Armory.Blocks.Binder.name=Book binder
 #
 #Items
 item.Armory.Items.HeatedFan.name=Heater extension Fan
@@ -56,6 +57,7 @@ item.Armory.Items.Nugget.name=Nugget
 item.Armory.Items.Plate.name=Plate
 item.Armory.Items.SmithingsGuide.name=Smithing's Guide
 item.Armory.Items.Blueprint.name=Blacksmiths's Blueprint
+item.Armory.Items.Tab.name=Guide label
 #
 #HeatedIngot Specific
 Armory.Items.HeatedIngot.Tooltip.Temperature=Current Temperature
@@ -100,15 +102,19 @@ Armory.Knowledge.AnvilRecipeKnowledge.Tier5=War Hero
 Armory.Knowledge.AnvilRecipeKnowledge.Creative=Assigned By God!
 #
 #Blueprint Quality
-Armory.Knowledge.Blueprint.Tier1=Food smudges all over it
-Armory.Knowledge.Blueprint.Tier2=Extremely poor handwriting
-Armory.Knowledge.Blueprint.Tier3=Readable piece of paper
-Armory.Knowledge.Blueprint.Tier4=Bestseller
-Armory.Knowledge.Blueprint.Tier5=Sells for a million dollars.
-Armory.Knowledge.Blueprint.Creative=Printed By The Almighty Blacksmith!
+Armory.Items.Blueprint.Tier1=Food smudges all over it
+Armory.Items.Blueprint.Tier2=Extremely poor handwriting
+Armory.Items.Blueprint.Tier3=Readable piece of paper
+Armory.Items.Blueprint.Tier4=Bestseller
+Armory.Items.Blueprint.Tier5=Sells for a million dollars.
+Armory.Items.Blueprint.Creative=Printed By The Almighty Blacksmith!
 #
 #Blueprint Tooltip
-Armory.Knowledge.BluePrint.Quality=  - Quality:
-Armory.Knowledge.BluePrint.Produces=  - Produces:
-Armory.Knowledge.BluePrint.Produces.Upgrade.1=1 Upgraded
-Armory.Knowledge.BluePrint.Produces.Upgrade.2=with
+Armory.Items.BluePrint.Quality=  - Quality:
+Armory.Items.BluePrint.Produces=  - Produces:
+Armory.Items.BluePrint.Produces.Upgrade.1=1 Upgraded
+Armory.Items.BluePrint.Produces.Upgrade.2=with
+#
+#Label Tooltips
+Armory.Items.Label.GroupName=Group name:
+Armory.Items.Label.Logo=Group logo:

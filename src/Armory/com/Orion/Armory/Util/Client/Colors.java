@@ -26,11 +26,17 @@ public final class Colors
         public static Color PAPERYELLOW = new Color(231, 204, 134);
 
         public static Color ELECTRICBLUE = new Color(45, 206, 250);
+
     }
 
     public static class Metals{
         public static Color IRON = new Color(255, 255, 255);
         public static Color OBSIDIAN = new Color(86, 63, 124);
+    }
+
+    public static class Experience {
+        public static Color ORB = new Color(189, 255, 0);
+        public static Color TEXT = new Color(128, 255, 32);
     }
 
     public static class Ledgers

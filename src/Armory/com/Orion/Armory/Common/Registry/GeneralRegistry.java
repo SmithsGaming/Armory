@@ -76,5 +76,6 @@ public class GeneralRegistry {
 
         public static ItemSmithingsGuide iSmithingsGuide = null;
         public static ItemBlueprint iBlueprints = null;
+        public static ItemGuideLabel iLabel = null;
     }
 }

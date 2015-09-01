@@ -174,6 +174,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBookBinder), new ItemRendererBookBinder());
             MinecraftForgeClient.registerItemRenderer(GeneralRegistry.Items.iHeatedIngot, new ItemHeatedIngotRenderer());
             MinecraftForgeClient.registerItemRenderer(GeneralRegistry.Items.iSmithingsGuide, new ItemRendererSmithingsGuide());
+            MinecraftForgeClient.registerItemRenderer(GeneralRegistry.Items.iLabel, new ItemRendererGuideLabel());
         }
 
 

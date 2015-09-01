@@ -22,6 +22,8 @@ public class AnvilRecipeRegistry {
     }
 
     public void addRecipe(String pID, AnvilRecipe pNewRecipe) {
+        pNewRecipe.setInternalName(pID);
+
         iRecipes.put(pID, pNewRecipe);
     }
 

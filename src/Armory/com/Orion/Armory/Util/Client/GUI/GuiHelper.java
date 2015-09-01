@@ -295,8 +295,8 @@ public final class GuiHelper
 
     public static void disableScissor()
     {
-        GL11.glPopAttrib();
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
+        GL11.glPopAttrib();
     }
 
     public static void renderScissorDebugOverlay()

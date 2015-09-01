@@ -9,6 +9,7 @@ package com.Orion.Armory.Common.TileEntity.Anvil;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.AnvilRecipeRegistry;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Components.IAnvilRecipeComponent;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.VanillaAnvilRecipe;
 import com.Orion.Armory.API.Knowledge.IBluePrintContainerItem;
 import com.Orion.Armory.API.Knowledge.IBluePrintItem;
 import com.Orion.Armory.API.Knowledge.IKnowledgedGameElement;
@@ -55,10 +56,11 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     public ItemStack[] iBluePrintLibraryStacks = new ItemStack[MAX_BLUEPRINTLIBRARYSLOTS];
 
     public int iCraftingProgress = 0;
+    public AnvilRecipe iCurrentValidRecipe;
+    public int iConnectedPlayerCount = 0;
     private String iInputName = "";
     private int iTEExist = 0;
-    private AnvilRecipe iCurrentValidRecipe;
-
+    private boolean iIsProcessingCraftingResult = false;
     private HashMap<UUID, EntityPlayer> iConnectedPlayers = new HashMap<UUID, EntityPlayer>();
 
     @Override
@@ -134,6 +136,16 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         if (pComponentID.equals("Gui.Anvil.Cooling.Tank"))
             return new FluidStack(FluidRegistry.WATER, 3500);
 
+        if (pComponentID.equals(References.InternalNames.GUIComponents.Anvil.EXPERIENCELABEL + ".Value")) {
+            if (iCurrentValidRecipe == null)
+                return -1;
+
+            if (!(iCurrentValidRecipe instanceof VanillaAnvilRecipe))
+                return -1;
+
+            return ((VanillaAnvilRecipe) iCurrentValidRecipe).getRequiredLevelsPerPlayer();
+        }
+
         return null;
     }
 
@@ -146,7 +158,6 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         {
             iCraftingStacks[pSlotID] = pNewItemStack;
             iCraftingProgress = 0;
-            iCurrentValidRecipe = null;
             findValidRecipe();
             return;
         }
@@ -165,7 +176,6 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         if (pSlotID < MAX_HAMMERSLOTS) {
             iHammerStacks[pSlotID] = pNewItemStack;
             iCraftingProgress = 0;
-            iCurrentValidRecipe = null;
             findValidRecipe();
             return;
         }
@@ -175,7 +185,6 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         if (pSlotID < MAX_TONGSLOTS) {
             iTongStacks[pSlotID] = pNewItemStack;
             iCraftingProgress = 0;
-            iCurrentValidRecipe = null;
             findValidRecipe();
             return;
         }
@@ -186,7 +195,6 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         {
             iAdditionalCraftingStacks[pSlotID] = pNewItemStack;
             iCraftingProgress = 0;
-            iCurrentValidRecipe = null;
             findValidRecipe();
             return;
         }
@@ -196,7 +204,6 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         if (pSlotID < MAX_COOLSLOTS){
             iCoolStacks[pSlotID] = pNewItemStack;
             iCraftingProgress = 0;
-            iCurrentValidRecipe = null;
             return;
         }
 
@@ -205,7 +212,6 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
         if (pSlotID < MAX_BLUEPRINTLIBRARYSLOTS) {
             iBluePrintLibraryStacks[pSlotID] = pNewItemStack;
             iCraftingProgress = 0;
-            iCurrentValidRecipe = null;
             findValidRecipe();
             return;
         }
@@ -315,6 +321,8 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
                 iTEExist = 0;
             }
 
+            if (iCraftingProgress > iCurrentValidRecipe.getMinimumProgress())
+                iCraftingProgress = iCurrentValidRecipe.getMinimumProgress();
 
             if ((iCraftingProgress == iCurrentValidRecipe.getMinimumProgress()) && !worldObj.isRemote) {
                 if (iOutPutStacks[0] != null) {
@@ -358,6 +366,11 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
 
     public void findValidRecipe()
     {
+        if (iIsProcessingCraftingResult)
+            return;
+
+        iCurrentValidRecipe = null;
+
         int tHammerUsagesLeft = -1;
         int tTongUsagesLeft = -1;
 
@@ -436,6 +449,33 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             }
         }
 
+        if (iCraftingStacks[11] != null) {
+            for (int tCraftingStack = 0; tCraftingStack < MAX_CRAFTINGSLOTS; tCraftingStack++) {
+                if (tCraftingStack == 11 || tCraftingStack == 13) {
+                    continue;
+                }
+
+                if (iCraftingStacks[tCraftingStack] != null) {
+                    iCurrentValidRecipe = null;
+                    return;
+                }
+            }
+
+            for (ItemStack tStack : iAdditionalCraftingStacks) {
+                if (tStack != null) {
+                    iCurrentValidRecipe = null;
+                    return;
+                }
+            }
+
+
+            VanillaAnvilRecipe tRecipe = new VanillaAnvilRecipe(this);
+            if (tRecipe.matchesRecipe(iCraftingStacks, iAdditionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft)) {
+                iCurrentValidRecipe = tRecipe;
+                return;
+            }
+        }
+
         iCurrentValidRecipe = null;
     }
 
@@ -444,8 +484,12 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             return;
         }
 
-        if (iCurrentValidRecipe.getUsesHammer())
+        iIsProcessingCraftingResult = true;
+
+        if (iCurrentValidRecipe instanceof VanillaAnvilRecipe)
         {
+            ((VanillaAnvilRecipe) iCurrentValidRecipe).ProcessPerformedCrafting();
+        } else if (iCurrentValidRecipe.isShapeless()) {
             ArrayList<IAnvilRecipeComponent> tComponentList = new ArrayList<IAnvilRecipeComponent>(Arrays.asList(iCurrentValidRecipe.getComponents().clone()));
             for (int tSlotIndex = 0; tSlotIndex < MAX_CRAFTINGSLOTS; tSlotIndex++) {
                 if (iCraftingStacks[tSlotIndex] != null)
@@ -516,6 +560,14 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
                 iTongStacks[0] = null;
             }
         }
+
+        iCurrentValidRecipe.onRecipeUsed(this);
+
+        iIsProcessingCraftingResult = false;
+    }
+
+    public String getOutputStackName() {
+        return iInputName;
     }
 
     public AnvilState getCurrentState()
@@ -692,6 +744,18 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             iConnectedPlayers.remove(pPlayerID);
     }
 
+    public Collection<EntityPlayer> getWatchingPlayers() {
+        return iConnectedPlayers.values();
+    }
+
+    public int getConnectedPlayerCount() {
+        if (worldObj.isRemote) {
+            return iConnectedPlayerCount;
+        } else {
+            return getWatchingPlayers().size();
+        }
+    }
+
     public float getAverageKnowledgeFloatValue(String pKnowledgeID, boolean pUseUnknownPlayers) {
         float tTotalKnowledgeValue = 0F;
         int tTotalPlayerCount = 0;
@@ -728,7 +792,9 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     @Override
     public void markDirty()
     {
-        NetworkManager.INSTANCE.sendToAllAround(new MessageTileEntityArmorsAnvil(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId,(double) this.xCoord,(double) this.yCoord,(double) this.zCoord, 128));
+        if (!worldObj.isRemote) {
+            NetworkManager.INSTANCE.sendToAllAround(new MessageTileEntityArmorsAnvil(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, (double) this.xCoord, (double) this.yCoord, (double) this.zCoord, 128));
+        }
 
         super.markDirty();
         worldObj.func_147451_t(xCoord, yCoord, zCoord);
@@ -744,11 +810,15 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
     public void HandleCustomInput(String pInputID, String pInput) {
         if (pInputID.equals(References.InternalNames.InputHandlers.Anvil.ITEMNAME)) {
             iInputName = pInput;
+            iCraftingProgress = 0;
+            findValidRecipe();
         } else if (pInputID.equals(References.InternalNames.InputHandlers.Anvil.PLAYEROPENGUI)) {
             registerNewWatchingPlayer(UUID.fromString(pInput));
         } else if (pInputID.equals(References.InternalNames.InputHandlers.Anvil.PLAYERCLOSEGUI)) {
             removeWatchingPlayer(UUID.fromString(pInput));
         }
+
+        markDirty();
     }
 
     public enum AnvilState

@@ -212,6 +212,7 @@ public class References
             public static final String ItemMedievalUpdrade = "Armory.Items.Medieval.Upgrade";
             public static final String ItemSmithingsGuide = "Armory.Items.SmithingsGuide";
             public static final String ItemBlueprint = "Armory.Items.Blueprint";
+            public static final String ItemGuideLabel = "Armory.Items.Tab";
         }
 
         public static final  class Blocks
@@ -262,6 +263,7 @@ public class References
                 public static final String BACKGROUND = "Gui.Anvil.Background";
                 public static final String PLAYERINVENTORY = "Gui.Anvil.Player";
                 public static final String EXTENDEDCRAFTING = "Gui.Anvil.ExtendedCrafting";
+                public static final String EXPERIENCELABEL = "Gui.Anvil.Label.Experience";
                 public static final String TOOLSLOTBORDER = "Gui.Anvil.Tools.Border";
                 public static final String HAMMERSLOT = "Gui.Anvil.Tools.Slot.Hammer";
                 public static final String TONGSLOT = "Gui.Anvil.Tools.Slot.Tongs";
@@ -293,11 +295,18 @@ public class References
         }
 
         public static final class InputHandlers {
+            public static final class Components {
+                public static final String BUTTONCLICK = "ButtonClick";
+                public static final String SCROLL = "Scrolling";
+            }
+
             public static final class Anvil {
                 public static final String ITEMNAME = "Input.Anvil.ItemName";
                 public static final String PLAYEROPENGUI = "Input.Anvil.OpenGUI";
                 public static final String PLAYERCLOSEGUI = "Inpur.Anvil.CloseGUI";
             }
+
+
         }
 
         public static final class ExtendedEntityProperties {
@@ -443,6 +452,10 @@ public class References
             public class Blueprints {
                 public static final String BLUEPRINTID = "BlueprintID";
                 public static final String FLOATVALUE = "Float";
+            }
+
+            public class Labels {
+                public static final String LOGOSTACK = "LogoStack";
             }
         }
 

@@ -39,6 +39,7 @@ public class Textures
     public static class Items
     {
         public static CustomResource Blueprint = new CustomResource(References.InternalNames.Items.ItemBlueprint, "armory:basic/32x Blueprint", "", Colors.DEFAULT);
+        public static CustomResource TabSmithingsGuide = new CustomResource(References.InternalNames.Items.ItemGuideLabel, "armory:basic/32x Label", "", Colors.DEFAULT);
 
         public static class ItemRing
         {
@@ -100,6 +101,9 @@ public class Textures
                 public static CustomResource FLAMEFULL = new CustomResource("Gui.BAsic.Components.Flame.Empty", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 60, 0, 16, 16);
 
                 public static class Button {
+                    public static final CustomResource DOWNARROW = new CustomResource("Gui.Basic.Components.Button.DownArrow", COMPONENTTEXTUREPATH + "Buttons.png", Colors.DEFAULT, 0, 0, 5, 7);
+                    public static final CustomResource UPARROW = new CustomResource("Gui.Basic.Components.Button.UpArrow", COMPONENTTEXTUREPATH + "Buttons.png", Colors.DEFAULT, 5, 0, 5, 7);
+                    public static final CustomResource SCROLLBAR = new CustomResource("Gui.Basic.Components.Button.ScrollButtom", COMPONENTTEXTUREPATH + "Buttons.png", Colors.DEFAULT, 10, 0, 5, 7);
                     protected static String WIDGETFILEPATH = "textures/gui/widgets.png";
 
                     public static class Disabled {
@@ -149,7 +153,6 @@ public class Textures
 
                         public static MultiComponentTexture TEXTURE = new MultiComponentTexture(new TextureComponent(CENTER), new TextureComponent[]{new TextureComponent(CORNERLEFTTOP), new TextureComponent(CORNERRIGHTTOP), new TextureComponent(CORNERRIGHTBOTTOM), new TextureComponent(CORNERLEFTBOTTOM)}, new TextureComponent[]{new TextureComponent(SIDETOP), new TextureComponent(SIDERIGHT), new TextureComponent(SIDEBOTTOM), new TextureComponent(SIDELEFT)});
                     }
-
                 }
             }
 
@@ -176,10 +179,14 @@ public class Textures
 
         public static class Anvil
         {
-            public static CustomResource HAMMER = new CustomResource("Gui.Basic.Image.Hammer", Basic.Images.IMAGETEXTUREPATH + "AnvilHammer.png", Colors.DEFAULT, 0,0,30, 30);
-            public static CustomResource HAMMERSLOT = new CustomResource("Gui.Basic.Slot.Hammer", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 18,0,18,18);
-            public static CustomResource TONGSSLOT = new CustomResource("Gui.Basic.Slot.Tongs", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 36,0,18,18);
-            public static CustomResource BOOKSLOT = new CustomResource("Gui.Basic.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 54, 0, 18, 18);
+            public static CustomResource HAMMER = new CustomResource("Gui.Anvil.Image.Hammer", Basic.Images.IMAGETEXTUREPATH + "AnvilHammer.png", Colors.DEFAULT, 0, 0, 30, 30);
+            public static CustomResource HAMMERSLOT = new CustomResource("Gui.Anvil.Slot.Hammer", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 18, 0, 18, 18);
+            public static CustomResource TONGSSLOT = new CustomResource("Gui.Anvil.Slot.Tongs", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 36, 0, 18, 18);
+            public static CustomResource BOOKSLOT = new CustomResource("Gui.Anvil.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 54, 0, 18, 18);
+            public static CustomResource UPGRADETOOLSLOT = new CustomResource("Gui.Anvil.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 73, 1, 16, 16);
+            public static CustomResource UPGRADEPAYMENTSLOT = new CustomResource("Gui.Anvil.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 91, 1, 16, 16);
+            public static CustomResource EXPERIENCEORB = new CustomResource("Gui.Anvil.Image.ExperienceOrb", GUITEXTUREPATH + "Components/RandomElements.png", Colors.DEFAULT, 16, 0, 16, 16);
+
         }
 
         public static class Compatibility

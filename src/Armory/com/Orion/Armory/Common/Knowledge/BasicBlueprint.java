@@ -55,22 +55,22 @@ public class BasicBlueprint implements IBlueprint {
     @Override
     public String getTranslatedQuality(float pFloatValue) {
         if (pFloatValue > iMaxFloatValue)
-            return EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.CreativeTier) + EnumChatFormatting.RESET;
+            return EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.CreativeTier) + EnumChatFormatting.RESET;
 
         if (pFloatValue <= iMinFloatValue)
-            return EnumChatFormatting.RED + StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Tier1) + EnumChatFormatting.RESET;
+            return EnumChatFormatting.RED + StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Tier1) + EnumChatFormatting.RESET;
 
         if (pFloatValue <= 0.45F)
-            return EnumChatFormatting.GOLD + StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Tier2) + EnumChatFormatting.RESET;
+            return EnumChatFormatting.GOLD + StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Tier2) + EnumChatFormatting.RESET;
 
         if (pFloatValue <= 0.65F)
-            return EnumChatFormatting.GREEN + StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Tier3) + EnumChatFormatting.RESET;
+            return EnumChatFormatting.GREEN + StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Tier3) + EnumChatFormatting.RESET;
 
         if (pFloatValue <= 0.85F)
-            return EnumChatFormatting.BLUE + StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Tier4) + EnumChatFormatting.RESET;
+            return EnumChatFormatting.BLUE + StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Tier4) + EnumChatFormatting.RESET;
 
         if (pFloatValue <= 0.95F)
-            return EnumChatFormatting.DARK_AQUA + StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Tier5) + EnumChatFormatting.RESET;
+            return EnumChatFormatting.DARK_AQUA + StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Tier5) + EnumChatFormatting.RESET;
 
         return getTranslatedQuality(iMaxFloatValue + 1F);
     }

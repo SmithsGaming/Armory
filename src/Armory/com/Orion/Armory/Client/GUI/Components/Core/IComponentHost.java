@@ -21,6 +21,8 @@ public interface IComponentHost {
 
     ItemStack getItemStackInSlot(int pSlotIndex);
 
+    void updateComponentResult(IGUIComponent pComponent, String pComponentID, String pNewValue);
+
     int getXOrigin();
 
     int getYOrigin();

@@ -98,18 +98,18 @@ public class ItemBlueprint extends ItemResource implements IBluePrintItem {
     public void addInformation(ItemStack pStack, EntityPlayer pPlayer, List pTags, boolean pAdvancedTooltip) {
         super.addInformation(pStack, pPlayer, pTags, pAdvancedTooltip);
 
-        pTags.add(StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Quality) + " " + getTranslatedBluePrintQuality(pStack));
+        pTags.add(StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Quality) + " " + getTranslatedBluePrintQuality(pStack));
 
         IBlueprint tPrint = BlueprintRegistry.getInstance().getBlueprint(getBlueprintID(pStack));
         if (tPrint == null) {
-            pTags.add(StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Produces) + " " + UNKNOWN + " (" + getBlueprintID(pStack) + ")");
+            pTags.add(StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + UNKNOWN + " (" + getBlueprintID(pStack) + ")");
         } else {
             AnvilRecipe tRecipe = AnvilRecipeRegistry.getInstance().getRecipe(tPrint.getRecipeID());
 
             if (tRecipe != null) {
-                pTags.add(StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Produces) + " " + tRecipe.getTranslateResultName());
+                pTags.add(StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + tRecipe.getTranslateResultName());
             } else {
-                pTags.add(StatCollector.translateToLocal(TranslationKeys.Knowledge.Blueprint.Produces) + " " + UNKNOWN + " (" + getBlueprintID(pStack) + ")");
+                pTags.add(StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + UNKNOWN + " (" + getBlueprintID(pStack) + ")");
             }
         }
 

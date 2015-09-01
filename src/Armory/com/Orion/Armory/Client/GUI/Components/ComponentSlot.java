@@ -67,7 +67,7 @@ public class ComponentSlot extends AbstractGUIComponent
         if ((iIconResource != null) && ((getComponentHost().getItemStackInSlot(iSlotID)) == null))
         {
             GuiHelper.bindTexture(iIconResource.getPrimaryLocation());
-            drawTexturedModalRect(iLeft + 1, iTop + 1, 0,0, iWidth, iTop);
+            drawTexturedModalRect(iLeft + 1, iTop + 1, iIconResource.getU(), iIconResource.getV(), iIconResource.getWidth(), iIconResource.getHeigth());
         }
 
         GL11.glColor4f(1F, 1F, 1F, 1F);

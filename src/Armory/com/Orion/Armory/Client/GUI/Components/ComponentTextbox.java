@@ -132,7 +132,7 @@ public class ComponentTextbox extends GuiTextField implements IGUIComponent
     public boolean handleKeyTyped(char pKey, int pPara) {
         if (this.textboxKeyTyped(pKey, pPara))
         {
-            iHost.getContainer().updateComponentResult(this, iInputID, this.getText());
+            iHost.updateComponentResult(this, iInputID, this.getText());
             return true;
         }
 
