@@ -52,7 +52,7 @@ public class ItemGuideLabel extends Item {
 
             if (pStack.getTagCompound().hasKey(References.NBTTagCompoundData.Item.Labels.LOGOSTACK)) {
                 ItemStack tGroupLogoStack = ItemStack.loadItemStackFromNBT(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.Item.Labels.LOGOSTACK));
-                pInformation.add(StatCollector.translateToLocal(TranslationKeys.Items.Label.Logo) + " " + pStack.getDisplayName());
+                pInformation.add(StatCollector.translateToLocal(TranslationKeys.Items.Label.Logo) + " " + tGroupLogoStack.getDisplayName());
             }
         }
 

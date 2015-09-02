@@ -4,6 +4,7 @@ package com.Orion.Armory.Common;
 import com.Orion.Armory.Armory;
 import com.Orion.Armory.Common.Event.ArmoryDataSyncerEventHandler;
 import com.Orion.Armory.Common.Event.ArmoryIEEPEventHandler;
+import com.Orion.Armory.Common.Event.ArmoryStandardEventHandler;
 import com.Orion.Armory.Common.Logic.ArmoryInitializer;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -31,6 +32,7 @@ public class ArmoryCommonProxy
     public void registerEventHandlers(){
         FMLCommonHandler.instance().bus().register(new ArmoryDataSyncerEventHandler());
         MinecraftForge.EVENT_BUS.register(new ArmoryIEEPEventHandler());
+        MinecraftForge.EVENT_BUS.register(new ArmoryStandardEventHandler());
     }
 
     public EntityPlayer getPlayer(MessageContext pContext) {
