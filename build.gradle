@@ -221,12 +221,12 @@ uploadArchives {
         if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
         {
             snapshotRepository(url: "ftp://mavenrepo.armory.orionminecraft.com") {
-                authentication(userName: System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
+                authentication(userName: "mavenrepo.armory.orionminecraft.com|" + System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
             }
         }
         else {
             repository(url: "ftp://mavenrepo.armory.orionminecraft.com") {
-                authentication(userName: System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
+                authentication(userName: "mavenrepo.armory.orionminecraft.com|" + System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
             }
         }
 
