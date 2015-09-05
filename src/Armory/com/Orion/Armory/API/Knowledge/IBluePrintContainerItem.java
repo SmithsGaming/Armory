@@ -6,11 +6,14 @@
 
 package com.Orion.Armory.API.Knowledge;
 
+import com.Orion.Armory.Common.Item.Knowledge.ItemSmithingsGuide;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 
 public interface IBluePrintContainerItem {
 
-    ArrayList<ItemStack> getStoredBluePrints(ItemStack pStack);
+    ArrayList<ItemSmithingsGuide.LabelledBlueprintGroup> getBlueprintGroups(ItemStack pStack);
+
+    void writeBlueprintGroupsToStack(ItemStack pStack, ArrayList<ItemSmithingsGuide.LabelledBlueprintGroup> pGroups);
 }

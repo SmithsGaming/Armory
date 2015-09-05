@@ -7,70 +7,22 @@
 package com.Orion.Armory.Common.Inventory.Items;
 
 import com.Orion.Armory.API.Knowledge.IBluePrintItem;
-import com.Orion.Armory.Util.References;
+import com.Orion.Armory.Common.Item.Knowledge.ItemSmithingsGuide;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class InventorySmithingsGuideBlueprints implements IInventory {
-    ItemStack iBaseStack;
-    HashMap<Integer, ItemStack> iBlueprints = new HashMap<Integer, ItemStack>();
+    ItemSmithingsGuide.LabelledBlueprintGroup iBaseGroup;
 
-    public InventorySmithingsGuideBlueprints(ItemStack pStack) {
-        iBaseStack = pStack;
-
-        loadStacksFromStorage();
-    }
-
-    private void loadStacksFromStorage() {
-        NBTTagCompound tStackCompound = iBaseStack.getTagCompound();
-
-        NBTTagList tInventory = tStackCompound.getTagList(References.NBTTagCompoundData.Item.ItemInventory.INVENTORY, 10);
-        for (int tCompoundIndex = 0; tCompoundIndex < tInventory.tagCount(); tCompoundIndex++) {
-            NBTTagCompound tInventoryStackCompound = tInventory.getCompoundTagAt(tCompoundIndex);
-            iBlueprints.put(tInventoryStackCompound.getInteger(References.NBTTagCompoundData.Item.ItemInventory.SLOTID), ItemStack.loadItemStackFromNBT(tInventoryStackCompound.getCompoundTag(References.NBTTagCompoundData.Item.ItemInventory.STACK)));
-        }
-    }
-
-    private void saveStacksToStorage() {
-        ArrayList<ItemStack> tStacks = (ArrayList<ItemStack>) iBlueprints.values();
-        iBlueprints.clear();
-
-        for (int tNewStackIndex = 0; tNewStackIndex < tStacks.size(); tNewStackIndex++) {
-            iBlueprints.put(tNewStackIndex, tStacks.get(tNewStackIndex));
-        }
-
-        NBTTagCompound tStackCompound = iBaseStack.getTagCompound();
-
-        NBTTagList tInventory = new NBTTagList();
-        for (Integer tSlotID : iBlueprints.keySet()) {
-            ItemStack tSlotStack = iBlueprints.get(tSlotID);
-
-            NBTTagCompound tInventoryStackCompound = new NBTTagCompound();
-            tInventoryStackCompound.setInteger(References.NBTTagCompoundData.Item.ItemInventory.SLOTID, tSlotID);
-
-            NBTTagCompound tStackDataCompound = new NBTTagCompound();
-            tSlotStack.writeToNBT(tStackDataCompound);
-            tInventoryStackCompound.setTag(References.NBTTagCompoundData.Item.ItemInventory.STACK, tStackDataCompound);
-
-            tInventory.appendTag(tInventoryStackCompound);
-        }
-
-        tStackCompound.setTag(References.NBTTagCompoundData.Item.ItemInventory.INVENTORY, tInventory);
-        iBaseStack.setTagCompound(tStackCompound);
-    }
-
-    public ItemStack getBaseStack() {
-        return iBaseStack;
+    public InventorySmithingsGuideBlueprints(ItemSmithingsGuide.LabelledBlueprintGroup pBaseGroup) {
+        iBaseGroup = pBaseGroup;
     }
 
     public ArrayList<ItemStack> getBluePrints() {
-        return (ArrayList<ItemStack>) iBlueprints.values();
+        return iBaseGroup.Stacks;
     }
 
     @Override
@@ -80,7 +32,7 @@ public class InventorySmithingsGuideBlueprints implements IInventory {
 
     @Override
     public ItemStack getStackInSlot(int pSlotID) {
-        return iBlueprints.get(pSlotID);
+        return iBaseGroup.Stacks.get(pSlotID);
     }
 
     @Override
@@ -113,23 +65,22 @@ public class InventorySmithingsGuideBlueprints implements IInventory {
 
     @Override
     public void setInventorySlotContents(int pSlotID, ItemStack pStack) {
-        iBlueprints.put(pSlotID, pStack);
-        saveStacksToStorage();
+        iBaseGroup.Stacks.add(pSlotID, pStack);
     }
 
     @Override
     public String getInventoryName() {
-        return iBaseStack.getDisplayName();
+        return iBaseGroup.LabelStack.getDisplayName();
     }
 
     @Override
     public boolean hasCustomInventoryName() {
-        return iBaseStack.hasDisplayName();
+        return iBaseGroup.LabelStack.hasDisplayName();
     }
 
     @Override
     public int getInventoryStackLimit() {
-        return iBlueprints.size();
+        return iBaseGroup.Stacks.size();
     }
 
     @Override

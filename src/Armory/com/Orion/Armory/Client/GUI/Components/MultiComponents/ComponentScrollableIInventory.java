@@ -94,7 +94,6 @@ public class ComponentScrollableIInventory extends AbstractGUIMultiComponent imp
     public void updateComponentResult(IGUIComponent pComponent, String pComponentID, String pNewValue) {
         if (pComponent.getInternalName().equals(getInternalName() + ".Scrollbar")) {
             initializeSlots(Integer.parseInt(pNewValue));
-            return;
         }
 
         iHost.updateComponentResult(pComponent, pComponentID, pNewValue);

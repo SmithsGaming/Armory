@@ -6,21 +6,20 @@
 
 package com.Orion.Armory.Common.Item.Knowledge;
 
-import com.Orion.Armory.API.Item.InventoryItem;
 import com.Orion.Armory.API.Knowledge.IBluePrintContainerItem;
-import com.Orion.Armory.Common.Inventory.Items.InventorySmithingsGuideBlueprints;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.References;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
-public class ItemSmithingsGuide extends InventoryItem implements IBluePrintContainerItem {
+public class ItemSmithingsGuide extends Item implements IBluePrintContainerItem {
 
     public ItemSmithingsGuide() {
         this.setMaxStackSize(1);
@@ -48,10 +47,6 @@ public class ItemSmithingsGuide extends InventoryItem implements IBluePrintConta
 
     @Override
     public ItemStack onItemRightClick(ItemStack pStack, World pWorld, EntityPlayer pPlayer) {
-        if (pPlayer.isSneaking()) {
-            return super.onItemRightClick(pStack, pWorld, pPlayer);
-        }
-
         if (pStack.getTagCompound() == null)
             pStack.setTagCompound(new NBTTagCompound());
 
@@ -99,22 +94,71 @@ public class ItemSmithingsGuide extends InventoryItem implements IBluePrintConta
     }
 
     @Override
-    public Integer getInventoryGuiIndex(EntityPlayer pPlayer) {
-        if (pPlayer.isSneaking())
-            return References.GuiIDs.SMITHINGSGUIDEINVENTORY;
+    public ArrayList<LabelledBlueprintGroup> getBlueprintGroups(ItemStack pStack) {
+        ArrayList<LabelledBlueprintGroup> tGroups = new ArrayList<LabelledBlueprintGroup>();
 
-        return References.GuiIDs.SMITHINGSGUIDE;
+        if (pStack.getTagCompound() == null)
+            return tGroups;
+
+        if (!pStack.getTagCompound().hasKey(References.NBTTagCompoundData.Item.SmithingsGuide.GROUPSDATA))
+            return tGroups;
+
+        NBTTagList tGroupedNBT = pStack.getTagCompound().getTagList(References.NBTTagCompoundData.Item.SmithingsGuide.GROUPSDATA, 10);
+        for (int tTagCounter = 0; tTagCounter < tGroupedNBT.tagCount(); tTagCounter++) {
+            NBTTagCompound tGroupCompound = tGroupedNBT.getCompoundTagAt(tTagCounter);
+            tGroups.add(new LabelledBlueprintGroup(tGroupCompound));
+        }
+
+        return tGroups;
     }
 
     @Override
-    public IInventory getInventoryFromItemStack(ItemStack pStack) {
-        return new InventorySmithingsGuideBlueprints(pStack);
+    public void writeBlueprintGroupsToStack(ItemStack pStack, ArrayList<LabelledBlueprintGroup> pGroups) {
+        if (pStack.getTagCompound() == null)
+            pStack.setTagCompound(new NBTTagCompound());
+
+        NBTTagList tGroupedNBT = new NBTTagList();
+        for (LabelledBlueprintGroup tGroup : pGroups) {
+            tGroupedNBT.appendTag(tGroup.writeToCompound());
+        }
+
+        pStack.getTagCompound().setTag(References.NBTTagCompoundData.Item.SmithingsGuide.GROUPSDATA, tGroupedNBT);
     }
 
-    @Override
-    public ArrayList<ItemStack> getStoredBluePrints(ItemStack pStack) {
-        InventorySmithingsGuideBlueprints tBlueprintInventory = (InventorySmithingsGuideBlueprints) getInventoryFromItemStack(pStack);
+    public class LabelledBlueprintGroup {
+        public ItemStack LabelStack;
+        public ArrayList<ItemStack> Stacks;
 
-        return tBlueprintInventory.getBluePrints();
+        public LabelledBlueprintGroup(NBTTagCompound pStoreCompound) {
+            LabelStack = ItemStack.loadItemStackFromNBT(pStoreCompound.getCompoundTag(References.NBTTagCompoundData.Item.ItemInventory.STACK));
+
+            if (pStoreCompound == null) {
+                Stacks = new ArrayList<ItemStack>();
+                return;
+            }
+
+            if (!pStoreCompound.hasKey(References.NBTTagCompoundData.Item.SmithingsGuide.LABELSTACKS)) {
+                Stacks = new ArrayList<ItemStack>();
+                return;
+            }
+
+            NBTTagList tStacks = pStoreCompound.getTagList(References.NBTTagCompoundData.Item.SmithingsGuide.LABELSTACKS, 10);
+            for (int tStackCounter = 0; tStackCounter < tStacks.tagCount(); tStackCounter++) {
+                Stacks.add(ItemStack.loadItemStackFromNBT(tStacks.getCompoundTagAt(tStackCounter)));
+            }
+        }
+
+        public NBTTagCompound writeToCompound() {
+            NBTTagCompound tStoreCompound = new NBTTagCompound();
+            tStoreCompound.setTag(References.NBTTagCompoundData.Item.ItemInventory.STACK, LabelStack.writeToNBT(new NBTTagCompound()));
+
+            NBTTagList tStacks = new NBTTagList();
+            for (ItemStack tStack : Stacks) {
+                tStacks.appendTag(tStack.writeToNBT(new NBTTagCompound()));
+            }
+
+            tStoreCompound.setTag(References.NBTTagCompoundData.Item.SmithingsGuide.LABELSTACKS, tStacks);
+            return tStoreCompound;
+        }
     }
 }

@@ -16,6 +16,7 @@ import com.Orion.Armory.API.Knowledge.IKnowledgedGameElement;
 import com.Orion.Armory.API.Knowledge.KnowledgeEntityProperty;
 import com.Orion.Armory.Common.Item.ItemHammer;
 import com.Orion.Armory.Common.Item.ItemTongs;
+import com.Orion.Armory.Common.Item.Knowledge.ItemSmithingsGuide;
 import com.Orion.Armory.Common.TileEntity.Core.ICustomInputHandler;
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Network.Messages.MessageCustomInput;
@@ -396,20 +397,25 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
                             if (!(iBluePrintLibraryStacks[0].getItem() instanceof IBluePrintContainerItem))
                                 continue;
 
-                            ArrayList<ItemStack> tBluePrints = ((IBluePrintContainerItem) iBluePrintLibraryStacks[0].getItem()).getStoredBluePrints(iBluePrintLibraryStacks[0]);
+                            for (ItemSmithingsGuide.LabelledBlueprintGroup tGroup : ((IBluePrintContainerItem) iBluePrintLibraryStacks[0].getItem()).getBlueprintGroups(iBluePrintLibraryStacks[0])) {
+                                ArrayList<ItemStack> tBluePrints = tGroup.Stacks;
 
-                            for (ItemStack tBluePrintStack : tBluePrints) {
-                                IBluePrintItem tBluePrint = (IBluePrintItem) tBluePrintStack.getItem();
+                                for (ItemStack tBluePrintStack : tBluePrints) {
+                                    if (!(tBluePrintStack.getItem() instanceof IBluePrintItem))
+                                        continue;
 
-                                if (tRecipe.getBlueprintName().equals(tBluePrint.getBlueprintID(tBluePrintStack)) && tBluePrint.getBluePrintQuality(tBluePrintStack) > 0F) {
-                                    if (tRecipe.getRequiresKnowledge() && getAverageKnowledgeFloatValue(tRecipe.getKnowledgeName(), true) > 0F) {
-                                        iCurrentValidRecipe = tRecipe;
-                                        return;
-                                    } else if (!tRecipe.getRequiresKnowledge()) {
-                                        iCurrentValidRecipe = tRecipe;
-                                        return;
+                                    IBluePrintItem tBluePrint = (IBluePrintItem) tBluePrintStack.getItem();
+
+                                    if (tRecipe.getBlueprintName().equals(tBluePrint.getBlueprintID(tBluePrintStack)) && tBluePrint.getBluePrintQuality(tBluePrintStack) > 0F) {
+                                        if (tRecipe.getRequiresKnowledge() && getAverageKnowledgeFloatValue(tRecipe.getKnowledgeName(), true) > 0F) {
+                                            iCurrentValidRecipe = tRecipe;
+                                            return;
+                                        } else if (!tRecipe.getRequiresKnowledge()) {
+                                            iCurrentValidRecipe = tRecipe;
+                                            return;
+                                        }
+
                                     }
-
                                 }
                             }
                         } else if (!tRecipe.getRequiresBlueprint()) {
@@ -425,20 +431,25 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
                         if (!(iBluePrintLibraryStacks[0].getItem() instanceof IBluePrintContainerItem))
                             continue;
 
-                        ArrayList<ItemStack> tBluePrints = ((IBluePrintContainerItem) iBluePrintLibraryStacks[0].getItem()).getStoredBluePrints(iBluePrintLibraryStacks[0]);
+                        for (ItemSmithingsGuide.LabelledBlueprintGroup tGroup : ((IBluePrintContainerItem) iBluePrintLibraryStacks[0].getItem()).getBlueprintGroups(iBluePrintLibraryStacks[0])) {
+                            ArrayList<ItemStack> tBluePrints = tGroup.Stacks;
 
-                        for (ItemStack tBluePrintStack : tBluePrints) {
-                            IBluePrintItem tBluePrint = (IBluePrintItem) tBluePrintStack.getItem();
+                            for (ItemStack tBluePrintStack : tBluePrints) {
+                                if (!(tBluePrintStack.getItem() instanceof IBluePrintItem))
+                                    continue;
 
-                            if (tRecipe.getBlueprintName().equals(tBluePrint.getBlueprintID(tBluePrintStack)) && tBluePrint.getBluePrintQuality(tBluePrintStack) > 0F) {
-                                if (tRecipe.getRequiresKnowledge() && getAverageKnowledgeFloatValue(tRecipe.getKnowledgeName(), true) > 0F) {
-                                    iCurrentValidRecipe = tRecipe;
-                                    return;
-                                } else if (!tRecipe.getRequiresKnowledge()) {
-                                    iCurrentValidRecipe = tRecipe;
-                                    return;
+                                IBluePrintItem tBluePrint = (IBluePrintItem) tBluePrintStack.getItem();
+
+                                if (tRecipe.getBlueprintName().equals(tBluePrint.getBlueprintID(tBluePrintStack)) && tBluePrint.getBluePrintQuality(tBluePrintStack) > 0F) {
+                                    if (tRecipe.getRequiresKnowledge() && getAverageKnowledgeFloatValue(tRecipe.getKnowledgeName(), true) > 0F) {
+                                        iCurrentValidRecipe = tRecipe;
+                                        return;
+                                    } else if (!tRecipe.getRequiresKnowledge()) {
+                                        iCurrentValidRecipe = tRecipe;
+                                        return;
+                                    }
+
                                 }
-
                             }
                         }
                     } else if (!tRecipe.getRequiresBlueprint()) {

@@ -40,7 +40,6 @@ public class TabBookBinder extends Tab {
         getComponents().addComponent(new ComponentSlot(pHost, References.InternalNames.GUIComponents.BookBinder.TabBook.BOOKSLOT, 0, 18, 18, 10, 10, Textures.Gui.Anvil.BOOKSLOT, Colors.General.BROWN));
 
         getComponents().addComponent(new ComponentBorder(pHost, References.InternalNames.GUIComponents.BookBinder.TabBook.BORDERBLUEPRINTS, 65, 7, 178, 104, Colors.General.PAPERYELLOW, ComponentBorder.CornerTypes.Inwarts));
-        //getComponents().addComponent(new ComponentScrollableIInventory(pHost, References.InternalNames.GUIComponents.BookBinder.TabBook.BOOKCONTENTS, 77, 10 + TabManager.TABSIZEY + 3, 1, 81, 8, 3));
         getComponents().addComponent(new ComponentScrollableIInventory(pHost, References.InternalNames.GUIComponents.BookBinder.TabBook.BOOKCONTENTS, 77, 13, 1, 81, 8, 5));
 
         getComponents().addComponent(new ComponentProgressBar(pHost, References.InternalNames.GUIComponents.BookBinder.TabBook.PROGRESSARROW, 38, 12, Colors.DEFAULT, Colors.DEFAULT));

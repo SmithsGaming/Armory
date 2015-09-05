@@ -298,6 +298,9 @@ public class References
             public static final class Components {
                 public static final String BUTTONCLICK = "ButtonClick";
                 public static final String SCROLL = "Scrolling";
+                public static final String SLOTFILLED = "SlotFilled";
+                public static final String SLOTEMPTIED = "SlotEmptied";
+                public static final String SLOTCHANGED = "SlotChanged";
             }
 
             public static final class Anvil {
@@ -456,6 +459,11 @@ public class References
 
             public class Labels {
                 public static final String LOGOSTACK = "LogoStack";
+            }
+
+            public class SmithingsGuide {
+                public static final String LABELSTACKS = "Labels";
+                public static final String GROUPSDATA = "Groups";
             }
         }
 
