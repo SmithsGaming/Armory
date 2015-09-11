@@ -125,40 +125,4 @@ public class ItemSmithingsGuide extends Item implements IBluePrintContainerItem 
         pStack.getTagCompound().setTag(References.NBTTagCompoundData.Item.SmithingsGuide.GROUPSDATA, tGroupedNBT);
     }
 
-    public class LabelledBlueprintGroup {
-        public ItemStack LabelStack;
-        public ArrayList<ItemStack> Stacks;
-
-        public LabelledBlueprintGroup(NBTTagCompound pStoreCompound) {
-            LabelStack = ItemStack.loadItemStackFromNBT(pStoreCompound.getCompoundTag(References.NBTTagCompoundData.Item.ItemInventory.STACK));
-
-            if (pStoreCompound == null) {
-                Stacks = new ArrayList<ItemStack>();
-                return;
-            }
-
-            if (!pStoreCompound.hasKey(References.NBTTagCompoundData.Item.SmithingsGuide.LABELSTACKS)) {
-                Stacks = new ArrayList<ItemStack>();
-                return;
-            }
-
-            NBTTagList tStacks = pStoreCompound.getTagList(References.NBTTagCompoundData.Item.SmithingsGuide.LABELSTACKS, 10);
-            for (int tStackCounter = 0; tStackCounter < tStacks.tagCount(); tStackCounter++) {
-                Stacks.add(ItemStack.loadItemStackFromNBT(tStacks.getCompoundTagAt(tStackCounter)));
-            }
-        }
-
-        public NBTTagCompound writeToCompound() {
-            NBTTagCompound tStoreCompound = new NBTTagCompound();
-            tStoreCompound.setTag(References.NBTTagCompoundData.Item.ItemInventory.STACK, LabelStack.writeToNBT(new NBTTagCompound()));
-
-            NBTTagList tStacks = new NBTTagList();
-            for (ItemStack tStack : Stacks) {
-                tStacks.appendTag(tStack.writeToNBT(new NBTTagCompound()));
-            }
-
-            tStoreCompound.setTag(References.NBTTagCompoundData.Item.SmithingsGuide.LABELSTACKS, tStacks);
-            return tStoreCompound;
-        }
-    }
 }

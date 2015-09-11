@@ -76,32 +76,6 @@ public class ContainerArmorsAnvilMinimal extends ContainerArmory {
         return super.slotClick(id, posX, posY, player);
     }
 
-    @Override
-    public ItemStack transferStackInSlot (EntityPlayer entityPlayer, int slotIndex) {
-        ItemStack newItemStack = null;
-        Slot slot = (Slot) inventorySlots.get(slotIndex);
-
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemStack = slot.getStack();
-            newItemStack = itemStack.copy();
-
-            if (slotIndex < modSlots) {
-                if (!this.mergeItemStack(itemStack, modSlots, inventorySlots.size(), false)) {
-                    return null;
-                }
-            } else if (!this.mergeItemStack(itemStack, 0, modSlots, false)) {
-                return null;
-            }
-
-            if (itemStack.stackSize == 0) {
-                slot.putStack(null);
-            } else {
-                slot.onSlotChanged();
-            }
-        }
-
-        return newItemStack;
-    }
 
     @Override
     public void HandleCustomInput(String pInputID, String pInput) {

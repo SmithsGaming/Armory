@@ -92,6 +92,33 @@ public abstract class ContainerArmory extends Container implements ICustomInputH
         return slotFound;
     }
 
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotIndex) {
+        ItemStack newItemStack = null;
+        Slot slot = (Slot) inventorySlots.get(slotIndex);
+
+        if (slot != null && slot.getHasStack()) {
+            ItemStack itemStack = slot.getStack();
+            newItemStack = itemStack.copy();
+
+            if (slotIndex < modSlots) {
+                if (!this.mergeItemStack(itemStack, modSlots, inventorySlots.size(), false)) {
+                    return null;
+                }
+            } else if (!this.mergeItemStack(itemStack, 0, modSlots, false)) {
+                return null;
+            }
+
+            if (itemStack.stackSize == 0) {
+                slot.putStack(null);
+            } else {
+                slot.onSlotChanged();
+            }
+        }
+
+        return newItemStack;
+    }
+
     public void updateComponentResult(IGUIComponent pComponent, String pComponentID, String pNewValue) {
         NetworkManager.INSTANCE.sendToServer(new MessageCustomInput(pComponentID, pNewValue));
     }

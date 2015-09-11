@@ -11,6 +11,7 @@ import com.Orion.Armory.Client.GUI.Implementation.ArmorsAnvil.GuiArmorsAnvilStan
 import com.Orion.Armory.Client.GUI.Implementation.BookBinder.GuiBookBinder;
 import com.Orion.Armory.Client.GUI.Implementation.FirePit.GuiFirePit;
 import com.Orion.Armory.Common.Inventory.BookBinder.ContainerBookBinderClient;
+import com.Orion.Armory.Common.Inventory.BookBinder.ContainerBookBinderServer;
 import com.Orion.Armory.Common.Inventory.ContainerArmorsAnvilMinimal;
 import com.Orion.Armory.Common.Inventory.ContainerArmorsAnvilStandard;
 import com.Orion.Armory.Common.Inventory.ContainerFirepit;
@@ -47,7 +48,7 @@ public class GuiHandler implements IGuiHandler
                 return new ContainerArmorsAnvilStandard(pPlayer.inventory, tAnvil);
             }
         } else if (pID == References.GuiIDs.BOOKBINDERID) {
-            return new ContainerBookBinderClient((TileEntityBookBinder) pWorld.getTileEntity(pX, pY, pZ), 0);
+            return new ContainerBookBinderServer(pPlayer.inventory, (TileEntityBookBinder) pWorld.getTileEntity(pX, pY, pZ), 0);
         }
 
         return null;
@@ -74,7 +75,7 @@ public class GuiHandler implements IGuiHandler
                 return new GuiArmorsAnvilStandard(new ContainerArmorsAnvilStandard(pPlayer.inventory, tAnvil));
             }
         } else if (pID == References.GuiIDs.BOOKBINDERID) {
-            return new GuiBookBinder(new ContainerBookBinderClient((TileEntityBookBinder) pWorld.getTileEntity(pX, pY, pZ), 0));
+            return new GuiBookBinder(new ContainerBookBinderClient(pPlayer.inventory, (TileEntityBookBinder) pWorld.getTileEntity(pX, pY, pZ), 0));
         }
 
         return null;

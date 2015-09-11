@@ -16,7 +16,7 @@ import com.Orion.Armory.API.Knowledge.IKnowledgedGameElement;
 import com.Orion.Armory.API.Knowledge.KnowledgeEntityProperty;
 import com.Orion.Armory.Common.Item.ItemHammer;
 import com.Orion.Armory.Common.Item.ItemTongs;
-import com.Orion.Armory.Common.Item.Knowledge.ItemSmithingsGuide;
+import com.Orion.Armory.Common.Item.Knowledge.LabelledBlueprintGroup;
 import com.Orion.Armory.Common.TileEntity.Core.ICustomInputHandler;
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Network.Messages.MessageCustomInput;
@@ -397,7 +397,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
                             if (!(iBluePrintLibraryStacks[0].getItem() instanceof IBluePrintContainerItem))
                                 continue;
 
-                            for (ItemSmithingsGuide.LabelledBlueprintGroup tGroup : ((IBluePrintContainerItem) iBluePrintLibraryStacks[0].getItem()).getBlueprintGroups(iBluePrintLibraryStacks[0])) {
+                            for (LabelledBlueprintGroup tGroup : ((IBluePrintContainerItem) iBluePrintLibraryStacks[0].getItem()).getBlueprintGroups(iBluePrintLibraryStacks[0])) {
                                 ArrayList<ItemStack> tBluePrints = tGroup.Stacks;
 
                                 for (ItemStack tBluePrintStack : tBluePrints) {
@@ -431,7 +431,7 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
                         if (!(iBluePrintLibraryStacks[0].getItem() instanceof IBluePrintContainerItem))
                             continue;
 
-                        for (ItemSmithingsGuide.LabelledBlueprintGroup tGroup : ((IBluePrintContainerItem) iBluePrintLibraryStacks[0].getItem()).getBlueprintGroups(iBluePrintLibraryStacks[0])) {
+                        for (LabelledBlueprintGroup tGroup : ((IBluePrintContainerItem) iBluePrintLibraryStacks[0].getItem()).getBlueprintGroups(iBluePrintLibraryStacks[0])) {
                             ArrayList<ItemStack> tBluePrints = tGroup.Stacks;
 
                             for (ItemStack tBluePrintStack : tBluePrints) {

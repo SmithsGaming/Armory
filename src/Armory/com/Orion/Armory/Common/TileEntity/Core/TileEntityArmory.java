@@ -121,6 +121,6 @@ public abstract class TileEntityArmory extends TileEntity
 
     public Object getGUIComponentRelatedObject(String pComponentID)
     {
-        return null;
+        return 0;
     }
 }

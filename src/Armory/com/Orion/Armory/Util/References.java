@@ -301,6 +301,7 @@ public class References
                 public static final String SLOTFILLED = "SlotFilled";
                 public static final String SLOTEMPTIED = "SlotEmptied";
                 public static final String SLOTCHANGED = "SlotChanged";
+                public static final String TABCHANGED = "TabChanged";
             }
 
             public static final class Anvil {

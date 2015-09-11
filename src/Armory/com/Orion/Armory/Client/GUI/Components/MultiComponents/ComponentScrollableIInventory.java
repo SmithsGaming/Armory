@@ -36,19 +36,38 @@ public class ComponentScrollableIInventory extends AbstractGUIMultiComponent imp
         iVerticalStackCount = pVerticalStackCount;
 
         iStartStackIndex = pStartStackIndex;
-        iEndStackIndex = pEndStackIndex;
+        iEndStackIndex = Integer.parseInt(String.valueOf(iHost.getComponentRelatedObject(this.getInternalName() + ".StackCount")));
+
+        if (iEndStackIndex < iStartStackIndex)
+            iEndStackIndex = pEndStackIndex;
 
         initializeSlots(pStartStackIndex);
+    }
+
+    @Override
+    public void onUpdate() {
+        int tEnd = iEndStackIndex;
+
+        iEndStackIndex = Integer.parseInt(String.valueOf(iHost.getComponentRelatedObject(this.getInternalName() + ".StackCount")));
+
+        if (iEndStackIndex < iStartStackIndex)
+            iEndStackIndex = tEnd;
+
+        int tLastStackIndex = (8 - (iEndStackIndex - iStartStackIndex) % 8) + (iEndStackIndex - iStartStackIndex);
+
+        if (tLastStackIndex < iHorizontalStackCount * iVerticalStackCount)
+            tLastStackIndex = iHorizontalStackCount * iVerticalStackCount;
+
+        iScrollbar.calculateRange(iHorizontalStackCount * iVerticalStackCount, tLastStackIndex);
     }
 
     private int initializeSlots(int pStartIndex) {
         getComponents().clear();
 
-        int tLastRenderedStackIndex = iEndStackIndex;
+        int tLastStackIndex = (8 - (iEndStackIndex - iStartStackIndex) % 8) + (iEndStackIndex - iStartStackIndex);
 
-        if ((iEndStackIndex - iStartStackIndex) % iHorizontalStackCount != 0) {
-            tLastRenderedStackIndex += (iHorizontalStackCount - (iEndStackIndex - iStartStackIndex) % iHorizontalStackCount);
-        }
+        if (tLastStackIndex < iHorizontalStackCount * iVerticalStackCount)
+            tLastStackIndex = iHorizontalStackCount * iVerticalStackCount;
 
         int tSlotIndex;
         for (tSlotIndex = 0; tSlotIndex < iHorizontalStackCount * iVerticalStackCount; tSlotIndex++) {
@@ -58,9 +77,10 @@ public class ComponentScrollableIInventory extends AbstractGUIMultiComponent imp
             getComponents().add(new ComponentSlot(iHost, getInternalName() + ".Slot." + tSlotIndex, tSlotIndex + pStartIndex, 18, 18, tX, tY, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
         }
 
-        if (iScrollbar == null)
-            iScrollbar = new ComponentScrollbar(this, getInternalName() + ".Scrollbar", iHorizontalStackCount * 18, 0, iVerticalStackCount * 18, iStartStackIndex, tLastRenderedStackIndex, new Rectangle(0, 0, 0, iWidth, iHeight));
-
+        if (iScrollbar == null) {
+            iScrollbar = new ComponentScrollbar(this, getInternalName() + ".Scrollbar", iHorizontalStackCount * 18, 0, iVerticalStackCount * 18, iHorizontalStackCount * iVerticalStackCount, tLastStackIndex, new Rectangle(0, 0, 0, iWidth, iHeight));
+            iScrollbar.setDeltaValuePerClick(iHorizontalStackCount);
+        }
         getComponents().add(iScrollbar);
         return tSlotIndex;
     }
@@ -93,10 +113,10 @@ public class ComponentScrollableIInventory extends AbstractGUIMultiComponent imp
     @Override
     public void updateComponentResult(IGUIComponent pComponent, String pComponentID, String pNewValue) {
         if (pComponent.getInternalName().equals(getInternalName() + ".Scrollbar")) {
-            initializeSlots(Integer.parseInt(pNewValue));
+            initializeSlots(Integer.parseInt(pNewValue) - iHorizontalStackCount * iVerticalStackCount);
         }
 
-        iHost.updateComponentResult(pComponent, pComponentID, pNewValue);
+        iHost.updateComponentResult(pComponent, pComponentID, String.valueOf(Integer.parseInt(pNewValue) - iHorizontalStackCount * iVerticalStackCount));
     }
 
     @Override

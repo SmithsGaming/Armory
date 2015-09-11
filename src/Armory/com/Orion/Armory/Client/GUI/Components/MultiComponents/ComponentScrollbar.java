@@ -31,6 +31,7 @@ public class ComponentScrollbar extends AbstractGUIMultiComponent implements ICo
     int iMinScrollValue;
     int iMaxScrolValue;
     float iScrollValuePerPixel;
+    int iPixelPerClick = 4;
     Rectangle iScrollWatchRetangle;
     private ComponentButton iUpButton;
     private ComponentButton iDownButton;
@@ -41,7 +42,7 @@ public class ComponentScrollbar extends AbstractGUIMultiComponent implements ICo
     }
 
     public ComponentScrollbar(IComponentHost pHost, String pInternalName, int pLeft, int pTop, int pHeight, int pMinScrollValue, int pMaxScrollValue, Rectangle pScrollWatchRectangle) {
-        this(pHost, pInternalName, pLeft, pTop, pHeight, pMinScrollValue, pMaxScrollValue, pScrollWatchRectangle, 0);
+        this(pHost, pInternalName, pLeft, pTop, pHeight, pMinScrollValue, pMaxScrollValue, pScrollWatchRectangle, pMinScrollValue);
     }
 
 
@@ -54,12 +55,37 @@ public class ComponentScrollbar extends AbstractGUIMultiComponent implements ICo
         iScrollButton = new ComponentButton(pHost, pInternalName + ".Scroll", 0, iUpButton.getHeight(), 7, 10, References.InternalNames.InputHandlers.Components.BUTTONCLICK, Textures.Gui.Basic.Components.Button.SCROLLBAR);
         iDownButton = new ComponentButton(pHost, pInternalName + ".Down", 0, pHeight - 10, 7, 10, References.InternalNames.InputHandlers.Components.BUTTONCLICK, Textures.Gui.Basic.Components.Button.DOWNARROW);
 
-        iMinScrollValue = pMinScrollValue;
-        iMaxScrolValue = pMaxScrollValue;
-        iScrollValuePerPixel = (float) (pMaxScrollValue - pMinScrollValue) / (float) (pHeight - iUpButton.iHeight - iScrollButton.iHeight - iDownButton.iHeight);
-        iScrollWatchRetangle = pScrollWatchRectangle;
+        calculateRange(pMinScrollValue, pMaxScrollValue);
 
-        iScrollButton.iTop = (int) (iUpButton.getHeight() + (pInitializedScrollValue / iScrollValuePerPixel));
+        iScrollWatchRetangle = pScrollWatchRectangle;
+    }
+
+    public void calculateRange(int pMinvalue, int pMaxvalue) {
+        iMinScrollValue = pMinvalue;
+        iMaxScrolValue = pMaxvalue;
+
+        int tCurrentDeltaValueFromMin = 0;
+        if (iScrollButton.getHeight() - iUpButton.getHeight() > 0 && iScrollValuePerPixel > 0) {
+            tCurrentDeltaValueFromMin = (int) (iScrollButton.getHeight() - iUpButton.getHeight() / iScrollValuePerPixel);
+        }
+
+        iScrollValuePerPixel = (float) (pMaxvalue - pMinvalue) / (float) (iHeight - iUpButton.iHeight - iScrollButton.iHeight - iDownButton.iHeight);
+
+        if (iScrollValuePerPixel == 0.0) {
+            iUpButton.setForceDisabledState(true);
+            iDownButton.setForceDisabledState(true);
+            iScrollButton.setForceDisabledState(true);
+            iScrollButton.iTop = iUpButton.getHeight();
+        } else {
+            iUpButton.setForceDisabledState(false);
+            iDownButton.setForceDisabledState(false);
+            iScrollButton.setForceDisabledState(false);
+            iScrollButton.iHeight = (int) (iUpButton.getHeight() + (tCurrentDeltaValueFromMin / iScrollValuePerPixel));
+        }
+    }
+
+    public void setDeltaValuePerClick(int pDelta) {
+        iPixelPerClick = (int) (pDelta / iScrollValuePerPixel);
     }
 
     @Override
@@ -105,6 +131,9 @@ public class ComponentScrollbar extends AbstractGUIMultiComponent implements ICo
             }
         }
 
+        if (iScrollValuePerPixel == 0.0)
+            tCanScroll = false;
+
         if (tCanScroll && tNewScrollPos != iScrollButton.iTop && tNewScrollPos >= iUpButton.getHeight() && tNewScrollPos <= iHeight - iDownButton.getHeight()) {
             if (tNewScrollPos <= iTop + iUpButton.getHeight()) {
                 iScrollButton.iTop = iUpButton.getHeight();
@@ -122,7 +151,7 @@ public class ComponentScrollbar extends AbstractGUIMultiComponent implements ICo
     @Override
     public boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton) {
         if (iUpButton.checkIfPointIsInComponent(pMouseX - iLeft, pMouseY - iTop) && iUpButton.handleMouseClicked(pMouseX - iLeft, pMouseY - iTop, pMouseButton)) {
-            int tCurrentXScroll = iScrollButton.iTop - 4;
+            int tCurrentXScroll = iScrollButton.iTop - iPixelPerClick;
             if (tCurrentXScroll < iUpButton.getHeight())
                 tCurrentXScroll = iUpButton.getHeight();
 
@@ -131,7 +160,7 @@ public class ComponentScrollbar extends AbstractGUIMultiComponent implements ICo
 
             return true;
         } else if (iDownButton.checkIfPointIsInComponent(pMouseX - iLeft, pMouseY - iTop) && iDownButton.handleMouseClicked(pMouseX - iLeft, pMouseY - iTop, pMouseButton)) {
-            int tCurrentXScroll = iScrollButton.iTop + 4;
+            int tCurrentXScroll = iScrollButton.iTop + iPixelPerClick;
             if (tCurrentXScroll > iHeight - iDownButton.getHeight() - iScrollButton.getHeight())
                 tCurrentXScroll = iHeight - iDownButton.getHeight() - iScrollButton.getHeight();
 
@@ -142,8 +171,8 @@ public class ComponentScrollbar extends AbstractGUIMultiComponent implements ICo
         } else if (iScrollButton.checkIfPointIsInComponent(pMouseX - iLeft, pMouseY - iTop) && iScrollButton.handleMouseClicked(pMouseX - iLeft, pMouseY - iTop, pMouseButton)) {
             return true;
         } else if ((new Rectangle(iLeft, 0, iTop, iWidth, iHeight)).contains(pMouseX, pMouseY)) {
-            iScrollButton.iTop = pMouseY - iTop;
-            updateComponentResult(iScrollButton, References.InternalNames.InputHandlers.Components.BUTTONCLICK, String.valueOf(pMouseY - iTop));
+            iScrollButton.iTop = pMouseY - iTop - iUpButton.getHeight();
+            updateComponentResult(iScrollButton, References.InternalNames.InputHandlers.Components.BUTTONCLICK, String.valueOf(pMouseY - iTop - iUpButton.getHeight()));
 
             return true;
         }

@@ -21,6 +21,7 @@ public class ComponentButton extends AbstractGUIComponent {
     Integer iUpdateTicksSinceLastClick = 0;
     String iInputID;
     boolean iIsEnabled = true;
+    boolean iForceDisabled = false;
 
     CustomResource iForegroundResource;
 
@@ -54,9 +55,13 @@ public class ComponentButton extends AbstractGUIComponent {
             }
         }
 
-        iIsEnabled = iHost.getComponentRelatedObject(getInternalName() + ".enabled") != null && (Integer) iHost.getComponentRelatedObject(getInternalName() + ".enabled") > 0;
+        if (iForceDisabled) {
+            iIsEnabled = false;
+        } else {
+            iIsEnabled = iHost.getComponentRelatedObject(getInternalName() + ".enabled") != null && (Integer) iHost.getComponentRelatedObject(getInternalName() + ".enabled") > 0;
 
-        iIsEnabled = true;
+            iIsEnabled = true;
+        }
     }
 
     @Override
@@ -97,7 +102,7 @@ public class ComponentButton extends AbstractGUIComponent {
 
     @Override
     public boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton) {
-        if (pMouseButton == 0) {
+        if (pMouseButton == 0 && iIsEnabled) {
             iHost.getContainer().HandleCustomInput(iInputID, "Clicked");
             iUpdateTicksSinceLastClick = 5;
 
@@ -109,5 +114,10 @@ public class ComponentButton extends AbstractGUIComponent {
 
     public boolean IsClicked() {
         return iUpdateTicksSinceLastClick == 5;
+    }
+
+    public void setForceDisabledState(boolean pState) {
+        iForceDisabled = pState;
+        iIsEnabled = !pState;
     }
 }

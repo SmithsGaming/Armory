@@ -9,6 +9,7 @@ package com.Orion.Armory.Client.GUI;
 import com.Orion.Armory.Client.GUI.Components.Tab.ITabbedHost;
 import com.Orion.Armory.Client.GUI.Components.Tab.TabManager;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
+import com.Orion.Armory.Util.References;
 import net.minecraft.inventory.Container;
 import org.lwjgl.opengl.GL11;
 
@@ -27,6 +28,9 @@ public abstract class ArmoryBaseTabbedGui extends ArmoryBaseGui implements ITabb
 
         xSize = getTabManager().getXSize();
         ySize = getTabManager().getYSize();
+
+
+        this.updateComponentResult(null, References.InternalNames.InputHandlers.Components.TABCHANGED, String.valueOf(getTabManager().getAllRegisteredTabs().indexOf(getTabManager().getActiveTab())));
     }
 
     @Override

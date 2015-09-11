@@ -22,10 +22,10 @@ public class ComponentPlayerInventory extends AbstractGUIMultiComponent
 
         getComponents().add(new ComponentBorder(pHost, pInternalName + ".Background", 0, 0, 175, 90, Colors.DEFAULT, pConnectionType));
 
-        for (int tSlotIndex = pPlayerInventoryStartSlotIndex; tSlotIndex < pHost.getContainer().inventorySlots.size(); tSlotIndex++)
+        for (int tSlotIndex = 0; tSlotIndex < 36; tSlotIndex++)
         {
-            int tRowIndex = ((tSlotIndex - pPlayerInventoryStartSlotIndex) / 9);
-            int tColumnIndex = (tSlotIndex - pPlayerInventoryStartSlotIndex) % 9;
+            int tRowIndex = ((tSlotIndex) / 9);
+            int tColumnIndex = (tSlotIndex) % 9;
 
             if (tRowIndex < 3)
             {

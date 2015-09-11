@@ -7,7 +7,7 @@
 package com.Orion.Armory.Common.Inventory.Items;
 
 import com.Orion.Armory.API.Knowledge.IBluePrintItem;
-import com.Orion.Armory.Common.Item.Knowledge.ItemSmithingsGuide;
+import com.Orion.Armory.Common.Item.Knowledge.LabelledBlueprintGroup;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -15,9 +15,9 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 
 public class InventorySmithingsGuideBlueprints implements IInventory {
-    ItemSmithingsGuide.LabelledBlueprintGroup iBaseGroup;
+    LabelledBlueprintGroup iBaseGroup;
 
-    public InventorySmithingsGuideBlueprints(ItemSmithingsGuide.LabelledBlueprintGroup pBaseGroup) {
+    public InventorySmithingsGuideBlueprints(LabelledBlueprintGroup pBaseGroup) {
         iBaseGroup = pBaseGroup;
     }
 
