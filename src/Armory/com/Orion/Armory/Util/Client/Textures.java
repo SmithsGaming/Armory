@@ -182,11 +182,19 @@ public class Textures
             public static CustomResource HAMMER = new CustomResource("Gui.Anvil.Image.Hammer", Basic.Images.IMAGETEXTUREPATH + "AnvilHammer.png", Colors.DEFAULT, 0, 0, 30, 30);
             public static CustomResource HAMMERSLOT = new CustomResource("Gui.Anvil.Slot.Hammer", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 18, 0, 18, 18);
             public static CustomResource TONGSSLOT = new CustomResource("Gui.Anvil.Slot.Tongs", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 36, 0, 18, 18);
-            public static CustomResource BOOKSLOT = new CustomResource("Gui.Anvil.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 54, 0, 18, 18);
+            public static CustomResource BOOKSLOT = new CustomResource("Gui.Anvil.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 55, 1, 16, 16);
             public static CustomResource UPGRADETOOLSLOT = new CustomResource("Gui.Anvil.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 73, 1, 16, 16);
             public static CustomResource UPGRADEPAYMENTSLOT = new CustomResource("Gui.Anvil.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 91, 1, 16, 16);
             public static CustomResource EXPERIENCEORB = new CustomResource("Gui.Anvil.Image.ExperienceOrb", GUITEXTUREPATH + "Components/RandomElements.png", Colors.DEFAULT, 16, 0, 16, 16);
 
+        }
+
+        public static class BookBinder {
+            public static class TabBookBinding {
+                public static CustomResource BINDINGPROGRESSBACKGROUND = new CustomResource("Gui.BookBinder.TabBookbinding.BindingProgress.Background", GUITEXTUREPATH + "Components/" + "ProgressBars.png", Colors.DEFAULT, 0, 16, 32, 32);
+                public static CustomResource BINDINGPROGRESSFOREGROUND = new CustomResource("Gui.BookBinder.TabBookbinding.BindingProgress.Foreground", GUITEXTUREPATH + "Components/" + "ProgressBars.png", Colors.DEFAULT, 32, 16, 32, 32);
+                public static CustomResource BLUEPRINTSLOT = new CustomResource("Gui.BookBinder.Slot.Blueprint", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 109, 1, 16, 16);
+            }
         }
 
         public static class Compatibility

@@ -266,6 +266,16 @@ public final class GuiHelper
         ITEMRENDERER.renderItemOverlayIntoGUI(font, Minecraft.getMinecraft().getTextureManager(), pStack, pX, pY);
     }
 
+    public static void drawItemStack(ItemStack pStack, int pX, int pY, String pOverlayText) {
+        GL11.glTranslatef(0.0F, 0.0F, 32.0F);
+        FontRenderer font = null;
+        if (pStack != null) font = pStack.getItem().getFontRenderer(pStack);
+        if (font == null) font = Minecraft.getMinecraft().fontRenderer;
+        ITEMRENDERER.renderItemAndEffectIntoGUI(font, Minecraft.getMinecraft().getTextureManager(), pStack, pX, pY);
+        ITEMRENDERER.renderItemOverlayIntoGUI(font, Minecraft.getMinecraft().getTextureManager(), pStack, pX, pY, pOverlayText);
+    }
+
+
     public static void bindTexture(String pTextureAddress)
     {
         bindTexture(new ResourceLocation(pTextureAddress));

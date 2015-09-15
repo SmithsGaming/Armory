@@ -90,7 +90,7 @@ item.Armory.MultiArmor.Upgrade.Shoes.Left.name=Left foot Protector
 item.Armory.MultiArmor.Upgrade.Shoes.Right.name=Right foot Protector
 #
 #Commands
-armory.usage=Central command for Armory related instructions, most of them are OP only.
+armory.usage=/armory
 give-heated-item.usage=Gives heated Items. Syntax: <MaterialID> <ItemType> <Temperature>
 #
 #AnvilRecipeKnowledge
@@ -118,3 +118,7 @@ Armory.Items.BluePrint.Produces.Upgrade.2=with
 #Label Tooltips
 Armory.Items.Label.GroupName=Group name:
 Armory.Items.Label.Logo=Group logo:
+#
+#Smithings Guide Tooltip
+Armory.Items.SmithingsGuide.Tooltip1=Contains:
+Armory.Items.SmithingsGuide.Tooltip2= Blueprints.

@@ -14,9 +14,9 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
-public class GuiBookBinder extends ArmoryBaseTabbedGui {
+public class GuiBookbinder extends ArmoryBaseTabbedGui {
 
-    public GuiBookBinder(Container pTargetedContainer) {
+    public GuiBookbinder(Container pTargetedContainer) {
         super(pTargetedContainer);
     }
 
@@ -39,5 +39,4 @@ public class GuiBookBinder extends ArmoryBaseTabbedGui {
 
 
 }
-
 

@@ -14,15 +14,20 @@ import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.GUI.MultiComponentTexture;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Core.Coordinate;
+import com.Orion.Armory.Util.Core.ItemStackHelper;
+import com.Orion.Armory.Util.References;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 public class ComponentSlot extends AbstractGUIComponent
 {
+    private ItemStack iDisplayedItemStack;
     private CustomResource iIconResource;
     private CustomResource iSlotResource;
     private Color iColor;
     private int iSlotID;
+
 
     public ComponentSlot(IComponentHost pHost, String pInternalName, int pSlotID, int pHeight, int pWidth, int pLeft, int pTop, CustomResource pSlotResource, Color pColor, CustomResource pIconResource) {
         super(pHost, pInternalName, pLeft, pTop, pWidth, pHeight);
@@ -49,7 +54,11 @@ public class ComponentSlot extends AbstractGUIComponent
 
     @Override
     public void onUpdate() {
-        //NOOP
+        ItemStack tContainerStack = iHost.getItemStackInSlot(iSlotID);
+        if (!ItemStackHelper.equals(tContainerStack, iDisplayedItemStack)) {
+            iHost.updateComponentResult(this, References.InternalNames.InputHandlers.Components.SLOTCHANGED, String.valueOf(iSlotID));
+            iDisplayedItemStack = tContainerStack;
+        }
     }
 
     @Override

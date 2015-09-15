@@ -10,16 +10,19 @@ import com.Orion.Armory.Client.GUI.Components.ComponentSlot;
 import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIMultiComponent;
 import com.Orion.Armory.Client.GUI.Components.Core.IComponentHost;
 import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
+import com.Orion.Armory.Client.GUI.Components.SlotManagement.ISlotControler;
+import com.Orion.Armory.Client.GUI.Components.SlotManagement.SlotManager;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
 import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Core.Rectangle;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class ComponentScrollableIInventory extends AbstractGUIMultiComponent implements IComponentHost {
+public class ComponentScrollableIInventory extends AbstractGUIMultiComponent implements IComponentHost, ISlotControler {
 
     int iHorizontalStackCount;
     int iVerticalStackCount;
@@ -27,7 +30,11 @@ public class ComponentScrollableIInventory extends AbstractGUIMultiComponent imp
     int iStartStackIndex;
     int iEndStackIndex;
 
+    int iLastActiveStackIndex;
+    int iLastRenderedStackIndex;
+
     private ComponentScrollbar iScrollbar;
+    private boolean iActiveState;
 
     public ComponentScrollableIInventory(IComponentHost pHost, String pInternalName, int pLeft, int pTop, int pStartStackIndex, int pEndStackIndex, int pHorizontalStackCount, int pVerticalStackCount) {
         super(pHost, pInternalName, pLeft, pTop, pHorizontalStackCount * 18 + 7, pVerticalStackCount * 18);
@@ -41,7 +48,9 @@ public class ComponentScrollableIInventory extends AbstractGUIMultiComponent imp
         if (iEndStackIndex < iStartStackIndex)
             iEndStackIndex = pEndStackIndex;
 
-        initializeSlots(pStartStackIndex);
+        initializeSlots();
+
+        setActiveState(true);
     }
 
     @Override
@@ -53,35 +62,35 @@ public class ComponentScrollableIInventory extends AbstractGUIMultiComponent imp
         if (iEndStackIndex < iStartStackIndex)
             iEndStackIndex = tEnd;
 
-        int tLastStackIndex = (8 - (iEndStackIndex - iStartStackIndex) % 8) + (iEndStackIndex - iStartStackIndex);
+        iLastActiveStackIndex = (8 - (iEndStackIndex - iStartStackIndex) % 8) + (iEndStackIndex - iStartStackIndex);
 
-        if (tLastStackIndex < iHorizontalStackCount * iVerticalStackCount)
-            tLastStackIndex = iHorizontalStackCount * iVerticalStackCount;
+        if (iLastActiveStackIndex < iHorizontalStackCount * iVerticalStackCount)
+            iLastActiveStackIndex = iHorizontalStackCount * iVerticalStackCount;
 
-        iScrollbar.calculateRange(iHorizontalStackCount * iVerticalStackCount, tLastStackIndex);
+        iScrollbar.calculateRange(0, iLastActiveStackIndex);
     }
 
-    private int initializeSlots(int pStartIndex) {
+    private int initializeSlots() {
         getComponents().clear();
 
-        int tLastStackIndex = (8 - (iEndStackIndex - iStartStackIndex) % 8) + (iEndStackIndex - iStartStackIndex);
+        iLastActiveStackIndex = (8 - (iEndStackIndex - iStartStackIndex) % 8) + (iEndStackIndex - iStartStackIndex);
 
-        if (tLastStackIndex < iHorizontalStackCount * iVerticalStackCount)
-            tLastStackIndex = iHorizontalStackCount * iVerticalStackCount;
+        if (iLastActiveStackIndex < iHorizontalStackCount * iVerticalStackCount)
+            iLastActiveStackIndex = iHorizontalStackCount * iVerticalStackCount;
 
         int tSlotIndex;
         for (tSlotIndex = 0; tSlotIndex < iHorizontalStackCount * iVerticalStackCount; tSlotIndex++) {
             int tX = (tSlotIndex % iHorizontalStackCount) * 18;
             int tY = (tSlotIndex / iHorizontalStackCount) * 18;
 
-            getComponents().add(new ComponentSlot(iHost, getInternalName() + ".Slot." + tSlotIndex, tSlotIndex + pStartIndex, 18, 18, tX, tY, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
+            getComponents().add(new ComponentSlot(iHost, getInternalName() + ".Slot." + tSlotIndex, tSlotIndex, 18, 18, tX, tY, Textures.Gui.Basic.Slots.DEFAULT, Colors.DEFAULT));
         }
 
-        if (iScrollbar == null) {
-            iScrollbar = new ComponentScrollbar(this, getInternalName() + ".Scrollbar", iHorizontalStackCount * 18, 0, iVerticalStackCount * 18, iHorizontalStackCount * iVerticalStackCount, tLastStackIndex, new Rectangle(0, 0, 0, iWidth, iHeight));
-            iScrollbar.setDeltaValuePerClick(iHorizontalStackCount);
-        }
+        iScrollbar = new ComponentScrollbar(this, getInternalName() + ".Scrollbar", iHorizontalStackCount * 18, 0, iVerticalStackCount * 18, iStartStackIndex, iLastActiveStackIndex, new Rectangle(0, 0, 0, iWidth, iHeight));
+        iScrollbar.setDeltaValuePerClick(iHorizontalStackCount);
+
         getComponents().add(iScrollbar);
+
         return tSlotIndex;
     }
 
@@ -113,10 +122,11 @@ public class ComponentScrollableIInventory extends AbstractGUIMultiComponent imp
     @Override
     public void updateComponentResult(IGUIComponent pComponent, String pComponentID, String pNewValue) {
         if (pComponent.getInternalName().equals(getInternalName() + ".Scrollbar")) {
-            initializeSlots(Integer.parseInt(pNewValue) - iHorizontalStackCount * iVerticalStackCount);
+            iLastRenderedStackIndex = Integer.parseInt(pNewValue);
+            return;
         }
 
-        iHost.updateComponentResult(pComponent, pComponentID, String.valueOf(Integer.parseInt(pNewValue) - iHorizontalStackCount * iVerticalStackCount));
+        iHost.updateComponentResult(pComponent, pComponentID, pNewValue);
     }
 
     @Override
@@ -143,4 +153,45 @@ public class ComponentScrollableIInventory extends AbstractGUIMultiComponent imp
     public void drawHoveringText(List pToolTipLines, int pX, int pY, FontRenderer pFontRenderer) {
         iHost.drawHoveringText(pToolTipLines, pX, pY, pFontRenderer);
     }
+
+    @Override
+    public SlotManager getSlotManager() {
+        return iHost.getSlotManager();
+    }
+
+    @Override
+    public boolean ShouldSlotBeVisible(Slot pSlot) {
+        if (pSlot.getSlotIndex() >= iStartStackIndex && pSlot.getSlotIndex() < iLastActiveStackIndex && iActiveState) {
+            return pSlot.getSlotIndex() >= iLastRenderedStackIndex && pSlot.getSlotIndex() < (iLastRenderedStackIndex + (iHorizontalStackCount - iVerticalStackCount));
+        }
+
+        return true;
+    }
+
+    @Override
+    public void ModifyVisibleSlot(Slot pSlot) {
+        if (!iActiveState)
+            return;
+
+        if (pSlot.getSlotIndex() >= iStartStackIndex && pSlot.getSlotIndex() < iLastActiveStackIndex && iActiveState) {
+            int tInternalSlotIndex = pSlot.getSlotIndex() - iLastRenderedStackIndex;
+
+            int tX = (tInternalSlotIndex % iHorizontalStackCount) * 18;
+            int tY = (tInternalSlotIndex / iHorizontalStackCount) * 18;
+
+            pSlot.xDisplayPosition = iHost.getXOrigin() + iLeft + tX;
+            pSlot.yDisplayPosition = iHost.getYOrigin() + iTop + tY;
+        }
+    }
+
+    public void setActiveState(boolean pState) {
+        iActiveState = pState;
+
+        if (pState) {
+            iHost.getSlotManager().registerSlotController(this);
+        } else {
+            iHost.getSlotManager().getControlers().remove(this);
+        }
+    }
 }
+

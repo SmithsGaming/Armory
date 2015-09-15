@@ -9,6 +9,7 @@ package com.Orion.Armory.Client.GUI.Components.Tab;
 import com.Orion.Armory.Client.GUI.Components.ComponentBorder;
 import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
+import com.Orion.Armory.Client.GUI.Components.SlotManagement.SlotManager;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.ToolTipRenderer;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
 import com.Orion.Armory.Util.Client.Color.Color;
@@ -184,12 +185,17 @@ public class TabManager implements ITabbedHost {
 
     @Override
     public void updateComponentResult(IGUIComponent pComponent, String pComponentID, String pNewValue) {
-        getContainer().updateComponentResult(pComponent, pComponentID, pNewValue);
+        iHost.updateComponentResult(pComponent, pComponentID, pNewValue);
     }
 
     @Override
     public void drawHoveringText(List pToolTipLines, int pX, int pY, FontRenderer pFontRenderer) {
         iHost.drawHoveringText(pToolTipLines, pX, pY, pFontRenderer);
+    }
+
+    @Override
+    public SlotManager getSlotManager() {
+        return iHost.getSlotManager();
     }
 
     @Override

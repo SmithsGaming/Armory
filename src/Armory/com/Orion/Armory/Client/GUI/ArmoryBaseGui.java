@@ -9,6 +9,7 @@ import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
 import com.Orion.Armory.Client.GUI.Components.Core.StandardComponentManager;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.ILedgerHost;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
+import com.Orion.Armory.Client.GUI.Components.SlotManagement.SlotManager;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Util.Client.GUI.GuiHelper;
@@ -16,6 +17,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
@@ -23,6 +25,8 @@ import java.util.List;
 
 public abstract class ArmoryBaseGui extends GuiContainer implements ILedgerHost {
     protected StandardComponentManager iComponents = new StandardComponentManager(this);
+    protected SlotManager iSlotManager = new SlotManager(this);
+
     LedgerManager iLedgers = new LedgerManager(this);
     TileEntityArmory iBaseTE;
 
@@ -48,6 +52,12 @@ public abstract class ArmoryBaseGui extends GuiContainer implements ILedgerHost 
     {
         return iComponents;
     }
+
+    @Override
+    public SlotManager getSlotManager() {
+        return iSlotManager;
+    }
+
 
     public int getWidth() {
         return xSize;
@@ -83,7 +93,7 @@ public abstract class ArmoryBaseGui extends GuiContainer implements ILedgerHost 
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float pFloat, int pMouseX, int pMouseY) {
+    protected void drawGuiContainerBackgroundLayer(float pPartialTickTime, int pMouseX, int pMouseY) {
         //Render ledgers background at a lower level then the rest!
         GL11.glPushMatrix();
         iLedgers.drawLedgers();
@@ -95,11 +105,24 @@ public abstract class ArmoryBaseGui extends GuiContainer implements ILedgerHost 
 
         iComponents.drawComponents();
 
-        drawGuiContainerBackGroundFeatures(pFloat, pMouseX, pMouseY);
+        drawGuiContainerBackGroundFeatures(pPartialTickTime, pMouseX, pMouseY);
 
         iComponents.drawComponentToolTips(pMouseX - guiLeft, pMouseY - guiTop);
 
         GL11.glPopMatrix();
+    }
+
+    @Override
+    public Slot getSlotAtPosition(int pX, int pY) {
+        for (int k = 0; k < this.inventorySlots.inventorySlots.size(); ++k) {
+            Slot slot = (Slot) this.inventorySlots.inventorySlots.get(k);
+
+            if (this.isMouseOverSlot(slot, pX, pY) && getSlotManager().ShouldSlotBeVisible(slot)) {
+                return slot;
+            }
+        }
+
+        return null;
     }
 
     protected void drawGuiContainerBackGroundFeatures(float pFloat, int pMouseX, int pMouseY) {

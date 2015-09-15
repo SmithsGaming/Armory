@@ -60,6 +60,11 @@ public class TranslationKeys
             public static final String CreativeTier = "Armory.Items.Blueprint.Creative";
         }
 
+        public final class SmithingsGuide {
+            public static final String Tooltip1 = "Armory.Items.SmithingsGuide.Tooltip1";
+            public static final String Tooltip2 = "Armory.Items.SmithingsGuide.Tooltip2";
+        }
+
         public class HeatedIngot
         {
             public static final String TemperatureTag = "Armory.Items.HeatedIngot.Tooltip.Temperature";

@@ -16,4 +16,6 @@ public interface IBluePrintContainerItem {
     ArrayList<LabelledBlueprintGroup> getBlueprintGroups(ItemStack pStack);
 
     void writeBlueprintGroupsToStack(ItemStack pStack, ArrayList<LabelledBlueprintGroup> pGroups);
+
+    void initializeContainer(ItemStack pStack);
 }

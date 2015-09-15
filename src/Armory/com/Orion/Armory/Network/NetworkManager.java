@@ -23,5 +23,6 @@ public class NetworkManager
         INSTANCE.registerMessage(MessageHandlerTileEntityArmorsAnvil.class, MessageTileEntityArmorsAnvil.class, 2, Side.CLIENT);
         INSTANCE.registerMessage(MessageHandlerCustomInput.class, MessageCustomInput.class, 3, Side.SERVER);
         INSTANCE.registerMessage(MessageHandlerKnowledgeUpdate.class, MessageKnowledgeUpdate.class, 4, Side.CLIENT);
+        INSTANCE.registerMessage(MessageHandlerTileEntityBookBinder.class, MessageTileEntityBookBinder.class, 5, Side.CLIENT);
     }
 }

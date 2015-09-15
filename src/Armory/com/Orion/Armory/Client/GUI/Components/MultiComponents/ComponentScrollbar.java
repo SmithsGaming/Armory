@@ -11,6 +11,7 @@ import com.Orion.Armory.Client.GUI.Components.Core.AbstractGUIMultiComponent;
 import com.Orion.Armory.Client.GUI.Components.Core.IComponentHost;
 import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
 import com.Orion.Armory.Client.GUI.Components.Core.StandardComponentManager;
+import com.Orion.Armory.Client.GUI.Components.SlotManagement.SlotManager;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.ToolTipRenderer;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
 import com.Orion.Armory.Util.Client.Colors;
@@ -256,5 +257,10 @@ public class ComponentScrollbar extends AbstractGUIMultiComponent implements ICo
     @Override
     public void drawHoveringText(List pToolTipLines, int pX, int pY, FontRenderer pFontRenderer) {
         iHost.drawHoveringText(pToolTipLines, pX, pY, pFontRenderer);
+    }
+
+    @Override
+    public SlotManager getSlotManager() {
+        return iHost.getSlotManager();
     }
 }

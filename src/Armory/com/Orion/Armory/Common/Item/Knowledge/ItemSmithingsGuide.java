@@ -8,6 +8,7 @@ package com.Orion.Armory.Common.Item.Knowledge;
 
 import com.Orion.Armory.API.Knowledge.IBluePrintContainerItem;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
+import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.References;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,9 +16,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ItemSmithingsGuide extends Item implements IBluePrintContainerItem {
 
@@ -98,7 +101,7 @@ public class ItemSmithingsGuide extends Item implements IBluePrintContainerItem 
         ArrayList<LabelledBlueprintGroup> tGroups = new ArrayList<LabelledBlueprintGroup>();
 
         if (pStack.getTagCompound() == null)
-            return tGroups;
+            initializeContainer(pStack);
 
         if (!pStack.getTagCompound().hasKey(References.NBTTagCompoundData.Item.SmithingsGuide.GROUPSDATA))
             return tGroups;
@@ -113,6 +116,13 @@ public class ItemSmithingsGuide extends Item implements IBluePrintContainerItem 
     }
 
     @Override
+    public void addInformation(ItemStack pStack, EntityPlayer pPlayer, List pList, boolean pAdvanced) {
+        super.addInformation(pStack, pPlayer, pList, pAdvanced);
+
+        pList.add(StatCollector.translateToLocal(TranslationKeys.Items.SmithingsGuide.Tooltip1) + " " + getBlueprintGroups(pStack).get(0).Stacks.size() + StatCollector.translateToLocal(TranslationKeys.Items.SmithingsGuide.Tooltip2));
+    }
+
+    @Override
     public void writeBlueprintGroupsToStack(ItemStack pStack, ArrayList<LabelledBlueprintGroup> pGroups) {
         if (pStack.getTagCompound() == null)
             pStack.setTagCompound(new NBTTagCompound());
@@ -123,6 +133,15 @@ public class ItemSmithingsGuide extends Item implements IBluePrintContainerItem 
         }
 
         pStack.getTagCompound().setTag(References.NBTTagCompoundData.Item.SmithingsGuide.GROUPSDATA, tGroupedNBT);
+    }
+
+    @Override
+    public void initializeContainer(ItemStack pStack) {
+        LabelledBlueprintGroup tEmptyGroup = new LabelledBlueprintGroup();
+        ArrayList<LabelledBlueprintGroup> tGroups = new ArrayList<LabelledBlueprintGroup>();
+        tGroups.add(tEmptyGroup);
+
+        writeBlueprintGroupsToStack(pStack, tGroups);
     }
 
 }

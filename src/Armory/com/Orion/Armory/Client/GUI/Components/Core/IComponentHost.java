@@ -6,6 +6,7 @@
 
 package com.Orion.Armory.Client.GUI.Components.Core;
 
+import com.Orion.Armory.Client.GUI.Components.SlotManagement.SlotManager;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
@@ -32,4 +33,6 @@ public interface IComponentHost {
     int getYSize();
 
     void drawHoveringText(List pToolTipLines, int pX, int pY, FontRenderer pFontRenderer);
+
+    SlotManager getSlotManager();
 }

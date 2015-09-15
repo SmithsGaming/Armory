@@ -8,14 +8,9 @@ package com.Orion.Armory.Common.Handlers;
 import com.Orion.Armory.Client.GUI.GuiHeater;
 import com.Orion.Armory.Client.GUI.Implementation.ArmorsAnvil.GuiArmorsAnvilMinimal;
 import com.Orion.Armory.Client.GUI.Implementation.ArmorsAnvil.GuiArmorsAnvilStandard;
-import com.Orion.Armory.Client.GUI.Implementation.BookBinder.GuiBookBinder;
+import com.Orion.Armory.Client.GUI.Implementation.BookBinder.GuiBookbinder;
 import com.Orion.Armory.Client.GUI.Implementation.FirePit.GuiFirePit;
-import com.Orion.Armory.Common.Inventory.BookBinder.ContainerBookBinderClient;
-import com.Orion.Armory.Common.Inventory.BookBinder.ContainerBookBinderServer;
-import com.Orion.Armory.Common.Inventory.ContainerArmorsAnvilMinimal;
-import com.Orion.Armory.Common.Inventory.ContainerArmorsAnvilStandard;
-import com.Orion.Armory.Common.Inventory.ContainerFirepit;
-import com.Orion.Armory.Common.Inventory.ContainerHeater;
+import com.Orion.Armory.Common.Inventory.*;
 import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityHeater;
@@ -48,7 +43,7 @@ public class GuiHandler implements IGuiHandler
                 return new ContainerArmorsAnvilStandard(pPlayer.inventory, tAnvil);
             }
         } else if (pID == References.GuiIDs.BOOKBINDERID) {
-            return new ContainerBookBinderServer(pPlayer.inventory, (TileEntityBookBinder) pWorld.getTileEntity(pX, pY, pZ), 0);
+            return new ContainerBookBinder(pPlayer.inventory, (TileEntityBookBinder) pWorld.getTileEntity(pX, pY, pZ), 4);
         }
 
         return null;
@@ -75,7 +70,7 @@ public class GuiHandler implements IGuiHandler
                 return new GuiArmorsAnvilStandard(new ContainerArmorsAnvilStandard(pPlayer.inventory, tAnvil));
             }
         } else if (pID == References.GuiIDs.BOOKBINDERID) {
-            return new GuiBookBinder(new ContainerBookBinderClient(pPlayer.inventory, (TileEntityBookBinder) pWorld.getTileEntity(pX, pY, pZ), 0));
+            return new GuiBookbinder(new ContainerBookBinder(pPlayer.inventory, (TileEntityBookBinder) pWorld.getTileEntity(pX, pY, pZ), 4));
         }
 
         return null;

@@ -9,6 +9,7 @@ package com.Orion.Armory.Client.GUI.Components;
 import com.Orion.Armory.Client.GUI.Components.Core.IComponentHost;
 import com.Orion.Armory.Client.GUI.Components.Core.IGUIComponent;
 import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
+import com.Orion.Armory.Client.GUI.Components.SlotManagement.SlotManager;
 import com.Orion.Armory.Client.GUI.Components.Tab.ITabbedHost;
 import com.Orion.Armory.Client.GUI.Components.Tab.TabManager;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
@@ -187,5 +188,10 @@ public class ComponentTab implements IGUIComponent, ITabbedHost {
     @Override
     public void drawHoveringText(List pToolTipLines, int pX, int pY, FontRenderer pFontRenderer) {
         iHost.drawHoveringText(pToolTipLines, pX, pY, pFontRenderer);
+    }
+
+    @Override
+    public SlotManager getSlotManager() {
+        return iHost.getSlotManager();
     }
 }

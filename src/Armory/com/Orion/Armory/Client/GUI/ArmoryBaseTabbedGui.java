@@ -51,12 +51,12 @@ public abstract class ArmoryBaseTabbedGui extends ArmoryBaseGui implements ITabb
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float pFloat, int pMouseX, int pMouseY) {
+    protected void drawGuiContainerBackgroundLayer(float pPartialTickTime, int pMouseX, int pMouseY) {
         GL11.glPushMatrix();
         GL11.glTranslatef(getXOrigin(), getYOrigin(), 0F);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        iTabManager.renderTabsBackground(pFloat, pMouseX, pMouseY);
+        iTabManager.renderTabsBackground(pPartialTickTime, pMouseX, pMouseY);
 
         GL11.glPopMatrix();
     }
