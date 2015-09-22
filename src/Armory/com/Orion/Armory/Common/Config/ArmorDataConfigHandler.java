@@ -30,7 +30,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator
     @Override
     public void loadIDs() {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-            Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "\\Armory\\Material Configuration\\" + tMaterial.getInternalMaterialName() + "\\Global.cfg"), true);
+            Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "/Armory/Material Configuration/" + tMaterial.getInternalMaterialName() + "/Global.cfg"), true);
 
             tMaterial.setMaterialID(tGlobalMaterialConfig.getInt("MaterialID", "Global", tMaterial.getMaterialID(), 0, Short.MAX_VALUE, "The internalID of the Material. NO TWO MATERIALS SHOULD HAVE THE SAME ID!."));
 
@@ -43,7 +43,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator
     public void loadIsBaseArmorMaterial() {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
         {
-            Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "\\Armory\\Material Configuration\\" + tMaterial.getInternalMaterialName() + "\\Global.cfg"), true);
+            Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "/Armory/Material Configuration/" + tMaterial.getInternalMaterialName() + "/Global.cfg"), true);
 
             tMaterial.setIsBaseArmorMaterial(tGlobalMaterialConfig.getBoolean("IsBaseArmorMaterial", "Armor", tMaterial.getIsBaseArmorMaterial(), "Marks this material as a material out of which the base layer can be crafted."));
 
@@ -56,7 +56,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator
     public void loadActiveParts() {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
         {
-            Configuration tActivePartConfiguration = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "\\Armory\\Material Configuration\\" + tMaterial.getInternalMaterialName() + "\\PartStates.cfg"), true);
+            Configuration tActivePartConfiguration = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "/Armory/Material Configuration/" + tMaterial.getInternalMaterialName() + "/PartStates.cfg"), true);
 
             Iterator tIter = tMaterial.getAllPartStates().entrySet().iterator();
             while(tIter.hasNext())
@@ -76,7 +76,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator
     public void loadBaseDamageAbsorptions() {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
         {
-            Configuration tDamageAbsorbtionConfiguration = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "\\Armory\\Material Configuration\\" + tMaterial.getInternalMaterialName() + "\\DamageAbsorption.cfg"), true);
+            Configuration tDamageAbsorbtionConfiguration = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "/Armory/Material Configuration/" + tMaterial.getInternalMaterialName() + "/DamageAbsorption.cfg"), true);
 
             Iterator tIter = tMaterial.getAllBaseDamageAbsorbtionValues().entrySet().iterator();
             while(tIter.hasNext())
@@ -95,7 +95,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator
     public void loadPartModifiers() {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
         {
-            Configuration tMaxModifiersPerPartConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "\\Armory\\Material Configuration\\" + tMaterial.getInternalMaterialName() + "\\Modifiers.cfg"), true);
+            Configuration tMaxModifiersPerPartConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "/Armory/Material Configuration/" + tMaterial.getInternalMaterialName() + "/Modifiers.cfg"), true);
 
             Iterator tIter = tMaterial.getAllMaxModifiersAmounts().entrySet().iterator();
             while(tIter.hasNext())
@@ -114,7 +114,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator
     public void loadBaseDurability() {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
         {
-            Configuration tBaseDurabilityConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "\\Armory\\Material Configuration\\" + tMaterial.getInternalMaterialName() + "\\Durability.cfg"), true);
+            Configuration tBaseDurabilityConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "/Armory/Material Configuration/" + tMaterial.getInternalMaterialName() + "/Durability.cfg"), true);
 
             Iterator tIter = tMaterial.getAllBaseDurabilityValues().entrySet().iterator();
             while(tIter.hasNext())
@@ -132,7 +132,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator
     @Override
     public void loadTemperatureCoefficient() {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-            Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "\\Armory\\Material Configuration\\" + tMaterial.getInternalMaterialName() + "\\Global.cfg"), true);
+            Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "/Armory/Material Configuration/" + tMaterial.getInternalMaterialName() + "/Global.cfg"), true);
 
             tMaterial.setHeatCoefficient(tGlobalMaterialConfig.getFloat("HeatCoefficient", "Global", tMaterial.getHeatCoefficient(), -10F, 10F, "Determines how fast a metal can heat up. Higher is better."));
 
@@ -145,7 +145,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator
     public void loadMeltingPoint() {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
         {
-            Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "\\Armory\\Material Configuration\\" + tMaterial.getInternalMaterialName() + "\\Global.cfg"), true);
+            Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "/Armory/Material Configuration/" + tMaterial.getInternalMaterialName() + "/Global.cfg"), true);
 
             tMaterial.setMeltingPoint(tGlobalMaterialConfig.getFloat("MeltingPoint", "Global", tMaterial.getMeltingPoint(), 20F, 5000F, "Determines the melting point of the metal"));
 
@@ -165,7 +165,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator
 
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
         {
-            Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "\\Armory\\Material Configuration\\" + tMaterial.getInternalMaterialName() + "\\Global.cfg"), true);
+            Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "/Armory/Material Configuration/" + tMaterial.getInternalMaterialName() + "/Global.cfg"), true);
 
             int tColorRed = tGlobalMaterialConfig.getInt("MaterialColor-Red", "Colors", tMaterial.getColor().getColorRedInt(), 0, 255, "Sets the Red channel on the material color. Used for the color of the Armor.");
             int tColorGreen = tGlobalMaterialConfig.getInt("MaterialColor-Green", "Colors", tMaterial.getColor().getColorRedInt(), 0, 255, "Sets the Green channel on the material color. Used for the color of the Armor.");
