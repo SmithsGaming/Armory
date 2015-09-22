@@ -311,6 +311,15 @@ public class References
                 public static final String PLAYERCLOSEGUI = "Inpur.Anvil.CloseGUI";
             }
 
+            public static final class BookBinder {
+                public static final String INPUTSWITCH = "Input.Inventory.Stack.TargetSwitch";
+                public static final String HEAT = "Input.Research.Heat";
+                public static final String HAMMER = "Input.Research.Hammer";
+                public static final String TONGS = "Input.Research.Tongs";
+                public static final String ANALYZE = "Input.Research.Analyze";
+                public static final String COMPLETE = "Input.Research.Complete";
+            }
+
 
         }
 

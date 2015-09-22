@@ -8,7 +8,9 @@ package com.Orion.Armory.API.Knowledge;
 
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.UUID;
@@ -18,6 +20,7 @@ public class KnowledgeRegistry {
 
     private HashMap<String, Class<? extends IKnowledgedGameElement>> iKnowableGameElements = new HashMap<String, Class<? extends IKnowledgedGameElement>>();
     private HashMap<UUID, KnowledgeEntityProperty> iSavedKnowledge = new HashMap<UUID, KnowledgeEntityProperty>();
+    private ArrayList<IResearchTreeComponent> iRootTreeComponents = new ArrayList<IResearchTreeComponent>();
 
     public static KnowledgeRegistry getInstance() {
         if (INSTANCE == null)
@@ -53,5 +56,23 @@ public class KnowledgeRegistry {
 
     KnowledgeEntityProperty retrievePlayerKnowledge(EntityPlayer pPlayer) {
         return iSavedKnowledge.remove(pPlayer.getGameProfile().getId());
+    }
+
+    void registerNewRootElement(IResearchTreeComponent pNewRootElement)
+    {
+        iRootTreeComponents.add(pNewRootElement);
+    }
+
+    IResearchTreeComponent getRootElement(ItemStack pTargetStack, String pInputID, EntityPlayer pPlayer)
+    {
+        for (IResearchTreeComponent tRoot : iRootTreeComponents)
+        {
+            if (tRoot.matchesInput(pTargetStack, pInputID, pPlayer))
+            {
+                return tRoot;
+            }
+        }
+
+        return null;
     }
 }

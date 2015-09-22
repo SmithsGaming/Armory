@@ -4,7 +4,7 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.Orion.Armory.Common.Knowledge;
+package com.Orion.Armory.Common.Knowledge.Blueprint;
 
 import com.Orion.Armory.API.Knowledge.IBlueprint;
 import com.Orion.Armory.Util.Client.TranslationKeys;

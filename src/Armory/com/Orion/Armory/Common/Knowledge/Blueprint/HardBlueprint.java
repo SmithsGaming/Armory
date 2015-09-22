@@ -4,7 +4,7 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.Orion.Armory.Common.Knowledge;
+package com.Orion.Armory.Common.Knowledge.Blueprint;
 
 public class HardBlueprint extends BasicBlueprint {
 

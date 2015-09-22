@@ -11,6 +11,7 @@ import com.Orion.Armory.API.Knowledge.IBluePrintItem;
 import com.Orion.Armory.API.Knowledge.IBlueprint;
 import com.Orion.Armory.Common.Item.Knowledge.LabelledBlueprintGroup;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
+import com.Orion.Armory.Common.TileEntity.Core.ICustomInputHandler;
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Network.Messages.MessageTileEntityBookBinder;
 import com.Orion.Armory.Network.NetworkManager;
@@ -24,13 +25,21 @@ import net.minecraft.util.StatCollector;
 
 import java.util.ArrayList;
 
-public class TileEntityBookBinder extends TileEntityArmory implements IInventory {
+public class TileEntityBookBinder extends TileEntityArmory implements IInventory, ICustomInputHandler {
 
     ItemStack iBindingBookStack;
     ItemStack iBindingBluePrintStack;
 
     ItemStack iResearchingTargetStack;
     ItemStack iResearchingOutputStack;
+
+    ItemStack iResearchFuelstack;
+    ItemStack iResearchHammerStack;
+    ItemStack iResearchTongsStack;
+
+    ItemStack iPaperStack;
+    ItemStack iFeatherStack;
+    ItemStack iInkPotStack;
 
     OperationMode iOpMode = OperationMode.BookBinding;
 
@@ -113,7 +122,7 @@ public class TileEntityBookBinder extends TileEntityArmory implements IInventory
     public ItemStack decrStackSize(int pSlotIndex, int pDecrAmount) {
         ItemStack tItemStack = getStackInSlot(pSlotIndex);
         if (tItemStack == null) {
-            return tItemStack;
+            return null;
         }
         if (tItemStack.stackSize < pDecrAmount) {
             setInventorySlotContents(pSlotIndex, null);
@@ -204,6 +213,12 @@ public class TileEntityBookBinder extends TileEntityArmory implements IInventory
     public Object getGUIComponentRelatedObject(String pComponentID) {
         return null;
     }
+
+    @Override
+    public void HandleCustomInput(String pInputID, String pInput) {
+
+    }
+
 
     public boolean checkIfGuideContainsBlueprint(ItemStack pBlueprintStack, ItemStack pComparedItemStack) {
         for (LabelledBlueprintGroup tGroup : ((IBluePrintContainerItem) pBlueprintStack.getItem()).getBlueprintGroups(pBlueprintStack)) {
