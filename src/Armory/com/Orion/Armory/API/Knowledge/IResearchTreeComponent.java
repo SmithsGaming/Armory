@@ -9,11 +9,15 @@ package com.Orion.Armory.API.Knowledge;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface IResearchTreeComponent {
 
-    ArrayList<IResearchTreeComponent> getFollowupTreeComponent();
+    String getID();
+
+    String getInputId();
+
+    HashMap<String, IResearchTreeComponent> getFollowupTreeComponent();
 
     IResearchTreeComponent registerNewFollowupTreeComponent(IResearchTreeComponent pNewComponent);
 
@@ -21,9 +25,15 @@ public interface IResearchTreeComponent {
 
     boolean isFinalComponentInBranch();
 
-    ItemStack getBranchResult();
+    ItemStack getBranchResult(EntityPlayer pPlayer);
 
     boolean matchesInput(ItemStack pTargetStack, String pInputID, EntityPlayer pPlayer);
 
     String getDisplayString();
+
+    int hashCode();
+
+    boolean equals(Object pComponent);
+
+    ItemStack getTargetStack();
 }

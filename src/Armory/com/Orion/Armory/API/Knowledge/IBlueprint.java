@@ -23,4 +23,8 @@ public interface IBlueprint {
     int handleRecipeResultFromItemStackForPlayer(EntityPlayer pPlayer, ItemStack pRecipeResult, float pBlueprintQuality);
 
     int handleRecipeResultFromItemStack(ItemStack pRecipeResult, float pBlueprintQuality);
+
+    float getQualityDecrementOnTick(boolean pInGuide);
+
+    String getProductionInfoLine(ItemStack pStack);
 }

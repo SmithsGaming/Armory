@@ -15,11 +15,10 @@ import java.util.TreeMap;
 
 public abstract class AnvilRecipeKnowledge implements IKnowledgedGameElement {
 
+    protected Float iMinimalExperienceLevel = 0F;
+    protected Float iMaximalExperienceLevel = 1F;
     String iSaveKey;
-
     Float iCurrentExperience = 0F;
-    Float iMinimalExperienceLevel = 0F;
-    Float iMaximalExperienceLevel = 1F;
     TreeMap<Float, String> iUntranslatedExperienceLevels = new TreeMap<Float, String>();
 
     @Override

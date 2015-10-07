@@ -39,6 +39,7 @@ public class ArmorMaterial implements IArmorMaterial
     private HashMap<String, Integer> iPartModifiers = new HashMap<String, Integer>();
     private float iMeltingPoint;
     private float iHeatCoefficient;
+    private ItemStack iBaseStack;
 
     //Constructor
     public ArmorMaterial(String pInternalName, String pVisibleName, String pOreDicName, boolean pBaseArmorMaterial, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack)
@@ -56,6 +57,7 @@ public class ArmorMaterial implements IArmorMaterial
         iMeltingPoint = pMeltingPoint;
         iHeatCoefficient = pHeatCoefficient;
 
+        iBaseStack = pBaseItemStack;
         if (!HeatedItemFactory.getInstance().isHeatable(pBaseItemStack)){
             HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
         }
@@ -84,6 +86,7 @@ public class ArmorMaterial implements IArmorMaterial
         iMeltingPoint = pMeltingPoint;
         iHeatCoefficient = pHeatCoefficient;
 
+        iBaseStack = pBaseItemStack;
         if (!HeatedItemFactory.getInstance().isHeatable(pBaseItemStack)){
             HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
         }
@@ -102,6 +105,11 @@ public class ArmorMaterial implements IArmorMaterial
     @Override
     public void setMaterialID(int pNewID) {
         iMaterialID = pNewID;
+    }
+
+    @Override
+    public ItemStack getRootItemStack() {
+        return iBaseStack;
     }
 
     @Override

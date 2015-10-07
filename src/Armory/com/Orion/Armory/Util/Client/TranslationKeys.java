@@ -23,6 +23,7 @@ public class TranslationKeys
         public static final class Commands {
             public static final String BASEUSAGE = References.InternalNames.Commands.BASECOMMAND + ".usage";
             public static final String GIVEHEATEDUSAGE = References.InternalNames.Commands.GIVEHEATED + ".usage";
+            public static final String TEMPDECAYUSAGE = References.InternalNames.Commands.ENABLEDECAY + ".usage";
         }
 
     }
@@ -48,6 +49,10 @@ public class TranslationKeys
         public final class Blueprint {
             public static final String Quality = "Armory.Items.BluePrint.Quality";
             public static final String Produces = "Armory.Items.BluePrint.Produces";
+            public static final String Material1 = "Armory.Items.Blueprint.Material.1";
+            public static final String Material2 = "Armory.Items.Blueprint.Material.2";
+            public static final String MedievalUpgrade1 = "Armory.Items.Blueprint.MedievalUpgrade.1";
+            public static final String MedievalUpgrade2 = "Armory.Items.Blueprint.MedievalUpgrade.2";
 
             public static final String Upgrade1 = "Armory.Items.BluePrint.Produces.Upgrade.1";
             public static final String Upgrade2 = "Armory.Items.BluePrint.Produces.Upgrade.2";

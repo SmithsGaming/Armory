@@ -6,6 +6,8 @@
 
 package com.Orion.Armory.Common.Knowledge.Blueprint;
 
+import com.Orion.Armory.Common.Config.ArmoryConfig;
+
 public class HardBlueprint extends BasicBlueprint {
 
     public HardBlueprint(String pID, String pRecipeID) {
@@ -13,5 +15,13 @@ public class HardBlueprint extends BasicBlueprint {
 
         this.iMinFloatValue = 0F;
         this.iMaxFloatValue = 0.65F;
+    }
+
+    @Override
+    public float getQualityDecrementOnTick(boolean pInGuide) {
+        if (pInGuide)
+            return ArmoryConfig.hardBlueprintDeteriation;
+
+        return ArmoryConfig.hardBlueprintDeteriationInInventory;
     }
 }

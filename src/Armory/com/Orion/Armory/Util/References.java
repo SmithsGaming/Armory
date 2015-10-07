@@ -333,6 +333,7 @@ public class References
         {
             public static final String BASECOMMAND = General.MOD_ID.toLowerCase();
             public static final String GIVEHEATED = "give-heated-item";
+            public static final String ENABLEDECAY = "temp-decay";
         }
 
         public static final class Recipes {

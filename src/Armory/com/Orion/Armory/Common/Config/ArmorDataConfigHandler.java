@@ -168,9 +168,9 @@ public class ArmorDataConfigHandler implements IArmorConfigurator
             Configuration tGlobalMaterialConfig = new Configuration(new File(iArmoryConfigFile.getParentFile().getAbsolutePath() + "/Armory/Material Configuration/" + tMaterial.getInternalMaterialName() + "/Global.cfg"), true);
 
             int tColorRed = tGlobalMaterialConfig.getInt("MaterialColor-Red", "Colors", tMaterial.getColor().getColorRedInt(), 0, 255, "Sets the Red channel on the material color. Used for the color of the Armor.");
-            int tColorGreen = tGlobalMaterialConfig.getInt("MaterialColor-Green", "Colors", tMaterial.getColor().getColorRedInt(), 0, 255, "Sets the Green channel on the material color. Used for the color of the Armor.");
-            int tColorBlue = tGlobalMaterialConfig.getInt("MaterialColor-Blue", "Colors", tMaterial.getColor().getColorRedInt(), 0, 255, "Sets the Blue channel on the material color. Used for the color of the Armor.");
-            int tColorAlpha = tGlobalMaterialConfig.getInt("MaterialColor-Alpha", "Colors", tMaterial.getColor().getColorRedInt(), 0, 255, "Sets the Alpha channel on the material color. Used for the color of the Armor.");
+            int tColorGreen = tGlobalMaterialConfig.getInt("MaterialColor-Green", "Colors", tMaterial.getColor().getColorGreenInt(), 0, 255, "Sets the Green channel on the material color. Used for the color of the Armor.");
+            int tColorBlue = tGlobalMaterialConfig.getInt("MaterialColor-Blue", "Colors", tMaterial.getColor().getColorBlueInt(), 0, 255, "Sets the Blue channel on the material color. Used for the color of the Armor.");
+            int tColorAlpha = tGlobalMaterialConfig.getInt("MaterialColor-Alpha", "Colors", tMaterial.getColor().getAlphaInt(), 0, 255, "Sets the Alpha channel on the material color. Used for the color of the Armor.");
 
             String tEnumFormatting = tGlobalMaterialConfig.getString("ToolTip-Material-Color", "Colors", tMaterial.getVisibleNameColor().name(), "WHITE", tEnumNames);
 

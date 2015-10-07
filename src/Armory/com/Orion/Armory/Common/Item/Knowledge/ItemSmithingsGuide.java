@@ -6,7 +6,10 @@
 
 package com.Orion.Armory.Common.Item.Knowledge;
 
+import com.Orion.Armory.API.Knowledge.BlueprintRegistry;
 import com.Orion.Armory.API.Knowledge.IBluePrintContainerItem;
+import com.Orion.Armory.API.Knowledge.IBluePrintItem;
+import com.Orion.Armory.API.Knowledge.IBlueprint;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.References;
@@ -46,6 +49,33 @@ public class ItemSmithingsGuide extends Item implements IBluePrintContainerItem 
                     pStack.getTagCompound().setInteger(References.NBTTagCompoundData.Rendering.TicksSinceClose, pStack.getTagCompound().getInteger(References.NBTTagCompoundData.Rendering.TicksSinceClose) - 1);
             }
         }
+
+        ArrayList<LabelledBlueprintGroup> tGroups = getBlueprintGroups(pStack);
+
+        for (LabelledBlueprintGroup tGroup : tGroups) {
+            for (ItemStack tStack : tGroup.Stacks) {
+                if (tStack.getItem() instanceof IBluePrintItem) {
+                    IBluePrintItem tItem = (IBluePrintItem) tStack.getItem();
+
+                    String tBlueprintID = tItem.getBlueprintID(pStack);
+
+                    if (tBlueprintID.equals(""))
+                        return;
+
+                    IBlueprint tBlueprint = BlueprintRegistry.getInstance().getBlueprint(tBlueprintID);
+
+                    if (tBlueprint == null)
+                        return;
+
+                    float tNewBlueprintQuality = tItem.getBluePrintQuality(pStack) - tBlueprint.getQualityDecrementOnTick(false);
+
+                    if (tItem.getBluePrintQuality(pStack) >= tBlueprint.getMinFloatValue() && tItem.getBluePrintQuality(pStack) <= tBlueprint.getMaxFloatValue() && tNewBlueprintQuality >= tBlueprint.getMinFloatValue() && tNewBlueprintQuality <= tBlueprint.getMaxFloatValue())
+                        tItem.setBluePrintQuality(pStack, tNewBlueprintQuality);
+                }
+            }
+        }
+
+        writeBlueprintGroupsToStack(pStack, tGroups);
     }
 
     @Override

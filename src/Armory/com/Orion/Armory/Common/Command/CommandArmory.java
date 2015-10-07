@@ -24,6 +24,8 @@ public class CommandArmory extends CommandBase {
     static {
         modCommands.add(new CommandGiveHeated());
 
+        modCommands.add(new CommandEnableTempDecay());
+
         for (CommandBase commandBase : modCommands) {
             commands.add(commandBase.getCommandName());
         }

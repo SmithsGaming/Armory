@@ -17,7 +17,6 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
@@ -110,19 +109,6 @@ public abstract class ArmoryBaseGui extends GuiContainer implements ILedgerHost 
         iComponents.drawComponentToolTips(pMouseX - guiLeft, pMouseY - guiTop);
 
         GL11.glPopMatrix();
-    }
-
-    @Override
-    public Slot getSlotAtPosition(int pX, int pY) {
-        for (int k = 0; k < this.inventorySlots.inventorySlots.size(); ++k) {
-            Slot slot = (Slot) this.inventorySlots.inventorySlots.get(k);
-
-            if (this.isMouseOverSlot(slot, pX, pY) && getSlotManager().ShouldSlotBeVisible(slot)) {
-                return slot;
-            }
-        }
-
-        return null;
     }
 
     protected void drawGuiContainerBackGroundFeatures(float pFloat, int pMouseX, int pMouseY) {

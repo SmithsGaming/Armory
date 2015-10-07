@@ -6,7 +6,11 @@
 
 package com.Orion.Armory.Common.Knowledge.Blueprint;
 
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.AnvilRecipeRegistry;
+import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
 import com.Orion.Armory.API.Knowledge.IBlueprint;
+import com.Orion.Armory.Common.Config.ArmoryConfig;
+import com.Orion.Armory.Common.Item.Knowledge.ItemBlueprint;
 import com.Orion.Armory.Util.Client.TranslationKeys;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -91,10 +95,10 @@ public class BasicBlueprint implements IBlueprint {
                 return (int) (pRecipeResult.stackSize * 0.75);
 
             if (pBlueprintQuality <= 0.85F)
-                return (int) (pRecipeResult.stackSize * 0.95);
+                return pRecipeResult.stackSize * 1;
 
             if (pBlueprintQuality <= 0.95F)
-                return (int) (pRecipeResult.stackSize * ((95F + iRand.nextInt(10)) / 100));
+                return (int) (pRecipeResult.stackSize * ((100F + iRand.nextInt(10)) / 100));
 
             return pRecipeResult.stackSize;
         } else {
@@ -118,10 +122,31 @@ public class BasicBlueprint implements IBlueprint {
 
             return pRecipeResult.stackSize;
         }
+
     }
 
     @Override
     public int handleRecipeResultFromItemStack(ItemStack pRecipeResult, float pBlueprintQuality) {
         return handleRecipeResultFromItemStackForPlayer(null, pRecipeResult, pBlueprintQuality);
     }
+
+    @Override
+    public float getQualityDecrementOnTick(boolean pInGuide) {
+        if (pInGuide)
+            return ArmoryConfig.basicBlueprintDeteriation;
+
+        return ArmoryConfig.basicBlueprintDeteriationInInventory;
+    }
+
+    @Override
+    public String getProductionInfoLine(ItemStack pStack) {
+        AnvilRecipe tRecipe = AnvilRecipeRegistry.getInstance().getRecipe(getRecipeID());
+
+        if (tRecipe != null) {
+            return StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + tRecipe.getTranslateResultName();
+        } else {
+            return StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + ItemBlueprint.UNKNOWN + " (" + getID() + ")";
+        }
+    }
+
 }

@@ -14,5 +14,7 @@ public interface IBluePrintItem {
 
     float getBluePrintQuality(ItemStack pStack);
 
+    void setBluePrintQuality(ItemStack pStack, float pNewQuality);
+
     String getTranslatedBluePrintQuality(ItemStack pStack);
 }

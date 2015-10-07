@@ -1,6 +1,7 @@
 package com.Orion.Armory.API.Materials;
 
 import com.Orion.Armory.Util.Client.Color.Color;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
 import java.util.HashMap;
@@ -18,7 +19,9 @@ public interface IArmorMaterial
 
      void setMaterialID(int pNewID);
 
-     String getInternalMaterialName();
+    ItemStack getRootItemStack();
+
+    String getInternalMaterialName();
 
      void registerNewActivePart(String pUpgradeInternalName, boolean pPartState);
 

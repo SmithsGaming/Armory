@@ -10,7 +10,6 @@ import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.UUID;
@@ -20,7 +19,7 @@ public class KnowledgeRegistry {
 
     private HashMap<String, Class<? extends IKnowledgedGameElement>> iKnowableGameElements = new HashMap<String, Class<? extends IKnowledgedGameElement>>();
     private HashMap<UUID, KnowledgeEntityProperty> iSavedKnowledge = new HashMap<UUID, KnowledgeEntityProperty>();
-    private ArrayList<IResearchTreeComponent> iRootTreeComponents = new ArrayList<IResearchTreeComponent>();
+    private HashMap<String, IResearchTreeComponent> iRootTreeComponents = new HashMap<String, IResearchTreeComponent>();
 
     public static KnowledgeRegistry getInstance() {
         if (INSTANCE == null)
@@ -50,22 +49,22 @@ public class KnowledgeRegistry {
         iKnowableGameElements.put(pRecipe.getSaveKey(), pRecipe.getClass());
     }
 
-    void storePlayerKnowledge(EntityPlayer pPlayer, KnowledgeEntityProperty pProperty) {
+    public void storePlayerKnowledge(EntityPlayer pPlayer, KnowledgeEntityProperty pProperty) {
         iSavedKnowledge.put(pPlayer.getGameProfile().getId(), pProperty);
     }
 
-    KnowledgeEntityProperty retrievePlayerKnowledge(EntityPlayer pPlayer) {
+    public KnowledgeEntityProperty retrievePlayerKnowledge(EntityPlayer pPlayer) {
         return iSavedKnowledge.remove(pPlayer.getGameProfile().getId());
     }
 
-    void registerNewRootElement(IResearchTreeComponent pNewRootElement)
+    public void registerNewRootElement(IResearchTreeComponent pNewRootElement)
     {
-        iRootTreeComponents.add(pNewRootElement);
+        iRootTreeComponents.put(pNewRootElement.getID(), pNewRootElement);
     }
 
-    IResearchTreeComponent getRootElement(ItemStack pTargetStack, String pInputID, EntityPlayer pPlayer)
+    public IResearchTreeComponent getRootElement(ItemStack pTargetStack, String pInputID, EntityPlayer pPlayer)
     {
-        for (IResearchTreeComponent tRoot : iRootTreeComponents)
+        for (IResearchTreeComponent tRoot : iRootTreeComponents.values())
         {
             if (tRoot.matchesInput(pTargetStack, pInputID, pPlayer))
             {
@@ -74,5 +73,37 @@ public class KnowledgeRegistry {
         }
 
         return null;
+    }
+
+    public void registerNewResearchBranch(IResearchTreeComponent pRootComponent) {
+        HashMap<String, IResearchTreeComponent> tComponents = iRootTreeComponents;
+
+        IResearchTreeComponent tLastVisitedNode = pRootComponent;
+        IResearchTreeComponent tCurrentNode = pRootComponent;
+
+        while (tComponents.values().contains(tCurrentNode) && !tCurrentNode.isFinalComponentInBranch()) {
+            tComponents = tComponents.get(tCurrentNode.getID()).getFollowupTreeComponent();
+            tLastVisitedNode = tComponents.get(tCurrentNode.getID());
+            tCurrentNode = (IResearchTreeComponent) tCurrentNode.getFollowupTreeComponent().values().toArray()[0];
+        }
+
+        if (tCurrentNode.isFinalComponentInBranch()) {
+            GeneralRegistry.iLogger.warn("A research branch is being overriden! A endbranch has been reach while the old branch had nodes left. Overriding!");
+            tLastVisitedNode.getFollowupTreeComponent().clear();
+            tLastVisitedNode.registerNewFollowupTreeComponent(tCurrentNode);
+        } else {
+            for (IResearchTreeComponent tBranchComponent : tComponents.values()) {
+                if (tBranchComponent.isFinalComponentInBranch()) {
+                    GeneralRegistry.iLogger.warn("Could not register new research branch. The registry has already a Branch path that terminates Earlier.");
+                    return;
+                }
+            }
+
+            if (pRootComponent.equals(tCurrentNode)) {
+                registerNewRootElement(pRootComponent);
+            } else {
+                tLastVisitedNode.registerNewFollowupTreeComponent(tCurrentNode);
+            }
+        }
     }
 }

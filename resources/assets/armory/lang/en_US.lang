@@ -91,7 +91,8 @@ item.Armory.MultiArmor.Upgrade.Shoes.Right.name=Right foot Protector
 #
 #Commands
 armory.usage=/armory
-give-heated-item.usage=Gives heated Items. Syntax: <MaterialID> <ItemType> <Temperature>
+give-heated-item.usage=Gives heated Items. Syntax: <Player> <MaterialID> <ItemType> <Temperature>
+temp-decay.usage=Enables or disables the server wide decay of a heated Item in a PlayerInventory. Syntax <True/False>
 #
 #AnvilRecipeKnowledge
 Armory.Knowledge.AnvilRecipeKnowledge.Tier1=Complete Amateur
@@ -114,6 +115,10 @@ Armory.Items.BluePrint.Quality=  - Quality:
 Armory.Items.BluePrint.Produces=  - Produces:
 Armory.Items.BluePrint.Produces.Upgrade.1=1 Upgraded
 Armory.Items.BluePrint.Produces.Upgrade.2=with
+Armory.Items.Blueprint.Material.1=  - Contains knowledge of
+Armory.Items.Blueprint.Material.2= and its properties.
+Armory.Items.Blueprint.MedievalUpgrade.1=  - Explains how to upgrade basic medieval Armor out of
+Armory.Items.Blueprint.MedievalUpgrade.2= with upgrades.
 #
 #Label Tooltips
 Armory.Items.Label.GroupName=Group name:

@@ -16,6 +16,8 @@ import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
 import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.ArmorUpgradeAnvilRecipe;
 import com.Orion.Armory.API.Events.Common.*;
 import com.Orion.Armory.API.Knowledge.BlueprintRegistry;
+import com.Orion.Armory.API.Knowledge.IResearchTreeComponent;
+import com.Orion.Armory.API.Knowledge.KnowledgeRegistry;
 import com.Orion.Armory.API.Materials.IArmorMaterial;
 import com.Orion.Armory.Common.Addons.ArmorUpgradeMedieval;
 import com.Orion.Armory.Common.Addons.MedievalAddonRegistry;
@@ -32,9 +34,9 @@ import com.Orion.Armory.Common.Item.Armor.TierMedieval.ItemUpgradeMedieval;
 import com.Orion.Armory.Common.Item.*;
 import com.Orion.Armory.Common.Item.Knowledge.ItemBlueprint;
 import com.Orion.Armory.Common.Item.Knowledge.ItemSmithingsGuide;
-import com.Orion.Armory.Common.Knowledge.Blueprint.BasicBlueprint;
-import com.Orion.Armory.Common.Knowledge.Blueprint.EasyBlueprint;
-import com.Orion.Armory.Common.Knowledge.Blueprint.HardBlueprint;
+import com.Orion.Armory.Common.Knowledge.Blueprint.*;
+import com.Orion.Armory.Common.Knowledge.Research.Implementations.*;
+import com.Orion.Armory.Common.Knowledge.Research.Implementations.ResearchResultComponents.BlueprintResultComponent;
 import com.Orion.Armory.Common.Material.ArmorMaterial;
 import com.Orion.Armory.Common.Material.MaterialRegistry;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
@@ -42,6 +44,7 @@ import com.Orion.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
 import com.Orion.Armory.Common.TileEntity.FirePit.TileEntityHeater;
 import com.Orion.Armory.Common.TileEntity.TileEntityBookBinder;
+import com.Orion.Armory.Util.Client.Colors;
 import com.Orion.Armory.Util.Client.TextureAddressHelper;
 import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.Core.ItemStackHelper;
@@ -56,6 +59,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -102,8 +106,8 @@ public class ArmoryInitializer
         }
 
         private static void registerMaterials() {
-            ArmorMaterial tIron = new ArmorMaterial(InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", true, 1865, 0.225F, new ItemStack(Items.iron_ingot));
-            ArmorMaterial tObsidian = new ArmorMaterial(InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", true, 1404, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
+            ArmorMaterial tIron = new ArmorMaterial(InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", EnumChatFormatting.DARK_GRAY, true, 1865, 0.225F, Colors.Metals.IRON, new ItemStack(Items.iron_ingot));
+            ArmorMaterial tObsidian = new ArmorMaterial(InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", EnumChatFormatting.BLUE, true, 1404, 0.345F, Colors.Metals.OBSIDIAN, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
 
             MaterialRegistry.getInstance().registerMaterial(tIron);
             MaterialRegistry.getInstance().registerMaterial(tObsidian);
@@ -385,19 +389,576 @@ public class ArmoryInitializer
 
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockFirePit, 1), "#=#", "#/#", "###", '#', new ItemStack(Items.iron_ingot, 1), '=', new ItemStack(Items.cauldron, 1), '/', new ItemStack(Blocks.furnace, 1)));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockAnvil, 1), "BBB", " I ", "IBI", 'B', new ItemStack(Blocks.iron_block, 1), 'I', new ItemStack(Items.iron_ingot, 1)));
-            //GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBookBinder, 1), "APA", "BGB", "AOA", 'A', new ItemStack(Blocks.log2, 1, 0), 'P', new ItemStack(Blocks.planks, 1, 4), 'B', new ItemStack(Blocks.stonebrick, 1, 0), 'G', new ItemStack(Items.gold_ingot, 1), 'O', new ItemStack(Blocks.planks, 1, 0)));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBookBinder, 1), "APA", "BGB", "AOA", 'A', new ItemStack(Blocks.log2, 1, 0), 'P', new ItemStack(Blocks.planks, 1, 4), 'B', new ItemStack(Blocks.stonebrick, 1, 0), 'G', new ItemStack(Items.gold_ingot, 1), 'O', new ItemStack(Blocks.planks, 1, 0)));
         }
 
         public static void prepareKnowledgeSystem() {
             registerKnowledge();
             registerBlueprints();
+            registerResearch();
 
             MinecraftForge.EVENT_BUS.post(new RegisterKnowledgeEvent());
         }
 
-        public static void registerKnowledge() {
+        private static void registerResearch() {
+            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
+                createRingResearch(tMaterial);
+                createChainResearch(tMaterial);
+                createPlateResearch(tMaterial);
+                createNuggetResearch(tMaterial);
+                createArmorResearch(tMaterial);
+            }
 
+            GeneralRegistry.iLogger.info("Generated research");
         }
+
+        private static void createRingResearch(IArmorMaterial pMaterial) {
+            ItemStack tNuggetStack = new ItemStack(GeneralRegistry.Items.iNugget, 1, pMaterial.getMaterialID());
+            NBTTagCompound pNuggetCompound = new NBTTagCompound();
+            pNuggetCompound.setString(References.NBTTagCompoundData.Material, pMaterial.getInternalMaterialName());
+            tNuggetStack.setTagCompound(pNuggetCompound);
+
+
+            IResearchTreeComponent tRootComponent = new TargetItemStackSwitchResearchTreeComponent(tNuggetStack);
+            IResearchTreeComponent tCurrentComponent = tRootComponent;
+
+            for (int tCurrentTemp = 0; tCurrentTemp < pMaterial.getMeltingPoint(); tCurrentTemp += 75) {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tNuggetStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tNuggetStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tNuggetStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tNuggetStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tNuggetStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new AnalyzeTargetStackResearchComponent(tNuggetStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new BlueprintResultComponent(tNuggetStack, InternalNames.Recipes.Anvil.CHAIN + pMaterial.getOreDicName()));
+
+            KnowledgeRegistry.getInstance().registerNewResearchBranch(tRootComponent);
+        }
+
+        private static void createChainResearch(IArmorMaterial pMaterial) {
+            ItemStack tRingStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1, pMaterial.getMaterialID());
+
+            NBTTagCompound tStackCompound = new NBTTagCompound();
+            tStackCompound.setString(References.NBTTagCompoundData.Material, pMaterial.getInternalMaterialName());
+            tRingStack.setTagCompound(tStackCompound);
+
+            IResearchTreeComponent tRootComponent = new TargetItemStackSwitchResearchTreeComponent(tRingStack);
+            IResearchTreeComponent tCurrentComponent = tRootComponent;
+
+            for (int tCurrentTemp = 0; tCurrentTemp < (pMaterial.getMeltingPoint() / 2); tCurrentTemp += 75) {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tRingStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+
+            for (int tCurrentTemp = 0; tCurrentTemp < (pMaterial.getMeltingPoint() / 2); tCurrentTemp += 75) {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tRingStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new AnalyzeTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new BlueprintResultComponent(tRingStack, InternalNames.Recipes.Anvil.CHAIN + pMaterial.getOreDicName()));
+
+            KnowledgeRegistry.getInstance().registerNewResearchBranch(tRootComponent);
+        }
+
+        private static void createPlateResearch(IArmorMaterial pMaterial) {
+            ItemStack tBaseStack = pMaterial.getRootItemStack();
+
+            IResearchTreeComponent tRootComponent = new TargetItemStackSwitchResearchTreeComponent(tBaseStack);
+            IResearchTreeComponent tCurrentComponent = tRootComponent;
+
+            for (int tCurrentTemp = 0; tCurrentTemp < pMaterial.getMeltingPoint(); tCurrentTemp += 75) {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tBaseStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tBaseStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tBaseStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new AnalyzeTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new BlueprintResultComponent(tBaseStack, InternalNames.Recipes.Anvil.PLATE + pMaterial.getOreDicName()));
+
+            KnowledgeRegistry.getInstance().registerNewResearchBranch(tRootComponent);
+        }
+
+        private static void createNuggetResearch(IArmorMaterial pMaterial) {
+            ItemStack tBaseStack = pMaterial.getRootItemStack();
+
+            IResearchTreeComponent tRootComponent = new TargetItemStackSwitchResearchTreeComponent(tBaseStack);
+            IResearchTreeComponent tCurrentComponent = tRootComponent;
+
+            for (int tCurrentTemp = 0; tCurrentTemp < (pMaterial.getMeltingPoint() / 2); tCurrentTemp += 75) {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tBaseStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tBaseStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new AnalyzeTargetStackResearchComponent(tBaseStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new BlueprintResultComponent(tBaseStack, InternalNames.Recipes.Anvil.NUGGET + pMaterial.getOreDicName()));
+
+            KnowledgeRegistry.getInstance().registerNewResearchBranch(tRootComponent);
+        }
+
+        private static void createArmorResearch(IArmorMaterial pMaterial) {
+            createHelmetResearch(pMaterial);
+            createChestplateResearch(pMaterial);
+            createLeggingsResearch(pMaterial);
+            createShoeResearch(pMaterial);
+        }
+
+        private static void createHelmetResearch(IArmorMaterial pMaterial) {
+            ItemStack tRingStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1, pMaterial.getMaterialID());
+
+            NBTTagCompound tRingStackCompound = new NBTTagCompound();
+            tRingStackCompound.setString(References.NBTTagCompoundData.Material, pMaterial.getInternalMaterialName());
+            tRingStack.setTagCompound(tRingStackCompound);
+
+            ItemStack tChainStack = new ItemStack(GeneralRegistry.Items.iMetalChain, 1, pMaterial.getMaterialID());
+
+            NBTTagCompound tChainStackCompound = new NBTTagCompound();
+            tChainStackCompound.setString(References.NBTTagCompoundData.Material, pMaterial.getInternalMaterialName());
+            tChainStack.setTagCompound(tChainStackCompound);
+
+
+            IResearchTreeComponent tRootComponent = new TargetItemStackSwitchResearchTreeComponent(tChainStack);
+            IResearchTreeComponent tCurrentComponent = tRootComponent;
+
+            for (int tCurrentTemp = 0; tCurrentTemp < ((pMaterial.getMeltingPoint() * 0.35F * 0.9F) / 2); tCurrentTemp += 75)
+                ;
+            {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tChainStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new TargetItemStackSwitchResearchTreeComponent(tRingStack));
+
+            for (int tCurrentTemp = 0; tCurrentTemp < ((pMaterial.getMeltingPoint() * 0.35F * 0.9F)); tCurrentTemp += 75)
+                ;
+            {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tRingStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new AnalyzeTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new BlueprintResultComponent(tRingStack, InternalNames.Recipes.Anvil.HELMET + pMaterial.getOreDicName()));
+
+            KnowledgeRegistry.getInstance().registerNewResearchBranch(tRootComponent);
+        }
+
+        private static void createChestplateResearch(IArmorMaterial pMaterial) {
+            ItemStack tRingStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1, pMaterial.getMaterialID());
+
+            NBTTagCompound tRingStackCompound = new NBTTagCompound();
+            tRingStackCompound.setString(References.NBTTagCompoundData.Material, pMaterial.getInternalMaterialName());
+            tRingStack.setTagCompound(tRingStackCompound);
+
+            ItemStack tChainStack = new ItemStack(GeneralRegistry.Items.iMetalChain, 1, pMaterial.getMaterialID());
+
+            NBTTagCompound tChainStackCompound = new NBTTagCompound();
+            tChainStackCompound.setString(References.NBTTagCompoundData.Material, pMaterial.getInternalMaterialName());
+            tChainStack.setTagCompound(tChainStackCompound);
+
+            IResearchTreeComponent tRootComponent = new TargetItemStackSwitchResearchTreeComponent(tChainStack);
+            IResearchTreeComponent tCurrentComponent = tRootComponent;
+
+            for (int tCurrentTemp = 0; tCurrentTemp < ((pMaterial.getMeltingPoint() * 0.35F * 0.9F) / 3); tCurrentTemp += 75)
+                ;
+            {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tChainStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new TargetItemStackSwitchResearchTreeComponent(tRingStack));
+
+            for (int tCurrentTemp = 0; tCurrentTemp < ((pMaterial.getMeltingPoint() * 0.35F * 0.9F) / 2); tCurrentTemp += 75)
+                ;
+            {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tRingStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new TargetItemStackSwitchResearchTreeComponent(tChainStack));
+
+            for (int tCurrentTemp = 0; tCurrentTemp < ((pMaterial.getMeltingPoint() * 0.35F * 0.9F) / 3); tCurrentTemp += 75)
+                ;
+            {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tChainStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new TargetItemStackSwitchResearchTreeComponent(tRingStack));
+
+            for (int tCurrentTemp = 0; tCurrentTemp < ((pMaterial.getMeltingPoint() * 0.35F * 0.9F) / 2); tCurrentTemp += 75)
+                ;
+            {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tRingStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new TargetItemStackSwitchResearchTreeComponent(tChainStack));
+
+            for (int tCurrentTemp = 0; tCurrentTemp < ((pMaterial.getMeltingPoint() * 0.35F * 0.9F) / 3); tCurrentTemp += 75)
+                ;
+            {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tChainStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new TargetItemStackSwitchResearchTreeComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new AnalyzeTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new BlueprintResultComponent(tRingStack, InternalNames.Recipes.Anvil.CHESTPLATE + pMaterial.getOreDicName()));
+
+            KnowledgeRegistry.getInstance().registerNewResearchBranch(tRootComponent);
+        }
+
+        private static void createLeggingsResearch(IArmorMaterial pMaterial) {
+            ItemStack tRingStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1, pMaterial.getMaterialID());
+
+            NBTTagCompound tRingStackCompound = new NBTTagCompound();
+            tRingStackCompound.setString(References.NBTTagCompoundData.Material, pMaterial.getInternalMaterialName());
+            tRingStack.setTagCompound(tRingStackCompound);
+
+            ItemStack tChainStack = new ItemStack(GeneralRegistry.Items.iMetalChain, 1, pMaterial.getMaterialID());
+
+            NBTTagCompound tChainStackCompound = new NBTTagCompound();
+            tChainStackCompound.setString(References.NBTTagCompoundData.Material, pMaterial.getInternalMaterialName());
+            tChainStack.setTagCompound(tChainStackCompound);
+
+
+            IResearchTreeComponent tRootComponent = new TargetItemStackSwitchResearchTreeComponent(tRingStack);
+            IResearchTreeComponent tCurrentComponent = tRootComponent;
+
+            for (int tCurrentTemp = 0; tCurrentTemp < ((pMaterial.getMeltingPoint() * 0.35F * 0.9F) / 2); tCurrentTemp += 75)
+                ;
+            {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tRingStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new TargetItemStackSwitchResearchTreeComponent(tChainStack));
+
+            for (int tCurrentTemp = 0; tCurrentTemp < ((pMaterial.getMeltingPoint() * 0.35F * 0.9F)); tCurrentTemp += 75)
+                ;
+            {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tChainStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new AnalyzeTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new BlueprintResultComponent(tRingStack, InternalNames.Recipes.Anvil.LEGGINGS + pMaterial.getOreDicName()));
+
+            KnowledgeRegistry.getInstance().registerNewResearchBranch(tRootComponent);
+        }
+
+        private static void createShoeResearch(IArmorMaterial pMaterial) {
+            ItemStack tRingStack = new ItemStack(GeneralRegistry.Items.iMetalRing, 1, pMaterial.getMaterialID());
+
+            NBTTagCompound tRingStackCompound = new NBTTagCompound();
+            tRingStackCompound.setString(References.NBTTagCompoundData.Material, pMaterial.getInternalMaterialName());
+            tRingStack.setTagCompound(tRingStackCompound);
+
+            ItemStack tChainStack = new ItemStack(GeneralRegistry.Items.iMetalChain, 1, pMaterial.getMaterialID());
+
+            NBTTagCompound tChainStackCompound = new NBTTagCompound();
+            tChainStackCompound.setString(References.NBTTagCompoundData.Material, pMaterial.getInternalMaterialName());
+            tChainStack.setTagCompound(tChainStackCompound);
+
+
+            IResearchTreeComponent tRootComponent = new TargetItemStackSwitchResearchTreeComponent(tChainStack);
+            IResearchTreeComponent tCurrentComponent = tRootComponent;
+
+            for (int tCurrentTemp = 0; tCurrentTemp < ((pMaterial.getMeltingPoint() * 0.35F * 0.9F) / 2); tCurrentTemp += 75)
+                ;
+            {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tChainStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new TargetItemStackSwitchResearchTreeComponent(tRingStack));
+
+            for (int tCurrentTemp = 0; tCurrentTemp < ((pMaterial.getMeltingPoint() * 0.35F * 0.9F)); tCurrentTemp += 75)
+                ;
+            {
+                tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new ApplyHeatToTargetStackResearchComponent(tRingStack));
+            }
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tRingStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new TargetItemStackSwitchResearchTreeComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new HammerTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new CutTargetStackResearchComponent(tChainStack));
+
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new AnalyzeTargetStackResearchComponent(tRingStack));
+            tCurrentComponent = tCurrentComponent.registerNewFollowupTreeComponent(new BlueprintResultComponent(tRingStack, InternalNames.Recipes.Anvil.SHOES + pMaterial.getOreDicName()));
+
+            KnowledgeRegistry.getInstance().registerNewResearchBranch(tRootComponent);
+        }
+
 
         public static void registerBlueprints() {
             BlueprintRegistry.getInstance().registerNewBluePrint(new EasyBlueprint(InternalNames.Recipes.Anvil.HAMMER, InternalNames.Recipes.Anvil.HAMMER));
@@ -406,6 +967,9 @@ public class ArmoryInitializer
             BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.FAN, InternalNames.Recipes.Anvil.FAN));
 
             for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
+                BlueprintRegistry.getInstance().registerNewBluePrint(new MaterialBlueprint(tMaterial));
+                BlueprintRegistry.getInstance().registerNewBluePrint(new MedievalUpgradeBlueprint(tMaterial));
+
                 BlueprintRegistry.getInstance().registerNewBluePrint(new EasyBlueprint(InternalNames.Recipes.Anvil.RING + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.RING + tMaterial.getOreDicName()));
                 BlueprintRegistry.getInstance().registerNewBluePrint(new EasyBlueprint(InternalNames.Recipes.Anvil.CHAIN + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHAIN + tMaterial.getOreDicName()));
                 BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.NUGGET + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.NUGGET + tMaterial.getOreDicName()));
@@ -419,130 +983,10 @@ public class ArmoryInitializer
                 BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGS + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGS + tMaterial.getOreDicName()));
                 BlueprintRegistry.getInstance().registerNewBluePrint(new EasyBlueprint(InternalNames.Recipes.Anvil.SHOES + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.SHOES + tMaterial.getOreDicName()));
             }
+        }
 
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                if (tMaterial.getPartState(InternalNames.Upgrades.Helmet.TOP)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMETTOP + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMETTOP + tMaterial.getOreDicName()));
-                }
+        public static void registerKnowledge() {
 
-                if (tMaterial.getPartState(InternalNames.Upgrades.Helmet.LEFT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMETLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMETLEFT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Helmet.RIGHT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMETRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMETRIGHT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.SHOULDERLEFT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATESHOULDERLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATESHOULDERLEFT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATESHOULDERRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATESHOULDERRIGHT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.BACKRIGHT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEBACKRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEBACKRIGHT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.BACKLEFT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEBACKLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEBACKLEFT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.FRONTLEFT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEFRONTLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEFRONTLEFT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Chestplate.FRONTRIGHT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEFRONTRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEFRONTRIGHT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Leggings.BACKRIGHT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSBACKRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSBACKRIGHT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Leggings.BACKLEFT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSBACKLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSBACKLEFT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Leggings.FRONTRIGHT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSFRONTRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSFRONTRIGHT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Leggings.FRONTLEFT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSFRONTLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSFRONTLEFT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Shoes.LEFT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.SHOESLEFT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.SHOESLEFT + tMaterial.getOreDicName()));
-                }
-
-                if (tMaterial.getPartState(InternalNames.Upgrades.Shoes.RIGHT)) {
-                    BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.SHOESRIGHT + tMaterial.getOreDicName(), InternalNames.Recipes.Anvil.SHOESRIGHT + tMaterial.getOreDicName()));
-                }
-
-                for (IArmorMaterial tUpgradeMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Helmet.TOP)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMETUPGRADETOP + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMETUPGRADETOP + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Helmet.LEFT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMETUPGRADELEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMETUPGRADELEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Helmet.RIGHT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.HELMETUPGRADERIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.HELMETUPGRADERIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.SHOULDERLEFT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADESHOULDERLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEUPGRADESHOULDERLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.SHOULDERRIGHT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADESHOULDERRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEUPGRADESHOULDERRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.BACKRIGHT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEBACKRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEBACKRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.BACKLEFT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEBACKLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEBACKLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.FRONTLEFT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEFRONTLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEFRONTLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.FRONTRIGHT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEFRONTRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.CHESTPLATEUPGRADEFRONTRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Leggings.BACKRIGHT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSUPGRADEBACKRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSUPGRADEBACKRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Leggings.BACKLEFT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSUPGRADEBACKLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSUPGRADEBACKLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Leggings.FRONTRIGHT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSUPGRADEFRONTRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSUPGRADEFRONTRIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Leggings.FRONTLEFT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.LEGGINGSUPGRADEFRONTLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.LEGGINGSUPGRADEFRONTLEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Shoes.LEFT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.SHOESUPGRADELEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.SHOESUPGRADELEFT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-
-                    if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Shoes.RIGHT)) {
-                        BlueprintRegistry.getInstance().registerNewBluePrint(new BasicBlueprint(InternalNames.Recipes.Anvil.SHOESUPGRADERIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName(), InternalNames.Recipes.Anvil.SHOESUPGRADERIGHT + tMaterial.getOreDicName() + "." + tUpgradeMaterial.getOreDicName()));
-                    }
-                }
-            }
         }
 
         public static void initializeAnvilRecipes() {
@@ -744,7 +1188,7 @@ public class ArmoryInitializer
                         .setCraftingSlotContent(16, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.CHAIN, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(18, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.CHAIN, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(19, (new HeatedAnvilRecipeComponent(tMaterial.getInternalMaterialName(), InternalNames.HeatedItemTypes.CHAIN, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.85F, (HeatedItemFactory.getInstance().getMeltingPointFromMaterial(tMaterial.getInternalMaterialName()) * 0.35F) * 0.95F)))
-                        .setProgress(20).setResult(tShoeStack).setHammerUsage(28).setTongUsage(16);
+                        .setProgress(20).setResult(tShoeStack).setHammerUsage(18).setTongUsage(12);
                 AnvilRecipeRegistry.getInstance().addRecipe(InternalNames.Recipes.Anvil.SHOES + tMaterial.getOreDicName(), tShoeRecipe);
             }
         }
@@ -1096,6 +1540,9 @@ public class ArmoryInitializer
 
         public static void initializeUpgradeHelmetRecipeSystem() {
             for (IArmorMaterial tArmorMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
+                if (!tArmorMaterial.getIsBaseArmorMaterial())
+                    continue;
+
                 for (IArmorMaterial tUpgradeMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Helmet.TOP)) {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.iMedievalUpgrades, 1);
@@ -1156,6 +1603,9 @@ public class ArmoryInitializer
 
         public static void initializeUpgradeChestPlateRecipeSystem() {
             for (IArmorMaterial tArmorMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
+                if (!tArmorMaterial.getIsBaseArmorMaterial())
+                    continue;
+
                 for (IArmorMaterial tUpgradeMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Chestplate.SHOULDERLEFT)) {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.iMedievalUpgrades, 1);
@@ -1271,6 +1721,9 @@ public class ArmoryInitializer
         public static void initializeUpgradeLeggingsRecipeSystem() {
             for(IArmorMaterial tArmorMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
             {
+                if (!tArmorMaterial.getIsBaseArmorMaterial())
+                    continue;
+
                 for (IArmorMaterial tUpgradeMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Leggings.BACKRIGHT)) {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.iMedievalUpgrades, 1);
@@ -1350,6 +1803,9 @@ public class ArmoryInitializer
         public static void initializeUpgradeShoesRecipeSystem() {
             for(IArmorMaterial tArmorMaterial : MaterialRegistry.getInstance().getArmorMaterials().values())
             {
+                if (!tArmorMaterial.getIsBaseArmorMaterial())
+                    continue;
+
                 for (IArmorMaterial tUpgradeMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
                     if (tUpgradeMaterial.getPartState(InternalNames.Upgrades.Shoes.LEFT)) {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.iMedievalUpgrades, 1);
@@ -1541,7 +1997,7 @@ public class ArmoryInitializer
             for (ItemStack tPlate : tPlates)
             {
                 String tMaterial = tPlate.getTagCompound().getString(References.NBTTagCompoundData.Material);
-                OreDictionary.registerOre("chain" + MaterialRegistry.getInstance().getMaterial(tMaterial).getOreDicName(), tPlate);
+                OreDictionary.registerOre("plate" + MaterialRegistry.getInstance().getMaterial(tMaterial).getOreDicName(), tPlate);
             }
 
             for (ItemStack tNugget : tNuggets)

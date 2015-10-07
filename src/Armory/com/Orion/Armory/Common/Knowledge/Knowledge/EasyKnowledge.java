@@ -6,5 +6,11 @@
 
 package com.Orion.Armory.Common.Knowledge.Knowledge;
 
-public class EasyKnowledge {
+public class EasyKnowledge extends BasicKnowledge {
+    public EasyKnowledge() {
+        super();
+
+        this.iMinimalExperienceLevel = 0.45F;
+        this.iMaximalExperienceLevel = 0.89F;
+    }
 }

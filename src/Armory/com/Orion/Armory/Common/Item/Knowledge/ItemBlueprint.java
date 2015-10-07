@@ -6,8 +6,6 @@
 
 package com.Orion.Armory.Common.Item.Knowledge;
 
-import com.Orion.Armory.API.Crafting.SmithingsAnvil.AnvilRecipeRegistry;
-import com.Orion.Armory.API.Crafting.SmithingsAnvil.Recipe.AnvilRecipe;
 import com.Orion.Armory.API.Knowledge.BlueprintRegistry;
 import com.Orion.Armory.API.Knowledge.IBluePrintItem;
 import com.Orion.Armory.API.Knowledge.IBlueprint;
@@ -18,12 +16,14 @@ import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.References;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -85,6 +85,36 @@ public class ItemBlueprint extends ItemResource implements IBluePrintItem {
     }
 
     @Override
+    public void setBluePrintQuality(ItemStack pStack, float pNewQuality) {
+        NBTTagCompound tCompound = pStack.getTagCompound();
+
+        if (tCompound == null)
+            tCompound = new NBTTagCompound();
+
+        tCompound.setFloat(References.NBTTagCompoundData.Item.Blueprints.FLOATVALUE, pNewQuality);
+
+        pStack.setTagCompound(tCompound);
+    }
+
+    @Override
+    public void onUpdate(ItemStack pStack, World pWorld, Entity pEntity, int pMetaData, boolean pSelected) {
+        String tBlueprintID = getBlueprintID(pStack);
+
+        if (tBlueprintID.equals(""))
+            return;
+
+        IBlueprint tBlueprint = BlueprintRegistry.getInstance().getBlueprint(tBlueprintID);
+
+        if (tBlueprint == null)
+            return;
+
+        float tNewBlueprintQuality = getBluePrintQuality(pStack) - tBlueprint.getQualityDecrementOnTick(false);
+
+        if (getBluePrintQuality(pStack) >= tBlueprint.getMinFloatValue() && getBluePrintQuality(pStack) <= tBlueprint.getMaxFloatValue() && tNewBlueprintQuality >= tBlueprint.getMinFloatValue() && tNewBlueprintQuality <= tBlueprint.getMaxFloatValue())
+            setBluePrintQuality(pStack, tNewBlueprintQuality);
+    }
+
+    @Override
     public String getTranslatedBluePrintQuality(ItemStack pStack) {
         IBlueprint tPrint = BlueprintRegistry.getInstance().getBlueprint(getBlueprintID(pStack));
 
@@ -104,13 +134,7 @@ public class ItemBlueprint extends ItemResource implements IBluePrintItem {
         if (tPrint == null) {
             pTags.add(StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + UNKNOWN + " (" + getBlueprintID(pStack) + ")");
         } else {
-            AnvilRecipe tRecipe = AnvilRecipeRegistry.getInstance().getRecipe(tPrint.getRecipeID());
-
-            if (tRecipe != null) {
-                pTags.add(StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + tRecipe.getTranslateResultName());
-            } else {
-                pTags.add(StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + UNKNOWN + " (" + getBlueprintID(pStack) + ")");
-            }
+            pTags.add(tPrint.getProductionInfoLine(pStack));
         }
 
     }

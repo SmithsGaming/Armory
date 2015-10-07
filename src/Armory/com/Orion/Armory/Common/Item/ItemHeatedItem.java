@@ -5,6 +5,7 @@ package com.Orion.Armory.Common.Item;
 /  Created on : 03/10/2014
 */
 
+import com.Orion.Armory.Common.Config.ArmoryConfig;
 import com.Orion.Armory.Common.Factory.HeatedItemFactory;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Client.TranslationKeys;
@@ -149,6 +150,9 @@ public class ItemHeatedItem extends Item
     public void onUpdate(ItemStack pStack, World pWorldObj, Entity pEntity, int pSlotIndex, boolean pSelected) {
 
         if (!(pEntity instanceof EntityPlayer))
+            return;
+
+        if (!ArmoryConfig.enableTemperatureDecay)
             return;
 
         EntityPlayer tPlayer = (EntityPlayer) pEntity;
