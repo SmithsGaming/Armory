@@ -84,6 +84,6 @@ public class MaterialBlueprint implements IBlueprint {
 
     @Override
     public String getProductionInfoLine(ItemStack pStack) {
-        return StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Material1) + iMaterial.getVisibleNameColor() + iMaterial.getVisibleName() + EnumChatFormatting.RESET + StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Material2);
+        return StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Material1) + iMaterial.getVisibleNameColor() + " " + StatCollector.translateToLocal(iMaterial.getVisibleName()) + EnumChatFormatting.RESET + EnumChatFormatting.GRAY + StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Material2);
     }
 }

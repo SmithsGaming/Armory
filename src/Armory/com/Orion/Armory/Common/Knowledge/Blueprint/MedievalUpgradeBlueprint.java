@@ -84,6 +84,6 @@ public class MedievalUpgradeBlueprint implements IBlueprint {
 
     @Override
     public String getProductionInfoLine(ItemStack pStack) {
-        return StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.MedievalUpgrade1) + iMaterial.getVisibleNameColor() + iMaterial.getVisibleName() + EnumChatFormatting.RESET + StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.MedievalUpgrade2);
+        return StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.MedievalUpgrade1) + iMaterial.getVisibleNameColor() + " " + StatCollector.translateToLocal(iMaterial.getVisibleName()) + EnumChatFormatting.RESET + EnumChatFormatting.GRAY + StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.MedievalUpgrade2);
     }
 }

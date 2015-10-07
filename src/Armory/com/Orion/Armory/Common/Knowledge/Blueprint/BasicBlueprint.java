@@ -143,9 +143,9 @@ public class BasicBlueprint implements IBlueprint {
         AnvilRecipe tRecipe = AnvilRecipeRegistry.getInstance().getRecipe(getRecipeID());
 
         if (tRecipe != null) {
-            return StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + tRecipe.getTranslateResultName();
+            return StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + EnumChatFormatting.ITALIC + tRecipe.getTranslateResultName();
         } else {
-            return StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + ItemBlueprint.UNKNOWN + " (" + getID() + ")";
+            return StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + EnumChatFormatting.ITALIC + ItemBlueprint.UNKNOWN + " (" + getID() + ")";
         }
     }
 

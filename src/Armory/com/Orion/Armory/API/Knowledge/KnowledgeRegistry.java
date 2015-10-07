@@ -83,7 +83,7 @@ public class KnowledgeRegistry {
 
         while (tComponents.values().contains(tCurrentNode) && !tCurrentNode.isFinalComponentInBranch()) {
             tComponents = tComponents.get(tCurrentNode.getID()).getFollowupTreeComponent();
-            tLastVisitedNode = tComponents.get(tCurrentNode.getID());
+            tLastVisitedNode = tCurrentNode;
             tCurrentNode = (IResearchTreeComponent) tCurrentNode.getFollowupTreeComponent().values().toArray()[0];
         }
 
