@@ -117,7 +117,7 @@ public class ComponentBorder extends AbstractGUIComponent
     private void renderCenter()
     {
         GuiHelper.bindTexture(Textures.Gui.Basic.Border.CENTER.getPrimaryLocation());
-        if(iWidth - 6 <= Textures.Gui.Basic.Border.CENTER.getWidth() && iHeight - 6 <= Textures.Gui.Basic.Border.CENTER.getHeigth())
+        if (iWidth - 6 <= Textures.Gui.Basic.Border.CENTER.getWidth() && iHeight - 6 <= Textures.Gui.Basic.Border.CENTER.getHeight())
         {
             drawTexturedModalRect(3, 3, Textures.Gui.Basic.Border.CENTER.getU(), Textures.Gui.Basic.Border.CENTER.getV(), iWidth - 6, iHeight - 6);
         }
@@ -135,13 +135,13 @@ public class ComponentBorder extends AbstractGUIComponent
                 {
                     drawTexturedModalRect(tDrawnWidth, tDrawnHeigth, Textures.Gui.Basic.Border.CENTER.getU(), Textures.Gui.Basic.Border.CENTER.getV(), iWidth - 6, tHeightToRender);
                     tDrawnWidth += (iWidth - 6);
-                    tDrawnHeigth += Textures.Gui.Basic.Border.CENTER.getHeigth();
+                    tDrawnHeigth += Textures.Gui.Basic.Border.CENTER.getHeight();
                 }
                 else
                 {
                     while (tDrawnWidth < (iWidth - 3))
                     {
-                        if (iHeight - 8 < Textures.Gui.Basic.Border.CENTER.getHeigth())
+                        if (iHeight - 8 < Textures.Gui.Basic.Border.CENTER.getHeight())
                         {
                             int tWidthToRender = iWidth - 3 - tDrawnWidth;
                             if (tWidthToRender >= Textures.Gui.Basic.Border.CENTER.getWidth())
@@ -152,7 +152,7 @@ public class ComponentBorder extends AbstractGUIComponent
                         }
                         else
                         {
-                            drawTexturedModalRect(tDrawnWidth, tDrawnHeigth, Textures.Gui.Basic.Border.CENTER.getU(), Textures.Gui.Basic.Border.CENTER.getV(), Textures.Gui.Basic.Border.CENTER.getWidth(), Textures.Gui.Basic.Border.CENTER.getHeigth());
+                            drawTexturedModalRect(tDrawnWidth, tDrawnHeigth, Textures.Gui.Basic.Border.CENTER.getU(), Textures.Gui.Basic.Border.CENTER.getV(), Textures.Gui.Basic.Border.CENTER.getWidth(), Textures.Gui.Basic.Border.CENTER.getHeight());
                             tDrawnWidth += Textures.Gui.Basic.Border.CENTER.getWidth();
                         }
                     }
@@ -189,7 +189,7 @@ public class ComponentBorder extends AbstractGUIComponent
 
 
         GuiHelper.bindTexture(Textures.Gui.Basic.Border.OUTWARTSCORNER.getPrimaryLocation());
-        drawTexturedModalRect(0, 0, Textures.Gui.Basic.Border.OUTWARTSCORNER.getU(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getV(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getWidth(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getHeigth());
+        drawTexturedModalRect(0, 0, Textures.Gui.Basic.Border.OUTWARTSCORNER.getU(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getV(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getWidth(), Textures.Gui.Basic.Border.OUTWARTSCORNER.getHeight());
 
         GL11.glPopMatrix();
     }
@@ -215,7 +215,7 @@ public class ComponentBorder extends AbstractGUIComponent
         }
 
         GuiHelper.bindTexture(tResource.getPrimaryLocation());
-        drawTexturedModalRect(0,0,tResource.getU(), tResource.getV(), tResource.getWidth(), tResource.getHeigth());
+        drawTexturedModalRect(0, 0, tResource.getU(), tResource.getV(), tResource.getWidth(), tResource.getHeight());
 
         GL11.glPopMatrix();
     }
@@ -242,7 +242,7 @@ public class ComponentBorder extends AbstractGUIComponent
         }
 
         GuiHelper.bindTexture(tResource.getPrimaryLocation());
-        drawTexturedModalRect(pCornerXPos - 3, pCornerYPos, tResource.getU(), tResource.getV(), 6, tResource.getHeigth());
+        drawTexturedModalRect(pCornerXPos - 3, pCornerYPos, tResource.getU(), tResource.getV(), 6, tResource.getHeight());
 
         GL11.glPopMatrix();
     }
@@ -270,12 +270,12 @@ public class ComponentBorder extends AbstractGUIComponent
             if ((pSideNumber != 1) && (pSideNumber != 2))
             {
                 tResource = Textures.Gui.Basic.Border.STRAIGHTBORDERLIGHT;
-                tHeigth = tResource.getHeigth();
+                tHeigth = tResource.getHeight();
             }
             else
             {
                 tResource = Textures.Gui.Basic.Border.STRAIGHTBORDERDARK;
-                tHeigth = tResource.getHeigth();
+                tHeigth = tResource.getHeight();
                 GL11.glRotatef(180F, 0F, 0F, 1F);
                 GL11.glTranslatef(-tLength, -3F, 0F);
             }

@@ -32,6 +32,6 @@ public class TargetItemStackSwitchResearchTreeComponent extends StandardResearch
 
     @Override
     public String getDisplayString() {
-        return StatCollector.translateToLocal(TranslationKeys.GUI.BookBinder.Research.ResearchChangeTargetStackStart + " " + iTargetStack.getDisplayName() + " " + StatCollector.translateToLocal(TranslationKeys.GUI.BookBinder.Research.ResearchChangeTargetStackEnd));
+        return StatCollector.translateToLocal(TranslationKeys.GUI.BookBinder.Research.ResearchChangeTargetStackStart) + " " + iTargetStack.getDisplayName();
     }
 }

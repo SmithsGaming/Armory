@@ -14,7 +14,6 @@ import com.Orion.Armory.Client.GUI.Components.ToolTips.ToolTipRenderer;
 import com.Orion.Armory.Common.Inventory.ContainerArmory;
 import com.Orion.Armory.Util.Client.Color.Color;
 import com.Orion.Armory.Util.Client.Colors;
-import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.References;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
@@ -118,9 +117,7 @@ public class TabManager implements ITabbedHost {
 
                     GL11.glPushMatrix();
                     GL11.glTranslatef(4 + tRenderedTabs * TABSIZEX, 2, 0);
-                    GuiHelper.drawItemStack(tTab.getIconStack(), 4, 4);
-                    GL11.glDisable(GL11.GL_LIGHTING);
-                    GL11.glEnable(GL11.GL_ALPHA_TEST);
+                    tTab.renderTabIcon();
                     GL11.glPopMatrix();
 
                 }
@@ -145,9 +142,7 @@ public class TabManager implements ITabbedHost {
 
             GL11.glPushMatrix();
             GL11.glTranslatef(4 + iTabs.indexOf(iActiveTab) * TABSIZEX, 0, 0);
-            GuiHelper.drawItemStack(iActiveTab.getIconStack(), 4, 4);
-            GL11.glDisable(GL11.GL_LIGHTING);
-            GL11.glEnable(GL11.GL_ALPHA_TEST);
+            iActiveTab.renderTabIcon();
             GL11.glPopMatrix();
         }
 

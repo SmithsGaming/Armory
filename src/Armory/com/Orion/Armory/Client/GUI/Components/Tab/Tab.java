@@ -12,9 +12,11 @@ import com.Orion.Armory.Client.GUI.Components.Ledgers.LedgerManager;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTip;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.IToolTipProvider;
 import com.Orion.Armory.Client.GUI.Components.ToolTips.StandardToolTip;
+import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Core.Rectangle;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 
@@ -59,12 +61,14 @@ public abstract class Tab implements IToolTipProvider {
         return iYSize;
     }
 
-    public String getToolTipText() {
-        return iToolTipText;
-    }
-
     public LedgerManager getLedgerManager() {
         return iLedgers;
+    }
+
+    public void renderTabIcon() {
+        GuiHelper.drawItemStack(getIconStack(), 4, 4);
+        GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
     }
 
     public abstract void initializeTab(ITabbedHost pHost);

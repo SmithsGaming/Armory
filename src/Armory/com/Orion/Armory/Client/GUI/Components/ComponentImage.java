@@ -18,7 +18,7 @@ public class ComponentImage extends AbstractGUIComponent {
     CustomResource iTargetResource;
 
     public ComponentImage(IComponentHost pHost, String pInternalName, int pLeft, int pTop, CustomResource pTargetResource) {
-        super(pHost, pInternalName, pLeft, pTop, pTargetResource.getWidth(), pTargetResource.getHeigth());
+        super(pHost, pInternalName, pLeft, pTop, pTargetResource.getWidth(), pTargetResource.getHeight());
         iTargetResource = pTargetResource;
     }
 
@@ -38,7 +38,7 @@ public class ComponentImage extends AbstractGUIComponent {
         GL11.glColor4f(iTargetResource.getColor().getColorRedFloat(), iTargetResource.getColor().getColorGreenFloat(), iTargetResource.getColor().getColorBlueFloat(), iTargetResource.getColor().getAlphaFloat());
 
         GuiHelper.bindTexture(iTargetResource.getPrimaryLocation());
-        drawTexturedModalRect(iLeft, iTop, iTargetResource.getU(), iTargetResource.getV(), iTargetResource.getWidth(), iTargetResource.getHeigth());
+        drawTexturedModalRect(iLeft, iTop, iTargetResource.getU(), iTargetResource.getV(), iTargetResource.getWidth(), iTargetResource.getHeight());
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();

@@ -14,6 +14,7 @@ import com.Orion.Armory.Util.Client.GUI.GuiHelper;
 import com.Orion.Armory.Util.Client.Textures;
 import com.Orion.Armory.Util.Core.Coordinate;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 public class ComponentButton extends AbstractGUIComponent {
@@ -25,6 +26,8 @@ public class ComponentButton extends AbstractGUIComponent {
 
     CustomResource iForegroundResource;
 
+    ItemStack iForeGroundStack;
+
     String iForegroundText;
     Color iTextColor;
 
@@ -34,6 +37,14 @@ public class ComponentButton extends AbstractGUIComponent {
         iInputID = pInputID;
 
         iForegroundResource = pForegroundResource;
+    }
+
+    public ComponentButton(IComponentHost pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeight, String pInputID, ItemStack pForegroundStack) {
+        super(pGui, pInternalName, pLeft, pTop, pWidth, pHeight);
+
+        iInputID = pInputID;
+
+        iForeGroundStack = pForegroundStack;
     }
 
     public ComponentButton(IComponentHost pGui, String pInternalName, int pLeft, int pTop, int pWidth, int pHeight, String pInputID, String pForegroundText, Color pTextColor) {
@@ -58,9 +69,7 @@ public class ComponentButton extends AbstractGUIComponent {
         if (iForceDisabled) {
             iIsEnabled = false;
         } else {
-            iIsEnabled = iHost.getComponentRelatedObject(getInternalName() + ".enabled") != null && (Integer) iHost.getComponentRelatedObject(getInternalName() + ".enabled") > 0;
-
-            iIsEnabled = true;
+            iIsEnabled = iHost.getComponentRelatedObject(getInternalName() + ".enabled") != null && ((Boolean) iHost.getComponentRelatedObject(getInternalName() + ".enabled"));
         }
     }
 
@@ -81,14 +90,14 @@ public class ComponentButton extends AbstractGUIComponent {
 
         if (iForegroundResource != null) {
             int tX = (iWidth - iForegroundResource.getWidth()) / 2;
-            int tY = (iHeight - iForegroundResource.getHeigth()) / 2;
+            int tY = (iHeight - iForegroundResource.getHeight()) / 2;
 
-            GL11.glPushMatrix();
-            iForegroundResource.getColor().performGLColor();
-            GuiHelper.bindTexture(iForegroundResource.getPrimaryLocation());
-            GuiHelper.drawTexturedModalRect(iLeft + tX, iTop + tY, 0, iForegroundResource.getU(), iForegroundResource.getV(), iForegroundResource.getWidth(), iForegroundResource.getHeigth());
-            Color.resetGLColor();
-            GL11.glPopMatrix();
+            GuiHelper.drawResource(iForegroundResource, iLeft + tX, iTop + tY);
+        } else if (iForeGroundStack != null) {
+            int tX = (iWidth - 16) / 2;
+            int tY = (iHeight - 16) / 2;
+
+            GuiHelper.drawItemStack(iForeGroundStack, iLeft + tX, iTop + tY);
         } else {
             int tX = (iWidth - Minecraft.getMinecraft().fontRenderer.getStringWidth(iForegroundText)) / 2;
             int tY = (iHeight - Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT) / 2;
@@ -103,7 +112,7 @@ public class ComponentButton extends AbstractGUIComponent {
     @Override
     public boolean handleMouseClicked(int pMouseX, int pMouseY, int pMouseButton) {
         if (pMouseButton == 0 && iIsEnabled) {
-            iHost.getContainer().HandleCustomInput(iInputID, "Clicked");
+            iHost.updateComponentResult(this, iInputID, "Clicked");
             iUpdateTicksSinceLastClick = 5;
 
             return true;

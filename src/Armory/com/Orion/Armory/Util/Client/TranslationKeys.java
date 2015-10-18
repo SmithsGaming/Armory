@@ -166,9 +166,11 @@ public class TranslationKeys
 
         public class BookBinder {
             public static final String ToolTipTabBookBinder = "Armory.Gui.BookBinder.Tabs.BookBinder.ToolTip";
+            public static final String ToolTipTabResearchStation = "Armory.Gui.BookBinder.Tabs.ResearchStation.ToolTip";
 
             public class Research {
                 public static final String ResearchComplete = "Armory.Gui.Research.Complete";
+                public static final String ResearchFailed = "Armory.Gui.Research.Failed";
                 public static final String ResearchChangeTargetStackStart = "Armory.Gui.Research.Start.BeforeItemStackName";
                 public static final String ResearchChangeTargetStackEnd = "Armory.Gui.Research.Start.AfterItemStackName";
                 public static final String ResearchHeatTargetStack = "Armory.Gui.Research.HeatApplied";

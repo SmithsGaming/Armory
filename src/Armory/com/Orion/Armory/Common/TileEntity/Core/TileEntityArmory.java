@@ -39,17 +39,7 @@ public abstract class TileEntityArmory extends TileEntity
         }
 
         if (this instanceof IInventory) {
-            NBTTagList tInventoryCompound = pCompound.getTagList(References.NBTTagCompoundData.TE.Basic.INVENTORY, 10);
-            IInventory tContents = (IInventory) this;
-
-            for (int tComponentIndex = 0; tComponentIndex < tInventoryCompound.tagCount(); tComponentIndex++) {
-                NBTTagCompound tStackCompound = tInventoryCompound.getCompoundTagAt(tComponentIndex);
-                ItemStack tSlotContents = ItemStack.loadItemStackFromNBT(tStackCompound);
-
-                Integer tSlotIndex = tStackCompound.getInteger(References.NBTTagCompoundData.TE.Basic.SLOT);
-
-                tContents.setInventorySlotContents(tSlotIndex, tSlotContents);
-            }
+            readInventory(pCompound);
         }
     }
 
@@ -65,22 +55,40 @@ public abstract class TileEntityArmory extends TileEntity
         }
 
         if (this instanceof IInventory) {
-            NBTTagList tInventoryCompound = new NBTTagList();
-            IInventory tContents = (IInventory) this;
+            saveInventory(pCompound);
+        }
+    }
 
-            for (int tSlotIndex = 0; tSlotIndex < tContents.getSizeInventory(); tSlotIndex++) {
-                ItemStack tSlotContents = tContents.getStackInSlot(tSlotIndex);
-                if (tSlotContents == null)
-                    continue;
+    public void saveInventory(NBTTagCompound pCompound) {
+        NBTTagList tInventoryCompound = new NBTTagList();
+        IInventory tContents = (IInventory) this;
 
-                NBTTagCompound tStackCompound = new NBTTagCompound();
-                tStackCompound.setInteger(References.NBTTagCompoundData.TE.Basic.SLOT, tSlotIndex);
-                tSlotContents.writeToNBT(tStackCompound);
+        for (int tSlotIndex = 0; tSlotIndex < tContents.getSizeInventory(); tSlotIndex++) {
+            ItemStack tSlotContents = tContents.getStackInSlot(tSlotIndex);
+            if (tSlotContents == null)
+                continue;
 
-                tInventoryCompound.appendTag(tStackCompound);
-            }
+            NBTTagCompound tStackCompound = new NBTTagCompound();
+            tStackCompound.setInteger(References.NBTTagCompoundData.TE.Basic.SLOT, tSlotIndex);
+            tSlotContents.writeToNBT(tStackCompound);
 
-            pCompound.setTag(References.NBTTagCompoundData.TE.Basic.INVENTORY, tInventoryCompound);
+            tInventoryCompound.appendTag(tStackCompound);
+        }
+
+        pCompound.setTag(References.NBTTagCompoundData.TE.Basic.INVENTORY, tInventoryCompound);
+    }
+
+    public void readInventory(NBTTagCompound pCompound) {
+        NBTTagList tInventoryCompound = pCompound.getTagList(References.NBTTagCompoundData.TE.Basic.INVENTORY, 10);
+        IInventory tContents = (IInventory) this;
+
+        for (int tComponentIndex = 0; tComponentIndex < tInventoryCompound.tagCount(); tComponentIndex++) {
+            NBTTagCompound tStackCompound = tInventoryCompound.getCompoundTagAt(tComponentIndex);
+            ItemStack tSlotContents = ItemStack.loadItemStackFromNBT(tStackCompound);
+
+            Integer tSlotIndex = tStackCompound.getInteger(References.NBTTagCompoundData.TE.Basic.SLOT);
+
+            tContents.setInventorySlotContents(tSlotIndex, tSlotContents);
         }
     }
 

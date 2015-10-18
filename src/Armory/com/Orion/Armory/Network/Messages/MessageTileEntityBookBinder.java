@@ -20,6 +20,8 @@ public class MessageTileEntityBookBinder extends MessageTileEntityArmory impleme
     public ItemStack iResearchingTargetStack;
     public ItemStack iResearchingOutputStack;
 
+    public ItemStack iPaperStack;
+
     public TileEntityBookBinder.OperationMode iOpMode = TileEntityBookBinder.OperationMode.BookBinding;
 
     public Float iOperationProgress = 0F;
@@ -31,13 +33,16 @@ public class MessageTileEntityBookBinder extends MessageTileEntityArmory impleme
     public MessageTileEntityBookBinder(TileEntityBookBinder pEntity) {
         super(pEntity);
 
-        iBindingBookStack = pEntity.getStackInSlot(0);
-        iBindingBluePrintStack = pEntity.getStackInSlot(1);
-
-        iResearchingTargetStack = pEntity.getStackInSlot(2);
-        iResearchingOutputStack = pEntity.getStackInSlot(3);
-
         iOpMode = pEntity.getOperationMode();
+
+        if (iOpMode == TileEntityBookBinder.OperationMode.BookBinding) {
+            iBindingBookStack = pEntity.getStackInSlot(0);
+            iBindingBluePrintStack = pEntity.getStackInSlot(1);
+        } else {
+            iResearchingTargetStack = pEntity.getStackInSlot(0);
+            iResearchingOutputStack = pEntity.getStackInSlot(2);
+            iPaperStack = pEntity.getStackInSlot(1);
+        }
 
         iOperationProgress = pEntity.getOperationProgress();
 
@@ -47,13 +52,16 @@ public class MessageTileEntityBookBinder extends MessageTileEntityArmory impleme
     public void fromBytes(ByteBuf buf) {
         super.fromBytes(buf);
 
-        iBindingBookStack = ByteBufUtils.readItemStack(buf);
-        iBindingBluePrintStack = ByteBufUtils.readItemStack(buf);
-
-        iResearchingTargetStack = ByteBufUtils.readItemStack(buf);
-        iResearchingOutputStack = ByteBufUtils.readItemStack(buf);
-
         iOpMode = TileEntityBookBinder.OperationMode.values()[buf.readInt()];
+
+        if (iOpMode == TileEntityBookBinder.OperationMode.BookBinding) {
+            iBindingBookStack = ByteBufUtils.readItemStack(buf);
+            iBindingBluePrintStack = ByteBufUtils.readItemStack(buf);
+        } else {
+            iResearchingTargetStack = ByteBufUtils.readItemStack(buf);
+            iResearchingOutputStack = ByteBufUtils.readItemStack(buf);
+            iPaperStack = ByteBufUtils.readItemStack(buf);
+        }
 
         iOperationProgress = buf.readFloat();
     }
@@ -62,12 +70,16 @@ public class MessageTileEntityBookBinder extends MessageTileEntityArmory impleme
     public void toBytes(ByteBuf buf) {
         super.toBytes(buf);
 
-        ByteBufUtils.writeItemStack(buf, iBindingBookStack);
-        ByteBufUtils.writeItemStack(buf, iBindingBluePrintStack);
-        ByteBufUtils.writeItemStack(buf, iResearchingTargetStack);
-        ByteBufUtils.writeItemStack(buf, iResearchingOutputStack);
-
         buf.writeInt(iOpMode.ordinal());
+
+        if (iOpMode == TileEntityBookBinder.OperationMode.BookBinding) {
+            ByteBufUtils.writeItemStack(buf, iBindingBookStack);
+            ByteBufUtils.writeItemStack(buf, iBindingBluePrintStack);
+        } else {
+            ByteBufUtils.writeItemStack(buf, iResearchingTargetStack);
+            ByteBufUtils.writeItemStack(buf, iResearchingOutputStack);
+            ByteBufUtils.writeItemStack(buf, iPaperStack);
+        }
 
         buf.writeFloat(iOperationProgress);
     }

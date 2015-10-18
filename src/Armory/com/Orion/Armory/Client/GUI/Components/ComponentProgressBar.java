@@ -36,7 +36,7 @@ public class ComponentProgressBar extends AbstractGUIComponent
     }
 
     public ComponentProgressBar(IComponentHost pHost, String pInternalName, int pLeft, int pTop, CustomResource pBackground, CustomResource pForeground, Color pBackgroundColor, Color pForegroundColor) {
-        super(pHost, pInternalName, pLeft, pTop, pBackground.getWidth(), pBackground.getHeigth());
+        super(pHost, pInternalName, pLeft, pTop, pBackground.getWidth(), pBackground.getHeight());
 
         iForeGroundColor = pForegroundColor;
         iBackGroundColor = pBackgroundColor;
@@ -90,7 +90,7 @@ public class ComponentProgressBar extends AbstractGUIComponent
         GL11.glColor4f(iBackGroundColor.getColorRedFloat(), iBackGroundColor.getColorGreenFloat(), iBackGroundColor.getColorBlueFloat(), iBackGroundColor.getAlphaFloat());
 
         GuiHelper.bindTexture(iBackground.getPrimaryLocation());
-        drawTexturedModalRect(iLeft, iTop, iBackground.getU(), iBackground.getV(), iBackground.getWidth(), iBackground.getHeigth());
+        drawTexturedModalRect(iLeft, iTop, iBackground.getU(), iBackground.getV(), iBackground.getWidth(), iBackground.getHeight());
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();
@@ -99,7 +99,7 @@ public class ComponentProgressBar extends AbstractGUIComponent
         GL11.glColor4f(iForeGroundColor.getColorRedFloat(), iForeGroundColor.getColorGreenFloat(), iForeGroundColor.getColorBlueFloat(), iForeGroundColor.getAlphaFloat());
 
         GuiHelper.bindTexture(iForeground.getPrimaryLocation());
-        drawTexturedModalRect(iLeft, iTop, iForeground.getU(), iForeground.getV(), iCompletePartToBeRendered, iForeground.getHeigth());
+        drawTexturedModalRect(iLeft, iTop, iForeground.getU(), iForeground.getV(), iCompletePartToBeRendered, iForeground.getHeight());
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();

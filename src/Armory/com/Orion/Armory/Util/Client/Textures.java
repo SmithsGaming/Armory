@@ -15,6 +15,7 @@ public class Textures
     public static void registerIcons(IIconRegister pRegistrar) {
         Gui.Basic.INFOICON.addIcon(pRegistrar.registerIcon(Gui.Basic.INFOICON.getPrimaryLocation()));
         Gui.FirePit.THERMOMETERICON.addIcon(pRegistrar.registerIcon(Gui.FirePit.THERMOMETERICON.getPrimaryLocation()));
+        Gui.BookBinder.TabResearchStation.MAGNIFIER.addIcon(pRegistrar.registerIcon(Gui.BookBinder.TabResearchStation.MAGNIFIER.getPrimaryLocation()));
     }
     
     public static class MultiArmor
@@ -69,6 +70,7 @@ public class Textures
     public static class Gui
     {
         private static String GUITEXTUREPATH = "armory:textures/gui/";
+        private static String COMPONENTTEXTUREPATH = GUITEXTUREPATH + "Components/";
 
         public static class Basic
         {
@@ -94,16 +96,15 @@ public class Textures
 
             public static class Components
             {
-                private static String COMPONENTTEXTUREPATH = GUITEXTUREPATH + "Components/";
                 public static CustomResource ARROWEMPTY = new CustomResource("Gui.Basic.Components.Arrow.Empty", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 0,0,22, 16);
                 public static CustomResource ARROWFULL = new CustomResource("Gui.Basic.Components.Arrow.Full", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 22,0,22, 16);
-                public static CustomResource FLAMEEMPTY = new CustomResource("Gui.BAsic.Components.Flame.Empty", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 44, 0, 16, 16);
-                public static CustomResource FLAMEFULL = new CustomResource("Gui.BAsic.Components.Flame.Empty", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 60, 0, 16, 16);
+                public static CustomResource FLAMEEMPTY = new CustomResource("Gui.Basic.Components.Flame.Empty", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 44, 0, 16, 16);
+                public static CustomResource FLAMEFULL = new CustomResource("Gui.Basic.Components.Flame.Full", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 60, 0, 16, 16);
 
                 public static class Button {
                     public static final CustomResource DOWNARROW = new CustomResource("Gui.Basic.Components.Button.DownArrow", COMPONENTTEXTUREPATH + "Buttons.png", Colors.DEFAULT, 0, 0, 5, 7);
                     public static final CustomResource UPARROW = new CustomResource("Gui.Basic.Components.Button.UpArrow", COMPONENTTEXTUREPATH + "Buttons.png", Colors.DEFAULT, 5, 0, 5, 7);
-                    public static final CustomResource SCROLLBAR = new CustomResource("Gui.Basic.Components.Button.ScrollButtom", COMPONENTTEXTUREPATH + "Buttons.png", Colors.DEFAULT, 10, 0, 5, 7);
+                    public static final CustomResource SCROLLBAR = new CustomResource("Gui.Basic.Components.Button.ScrollButton", COMPONENTTEXTUREPATH + "Buttons.png", Colors.DEFAULT, 10, 0, 5, 7);
                     protected static String WIDGETFILEPATH = "textures/gui/widgets.png";
 
                     public static class Disabled {
@@ -168,13 +169,7 @@ public class Textures
 
         public static class FirePit
         {
-            public static CustomResource BACKGROUND = new CustomResource("Gui.FirePit.Background", GUITEXTUREPATH + "firepit.png", Colors.DEFAULT);
             public static CustomResource THERMOMETERICON = new CustomResource("Gui.FirePit.Thermometer", TextureAddressHelper.getTextureAddress("Gui-Icons/16x Thermo"), Colors.DEFAULT);
-        }
-
-        public static class Heater
-        {
-            public static CustomResource BACKGROUND = new CustomResource("Gui.Heater.Background", GUITEXTUREPATH + "Heater.png", Colors.DEFAULT);
         }
 
         public static class Anvil
@@ -193,7 +188,17 @@ public class Textures
             public static class TabBookBinding {
                 public static CustomResource BINDINGPROGRESSBACKGROUND = new CustomResource("Gui.BookBinder.TabBookbinding.BindingProgress.Background", GUITEXTUREPATH + "Components/" + "ProgressBars.png", Colors.DEFAULT, 0, 16, 32, 32);
                 public static CustomResource BINDINGPROGRESSFOREGROUND = new CustomResource("Gui.BookBinder.TabBookbinding.BindingProgress.Foreground", GUITEXTUREPATH + "Components/" + "ProgressBars.png", Colors.DEFAULT, 32, 16, 32, 32);
-                public static CustomResource BLUEPRINTSLOT = new CustomResource("Gui.BookBinder.Slot.Blueprint", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 109, 1, 16, 16);
+                public static CustomResource BLUEPRINTSLOT = new CustomResource("Gui.BookBinder.TabBookbinding.Slot.Blueprint", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 109, 1, 16, 16);
+            }
+
+            public static class TabResearchStation {
+                public static CustomResource MAGNIFIER = new CustomResource("Gui.BookBinder.TabResearchStation.Magnifier", GUITEXTUREPATH + "ResearchStation/" + "ResearchButtons.png", Colors.DEFAULT, 0, 0, 16, 16);
+                public static CustomResource FLAMEFULL = new CustomResource("Gui.BookBinder.TabResearchStation.Flame.Full", COMPONENTTEXTUREPATH + "ProgressBars.png", Colors.DEFAULT, 60, 0, 16, 16);
+                public static CustomResource TONGS = new CustomResource("Gui.BookBinder.TabResearchStation.Tongs", GUITEXTUREPATH + "ResearchStation/" + "ResearchButtons.png", Colors.DEFAULT, 16, 0, 16, 16);
+                public static CustomResource HAMMER = new CustomResource("Gui.BookBinder.TabResearchStation.Hammer", GUITEXTUREPATH + "ResearchStation/" + "ResearchButtons.png", Colors.DEFAULT, 32, 0, 16, 16);
+
+                public static CustomResource BLUEPRINTSLOT = new CustomResource("Gui.BookBinder.TabResearchStation.Slot.Blueprint", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 109, 1, 16, 16);
+                public static CustomResource BOOKSLOT = new CustomResource("Gui.BookBinder.TabResearchStation.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 55, 1, 16, 16);
             }
         }
 

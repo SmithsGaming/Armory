@@ -277,6 +277,7 @@ public class References
 
             public static final class BookBinder {
                 public static final String TabBookBinder = "Gui.BookBinder.Tab.BookBinder";
+                public static final String TabResearchStation = "Gui.BookBinder.Tab.ReasearchStation";
 
                 public static final class TabBook {
                     public static final String BACKGROUND = "Gui.BookBinder.TabBookBinder.Background";
@@ -291,6 +292,29 @@ public class References
                     public static final String BLUEPRINTSLOT = "Gui.BookBinder.TabBookBinder.BlueprintSlot";
 
                     public static final String PLAYERINVENTORY = "Gui.BookBinder.TabBookBinder.PlayerInventory";
+                }
+
+                public static final class TabResearch {
+                    public static final String BACKGROUND = "Gui.BookBinder.TabResearchStation.Background";
+
+                    public static final String RESEARCHBACKGROUND = "Gui.BookBinder.TabResearchStation.Borders.Research";
+
+                    public static final String BUTTONAPPLYHEAT = "Gui.BookBinder.TabResearchStation.Button.PerformResearch.ApplyHeat";
+                    public static final String BUTTONCUTSTACK = "Gui.BookBinder.TabResearchStation.Button.CutStack";
+                    public static final String BUTTONHITSTACK = "Gui.BookBinder.TabResearchStation.Button.HitStack";
+                    public static final String BUTTONANALYZESTACK = "Gui.BookBinder.TabResearchStation.Button.AnalyzeStack";
+
+                    public static final String SLOTTARGETSTACK = "Gui.BookBinder.TabResearchStation.Slot.TargetStack";
+
+                    public static final String SLOTPAPER = "Gui.BookBinder.TabResearchStation.Slot.Paper";
+                    public static final String SLOTBLUEPRINT = "Gui.BookBinder.TabResearchStation.Slot.Output";
+                    public static final String IMAGEARROW = "Gui.BookBinder.TabResearchStation.Image.Arrow";
+
+                    public static final String RESEARCHHISTORYBACKGROUND = "Gui.BookBinder.TabResearchStation.Borders.ResearchHistory";
+
+                    public static final String RESEARCHHISTORY = "Gui.BookBinder.TabReseachStation.Research.History";
+
+                    public static final String PLAYERINVENTORY = "Gui.BookBinder.TabResearch.PlayerInventory";
                 }
             }
         }
@@ -312,7 +336,7 @@ public class References
             }
 
             public static final class BookBinder {
-                public static final String INPUTSWITCH = "Input.Inventory.Stack.TargetSwitch";
+                public static final String INPUTSWITCH = "Input.Inventory.Research.Stack.TargetSwitch";
                 public static final String HEAT = "Input.Research.Heat";
                 public static final String HAMMER = "Input.Research.Hammer";
                 public static final String TONGS = "Input.Research.Tongs";
@@ -527,19 +551,16 @@ public class References
 
             public class Heater
             {
-                public static final String FANSTACK = "FANSTACK";
                 public static final String TICKSINSLOT = "STACKTIMEINSLOT";
             }
 
             public class Anvil
             {
-                public static final String CRAFTINGSTACKS = "Craftingstacks";
-                public static final String OUTPUTSTACKS = "Outputstacks";
-                public static final String HAMMERSTACKS = "Hammerstacks";
-                public static final String TONGSTACKS = "Tongstacks";
-                public static final String ADDITIONALSTACKS = "Additionalstacks";
-                public static final String COOLSTACKS = "Coolingstacks";
                 public static final String CRAFTINGPROGRESS = "CraftingProgress";
+            }
+
+            public class BookBinder {
+                public static final String MODE = "BlockMode";
             }
         }
     }

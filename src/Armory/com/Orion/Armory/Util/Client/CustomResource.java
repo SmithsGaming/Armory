@@ -20,7 +20,7 @@ public class CustomResource {
     private int iLeft;
     private int iTop;
     private int iWidth;
-    private int iHeigth;
+    private int iHeight;
 
     public CustomResource(String pInternalName, String pIconLocation) {
         this(pInternalName, pIconLocation, "");
@@ -51,12 +51,12 @@ public class CustomResource {
         this(pInternalName, pIconLocation, "", pColor);
     }
 
-    public CustomResource(String pInternalName, String pIconLocation, int pLeft, int pTop, int pWidth, int pHeigth)
+    public CustomResource(String pInternalName, String pIconLocation, int pLeft, int pTop, int pWidth, int pHeight)
     {
-        this(pInternalName, pIconLocation, Colors.DEFAULT, pLeft, pTop, pWidth , pHeigth);
+        this(pInternalName, pIconLocation, Colors.DEFAULT, pLeft, pTop, pWidth, pHeight);
     }
 
-    public CustomResource(String pInternalName, String pIconLocation, Color pColor, int pLeft, int pTop, int pWidth, int pHeigth)
+    public CustomResource(String pInternalName, String pIconLocation, Color pColor, int pLeft, int pTop, int pWidth, int pHeight)
     {
         iInternalName = pInternalName;
         iInternalName = pInternalName;
@@ -65,7 +65,7 @@ public class CustomResource {
         iLeft = pLeft;
         iTop = pTop;
         iWidth = pWidth;
-        iHeigth = pHeigth;
+        iHeight = pHeight;
     }
 
     public String getInternalName() {
@@ -94,7 +94,9 @@ public class CustomResource {
 
     public int getWidth() { return iWidth; }
 
-    public int getHeigth() { return iHeigth; }
+    public int getHeight() {
+        return iHeight;
+    }
 
     public int getColorInt(int pIndex) {
         switch (pIndex) {

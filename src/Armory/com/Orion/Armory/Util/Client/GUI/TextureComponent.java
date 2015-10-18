@@ -42,7 +42,7 @@ public class TextureComponent
         iU = pResource.getU();
         iV = pResource.getV();
         iWidth = pResource.getWidth();
-        iHeight = pResource.getHeigth();
+        iHeight = pResource.getHeight();
         iRotation = pRotation;
         iRelativeTranslation = pRelativeTranslation;
     }

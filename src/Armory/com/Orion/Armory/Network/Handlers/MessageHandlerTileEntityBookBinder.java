@@ -24,13 +24,19 @@ public class MessageHandlerTileEntityBookBinder extends MessageHandlerTileEntity
 
         TileEntity tEntity = FMLClientHandler.instance().getClient().theWorld.getTileEntity(message.xCoord, message.yCoord, message.zCoord);
         if (tEntity instanceof TileEntityBookBinder) {
-            ((TileEntityBookBinder) tEntity).setInventorySlotContents(0, message.iBindingBookStack);
-            ((TileEntityBookBinder) tEntity).setInventorySlotContents(1, message.iBindingBluePrintStack);
-            ((TileEntityBookBinder) tEntity).setInventorySlotContents(2, message.iResearchingTargetStack);
-            ((TileEntityBookBinder) tEntity).setInventorySlotContents(3, message.iResearchingOutputStack);
-
 
             ((TileEntityBookBinder) tEntity).setOperationMode(message.iOpMode);
+
+            if (message.iOpMode == TileEntityBookBinder.OperationMode.BookBinding) {
+                ((TileEntityBookBinder) tEntity).iBindingBookStack = message.iBindingBookStack;
+                ((TileEntityBookBinder) tEntity).iBindingBluePrintStack = message.iBindingBluePrintStack;
+            } else {
+                ((TileEntityBookBinder) tEntity).iResearchingTargetStack = message.iResearchingTargetStack;
+                ((TileEntityBookBinder) tEntity).iResearchingOutputStack = message.iResearchingOutputStack;
+                ((TileEntityBookBinder) tEntity).iPaperStack = message.iPaperStack;
+
+            }
+
             ((TileEntityBookBinder) tEntity).setOperationProgress(message.iOperationProgress);
         }
 

@@ -1,6 +1,7 @@
 package com.Orion.Armory.Util.Client.GUI;
 
 import com.Orion.Armory.Util.Client.Color.Color;
+import com.Orion.Armory.Util.Client.CustomResource;
 import com.Orion.Armory.Util.Core.Coordinate;
 import com.Orion.Armory.Util.Core.Rectangle;
 import net.minecraft.client.Minecraft;
@@ -29,6 +30,15 @@ public final class GuiHelper
     public static int DISPLAYWIDTH;
     public static int GUISCALE;
     protected static RenderItem ITEMRENDERER = new RenderItem();
+
+    public static void drawResource(CustomResource pResource, int pX, int pY) {
+        GL11.glPushMatrix();
+        pResource.getColor().performGLColor();
+        GuiHelper.bindTexture(pResource.getPrimaryLocation());
+        GuiHelper.drawTexturedModalRect(pX, pY, 0, pResource.getU(), pResource.getV(), pResource.getWidth(), pResource.getHeight());
+        Color.resetGLColor();
+        GL11.glPopMatrix();
+    }
 
     public static void drawRectangleStretched(TextureComponent pCenterComponent, int pWidth, int pHeight, Coordinate pElementCoordinate)
     {
@@ -312,7 +322,7 @@ public final class GuiHelper
     public static void renderScissorDebugOverlay()
     {
         bindTexture(TextureMap.locationItemsTexture);
-        drawTexturedModalRect(0,0,10, 0,0, DISPLAYWIDTH, DISPLAYHEIGHT);
+        drawTexturedModalRect(-10, -10, 10, 0, 0, DISPLAYWIDTH, DISPLAYHEIGHT);
     }
 
     public static void setGLColorFromInt(int color) {

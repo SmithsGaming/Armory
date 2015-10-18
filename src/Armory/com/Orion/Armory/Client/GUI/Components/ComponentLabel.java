@@ -15,11 +15,18 @@ import net.minecraft.util.StatCollector;
 public class ComponentLabel extends AbstractGUIComponent {
 
     String iRenderedString;
+    int iMaxWidth;
 
-    public ComponentLabel(IComponentHost pGui, String pInternalName, int pLeft, int pTop, String pUntranslatedID) {
+    public ComponentLabel(IComponentHost pGui, String pInternalName, int pLeft, int pTop, String pUntranslatedID, boolean pTranslated) {
         super(pGui, pInternalName, pLeft, pTop, Minecraft.getMinecraft().fontRenderer.getStringWidth(StatCollector.translateToLocal(pUntranslatedID)), Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT);
 
-        this.iRenderedString = StatCollector.translateToLocal(pUntranslatedID);
+        if (!pTranslated) {
+            this.iRenderedString = StatCollector.translateToLocal(pUntranslatedID);
+        } else {
+            this.iRenderedString = pUntranslatedID;
+        }
+
+        iMaxWidth = Minecraft.getMinecraft().fontRenderer.getStringWidth(iRenderedString);
     }
 
     @Override
@@ -29,7 +36,7 @@ public class ComponentLabel extends AbstractGUIComponent {
 
     @Override
     public void drawForeGround(int pX, int pY) {
-        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(iRenderedString, pX + iLeft, pY + iTop, Colors.DEFAULT.getColor());
+        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(iRenderedString, iLeft, iTop, Colors.DEFAULT.getColor());
     }
 
     @Override

@@ -89,6 +89,22 @@ public class ComponentScrollbar extends AbstractGUIMultiComponent implements ICo
         iPixelPerClick = (int) (pDelta / iScrollValuePerPixel);
     }
 
+    public void setScrollValue(int pValue) {
+        if (pValue < iMinScrollValue)
+            pValue = iMinScrollValue;
+
+        if (pValue > iMaxScrolValue)
+            pValue = iMaxScrolValue;
+
+        iScrollButton.iTop = (int) (((pValue - iMinScrollValue) / iScrollValuePerPixel) + iUpButton.getHeight());
+
+        if (iScrollButton.iTop + iScrollButton.getHeight() >= iDownButton.iTop) {
+            iScrollButton.iTop = iDownButton.iTop - iScrollButton.getHeight();
+        }
+
+        updateComponentResult(iScrollButton, References.InternalNames.InputHandlers.Components.BUTTONCLICK, String.valueOf(iScrollButton.iTop));
+    }
+
     @Override
     public boolean drawComponentToolTips(int pMouseX, int pMouseY) {
         if (ToolTipRenderer.renderToolTip(iUpButton, pMouseX, pMouseY))
@@ -171,9 +187,14 @@ public class ComponentScrollbar extends AbstractGUIMultiComponent implements ICo
             return true;
         } else if (iScrollButton.checkIfPointIsInComponent(pMouseX - iLeft, pMouseY - iTop) && iScrollButton.handleMouseClicked(pMouseX - iLeft, pMouseY - iTop, pMouseButton)) {
             return true;
-        } else if ((new Rectangle(iLeft, 0, iTop, iWidth, iHeight)).contains(pMouseX, pMouseY)) {
-            iScrollButton.iTop = pMouseY - iTop - iUpButton.getHeight();
-            updateComponentResult(iScrollButton, References.InternalNames.InputHandlers.Components.BUTTONCLICK, String.valueOf(pMouseY - iTop - iUpButton.getHeight()));
+        } else if ((new Rectangle(iLeft, 0, iTop, iWidth, iHeight - iDownButton.getHeight())).contains(pMouseX, pMouseY)) {
+            iScrollButton.iTop = pMouseY - iTop;
+
+            if (iScrollButton.iTop + iScrollButton.getHeight() >= iDownButton.iTop) {
+                iScrollButton.iTop = iDownButton.iTop - iScrollButton.getHeight();
+            }
+
+            updateComponentResult(iScrollButton, References.InternalNames.InputHandlers.Components.BUTTONCLICK, String.valueOf(iScrollButton.iTop));
 
             return true;
         }

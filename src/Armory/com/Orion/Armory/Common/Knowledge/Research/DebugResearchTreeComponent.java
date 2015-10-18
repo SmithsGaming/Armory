@@ -7,32 +7,36 @@
 package com.Orion.Armory.Common.Knowledge.Research;
 
 import com.Orion.Armory.API.Knowledge.IResearchTreeComponent;
+import com.Orion.Armory.Common.Item.Knowledge.ItemSmithingsGuide;
+import com.Orion.Armory.Common.Item.Knowledge.LabelledBlueprintGroup;
+import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Core.ItemStackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class StandardResearchTreeComponent implements IResearchTreeComponent {
+public class DebugResearchTreeComponent implements IResearchTreeComponent {
 
     protected ItemStack iTargetStack;
     protected String iInputID;
 
     private HashMap<String, IResearchTreeComponent> iFollowupTreeComponents = new HashMap<String, IResearchTreeComponent>();
 
-    public StandardResearchTreeComponent(ItemStack pTargetStack, String pInputID) {
-        iTargetStack = pTargetStack.copy();
+    public DebugResearchTreeComponent(String pInputID) {
+        iTargetStack = new ItemStack(GeneralRegistry.Items.iSmithingsGuide, 1);
         iInputID = pInputID;
+    }
+
+    @Override
+    public String getID() {
+        return iInputID + ".Debug-" + ItemStackHelper.toString(iTargetStack);
     }
 
     @Override
     public String getInputId() {
         return iInputID;
-    }
-
-    @Override
-    public String getID() {
-        return iInputID + "-" + ItemStackHelper.toString(iTargetStack);
     }
 
     @Override
@@ -59,34 +63,37 @@ public abstract class StandardResearchTreeComponent implements IResearchTreeComp
 
     @Override
     public boolean isFinalComponentInBranch() {
-        return false;
+        return true;
     }
 
     @Override
     public ItemStack getBranchResult(EntityPlayer pPlayer) {
-        return null;
+        ItemStack tCheatStack = new ItemStack(GeneralRegistry.Items.iSmithingsGuide);
+        GeneralRegistry.Items.iSmithingsGuide.initializeContainer(tCheatStack);
+
+        ArrayList<ItemStack> tBlueprints = new ArrayList<ItemStack>();
+        GeneralRegistry.Items.iBlueprints.getSubItems(null, null, tBlueprints);
+
+        ArrayList<LabelledBlueprintGroup> tGroups = GeneralRegistry.Items.iSmithingsGuide.getBlueprintGroups(tCheatStack);
+        tGroups.get(0).Stacks = tBlueprints;
+
+        GeneralRegistry.Items.iSmithingsGuide.writeBlueprintGroupsToStack(tCheatStack, tGroups);
+
+        return tCheatStack;
+    }
+
+    @Override
+    public boolean matchesInput(ItemStack pTargetStack, String pInputID, EntityPlayer pPlayer) {
+        return pTargetStack.getItem() instanceof ItemSmithingsGuide && iInputID.equals(pInputID) && (GeneralRegistry.iIsInDevEnvironment || pPlayer.getGameProfile().getName().equals("OrionOnline"));
+    }
+
+    @Override
+    public String getDisplayString() {
+        return "DEBUG Completed Succesfully!";
     }
 
     @Override
     public ItemStack getTargetStack() {
         return iTargetStack;
-    }
-
-    @Override
-    public boolean matchesInput(ItemStack pTargetStack, String pInputID, EntityPlayer pPlayer) {
-        return ItemStackHelper.equalsIgnoreStackSize(pTargetStack, iTargetStack) && iInputID.equals(pInputID);
-    }
-
-    @Override
-    public int hashCode() {
-        return iInputID.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof IResearchTreeComponent))
-            return false;
-
-        return getID().equals(((IResearchTreeComponent) obj).getID()) && ItemStackHelper.equalsIgnoreStackSize(iTargetStack, ((IResearchTreeComponent) obj).getTargetStack());
     }
 }

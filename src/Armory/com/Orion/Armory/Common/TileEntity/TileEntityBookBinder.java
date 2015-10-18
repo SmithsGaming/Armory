@@ -6,42 +6,45 @@
 
 package com.Orion.Armory.Common.TileEntity;
 
-import com.Orion.Armory.API.Knowledge.IBluePrintContainerItem;
-import com.Orion.Armory.API.Knowledge.IBluePrintItem;
-import com.Orion.Armory.API.Knowledge.IBlueprint;
+import com.Orion.Armory.API.Knowledge.*;
 import com.Orion.Armory.Common.Item.Knowledge.LabelledBlueprintGroup;
+import com.Orion.Armory.Common.Knowledge.Research.ResearchFailedTreeComponent;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Common.TileEntity.Core.ICustomInputHandler;
 import com.Orion.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.Orion.Armory.Network.Messages.MessageTileEntityBookBinder;
 import com.Orion.Armory.Network.NetworkManager;
+import com.Orion.Armory.Util.Core.ItemStackHelper;
 import com.Orion.Armory.Util.References;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 
 public class TileEntityBookBinder extends TileEntityArmory implements IInventory, ICustomInputHandler {
 
-    ItemStack iBindingBookStack;
-    ItemStack iBindingBluePrintStack;
+    public ItemStack iBindingBookStack;
+    public ItemStack iBindingBluePrintStack;
 
-    ItemStack iResearchingTargetStack;
-    ItemStack iResearchingOutputStack;
+    public ItemStack iResearchingTargetStack;
+    public ItemStack iResearchingOutputStack;
 
-    ItemStack iResearchFuelstack;
-    ItemStack iResearchHammerStack;
-    ItemStack iResearchTongsStack;
+    public ItemStack iPaperStack;
+    public ItemStack iFeatherStack;
+    public ItemStack iInkPotStack;
 
-    ItemStack iPaperStack;
-    ItemStack iFeatherStack;
-    ItemStack iInkPotStack;
+    IResearchTreeComponent iCurrentActiveResearchRoot = null;
+    ArrayList<IResearchTreeComponent> iCurrentActiveResearchTree = new ArrayList<IResearchTreeComponent>();
 
     OperationMode iOpMode = OperationMode.BookBinding;
+
+    EntityPlayer iUsingPlayer = null;
 
     Float iOperationProgress = 0F;
 
@@ -53,6 +56,20 @@ public class TileEntityBookBinder extends TileEntityArmory implements IInventory
     @Override
     public int getSizeInventory() {
         return 4;
+    }
+
+    @Override
+    public void saveInventory(NBTTagCompound pCompound) {
+        pCompound.setInteger(References.NBTTagCompoundData.TE.BookBinder.MODE, iOpMode.ordinal());
+
+        super.saveInventory(pCompound);
+    }
+
+    @Override
+    public void readInventory(NBTTagCompound pCompound) {
+        iOpMode = OperationMode.values()[pCompound.getInteger(References.NBTTagCompoundData.TE.BookBinder.MODE)];
+
+        super.readInventory(pCompound);
     }
 
     @Override
@@ -70,8 +87,6 @@ public class TileEntityBookBinder extends TileEntityArmory implements IInventory
                 iOperationProgress += 0.1F;
 
                 if (iOperationProgress > 2F) {
-                    GeneralRegistry.iLogger.info("Merging blueprint into Guide!");
-
                     IBluePrintContainerItem tGuide = (IBluePrintContainerItem) iBindingBookStack.getItem();
                     ArrayList<LabelledBlueprintGroup> tGroups = tGuide.getBlueprintGroups(iBindingBookStack);
 
@@ -104,17 +119,26 @@ public class TileEntityBookBinder extends TileEntityArmory implements IInventory
 
     @Override
     public ItemStack getStackInSlot(int pSlotIndex) {
-        switch (pSlotIndex) {
-            case 0:
-                return iBindingBookStack;
-            case 1:
-                return iBindingBluePrintStack;
-            case 2:
-                return iResearchingTargetStack;
-            case 3:
-                return iResearchingOutputStack;
-            default:
-                return null;
+        if (getOperationMode() == OperationMode.BookBinding) {
+            switch (pSlotIndex) {
+                case 0:
+                    return iBindingBookStack;
+                case 1:
+                    return iBindingBluePrintStack;
+                default:
+                    return null;
+            }
+        } else {
+            switch (pSlotIndex) {
+                case 0:
+                    return iResearchingTargetStack;
+                case 1:
+                    return iPaperStack;
+                case 2:
+                    return iResearchingOutputStack;
+                default:
+                    return null;
+            }
         }
     }
 
@@ -145,22 +169,46 @@ public class TileEntityBookBinder extends TileEntityArmory implements IInventory
     public void setInventorySlotContents(int pSlotIndex, ItemStack pStack) {
         iOperationProgress = 0F;
 
-        switch (pSlotIndex) {
-            case 0:
-                iBindingBookStack = pStack;
-                break;
-            case 1:
-                iBindingBluePrintStack = pStack;
-                break;
-            case 2:
-                iResearchingTargetStack = pStack;
-                break;
-            case 3:
-                iResearchingOutputStack = pStack;
-                break;
-            default:
-                break;
+        if (iOpMode == OperationMode.BookBinding) {
+            switch (pSlotIndex) {
+                case 0:
+                    iBindingBookStack = pStack;
+                    break;
+                case 1:
+                    iBindingBluePrintStack = pStack;
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (pSlotIndex) {
+                case 0:
+                    iResearchingTargetStack = pStack;
+                    if (iResearchingTargetStack != null)
+                        HandleCustomInput(References.InternalNames.InputHandlers.BookBinder.INPUTSWITCH, "");
+                    break;
+                case 1:
+                    iPaperStack = pStack;
+                    if (iPaperStack == null) {
+                        iCurrentActiveResearchTree.clear();
+                        iCurrentActiveResearchRoot = null;
+                    } else {
+                        if (iResearchingTargetStack != null) {
+                            HandleCustomInput(References.InternalNames.InputHandlers.BookBinder.INPUTSWITCH, "");
+                        }
+                    }
+                    break;
+                case 2:
+                    iResearchingOutputStack = pStack;
+                    if (iResearchingOutputStack == null)
+                        iCurrentActiveResearchTree.clear();
+                    break;
+                default:
+                    break;
+            }
         }
+
+
     }
 
     @Override
@@ -175,7 +223,7 @@ public class TileEntityBookBinder extends TileEntityArmory implements IInventory
 
     @Override
     public int getInventoryStackLimit() {
-        return 1;
+        return 64;
     }
 
     @Override
@@ -195,32 +243,116 @@ public class TileEntityBookBinder extends TileEntityArmory implements IInventory
 
     @Override
     public boolean isItemValidForSlot(int pSlotIndex, ItemStack pItemStack) {
-        switch (pSlotIndex) {
-            case 0:
-                return pItemStack.getItem() instanceof IBluePrintContainerItem;
-            case 1:
-                return pItemStack.getItem() instanceof IBluePrintItem;
-            case 2:
-                return true;
-            case 3:
-                return false;
-            default:
-                return false;
+        if (iOpMode == OperationMode.BookBinding) {
+            switch (pSlotIndex) {
+                case 0:
+                    return pItemStack.getItem() instanceof IBluePrintContainerItem;
+                case 1:
+                    return pItemStack.getItem() instanceof IBluePrintItem;
+                default:
+                    return false;
+            }
+        } else {
+            switch (pSlotIndex) {
+                case 0:
+                    return true;
+                case 1:
+                    if (pItemStack.getItem().getUnlocalizedName().equals("item.paper")) return true;
+
+                    for (int tOreID : OreDictionary.getOreIDs(pItemStack)) {
+                        GeneralRegistry.iLogger.info(OreDictionary.getOreName(tOreID));
+                        if (OreDictionary.getOreName(tOreID).equals("paper")) return true;
+                    }
+
+                    return false;
+                case 2:
+                    return false;
+                default:
+                    return false;
+            }
         }
     }
 
     @Override
     public Object getGUIComponentRelatedObject(String pComponentID) {
+        if (pComponentID.equals(References.InternalNames.GUIComponents.BookBinder.TabResearch.RESEARCHHISTORY)) {
+            return iCurrentActiveResearchTree;
+        }
+
+        if (pComponentID.contains("enabled") && pComponentID.contains("TabResearchStation.Button.")) {
+            return iPaperStack != null && iResearchingTargetStack != null;
+        }
+
         return null;
     }
 
     @Override
     public void HandleCustomInput(String pInputID, String pInput) {
+        if (pInputID.equals(References.InternalNames.InputHandlers.Components.TABCHANGED)) {
+            iOpMode = OperationMode.values()[Integer.parseInt(pInput)];
+            GeneralRegistry.iLogger.info("Settings Operations Mode to: " + iOpMode.name());
+            return;
+        }
+
+        if (pInputID.contains("Research")) {
+            GeneralRegistry.iLogger.info("Handling Input for: " + pInputID + " for target stack: " + ItemStackHelper.toString(iResearchingTargetStack));
+
+            if (iCurrentActiveResearchRoot == null && iCurrentActiveResearchTree.size() > 0) return;
+
+            if (iCurrentActiveResearchTree.size() > 0) {
+                IResearchTreeComponent tLastComponent = iCurrentActiveResearchTree.get(iCurrentActiveResearchTree.size() - 1);
+                IResearchTreeComponent tNextComponentWithInput = tLastComponent.getFollowupComponent(iResearchingTargetStack, pInputID, iUsingPlayer);
+
+                if (tNextComponentWithInput == null) {
+                    iCurrentActiveResearchRoot = null;
+                    iCurrentActiveResearchTree.clear();
+                    iCurrentActiveResearchTree.add(new ResearchFailedTreeComponent());
+                    return;
+                }
+
+                iCurrentActiveResearchTree.add(tNextComponentWithInput);
+
+                if (tNextComponentWithInput.getFollowupTreeComponent().size() == 1) {
+                    if (((IResearchTreeComponent) tNextComponentWithInput.getFollowupTreeComponent().values().toArray()[0]).isFinalComponentInBranch()) {
+                        iResearchingOutputStack = ((IResearchTreeComponent) tNextComponentWithInput.getFollowupTreeComponent().values().toArray()[0]).getBranchResult(iUsingPlayer);
+                        iCurrentActiveResearchRoot = null;
+                        GeneralRegistry.iLogger.info("Finished Research for: " + ItemStackHelper.toString(iResearchingOutputStack));
+                    }
+                }
+            } else if (iCurrentActiveResearchRoot != null) {
+                iCurrentActiveResearchTree.add(iCurrentActiveResearchRoot.getFollowupComponent(iResearchingTargetStack, pInputID, iUsingPlayer));
+            } else {
+                iCurrentActiveResearchRoot = KnowledgeRegistry.getInstance().getRootElement(iResearchingTargetStack, pInputID, iUsingPlayer);
+                iCurrentActiveResearchTree.add(iCurrentActiveResearchRoot);
+            }
+
+            return;
+        }
+
 
     }
 
+    public void validateStacks() {
+        if (!(iBindingBluePrintStack.getItem() instanceof IBluePrintItem)) {
+            GeneralRegistry.iLogger.error("The Blueprint stack in a Binder was not valid: " + ItemStackHelper.toString(iBindingBluePrintStack) + ". Resetting!");
+            iBindingBluePrintStack = null;
+        }
+
+        if (!(iBindingBookStack.getItem() instanceof IBluePrintContainerItem)) {
+            GeneralRegistry.iLogger.error("The Guide stack in a Binder was not valid: " + ItemStackHelper.toString(iBindingBookStack) + ". Resetting!");
+            iBindingBluePrintStack = null;
+        }
+
+        if (!(iBindingBluePrintStack.getItem() instanceof IBluePrintItem)) {
+            GeneralRegistry.iLogger.error("The Blueprint stack in a Binder was not valid: " + ItemStackHelper.toString(iBindingBluePrintStack) + ". Resetting!");
+            iBindingBluePrintStack = null;
+        }
+    }
 
     public boolean checkIfGuideContainsBlueprint(ItemStack pBlueprintStack, ItemStack pComparedItemStack) {
+        if (!(pBlueprintStack.getItem() instanceof IBluePrintContainerItem))
+            return false;
+
         for (LabelledBlueprintGroup tGroup : ((IBluePrintContainerItem) pBlueprintStack.getItem()).getBlueprintGroups(pBlueprintStack)) {
             if (checkIfGroupContainsBlueprint(tGroup, pComparedItemStack))
                 return true;

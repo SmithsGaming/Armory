@@ -17,8 +17,11 @@ import com.Orion.Armory.Util.Client.Textures;
 public class ComponentPlayerInventory extends AbstractGUIMultiComponent
 {
 
+    public static final int WIDTH = 176;
+    public static final int HEIGTH = 90;
+
     public ComponentPlayerInventory(IComponentHost pHost, String pInternalName, int pLeft, int pTop, int pPlayerInventoryStartSlotIndex, ComponentBorder.CornerTypes pConnectionType) {
-        super(pHost, pInternalName, pLeft, pTop, 176, 90);
+        super(pHost, pInternalName, pLeft, pTop, WIDTH, HEIGTH);
 
         getComponents().add(new ComponentBorder(pHost, pInternalName + ".Background", 0, 0, 175, 90, Colors.DEFAULT, pConnectionType));
 

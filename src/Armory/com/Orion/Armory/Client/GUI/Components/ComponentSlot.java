@@ -71,12 +71,12 @@ public class ComponentSlot extends AbstractGUIComponent
         GL11.glPushMatrix();
         GL11.glColor4f(iColor.getColorRedFloat(), iColor.getColorGreenFloat(), iColor.getColorBlueFloat(), iColor.getAlphaFloat());
 
-        GuiHelper.drawRectangleStretched(new MultiComponentTexture(iSlotResource, iSlotResource.getWidth(), iSlotResource.getHeigth(), 1, 1), iWidth, iHeight, new Coordinate(iLeft, iTop, (int) this.zLevel));
+        GuiHelper.drawRectangleStretched(new MultiComponentTexture(iSlotResource, iSlotResource.getWidth(), iSlotResource.getHeight(), 1, 1), iWidth, iHeight, new Coordinate(iLeft, iTop, (int) this.zLevel));
 
         if ((iIconResource != null) && ((getComponentHost().getItemStackInSlot(iSlotID)) == null))
         {
             GuiHelper.bindTexture(iIconResource.getPrimaryLocation());
-            drawTexturedModalRect(iLeft + 1, iTop + 1, iIconResource.getU(), iIconResource.getV(), iIconResource.getWidth(), iIconResource.getHeigth());
+            drawTexturedModalRect(iLeft + 1, iTop + 1, iIconResource.getU(), iIconResource.getV(), iIconResource.getWidth(), iIconResource.getHeight());
         }
 
         GL11.glColor4f(1F, 1F, 1F, 1F);

@@ -35,6 +35,7 @@ public class GuiBookbinder extends ArmoryBaseTabbedGui {
         getTabManager().clearTabs();
 
         getTabManager().registerTab(new TabBookBinder(References.InternalNames.GUIComponents.BookBinder.TabBookBinder, new ItemStack(GeneralRegistry.Items.iSmithingsGuide, 1), StatCollector.translateToLocal(TranslationKeys.GUI.BookBinder.ToolTipTabBookBinder)));
+        getTabManager().registerTab(new TabResearchStation(References.InternalNames.GUIComponents.BookBinder.TabResearchStation, StatCollector.translateToLocal(TranslationKeys.GUI.BookBinder.ToolTipTabResearchStation)));
     }
 
 

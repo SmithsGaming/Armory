@@ -13,6 +13,7 @@ import com.Orion.Armory.API.Knowledge.IBlueprint;
 import com.Orion.Armory.Common.Registry.GeneralRegistry;
 import com.Orion.Armory.Util.Client.TranslationKeys;
 import com.Orion.Armory.Util.References;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -163,6 +164,34 @@ public class ItemSmithingsGuide extends Item implements IBluePrintContainerItem 
         }
 
         pStack.getTagCompound().setTag(References.NBTTagCompoundData.Item.SmithingsGuide.GROUPSDATA, tGroupedNBT);
+    }
+
+    @Override
+    public void getSubItems(Item pItem, CreativeTabs pTab, List pItems) {
+        super.getSubItems(pItem, pTab, pItems);
+
+        ItemStack tGuideStack = new ItemStack(GeneralRegistry.Items.iSmithingsGuide);
+        initializeContainer(tGuideStack);
+
+        pItems.add(tGuideStack);
+
+        ItemStack tCheatStack = new ItemStack(GeneralRegistry.Items.iSmithingsGuide);
+        initializeContainer(tCheatStack);
+
+        ArrayList<ItemStack> tBlueprints = new ArrayList<ItemStack>();
+        GeneralRegistry.Items.iBlueprints.getSubItems(null, null, tBlueprints);
+
+        ArrayList<LabelledBlueprintGroup> tGroups = getBlueprintGroups(tCheatStack);
+        tGroups.get(0).Stacks = tBlueprints;
+
+        writeBlueprintGroupsToStack(tCheatStack, tGroups);
+
+        pItems.add(tCheatStack);
+    }
+
+    @Override
+    public boolean getHasSubtypes() {
+        return true;
     }
 
     @Override

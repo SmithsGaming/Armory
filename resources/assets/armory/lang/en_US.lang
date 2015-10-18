@@ -25,7 +25,8 @@ Armory.GUI.Anvil.Ledger.InfoLine1=The Blacksmiths Anvil is used by Smiths to cra
 Armory.GUI.Anvil.Ledger.InfoLine2=It takes some time to process and sometimes a Hammer and a pair of Tongs.
 #
 #BookBinder specific information
-Armory.Gui.BookBinder.Tabs.BookBinder.ToolTip=Bind new blueprints into your Smithing's Guide
+Armory.Gui.BookBinder.Tabs.BookBinder.ToolTip=Bind new blueprints into your Smithing's Guide.
+Armory.Gui.BookBinder.Tabs.ResearchStation.ToolTip=Create and learn new Crafting processes.
 #
 #NEI Compat
 Armory.NEI.Compatibility.ArmorsAnvilRecipe=Blacksmiths Anvil
@@ -127,3 +128,13 @@ Armory.Items.Label.Logo=Group logo:
 #Smithings Guide Tooltip
 Armory.Items.SmithingsGuide.Tooltip1=Contains:
 Armory.Items.SmithingsGuide.Tooltip2= Blueprints.
+#
+#Research display text
+Armory.Gui.Research.Complete=Research finished!
+Armory.Gui.Research.Start.BeforeItemStackName=Modify the:
+Armory.Gui.Research.HeatApplied=  - Heat it up.
+Armory.Gui.Research.Hammer=  - Hit it.
+Armory.Gui.Research.Tongs=  - Cut it.
+Armory.Gui.Research.Analyze=  - Check for damage.
+Armory.Gui.Research.Failed=Research Failed.
+

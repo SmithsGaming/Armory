@@ -27,7 +27,7 @@ public class ComponentProgressFlame extends ComponentProgressBar {
 
     @Override
     public void onUpdate() {
-        iCompletePartToBeRendered = (int) (iHost.getProgressBarValue(this.getInternalName()) * iBackground.getHeigth());
+        iCompletePartToBeRendered = (int) (iHost.getProgressBarValue(this.getInternalName()) * iBackground.getHeight());
     }
 
     @Override
@@ -53,19 +53,19 @@ public class ComponentProgressFlame extends ComponentProgressBar {
         GL11.glColor4f(iBackGroundColor.getColorRedFloat(), iBackGroundColor.getColorGreenFloat(), iBackGroundColor.getColorBlueFloat(), iBackGroundColor.getAlphaFloat());
 
         GuiHelper.bindTexture(iBackground.getPrimaryLocation());
-        drawTexturedModalRect(iLeft, iTop, iBackground.getU(), iBackground.getV(), iBackground.getWidth(), iBackground.getHeigth());
+        drawTexturedModalRect(iLeft, iTop, iBackground.getU(), iBackground.getV(), iBackground.getWidth(), iBackground.getHeight());
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();
 
-        if (iCompletePartToBeRendered == -1 * iBackground.getHeigth())
+        if (iCompletePartToBeRendered == -1 * iBackground.getHeight())
             return;
 
         GL11.glPushMatrix();
         GL11.glColor4f(iForeGroundColor.getColorRedFloat(), iForeGroundColor.getColorGreenFloat(), iForeGroundColor.getColorBlueFloat(), iForeGroundColor.getAlphaFloat());
 
         GuiHelper.bindTexture(iForeground.getPrimaryLocation());
-        drawTexturedModalRect(iLeft, iTop + iCompletePartToBeRendered, iForeground.getU(), iForeground.getV() + iCompletePartToBeRendered, iForeground.getWidth(), iForeground.getHeigth() - iCompletePartToBeRendered);
+        drawTexturedModalRect(iLeft, iTop + iCompletePartToBeRendered, iForeground.getU(), iForeground.getV() + iCompletePartToBeRendered, iForeground.getWidth(), iForeground.getHeight() - iCompletePartToBeRendered);
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glPopMatrix();

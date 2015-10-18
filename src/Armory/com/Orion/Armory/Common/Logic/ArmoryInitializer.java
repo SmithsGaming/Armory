@@ -35,6 +35,7 @@ import com.Orion.Armory.Common.Item.*;
 import com.Orion.Armory.Common.Item.Knowledge.ItemBlueprint;
 import com.Orion.Armory.Common.Item.Knowledge.ItemSmithingsGuide;
 import com.Orion.Armory.Common.Knowledge.Blueprint.*;
+import com.Orion.Armory.Common.Knowledge.Research.DebugResearchTreeComponent;
 import com.Orion.Armory.Common.Knowledge.Research.Implementations.*;
 import com.Orion.Armory.Common.Knowledge.Research.Implementations.ResearchResultComponents.BlueprintResultComponent;
 import com.Orion.Armory.Common.Material.ArmorMaterial;
@@ -408,6 +409,16 @@ public class ArmoryInitializer
                 createNuggetResearch(tMaterial);
                 createArmorResearch(tMaterial);
             }
+
+            ItemStack tGuideStack = new ItemStack(GeneralRegistry.Items.iSmithingsGuide);
+            GeneralRegistry.Items.iSmithingsGuide.initializeContainer(tGuideStack);
+
+            IResearchTreeComponent tRootComponent = new TargetItemStackSwitchResearchTreeComponent(tGuideStack);
+            IResearchTreeComponent tCurrentComponent = tRootComponent;
+
+            tCurrentComponent.registerNewFollowupTreeComponent(new DebugResearchTreeComponent(InternalNames.InputHandlers.BookBinder.ANALYZE));
+
+            KnowledgeRegistry.getInstance().registerNewRootElement(tRootComponent);
 
             GeneralRegistry.iLogger.info("Generated research");
         }

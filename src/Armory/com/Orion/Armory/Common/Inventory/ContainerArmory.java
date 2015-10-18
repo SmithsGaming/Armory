@@ -125,9 +125,5 @@ public abstract class ContainerArmory extends Container implements ICustomInputH
 
     @Override
     public void HandleCustomInput(String pInputID, String pInput) {
-
-    }
-
-    public void OnContainerChanged(String pComponent) {
     }
 }

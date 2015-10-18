@@ -56,7 +56,7 @@ public class ItemBlueprint extends ItemResource implements IBluePrintItem {
     }
 
     @Override
-    public void getSubItems(Item pRing, CreativeTabs pCreativeTab, List pItemStacks) {
+    public void getSubItems(Item pItem, CreativeTabs pCreativeTab, List pItemStacks) {
         for (IBlueprint pPrint : BlueprintRegistry.getInstance().getBlueprints()) {
             ItemStack pStack = new ItemStack(GeneralRegistry.Items.iBlueprints, 1);
             NBTTagCompound tCompound = new NBTTagCompound();

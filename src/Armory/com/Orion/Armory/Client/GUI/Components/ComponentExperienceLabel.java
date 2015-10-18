@@ -47,7 +47,7 @@ public class ComponentExperienceLabel extends AbstractGUIComponent {
             GL11.glScalef(0.6F, 0.6F, 0.6F);
             Colors.Experience.ORB.performGLColor();
             GuiHelper.bindTexture(Textures.Gui.Anvil.EXPERIENCEORB.getPrimaryLocation());
-            GuiHelper.drawTexturedModalRect(0, 0, 0, Textures.Gui.Anvil.EXPERIENCEORB.getU(), Textures.Gui.Anvil.EXPERIENCEORB.getV(), Textures.Gui.Anvil.EXPERIENCEORB.getWidth(), Textures.Gui.Anvil.EXPERIENCEORB.getHeigth());
+            GuiHelper.drawTexturedModalRect(0, 0, 0, Textures.Gui.Anvil.EXPERIENCEORB.getU(), Textures.Gui.Anvil.EXPERIENCEORB.getV(), Textures.Gui.Anvil.EXPERIENCEORB.getWidth(), Textures.Gui.Anvil.EXPERIENCEORB.getHeight());
             Color.resetGLColor();
             GL11.glPopMatrix();
 
