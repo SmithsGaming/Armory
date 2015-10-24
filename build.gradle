@@ -80,7 +80,7 @@ if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
 {
     version = version + "-SNAPSHOT"
 }
-group= "com.Orion.Armory"
+group = "com.SmithsModding.Armory"
 archivesBaseName = "Armory"
 
 //Idea fix for
