@@ -16,9 +16,7 @@ def getDate() {
     return formattedDate
 }
 
-def build_file = new File("build_mode.properties")
-def build_mode = build_file.text
-
+def build_mode = config.build_mode
 
 //ForgeGradle BuildScript.
 buildscript {
@@ -76,14 +74,18 @@ configurations {
 
 //Initializing the mod environment
 version = config.mod_version.toString() + "-" + System.getenv().TRAVIS_BUILD_NUMBER.toString()
+def api_version = config.api_version.toString()() + "-" + System.getenv().TRAVIS_BUILD_NUMBER.toString()
+
 if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
 {
     version = version + "-SNAPSHOT"
+    api_version = api_version + "-SNAPSHOT"
 }
+
 group = "com.SmithsModding.Armory"
 archivesBaseName = "Armory"
 
-//Idea fix for
+//Idea fix
 idea {
     module {
         inheritOutputDirs = true
@@ -97,7 +99,8 @@ minecraft {
 
     //Replacing stuff inside the code:
     replace "@VERSION@", project.version
-    replaceIn "Armory.java"
+    replace "@MCVERSION@", config.minecraft_version
+    replace "@APIVERSION@", api_version
 }
 
 //Tells gradle which dependencies are needed for gradle and project
@@ -114,7 +117,7 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDir 'src/Armory'
+            srcDir 'src'
         }
         resources {
             srcDir 'resources'
@@ -127,15 +130,15 @@ sourceSets {
 processResources
 {
     //This will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+    inputs.property "@VERSION@", project.version
+    inputs.property "@MCVERSION@", config.minecraft_version
 
     //Replaces stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
                 
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand '@VERSION@': project.version, '@MCVERSIONä': config.minecraft_version
     }
         
     //Copy everything else, thats not the mcmod.info
@@ -152,16 +155,33 @@ jar {
 }
 
 task devJar(type: Jar, dependsOn: 'classes') {
-    from(sourceSets.main.output) {
-        include '**'
-    }
+    from "build/source/main"
+
+    extension = 'jar'
+    classifier "dev"
+}
+
+task apiJar(type: Jar, dependsOn: 'jar') {
+    from "build/source/main"
+
+    include "com/SmithsModding/Armory/API/**"
 
     extension = 'jar'
     classifier = 'dev'
 }
 
+task sourceJar(type: Jar, dependsOn: 'sourceMainJava') {
+    from "build/sources/java"
+    from "build/resources/main/"
+
+    extension = 'jar'
+    classifier "sources"
+}
+
 artifacts {
     archives devJar
+    archives apiJar
+    archives sourceJar
 }
 
 //The following function comes with thanks to AbrarSyed:

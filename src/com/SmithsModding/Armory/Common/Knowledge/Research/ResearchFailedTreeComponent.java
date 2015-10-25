@@ -65,4 +65,9 @@ public class ResearchFailedTreeComponent implements IResearchTreeComponent {
     public ItemStack getTargetStack() {
         return null;
     }
+
+    @Override
+    public void renderComponent() {
+
+    }
 }

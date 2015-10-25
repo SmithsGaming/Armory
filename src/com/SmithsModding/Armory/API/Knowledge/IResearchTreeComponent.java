@@ -6,6 +6,8 @@
 
 package com.SmithsModding.Armory.API.Knowledge;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -36,4 +38,7 @@ public interface IResearchTreeComponent {
     boolean equals(Object pComponent);
 
     ItemStack getTargetStack();
+
+    @SideOnly(Side.CLIENT)
+    void renderComponent();
 }

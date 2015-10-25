@@ -78,6 +78,11 @@ public abstract class StandardResearchTreeComponent implements IResearchTreeComp
     }
 
     @Override
+    public void renderComponent() {
+
+    }
+
+    @Override
     public int hashCode() {
         return iInputID.hashCode();
     }

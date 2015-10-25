@@ -33,7 +33,8 @@ public class References {
     public static final class General {
         public static final String MOD_ID = "Armory";
         public static final String VERSION = "@VERSION@";
-        public static final String MC_VERSION = "@MCVERSION";
+        public static final String MC_VERSION = "@MCVERSION@";
+        public static final String API_VERSION = "@APIVERSION@";
     }
 
     public static final class InternalNames {

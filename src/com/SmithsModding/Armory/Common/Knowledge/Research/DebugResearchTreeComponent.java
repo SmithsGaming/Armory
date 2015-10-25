@@ -96,4 +96,9 @@ public class DebugResearchTreeComponent implements IResearchTreeComponent {
     public ItemStack getTargetStack() {
         return iTargetStack;
     }
+
+    @Override
+    public void renderComponent() {
+
+    }
 }

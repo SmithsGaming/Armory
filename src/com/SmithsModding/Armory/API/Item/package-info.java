@@ -5,6 +5,7 @@
  * <p/>
  * Copyrighted according to Project specific license
  */
-@API(owner = "Armory", apiVersion = "@API_VERSION@", provides = "Armory-API|Item") package com.SmithsModding.Armory.API.Item;
+@API(owner = "Armory", apiVersion = References.General.API_VERSION, provides = "Armory-API|Item") package com.SmithsModding.Armory.API.Item;
 
+import com.SmithsModding.Armory.Util.References;
 import cpw.mods.fml.common.API;
