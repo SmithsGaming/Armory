@@ -8,38 +8,30 @@ Cannot run the CurseUpload sequence. No API-Key was available.Cannot run the Cur
  MCP Data version : unknown
 ****************************
 Found AccessTransformer in main resources: Armory_at.cfg
+:sourceMainJava UP-TO-DATE
+:apiJar UP-TO-DATE
+:compileApiJava UP-TO-DATE
+:processApiResources UP-TO-DATE
+:apiClasses UP-TO-DATE
+:compileJava UP-TO-DATE
+:processResources
+:classes
+:devJar
+:jar
+:compileTestJava UP-TO-DATE
+:processTestResources UP-TO-DATE
+:testClasses UP-TO-DATE
+:test UP-TO-DATE
 :extractMcpData UP-TO-DATE
 :getVersionJson
 :extractUserDev UP-TO-DATE
 :genSrgs SKIPPED
-:extractNatives UP-TO-DATE
-:getAssetsIndex
-:getAssets
-:makeStart
-[ant:javac] warning: [options] bootstrap class path not set in conjunction with -source 1.6
-[ant:javac] 1 warning
-:downloadMcpTools SKIPPED
-:downloadClient SKIPPED
-:downloadServer SKIPPED
-:mergeJars SKIPPED
-:deobfuscateJar
-Applying SpecialSource...
-Applying Exceptor...
-:decompile
-:processSources
-Injecting fml files
-Applying fml patches
-Applying forge patches
-:remapJar
-:extractMinecraftSrc
-:recompMinecraftNote: Some input files use or override a deprecated API.
-Note: Recompile with -Xlint:deprecation for details.
-Note: Some input files use unchecked or unsafe operations.
-Note: Recompile with -Xlint:unchecked for details.
-
-:repackMinecraft
-:setupDecompWorkspace
+:reobf
+:sourceJar
+:assemble
+:check UP-TO-DATE
+:build
 
 BUILD SUCCESSFUL
 
-Total time: 2 mins 35.465 secs
+Total time: 15.796 secs
