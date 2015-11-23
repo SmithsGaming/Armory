@@ -33,7 +33,7 @@ public class ItemFan extends Item {
 
     @Override
     public void registerIcons(IIconRegister pIconRegister) {
-        iFanIcon = pIconRegister.registerIcon(TextureAddressHelper.getTextureAddress("16x Magnifier"));
+        iFanIcon = pIconRegister.registerIcon(TextureAddressHelper.getTextureAddress("16x Fan"));
     }
 
     //Function for getting the Icon from a render pass.

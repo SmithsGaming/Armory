@@ -379,6 +379,7 @@ public class ArmoryInitializer {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockFirePit, 1), "#=#", "#/#", "###", '#', new ItemStack(Items.iron_ingot, 1), '=', new ItemStack(Items.cauldron, 1), '/', new ItemStack(Blocks.furnace, 1)));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBlockAnvil, 1), "BBB", " I ", "IBI", 'B', new ItemStack(Blocks.iron_block, 1), 'I', new ItemStack(Items.iron_ingot, 1)));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Blocks.iBookBinder, 1), "APA", "BGB", "AOA", 'A', new ItemStack(Blocks.log2, 1, 0), 'P', new ItemStack(Blocks.planks, 1, 4), 'B', new ItemStack(Blocks.stonebrick, 1, 0), 'G', new ItemStack(Items.gold_ingot, 1), 'O', new ItemStack(Blocks.planks, 1, 0)));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(GeneralRegistry.Items.iSmithingsGuide, 1), "LL ", "L  ", "LL ", 'L', new ItemStack(Items.leather, 1)));
         }
 
         public static void prepareKnowledgeSystem() {
