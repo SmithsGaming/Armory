@@ -14,9 +14,11 @@ import com.SmithsModding.Armory.API.Knowledge.IBluePrintContainerItem;
 import com.SmithsModding.Armory.API.Knowledge.IBluePrintItem;
 import com.SmithsModding.Armory.API.Knowledge.IKnowledgedGameElement;
 import com.SmithsModding.Armory.API.Knowledge.KnowledgeEntityProperty;
+import com.SmithsModding.Armory.Common.Config.ArmoryConfig;
 import com.SmithsModding.Armory.Common.Item.ItemHammer;
 import com.SmithsModding.Armory.Common.Item.ItemTongs;
 import com.SmithsModding.Armory.Common.Item.Knowledge.LabelledBlueprintGroup;
+import com.SmithsModding.Armory.Common.Registry.GeneralRegistry;
 import com.SmithsModding.Armory.Common.TileEntity.Core.ICustomInputHandler;
 import com.SmithsModding.Armory.Common.TileEntity.Core.TileEntityArmory;
 import com.SmithsModding.Armory.Network.Messages.MessageCustomInput;
@@ -363,6 +365,13 @@ public class TileEntityArmorsAnvil extends TileEntityArmory implements IInventor
             return;
 
         iCurrentValidRecipe = null;
+
+        if (ArmoryConfig.enableDebugOutput) {
+            GeneralRegistry.getInstance().iLogger.info("Checking Recipe for:");
+            for (ItemStack tStack : iCraftingStacks) {
+                GeneralRegistry.iLogger.info("   " + ItemStackHelper.toString(tStack));
+            }
+        }
 
         int tHammerUsagesLeft = -1;
         int tTongUsagesLeft = -1;

@@ -19,6 +19,7 @@ public class ArmoryConfig {
     public static boolean enableHardModeNuggetRemoval = true;
     public static boolean materialPropertiesSet = true;
     public static boolean enableTemperatureDecay = true;
+    public static boolean enableDebugOutput = false;
     public static float basicBlueprintDeteriation = 0.000001F;
     public static float hardBlueprintDeteriation = 0.00001F;
     public static float easyBlueprintDeteriation = 0.0000001F;
@@ -51,6 +52,10 @@ public class ArmoryConfig {
                 ArmoryConfig.materialPropertiesSet = iConfig.getBoolean("MaterialPropertiesSet", MATERIALSCATEGORIE, true, "This variable is used to negotiate the Material properties with dedicated servers. It is not used client side. If set to false, the server will attempt to sync the material properties with the first joining client.");
             } else {
                 ArmoryConfig.materialPropertiesSet = iConfig.getBoolean("MaterialPropertiesSet", MATERIALSCATEGORIE, false, "This variable is used to negotiate the Material properties with dedicated servers. It is not used client side. If set to false, the server will attempt to sync the material properties with the first joining client.");
+            }
+
+            if (Armory.iSide == Side.CLIENT) {
+                ArmoryConfig.enableDebugOutput = iConfig.getBoolean("Debug output", GLOBALCATEGORIE, false, "This variable should be set to true to get Debug output.");
             }
 
             ArmoryConfig.enableTemperatureDecay = iConfig.getBoolean("TemperatureDecay", GLOBALCATEGORIE, true, "Enables the decrementation of the temperature of Heated Items. Also enables the Fire Damage when not held in tendem with a pair of tongs.");

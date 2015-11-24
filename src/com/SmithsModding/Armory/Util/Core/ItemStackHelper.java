@@ -5,6 +5,8 @@ package com.SmithsModding.Armory.Util.Core;
  *   Created on: 16-1-2015
  */
 
+import com.SmithsModding.Armory.API.Item.IHeatableItem;
+import com.SmithsModding.Armory.Common.Item.ItemHeatedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -97,6 +99,15 @@ public class ItemStackHelper
 
     public static String toString(ItemStack pItemStack) {
         if (pItemStack != null) {
+            if (pItemStack.getItem() instanceof IHeatableItem) {
+                String tString;
+
+                tString = String.format("%sxitemStack[%s@%s]", pItemStack.stackSize, pItemStack.getUnlocalizedName(), pItemStack.getItemDamage());
+                tString = tString + "-" + ((IHeatableItem) pItemStack.getItem()).getInternalType() + "-" + ItemHeatedItem.getItemTemperature(pItemStack);
+
+                return tString;
+            }
+
             return String.format("%sxitemStack[%s@%s]", pItemStack.stackSize, pItemStack.getUnlocalizedName(), pItemStack.getItemDamage());
         }
 
