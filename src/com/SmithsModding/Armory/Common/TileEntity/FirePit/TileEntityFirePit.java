@@ -636,6 +636,9 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
 
     public void regenStructure() {
+        if (worldObj.isRemote)
+            return;
+
         if (iMasterComponent != null)
             return;
 
