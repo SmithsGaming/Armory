@@ -16,7 +16,7 @@ public interface IMaterialRegistry {
     /**
      * Function to retrieve all of the types registered to this Registry
      *
-     * @return A HashMap with as Key the internalname of the Armor and as Value a instance of a MultiLayeredArmor
+     * @return A HashMap with as Key the uniqueID of the Armor and as Value a instance of a MultiLayeredArmor
      */
     HashMap<String, MultiLayeredArmor> getAllRegisteredArmors();
 
@@ -28,17 +28,17 @@ public interface IMaterialRegistry {
     void registerNewArmor(MultiLayeredArmor pArmor);
 
     /**
-     * Returns the Armor for a given internalname or null if not registered
+     * Returns the Armor for a given uniqueID or null if not registered
      *
-     * @param pInternalName The internalname of the requested armor.
-     * @return The instance of MultiLayeredArmor registered to this IMaterialRegistry with the given internalname, if present or null if none is registerd with that name.
+     * @param pInternalName The uniqueID of the requested armor.
+     * @return The instance of MultiLayeredArmor registered to this IMaterialRegistry with the given uniqueID, if present or null if none is registerd with that name.
      */
     MultiLayeredArmor getArmor(String pInternalName);
 
     /**
      * Function to get all the materials registered to this IMaterialRegistry
      *
-     * @return A HashMap with as Key the internalname of the Material and as Value the a instance of IArmorMaterial
+     * @return A HashMap with as Key the uniqueID of the Material and as Value the a instance of IArmorMaterial
      */
     HashMap<String, IArmorMaterial> getArmorMaterials();
 
@@ -57,10 +57,10 @@ public interface IMaterialRegistry {
     void registerMaterial(IArmorMaterial pMaterial);
 
     /**
-     * Function to get a material from its internalname if registered.
+     * Function to get a material from its uniqueID if registered.
      *
-     * @param pInternalName The internalname of the material you try to retrieve from the registry
-     * @return A instance of IArmorMaterial that is represented by the given internalname or null if no material with that name is registered.
+     * @param pInternalName The uniqueID of the material you try to retrieve from the registry
+     * @return A instance of IArmorMaterial that is represented by the given uniqueID or null if no material with that name is registered.
      */
     IArmorMaterial getMaterial(String pInternalName);
 
@@ -71,8 +71,8 @@ public interface IMaterialRegistry {
      * <p/>
      * Setting it to false will disable the MLAAddon of that material.
      *
-     * @param pMaterialInternalName The internalname of the material.
-     * @param pUpgradeInternalName  The internalname of the upgrade
+     * @param pMaterialInternalName The uniqueID of the material.
+     * @param pUpgradeInternalName  The uniqueID of the upgrade
      * @param pPartState            The new state of the MLAAddon
      */
     void changeUpgradeStateOnMaterial(String pMaterialInternalName, String pUpgradeInternalName, boolean pPartState);

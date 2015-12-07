@@ -35,7 +35,7 @@ public class MaterialRegistry implements IMaterialRegistry {
     }
 
     public void registerNewArmor(MultiLayeredArmor pArmor) {
-        iArmorMappings.put(pArmor.getInternalName(), pArmor);
+        iArmorMappings.put(pArmor.getUniqueID(), pArmor);
     }
 
     public MultiLayeredArmor getArmor(String pInternalName) {
@@ -53,7 +53,7 @@ public class MaterialRegistry implements IMaterialRegistry {
     }
 
     public void registerMaterial(IArmorMaterial pMaterial) {
-        iArmorMaterials.put(pMaterial.getInternalMaterialName(), pMaterial);
+        iArmorMaterials.put(pMaterial.getUniqueID(), pMaterial);
     }
 
     public IArmorMaterial getMaterial(String pInternalName) {

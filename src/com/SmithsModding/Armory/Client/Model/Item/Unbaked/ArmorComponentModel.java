@@ -106,7 +106,7 @@ public class ArmorComponentModel extends ItemLayerModel {
 
             // We check if a special texture for that item exists in our textures collection.
             // If not we check if the material needs coloring and color the vertexes individually.
-            if (material.getRenderInfo().useVertexColoring() && !ResourceHelper.exists(baseTexture + "-" + material.getInternalMaterialName())) {
+            if (material.getRenderInfo().useVertexColoring() && !ResourceHelper.exists(baseTexture + "-" + material.getUniqueID())) {
                 //We get the color for the material.
                 MinecraftColor color = (material.getRenderInfo()).getVertexColor();
 

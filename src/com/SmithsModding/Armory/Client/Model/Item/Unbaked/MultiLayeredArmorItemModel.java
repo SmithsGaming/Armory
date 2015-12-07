@@ -58,23 +58,23 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
 
         //Check every possible addon for a texture and register it accordingly
         for (final MLAAddon addon : armor.getAllowedAddons()) {
-            String addonID = addon.getInternalName();
+            String addonID = addon.getUniqueID();
             if (addon.isMaterialDependent()) {
                 addonID = ((MaterialDependentMLAAddon) addon).getAddonInternalName();
             }
 
-            if (addon.getModelTextureLocation().equals(baseLayer.getTexture()) && mappedBaseLayer == null) {
+            if (addon.getItemWholeTextureLocation().equals(baseLayer.getTexture()) && mappedBaseLayer == null) {
                 mappedBaseLayer = new Pair<String, BakedComponentModel>(addonID, baseLayer.generateBackedComponentModel(state, format, bakedTextureGetter));
-            } else if (parts.containsKey(addon.getModelTextureLocation().toString())) {
-                mappedParts.put(addonID, parts.get(addon.getModelTextureLocation().toString()).generateBackedComponentModel(state, format, bakedTextureGetter));
+            } else if (parts.containsKey(addon.getItemWholeTextureLocation().toString())) {
+                mappedParts.put(addonID, parts.get(addon.getItemWholeTextureLocation().toString()).generateBackedComponentModel(state, format, bakedTextureGetter));
 
                 //If a part was found, also check for its broken counterpart.
-                if (brokenParts.containsKey(addon.getModelBrokenTextureLocation().toString())) {
-                    mappedBrokenParts.put(addonID, parts.get(addon.getModelBrokenTextureLocation().toString()).generateBackedComponentModel(state, format, bakedTextureGetter));
+                if (brokenParts.containsKey(addon.getItemBrokenTextureLocation().toString())) {
+                    mappedBrokenParts.put(addonID, parts.get(addon.getItemBrokenTextureLocation().toString()).generateBackedComponentModel(state, format, bakedTextureGetter));
                 }
-            } else if (!addon.getModelTextureLocation().equals(baseLayer.getTexture())) {
+            } else if (!addon.getItemWholeTextureLocation().equals(baseLayer.getTexture())) {
                 //For a given MLAAddon on the armor was no texture found.
-                Armory.getLogger().error("A given Armor: " + armor.getInternalName() + " has a MLAAddon: " + addon.getInternalName() + " that has no texture registered in the model. It is being skipped.");
+                Armory.getLogger().error("A given Armor: " + armor.getUniqueID() + " has a MLAAddon: " + addon.getUniqueID() + " that has no texture registered in the model. It is being skipped.");
             }
         }
 

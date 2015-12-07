@@ -28,7 +28,7 @@ public class ArmorNBTHelper {
         String tTier = tStackCompound.getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.ArmorTier);
         NBTTagCompound tAddonsCompound = tStackCompound.getCompoundTag(References.NBTTagCompoundData.InstalledAddons);
 
-        for (ArmorAddonPosition tPossiblePosition : (((MultiLayeredArmor) pItemStack.getItem()).getAllowedPositions())) {
+        for (ArmorAddonPosition tPossiblePosition : (((MultiLayeredArmor) pItemStack.getItem()).getAllowedAddonPositions())) {
             NBTTagCompound tPositionCompound = tAddonsCompound.getCompoundTag(tPossiblePosition.getInternalName());
 
             if (!tPositionCompound.hasNoTags()) {
@@ -52,8 +52,8 @@ public class ArmorNBTHelper {
 
         for (Map.Entry<MLAAddon, Integer> entry : pAddonMap.entrySet()) {
             NBTTagCompound tPositionCompound = new NBTTagCompound();
-            tPositionCompound.setString(References.NBTTagCompoundData.Addons.AddonID, entry.getKey().getInternalName());
-            tPositionCompound.setString(References.NBTTagCompoundData.Addons.ParentID, entry.getKey().getParentName());
+            tPositionCompound.setString(References.NBTTagCompoundData.Addons.AddonID, entry.getKey().getUniqueID());
+            tPositionCompound.setString(References.NBTTagCompoundData.Addons.ParentID, entry.getKey().getUniqueArmorID());
             tPositionCompound.setString(References.NBTTagCompoundData.Addons.AddonPositionID, entry.getKey().getAddonPositionID());
             tPositionCompound.setInteger(References.NBTTagCompoundData.Addons.AddonInstalledAmount, entry.getValue());
             tPositionCompound.setInteger(References.NBTTagCompoundData.Addons.AddonMaxInstalledAmount, entry.getKey().getMaxInstalledAmount());

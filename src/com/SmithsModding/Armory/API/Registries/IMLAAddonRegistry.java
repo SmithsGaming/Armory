@@ -15,7 +15,7 @@ public interface IMLAAddonRegistry {
     /**
      * Function to retrieve all registered MLAAddons.
      *
-     * @return A HashMap with as Key the internalname representing the MLAAddon in the Value.
+     * @return A HashMap with as Key the uniqueID representing the MLAAddon in the Value.
      */
     HashMap<String, MLAAddon> getUpgrades();
 
@@ -27,10 +27,10 @@ public interface IMLAAddonRegistry {
     void registerUpgrade(MLAAddon pUpgrade);
 
     /**
-     * Function to retrieve a MLAAddon from its internalname if registered to this IMaterialRegistry
+     * Function to retrieve a MLAAddon from its uniqueID if registered to this IMaterialRegistry
      *
-     * @param pUpgradeInternalName THe internalname of the MLAAddon
-     * @return A MLAAddon instance with that internalname if registered, else null.
+     * @param pUpgradeInternalName THe uniqueID of the MLAAddon
+     * @return A MLAAddon instance with that uniqueID if registered, else null.
      */
     MLAAddon getUpgrade(String pUpgradeInternalName);
 }

@@ -13,13 +13,13 @@ import java.util.HashMap;
  * Copyrighted according to Project specific license
  */
 public interface IArmorMaterial {
-    int getMaterialID();
+    int getItemDamageMaterialID ();
 
-    void setMaterialID(int pNewID);
+    void setItemDamageMaterialID (int pNewID);
 
     ItemStack getRootItemStack();
 
-    String getInternalMaterialName();
+    String getUniqueID ();
 
     void registerNewActivePart(String pUpgradeInternalName, boolean pPartState);
 

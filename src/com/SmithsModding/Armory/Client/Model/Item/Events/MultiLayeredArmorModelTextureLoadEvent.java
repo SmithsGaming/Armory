@@ -33,7 +33,7 @@ public class MultiLayeredArmorModelTextureLoadEvent extends SmithsCoreEvent {
         try {
             additionalTextureLayers.putAll(ModelHelper.loadTexturesFromJson(modelDefinitionLocation));
         } catch (Exception ex) {
-            Armory.getLogger().error("Error while attempting to add: " + modelDefinitionLocation.toString() + " to the model definition of: " + armor.getInternalName());
+            Armory.getLogger().error("Error while attempting to add: " + modelDefinitionLocation.toString() + " to the model definition of: " + armor.getUniqueID());
         }
     }
 }

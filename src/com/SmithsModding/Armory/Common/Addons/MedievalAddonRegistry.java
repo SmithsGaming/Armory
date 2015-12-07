@@ -28,7 +28,7 @@ public class MedievalAddonRegistry implements IMLAAddonRegistry {
 
         for (MLAAddon tAddon : this.iArmorUpgrades.values()) {
             if (tAddon instanceof ArmorUpgradeMedieval) {
-                tMedievalUpgrades.put(tAddon.getInternalName(), tAddon);
+                tMedievalUpgrades.put(tAddon.getUniqueID(), tAddon);
             }
         }
 
@@ -36,9 +36,9 @@ public class MedievalAddonRegistry implements IMLAAddonRegistry {
     }
 
     public void registerUpgrade(MLAAddon pUpgrade) {
-        iArmorUpgrades.put(pUpgrade.getInternalName(), pUpgrade);
+        iArmorUpgrades.put(pUpgrade.getUniqueID(), pUpgrade);
 
-        MaterialRegistry.getInstance().getArmor(pUpgrade.getParentName()).registerAddon(pUpgrade);
+        MaterialRegistry.getInstance().getArmor(pUpgrade.getUniqueArmorID()).registerAddon(pUpgrade);
     }
 
     public MLAAddon getUpgrade (String pUpgradeInternalName) {

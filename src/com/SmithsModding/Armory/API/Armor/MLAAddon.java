@@ -8,48 +8,49 @@ package com.SmithsModding.Armory.API.Armor;
 
 import net.minecraft.util.ResourceLocation;
 
-import java.security.InvalidParameterException;
-
 public abstract class MLAAddon implements ILayeredArmorLayer {
-    protected String iInternalName = "";
-    protected String iAddonPositionID;
-    protected Integer iMaxInstalledAmount = 1;
-    protected String iParentName = "";
-    protected ResourceLocation iResourceLocation;
-    protected ResourceLocation iBrokenResource;
+    protected String uniqueID = "";
+    protected String addonPositionID;
+    protected String uniqueArmorID = "";
+
+    protected Integer maximumInstalledAmount = 1;
+
+    protected ResourceLocation itemWholeTextureLocation;
+    protected ResourceLocation itemBrokenTextureLocation;
+    protected ResourceLocation modelTextureLocation;
+
     protected int layerPriority;
 
     /**
      * Standard constructor sets the Internal Name and the position of the Addon on the armor
      *
-     * @param pInternalName    The internal name of the addon
-     * @param pParentName      The MLA Armor this addon should be registered to.
-     * @param pAddonPositionID The position of the addon on the MLA armor.
+     * @param uniqueID    The internal name of the addon
+     * @param uniqueArmorID      The MLA Armor this addon should be registered to.
+     * @param addonPositionID The position of the addon on the MLA armor.
      *                         <p/>
      *                         Classes you might be interested in:
      * @see MultiLayeredArmor
      * @see ArmorAddonPosition
      */
-    public MLAAddon (String pInternalName, String pParentName, String pAddonPositionID, ResourceLocation pModelTextureLocation, int layerPriority) {
-        this(pInternalName, pParentName, pAddonPositionID, 1, pModelTextureLocation, layerPriority);
+    public MLAAddon (String uniqueID, String uniqueArmorID, String addonPositionID, ResourceLocation itemWholeTextureLocation, int layerPriority) {
+        this(uniqueID, uniqueArmorID, addonPositionID, 1, itemWholeTextureLocation, layerPriority);
     }
 
     /**
      * Standard constructor used to create Addons which support multiple of them selves on a single position
      *
-     * @param pInternalName       The internal name of the addon
-     * @param pParentName         The MLA Armor this addon should be registered to.
-     * @param pAddonPositionID    The position of the addon on the MLA armor.
-     * @param pMaxInstalledAmount The max amount of addons that are allowed on a single position
-     * @throws InvalidParameterException Will be thrown if more than the allowed max are passed as parameter.
+     * @param uniqueID       The internal name of the addon
+     * @param uniqueArmorID         The MLA Armor this addon should be registered to.
+     * @param addonPositionID    The position of the addon on the MLA armor.
+     * @param maximumInstalledAmount The max amount of addons that are allowed on a single position
      */
-    public MLAAddon (String pInternalName, String pParentName, String pAddonPositionID, Integer pMaxInstalledAmount, ResourceLocation pModelTextureLocation, int layerPriority) {
-        this.iInternalName = pInternalName;
-        this.iParentName = pParentName;
-        this.iAddonPositionID = pAddonPositionID;
-        this.iMaxInstalledAmount = pMaxInstalledAmount;
-        this.iResourceLocation = pModelTextureLocation;
-        iBrokenResource = iResourceLocation;
+    public MLAAddon (String uniqueID, String uniqueArmorID, String addonPositionID, Integer maximumInstalledAmount, ResourceLocation itemWholeTextureLocation, int layerPriority) {
+        this.uniqueID = uniqueID;
+        this.uniqueArmorID = uniqueArmorID;
+        this.addonPositionID = addonPositionID;
+        this.maximumInstalledAmount = maximumInstalledAmount;
+        this.itemWholeTextureLocation = itemWholeTextureLocation;
+        itemBrokenTextureLocation = this.itemWholeTextureLocation;
         this.layerPriority = layerPriority;
     }
 
@@ -59,13 +60,18 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
     }
 
     @Override
-    public ResourceLocation getModelTextureLocation () {
-        return iResourceLocation;
+    public ResourceLocation getItemWholeTextureLocation () {
+        return itemWholeTextureLocation;
     }
 
     @Override
-    public ResourceLocation getModelBrokenTextureLocation () {
-        return iBrokenResource;
+    public ResourceLocation getItemBrokenTextureLocation () {
+        return itemBrokenTextureLocation;
+    }
+
+    @Override
+    public ResourceLocation getModelTextureLocation () {
+        return modelTextureLocation;
     }
 
     /**
@@ -77,8 +83,8 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
      * @see MultiLayeredArmor
      * @see ArmorAddonPosition
      */
-    public String getInternalName() {
-        return this.iInternalName;
+    public String getUniqueID () {
+        return this.uniqueID;
     }
 
     /**
@@ -89,8 +95,8 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
      * Classes that might interest you:
      * @see MultiLayeredArmor
      */
-    public String getParentName() {
-        return this.iParentName;
+    public String getUniqueArmorID () {
+        return this.uniqueArmorID;
     }
 
     /**
@@ -103,11 +109,16 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
      * @see ArmorAddonPosition
      */
     public String getAddonPositionID() {
-        return this.iAddonPositionID;
+        return this.addonPositionID;
     }
 
+    /**
+     * Method to get the maximum amount of installed instances of this Addon, on a single ItemStack.
+     *
+     * @return The maximum amounr of installed instances of this Addon.
+     */
     public Integer getMaxInstalledAmount() {
-        return this.iMaxInstalledAmount;
+        return this.maximumInstalledAmount;
     }
 
     /**

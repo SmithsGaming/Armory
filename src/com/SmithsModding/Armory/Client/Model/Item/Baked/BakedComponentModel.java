@@ -39,7 +39,7 @@ public class BakedComponentModel extends IFlexibleBakedModel.Wrapper implements 
      * @param model    The model to register.
      */
     public void addMaterialModel (IArmorMaterial material, IFlexibleBakedModel model) {
-        materializedComponents.put(material.getInternalMaterialName(), model);
+        materializedComponents.put(material.getUniqueID(), model);
     }
 
     /**

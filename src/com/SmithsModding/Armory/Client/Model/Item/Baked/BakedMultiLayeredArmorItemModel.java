@@ -80,7 +80,7 @@ public class BakedMultiLayeredArmorItemModel extends ItemLayerModel.BakedModel i
         boolean broken = ArmorNBTHelper.checkIfStackIsBroken(stack);
 
         for (MLAAddon addon : installedAddons) {
-            String addonID = addon.getInternalName();
+            String addonID = addon.getUniqueID();
             String modelID = addonID;
             if (addon.isMaterialDependent()) {
                 addonID = ((MaterialDependentMLAAddon) addon).getAddonInternalName();

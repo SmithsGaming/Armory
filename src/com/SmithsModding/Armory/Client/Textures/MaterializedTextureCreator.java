@@ -118,7 +118,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
             for (IArmorMaterial material : MaterialRegistry.getInstance().getArmorMaterials().values()) {
                 TextureAtlasSprite sprite = createTexture(material, baseTexture, base, map);
                 if (sprite != null) {
-                    coloredSprites.put(material.getInternalMaterialName(), sprite);
+                    coloredSprites.put(material.getUniqueID(), sprite);
                 }
             }
 
@@ -137,7 +137,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     }
 
     private TextureAtlasSprite createTexture (IArmorMaterial material, ResourceLocation baseTexture, TextureAtlasSprite base, TextureMap map) {
-        String location = baseTexture.toString() + "_" + material.getInternalMaterialName();
+        String location = baseTexture.toString() + "_" + material.getUniqueID();
         TextureAtlasSprite sprite;
 
         if (ResourceHelper.exists(location)) {

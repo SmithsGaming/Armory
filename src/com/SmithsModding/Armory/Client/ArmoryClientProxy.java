@@ -92,7 +92,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         // We have to read the default variant if we have custom variants, since it wont be added otherwise and therefore not loaded
         ModelBakery.addVariantName(armor, location.toString());
 
-        Armory.getLogger().info("Added model definition for: " + armor.getInternalName() + " add: " + location.getResourcePath() + " in the Domain: " + location.getResourceDomain());
+        Armory.getLogger().info("Added model definition for: " + armor.getUniqueID() + " add: " + location.getResourcePath() + " in the Domain: " + location.getResourceDomain());
 
         return location;
     }

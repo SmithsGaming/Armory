@@ -56,7 +56,7 @@ public class ArmorMaterial implements IArmorMaterial {
 
         iBaseStack = pBaseItemStack;
 
-        setMaterialID(iLastUsedID);
+        setItemDamageMaterialID(iLastUsedID);
         iLastUsedID++;
 
         if (renderInfo != null) {
@@ -77,19 +77,19 @@ public class ArmorMaterial implements IArmorMaterial {
 
         iBaseStack = pBaseItemStack;
 
-        setMaterialID(iLastUsedID);
+        setItemDamageMaterialID(iLastUsedID);
         iLastUsedID++;
 
         Armory.getLogger().info("Initialized Material: " + iInternalName + ", with unknown ItemColor.");
     }
 
     @Override
-    public int getMaterialID() {
+    public int getItemDamageMaterialID () {
         return iMaterialID;
     }
 
     @Override
-    public void setMaterialID(int pNewID) {
+    public void setItemDamageMaterialID (int pNewID) {
         iMaterialID = pNewID;
     }
 
@@ -99,13 +99,13 @@ public class ArmorMaterial implements IArmorMaterial {
     }
 
     @Override
-    public String getInternalMaterialName() {
+    public String getUniqueID () {
         return iInternalName;
     }
 
     public void registerNewActivePart(String pUpgradeInternalName, boolean pPartState) {
         if ((iActiveParts.size() != 0) && (iActiveParts.get(pUpgradeInternalName) != null)) {
-            throw new InvalidParameterException("The given upgrade: " + MedievalAddonRegistry.getInstance().getUpgrade(pUpgradeInternalName).getInternalName() + ", is already registered  for this material: " + iVisibleName + ". The upgrades will automatically register them self's to the material.");
+            throw new InvalidParameterException("The given upgrade: " + MedievalAddonRegistry.getInstance().getUpgrade(pUpgradeInternalName).getUniqueID() + ", is already registered  for this material: " + iVisibleName + ". The upgrades will automatically register them self's to the material.");
         }
 
         iActiveParts.put(pUpgradeInternalName, pPartState);
@@ -113,7 +113,7 @@ public class ArmorMaterial implements IArmorMaterial {
 
     public void modifyPartState(String pUpgradeInternalName, boolean pPartState) {
         if (iActiveParts.get(pUpgradeInternalName) == null) {
-            throw new InvalidParameterException("The given upgrade: " + MedievalAddonRegistry.getInstance().getUpgrade(pUpgradeInternalName).getInternalName() + ", is not registered for the following material: " + iVisibleName + ". Something went wrong as this should have happened when registering the material!");
+            throw new InvalidParameterException("The given upgrade: " + MedievalAddonRegistry.getInstance().getUpgrade(pUpgradeInternalName).getUniqueID() + ", is not registered for the following material: " + iVisibleName + ". Something went wrong as this should have happened when registering the material!");
         }
         iActiveParts.put(pUpgradeInternalName, pPartState);
     }

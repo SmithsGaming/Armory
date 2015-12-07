@@ -53,8 +53,8 @@ public class MedievalArmorFactory implements IMLAFactory {
         tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.CurrentDurability, tOldCurrentDurability + (pNewTotalDurability - tOldTotalDurability));
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.MaterialID, pInternalMaterialName);
         tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.Addons, tAddonMap.size());
-        tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.ArmorPart, pBaseArmor.getArmorPart());
-        tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, pBaseArmor.getInternalName());
+        tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.ArmorPart, pBaseArmor.getArmorIndex());
+        tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, pBaseArmor.getUniqueID());
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorTier, References.InternalNames.Tiers.MEDIEVAL);
         tNewStackCompound.setTag(References.NBTTagCompoundData.ArmorData, tNewDataCompound);
 
@@ -70,7 +70,7 @@ public class MedievalArmorFactory implements IMLAFactory {
             return null;
 
         HashMap<MLAAddon, Integer> completeList = new HashMap<MLAAddon, Integer>();
-        completeList.put(pBaseArmor.getAddon(pBaseArmor.getInternalName() + "-" + pInternalMaterialName), 1);
+        completeList.put(pBaseArmor.getAddon(pBaseArmor.getUniqueID() + "-" + pInternalMaterialName), 1);
         completeList.putAll(pAddons);
 
         NBTTagCompound tNewStackCompound = new NBTTagCompound();
@@ -81,8 +81,8 @@ public class MedievalArmorFactory implements IMLAFactory {
         tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.CurrentDurability, pTotalDurability);
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.MaterialID, pInternalMaterialName);
         tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.Addons, pAddons.size());
-        tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.ArmorPart, pBaseArmor.getArmorPart());
-        tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, pBaseArmor.getInternalName());
+        tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.ArmorPart, pBaseArmor.getArmorIndex());
+        tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, pBaseArmor.getUniqueID());
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorTier, References.InternalNames.Tiers.MEDIEVAL);
         tNewStackCompound.setTag(References.NBTTagCompoundData.ArmorData, tNewDataCompound);
 
@@ -110,12 +110,12 @@ public class MedievalArmorFactory implements IMLAFactory {
                 Map.Entry tNewEntry = (Map.Entry) tNewIterator.next();
                 MLAAddon tNewAddon = (MLAAddon) tNewEntry.getKey();
 
-                if (tInstalledAddon.getInternalName() == tNewAddon.getInternalName()) {
+                if (tInstalledAddon.getUniqueID() == tNewAddon.getUniqueID()) {
                     if (((Integer) tInstalledEntry.getValue() + (Integer) tNewEntry.getValue()) > tInstalledAddon.getMaxInstalledAmount()) {
                         tContinueCrafting = false;
                     }
                 } else {
-                    tContinueCrafting = (tInstalledAddon.validateCrafting(tNewAddon.getInternalName(), true) && tNewAddon.validateCrafting(tInstalledAddon.getInternalName(), false));
+                    tContinueCrafting = (tInstalledAddon.validateCrafting(tNewAddon.getUniqueID(), true) && tNewAddon.validateCrafting(tInstalledAddon.getUniqueID(), false));
                 }
             }
         }
@@ -133,7 +133,7 @@ public class MedievalArmorFactory implements IMLAFactory {
 
             while (tContinueCrafting && tInternalIterator.hasNext()) {
                 MLAAddon tInternalAddon = ((MLAAddon) ((Map.Entry) tInternalIterator.next()).getKey());
-                tContinueCrafting = tExternalAddon.validateCrafting(tInternalAddon.getInternalName(), false);
+                tContinueCrafting = tExternalAddon.validateCrafting(tInternalAddon.getUniqueID(), false);
             }
         }
 
