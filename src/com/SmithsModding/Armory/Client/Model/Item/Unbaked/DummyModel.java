@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.Client.Model.Item;
+package com.SmithsModding.Armory.Client.Model.Item.Unbaked;
 
 import com.google.common.base.Function;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;

@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 public class ChainLayer extends MaterialDependentMLAAddon {
 
     public ChainLayer (String pInternalName, String pParentName, String pAddonPositionID, String pMaterialID, ResourceLocation pModelLocation) {
-        super(pInternalName, pMaterialID, pParentName, pAddonPositionID, pModelLocation);
+        super(pInternalName, pMaterialID, pParentName, pAddonPositionID, pModelLocation, 0);
     }
 
     @Override

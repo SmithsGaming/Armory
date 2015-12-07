@@ -16,7 +16,7 @@ public class ArmorUpgradeMedieval extends MaterialDependentMLAAddon {
 
     //Constructors
     public ArmorUpgradeMedieval (String pInternalName, String pParentID, String pArmorPositionID, String pMaterialInternalName, String pVisibleName, String pVisibleNameColor, float pProtection, int pExtraDurability, int pMaxUpgrades, ResourceLocation pModelLocation) {
-        super(pInternalName, pMaterialInternalName, pParentID, pArmorPositionID, pMaxUpgrades, pModelLocation);
+        super(pInternalName, pMaterialInternalName, pParentID, pArmorPositionID, pMaxUpgrades, pModelLocation, 1);
         this.iMaterialInternalName = pMaterialInternalName;
         this.iVisibleName = pVisibleName;
         this.iVisibleNameColor = pVisibleNameColor;

@@ -9,12 +9,12 @@ public abstract class MaterialDependentMLAAddon extends MLAAddon {
     String iMaterialName;
     String iInternalName;
 
-    public MaterialDependentMLAAddon (String pInternalName, String pMaterialName, String pParentName, String pAddonPositionID, ResourceLocation pModelTextureLocation) {
-        this(pInternalName, pMaterialName, pParentName, pAddonPositionID, 1, pModelTextureLocation);
+    public MaterialDependentMLAAddon (String pInternalName, String pMaterialName, String pParentName, String pAddonPositionID, ResourceLocation pModelTextureLocation, int layerPriority) {
+        this(pInternalName, pMaterialName, pParentName, pAddonPositionID, 1, pModelTextureLocation, layerPriority);
     }
 
-    public MaterialDependentMLAAddon (String pInternalName, String pMaterialName, String pParentName, String pAddonPositionID, Integer pMaxInstalledAmount, ResourceLocation pModelTextureLocation) {
-        super(pInternalName + "-" + pMaterialName, pParentName, pAddonPositionID, pMaxInstalledAmount, pModelTextureLocation);
+    public MaterialDependentMLAAddon (String pInternalName, String pMaterialName, String pParentName, String pAddonPositionID, Integer pMaxInstalledAmount, ResourceLocation pModelTextureLocation, int layerPriority) {
+        super(pInternalName + "-" + pMaterialName, pParentName, pAddonPositionID, pMaxInstalledAmount, pModelTextureLocation, layerPriority);
 
         iInternalName = pInternalName;
         iMaterialName = pMaterialName;

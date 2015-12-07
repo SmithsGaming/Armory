@@ -1,6 +1,7 @@
-package com.SmithsModding.Armory.Client.Model.Item;
+package com.SmithsModding.Armory.Client.Model.Item.Unbaked;
 
 import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
+import com.SmithsModding.Armory.Client.Model.Item.Baked.BakedComponentModel;
 import com.SmithsModding.Armory.Client.Textures.MaterializedTextureCreator;
 import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
 import com.SmithsModding.SmithsCore.Util.Client.Color.MinecraftColor;
@@ -47,9 +48,14 @@ public class ArmorComponentModel extends ItemLayerModel {
      */
     @Override
     public IFlexibleBakedModel bake (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
-        return super.bake(state, format, bakedTextureGetter);
+        return generateBackedComponentModel(state, format, bakedTextureGetter);
     }
 
+    /**
+     * Function to get the grayscale texture location of this Model faster.
+     *
+     * @return The location of the grayscale texture.
+     */
     public ResourceLocation getTexture () {
         ArrayList<ResourceLocation> textures = new ArrayList<ResourceLocation>();
         textures.addAll(getTextures());
@@ -65,34 +71,54 @@ public class ArmorComponentModel extends ItemLayerModel {
         return ModelHelper.DEFAULT_ITEM_STATE;
     }
 
+    /**
+     * Function to get a baked model from outside of the baking proces.
+     *
+     * @param state              The model state to retrieve a model for.
+     * @param format             The format of storing the individual vertexes in memory
+     * @param bakedTextureGetter Function to get the baked textures.
+     * @return A baked model containing all individual possible textures this model can have.
+     */
     public BakedComponentModel generateBackedComponentModel (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
-        // normal model as the base
+        // Get ourselfs a normal model to use.
         IFlexibleBakedModel base = super.bake(state, format, bakedTextureGetter);
 
-        // turn it into a baked material-model
+        // Use it as our base for the BakedComponentModel.
         BakedComponentModel bakedMaterialModel = new BakedComponentModel(base);
 
-        // and generate the baked model for each material-variant we have for the base texture
+        //In between the loading of the model from the JSON and the baking the MaterializedTextureCreator was able to
+        // generate all the necessary textures for the models.
+        //We retrieve those now and register them to the BakedModel later.
         String baseTexture = base.getParticleTexture().getIconName();
         Map<String, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(baseTexture);
 
+        //Construct individual models for each of the sprites.
         for (Map.Entry<String, TextureAtlasSprite> entry : sprites.entrySet()) {
+            //We grab the material now, that way we know the material exists before continuing.
             IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(entry.getKey());
 
+            //We retexture this model with the newly colored textured from ther creator and get a Copy of this model
+            //But then colored instead of grayscaled.
             IModel model2 = this.retexture(ImmutableMap.of("layer0", entry.getValue().getIconName()));
+
+            //We bake the new model to get a ready to use textured and ready to be colored baked model.
             IFlexibleBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
 
-            // if it's a colored material we need to color the quads. But only if the texture was not a custom texture
-            if (material.getRenderInfo().useVertexColoring() && !ResourceHelper.exists(baseTexture + "_" + material.getInternalMaterialName())) {
+            // We check if a special texture for that item exists in our textures collection.
+            // If not we check if the material needs coloring and color the vertexes individually.
+            if (material.getRenderInfo().useVertexColoring() && !ResourceHelper.exists(baseTexture + "-" + material.getInternalMaterialName())) {
+                //We get the color for the material.
                 MinecraftColor color = (material.getRenderInfo()).getVertexColor();
 
+                //We create a new list of Quads.
                 ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
-                // ItemLayerModel.BakedModel only uses general quads
+
+                //We color all the quads in the GeneralQuads (As the ItemLayeredModel.BakedModel only uses the General Quads)
                 for (BakedQuad quad : bakedModel2.getGeneralQuads()) {
                     quads.add(ModelHelper.colorQuad(color, quad));
                 }
 
-                // create a new model with the colored quads
+                //Now we redo the process of creating a baked model, but this time we use the colored quads.
                 if (state instanceof IPerspectiveState) {
                     IPerspectiveState ps = (IPerspectiveState) state;
                     Map<ItemCameraTransforms.TransformType, TRSRTransformation> map = Maps.newHashMap();
@@ -110,6 +136,7 @@ public class ArmorComponentModel extends ItemLayerModel {
             bakedMaterialModel.addMaterialModel(material, bakedModel2);
         }
 
+        //And we are done, we have a ready to use, baked, textured and colored model.
         return bakedMaterialModel;
     }
 

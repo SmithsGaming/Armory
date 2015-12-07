@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.Client.Model.Item;
+package com.SmithsModding.Armory.Client.Model.Item.Baked;
 
 import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
 import com.SmithsModding.Armory.API.Item.ISingleMaterialItem;

@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.Client.Model.Item;
+package com.SmithsModding.Armory.Client.Model.Item.Baked;
 
 import com.SmithsModding.Armory.API.Armor.MLAAddon;
 import com.SmithsModding.Armory.API.Armor.MaterialDependentMLAAddon;
@@ -41,19 +41,17 @@ public class BakedMultiLayeredArmorItemModel extends ItemLayerModel.BakedModel i
     protected Pair<String, BakedComponentModel> baseLayer;
     protected HashMap<String, BakedComponentModel> parts;
     protected HashMap<String, BakedComponentModel> brokenParts;
-    protected Map<String, IFlexibleBakedModel> modifierParts;
 
     /**
      * The length of brokenParts has to match the length of parts. If a part does not have a broken texture, the entry in
      * the array simply is null.
      */
-    public BakedMultiLayeredArmorItemModel (IFlexibleBakedModel parent, Pair baseLayer, HashMap parts, HashMap brokenParts, Map modifierParts, ImmutableMap transform) {
+    public BakedMultiLayeredArmorItemModel (IFlexibleBakedModel parent, Pair baseLayer, HashMap parts, HashMap brokenParts, ImmutableMap transform) {
         super((ImmutableList<BakedQuad>) parent.getGeneralQuads(), parent.getParticleTexture(), parent.getFormat(), transform);
 
         this.parts = parts;
         this.baseLayer = baseLayer;
         this.brokenParts = brokenParts;
-        this.modifierParts = modifierParts;
         this.transforms = transform;
     }
 
@@ -67,6 +65,14 @@ public class BakedMultiLayeredArmorItemModel extends ItemLayerModel.BakedModel i
 
         ArrayList<MLAAddon> installedAddons = new ArrayList<MLAAddon>();
         installedAddons.addAll(ArmorNBTHelper.getAddonMap(stack).keySet());
+
+        //Sort the list based on priority.
+        Collections.sort(installedAddons, new Comparator<MLAAddon>() {
+            @Override
+            public int compare (MLAAddon o1, MLAAddon o2) {
+                return Integer.compare(o1.getLayerPriority(), o2.getLayerPriority());
+            }
+        });
 
         // get the texture for each part
         ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();

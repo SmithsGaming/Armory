@@ -3,7 +3,6 @@ package com.SmithsModding.Armory.Client;
 import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
 import com.SmithsModding.Armory.Armory;
 import com.SmithsModding.Armory.Client.Logic.ArmoryClientInitializer;
-import com.SmithsModding.Armory.Client.Model.Loaders.MedievalComponentModelLoader;
 import com.SmithsModding.Armory.Client.Model.Loaders.MultiLayeredArmorModelLoader;
 import com.SmithsModding.Armory.Client.Textures.MaterializedTextureCreator;
 import com.SmithsModding.Armory.Common.ArmoryCommonProxy;
@@ -26,12 +25,10 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
  */
 public class ArmoryClientProxy extends ArmoryCommonProxy {
 
-    private static MedievalComponentModelLoader medievalComponentModelLoader = new MedievalComponentModelLoader();
     private static MultiLayeredArmorModelLoader multiLayeredArmorModelLoader = new MultiLayeredArmorModelLoader();
 
     @Override
     public void preInitializeArmory() {
-        ModelLoaderRegistry.registerLoader(medievalComponentModelLoader);
         ModelLoaderRegistry.registerLoader(multiLayeredArmorModelLoader);
 
         MaterializedTextureCreator materializedTextureCreator = new MaterializedTextureCreator();

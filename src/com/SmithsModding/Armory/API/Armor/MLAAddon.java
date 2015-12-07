@@ -17,6 +17,7 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
     protected String iParentName = "";
     protected ResourceLocation iResourceLocation;
     protected ResourceLocation iBrokenResource;
+    protected int layerPriority;
 
     /**
      * Standard constructor sets the Internal Name and the position of the Addon on the armor
@@ -29,8 +30,8 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
      * @see MultiLayeredArmor
      * @see ArmorAddonPosition
      */
-    public MLAAddon (String pInternalName, String pParentName, String pAddonPositionID, ResourceLocation pModelTextureLocation) {
-        this(pInternalName, pParentName, pAddonPositionID, 1, pModelTextureLocation);
+    public MLAAddon (String pInternalName, String pParentName, String pAddonPositionID, ResourceLocation pModelTextureLocation, int layerPriority) {
+        this(pInternalName, pParentName, pAddonPositionID, 1, pModelTextureLocation, layerPriority);
     }
 
     /**
@@ -42,13 +43,14 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
      * @param pMaxInstalledAmount The max amount of addons that are allowed on a single position
      * @throws InvalidParameterException Will be thrown if more than the allowed max are passed as parameter.
      */
-    public MLAAddon (String pInternalName, String pParentName, String pAddonPositionID, Integer pMaxInstalledAmount, ResourceLocation pModelTextureLocation) {
+    public MLAAddon (String pInternalName, String pParentName, String pAddonPositionID, Integer pMaxInstalledAmount, ResourceLocation pModelTextureLocation, int layerPriority) {
         this.iInternalName = pInternalName;
         this.iParentName = pParentName;
         this.iAddonPositionID = pAddonPositionID;
         this.iMaxInstalledAmount = pMaxInstalledAmount;
         this.iResourceLocation = pModelTextureLocation;
         iBrokenResource = iResourceLocation;
+        this.layerPriority = layerPriority;
     }
 
     @Override
@@ -107,6 +109,16 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
     public Integer getMaxInstalledAmount() {
         return this.iMaxInstalledAmount;
     }
+
+    /**
+     * Method to get the priority in the rendering of this layer.
+     *
+     * @return The higher the better.
+     */
+    public int getLayerPriority () {
+        return layerPriority;
+    }
+
 
     //##################Functions used to configure most of the crafting logic##########################################
 

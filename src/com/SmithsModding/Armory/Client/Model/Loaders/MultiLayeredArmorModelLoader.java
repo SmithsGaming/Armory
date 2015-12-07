@@ -1,16 +1,16 @@
 package com.SmithsModding.Armory.Client.Model.Loaders;
 
 
+import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
 import com.SmithsModding.Armory.Armory;
-import com.SmithsModding.Armory.Client.Model.Item.ArmorComponentModel;
-import com.SmithsModding.Armory.Client.Model.Item.ComponentModel;
-import com.SmithsModding.Armory.Client.Model.Item.DummyModel;
-import com.SmithsModding.Armory.Client.Model.Item.MultiLayeredArmorItemModel;
+import com.SmithsModding.Armory.Client.Model.Item.Events.MultiLayeredArmorModelTextureLoadEvent;
+import com.SmithsModding.Armory.Client.Model.Item.Unbaked.ArmorComponentModel;
+import com.SmithsModding.Armory.Client.Model.Item.Unbaked.DummyModel;
+import com.SmithsModding.Armory.Client.Model.Item.Unbaked.MultiLayeredArmorItemModel;
 import com.SmithsModding.Armory.Client.Textures.MaterializedTextureCreator;
 import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
 import com.SmithsModding.SmithsCore.Util.Client.ModelHelper;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.LoaderState;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,77 +43,109 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
         }
 
         try {
+            //Retrieve the Name of the Armor.
+            //The file name without the extension has to be equal to the Name used in Armories registry.
+            String armorInternalName = FilenameUtils.getBaseName(modelLocation.getResourcePath());
+            MultiLayeredArmor armor = MaterialRegistry.getInstance().getArmor(armorInternalName);
+
+            //If none is registered return missing model and print out an error.
+            if (armor == null) {
+                Armory.getLogger().error("The given Model: " + modelLocation.toString() + " Is not registered to any Armor known to Armory.");
+                return ModelLoaderRegistry.getMissingModel();
+            }
+
+            //Load the default definition of the model as defined by the registrar first.
             Map<String, String> textures = ModelHelper.loadTexturesFromJson(modelLocation);
+
+            //Fire the TextureLoadEvent to allow third parties to add additional layers to the model if necessary
+            MultiLayeredArmorModelTextureLoadEvent textureLoadEvent = new MultiLayeredArmorModelTextureLoadEvent(armor);
+            textureLoadEvent.PostClient();
+
+            //Add the additional textures to the list to load.
+            textures.putAll(textureLoadEvent.getAdditionalTextureLayers());
+
+            //Create the final list builder.
             ImmutableList.Builder<ResourceLocation> builder = ImmutableList.builder();
 
+            //Define the model structure components.
             ArmorComponentModel base = null;
-            List<ArmorComponentModel> parts = Lists.newArrayList();
-            List<ArmorComponentModel> brokenParts = Lists.newArrayList();
+            HashMap<String, ArmorComponentModel> parts = new HashMap<String, ArmorComponentModel>();
+            HashMap<String, ArmorComponentModel> brokenParts = new HashMap<String, ArmorComponentModel>();
 
+            //Iterate over all entries to define what they are
+            //At least required is a layer if type base for the model to load succesfully.
+            //Possible layer types:
+            //    * layer (Component texture used when the armor is not broken)
+            //    * broken (Component texture used when the armor is broken)
+            //    * base (The base layer of a Armor (in case of MedievalArmor it is the chain base layer texture))
             for (Map.Entry<String, String> entry : textures.entrySet()) {
                 String name = entry.getKey();
-                try {
-                    int i = 0;
-                    List<ArmorComponentModel> listToAdd = new ArrayList<ArmorComponentModel>();
 
+                ResourceLocation location = null;
+                ArmorComponentModel partModel = null;
+
+                try {
                     if (name.startsWith("layer")) {
-                        i = Integer.valueOf(name.substring(5));
-                        listToAdd = parts;
+                        //Standard Layer
+                        location = new ResourceLocation(entry.getValue());
+                        partModel = new ArmorComponentModel(ImmutableList.of(location));
+
+                        parts.put(location.toString(), partModel);
                     } else if (name.startsWith("broken")) {
-                        i = Integer.valueOf(name.substring(6));
-                        listToAdd = brokenParts;
+                        //Broken layer
+                        location = new ResourceLocation(entry.getValue());
+                        partModel = new ArmorComponentModel(ImmutableList.of(location));
+
+                        brokenParts.put(location.toString(), partModel);
                     } else if (name.startsWith("base")) {
-                        if (base != null) {
-                            Armory.getLogger().error("MLAModel {} has more then one base layer. Overwritting!", modelLocation);
-                        }
+                        //Base layer
+                        location = new ResourceLocation(entry.getValue());
+                        partModel = new ArmorComponentModel(ImmutableList.of(location));
+
+                        base = partModel;
                     }
-                    // invalid entry, ignore
                     else {
+                        //Unknown layer, warning and skipping.
                         Armory.getLogger().warn("MLAModel {} has invalid texture entry {}; Skipping layer.", modelLocation, name);
                         continue;
                     }
 
-                    ResourceLocation location = new ResourceLocation(entry.getValue());
-                    ArmorComponentModel partModel = new ArmorComponentModel(ImmutableList.of(location));
 
-                    if (!name.startsWith("base")) {
-                        while (listToAdd.size() <= i) {
-                            listToAdd.add(null);
-                        }
-                        listToAdd.set(i, partModel);
-                    } else {
-                        base = partModel;
+                    //If the texture was added to any layer, add it to the list of used textures.
+                    if (location != null) {
+                        builder.add(location);
                     }
-
-
-                    builder.add(location);
                 } catch (NumberFormatException e) {
                     Armory.getLogger().error("MLAModel {} has invalid texture entry {}; Skipping layer.", modelLocation, name);
                 }
             }
 
-            String armorInternalName = FilenameUtils.getBaseName(modelLocation.getResourcePath());
-            IModel mods = ModelLoaderRegistry.getModel(MedievalComponentModelLoader.getLocationForToolModifiers(armorInternalName));
-            ComponentModel modifiers = null;
-
-            if (mods == null || !(mods instanceof ComponentModel)) {
-                Armory.getLogger().trace(
-                        "MLAModel {} does not have any addons associated with it. Be sure that the Armors internal name, the Armormodel filename and the name used inside the Addon Model Definition match!",
-                        modelLocation);
-            } else {
-                modifiers = (ComponentModel) mods;
+            //Check if at least a base layer is found.
+            if (base == null) {
+                Armory.getLogger().error("Tried to load a MLAModel {} without a base layer.", modelLocation);
+                return ModelLoaderRegistry.getMissingModel();
             }
 
-            IModel output = new MultiLayeredArmorItemModel(MaterialRegistry.getInstance().getArmor(armorInternalName), builder.build(), base, parts, brokenParts, modifiers);
+            //Construct the new unbaked model from the collected data.
+            IModel output = new MultiLayeredArmorItemModel(MaterialRegistry.getInstance().getArmor(armorInternalName), builder.build(), base, parts, brokenParts);
 
-            // inform the texture manager about the textures it has to process
+            // Load all textures we need in to the creator.
             MaterializedTextureCreator.registerBaseTexture(builder.build());
 
             return output;
         } catch (IOException e) {
             Armory.getLogger().error("Could not load multimodel {}", modelLocation.toString());
         }
+
+        //If all fails return a Missing model.
         return ModelLoaderRegistry.getMissingModel();
+    }
+
+    private void addComponentToList (List<ArmorComponentModel> list, int index, ArmorComponentModel model) {
+        while (list.size() <= index) {
+            list.add(null);
+        }
+        list.set(index, model);
     }
 
     @Override
