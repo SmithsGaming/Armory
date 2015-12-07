@@ -6,16 +6,17 @@ package com.SmithsModding.Armory.API.Armor;
 */
 
 
-import com.SmithsModding.Armory.Util.Client.CustomResource;
+import net.minecraft.util.ResourceLocation;
 
 import java.security.InvalidParameterException;
 
-public abstract class MLAAddon {
+public abstract class MLAAddon implements ILayeredArmorLayer {
     protected String iInternalName = "";
     protected String iAddonPositionID;
     protected Integer iMaxInstalledAmount = 1;
     protected String iParentName = "";
-    protected CustomResource iResource;
+    protected ResourceLocation iResourceLocation;
+    protected ResourceLocation iBrokenResource;
 
     /**
      * Standard constructor sets the Internal Name and the position of the Addon on the armor
@@ -28,8 +29,8 @@ public abstract class MLAAddon {
      * @see MultiLayeredArmor
      * @see ArmorAddonPosition
      */
-    public MLAAddon(String pInternalName, String pParentName, String pAddonPositionID) {
-        this(pInternalName, pParentName, pAddonPositionID, 1);
+    public MLAAddon (String pInternalName, String pParentName, String pAddonPositionID, ResourceLocation pModelTextureLocation) {
+        this(pInternalName, pParentName, pAddonPositionID, 1, pModelTextureLocation);
     }
 
     /**
@@ -41,11 +42,28 @@ public abstract class MLAAddon {
      * @param pMaxInstalledAmount The max amount of addons that are allowed on a single position
      * @throws InvalidParameterException Will be thrown if more than the allowed max are passed as parameter.
      */
-    public MLAAddon(String pInternalName, String pParentName, String pAddonPositionID, Integer pMaxInstalledAmount) {
+    public MLAAddon (String pInternalName, String pParentName, String pAddonPositionID, Integer pMaxInstalledAmount, ResourceLocation pModelTextureLocation) {
         this.iInternalName = pInternalName;
         this.iParentName = pParentName;
         this.iAddonPositionID = pAddonPositionID;
         this.iMaxInstalledAmount = pMaxInstalledAmount;
+        this.iResourceLocation = pModelTextureLocation;
+        iBrokenResource = iResourceLocation;
+    }
+
+    @Override
+    public boolean isMaterialDependent () {
+        return false;
+    }
+
+    @Override
+    public ResourceLocation getModelTextureLocation () {
+        return iResourceLocation;
+    }
+
+    @Override
+    public ResourceLocation getModelBrokenTextureLocation () {
+        return iBrokenResource;
     }
 
     /**
@@ -88,27 +106,6 @@ public abstract class MLAAddon {
 
     public Integer getMaxInstalledAmount() {
         return this.iMaxInstalledAmount;
-    }
-
-
-    //###################Methods used to ensure that the resource management is overal the same#########################
-
-    /**
-     * Function to get the current resource representing this addon
-     *
-     * @return The resource representing this Addon
-     */
-    public CustomResource getResource() {
-        return this.iResource;
-    }
-
-    /**
-     * Function to set the current resource representing this addon
-     *
-     * @param pNewResource The new resource that should represent this addon.
-     */
-    public void setResource(CustomResource pNewResource) {
-        this.iResource = pNewResource;
     }
 
     //##################Functions used to configure most of the crafting logic##########################################

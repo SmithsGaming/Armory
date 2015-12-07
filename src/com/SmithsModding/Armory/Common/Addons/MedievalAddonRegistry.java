@@ -41,7 +41,7 @@ public class MedievalAddonRegistry implements IMLAAddonRegistry {
         MaterialRegistry.getInstance().getArmor(pUpgrade.getParentName()).registerAddon(pUpgrade);
     }
 
-    public ArmorUpgradeMedieval getUpgrade(String pUpgradeInternalName) {
-        return (ArmorUpgradeMedieval) this.iArmorUpgrades.get(pUpgradeInternalName);
+    public MLAAddon getUpgrade (String pUpgradeInternalName) {
+        return this.iArmorUpgrades.get(pUpgradeInternalName);
     }
 }

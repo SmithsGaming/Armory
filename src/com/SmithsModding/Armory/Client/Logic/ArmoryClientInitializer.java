@@ -6,28 +6,12 @@ package com.SmithsModding.Armory.Client.Logic;
  */
 
 import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.API.Events.Client.RegisterItemResourcesEvent;
-import com.SmithsModding.Armory.API.Events.Client.RegisterMaterialResourceEvent;
-import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import com.SmithsModding.Armory.Client.Renderer.Items.*;
-import com.SmithsModding.Armory.Client.Renderer.TileEntities.AnvilTESR;
-import com.SmithsModding.Armory.Client.Renderer.TileEntities.BookBinderTESR;
-import com.SmithsModding.Armory.Client.Renderer.TileEntities.FirePitTESR;
-import com.SmithsModding.Armory.Client.Renderer.TileEntities.HeaterTESR;
-import com.SmithsModding.Armory.Common.Addons.MedievalAddonRegistry;
+import com.SmithsModding.Armory.API.Materials.IMaterialRenderInfo;
+import com.SmithsModding.Armory.Armory;
+import com.SmithsModding.Armory.Client.ArmoryClientProxy;
 import com.SmithsModding.Armory.Common.Logic.ArmoryInitializer;
 import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
-import com.SmithsModding.Armory.Common.Registry.GeneralRegistry;
-import com.SmithsModding.Armory.Common.TileEntity.Anvil.TileEntityArmorsAnvil;
-import com.SmithsModding.Armory.Common.TileEntity.FirePit.TileEntityFirePit;
-import com.SmithsModding.Armory.Common.TileEntity.FirePit.TileEntityHeater;
-import com.SmithsModding.Armory.Common.TileEntity.TileEntityBookBinder;
-import com.SmithsModding.Armory.Util.Client.CustomResource;
 import com.SmithsModding.Armory.Util.References;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import net.minecraft.item.Item;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.MinecraftForge;
 
 public class ArmoryClientInitializer extends ArmoryInitializer {
     public static void InitializeClient() {
@@ -49,122 +33,44 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
 
     public static class MedievalClientInitialization {
         public static void registerMaterialResources() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                for (MultiLayeredArmor tArmor : MaterialRegistry.getInstance().getAllRegisteredArmors().values()) {
-                    MinecraftForge.EVENT_BUS.post(new RegisterMaterialResourceEvent(tMaterial, tArmor));
-                }
-            }
+            MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).setRenderInfo(new IMaterialRenderInfo.Metal(0xcacaca, 0f, 0.3f, 0f));
+            MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN).setRenderInfo(new IMaterialRenderInfo.MultiColor(0x71589c, 0x8f60d4, 0x8c53df));
         }
 
         public static void registerUpgradeResources() {
-            //ArmorPieces
-            MultiLayeredArmor tHelmet = MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET);
-            MultiLayeredArmor tChestplate = MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE);
-            MultiLayeredArmor tLeggings = MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS);
-            MultiLayeredArmor tShoes = MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES);
 
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                //Helmet resources
-                CustomResource tTopHelmetResource = new CustomResource(References.InternalNames.Upgrades.Helmet.TOP + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Helmet_TopHead", "armory:textures/models/multiarmor/upgrades/armory.Helmet_TopHead.png", tMaterial.getColor());
-                CustomResource tLeftHelmetResource = new CustomResource(References.InternalNames.Upgrades.Helmet.LEFT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Helmet_Protection_Ear_Left", "armory:textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left.png", tMaterial.getColor());
-                CustomResource tRightHelmetResource = new CustomResource(References.InternalNames.Upgrades.Helmet.RIGHT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Helmet_Protection_Ear_Right", "armory:textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right.png", tMaterial.getColor());
-                tHelmet.registerResource(tTopHelmetResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.TOP + "-" + tMaterial.getInternalMaterialName()).setResource(tTopHelmetResource);
-                tHelmet.registerResource(tLeftHelmetResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.LEFT + "-" + tMaterial.getInternalMaterialName()).setResource(tLeftHelmetResource);
-                tHelmet.registerResource(tRightHelmetResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.RIGHT + "-" + tMaterial.getInternalMaterialName()).setResource(tRightHelmetResource);
-
-                //Chestplate resources
-                CustomResource tLeftShoulderChestplateResource = new CustomResource(References.InternalNames.Upgrades.Chestplate.SHOULDERLEFT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left", "armory:textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left.png", tMaterial.getColor());
-                CustomResource tRightShoulderChestplateResource = new CustomResource(References.InternalNames.Upgrades.Chestplate.SHOULDERRIGHT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right", "armory:textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right.png", tMaterial.getColor());
-                CustomResource tLeftFrontChestplateResource = new CustomResource(References.InternalNames.Upgrades.Chestplate.FRONTLEFT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Chestplate_Protection_Front_Left", "armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Left.png", tMaterial.getColor());
-                CustomResource tRightFrontChestplateResource = new CustomResource(References.InternalNames.Upgrades.Chestplate.FRONTRIGHT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Chestplate_Protection_Front_Right", "armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Right.png", tMaterial.getColor());
-                CustomResource tLeftBackChestplateResource = new CustomResource(References.InternalNames.Upgrades.Chestplate.BACKLEFT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Chestplate_Protection_Back_Left", "armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left.png", tMaterial.getColor());
-                CustomResource tRightBackChestplateResource = new CustomResource(References.InternalNames.Upgrades.Chestplate.BACKRIGHT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Chestplate_Protection_Back_Right", "armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right.png", tMaterial.getColor());
-                tChestplate.registerResource(tLeftShoulderChestplateResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.SHOULDERLEFT + "-" + tMaterial.getInternalMaterialName()).setResource(tLeftShoulderChestplateResource);
-                tChestplate.registerResource(tRightShoulderChestplateResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.SHOULDERRIGHT + "-" + tMaterial.getInternalMaterialName()).setResource(tRightShoulderChestplateResource);
-                tChestplate.registerResource(tLeftFrontChestplateResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.FRONTLEFT + "-" + tMaterial.getInternalMaterialName()).setResource(tLeftFrontChestplateResource);
-                tChestplate.registerResource(tRightFrontChestplateResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.FRONTRIGHT + "-" + tMaterial.getInternalMaterialName()).setResource(tRightFrontChestplateResource);
-                tChestplate.registerResource(tLeftBackChestplateResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.BACKLEFT + "-" + tMaterial.getInternalMaterialName()).setResource(tLeftBackChestplateResource);
-                tChestplate.registerResource(tRightBackChestplateResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.BACKRIGHT + "-" + tMaterial.getInternalMaterialName()).setResource(tRightBackChestplateResource);
-
-                //Legging resources
-                CustomResource tLeftFrontLeggingsResource = new CustomResource(References.InternalNames.Upgrades.Leggings.FRONTLEFT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Leggins_Protection_Front_Left", "armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Left.png", tMaterial.getColor());
-                CustomResource tRightFrontLeggingsResource = new CustomResource(References.InternalNames.Upgrades.Leggings.FRONTRIGHT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Leggins_Protection_Front_Right", "armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Right.png", tMaterial.getColor());
-                CustomResource tLeftBackLeggingsResource = new CustomResource(References.InternalNames.Upgrades.Leggings.BACKLEFT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Leggins_Protection_Back_Left", "armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Left.png", tMaterial.getColor());
-                CustomResource tRightBackLeggingsResource = new CustomResource(References.InternalNames.Upgrades.Leggings.BACKRIGHT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Leggins_Protection_Back_Right", "armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Right.png", tMaterial.getColor());
-                tLeggings.registerResource(tLeftFrontLeggingsResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.FRONTLEFT + "-" + tMaterial.getInternalMaterialName()).setResource(tLeftFrontLeggingsResource);
-                tLeggings.registerResource(tRightFrontLeggingsResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.FRONTRIGHT + "-" + tMaterial.getInternalMaterialName()).setResource(tRightFrontLeggingsResource);
-                tLeggings.registerResource(tLeftBackLeggingsResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.BACKLEFT + "-" + tMaterial.getInternalMaterialName()).setResource(tLeftBackLeggingsResource);
-                tLeggings.registerResource(tRightBackLeggingsResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.BACKRIGHT + "-" + tMaterial.getInternalMaterialName()).setResource(tRightBackLeggingsResource);
-
-                //Shoes resources
-                CustomResource tLeftShoeResource = new CustomResource(References.InternalNames.Upgrades.Shoes.LEFT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Shoes_Protection_Left", "armory:textures/models/multiarmor/upgrades/armory.Shoes_Protection_Left.png", tMaterial.getColor());
-                CustomResource tRightShoeResource = new CustomResource(References.InternalNames.Upgrades.Shoes.RIGHT + "-" + tMaterial.getInternalMaterialName(), "armory:multiarmor/upgrades/armory.Shoes_Protection_Right", "armory:textures/models/multiarmor/upgrades/armory.Shoes_Protection_Right.png", tMaterial.getColor());
-                tShoes.registerResource(tLeftShoeResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Shoes.LEFT + "-" + tMaterial.getInternalMaterialName()).setResource(tLeftShoeResource);
-                tShoes.registerResource(tRightShoeResource);
-                MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Shoes.RIGHT + "-" + tMaterial.getInternalMaterialName()).setResource(tRightShoeResource);
-            }
         }
 
         public static void registerRingResources() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                MinecraftForge.EVENT_BUS.post(new RegisterItemResourcesEvent(tMaterial, GeneralRegistry.Items.iMetalRing));
-            }
 
         }
 
         public static void registerChainResources() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                MinecraftForge.EVENT_BUS.post(new RegisterItemResourcesEvent(tMaterial, GeneralRegistry.Items.iMetalChain));
-            }
 
         }
 
         public static void registerNuggetResources() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                MinecraftForge.EVENT_BUS.post(new RegisterItemResourcesEvent(tMaterial, GeneralRegistry.Items.iNugget));
-            }
 
         }
 
         public static void registerPlateResources() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                MinecraftForge.EVENT_BUS.post(new RegisterItemResourcesEvent(tMaterial, GeneralRegistry.Items.iPlate));
-            }
+
         }
 
     }
 
     public static class SystemInit {
         public static void registerIIR() {
-            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockFirePit), new ItemRendererFirePit());
-            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockHeater), new ItemRendererHeater());
-            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBlockAnvil), new ItemRendererAnvil());
-            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GeneralRegistry.Blocks.iBookBinder), new ItemRendererBookBinder());
-            MinecraftForgeClient.registerItemRenderer(GeneralRegistry.Items.iHeatedIngot, new ItemHeatedIngotRenderer());
-            MinecraftForgeClient.registerItemRenderer(GeneralRegistry.Items.iSmithingsGuide, new ItemRendererSmithingsGuide());
-            MinecraftForgeClient.registerItemRenderer(GeneralRegistry.Items.iLabel, new ItemRendererGuideLabel());
+            ArmoryClientProxy proxy = (ArmoryClientProxy) Armory.proxy;
+
+            for (MultiLayeredArmor armor : MaterialRegistry.getInstance().getAllRegisteredArmors().values()) {
+                proxy.registerArmorItemModel(armor);
+            }
         }
 
 
         public static void registerTESR() {
-            ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFirePit.class, new FirePitTESR());
-            ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHeater.class, new HeaterTESR());
-            ClientRegistry.bindTileEntitySpecialRenderer(TileEntityArmorsAnvil.class, new AnvilTESR());
-            ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBookBinder.class, new BookBinderTESR());
+
         }
     }
 

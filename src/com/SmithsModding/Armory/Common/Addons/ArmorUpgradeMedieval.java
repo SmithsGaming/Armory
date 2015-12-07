@@ -1,11 +1,13 @@
 package com.SmithsModding.Armory.Common.Addons;
 
 import com.SmithsModding.Armory.API.Armor.MLAAddon;
+import com.SmithsModding.Armory.API.Armor.MaterialDependentMLAAddon;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * Created by Orion on 27-3-2014.
  */
-public class ArmorUpgradeMedieval extends MLAAddon {
+public class ArmorUpgradeMedieval extends MaterialDependentMLAAddon {
     public String iMaterialInternalName;
     public String iVisibleName;
     public String iVisibleNameColor;
@@ -13,8 +15,8 @@ public class ArmorUpgradeMedieval extends MLAAddon {
     public int iExtraDurability;
 
     //Constructors
-    public ArmorUpgradeMedieval(String pInternalName, String pParentID, String pArmorPositionID, String pMaterialInternalName, String pVisibleName, String pVisibleNameColor, float pProtection, int pExtraDurability, int pMaxUpgrades) {
-        super(pInternalName + "-" + pMaterialInternalName, pParentID, pArmorPositionID, pMaxUpgrades);
+    public ArmorUpgradeMedieval (String pInternalName, String pParentID, String pArmorPositionID, String pMaterialInternalName, String pVisibleName, String pVisibleNameColor, float pProtection, int pExtraDurability, int pMaxUpgrades, ResourceLocation pModelLocation) {
+        super(pInternalName, pMaterialInternalName, pParentID, pArmorPositionID, pMaxUpgrades, pModelLocation);
         this.iMaterialInternalName = pMaterialInternalName;
         this.iVisibleName = pVisibleName;
         this.iVisibleNameColor = pVisibleNameColor;
@@ -24,7 +26,7 @@ public class ArmorUpgradeMedieval extends MLAAddon {
 
     @Override
     public boolean validateCrafting(String pAddonIDToCheckAgainst, boolean pInstalled) {
-        ArmorUpgradeMedieval tUpgrade = MedievalAddonRegistry.getInstance().getUpgrade(pAddonIDToCheckAgainst);
+        MLAAddon tUpgrade = MedievalAddonRegistry.getInstance().getUpgrade(pAddonIDToCheckAgainst);
         return !((this.getAddonPositionID() == tUpgrade.getAddonPositionID()) && (this.getInternalName() != pAddonIDToCheckAgainst));
 
     }

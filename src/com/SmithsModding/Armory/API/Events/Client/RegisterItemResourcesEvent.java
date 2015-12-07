@@ -1,8 +1,8 @@
 package com.SmithsModding.Armory.API.Events.Client;
 
-import com.SmithsModding.Armory.API.Item.IResourceContainer;
 import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import cpw.mods.fml.common.eventhandler.Event;
+import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.eventhandler.Event;
 
 /**
  * Created by Orion
@@ -13,9 +13,9 @@ import cpw.mods.fml.common.eventhandler.Event;
  */
 public class RegisterItemResourcesEvent extends Event {
     public IArmorMaterial iMaterial;
-    public IResourceContainer iContainer;
+    public Item iContainer;
 
-    public RegisterItemResourcesEvent(IArmorMaterial pMaterial, IResourceContainer pContainer) {
+    public RegisterItemResourcesEvent (IArmorMaterial pMaterial, Item pContainer) {
         iMaterial = pMaterial;
         iContainer = pContainer;
     }

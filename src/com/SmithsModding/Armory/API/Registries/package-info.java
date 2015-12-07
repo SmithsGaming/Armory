@@ -8,4 +8,4 @@
 @API(owner = "Armory", apiVersion = References.General.API_VERSION, provides = "Armory-API|Registries") package com.SmithsModding.Armory.API.Registries;
 
 import com.SmithsModding.Armory.Util.References;
-import cpw.mods.fml.common.API;
+import net.minecraftforge.fml.common.API;

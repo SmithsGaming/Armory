@@ -9,18 +9,14 @@ package com.SmithsModding.Armory.Common.Item.Armor.TierMedieval;
 import com.SmithsModding.Armory.API.Armor.MLAAddon;
 import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
 import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import com.SmithsModding.Armory.Client.Models.ModelAExtendedChain;
 import com.SmithsModding.Armory.Common.Addons.ArmorUpgradeMedieval;
 import com.SmithsModding.Armory.Common.Addons.MedievalAddonRegistry;
 import com.SmithsModding.Armory.Common.Factory.MedievalArmorFactory;
+import com.SmithsModding.Armory.Common.Material.ChainLayer;
 import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
 import com.SmithsModding.Armory.Common.Registry.GeneralRegistry;
-import com.SmithsModding.Armory.Util.Armor.NBTHelper;
-import com.SmithsModding.Armory.Util.Client.CustomResource;
+import com.SmithsModding.Armory.Util.Armor.ArmorNBTHelper;
 import com.SmithsModding.Armory.Util.References;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,6 +26,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.ISpecialArmor;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.security.InvalidParameterException;
 import java.util.HashMap;
@@ -43,16 +41,16 @@ public class ArmorMedieval extends MultiLayeredArmor {
         this.setMaxStackSize(1);
         this.iInternalName = pInternalName;
         this.iArmorPart = pArmorPart;
-        this.setCreativeTab(GeneralRegistry.iTabMedievalArmor);
+        this.setCreativeTab(CreativeTabs.tabCombat);
     }
 
     //Functions for ISpecialArmor. TODO: Needs to be implemented.
     @Override
     public ISpecialArmor.ArmorProperties getProperties(EntityLivingBase pEntity, ItemStack pStack, DamageSource pSource, double pDamage, int pSlot) {
-        IArmorMaterial tBaseMaterial = NBTHelper.getBaseMaterialOfItemStack(pStack);
+        IArmorMaterial tBaseMaterial = ArmorNBTHelper.getBaseMaterialOfItemStack(pStack);
         float tDamageRatio = tBaseMaterial.getBaseDamageAbsorption(this.getInternalName());
 
-        for (ArmorUpgradeMedieval tUpgrade : NBTHelper.getInstalledArmorMedievalUpgradesOnItemStack(pStack).keySet()) {
+        for (ArmorUpgradeMedieval tUpgrade : ArmorNBTHelper.getInstalledArmorMedievalUpgradesOnItemStack(pStack).keySet()) {
             tDamageRatio += tUpgrade.iProtection;
         }
 
@@ -61,10 +59,10 @@ public class ArmorMedieval extends MultiLayeredArmor {
 
     @Override
     public int getArmorDisplay(EntityPlayer pEntity, ItemStack pStack, int pSlot) {
-        IArmorMaterial tBaseMaterial = NBTHelper.getBaseMaterialOfItemStack(pStack);
+        IArmorMaterial tBaseMaterial = ArmorNBTHelper.getBaseMaterialOfItemStack(pStack);
         float tDamageRatio = tBaseMaterial.getBaseDamageAbsorption(this.getInternalName());
 
-        for (ArmorUpgradeMedieval tUpgrade : NBTHelper.getInstalledArmorMedievalUpgradesOnItemStack(pStack).keySet()) {
+        for (ArmorUpgradeMedieval tUpgrade : ArmorNBTHelper.getInstalledArmorMedievalUpgradesOnItemStack(pStack).keySet()) {
             tDamageRatio += tUpgrade.iProtection;
         }
 
@@ -73,22 +71,12 @@ public class ArmorMedieval extends MultiLayeredArmor {
 
     @Override
     public void damageArmor(EntityLivingBase pEntity, ItemStack pStack, DamageSource pSource, int pDamage, int pSlot) {
-        IArmorMaterial tArmorMaterial = NBTHelper.getBaseMaterialOfItemStack(pStack);
+        IArmorMaterial tArmorMaterial = ArmorNBTHelper.getBaseMaterialOfItemStack(pStack);
         pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).setInteger(References.NBTTagCompoundData.Armor.CurrentDurability, pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.CurrentDurability) - pDamage);
 
         pStack.setItemDamage((int) ((float) pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.CurrentDurability) / pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.TotalDurability) * 100));
 
         ((EntityPlayer) pEntity).inventory.armorInventory[pSlot] = pStack;
-    }
-
-    @Override
-    public int getColorFromItemStack(ItemStack pStack, int pRenderPass) {
-        if (pRenderPass == 0) {
-            CustomResource tResource = this.getResource(pStack, pRenderPass);
-            return MaterialRegistry.getInstance().getMaterial(tResource.getInternalName()).getColor().getColor();
-        } else {
-            return super.getColorFromItemStack(pStack, pRenderPass);
-        }
     }
 
     @Override
@@ -154,56 +142,9 @@ public class ArmorMedieval extends MultiLayeredArmor {
 
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public ModelBiped getArmorModel(EntityLivingBase pEntityLiving, ItemStack pItemStack, int pArmorSlot) {
-        ModelAExtendedChain tModel = new ModelAExtendedChain(1F, pItemStack);
-
-        switch (pArmorSlot) {
-            case 0:
-                tModel = new ModelAExtendedChain(1.5F, pItemStack);
-
-                tModel.bipedHead.showModel = true;
-                tModel.bipedBody.showModel = tModel.bipedRightArm.showModel = tModel.bipedLeftArm.showModel = false;
-                tModel.bipedWaist.showModel = tModel.bipedRightLeg.showModel = tModel.bipedLeftLeg.showModel = false;
-                tModel.bipedRightFoot.showModel = tModel.bipedLeftFoot.showModel = false;
-                break;
-            case 1:
-                tModel = new ModelAExtendedChain(1.5F, pItemStack);
-
-                tModel.bipedHead.showModel = false;
-                tModel.bipedBody.showModel = tModel.bipedRightArm.showModel = tModel.bipedLeftArm.showModel = true;
-                tModel.bipedWaist.showModel = tModel.bipedRightLeg.showModel = tModel.bipedLeftLeg.showModel = false;
-                tModel.bipedRightFoot.showModel = tModel.bipedLeftFoot.showModel = false;
-                break;
-            case 2:
-                tModel.bipedHead.showModel = false;
-                tModel.bipedBody.showModel = tModel.bipedRightArm.showModel = tModel.bipedLeftArm.showModel = false;
-                tModel.bipedWaist.showModel = tModel.bipedRightLeg.showModel = tModel.bipedLeftLeg.showModel = true;
-                tModel.bipedRightFoot.showModel = tModel.bipedLeftFoot.showModel = false;
-                break;
-            case 3:
-                tModel = new ModelAExtendedChain(1.5F, pItemStack);
-
-                tModel.bipedHead.showModel = false;
-                tModel.bipedBody.showModel = tModel.bipedRightArm.showModel = tModel.bipedLeftArm.showModel = false;
-                tModel.bipedWaist.showModel = tModel.bipedRightLeg.showModel = tModel.bipedLeftLeg.showModel = false;
-                tModel.bipedRightFoot.showModel = tModel.bipedLeftFoot.showModel = true;
-                break;
-            default:
-                tModel.bipedHead.showModel = false;
-                tModel.bipedBody.showModel = tModel.bipedRightArm.showModel = tModel.bipedLeftArm.showModel = false;
-                tModel.bipedWaist.showModel = tModel.bipedRightLeg.showModel = tModel.bipedLeftLeg.showModel = false;
-                tModel.bipedRightFoot.showModel = tModel.bipedLeftFoot.showModel = false;
-                break;
-        }
-
-        return tModel;
-    }
-
     @Override
     public void registerAddon(MLAAddon pNewAddon) {
-        if (!(pNewAddon instanceof ArmorUpgradeMedieval)) {
+        if (!(pNewAddon instanceof ArmorUpgradeMedieval) && !(pNewAddon instanceof ChainLayer)) {
             throw new InvalidParameterException("The given addon is not allowed on medieval armor.");
         }
 

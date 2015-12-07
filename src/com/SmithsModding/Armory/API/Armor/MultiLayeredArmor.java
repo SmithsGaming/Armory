@@ -5,9 +5,8 @@ package com.SmithsModding.Armory.API.Armor;
 *   Created on: 28-6-2014
 */
 
-import com.SmithsModding.Armory.Util.Client.CustomResource;
 import com.SmithsModding.Armory.Util.References;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import com.SmithsModding.SmithsCore.Util.Client.CustomResource;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
@@ -15,18 +14,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.IIcon;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.util.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArmor {
-    //Stores the blank icon used for rendering empty layers part of items that contain not the max amount of parts
-    public static IIcon iBlankIcon;
     ///Values needed for the Vanilla renderer
     //Stores the MaxRenderPasses a Armorpiece of this kind needs to render all its components
     public int iMaxRenderPasses;
@@ -102,45 +96,12 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
     public abstract void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot);
 
     ///#############################################Vanilla functions###################################################
-    //Function called when registering the item to register the Icons.
-    @Override
-    public void registerIcons(IIconRegister pIconRegister) {
-        Iterator tResourceIterator = iResources.entrySet().iterator();
-        while (tResourceIterator.hasNext()) {
-            Map.Entry<String, CustomResource> tResource = (Map.Entry<String, CustomResource>) tResourceIterator.next();
-            tResource.getValue().addIcon(pIconRegister.registerIcon(tResource.getValue().getPrimaryLocation()));
-        }
-
-        iBlankIcon = pIconRegister.registerIcon("Armory:blankItem");
-    }
-
-    //Function for getting the Icon from a render pass.
-    @Override
-    public IIcon getIcon(ItemStack pStack, int pRenderPass) {
-        if (this.getRenderPasses(pStack) <= pRenderPass) {
-            return iBlankIcon;
-        }
-
-        return this.getResource(pStack, pRenderPass).getIcon();
-    }
-
-    //Function to get the amount of RenderPasses. Used in the vanilla rendering of the itemstack.
-    @Override
-    public int getRenderPasses(int pMeta) {
-        return iMaxRenderPasses;
-    }
-
-    //Function that tells the renderer to use multiple layers
-    @Override
-    public boolean requiresMultipleRenderPasses() {
-        return true;
-    }
 
     //Function that tells the renderer to use a certain color
     @Override
     public int getColorFromItemStack(ItemStack pStack, int pRenderPass) {
         if (pRenderPass < this.getRenderPasses(pStack)) {
-            return this.getResource(pStack, pRenderPass).getColor().getColor();
+            return this.getResource(pStack, pRenderPass).getColor().getRGB();
         }
 
         return 16777215;

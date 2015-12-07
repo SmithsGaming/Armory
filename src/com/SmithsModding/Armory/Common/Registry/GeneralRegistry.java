@@ -5,44 +5,20 @@ package com.SmithsModding.Armory.Common.Registry;
  *   Created on: 24-9-2014
  */
 
-import com.SmithsModding.Armory.Client.CreativeTab.BlueprintTab;
-import com.SmithsModding.Armory.Client.CreativeTab.ComponentsTab;
-import com.SmithsModding.Armory.Client.CreativeTab.MedievalTab;
-import com.SmithsModding.Armory.Client.CreativeTab.MedievalUpgradeTab;
-import com.SmithsModding.Armory.Common.Blocks.BlockArmorsAnvil;
-import com.SmithsModding.Armory.Common.Blocks.BlockBookBinder;
-import com.SmithsModding.Armory.Common.Blocks.BlockFirePit;
-import com.SmithsModding.Armory.Common.Blocks.BlockHeater;
-import com.SmithsModding.Armory.Common.Item.Armor.TierMedieval.ItemUpgradeMedieval;
-import com.SmithsModding.Armory.Common.Item.*;
-import com.SmithsModding.Armory.Common.Item.Knowledge.ItemBlueprint;
-import com.SmithsModding.Armory.Common.Item.Knowledge.ItemSmithingsGuide;
+import com.SmithsModding.Armory.API.Armor.MLAAddon;
+import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
+import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Properties;
 
 public class GeneralRegistry {
-    public static Logger iLogger = LogManager.getLogger("Armory");
-    public static ItemArmor.ArmorMaterial iArmorMaterial = EnumHelper.addArmorMaterial("Armory-Dummy", 100, new int[]{0, 0, 0, 0}, 0);
+    public static ItemArmor.ArmorMaterial iArmorMaterial = EnumHelper.addArmorMaterial("Armory-Dummy", "missingno", 100, new int[]{0, 0, 0, 0}, 0);
     public static boolean iIsInDevEnvironment = false;
-    // Tabs for the creative inventory
-    public static MedievalTab iTabMedievalArmor;
-    //public static PlatedTab iTabPlatedArmor;
-    //public static QuantumTab iTabQuantumArmor;
-    public static ComponentsTab iTabArmoryComponents;
-    public static BlueprintTab iTabBlueprints;
-    public static MedievalUpgradeTab iTabMedievalUpgrades;
     protected static GeneralRegistry iInstance;
 
     public GeneralRegistry() {
-        iTabMedievalArmor = new MedievalTab();
-        iTabArmoryComponents = new ComponentsTab();
-        iTabMedievalUpgrades = new MedievalUpgradeTab();
-        iTabBlueprints = new BlueprintTab();
-
         Properties tSysProp = System.getProperties();
         iIsInDevEnvironment = Boolean.parseBoolean(tSysProp.getProperty("Armory.Dev", "false"));
     }
@@ -52,26 +28,12 @@ public class GeneralRegistry {
         return iInstance;
     }
 
-    public static class Blocks {
-        public static BlockFirePit iBlockFirePit = null;
-        public static BlockHeater iBlockHeater = null;
-        public static BlockArmorsAnvil iBlockAnvil = null;
-        public static BlockBookBinder iBookBinder = null;
-    }
+    public static MLAAddon retrieveAddon (String internalName) {
+        for (MultiLayeredArmor armor : MaterialRegistry.getInstance().getAllRegisteredArmors().values()) {
+            if (armor.getAddon(internalName) != null)
+                return armor.getAddon(internalName);
+        }
 
-    public static class Items {
-        public static ItemHeatedItem iHeatedIngot = null;
-        public static ItemMetalRing iMetalRing = null;
-        public static ItemMetalChain iMetalChain = null;
-        public static ItemNugget iNugget = null;
-        public static ItemPlate iPlate = null;
-        public static ItemFan iFan = null;
-        public static ItemHammer iHammer = null;
-        public static ItemTongs iTongs = null;
-        public static ItemUpgradeMedieval iMedievalUpgrades = null;
-
-        public static ItemSmithingsGuide iSmithingsGuide = null;
-        public static ItemBlueprint iBlueprints = null;
-        public static ItemGuideLabel iLabel = null;
+        return null;
     }
 }

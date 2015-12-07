@@ -1,29 +1,23 @@
 package com.SmithsModding.Armory.Util.Client;
-/*
-*   Textures
-*   Created by: Orion
-*   Created on: 27-6-2014
-*/
 
-import com.SmithsModding.Armory.Util.Client.GUI.MultiComponentTexture;
-import com.SmithsModding.Armory.Util.Client.GUI.TextureComponent;
 import com.SmithsModding.Armory.Util.References;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import com.SmithsModding.SmithsCore.Util.Client.CustomResource;
+import com.SmithsModding.SmithsCore.Util.Client.GUI.MultiComponentTexture;
+import com.SmithsModding.SmithsCore.Util.Client.GUI.TextureComponent;
+import com.SmithsModding.SmithsCore.Util.Client.TextureAddressHelper;
 
+/**
+ * Created by Marc on 06.12.2015.
+ */
 public class Textures {
-    public static void registerIcons(IIconRegister pRegistrar) {
-        Gui.Basic.INFOICON.addIcon(pRegistrar.registerIcon(Gui.Basic.INFOICON.getPrimaryLocation()));
-        Gui.FirePit.THERMOMETERICON.addIcon(pRegistrar.registerIcon(Gui.FirePit.THERMOMETERICON.getPrimaryLocation()));
-        Gui.BookBinder.TabResearchStation.MAGNIFIER.addIcon(pRegistrar.registerIcon(Gui.BookBinder.TabResearchStation.MAGNIFIER.getPrimaryLocation()));
-    }
 
     public static class MultiArmor {
         public static class Materials {
             public static class Iron {
-                public static CustomResource tHelmetResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:multiarmor/base/armory.Helmet_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.IRON);
-                public static CustomResource tChestplateResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:multiarmor/base/armory.Chestplate_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.IRON);
-                public static CustomResource tLegginsResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:multiarmor/base/armory.Leggins_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.IRON);
-                public static CustomResource tShoesResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:multiarmor/base/armory.Shoes_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.IRON);
+                public static CustomResource tHelmetResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:items/multiarmor/base/armory.Helmet_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.IRON);
+                public static CustomResource tChestplateResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:items/multiarmor/base/armory.Chestplate_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.IRON);
+                public static CustomResource tLegginsResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:items/multiarmor/base/armory.Leggins_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.IRON);
+                public static CustomResource tShoesResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:items/multiarmor/base/armory.Shoes_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.IRON);
             }
 
             public static class Obsidian {
@@ -154,7 +148,7 @@ public class Textures {
         }
 
         public static class FirePit {
-            public static CustomResource THERMOMETERICON = new CustomResource("Gui.FirePit.Thermometer", TextureAddressHelper.getTextureAddress("Gui-Icons/16x Thermo"), Colors.DEFAULT);
+            public static CustomResource THERMOMETERICON = new CustomResource("Gui.FirePit.Thermometer", TextureAddressHelper.getTextureAddress("armory", "Gui-Icons/16x Thermo"), Colors.DEFAULT);
         }
 
         public static class Anvil {
@@ -194,4 +188,5 @@ public class Textures {
             }
         }
     }
+
 }

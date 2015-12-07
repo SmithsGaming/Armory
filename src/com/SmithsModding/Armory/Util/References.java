@@ -11,16 +11,7 @@ package com.SmithsModding.Armory.Util;
 *   Created on: 27-6-2014
 */
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
-
 public class References {
-    public static final class RenderIDs {
-        public static final int FirePitID = RenderingRegistry.getNextAvailableRenderId();
-        public static final int HeaterID = RenderingRegistry.getNextAvailableRenderId();
-        public static final int AnvilID = RenderingRegistry.getNextAvailableRenderId();
-        public static final int BookBinderId = RenderingRegistry.getNextAvailableRenderId();
-    }
-
     public static final class GuiIDs {
         public static int FIREPITID = 0;
         public static int HEATERID = 1;
@@ -53,7 +44,9 @@ public class References {
         }
 
         public static final class AddonPositions {
+
             public static final class Helmet {
+                public static final String BASE = Armor.MEDIEVALHELMET;
                 public static final String TOP = "Armory.TopHelmet";
                 public static final String LEFT = "Armory.LeftHelmet";
                 public static final String RIGHT = "Armory.RightHelmet";
@@ -66,6 +59,7 @@ public class References {
             }
 
             public static final class Chestplate {
+                public static final String BASE = Armor.MEDIEVALCHESTPLATE;
                 public static final String SHOULDERLEFT = "Armory.ShoulderLeftChestplate";
                 public static final String SHOULDERRIGHT = "Armory.ShoulderRightChestplate";
                 public static final String FRONTLEFT = "Armory.FrontLeftChestplate";
@@ -82,6 +76,7 @@ public class References {
             }
 
             public static final class Leggings {
+                public static final String BASE = Armor.MEDIEVALLEGGINGS;
                 public static final String FRONTLEFT = "Armory.FrontLeftLeggings";
                 public static final String FRONTRIGHT = "Armory.FrontRightLeggings";
                 public static final String BACKLEFT = "Armory.BackLeftLeggings";
@@ -96,6 +91,7 @@ public class References {
             }
 
             public static final class Shoes {
+                public static final String BASE = Armor.MEDIEVALSHOES;
                 public static final String LEFT = "Armory.LeftShoes";
                 public static final String RIGHT = "Armory.RightShoes";
                 public static final String FALLASSIST = "Armory.FallAssistShoes";
@@ -435,6 +431,7 @@ public class References {
             public static final String Addons = "InstalledAddons";
             public static final String CurrentDurability = "CurrentDurability";
             public static final String TotalDurability = "TotalDurability";
+            public static final String IsBroken = "IsBroken";
         }
 
         //Used when setting the Rendering compound values.

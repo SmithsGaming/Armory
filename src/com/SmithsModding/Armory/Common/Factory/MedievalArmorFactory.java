@@ -7,11 +7,10 @@ package com.SmithsModding.Armory.Common.Factory;
 
 import com.SmithsModding.Armory.API.Armor.MLAAddon;
 import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.Util.Armor.NBTHelper;
+import com.SmithsModding.Armory.Util.Armor.ArmorNBTHelper;
 import com.SmithsModding.Armory.Util.References;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,7 +26,7 @@ public class MedievalArmorFactory implements IMLAFactory {
 
     @Override
     public ItemStack buildMLAArmor(MultiLayeredArmor pBaseArmor, ItemStack pBaseItemStack, HashMap<MLAAddon, Integer> pNewAddons, Integer pNewTotalDurability, String pInternalMaterialName, Object... pData) {
-        HashMap<MLAAddon, Integer> tAddonMap = NBTHelper.getAddonMap(pBaseItemStack);
+        HashMap<MLAAddon, Integer> tAddonMap = ArmorNBTHelper.getAddonMap(pBaseItemStack);
         Integer tOldTotalDurability = pBaseItemStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.TotalDurability);
         Integer tOldCurrentDurability = pBaseItemStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.CurrentDurability);
 
@@ -47,7 +46,7 @@ public class MedievalArmorFactory implements IMLAFactory {
         }
 
         NBTTagCompound tNewStackCompound = new NBTTagCompound();
-        tNewStackCompound.setTag(References.NBTTagCompoundData.InstalledAddons, NBTHelper.createAddonListCompound(tAddonMap));
+        tNewStackCompound.setTag(References.NBTTagCompoundData.InstalledAddons, ArmorNBTHelper.createAddonListCompound(tAddonMap));
 
         NBTTagCompound tNewDataCompound = new NBTTagCompound();
         tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.TotalDurability, pNewTotalDurability);
@@ -58,12 +57,6 @@ public class MedievalArmorFactory implements IMLAFactory {
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, pBaseArmor.getInternalName());
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorTier, References.InternalNames.Tiers.MEDIEVAL);
         tNewStackCompound.setTag(References.NBTTagCompoundData.ArmorData, tNewDataCompound);
-
-        NBTTagCompound tNewRenderCompound = new NBTTagCompound();
-        NBTTagList tResourceList = NBTHelper.createRenderTagList(pInternalMaterialName, tAddonMap);
-        tNewRenderCompound.setTag(References.NBTTagCompoundData.Rendering.ResourceIDs, tResourceList);
-        tNewRenderCompound.setInteger(References.NBTTagCompoundData.Rendering.MaxRenderPasses, tResourceList.tagCount());
-        tNewStackCompound.setTag(References.NBTTagCompoundData.RenderCompound, tNewRenderCompound);
 
         ItemStack tReturnItemStack = new ItemStack(pBaseArmor);
         tReturnItemStack.setTagCompound(tNewStackCompound);
@@ -76,8 +69,12 @@ public class MedievalArmorFactory implements IMLAFactory {
         if (!(validateNewAgainstNewAddons(pAddons)))
             return null;
 
+        HashMap<MLAAddon, Integer> completeList = new HashMap<MLAAddon, Integer>();
+        completeList.put(pBaseArmor.getAddon(pBaseArmor.getInternalName() + "-" + pInternalMaterialName), 1);
+        completeList.putAll(pAddons);
+
         NBTTagCompound tNewStackCompound = new NBTTagCompound();
-        tNewStackCompound.setTag(References.NBTTagCompoundData.InstalledAddons, NBTHelper.createAddonListCompound(pAddons));
+        tNewStackCompound.setTag(References.NBTTagCompoundData.InstalledAddons, ArmorNBTHelper.createAddonListCompound(completeList));
 
         NBTTagCompound tNewDataCompound = new NBTTagCompound();
         tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.TotalDurability, pTotalDurability);
@@ -88,12 +85,6 @@ public class MedievalArmorFactory implements IMLAFactory {
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, pBaseArmor.getInternalName());
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorTier, References.InternalNames.Tiers.MEDIEVAL);
         tNewStackCompound.setTag(References.NBTTagCompoundData.ArmorData, tNewDataCompound);
-
-        NBTTagCompound tNewRenderCompound = new NBTTagCompound();
-        NBTTagList tResourceList = NBTHelper.createRenderTagList(pInternalMaterialName, pAddons);
-        tNewRenderCompound.setTag(References.NBTTagCompoundData.Rendering.ResourceIDs, tResourceList);
-        tNewRenderCompound.setInteger(References.NBTTagCompoundData.Rendering.MaxRenderPasses, tResourceList.tagCount());
-        tNewStackCompound.setTag(References.NBTTagCompoundData.RenderCompound, tNewRenderCompound);
 
         ItemStack tReturnItemStack = new ItemStack(pBaseArmor);
         tReturnItemStack.setTagCompound(tNewStackCompound);

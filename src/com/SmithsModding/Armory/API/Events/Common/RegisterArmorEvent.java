@@ -5,7 +5,7 @@ package com.SmithsModding.Armory.API.Events.Common;
 *   Created on: 8-4-2014
 */
 
-import cpw.mods.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.Event;
 
 public class RegisterArmorEvent extends Event {
     public RegisterArmorEvent() {

@@ -1,3 +1,32 @@
+// For those who want the bleeding edge
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
+}
+
+repositories {
+    maven {
+        name = "SmithsCore"
+        url = "http://mavenrepo.smithscore.orionminecraft.com/"
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven'
+
 //Buildscript: Armory
 // Load the properties of this project.
 ext.configFile = file "build.properties"
@@ -18,55 +47,6 @@ def getDate() {
 
 def build_mode = config.build_mode
 
-//ForgeGradle BuildScript.
-buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-    }
-}
-
-//The repositories in which the dependencies are stored:
-repositories {
-    mavenCentral()
-    maven { // The repo from which to get waila
-        name "Mobius Repo"
-        url "http://mobiusstrip.eu/maven"
-    }
-    maven { //The repo to get NEI etc
-        name 'CB FS'
-        url 'http://chickenbones.net/maven'
-    }
-    maven { //The repo to get TiC
-        name 'DVS1 Maven FS'
-        url 'http://dvs1.progwml6.com/files/maven'
-    }
-    maven { //Forges own repo
-        name 'ForgeFS'
-        url 'http://files.minecraftforge.net/maven'
-    }
-    maven { //My own repo (used for uploading and dependency)
-        name 'OrionMavenRepo'
-        url 'http://mavenrepo.orionminecraft.com/'
-    }
-}
-
-//Apply the gradle plugins.
-apply plugin: 'java'
-apply plugin: 'forge'
-apply plugin: 'maven'
-apply plugin: 'curseforge'
-
 //These configurations are needed for uploading to a MavenRepo:
 configurations {
     deployerJars
@@ -85,17 +65,11 @@ if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
 group = "com.SmithsModding.Armory"
 archivesBaseName = "Armory"
 
-//Idea fix
-idea {
-    module {
-        inheritOutputDirs = true
-    }
-}
-
-//Sets up the currect versions for minecraft and Forge
 minecraft {
-    version = config.forge_version.toString() + "-" + config.minecraft_version
+    version = config.minecraft_version + "-" + config.forge_version
     runDir = "run/assets"
+
+    mappings = "snapshot_20151129"
 
     //Replacing stuff inside the code:
     replace "@VERSION@", project.version
@@ -103,226 +77,42 @@ minecraft {
     replace "@APIVERSION@", apiversion
 }
 
-//Tells gradle which dependencies are needed for gradle and project
 dependencies {
     //Mod dependencies
-    compile "codechicken:CodeChickenLib:${config.minecraft_version}-${config.CCLIB_version}:dev"
-    compile "codechicken:CodeChickenCore:${config.minecraft_version}-${config.ccc_version}:dev"
-    compile "codechicken:NotEnoughItems:${config.minecraft_version}-${config.NEI_version}:dev"
+    compile group: 'com.SmithsModding.SmithsCore', name: 'SmithsCore', version: config.smithscore_version, classifier: 'dev'
 
     //Maven uploader
-    deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'
+    deployerJars 'org.apache.maven.wagon:wagon-ftp:2.8'
 }
 
 sourceSets {
     main {
-        java {
-            srcDir 'src'
-        }
         resources {
             srcDir 'resources'
         }
     }
 }
 
-
 //This will process all the resources used during build, and needed for running the project
 processResources
-{
-    //Replaces stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'VERSION': project.version, 'MCVERSION': config.minecraft_version
-    }
-        
-    //Copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-    exclude '**/Thumbs.db'
-}
+        {
+            //Replaces stuff in mcmod.info, nothing else
+            from(sourceSets.main.resources.srcDirs) {
+                include 'mcmod.info'
+
+                // replace version and mcversion
+                expand 'version': project.version, 'mcversion': project.minecraft.version
+            }
+
+            //Copy everything else, thats not the mcmod.info
+            from(sourceSets.main.resources.srcDirs) {
+                exclude 'mcmod.info'
+            }
+            exclude '**/Thumbs.db'
+        }
 
 jar {
-        manifest {
+    manifest {
         attributes 'FMLAT': 'Armory_at.cfg'
     }
 }
-
-task devJar(type: Jar, dependsOn: 'classes') {
-    from(sourceSets.main.output) {
-        include '**'
-    }
-
-    extension = 'jar'
-    classifier "dev"
-}
-
-task apiJar(type: Jar, dependsOn: 'sourceMainJava') {
-    from "build/sources/java"
-
-    include "com/SmithsModding/Armory/API/**"
-
-    extension = 'jar'
-    classifier = 'api'
-}
-
-task sourceJar(type: Jar, dependsOn: 'sourceMainJava') {
-    from "build/sources/java"
-    from "build/resources/main/"
-
-    extension = 'jar'
-    classifier "sources"
-}
-
-artifacts {
-    archives devJar
-    archives apiJar
-    archives sourceJar
-}
-
-//The following function comes with thanks to AbrarSyed:
-//Copying the coremod dependencies from the classpath to the mods directory so the system can load them in a Dev Env.
-//This is not executed during build!
-task copyChicken(type: Copy){
-    from configurations.compile
-    include "**/*Chicken*.jar", "**/*NotEnoughItems*.jar"
-    exclude "**/CodeChickenLib*" // because CCC downloads it anyways.. -_-
-    into file(minecraft.runDir + "/mods") // parallel to the assets dir
-}
-
-curse {
-    dependsOn 'reobf'
-
-    if (System.getenv().CURSEAPIKEY != null)
-    {
-        if (!build_mode.toString().trim().equals("SYNC"))
-        {
-            if ((build_mode.toString().trim().equals("DEBUG") && System.getenv().TRAVIS_BRANCH.toString().contains("Development")) || ((build_mode.toString().trim().equals("RELEASE") && !System.getenv().TRAVIS_BRANCH.toString().contains("Development"))))
-            {
-                projectId = System.getenv().CURSEPROJECTID
-                apiKey = System.getenv().CURSEAPIKEY
-                changelog = "Check out: " + "https://github.com/" + System.getenv().TRAVIS_REPO_SLUG.toString() + "/commits/" + System.getenv().TRAVIS_BRANCH.toString() + " for all Changes."
-
-                if (System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
-                {
-                    releaseType = "Alpha"
-                }
-                else
-                {
-                    releaseType = "Beta"
-                }
-
-                additionalArtifact devJar
-            }
-            else
-            {
-                logger.lifecycle("Cannor run the CurseUpload sequence. Curse upload is only done on the Development-Branch when in Debug mode, or on any other branch in Release mode. Current Branch: " + System.getenv().TRAVIS_BRANCH.toString() + " - Current build mode: " + build_mode.toString())
-            }
-        }
-        else
-        {
-            logger.lifecycle("Cannot run CurseUpload sequence. We are currently synchronising to Computers.")
-        }
-    }
-    else
-    {
-        logger.lifecycle("Cannot run the CurseUpload sequence. No API-Key was available.")
-    }
-}
-
-//Function to upload completed project to the maven repo.
-uploadArchives {
-    repositories.mavenDeployer {
-        configuration = configurations.deployerJars
-        if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
-        {
-            snapshotRepository(url: "ftp://mavenrepo.armory.orionminecraft.com") {
-                authentication(userName: "mavenrepo.armory.orionminecraft.com|" + System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
-            }
-        }
-        else {
-            repository(url: "ftp://mavenrepo.armory.orionminecraft.com") {
-                authentication(userName: "mavenrepo.armory.orionminecraft.com|" + System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
-            }
-        }
-
-        pom {
-            groupId = project.group
-            version = project.version
-            artifactId = project.archivesBaseName
-        }
-
-        pom.project {
-            name project.archivesBaseName
-            packaging 'jar'
-            description 'Armory'
-            url 'https://github.com/SmithsModding/Armory'
-
-            scm {
-                url 'https://github.com/SmithsModding/Armory'
-                connection 'scm:git:git://github.com/SmithsModding/Armory.git'
-                developerConnection 'scm:git:git@github.com/SmithsModding/Armory.git'
-            }
-
-            issueManagement {
-                system 'github'
-                url 'https://github.com/SmithsModding/Armory/issues'
-            }
-
-            developers {
-                developer {
-                    id 'OrionDevelopment'
-                    name 'Orion'
-                    roles {
-                        role 'developer'
-                    }
-                }
-            }
-        }
-
-    }
-}
-
-//Task to synchronise two github branches.
-task('createGithubBranches') << {
-    if ((System.getenv().TRAVIS_BRANCH.toString().contains("Development")) && (build_mode.toString().trim().equals("RELEASE")))
-    {
-        logger.lifecycle("Uploading code to the corresponding Minecraft version branch. Creating branch if needed.")
-        logger.lifecycle("Creating local branch.")
-        //Creates/Or checks out the new local branch.
-        def createLocalBranchCMD = "git checkout -b Minecraft-" + config.minecraft_version.toString()
-        def createLocalProg = createLocalBranchCMD.execute();
-        createLocalProg.waitFor()
-        
-
-        //Adds a tag to the minecraft version specific branch for the version number.
-        logger.lifecycle("Adding version tag.")
-        def addTagCMD = "git -a Version[" + version + "] -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'"
-        def addTagProg = addTagCMD.execute()
-        addTagProg.waitFor()
-
-        logger.lifecycle("Uploading force push to repo.")
-        def setUrlCMD = "git config remote.origin.url https://" + System.getenv().GitUsername.toString() + ":" + System.getenv().GitPassword.toString() + "@github.com/SmithsModding/Armory"
-        def setURLProg = setUrlCMD.execute()
-        setURLProg.waitFor()
-
-        def cmd = "git push origin -f Minecraft-" + config.minecraft_version.toString()
-        def prog = cmd.execute()
-        prog.waitFor()
-
-        logger.lifecycle("Mirrored the code the corresponding minecraft version branch. Current MC Version: " + config.minecraft_version.toString() + ". Branch name: Minecraft-" + config.minecraft_version.toString() + ".")
-    }
-    else
-    {
-        logger.lifecycle("The sync of the branches is not being executed, because we are not releasing a new version.")
-    }
-
-}
-
-//The external task that executes the uploadAtchives function.
-task('uploadJars', dependsOn: uploadArchives) {
-    description = "uploads JARs"
-}
-

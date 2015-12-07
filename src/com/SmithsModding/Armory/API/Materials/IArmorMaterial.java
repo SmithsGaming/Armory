@@ -1,6 +1,5 @@
 package com.SmithsModding.Armory.API.Materials;
 
-import com.SmithsModding.Armory.Util.Client.Color.Color;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -50,9 +49,9 @@ public interface IArmorMaterial {
 
     String getType();
 
-    Color getColor();
+    IMaterialRenderInfo getRenderInfo ();
 
-    void setColor(Color pColor);
+    void setRenderInfo (IMaterialRenderInfo newInfo);
 
     String getOreDicName();
 

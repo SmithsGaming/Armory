@@ -5,19 +5,16 @@ package com.SmithsModding.Armory.Common.Material;
 *   Created on: 6-4-2014
 */
 
-
 import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
+import com.SmithsModding.Armory.API.Materials.IMaterialRenderInfo;
 import com.SmithsModding.Armory.Armory;
 import com.SmithsModding.Armory.Common.Addons.MedievalAddonRegistry;
-import com.SmithsModding.Armory.Common.Factory.HeatedItemFactory;
-import com.SmithsModding.Armory.Common.Registry.GeneralRegistry;
-import com.SmithsModding.Armory.Util.Client.Color.Color;
-import com.SmithsModding.Armory.Util.Client.Color.ColorSampler;
-import com.SmithsModding.Armory.Util.Client.Colors;
 import com.SmithsModding.Armory.Util.References;
-import cpw.mods.fml.relauncher.Side;
+import com.SmithsModding.SmithsCore.Util.Client.Color.ColorSampler;
+import com.SmithsModding.SmithsCore.Util.Client.Color.MinecraftColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.fml.relauncher.Side;
 
 import java.security.InvalidParameterException;
 import java.util.HashMap;
@@ -31,7 +28,7 @@ public class ArmorMaterial implements IArmorMaterial {
     private String iVisibleName;
     private EnumChatFormatting iVisibleNameColor = EnumChatFormatting.RESET;
     private boolean iBaseArmorMaterial;
-    private Color iColor = Colors.DEFAULT;
+    private IMaterialRenderInfo renderInfo;
     private HashMap<String, Boolean> iActiveParts = new HashMap<String, Boolean>();
     private HashMap<String, Float> iBaseDamageAbsorption = new HashMap<String, Float>();
     private HashMap<String, Integer> iBaseDurability = new HashMap<String, Integer>();
@@ -46,9 +43,11 @@ public class ArmorMaterial implements IArmorMaterial {
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
 
-        if (Armory.iSide == Side.CLIENT) {
-            iColor = ColorSampler.getColorSampleFromItemStack(pBaseItemStack);
-            iVisibleNameColor = ColorSampler.getChatColorSample(iColor);
+        if (Armory.side == Side.CLIENT) {
+            MinecraftColor metalColor = ColorSampler.getColorSampleFromItemStack(pBaseItemStack);
+
+            renderInfo = new IMaterialRenderInfo.Metal(metalColor.getRGB());
+            iVisibleNameColor = ColorSampler.getSimpleChatMinecraftColor(metalColor);
         }
 
         iBaseArmorMaterial = pBaseArmorMaterial;
@@ -56,39 +55,32 @@ public class ArmorMaterial implements IArmorMaterial {
         iHeatCoefficient = pHeatCoefficient;
 
         iBaseStack = pBaseItemStack;
-        if (!HeatedItemFactory.getInstance().isHeatable(pBaseItemStack)) {
-            HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
-        }
 
         setMaterialID(iLastUsedID);
         iLastUsedID++;
 
-        if (iColor != null) {
-            GeneralRegistry.iLogger.info("Initialized Material: " + iInternalName + ", with ItemColor: " + iColor.toString() + ", with EnumChatFormatting: " + iVisibleNameColor.name());
+        if (renderInfo != null) {
+            Armory.getLogger().info("Initialized Material: " + iInternalName + ", with ItemColor: " + renderInfo.getVertexColor().toString() + ", with EnumChatFormatting: " + iVisibleNameColor.name());
         } else {
-            GeneralRegistry.iLogger.info("Initialized Material: " + iInternalName);
+            Armory.getLogger().info("Initialized Material: " + iInternalName);
         }
     }
 
-    public ArmorMaterial(String pInternalName, String pVisibleName, String pOreDicName, EnumChatFormatting pVisibileNameColor, boolean pBaseArmorMaterial, float pMeltingPoint, float pHeatCoefficient, Color pMaterialColor, ItemStack pBaseItemStack) {
+    public ArmorMaterial (String pInternalName, String pVisibleName, String pOreDicName, EnumChatFormatting pVisibileNameColor, boolean pBaseArmorMaterial, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack) {
         iOreDicName = pOreDicName;
         iInternalName = pInternalName;
         iVisibleName = pVisibleName;
-        iColor = pMaterialColor;
         iVisibleNameColor = pVisibileNameColor;
         iBaseArmorMaterial = pBaseArmorMaterial;
         iMeltingPoint = pMeltingPoint;
         iHeatCoefficient = pHeatCoefficient;
 
         iBaseStack = pBaseItemStack;
-        if (!HeatedItemFactory.getInstance().isHeatable(pBaseItemStack)) {
-            HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
-        }
 
         setMaterialID(iLastUsedID);
         iLastUsedID++;
 
-        GeneralRegistry.iLogger.info("Initialized Material: " + iInternalName + ", with ItemColor: " + iColor.toString() + ", with EnumChatFormatting: " + iVisibleNameColor.name());
+        Armory.getLogger().info("Initialized Material: " + iInternalName + ", with unknown ItemColor.");
     }
 
     @Override
@@ -113,7 +105,7 @@ public class ArmorMaterial implements IArmorMaterial {
 
     public void registerNewActivePart(String pUpgradeInternalName, boolean pPartState) {
         if ((iActiveParts.size() != 0) && (iActiveParts.get(pUpgradeInternalName) != null)) {
-            throw new InvalidParameterException("The given upgrade: " + MedievalAddonRegistry.getInstance().getUpgrade(pUpgradeInternalName).iVisibleName + ", is already registered  for this material: " + iVisibleName + ". The upgrades will automatically register them self's to the material.");
+            throw new InvalidParameterException("The given upgrade: " + MedievalAddonRegistry.getInstance().getUpgrade(pUpgradeInternalName).getInternalName() + ", is already registered  for this material: " + iVisibleName + ". The upgrades will automatically register them self's to the material.");
         }
 
         iActiveParts.put(pUpgradeInternalName, pPartState);
@@ -121,7 +113,7 @@ public class ArmorMaterial implements IArmorMaterial {
 
     public void modifyPartState(String pUpgradeInternalName, boolean pPartState) {
         if (iActiveParts.get(pUpgradeInternalName) == null) {
-            throw new InvalidParameterException("The given upgrade: " + MedievalAddonRegistry.getInstance().getUpgrade(pUpgradeInternalName).iVisibleName + ", is not registered for the following material: " + iVisibleName + ". Something went wrong as this should have happened when registering the material!");
+            throw new InvalidParameterException("The given upgrade: " + MedievalAddonRegistry.getInstance().getUpgrade(pUpgradeInternalName).getInternalName() + ", is not registered for the following material: " + iVisibleName + ". Something went wrong as this should have happened when registering the material!");
         }
         iActiveParts.put(pUpgradeInternalName, pPartState);
     }
@@ -184,12 +176,14 @@ public class ArmorMaterial implements IArmorMaterial {
         return References.InternalNames.Tiers.MEDIEVAL;
     }
 
-    public Color getColor() {
-        return this.iColor;
+    @Override
+    public IMaterialRenderInfo getRenderInfo () {
+        return renderInfo;
     }
 
-    public void setColor(Color pColor) {
-        this.iColor = pColor;
+    @Override
+    public void setRenderInfo (IMaterialRenderInfo newInfo) {
+        renderInfo = newInfo;
     }
 
     public String getOreDicName() {

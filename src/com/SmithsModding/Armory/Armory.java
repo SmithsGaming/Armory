@@ -1,25 +1,17 @@
 package com.SmithsModding.Armory;
 
 import com.SmithsModding.Armory.Common.ArmoryCommonProxy;
-import com.SmithsModding.Armory.Common.Command.CommandArmory;
-import com.SmithsModding.Armory.Common.Config.ArmorDataConfigHandler;
-import com.SmithsModding.Armory.Common.Config.ArmoryConfig;
-import com.SmithsModding.Armory.Common.Handlers.GuiHandler;
 import com.SmithsModding.Armory.Common.Logic.ArmoryInitializer;
-import com.SmithsModding.Armory.Common.Registry.GeneralRegistry;
-import com.SmithsModding.Armory.Network.ConfigNetworkManager;
-import com.SmithsModding.Armory.Network.NetworkManager;
-import com.SmithsModding.Armory.Network.StructureNetworkManager;
 import com.SmithsModding.Armory.Util.References;
 import com.google.common.base.Stopwatch;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.relauncher.Side;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.TimeUnit;
 
@@ -39,55 +31,48 @@ public class Armory {
     // Proxies used to register stuff client and server side.
     @SidedProxy(clientSide = "com.SmithsModding.Armory.Client.ArmoryClientProxy", serverSide = "com.SmithsModding.Armory.Common.ArmoryCommonProxy")
     public static ArmoryCommonProxy proxy;
-
     //Stored to get the loaded side when needed
-    public static Side iSide;
+    public static Side side;
+    //Logger
+    private static Logger logger = LogManager.getLogger("Armory");
+
+    public static Logger getLogger () {
+        return logger;
+    }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         Stopwatch watch = Stopwatch.createStarted();
-        GeneralRegistry.iLogger.info("Starting pre init");
+        getLogger().info("Starting pre init");
+
+        side = event.getSide();
 
         proxy.preInitializeArmory();
         proxy.registerEventHandlers();
 
-        ArmoryConfig.ConfigHandler.init(event.getSuggestedConfigurationFile());
-        ArmorDataConfigHandler.init(event.getSuggestedConfigurationFile());
-
-        GeneralRegistry.iLogger.info("Finished pre init after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
+        getLogger().info("Finished pre init after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         Stopwatch watch = Stopwatch.createStarted();
-        GeneralRegistry.iLogger.info("Starting init");
-
-        NetworkManager.Init();
-        ConfigNetworkManager.Init();
-        StructureNetworkManager.Init();
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+        getLogger().info("Starting init");
 
         proxy.initializeArmory();
 
-        GeneralRegistry.iLogger.info("Finished init after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
+        getLogger().info("Finished init after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         Stopwatch watch = Stopwatch.createStarted();
-        GeneralRegistry.iLogger.info("Starting post init");
+        getLogger().info("Starting post init");
 
         ArmoryInitializer.postInitializeServer();
 
-        GeneralRegistry.iLogger.info("Finished post init after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
+        getLogger().info("Finished post init after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();
     }
-
-    @Mod.EventHandler
-    public void onServerStarting(FMLServerStartingEvent event) {
-        event.registerServerCommand(new CommandArmory());
-    }
-
 }

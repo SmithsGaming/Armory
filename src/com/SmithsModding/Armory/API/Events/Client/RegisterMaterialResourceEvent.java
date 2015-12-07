@@ -2,7 +2,7 @@ package com.SmithsModding.Armory.API.Events.Client;
 
 import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
 import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import cpw.mods.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.Event;
 
 /**
  * Created by Orion
