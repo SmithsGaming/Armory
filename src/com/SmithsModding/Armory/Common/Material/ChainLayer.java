@@ -8,8 +8,8 @@ import net.minecraft.util.ResourceLocation;
  */
 public class ChainLayer extends MaterialDependentMLAAddon {
 
-    public ChainLayer (String pInternalName, String pParentName, String pAddonPositionID, String pMaterialID, ResourceLocation pModelLocation) {
-        super(pInternalName, pMaterialID, pParentName, pAddonPositionID, pModelLocation, 0);
+    public ChainLayer (String pInternalName, String pParentName, String pAddonPositionID, String pMaterialID, ResourceLocation itemTextureWhole, ResourceLocation modelTextureLocation) {
+        super(pInternalName, pMaterialID, pParentName, pAddonPositionID, itemTextureWhole, modelTextureLocation, 0);
     }
 
     @Override

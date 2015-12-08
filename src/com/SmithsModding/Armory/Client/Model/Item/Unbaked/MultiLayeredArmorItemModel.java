@@ -60,7 +60,7 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
         for (final MLAAddon addon : armor.getAllowedAddons()) {
             String addonID = addon.getUniqueID();
             if (addon.isMaterialDependent()) {
-                addonID = ((MaterialDependentMLAAddon) addon).getAddonInternalName();
+                addonID = ((MaterialDependentMLAAddon) addon).getMaterialIndependentID();
             }
 
             if (addon.getItemWholeTextureLocation().equals(baseLayer.getTexture()) && mappedBaseLayer == null) {

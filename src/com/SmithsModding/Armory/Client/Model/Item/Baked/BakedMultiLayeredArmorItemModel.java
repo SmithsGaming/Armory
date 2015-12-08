@@ -83,8 +83,8 @@ public class BakedMultiLayeredArmorItemModel extends ItemLayerModel.BakedModel i
             String addonID = addon.getUniqueID();
             String modelID = addonID;
             if (addon.isMaterialDependent()) {
-                addonID = ((MaterialDependentMLAAddon) addon).getAddonInternalName();
-                modelID = ((MaterialDependentMLAAddon) addon).getMaterialName();
+                addonID = ((MaterialDependentMLAAddon) addon).getMaterialIndependentID();
+                modelID = ((MaterialDependentMLAAddon) addon).getUniqueMaterialID();
             }
 
             IBakedModel partModel;

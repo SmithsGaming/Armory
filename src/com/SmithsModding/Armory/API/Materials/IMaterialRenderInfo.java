@@ -84,7 +84,7 @@ public interface IMaterialRenderInfo {
 
         @Override
         public MinecraftColor getVertexColor () {
-            return (MinecraftColor) MinecraftColor.white;
+            return new MinecraftColor(MinecraftColor.white);
         }
 
         @Override
@@ -143,6 +143,11 @@ public interface IMaterialRenderInfo {
             this.low = low;
             this.mid = mid;
             this.high = high;
+        }
+
+        @Override
+        public MinecraftColor getVertexColor () {
+            return new MinecraftColor(mid);
         }
 
         @Override

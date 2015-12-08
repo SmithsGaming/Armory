@@ -32,8 +32,8 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
      * @see MultiLayeredArmor
      * @see ArmorAddonPosition
      */
-    public MLAAddon (String uniqueID, String uniqueArmorID, String addonPositionID, ResourceLocation itemWholeTextureLocation, int layerPriority) {
-        this(uniqueID, uniqueArmorID, addonPositionID, 1, itemWholeTextureLocation, layerPriority);
+    public MLAAddon (String uniqueID, String uniqueArmorID, String addonPositionID, ResourceLocation itemWholeTextureLocation, ResourceLocation modelTextureLocation, int layerPriority) {
+        this(uniqueID, uniqueArmorID, addonPositionID, 1, itemWholeTextureLocation, modelTextureLocation, layerPriority);
     }
 
     /**
@@ -44,13 +44,14 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
      * @param addonPositionID    The position of the addon on the MLA armor.
      * @param maximumInstalledAmount The max amount of addons that are allowed on a single position
      */
-    public MLAAddon (String uniqueID, String uniqueArmorID, String addonPositionID, Integer maximumInstalledAmount, ResourceLocation itemWholeTextureLocation, int layerPriority) {
+    public MLAAddon (String uniqueID, String uniqueArmorID, String addonPositionID, Integer maximumInstalledAmount, ResourceLocation itemWholeTextureLocation, ResourceLocation modelTextureLocation, int layerPriority) {
         this.uniqueID = uniqueID;
         this.uniqueArmorID = uniqueArmorID;
         this.addonPositionID = addonPositionID;
         this.maximumInstalledAmount = maximumInstalledAmount;
         this.itemWholeTextureLocation = itemWholeTextureLocation;
         itemBrokenTextureLocation = this.itemWholeTextureLocation;
+        this.modelTextureLocation = modelTextureLocation;
         this.layerPriority = layerPriority;
     }
 

@@ -5,13 +5,17 @@ package com.SmithsModding.Armory.API.Armor;
 *   Created on: 28-6-2014
 */
 
+import com.SmithsModding.Armory.Client.Model.Entity.ModelExtendedBiped;
 import com.SmithsModding.Armory.Common.Registry.GeneralRegistry;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,4 +86,23 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
 
     @Override
     public abstract void damageArmor (EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot);
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public ModelBiped getArmorModel (EntityLivingBase pEntityLiving, ItemStack pItemStack, int pArmorSlot) {
+        ModelExtendedBiped tModel = new ModelExtendedBiped(1F, pItemStack);
+
+        switch (this.armorIndex) {
+            case 0:
+                tModel = new ModelExtendedBiped(1.5F, pItemStack);
+                break;
+            case 3:
+                tModel = new ModelExtendedBiped(1.5F, pItemStack);
+                break;
+            default:
+                break;
+        }
+
+        return tModel;
+    }
 }

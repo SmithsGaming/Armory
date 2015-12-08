@@ -6,18 +6,18 @@ import net.minecraft.util.ResourceLocation;
  * Created by Marc on 07.12.2015.
  */
 public abstract class MaterialDependentMLAAddon extends MLAAddon {
-    String iMaterialName;
-    String iInternalName;
+    String uniqueMaterialID;
+    String materialIndependentID;
 
-    public MaterialDependentMLAAddon (String pInternalName, String pMaterialName, String pParentName, String pAddonPositionID, ResourceLocation pModelTextureLocation, int layerPriority) {
-        this(pInternalName, pMaterialName, pParentName, pAddonPositionID, 1, pModelTextureLocation, layerPriority);
+    public MaterialDependentMLAAddon (String uniqueID, String uniqueMaterialID, String uniqueArmorID, String addonPositionID, ResourceLocation itemWholeTextureLocation, ResourceLocation modelTextureLocation, int layerPriority) {
+        this(uniqueID, uniqueMaterialID, uniqueArmorID, addonPositionID, 1, itemWholeTextureLocation, modelTextureLocation, layerPriority);
     }
 
-    public MaterialDependentMLAAddon (String pInternalName, String pMaterialName, String pParentName, String pAddonPositionID, Integer pMaxInstalledAmount, ResourceLocation pModelTextureLocation, int layerPriority) {
-        super(pInternalName + "-" + pMaterialName, pParentName, pAddonPositionID, pMaxInstalledAmount, pModelTextureLocation, layerPriority);
+    public MaterialDependentMLAAddon (String uniqueID, String uniqueMaterialID, String uniqueArmorID, String addonPositionID, Integer maximumInstalledAmount, ResourceLocation itemWholeTextureLocation, ResourceLocation modelTextureLocation, int layerPriority) {
+        super(uniqueID + "-" + uniqueMaterialID, uniqueArmorID, addonPositionID, maximumInstalledAmount, itemWholeTextureLocation, modelTextureLocation, layerPriority);
 
-        iInternalName = pInternalName;
-        iMaterialName = pMaterialName;
+        this.materialIndependentID = uniqueID;
+        this.uniqueMaterialID = uniqueMaterialID;
     }
 
     @Override
@@ -25,11 +25,11 @@ public abstract class MaterialDependentMLAAddon extends MLAAddon {
         return true;
     }
 
-    public String getMaterialName () {
-        return iMaterialName;
+    public String getUniqueMaterialID () {
+        return uniqueMaterialID;
     }
 
-    public String getAddonInternalName () {
-        return iInternalName;
+    public String getMaterialIndependentID () {
+        return materialIndependentID;
     }
 }

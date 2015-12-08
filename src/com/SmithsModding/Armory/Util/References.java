@@ -32,7 +32,7 @@ public class References {
         public static final class Armor {
             public static final String MEDIEVALHELMET = "Armory.Helmet.Medieval";
             public static final String MEDIEVALCHESTPLATE = "Armory.Chestplate.Medieval";
-            public static final String MEDIEVALLEGGINGS = "Armory.Leggins.Medieval";
+            public static final String MEDIEVALLEGGINGS = "Armory.Leggings.Medieval";
             public static final String MEDIEVALSHOES = "Armory.Shoes.Medieval";
         }
 
