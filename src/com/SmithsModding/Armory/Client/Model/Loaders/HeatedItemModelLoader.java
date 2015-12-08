@@ -1,27 +1,19 @@
 package com.SmithsModding.Armory.Client.Model.Loaders;
 
 
-import com.SmithsModding.Armory.Armory;
-import com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components.ArmorComponentModel;
-import com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components.TemperatureBarComponentModel;
-import com.SmithsModding.Armory.Client.Model.Item.Unbaked.DummyModel;
-import com.SmithsModding.Armory.Client.Model.Item.Unbaked.MultiLayeredArmorItemModel;
-import com.SmithsModding.Armory.Client.Textures.MaterializedTextureCreator;
-import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
-import com.SmithsModding.SmithsCore.Util.Client.ModelHelper;
-import com.google.common.collect.ImmutableList;
-import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ICustomModelLoader;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
+import com.SmithsModding.Armory.*;
+import com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components.*;
+import com.SmithsModding.Armory.Client.Model.Item.Unbaked.*;
+import com.SmithsModding.Armory.Client.Textures.*;
+import com.SmithsModding.SmithsCore.Util.Client.*;
+import com.google.common.collect.*;
+import net.minecraft.client.resources.*;
+import net.minecraft.util.*;
+import net.minecraftforge.client.model.*;
+import net.minecraftforge.fml.common.*;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 /**
  * Created by Marc on 06.12.2015.
@@ -47,9 +39,6 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
             //Create the final list builder.
             ImmutableList.Builder<ResourceLocation> builder = ImmutableList.builder();
 
-            //Define the model structure components.
-            ArrayList<TemperatureBarComponentModel> bars = new ArrayList<TemperatureBarComponentModel>();
-
             //Iterate over all entries to define what they are
             //At least required is a layer if type base for the model to load succesfully.
             //Possible layer types:
@@ -65,8 +54,6 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
                         //Standard Layer
                         location = new ResourceLocation(entry.getValue());
                         partModel = new TemperatureBarComponentModel(ImmutableList.of(location));
-
-                        bars.add(partModel);
                     } else {
                         //Unknown layer, warning and skipping.
                         Armory.getLogger().warn("HeatedItemModel {} has invalid texture entry {}; Skipping layer.", modelLocation, name);
@@ -81,13 +68,13 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
                 }
             }
 
-            if (bars.size() == 0) {
+            if (builder.build().size() == 0) {
                 Armory.getLogger().error("A given model definition for the HeatedItems did not contain any gauges.");
                 return ModelLoaderRegistry.getMissingModel();
             }
 
             //Construct the new unbaked model from the collected data.
-            IModel output = new MultiLayeredArmorItemModel(MaterialRegistry.getInstance().getArmor(armorInternalName), builder.build(), base, parts, brokenParts);
+            IModel output = new HeatedItemItemModel(builder.build());
 
             // Load all textures we need in to the creator.
             MaterializedTextureCreator.registerBaseTexture(builder.build());

@@ -1,16 +1,14 @@
-package com.SmithsModding.Armory.Client.Model.Item.Baked;
+package com.SmithsModding.Armory.Client.Model.Item.Baked.Components;
 
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.API.Item.ISingleMaterialItem;
-import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
-import net.minecraft.client.resources.model.IBakedModel;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.model.IFlexibleBakedModel;
-import net.minecraftforge.client.model.ISmartItemModel;
+import com.SmithsModding.Armory.API.Armor.*;
+import com.SmithsModding.Armory.API.Item.*;
+import com.SmithsModding.Armory.API.Materials.*;
+import com.SmithsModding.Armory.Common.Material.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.item.*;
+import net.minecraftforge.client.model.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Marc on 06.12.2015.

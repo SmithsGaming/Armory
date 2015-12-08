@@ -1,24 +1,17 @@
 package com.SmithsModding.Armory.Client.Model.Item.Baked;
 
-import com.SmithsModding.Armory.API.Armor.MLAAddon;
-import com.SmithsModding.Armory.API.Armor.MaterialDependentMLAAddon;
-import com.SmithsModding.Armory.Util.Armor.ArmorNBTHelper;
-import com.SmithsModding.SmithsCore.Util.Common.NBTHelper;
-import com.SmithsModding.SmithsCore.Util.Common.Pair;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.resources.model.IBakedModel;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.client.model.IFlexibleBakedModel;
-import net.minecraftforge.client.model.ISmartItemModel;
-import net.minecraftforge.client.model.ItemLayerModel;
-import net.minecraftforge.client.model.TRSRTransformation;
+import com.SmithsModding.Armory.API.Armor.*;
+import com.SmithsModding.Armory.Client.Model.Item.Baked.Components.*;
+import com.SmithsModding.Armory.Util.Armor.*;
+import com.SmithsModding.SmithsCore.Util.Common.*;
+import com.google.common.collect.*;
+import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraftforge.client.model.*;
 
-import javax.vecmath.Matrix4f;
+import javax.vecmath.*;
 import java.util.*;
 
 /**

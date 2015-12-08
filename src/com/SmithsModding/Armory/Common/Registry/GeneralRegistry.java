@@ -5,10 +5,11 @@ package com.SmithsModding.Armory.Common.Registry;
  *   Created on: 24-9-2014
  */
 
-import net.minecraft.item.ItemArmor;
-import net.minecraftforge.common.util.EnumHelper;
+import com.SmithsModding.Armory.Common.Item.*;
+import net.minecraft.item.*;
+import net.minecraftforge.common.util.*;
 
-import java.util.Properties;
+import java.util.*;
 
 public class GeneralRegistry {
     public static boolean isInDevEnvironment = false;
@@ -27,5 +28,9 @@ public class GeneralRegistry {
 
     public static final ItemArmor.ArmorMaterial getVanillaArmorDefitinition () {
         return armorMaterial;
+    }
+
+    public static class Items {
+        public static ItemHeatedItem heatedItem;
     }
 }

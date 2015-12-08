@@ -1,29 +1,19 @@
 package com.SmithsModding.Armory.Client.Textures;
 
-import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import com.SmithsModding.Armory.API.Materials.IMaterialRenderInfo;
-import com.SmithsModding.Armory.API.Textures.AbstractColoredTexture;
-import com.SmithsModding.Armory.API.Textures.GuiOutlineTexture;
-import com.SmithsModding.Armory.Armory;
-import com.SmithsModding.Armory.Common.Material.ArmorMaterial;
-import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
-import com.SmithsModding.SmithsCore.Util.Client.ResourceHelper;
-import com.google.common.collect.Maps;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.client.resources.IResourceManagerReloadListener;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import com.SmithsModding.Armory.API.Materials.*;
+import com.SmithsModding.Armory.API.Textures.*;
+import com.SmithsModding.Armory.*;
+import com.SmithsModding.Armory.Common.Material.*;
+import com.SmithsModding.SmithsCore.Util.Client.*;
+import com.google.common.collect.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.client.resources.*;
+import net.minecraft.util.*;
+import net.minecraftforge.client.event.*;
+import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.eventhandler.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Marc on 06.12.2015.
@@ -121,16 +111,6 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
                     coloredSprites.put(material.getUniqueID(), sprite);
                 }
             }
-
-            /*
-            This code is currently not used until I have a way to make Addons into items.
-
-            if(belongsToToolPart(baseTexture)) {
-                TextureAtlasSprite sprite = createTexture(guiMaterial, baseTexture, base, map);
-                if(sprite != null) {
-                    coloredSprites.put(guiMaterial.identifier, sprite);
-                }
-            }*/
 
             buildSprites.put(baseTexture.toString(), coloredSprites);
         }

@@ -1,25 +1,20 @@
 package com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components;
 
-import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import com.SmithsModding.Armory.Client.Model.Item.Baked.BakedComponentModel;
-import com.SmithsModding.Armory.Client.Textures.MaterializedTextureCreator;
-import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
-import com.SmithsModding.SmithsCore.Util.Client.Color.MinecraftColor;
-import com.SmithsModding.SmithsCore.Util.Client.ModelHelper;
-import com.SmithsModding.SmithsCore.Util.Client.ResourceHelper;
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.util.ResourceLocation;
+import com.SmithsModding.Armory.API.Materials.*;
+import com.SmithsModding.Armory.Client.Model.Item.Baked.Components.*;
+import com.SmithsModding.Armory.Client.Textures.*;
+import com.SmithsModding.Armory.Common.Material.*;
+import com.SmithsModding.SmithsCore.Util.Client.Color.*;
+import com.SmithsModding.SmithsCore.Util.Client.*;
+import com.google.common.base.*;
+import com.google.common.collect.*;
+import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.client.renderer.vertex.*;
+import net.minecraft.util.*;
 import net.minecraftforge.client.model.*;
 
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Marc on 06.12.2015.

@@ -1,28 +1,21 @@
 package com.SmithsModding.Armory.Client.Model.Item.Unbaked;
 
-import com.SmithsModding.Armory.API.Armor.MLAAddon;
-import com.SmithsModding.Armory.API.Armor.MaterialDependentMLAAddon;
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.Armory;
-import com.SmithsModding.Armory.Client.Model.Item.Baked.BakedComponentModel;
-import com.SmithsModding.Armory.Client.Model.Item.Baked.BakedMultiLayeredArmorItemModel;
-import com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components.ArmorComponentModel;
-import com.SmithsModding.SmithsCore.Util.Client.ModelHelper;
-import com.SmithsModding.SmithsCore.Util.Common.Pair;
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.IFlexibleBakedModel;
-import net.minecraftforge.client.model.IModelState;
-import net.minecraftforge.client.model.ItemLayerModel;
-import net.minecraftforge.client.model.TRSRTransformation;
+import com.SmithsModding.Armory.API.Armor.*;
+import com.SmithsModding.Armory.*;
+import com.SmithsModding.Armory.Client.Model.Item.Baked.*;
+import com.SmithsModding.Armory.Client.Model.Item.Baked.Components.*;
+import com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components.*;
+import com.SmithsModding.SmithsCore.Util.Client.*;
+import com.SmithsModding.SmithsCore.Util.Common.*;
+import com.google.common.base.*;
+import com.google.common.collect.*;
+import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.client.renderer.vertex.*;
+import net.minecraft.util.*;
+import net.minecraftforge.client.model.*;
 
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by Marc on 06.12.2015.
@@ -87,6 +80,6 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
 
     @Override
     public IModelState getDefaultState () {
-        return ModelHelper.DEFAULT_TOOL_STATE;
+        return ModelHelper.DEFAULT_ITEM_STATE;
     }
 }

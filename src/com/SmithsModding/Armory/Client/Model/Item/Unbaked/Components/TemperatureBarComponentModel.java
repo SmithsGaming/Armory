@@ -1,16 +1,15 @@
 package com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components;
 
-import com.SmithsModding.SmithsCore.Util.Client.ModelHelper;
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.IFlexibleBakedModel;
-import net.minecraftforge.client.model.IModelState;
-import net.minecraftforge.client.model.ItemLayerModel;
+import com.SmithsModding.Armory.Client.Model.Item.Baked.Components.*;
+import com.SmithsModding.SmithsCore.Util.Client.*;
+import com.google.common.base.*;
+import com.google.common.collect.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.client.renderer.vertex.*;
+import net.minecraft.util.*;
+import net.minecraftforge.client.model.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by Marc on 08.12.2015.
@@ -69,7 +68,26 @@ public class TemperatureBarComponentModel extends ItemLayerModel {
      */
     public IFlexibleBakedModel generateBackedComponentModel (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         // Get ourselfs a normal model to use.
-        return super.bake(state, format, bakedTextureGetter);
+        IFlexibleBakedModel base = super.bake(state, format, bakedTextureGetter);
+
+        // Use it as our base for the BakedComponentModel.
+        BakedTemperatureBarModel bakedTemperatureBar = new BakedTemperatureBarModel(base);
+
+        //Construct individual models for each of the sprites.
+        for (ResourceLocation textureLocation : this.getTextures()) {
+            TextureAtlasSprite sprite = bakedTextureGetter.apply(textureLocation);
+
+            //We retexture this model with the newly colored textured from ther creator and get a Copy of this model
+            IModel model2 = this.retexture(ImmutableMap.of("layer0", sprite.getIconName()));
+
+            //We bake the new model to get a ready to use textured and ready to be colored baked model.
+            IFlexibleBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
+
+            bakedTemperatureBar.addTexture(bakedModel2);
+        }
+
+        //And we are done, we have a ready to use, baked, textured and colored model.
+        return bakedTemperatureBar;
     }
 
 }
