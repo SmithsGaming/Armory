@@ -6,6 +6,7 @@ import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
 import com.SmithsModding.Armory.Armory;
 import com.SmithsModding.Armory.Client.Model.Item.Baked.BakedComponentModel;
 import com.SmithsModding.Armory.Client.Model.Item.Baked.BakedMultiLayeredArmorItemModel;
+import com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components.ArmorComponentModel;
 import com.SmithsModding.SmithsCore.Util.Client.ModelHelper;
 import com.SmithsModding.SmithsCore.Util.Common.Pair;
 import com.google.common.base.Function;

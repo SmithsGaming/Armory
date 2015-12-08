@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.Client.Model.Item.Unbaked;
+package com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components;
 
 import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
 import com.SmithsModding.Armory.Client.Model.Item.Baked.BakedComponentModel;
