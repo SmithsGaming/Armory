@@ -40,7 +40,7 @@ public class PerspectiveUnawareBakedHeatedItemItemModel extends ItemLayerModel.B
 
     @Override
     public Pair<IBakedModel, Matrix4f> handlePerspective (ItemCameraTransforms.TransformType cameraTransformType) {
-        if (inventory) {
+        if (cameraTransformType == ItemCameraTransforms.TransformType.GUI) {
             return getModel(ItemCameraTransforms.TransformType.GUI).handlePerspective(cameraTransformType);
         }
 

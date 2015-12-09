@@ -53,7 +53,6 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
                     if (name.startsWith("temp")) {
                         //Standard Layer
                         location = new ResourceLocation(entry.getValue());
-                        partModel = new TemperatureBarComponentModel(ImmutableList.of(location));
                     } else {
                         //Unknown layer, warning and skipping.
                         Armory.getLogger().warn("HeatedItemModel {} has invalid texture entry {}; Skipping layer.", modelLocation, name);

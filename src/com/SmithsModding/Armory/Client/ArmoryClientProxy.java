@@ -1,24 +1,23 @@
 package com.SmithsModding.Armory.Client;
 
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.Armory;
-import com.SmithsModding.Armory.Client.Logic.ArmoryClientInitializer;
-import com.SmithsModding.Armory.Client.Model.Loaders.MultiLayeredArmorModelLoader;
-import com.SmithsModding.Armory.Client.Textures.MaterializedTextureCreator;
-import com.SmithsModding.Armory.Common.ArmoryCommonProxy;
-import com.SmithsModding.SmithsCore.Util.Client.ResourceHelper;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.resources.IReloadableResourceManager;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import com.SmithsModding.Armory.API.Armor.*;
+import com.SmithsModding.Armory.*;
+import com.SmithsModding.Armory.Client.Logic.*;
+import com.SmithsModding.Armory.Client.Model.Loaders.*;
+import com.SmithsModding.Armory.Client.Textures.*;
+import com.SmithsModding.Armory.Common.*;
+import com.SmithsModding.Armory.Common.Item.*;
+import com.SmithsModding.SmithsCore.Util.Client.*;
+import net.minecraft.client.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.resources.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraftforge.client.model.*;
+import net.minecraftforge.common.*;
+import net.minecraftforge.fml.common.network.simpleimpl.*;
 
 /**
  * Created by Orion on 26-3-2014.
@@ -26,10 +25,12 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class ArmoryClientProxy extends ArmoryCommonProxy {
 
     private static MultiLayeredArmorModelLoader multiLayeredArmorModelLoader = new MultiLayeredArmorModelLoader();
+    private static HeatedItemModelLoader heatedItemModelLoader = new HeatedItemModelLoader();
 
     @Override
     public void preInitializeArmory() {
         ModelLoaderRegistry.registerLoader(multiLayeredArmorModelLoader);
+        ModelLoaderRegistry.registerLoader(heatedItemModelLoader);
 
         MaterializedTextureCreator materializedTextureCreator = new MaterializedTextureCreator();
         MinecraftForge.EVENT_BUS.register(materializedTextureCreator);
@@ -64,6 +65,17 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         return registerArmorItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
     }
 
+    public ResourceLocation registerHeatedItemItemModel (ItemHeatedItem item) {
+        ResourceLocation itemLocation = ResourceHelper.getItemLocation(item);
+        if (itemLocation == null) {
+            return null;
+        }
+
+        String path = "HeatedItem/" + itemLocation.getResourcePath() + HeatedItemModelLoader.EXTENSION;
+
+        return registerHeatedItemItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
+    }
+
     public ResourceLocation registerArmorItemModel (MultiLayeredArmor item, final ResourceLocation location) {
         if (!location.getResourcePath().endsWith(MultiLayeredArmorModelLoader.EXTENSION)) {
             Armory.getLogger().error("The material-model " + location.toString() + " does not end with '"
@@ -71,18 +83,28 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
                     + "' and will therefore not be loaded by the custom model loader!");
         }
 
-        return registerArmorItemModelDefinition(item, location);
+        return registerItemModelDefinition(item, location, MultiLayeredArmorModelLoader.EXTENSION);
     }
 
-
-    public ResourceLocation registerArmorItemModelDefinition (MultiLayeredArmor armor, final ResourceLocation location) {
-        if (!location.getResourcePath().endsWith(MultiLayeredArmorModelLoader.EXTENSION)) {
-            Armory.getLogger().error("The Armor-Item-Model " + location.toString() + " does not end with '"
-                    + MultiLayeredArmorModelLoader.EXTENSION
+    public ResourceLocation registerHeatedItemItemModel (ItemHeatedItem item, final ResourceLocation location) {
+        if (!location.getResourcePath().endsWith(HeatedItemModelLoader.EXTENSION)) {
+            Armory.getLogger().error("The material-model " + location.toString() + " does not end with '"
+                    + HeatedItemModelLoader.EXTENSION
                     + "' and will therefore not be loaded by the custom model loader!");
         }
 
-        ModelLoader.setCustomMeshDefinition(armor, new ItemMeshDefinition() {
+        return registerItemModelDefinition(item, location, HeatedItemModelLoader.EXTENSION);
+    }
+
+
+    public ResourceLocation registerItemModelDefinition (Item item, final ResourceLocation location, String requiredExtension) {
+        if (!location.getResourcePath().endsWith(requiredExtension)) {
+            Armory.getLogger().error("The Item-Model " + location.toString() + " does not end with '"
+                    + requiredExtension
+                    + "' and will therefore not be loaded by the custom model loader!");
+        }
+
+        ModelLoader.setCustomMeshDefinition(item, new ItemMeshDefinition() {
             @Override
             public ModelResourceLocation getModelLocation (ItemStack stack) {
                 return new ModelResourceLocation(location, "inventory");
@@ -90,9 +112,9 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         });
 
         // We have to read the default variant if we have custom variants, since it wont be added otherwise and therefore not loaded
-        ModelBakery.addVariantName(armor, location.toString());
+        ModelBakery.addVariantName(item, location.toString());
 
-        Armory.getLogger().info("Added model definition for: " + armor.getUniqueID() + " add: " + location.getResourcePath() + " in the Domain: " + location.getResourceDomain());
+        Armory.getLogger().info("Added model definition for: " + item.getUnlocalizedName() + " add: " + location.getResourcePath() + " in the Domain: " + location.getResourceDomain());
 
         return location;
     }

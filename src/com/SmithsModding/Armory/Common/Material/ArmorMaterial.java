@@ -5,19 +5,18 @@ package com.SmithsModding.Armory.Common.Material;
 *   Created on: 6-4-2014
 */
 
-import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import com.SmithsModding.Armory.API.Materials.IMaterialRenderInfo;
-import com.SmithsModding.Armory.Armory;
-import com.SmithsModding.Armory.Common.Addons.MedievalAddonRegistry;
-import com.SmithsModding.Armory.Util.References;
-import com.SmithsModding.SmithsCore.Util.Client.Color.ColorSampler;
-import com.SmithsModding.SmithsCore.Util.Client.Color.MinecraftColor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.fml.relauncher.Side;
+import com.SmithsModding.Armory.API.Materials.*;
+import com.SmithsModding.Armory.*;
+import com.SmithsModding.Armory.Common.Addons.*;
+import com.SmithsModding.Armory.Common.Factory.*;
+import com.SmithsModding.Armory.Util.*;
+import com.SmithsModding.SmithsCore.Util.Client.Color.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraftforge.fml.relauncher.*;
 
-import java.security.InvalidParameterException;
-import java.util.HashMap;
+import java.security.*;
+import java.util.*;
 
 public class ArmorMaterial implements IArmorMaterial {
     private static int iLastUsedID = 0;
@@ -55,6 +54,9 @@ public class ArmorMaterial implements IArmorMaterial {
         iHeatCoefficient = pHeatCoefficient;
 
         iBaseStack = pBaseItemStack;
+        if (pBaseItemStack != null && !HeatedItemFactory.getInstance().isHeatable(pBaseItemStack)) {
+            HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
+        }
 
         setItemDamageMaterialID(iLastUsedID);
         iLastUsedID++;
@@ -76,6 +78,9 @@ public class ArmorMaterial implements IArmorMaterial {
         iHeatCoefficient = pHeatCoefficient;
 
         iBaseStack = pBaseItemStack;
+        if (pBaseItemStack != null && !HeatedItemFactory.getInstance().isHeatable(pBaseItemStack)) {
+            HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
+        }
 
         setItemDamageMaterialID(iLastUsedID);
         iLastUsedID++;

@@ -5,36 +5,27 @@ package com.SmithsModding.Armory.Common.Logic;
  *   Created on: 17-9-2014
  */
 
-import com.SmithsModding.Armory.API.Armor.ArmorAddonPosition;
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.API.Events.Common.ModifyMaterialEvent;
-import com.SmithsModding.Armory.API.Events.Common.RegisterArmorEvent;
-import com.SmithsModding.Armory.API.Events.Common.RegisterMaterialsEvent;
-import com.SmithsModding.Armory.API.Events.Common.RegisterUpgradesEvent;
-import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import com.SmithsModding.Armory.Armory;
-import com.SmithsModding.Armory.Common.Addons.ArmorUpgradeMedieval;
-import com.SmithsModding.Armory.Common.Addons.MedievalAddonRegistry;
-import com.SmithsModding.Armory.Common.Item.Armor.TierMedieval.ArmorMedieval;
-import com.SmithsModding.Armory.Common.Material.ArmorMaterial;
-import com.SmithsModding.Armory.Common.Material.ChainLayer;
-import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
-import com.SmithsModding.Armory.Util.Client.Textures;
-import com.SmithsModding.Armory.Util.Client.TranslationKeys;
-import com.SmithsModding.Armory.Util.References;
-import com.SmithsModding.SmithsCore.Util.Common.ItemStackHelper;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
+import com.SmithsModding.Armory.API.Armor.*;
+import com.SmithsModding.Armory.API.Events.Common.*;
+import com.SmithsModding.Armory.API.Materials.*;
+import com.SmithsModding.Armory.*;
+import com.SmithsModding.Armory.Common.Addons.*;
+import com.SmithsModding.Armory.Common.Item.Armor.TierMedieval.*;
+import com.SmithsModding.Armory.Common.Item.*;
+import com.SmithsModding.Armory.Common.Material.*;
+import com.SmithsModding.Armory.Common.Registry.*;
+import com.SmithsModding.Armory.Util.Client.*;
+import com.SmithsModding.Armory.Util.*;
+import com.SmithsModding.SmithsCore.Util.Common.*;
+import net.minecraft.init.*;
+import net.minecraft.item.*;
+import net.minecraft.item.crafting.*;
+import net.minecraft.util.*;
+import net.minecraftforge.common.*;
+import net.minecraftforge.fml.common.registry.*;
+import net.minecraftforge.oredict.*;
 
-import java.util.Iterator;
+import java.util.*;
 
 public class ArmoryInitializer {
     public static void InitializeServer() {
@@ -369,8 +360,12 @@ public class ArmoryInitializer {
         }
 
         public static void RegisterItems() {
+            GeneralRegistry.Items.heatedItem = new ItemHeatedItem();
+
             for (MultiLayeredArmor armor : MaterialRegistry.getInstance().getAllRegisteredArmors().values())
                 GameRegistry.registerItem(armor, armor.getUniqueID());
+
+            GameRegistry.registerItem(GeneralRegistry.Items.heatedItem, References.InternalNames.Items.ItemHeatedIngot);
         }
 
         public static void RegisterTileEntities() {

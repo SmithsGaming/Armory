@@ -5,25 +5,19 @@ package com.SmithsModding.Armory.Client.Model.Entity;
  *   Created on: 23-9-2014
  */
 
-import com.SmithsModding.Armory.API.Armor.MLAAddon;
-import com.SmithsModding.Armory.API.Armor.MaterialDependentMLAAddon;
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
-import com.SmithsModding.Armory.Util.Armor.ArmorNBTHelper;
-import com.SmithsModding.SmithsCore.Util.Client.Color.MinecraftColor;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
+import com.SmithsModding.Armory.API.Armor.*;
+import com.SmithsModding.Armory.API.Materials.*;
+import com.SmithsModding.Armory.Common.Material.*;
+import com.SmithsModding.Armory.Util.Armor.*;
+import com.SmithsModding.SmithsCore.Util.Client.Color.*;
+import net.minecraft.client.*;
+import net.minecraft.client.model.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import org.lwjgl.opengl.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 public class ModelExtendedBiped extends ModelBiped {
     public ModelRenderer bipedRightFoot;
@@ -31,6 +25,8 @@ public class ModelExtendedBiped extends ModelBiped {
     public ModelRenderer bipedWaist;
 
     private ItemStack iStackToBeRendered;
+
+    private float scaleFactor;
 
     public ModelExtendedBiped (float pScaleFactor, ItemStack pStackToBeRendered) {
         textureWidth = 64;
@@ -92,6 +88,93 @@ public class ModelExtendedBiped extends ModelBiped {
         setRotation(bipedWaist, 0F, 0F, 0F);
 
         this.iStackToBeRendered = pStackToBeRendered;
+
+        this.scaleFactor = pScaleFactor;
+    }
+
+    private static void renderLayer (Entity entity, float f, float f1, float f2, float f3, float f4, float f5, ModelExtendedBiped layerModel, MLAAddon layer, MultiLayeredArmor armor) {
+        layerModel.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+
+        layerModel.isChild = ( (EntityLivingBase) entity ).isChild();
+
+        ResourceLocation modelLocation = layer.getModelTextureLocation();
+        Minecraft.getMinecraft().renderEngine.bindTexture(modelLocation);
+
+        handleArmorType(armor.getArmorIndex(), layerModel);
+
+        if (layer.isMaterialDependent()) {
+            IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(( (MaterialDependentMLAAddon) layer ).getUniqueMaterialID());
+            material.getRenderInfo().getVertexColor().performOpenGLColoring();
+        }
+
+        if (layerModel.isChild) {
+            float f6 = 2.0F;
+            GL11.glPushMatrix();
+            GL11.glScalef(1.5F / f6, 1.5F / f6, 1.5F / f6);
+            GL11.glTranslatef(0.0F, 16.0F * f5, 0.0F);
+            layerModel.bipedHead.render(f5);
+            GL11.glPopMatrix();
+            GL11.glPushMatrix();
+            GL11.glScalef(1.0F / f6, 1.0F / f6, 1.0F / f6);
+            GL11.glTranslatef(0.0F, 24.0F * f5, 0.0F);
+            layerModel.bipedBody.render(f5);
+            layerModel.bipedWaist.render(f5);
+            layerModel.bipedRightArm.render(f5);
+            layerModel.bipedLeftArm.render(f5);
+            layerModel.bipedRightLeg.render(f5);
+            layerModel.bipedRightFoot.render(f5);
+            layerModel.bipedLeftLeg.render(f5);
+            layerModel.bipedLeftFoot.render(f5);
+            GL11.glPopMatrix();
+        } else {
+            layerModel.bipedHead.render(f5);
+            layerModel.bipedWaist.render(f5);
+            layerModel.bipedBody.render(f5);
+            layerModel.bipedRightArm.render(f5);
+            layerModel.bipedLeftArm.render(f5);
+            layerModel.bipedRightLeg.render(f5);
+            layerModel.bipedRightFoot.render(f5);
+            layerModel.bipedLeftLeg.render(f5);
+            layerModel.bipedLeftFoot.render(f5);
+        }
+
+        if (layer.isMaterialDependent())
+            MinecraftColor.resetOpenGLColoring();
+    }
+
+    private static void handleArmorType (int armorIndex, ModelExtendedBiped model) {
+        switch (armorIndex) {
+            case 0:
+                model.bipedHead.showModel = true;
+                model.bipedBody.showModel = model.bipedRightArm.showModel = model.bipedLeftArm.showModel = false;
+                model.bipedWaist.showModel = model.bipedRightLeg.showModel = model.bipedLeftLeg.showModel = false;
+                model.bipedRightFoot.showModel = model.bipedLeftFoot.showModel = false;
+                break;
+            case 1:
+                model.bipedHead.showModel = false;
+                model.bipedBody.showModel = model.bipedRightArm.showModel = model.bipedLeftArm.showModel = true;
+                model.bipedWaist.showModel = model.bipedRightLeg.showModel = model.bipedLeftLeg.showModel = false;
+                model.bipedRightFoot.showModel = model.bipedLeftFoot.showModel = false;
+                break;
+            case 2:
+                model.bipedHead.showModel = false;
+                model.bipedBody.showModel = model.bipedRightArm.showModel = model.bipedLeftArm.showModel = false;
+                model.bipedWaist.showModel = model.bipedRightLeg.showModel = model.bipedLeftLeg.showModel = true;
+                model.bipedRightFoot.showModel = model.bipedLeftFoot.showModel = false;
+                break;
+            case 3:
+                model.bipedHead.showModel = false;
+                model.bipedBody.showModel = model.bipedRightArm.showModel = model.bipedLeftArm.showModel = false;
+                model.bipedWaist.showModel = model.bipedRightLeg.showModel = model.bipedLeftLeg.showModel = false;
+                model.bipedRightFoot.showModel = model.bipedLeftFoot.showModel = true;
+                break;
+            default:
+                model.bipedHead.showModel = false;
+                model.bipedBody.showModel = model.bipedRightArm.showModel = model.bipedLeftArm.showModel = false;
+                model.bipedWaist.showModel = model.bipedRightLeg.showModel = model.bipedLeftLeg.showModel = false;
+                model.bipedRightFoot.showModel = model.bipedLeftFoot.showModel = false;
+                break;
+        }
     }
 
     private void setRotation (ModelRenderer model, float x, float y, float z) {
@@ -149,91 +232,11 @@ public class ModelExtendedBiped extends ModelBiped {
             }
         });
 
-        this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
-        this.isChild = ((EntityLivingBase) entity).isChild();
-
         for (MLAAddon addon : installedAddons) {
-            ResourceLocation modelLocation = addon.getModelTextureLocation();
-            Minecraft.getMinecraft().renderEngine.bindTexture(modelLocation);
-
-            handleArmorType(tArmor.getArmorIndex());
-
-            if (addon.isMaterialDependent()) {
-                IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(((MaterialDependentMLAAddon) addon).getUniqueMaterialID());
-                material.getRenderInfo().getVertexColor().performOpenGLColoring();
-            }
-
-            if (this.isChild) {
-                float f6 = 2.0F;
-                GL11.glPushMatrix();
-                GL11.glScalef(1.5F / f6, 1.5F / f6, 1.5F / f6);
-                GL11.glTranslatef(0.0F, 16.0F * f5, 0.0F);
-                this.bipedHead.render(f5);
-                GL11.glPopMatrix();
-                GL11.glPushMatrix();
-                GL11.glScalef(1.0F / f6, 1.0F / f6, 1.0F / f6);
-                GL11.glTranslatef(0.0F, 24.0F * f5, 0.0F);
-                this.bipedBody.render(f5);
-                this.bipedWaist.render(f5);
-                this.bipedRightArm.render(f5);
-                this.bipedLeftArm.render(f5);
-                this.bipedRightLeg.render(f5);
-                this.bipedRightFoot.render(f5);
-                this.bipedLeftLeg.render(f5);
-                this.bipedLeftFoot.render(f5);
-                GL11.glPopMatrix();
-            } else {
-                this.bipedHead.render(f5);
-                this.bipedWaist.render(f5);
-                this.bipedBody.render(f5);
-                this.bipedRightArm.render(f5);
-                this.bipedLeftArm.render(f5);
-                this.bipedRightLeg.render(f5);
-                this.bipedRightFoot.render(f5);
-                this.bipedLeftLeg.render(f5);
-                this.bipedLeftFoot.render(f5);
-            }
-
-            if (addon.isMaterialDependent())
-                MinecraftColor.resetOpenGLColoring();
+            renderLayer(entity, f, f1, f2, f3, f4, f5, new ModelExtendedBiped(scaleFactor, iStackToBeRendered), addon, tArmor);
+            scaleFactor += 0.001F;
         }
 
-    }
-
-    private void handleArmorType (int armorIndex) {
-        switch (armorIndex) {
-            case 0:
-                this.bipedHead.showModel = true;
-                this.bipedBody.showModel = this.bipedRightArm.showModel = this.bipedLeftArm.showModel = false;
-                this.bipedWaist.showModel = this.bipedRightLeg.showModel = this.bipedLeftLeg.showModel = false;
-                this.bipedRightFoot.showModel = this.bipedLeftFoot.showModel = false;
-                break;
-            case 1:
-                this.bipedHead.showModel = false;
-                this.bipedBody.showModel = this.bipedRightArm.showModel = this.bipedLeftArm.showModel = true;
-                this.bipedWaist.showModel = this.bipedRightLeg.showModel = this.bipedLeftLeg.showModel = false;
-                this.bipedRightFoot.showModel = this.bipedLeftFoot.showModel = false;
-                break;
-            case 2:
-                this.bipedHead.showModel = false;
-                this.bipedBody.showModel = this.bipedRightArm.showModel = this.bipedLeftArm.showModel = false;
-                this.bipedWaist.showModel = this.bipedRightLeg.showModel = this.bipedLeftLeg.showModel = true;
-                this.bipedRightFoot.showModel = this.bipedLeftFoot.showModel = false;
-                break;
-            case 3:
-                this.bipedHead.showModel = false;
-                this.bipedBody.showModel = this.bipedRightArm.showModel = this.bipedLeftArm.showModel = false;
-                this.bipedWaist.showModel = this.bipedRightLeg.showModel = this.bipedLeftLeg.showModel = false;
-                this.bipedRightFoot.showModel = this.bipedLeftFoot.showModel = true;
-                break;
-            default:
-                this.bipedHead.showModel = false;
-                this.bipedBody.showModel = this.bipedRightArm.showModel = this.bipedLeftArm.showModel = false;
-                this.bipedWaist.showModel = this.bipedRightLeg.showModel = this.bipedLeftLeg.showModel = false;
-                this.bipedRightFoot.showModel = this.bipedLeftFoot.showModel = false;
-                break;
-        }
     }
 
 }

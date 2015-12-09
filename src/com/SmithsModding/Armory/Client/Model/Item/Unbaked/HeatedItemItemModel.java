@@ -25,7 +25,6 @@ public class HeatedItemItemModel extends ItemLayerModel {
         super(defaultTextures);
 
         this.gaugeDisplay = new TemperatureBarComponentModel(defaultTextures);
-
     }
 
     @Override

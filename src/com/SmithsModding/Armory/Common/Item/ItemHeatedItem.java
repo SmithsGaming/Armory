@@ -20,7 +20,7 @@ import java.util.*;
 public class ItemHeatedItem extends Item {
     public ItemHeatedItem () {
         setMaxStackSize(1);
-        //setCreativeTab(GeneralRegistry.iTabArmoryComponents);
+        setCreativeTab(CreativeTabs.tabCombat);
         setUnlocalizedName(References.InternalNames.Items.ItemHeatedIngot);
     }
 

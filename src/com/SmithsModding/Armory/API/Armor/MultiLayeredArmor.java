@@ -5,20 +5,17 @@ package com.SmithsModding.Armory.API.Armor;
 *   Created on: 28-6-2014
 */
 
-import com.SmithsModding.Armory.Client.Model.Entity.ModelExtendedBiped;
-import com.SmithsModding.Armory.Common.Registry.GeneralRegistry;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.ISpecialArmor;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import com.SmithsModding.Armory.Client.Model.Entity.*;
+import com.SmithsModding.Armory.Common.Registry.*;
+import net.minecraft.client.model.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraftforge.common.*;
+import net.minecraftforge.fml.relauncher.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArmor {
     //Data for the registering of MultiLayeredArmor
@@ -96,6 +93,8 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
             case 0:
                 tModel = new ModelExtendedBiped(1.5F, pItemStack);
                 break;
+            case 1:
+                tModel = new ModelExtendedBiped(1.00001F, pItemStack);
             case 3:
                 tModel = new ModelExtendedBiped(1.5F, pItemStack);
                 break;

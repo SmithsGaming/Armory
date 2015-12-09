@@ -1,0 +1,18 @@
+{
+  "parent": "builtin/generated",
+  "textures": {
+    "temp0": "armory:items/HeatedItems/temp_bar_low_1",
+    "temp1": "armory:items/HeatedItems/temp_bar_low_2",
+    "temp2": "armory:items/HeatedItems/temp_bar_low_3",
+    "temp3": "armory:items/HeatedItems/temp_bar_low_4",
+    "temp4": "armory:items/HeatedItems/temp_bar_medium_1",
+    "temp5": "armory:items/HeatedItems/temp_bar_medium_2",
+    "temp6": "armory:items/HeatedItems/temp_bar_medium_3",
+    "temp7": "armory:items/HeatedItems/temp_bar_medium_4",
+    "temp8": "armory:items/HeatedItems/temp_bar_medium_5",
+    "temp9": "armory:items/HeatedItems/temp_bar_high_1",
+    "temp10": "armory:items/HeatedItems/temp_bar_high_2",
+    "temp11": "armory:items/HeatedItems/temp_bar_high_3",
+    "temp12": "armory:items/HeatedItems/temp_bar_high_4"
+  }
+}

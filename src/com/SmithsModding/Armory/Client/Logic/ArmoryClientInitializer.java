@@ -5,13 +5,14 @@ package com.SmithsModding.Armory.Client.Logic;
  *   Created on: 19-9-2014
  */
 
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.API.Materials.IMaterialRenderInfo;
-import com.SmithsModding.Armory.Armory;
-import com.SmithsModding.Armory.Client.ArmoryClientProxy;
-import com.SmithsModding.Armory.Common.Logic.ArmoryInitializer;
-import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
-import com.SmithsModding.Armory.Util.References;
+import com.SmithsModding.Armory.API.Armor.*;
+import com.SmithsModding.Armory.API.Materials.*;
+import com.SmithsModding.Armory.*;
+import com.SmithsModding.Armory.Client.*;
+import com.SmithsModding.Armory.Common.Logic.*;
+import com.SmithsModding.Armory.Common.Material.*;
+import com.SmithsModding.Armory.Common.Registry.*;
+import com.SmithsModding.Armory.Util.*;
 
 public class ArmoryClientInitializer extends ArmoryInitializer {
     public static void InitializeClient() {
@@ -66,6 +67,8 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
             for (MultiLayeredArmor armor : MaterialRegistry.getInstance().getAllRegisteredArmors().values()) {
                 proxy.registerArmorItemModel(armor);
             }
+
+            proxy.registerHeatedItemItemModel(GeneralRegistry.Items.heatedItem);
         }
 
 

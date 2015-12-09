@@ -8,6 +8,7 @@ import net.minecraft.client.*;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.item.*;
+import net.minecraft.util.*;
 import net.minecraftforge.client.model.*;
 
 import java.util.*;
@@ -51,8 +52,18 @@ public class BakedHeatedItemModel extends ItemLayerModel.BakedModel implements I
         }
 
         ItemStack cooledStack = HeatedItemFactory.getInstance().convertToCooledIngot(stack);
-        IBakedModel original = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(stack);
-        quads.addAll(original.getGeneralQuads());
+        IBakedModel original = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(cooledStack);
+        if (cooledStack.getItem() instanceof ItemBlock) {
+            IPerspectiveAwareModel.MapWrapper wrapper = (MapWrapper) original;
+
+            wrapper.handlePerspective(ItemCameraTransforms.TransformType.THIRD_PERSON);
+
+            for (EnumFacing direction : EnumFacing.VALUES) {
+                quads.addAll(wrapper.getFaceQuads(direction));
+            }
+        } else {
+            quads.addAll(original.getGeneralQuads());
+        }
 
         PerspectiveUnawareBakedHeatedItemItemModel combinedModel = new PerspectiveUnawareBakedHeatedItemItemModel(quads.build(), original.getParticleTexture(), getFormat(), new PerspectiveDependentBakedHeatedItemItemModel(quads.build(), original.getParticleTexture(), getFormat()));
 
