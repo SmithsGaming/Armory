@@ -66,7 +66,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel {
      * @param bakedTextureGetter Function to get the baked textures.
      * @return A baked model containing all individual possible textures this model can have.
      */
-    public IFlexibleBakedModel generateBackedComponentModel (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+    public BakedTemperatureBarModel generateBackedComponentModel (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         // Get ourselfs a normal model to use.
         IFlexibleBakedModel base = super.bake(state, format, bakedTextureGetter);
 

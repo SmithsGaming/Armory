@@ -8,7 +8,6 @@ import net.minecraft.client.*;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.item.*;
-import net.minecraft.util.*;
 import net.minecraftforge.client.model.*;
 
 import java.util.*;
@@ -30,16 +29,19 @@ public class BakedHeatedItemModel extends ItemLayerModel.BakedModel implements I
 
     protected final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
     protected BakedTemperatureBarModel gaugeDisplay;
+    protected BakedTemperatureBarModel gaugeDisplayTurned;
 
     /**
      * The length of brokenParts has to match the length of parts. If a part does not have a broken texture, the entry
      * in the array simply is null.
      */
-    public BakedHeatedItemModel (IFlexibleBakedModel parent, BakedTemperatureBarModel gaugeDislay, ImmutableMap transform) {
+    public BakedHeatedItemModel (IFlexibleBakedModel parent, BakedTemperatureBarModel gaugeDislay, BakedTemperatureBarModel gaugeDisplayTurned, ImmutableMap transform) {
         super((ImmutableList<BakedQuad>) parent.getGeneralQuads(), parent.getParticleTexture(), parent.getFormat(), transform);
 
+        this.gaugeDisplayTurned = gaugeDisplayTurned;
         this.gaugeDisplay = gaugeDislay;
         this.transforms = transform;
+
     }
 
     @Override
@@ -53,26 +55,20 @@ public class BakedHeatedItemModel extends ItemLayerModel.BakedModel implements I
 
         ItemStack cooledStack = HeatedItemFactory.getInstance().convertToCooledIngot(stack);
         IBakedModel original = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(cooledStack);
-        if (cooledStack.getItem() instanceof ItemBlock) {
-            IPerspectiveAwareModel.MapWrapper wrapper = (MapWrapper) original;
-
-            wrapper.handlePerspective(ItemCameraTransforms.TransformType.THIRD_PERSON);
-
-            for (EnumFacing direction : EnumFacing.VALUES) {
-                quads.addAll(wrapper.getFaceQuads(direction));
-            }
-        } else {
-            quads.addAll(original.getGeneralQuads());
-        }
-
-        PerspectiveUnawareBakedHeatedItemItemModel combinedModel = new PerspectiveUnawareBakedHeatedItemItemModel(quads.build(), original.getParticleTexture(), getFormat(), new PerspectiveDependentBakedHeatedItemItemModel(quads.build(), original.getParticleTexture(), getFormat()));
 
         ItemHeatedItem item = (ItemHeatedItem) stack.getItem();
         int barIndex = (int) ( item.getDurabilityForDisplay(stack) * gaugeDisplay.getModelCount() );
 
-        quads.addAll(gaugeDisplay.getModel(barIndex).getGeneralQuads());
+        if (cooledStack.getItem() instanceof ItemBlock) {
+            quads.addAll(gaugeDisplayTurned.getModel(barIndex).getGeneralQuads());
+        } else {
+            quads.addAll(original.getGeneralQuads());
+            quads.addAll(gaugeDisplay.getModel(barIndex).getGeneralQuads());
+        }
 
-        PerspectiveDependentBakedHeatedItemItemModel guiModel = new PerspectiveDependentBakedHeatedItemItemModel(quads.build(), original.getParticleTexture(), getFormat());
+        PerspectiveUnawareBakedHeatedItemItemModel combinedModel = new PerspectiveUnawareBakedHeatedItemItemModel(quads.build(), original.getParticleTexture(), getFormat(), original);
+
+        PerspectiveDependentBakedHeatedItemItemModel guiModel = new PerspectiveDependentBakedHeatedItemItemModel(quads.build(), original.getParticleTexture(), getFormat(), original);
 
         combinedModel.registerModel(ItemCameraTransforms.TransformType.GUI, guiModel);
 

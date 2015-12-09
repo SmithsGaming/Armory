@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "temp0": "armory:items/HeatedItems/temp_bar_low_1",
+    "temp0": "armory:items/HeatedItems/temp_bar_high_4",
     "temp1": "armory:items/HeatedItems/temp_bar_low_2",
     "temp2": "armory:items/HeatedItems/temp_bar_low_3",
     "temp3": "armory:items/HeatedItems/temp_bar_low_4",

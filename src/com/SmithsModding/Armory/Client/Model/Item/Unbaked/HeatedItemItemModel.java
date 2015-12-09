@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.vertex.*;
 import net.minecraft.util.*;
 import net.minecraftforge.client.model.*;
 
+import javax.vecmath.*;
 import java.util.*;
 
 /**
@@ -39,8 +40,11 @@ public class HeatedItemItemModel extends ItemLayerModel {
 
         ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms = ModelHelper.getTransformsFromState(state, this);
 
+        BakedTemperatureBarModel unrotatedModel = gaugeDisplay.generateBackedComponentModel(state, format, bakedTextureGetter);
+        BakedTemperatureBarModel rotatedModel = gaugeDisplay.generateBackedComponentModel(state.apply(gaugeDisplay).compose(new TRSRTransformation(null, TRSRTransformation.quatFromYXZDegrees(new Vector3f(135f, -210f, 0f)), null, null)), format, bakedTextureGetter);
+
         //Bake the model.
-        return new BakedHeatedItemModel(base, (BakedTemperatureBarModel) gaugeDisplay.generateBackedComponentModel(state, format, bakedTextureGetter), transforms);
+        return new BakedHeatedItemModel(base, unrotatedModel, rotatedModel, transforms);
     }
 
     @Override
