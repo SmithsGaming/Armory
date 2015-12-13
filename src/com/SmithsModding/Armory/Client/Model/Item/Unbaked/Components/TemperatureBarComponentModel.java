@@ -83,6 +83,10 @@ public class TemperatureBarComponentModel extends ItemLayerModel {
             //We bake the new model to get a ready to use textured and ready to be colored baked model.
             IFlexibleBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
 
+            //Set normals to ignore lighting.
+            ModelHelper.setNormalsToIgnoreLightingOnItemModel(bakedModel2);
+
+            //Add the model
             bakedTemperatureBar.addTexture(bakedModel2);
         }
 

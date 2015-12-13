@@ -12,6 +12,7 @@ import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Common.Addons.*;
 import com.SmithsModding.Armory.Common.Item.Armor.TierMedieval.*;
 import com.SmithsModding.Armory.Common.Item.*;
+import com.SmithsModding.Armory.Common.Item.Knowledge.*;
 import com.SmithsModding.Armory.Common.Material.*;
 import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Util.Client.*;
@@ -361,11 +362,13 @@ public class ArmoryInitializer {
 
         public static void RegisterItems() {
             GeneralRegistry.Items.heatedItem = new ItemHeatedItem();
+            GeneralRegistry.Items.guide = new ItemSmithingsGuide();
 
             for (MultiLayeredArmor armor : MaterialRegistry.getInstance().getAllRegisteredArmors().values())
                 GameRegistry.registerItem(armor, armor.getUniqueID());
 
             GameRegistry.registerItem(GeneralRegistry.Items.heatedItem, References.InternalNames.Items.ItemHeatedIngot);
+            GameRegistry.registerItem(GeneralRegistry.Items.guide, References.InternalNames.Items.ItemSmithingsGuide);
         }
 
         public static void RegisterTileEntities() {

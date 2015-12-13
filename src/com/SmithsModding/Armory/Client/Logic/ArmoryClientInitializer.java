@@ -13,6 +13,9 @@ import com.SmithsModding.Armory.Common.Logic.*;
 import com.SmithsModding.Armory.Common.Material.*;
 import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Util.*;
+import net.minecraft.client.resources.model.*;
+import net.minecraftforge.client.model.*;
+import net.minecraftforge.client.model.obj.*;
 
 public class ArmoryClientInitializer extends ArmoryInitializer {
     public static void InitializeClient() {
@@ -69,6 +72,9 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
             }
 
             proxy.registerHeatedItemItemModel(GeneralRegistry.Items.heatedItem);
+
+            OBJLoader.instance.addDomain(References.General.MOD_ID.toLowerCase());
+            ModelLoader.setCustomModelResourceLocation(GeneralRegistry.Items.guide, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + "guide", "inventory"));
         }
 
 

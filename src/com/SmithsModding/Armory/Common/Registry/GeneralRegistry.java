@@ -6,6 +6,7 @@ package com.SmithsModding.Armory.Common.Registry;
  */
 
 import com.SmithsModding.Armory.Common.Item.*;
+import com.SmithsModding.Armory.Common.Item.Knowledge.*;
 import net.minecraft.item.*;
 import net.minecraftforge.common.util.*;
 
@@ -32,5 +33,7 @@ public class GeneralRegistry {
 
     public static class Items {
         public static ItemHeatedItem heatedItem;
+        public static ItemBlueprint blueprint;
+        public static ItemSmithingsGuide guide;
     }
 }
