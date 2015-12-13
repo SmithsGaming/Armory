@@ -74,7 +74,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
             proxy.registerHeatedItemItemModel(GeneralRegistry.Items.heatedItem);
 
             OBJLoader.instance.addDomain(References.General.MOD_ID.toLowerCase());
-            ModelLoader.setCustomModelResourceLocation(GeneralRegistry.Items.guide, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + "guide", "inventory"));
+            ModelLoader.setCustomModelResourceLocation(GeneralRegistry.Items.guide, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + "Armory.Items.SmithingsGuide", "inventory"));
         }
 
 

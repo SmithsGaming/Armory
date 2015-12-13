@@ -169,7 +169,7 @@ public class ItemSmithingsGuide extends Item implements IBluePrintContainerItem 
 
         pItems.add(tGuideStack);
 
-        ItemStack tCheatStack = new ItemStack(GeneralRegistry.Items.guide);
+        /*ItemStack tCheatStack = new ItemStack(GeneralRegistry.Items.guide);
         initializeContainer(tCheatStack);
 
         ArrayList<ItemStack> tBlueprints = new ArrayList<ItemStack>();
@@ -180,7 +180,7 @@ public class ItemSmithingsGuide extends Item implements IBluePrintContainerItem 
 
         writeBlueprintGroupsToStack(tCheatStack, tGroups);
 
-        pItems.add(tCheatStack);
+        pItems.add(tCheatStack);*/
     }
 
     @Override
