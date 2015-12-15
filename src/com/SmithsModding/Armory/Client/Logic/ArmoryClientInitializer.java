@@ -1,4 +1,5 @@
 package com.SmithsModding.Armory.Client.Logic;
+
 /*
  *   ArmoryClientInitializer
  *   Created by: Orion
@@ -14,6 +15,7 @@ import com.SmithsModding.Armory.Common.Material.*;
 import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Util.*;
 import net.minecraft.client.resources.model.*;
+import net.minecraft.item.*;
 import net.minecraftforge.client.model.*;
 import net.minecraftforge.client.model.obj.*;
 
@@ -25,8 +27,8 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
         ArmoryInitializer.SystemInit.RegisterItems();
         ArmoryInitializer.SystemInit.RegisterBlocks();
         ArmoryInitializer.SystemInit.RegisterTileEntities();
-        SystemInit.registerTESR();
         SystemInit.registerIIR();
+        SystemInit.registerTESR();
         MedievalClientInitialization.registerRingResources();
         MedievalClientInitialization.registerChainResources();
         MedievalClientInitialization.registerNuggetResources();
@@ -79,7 +81,8 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
 
 
         public static void registerTESR() {
-
+            Item itemBlockFirePit = Item.getItemFromBlock(GeneralRegistry.Blocks.blockFirePit);
+            ModelLoader.setCustomModelResourceLocation(itemBlockFirePit, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + GeneralRegistry.Blocks.blockFirePit.getUnlocalizedName(), "inventory"));
         }
     }
 

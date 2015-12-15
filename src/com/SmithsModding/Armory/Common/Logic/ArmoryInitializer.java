@@ -10,6 +10,7 @@ import com.SmithsModding.Armory.API.Events.Common.*;
 import com.SmithsModding.Armory.API.Materials.*;
 import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Common.Addons.*;
+import com.SmithsModding.Armory.Common.Block.*;
 import com.SmithsModding.Armory.Common.Item.Armor.TierMedieval.*;
 import com.SmithsModding.Armory.Common.Item.*;
 import com.SmithsModding.Armory.Common.Item.Knowledge.*;
@@ -358,6 +359,7 @@ public class ArmoryInitializer {
     public static class SystemInit {
         public static void RegisterBlocks() {
 
+
         }
 
         public static void RegisterItems() {
@@ -372,7 +374,9 @@ public class ArmoryInitializer {
         }
 
         public static void RegisterTileEntities() {
+            GeneralRegistry.Blocks.blockFirePit = new BlockFirePit();
 
+            GameRegistry.registerBlock(GeneralRegistry.Blocks.blockFirePit, References.InternalNames.Blocks.FirePit);
         }
 
         public static void loadMaterialConfig() {

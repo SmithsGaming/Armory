@@ -7,7 +7,9 @@ import com.SmithsModding.Armory.Client.Model.Loaders.*;
 import com.SmithsModding.Armory.Client.Textures.*;
 import com.SmithsModding.Armory.Common.*;
 import com.SmithsModding.Armory.Common.Item.*;
+import com.SmithsModding.Armory.Util.*;
 import com.SmithsModding.SmithsCore.Util.Client.*;
+import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.resources.*;
@@ -52,6 +54,11 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
     @Override
     public void registerEventHandlers() {
         super.registerEventHandlers();
+    }
+
+    public void registerBlockModel (Block block) {
+        Item blockItem = Item.getItemFromBlock(block);
+        ModelLoader.setCustomModelResourceLocation(blockItem, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + block.getUnlocalizedName(), "inventory"));
     }
 
     public ResourceLocation registerArmorItemModel (MultiLayeredArmor item) {

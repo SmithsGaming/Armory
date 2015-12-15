@@ -5,6 +5,7 @@ package com.SmithsModding.Armory.Common.Registry;
  *   Created on: 24-9-2014
  */
 
+import com.SmithsModding.Armory.Common.Block.*;
 import com.SmithsModding.Armory.Common.Item.*;
 import com.SmithsModding.Armory.Common.Item.Knowledge.*;
 import net.minecraft.item.*;
@@ -35,5 +36,9 @@ public class GeneralRegistry {
         public static ItemHeatedItem heatedItem;
         public static ItemBlueprint blueprint;
         public static ItemSmithingsGuide guide;
+    }
+
+    public static class Blocks {
+        public static BlockFirePit blockFirePit;
     }
 }
