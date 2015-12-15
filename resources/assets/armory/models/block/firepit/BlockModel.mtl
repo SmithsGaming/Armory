@@ -1,5 +1,5 @@
 # Blender MTL File: 'BlockModel.blend'
-# Material Count: 9
+# Material Count: 10
 
 newmtl CoalField
 Ns 96.078431
@@ -80,3 +80,12 @@ Ni 1.000000
 d 1.000000
 illum 2
 map_Kd armory:blocks/FirePit/LightSheet
+
+newmtl None
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd armory:blocks/FirePit/IngotHolderRim

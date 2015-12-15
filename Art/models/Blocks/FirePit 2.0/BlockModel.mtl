@@ -1,5 +1,5 @@
 # Blender MTL File: 'BlockModel.blend'
-# Material Count: 9
+# Material Count: 10
 
 newmtl CoalField
 Ns 96.078431
@@ -9,7 +9,7 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/CoalField
+map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\CoalField.png
 
 newmtl Dark-Metal
 Ns 96.078431
@@ -19,9 +19,9 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/DarkSheet
+map_Kd Textures\DarkSheet.png
 
-newmtl Dark-Metal_DarkSheet.001
+newmtl Dark-Metal_DarkSheet.png.001
 Ns 96.078431
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
@@ -29,7 +29,7 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/DarkSheet
+map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\DarkSheet.png
 
 newmtl Darkened-Glass
 Ns 96.078431
@@ -39,7 +39,7 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/DestroyedMetalWall
+map_Kd Textures\DestroyedMetalWall.png
 
 newmtl DestroyedMetalBasin
 Ns 96.078431
@@ -49,7 +49,7 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/DestroyedMetalBasin
+map_Kd Textures\DestroyedMetalBasin.png
 
 newmtl FuelHolder-Bottom
 Ns 96.078431
@@ -59,7 +59,7 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/FuelBasinBottom
+map_Kd Textures\FuelBasinBottom.png
 
 newmtl FuelHolder-Wall
 Ns 96.078431
@@ -69,7 +69,7 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/FuelBasinWall
+map_Kd Textures\FuelBasinWall.png
 
 newmtl IngotHolder-Rim
 Ns 96.078431
@@ -79,7 +79,7 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/IngotHolderRim
+map_Kd Textures\IngotHolderRim.png
 
 newmtl Light-Metal
 Ns 96.078431
@@ -89,4 +89,13 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/LightSheet
+map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\LightSheet.png
+
+newmtl None
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd Textures\IngotHolderRim.png
