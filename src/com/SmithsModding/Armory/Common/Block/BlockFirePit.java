@@ -11,13 +11,15 @@ package com.SmithsModding.Armory.Common.Block;
 /  Created on : 02/10/2014
 */
 
+import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Util.*;
-import com.google.common.collect.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.*;
 import net.minecraft.block.properties.*;
 import net.minecraft.block.state.*;
+import net.minecraft.client.*;
 import net.minecraft.creativetab.*;
+import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.model.obj.*;
@@ -71,10 +73,10 @@ public class BlockFirePit extends Block {
 
     @Override
     public IBlockState getExtendedState (IBlockState state, IBlockAccess world, BlockPos pos) {
-        OBJModel.OBJState retState = new OBJModel.OBJState(Lists.newArrayList(OBJModel.Group.ALL), true);
-        return ( (IExtendedBlockState) this.state.getBaseState() ).withProperty(OBJModel.OBJProperty.instance, retState);
+        //OBJModel.OBJState retState = new OBJModel.OBJState(Lists.newArrayList(OBJModel.Group.ALL), true);
+        //return ( (IExtendedBlockState) this.state.getBaseState() ).withProperty(OBJModel.OBJProperty.instance, retState);
 
-        /*
+
         ItemStack blockStack = new ItemStack(Item.getItemFromBlock(this));
 
         OBJModel model = ((OBJModel.OBJBakedModel) Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(blockStack)).getModel();
@@ -91,7 +93,7 @@ public class BlockFirePit extends Block {
                 continue;
             }
 
-            String[] data = key.split("-");
+            String[] data = key.split("_");
 
             if (data.length != 3)
             {
@@ -165,6 +167,6 @@ public class BlockFirePit extends Block {
         }
 
         OBJModel.OBJState retState = new OBJModel.OBJState(visibleParts, true);
-        return ( (IExtendedBlockState) this.state.getBaseState() ).withProperty(OBJModel.OBJProperty.instance, retState); */
+        return ( (IExtendedBlockState) this.state.getBaseState() ).withProperty(OBJModel.OBJProperty.instance, retState);
     }
 }
