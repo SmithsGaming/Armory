@@ -1,91 +1,82 @@
-# Blender MTL File: 'BlockModel.blend'
-# Material Count: 10
+# Blender MTL File: 'None'
+# Material Count: 8
 
 newmtl CoalField
-Ns 96.078431
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/CoalField
+map_Kd armory:blocks\FirePit\CoalField
 
 newmtl Dark-Metal
-Ns 96.078431
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/DarkSheet
+map_Kd armory:blocks\FirePit\DarkSheet
 
 newmtl Darkened-Glass
-Ns 96.078431
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.800000 0.800000 0.800000
+Kd 0.512000 0.512000 0.512000
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/DestroyedMetalWall
+map_Kd armory:blocks\FirePit\DestroyedMetalWall
 
 newmtl DestroyedMetalBasin
-Ns 96.078431
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/DestroyedMetalBasin
+map_Kd armory:blocks\FirePit\DestroyedMetalBasin
 
 newmtl FuelHolder-Bottom
-Ns 96.078431
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/FuelBasinBottom
+map_Kd armory:blocks\FirePit\FuelBasinBottom
 
 newmtl FuelHolder-Wall
-Ns 96.078431
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/FuelBasinWall
+map_Kd armory:blocks\FirePit\FuelBasinWall
 
 newmtl IngotHolder-Rim
-Ns 96.078431
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/IngotHolderRim
+map_Kd armory:blocks\FirePit\IngotHolderRim
 
 newmtl Light-Metal
-Ns 96.078431
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd armory:blocks/FirePit/LightSheet
-
-newmtl None
-Ns 0
-Ka 0.000000 0.000000 0.000000
-Kd 0.8 0.8 0.8
-Ks 0.8 0.8 0.8
-d 1
-illum 2
-map_Kd armory:blocks/FirePit/IngotHolderRim
+map_Kd armory:blocks\FirePit\LightSheet

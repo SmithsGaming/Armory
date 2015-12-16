@@ -82,7 +82,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
 
         public static void registerTESR() {
             Item itemBlockFirePit = Item.getItemFromBlock(GeneralRegistry.Blocks.blockFirePit);
-            ModelLoader.setCustomModelResourceLocation(itemBlockFirePit, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + GeneralRegistry.Blocks.blockFirePit.getUnlocalizedName(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(itemBlockFirePit, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + References.InternalNames.Blocks.FirePit, "inventory"));
         }
     }
 

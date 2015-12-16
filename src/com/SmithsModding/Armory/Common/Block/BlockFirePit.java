@@ -18,7 +18,6 @@ import net.minecraft.block.material.*;
 import net.minecraft.block.properties.*;
 import net.minecraft.block.state.*;
 import net.minecraft.creativetab.*;
-import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.model.obj.*;
@@ -72,37 +71,100 @@ public class BlockFirePit extends Block {
 
     @Override
     public IBlockState getExtendedState (IBlockState state, IBlockAccess world, BlockPos pos) {
-        ItemStack blockStack = new ItemStack(Item.getItemFromBlock(this));
+        OBJModel.OBJState retState = new OBJModel.OBJState(Lists.newArrayList(OBJModel.Group.ALL), true);
+        return ( (IExtendedBlockState) this.state.getBaseState() ).withProperty(OBJModel.OBJProperty.instance, retState);
 
         /*
+        ItemStack blockStack = new ItemStack(Item.getItemFromBlock(this));
+
         OBJModel model = ((OBJModel.OBJBakedModel) Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(blockStack)).getModel();
         Map<String, OBJModel.Group> groups = model.getMatLib().getGroups();
 
         List<String> visibleParts = new ArrayList<String>();
 
-        for (String name : groups.keySet())
+        for (String key : groups.keySet())
         {
-            boolean allSides = true;
-
-            for(String direction : directionsMapping.keySet())
+            //Internal OBJ Parts for the model can be auto added and skipped.
+            if (key.startsWith("OBJModel"))
             {
-                if (name.contains(direction) && allSides)
+                visibleParts.add(key);
+                continue;
+            }
+
+            String[] data = key.split("-");
+
+            if (data.length != 3)
+            {
+                Armory.getLogger().error("Could not map a ModelPart to the FirePit Structure. Skipping.");
+                continue;
+            }
+
+
+            ////The actual render data is stored in the name of the groups
+            //Name of the group (with relevant sides)
+            String name = data[0];
+            //When to render: ALWAYS, When CONNECTED, When next to AIR
+            String connectionType = data[1];
+            //Check type: ALL side true, AtLeast One side True
+            String renderCase = data[2];
+
+            int relevantSides = 0;
+            int requiredSides = 0;
+            int foundSides = 0;
+
+            Class targetComparison = this.getClass();
+
+            for (String sideName : directionsMapping.keySet())
+            {
+                if (name.contains(sideName))
+                    relevantSides++;
+            }
+
+            if (connectionType.toLowerCase().contains("always"))
+            {
+                requiredSides = 0;
+            }
+            else if (connectionType.toLowerCase().contains("air"))
+            {
+                targetComparison = BlockAir.class;
+            }
+            else if (connectionType.toLowerCase().contains("connected"))
+            {
+                targetComparison = this.getClass();
+            }
+
+            if (renderCase.toLowerCase().contains("all"))
+            {
+                requiredSides = relevantSides;
+            }
+            else if (renderCase.toLowerCase().contains("alo"))
+            {
+                requiredSides = 1;
+            }
+
+            if (requiredSides > 0)
+            {
+                for(String sideName : directionsMapping.keySet())
                 {
-                    if (!(world.getBlockState(new BlockPos(pos.add(directionsMapping.get(direction).getDirectionVec()))).getBlock() instanceof BlockFirePit))
+                    if (name.contains(sideName))
                     {
-                        allSides = false;
+                        Block comparisonBlock = world.getBlockState(pos.add(directionsMapping.get(sideName).getDirectionVec())).getBlock();
+
+                        if (targetComparison.isAssignableFrom(comparisonBlock.getClass()))
+                        {
+                            foundSides ++;
+                        }
                     }
                 }
             }
 
-            if (allSides)
+            if (requiredSides == 0 || foundSides >= requiredSides)
             {
-                visibleParts.add(name);
+                visibleParts.add(key);
             }
         }
-        */
 
-        OBJModel.OBJState retState = new OBJModel.OBJState(Lists.newArrayList(OBJModel.Group.ALL), true);
-        return ( (IExtendedBlockState) this.state.getBaseState() ).withProperty(OBJModel.OBJProperty.instance, retState);
+        OBJModel.OBJState retState = new OBJModel.OBJState(visibleParts, true);
+        return ( (IExtendedBlockState) this.state.getBaseState() ).withProperty(OBJModel.OBJProperty.instance, retState); */
     }
 }
