@@ -6,6 +6,7 @@ package com.SmithsModding.Armory.Common.Registry;
  */
 
 import com.SmithsModding.Armory.Common.Block.*;
+import com.SmithsModding.Armory.Common.Fluid.*;
 import com.SmithsModding.Armory.Common.Item.*;
 import com.SmithsModding.Armory.Common.Item.Knowledge.*;
 import net.minecraft.item.*;
@@ -40,5 +41,9 @@ public class GeneralRegistry {
 
     public static class Blocks {
         public static BlockFirePit blockFirePit;
+    }
+
+    public static class Fluids {
+        public static FluidMoltenMetal moltenMetal;
     }
 }

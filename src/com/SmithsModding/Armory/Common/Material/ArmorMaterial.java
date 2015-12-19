@@ -9,7 +9,7 @@ import com.SmithsModding.Armory.API.Materials.*;
 import com.SmithsModding.Armory.API.Registries.*;
 import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Common.Addons.*;
-import com.SmithsModding.Armory.Common.Factory.*;
+import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Util.*;
 import com.SmithsModding.SmithsCore.Util.Client.Color.*;
 import net.minecraft.item.*;
@@ -43,10 +43,12 @@ public class ArmorMaterial implements IArmorMaterial {
         this.oreDictionaryIdentifier = oreDictionaryIdentifier;
         this.uniqueIdentifier = uniqueIdentifier;
 
-        if (Armory.side == Side.CLIENT) {
+        if (Armory.side == Side.CLIENT && baseStack != null) {
             MinecraftColor metalColor = ColorSampler.getColorSampleFromItemStack(baseStack);
 
             renderInfo = new IMaterialRenderInfo.Metal(metalColor.getRGB());
+        } else if (Armory.side == Side.CLIENT) {
+            renderInfo = new IMaterialRenderInfo.Metal(MinecraftColor.WHITE.getRGB());
         }
 
         this.isBaseMaterial = isBaseMaterial;
@@ -54,8 +56,8 @@ public class ArmorMaterial implements IArmorMaterial {
         this.heatCoefficient = heatCoefficient;
 
         this.baseStack = baseStack;
-        if (baseStack != null && !HeatedItemFactory.getInstance().isHeatable(baseStack)) {
-            HeatedItemFactory.getInstance().addHeatableItemstack(uniqueIdentifier, baseStack);
+        if (baseStack != null && !HeatableItemRegistry.getInstance().isHeatable(baseStack)) {
+            HeatableItemRegistry.getInstance().addBaseStack(this, baseStack);
         }
 
         materialIndex = LASTUSEDID;

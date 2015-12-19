@@ -6,6 +6,7 @@ package com.SmithsModding.Armory.Common.Factory;
 */
 
 import com.SmithsModding.Armory.API.Item.*;
+import com.SmithsModding.Armory.API.Materials.*;
 import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Common.Item.*;
 import com.SmithsModding.Armory.Common.Registry.*;
@@ -14,41 +15,26 @@ import com.SmithsModding.SmithsCore.Util.Common.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 
-import java.util.*;
-
 public class HeatedItemFactory {
-    public static HeatedItemFactory iInstance = null;
-    protected ArrayList<ItemStack> iHeatableItems = new ArrayList<ItemStack>();
-    protected ArrayList<String> iMappedNames = new ArrayList<String>();
-    protected ArrayList<String> iMappedTypes = new ArrayList<String>();
+    private static HeatedItemFactory INSTANCE = null;
 
     public static HeatedItemFactory getInstance () {
-        if (iInstance == null) {
-            iInstance = new HeatedItemFactory();
+        if (INSTANCE == null) {
+            INSTANCE = new HeatedItemFactory();
         }
 
-        return iInstance;
+        return INSTANCE;
     }
 
-    public ItemStack generateHeatedItem (String pMaterialID, String pInternalTypeID, float pTemp) {
-        ItemStack pBaseStack = getBaseStack(pMaterialID, pInternalTypeID);
+    public ItemStack generateHeatedItem (IArmorMaterial material, String type, float temp) {
+        ItemStack pBaseStack = HeatableItemRegistry.getInstance().getBaseStack(material, type);
         if (pBaseStack == null)
             return null;
 
         ItemStack pHeatedStack = convertToHeatedIngot(pBaseStack);
-        ItemHeatedItem.setItemTemperature(pHeatedStack, pTemp);
+        ItemHeatedItem.setItemTemperature(pHeatedStack, temp);
 
         return pHeatedStack;
-    }
-
-    public ItemStack getBaseStack (String pMaterialID, String pInternalTypeID) {
-        for (int tStackIndex = 0; tStackIndex < iHeatableItems.size(); tStackIndex++) {
-            if (( pMaterialID.equals(iMappedNames.get(tStackIndex)) ) && ( pInternalTypeID.equals(iMappedTypes.get(tStackIndex)) )) {
-                return iHeatableItems.get(tStackIndex);
-            }
-        }
-
-        return null;
     }
 
     public ItemStack convertToHeatedIngot (ItemStack pCooledIngotStack) {
@@ -62,7 +48,7 @@ public class HeatedItemFactory {
         NBTTagCompound tStackCompound = new NBTTagCompound();
 
         tStackCompound.setTag(References.NBTTagCompoundData.HeatedIngot.ORIGINALITEM, pCooledIngotStack.writeToNBT(new NBTTagCompound()));
-        tStackCompound.setString(References.NBTTagCompoundData.HeatedIngot.MATERIALID, getMaterialIDFromItemStack(pCooledIngotStack));
+        tStackCompound.setString(References.NBTTagCompoundData.HeatedIngot.MATERIALID, HeatableItemRegistry.getInstance().getMaterialFromCooledStack(pCooledIngotStack).getUniqueID());
         tStackCompound.setInteger(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE, 20);
 
         if (pCooledIngotStack.getItem() instanceof IHeatableItem) {

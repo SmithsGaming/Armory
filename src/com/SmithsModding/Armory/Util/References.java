@@ -26,6 +26,8 @@ public class References {
         public static final String VERSION = "@VERSION@";
         public static final String MC_VERSION = "@MCVERSION@";
         public static final String API_VERSION = "@APIVERSION@";
+
+        public static final int FLUID_INGOT = 144;
     }
 
     public static final class InternalNames {
@@ -41,6 +43,10 @@ public class References {
                 public static final String IRON = "Vanilla.Iron";
                 public static final String OBSIDIAN = "Vanilla.Obsidian";
             }
+        }
+
+        public static final class Fluids {
+            public static final String MOLTENMETAL = "Armory.Fluids.Molten";
         }
 
         public static final class AddonPositions {
@@ -476,6 +482,12 @@ public class References {
             public static final String MATERIALID = "OriginalMaterial";
             public static final String CURRENTTEMPERATURE = "CURRENTTEMPERATURE";
             public static final String TYPE = "Type";
+        }
+
+        public class Fluids {
+            public class MoltenMetal {
+                public static final String MATERIAL = "MaterialID";
+            }
         }
 
         public class TE {

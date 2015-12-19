@@ -7,6 +7,8 @@ package com.SmithsModding.Armory.Common.Item;
 
 import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Common.Factory.*;
+import com.SmithsModding.Armory.Common.Material.*;
+import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Util.Client.*;
 import com.SmithsModding.Armory.Util.*;
 import net.minecraft.creativetab.*;
@@ -61,7 +63,7 @@ public class ItemHeatedItem extends Item {
 
     @Override
     public double getDurabilityForDisplay (ItemStack pStack) {
-        return ( pStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE) ) / ( HeatedItemFactory.getInstance().getMeltingPointFromMaterial(pStack) );
+        return ( pStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE) ) / ( MaterialRegistry.getInstance().getMaterial(pStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID)).getMeltingPoint() );
     }
 
     @SideOnly(Side.CLIENT)
@@ -81,7 +83,7 @@ public class ItemHeatedItem extends Item {
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems (Item pItem, CreativeTabs pCreativeTab, List pItemStacks) {
-        Iterator<ItemStack> tStackIter = HeatedItemFactory.getInstance().getAllMappedStacks().iterator();
+        Iterator<ItemStack> tStackIter = HeatableItemRegistry.getInstance().getAllMappedItems().iterator();
 
         while (tStackIter.hasNext()) {
             ItemStack tCooledStack = tStackIter.next();
@@ -90,7 +92,7 @@ public class ItemHeatedItem extends Item {
             if (tHeatedStack != null) {
                 pItemStacks.add(tHeatedStack);
             } else {
-                Armory.getLogger().info("Tried to create a HeatedIngot from: " + HeatedItemFactory.getInstance().getMaterialIDFromItemStack(tCooledStack) + " and failed!");
+                Armory.getLogger().info("Tried to create a HeatedIngot from: " + HeatableItemRegistry.getInstance().getMaterialFromCooledStack(tCooledStack).getUniqueID() + " and failed!");
             }
         }
     }

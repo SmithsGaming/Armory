@@ -11,6 +11,7 @@ import com.SmithsModding.Armory.API.Materials.*;
 import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Common.Addons.*;
 import com.SmithsModding.Armory.Common.Block.*;
+import com.SmithsModding.Armory.Common.Fluid.*;
 import com.SmithsModding.Armory.Common.Item.Armor.TierMedieval.*;
 import com.SmithsModding.Armory.Common.Item.*;
 import com.SmithsModding.Armory.Common.Item.Knowledge.*;
@@ -24,6 +25,7 @@ import net.minecraft.item.*;
 import net.minecraft.item.crafting.*;
 import net.minecraft.util.*;
 import net.minecraftforge.common.*;
+import net.minecraftforge.fluids.*;
 import net.minecraftforge.fml.common.registry.*;
 import net.minecraftforge.oredict.*;
 
@@ -64,8 +66,8 @@ public class ArmoryInitializer {
         }
 
         private static void registerMaterials() {
-            ArmorMaterial tIron = new ArmorMaterial(References.InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", true, 1865, 0.225F, new ItemStack(Items.iron_ingot));
-            ArmorMaterial tObsidian = new ArmorMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", true, 1404, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
+            ArmorMaterial tIron = new ArmorMaterial(References.InternalNames.Materials.Vanilla.IRON, "Iron", true, 1865, 0.225F, new ItemStack(Items.iron_ingot));
+            ArmorMaterial tObsidian = new ArmorMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN, "Obsidian", true, 1404, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
 
             MaterialRegistry.getInstance().registerMaterial(tIron);
             MaterialRegistry.getInstance().registerMaterial(tObsidian);
@@ -371,6 +373,12 @@ public class ArmoryInitializer {
 
             GameRegistry.registerItem(GeneralRegistry.Items.heatedItem, References.InternalNames.Items.ItemHeatedIngot);
             GameRegistry.registerItem(GeneralRegistry.Items.guide, References.InternalNames.Items.ItemSmithingsGuide);
+        }
+
+        public static void RegisterFluids () {
+            GeneralRegistry.Fluids.moltenMetal = new FluidMoltenMetal();
+
+            FluidRegistry.registerFluid(GeneralRegistry.Fluids.moltenMetal);
         }
 
         public static void RegisterTileEntities() {

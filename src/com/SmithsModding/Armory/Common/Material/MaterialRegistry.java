@@ -60,8 +60,3 @@ public class MaterialRegistry implements IMaterialRegistry {
         return iArmorMaterials.get(pInternalName);
     }
 }
-
-
-/*
-
- */

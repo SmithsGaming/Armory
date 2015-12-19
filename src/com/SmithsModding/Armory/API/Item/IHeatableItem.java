@@ -7,4 +7,6 @@ package com.SmithsModding.Armory.API.Item;
  */
 public interface IHeatableItem {
     String getInternalType ();
+
+    int getMoltenMilibucket ();
 }
