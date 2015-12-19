@@ -5,12 +5,12 @@ package com.SmithsModding.Armory.Common.Material;
  *   Created on: 24-9-2014
  */
 
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import com.SmithsModding.Armory.API.Registries.IMaterialRegistry;
-import com.SmithsModding.Armory.Common.Registry.GeneralRegistry;
+import com.SmithsModding.Armory.API.Armor.*;
+import com.SmithsModding.Armory.API.Materials.*;
+import com.SmithsModding.Armory.API.Registries.*;
+import com.SmithsModding.Armory.Common.Registry.*;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class MaterialRegistry implements IMaterialRegistry {
     protected static MaterialRegistry iInstance;
@@ -58,10 +58,6 @@ public class MaterialRegistry implements IMaterialRegistry {
 
     public IArmorMaterial getMaterial(String pInternalName) {
         return iArmorMaterials.get(pInternalName);
-    }
-
-    public void changeUpgradeStateOnMaterial(String pMaterialInternalName, String pUpgradeInternalName, boolean pPartState) {
-        iArmorMaterials.get(pMaterialInternalName).modifyPartState(pUpgradeInternalName, pPartState);
     }
 }
 

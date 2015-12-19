@@ -6,31 +6,23 @@ package com.SmithsModding.Armory.Common.Item.Armor.TierMedieval;
  *   Created on: 24-9-2014
  */
 
-import com.SmithsModding.Armory.API.Armor.MLAAddon;
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import com.SmithsModding.Armory.Common.Addons.ArmorUpgradeMedieval;
-import com.SmithsModding.Armory.Common.Addons.MedievalAddonRegistry;
-import com.SmithsModding.Armory.Common.Factory.MedievalArmorFactory;
-import com.SmithsModding.Armory.Common.Material.ChainLayer;
-import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
-import com.SmithsModding.Armory.Util.Armor.ArmorNBTHelper;
-import com.SmithsModding.Armory.Util.References;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.common.ISpecialArmor;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import com.SmithsModding.Armory.API.Armor.*;
+import com.SmithsModding.Armory.API.Materials.*;
+import com.SmithsModding.Armory.Common.Addons.*;
+import com.SmithsModding.Armory.Common.Factory.*;
+import com.SmithsModding.Armory.Common.Material.*;
+import com.SmithsModding.Armory.Util.Armor.*;
+import com.SmithsModding.Armory.Util.*;
+import net.minecraft.creativetab.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraftforge.common.*;
+import net.minecraftforge.fml.relauncher.*;
 
-import java.security.InvalidParameterException;
-import java.util.HashMap;
-import java.util.List;
+import java.security.*;
+import java.util.*;
 
 public class ArmorMedieval extends MultiLayeredArmor {
 
@@ -157,6 +149,6 @@ public class ArmorMedieval extends MultiLayeredArmor {
 
         IArmorMaterial tMaterial = MaterialRegistry.getInstance().getMaterial(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.MaterialID));
 
-        return tMaterial.getVisibleNameColor() + StatCollector.translateToLocal(tMaterial.getVisibleName()) + " " + EnumChatFormatting.RESET + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name");
+        return tMaterial.getNameColor() + StatCollector.translateToLocal(tMaterial.getTranslationKey()) + " " + EnumChatFormatting.RESET + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name");
     }
 }

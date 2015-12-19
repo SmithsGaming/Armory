@@ -1,9 +1,10 @@
 package com.SmithsModding.Armory.API.Materials;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
+import com.SmithsModding.Armory.API.Registries.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by Orion
@@ -13,27 +14,29 @@ import java.util.HashMap;
  * Copyrighted according to Project specific license
  */
 public interface IArmorMaterial {
-    int getItemDamageMaterialID ();
 
-    void setItemDamageMaterialID (int pNewID);
-
-    ItemStack getRootItemStack();
 
     String getUniqueID ();
 
-    void registerNewActivePart(String pUpgradeInternalName, boolean pPartState);
+    int getItemDamageMaterialIndex ();
 
-    void modifyPartState(String pUpgradeInternalName, boolean pPartState);
+    ItemStack getBaseItemStack ();
 
-    boolean getPartState(String pUpgradeInternalName);
 
-    HashMap<String, Boolean> getAllPartStates();
+    String getType ();
+
+
+    String getOreDicName ();
+
+
+
 
     void setBaseDamageAbsorption(String pTargetArmorInternalName, Float pBaseDamageAbsorption);
 
     Float getBaseDamageAbsorption(String pTargetArmorInternalName);
 
-    HashMap<String, Float> getAllBaseDamageAbsorbtionValues();
+    HashMap<String, Float> getAllBaseDamageAbsorptionValues ();
+
 
     void setBaseDurability(String pTargetArmorInternalName, int pBaseDurability);
 
@@ -41,35 +44,30 @@ public interface IArmorMaterial {
 
     HashMap<String, Integer> getAllBaseDurabilityValues();
 
+
     void setMaxModifiersOnPart(String pTargetArmorInternalName, int pMaxModifiers);
 
     int getMaxModifiersOnPart(String pTargetArmorInternalName);
 
     HashMap<String, Integer> getAllMaxModifiersAmounts();
 
-    String getType();
+
+    boolean getIsBaseArmorMaterial ();
+
+    float getMeltingPoint ();
+
+    float getHeatCoefficient ();
+
+    IArmorPartRegistry getPartRegistry ();
+
 
     IMaterialRenderInfo getRenderInfo ();
 
-    void setRenderInfo (IMaterialRenderInfo newInfo);
+    IArmorMaterial setRenderInfo (IMaterialRenderInfo newInfo);
 
-    String getOreDicName();
+    String getTranslationKey ();
 
-    String getVisibleName();
+    IArmorMaterial setTranslationKey (String key);
 
-    EnumChatFormatting getVisibleNameColor();
-
-    void setVisibleNameColor(EnumChatFormatting pFormatting);
-
-    boolean getIsBaseArmorMaterial();
-
-    void setIsBaseArmorMaterial(boolean pNewState);
-
-    float getMeltingPoint();
-
-    void setMeltingPoint(float pNewMeltingPoint);
-
-    float getHeatCoefficient();
-
-    void setHeatCoefficient(float pNewCoefficient);
+    EnumChatFormatting getNameColor ();
 }

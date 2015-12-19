@@ -1,9 +1,9 @@
 package com.SmithsModding.Armory.API.Registries;
 
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
+import com.SmithsModding.Armory.API.Armor.*;
+import com.SmithsModding.Armory.API.Materials.*;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by Orion
@@ -63,17 +63,4 @@ public interface IMaterialRegistry {
      * @return A instance of IArmorMaterial that is represented by the given uniqueID or null if no material with that name is registered.
      */
     IArmorMaterial getMaterial(String pInternalName);
-
-    /**
-     * The MLAAddonState determines if a MLAAddon
-     * of that material can be crafted and
-     * applied to a MultiLayeredArmor.
-     * <p/>
-     * Setting it to false will disable the MLAAddon of that material.
-     *
-     * @param pMaterialInternalName The uniqueID of the material.
-     * @param pUpgradeInternalName  The uniqueID of the upgrade
-     * @param pPartState            The new state of the MLAAddon
-     */
-    void changeUpgradeStateOnMaterial(String pMaterialInternalName, String pUpgradeInternalName, boolean pPartState);
 }

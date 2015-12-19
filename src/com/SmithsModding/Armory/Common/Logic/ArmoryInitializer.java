@@ -64,8 +64,8 @@ public class ArmoryInitializer {
         }
 
         private static void registerMaterials() {
-            ArmorMaterial tIron = new ArmorMaterial(References.InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", EnumChatFormatting.DARK_GRAY, true, 1865, 0.225F, new ItemStack(Items.iron_ingot));
-            ArmorMaterial tObsidian = new ArmorMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", EnumChatFormatting.BLUE, true, 1404, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
+            ArmorMaterial tIron = new ArmorMaterial(References.InternalNames.Materials.Vanilla.IRON, TranslationKeys.Materials.VisibleNames.Iron, "Iron", true, 1865, 0.225F, new ItemStack(Items.iron_ingot));
+            ArmorMaterial tObsidian = new ArmorMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN, TranslationKeys.Materials.VisibleNames.Obsidian, "Obsidian", true, 1404, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
 
             MaterialRegistry.getInstance().registerMaterial(tIron);
             MaterialRegistry.getInstance().registerMaterial(tObsidian);
@@ -149,19 +149,19 @@ public class ArmoryInitializer {
             for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
                 ChainLayer tBaseHelmet = new ChainLayer(References.InternalNames.AddonPositions.Helmet.BASE, References.InternalNames.Armor.MEDIEVALHELMET, References.InternalNames.AddonPositions.Helmet.BASE, tMaterial.getUniqueID(), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tHelmetResource.getPrimaryLocation()), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tHelmetResource.getSecondaryLocation()));
                 MedievalAddonRegistry.getInstance().registerUpgrade(tBaseHelmet);
-                tMaterial.registerNewActivePart(References.InternalNames.AddonPositions.Helmet.BASE, true);
+                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBaseHelmet, true);
 
                 ChainLayer tBaseChestplate = new ChainLayer(References.InternalNames.AddonPositions.Chestplate.BASE, References.InternalNames.Armor.MEDIEVALCHESTPLATE, References.InternalNames.AddonPositions.Chestplate.BASE, tMaterial.getUniqueID(), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tChestplateResource.getPrimaryLocation()), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tChestplateResource.getSecondaryLocation()));
                 MedievalAddonRegistry.getInstance().registerUpgrade(tBaseChestplate);
-                tMaterial.registerNewActivePart(References.InternalNames.AddonPositions.Chestplate.BASE, true);
+                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBaseChestplate, true);
 
                 ChainLayer tBaseLeggings = new ChainLayer(References.InternalNames.AddonPositions.Leggings.BASE, References.InternalNames.Armor.MEDIEVALLEGGINGS, References.InternalNames.AddonPositions.Leggings.BASE, tMaterial.getUniqueID(), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tLegginsResource.getPrimaryLocation()), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tLegginsResource.getSecondaryLocation()));
                 MedievalAddonRegistry.getInstance().registerUpgrade(tBaseLeggings);
-                tMaterial.registerNewActivePart(References.InternalNames.AddonPositions.Leggings.BASE, true);
+                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBaseLeggings, true);
 
                 ChainLayer tBaseShoes = new ChainLayer(References.InternalNames.AddonPositions.Shoes.BASE, References.InternalNames.Armor.MEDIEVALSHOES, References.InternalNames.AddonPositions.Shoes.BASE, tMaterial.getUniqueID(), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tShoesResource.getPrimaryLocation()), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tShoesResource.getSecondaryLocation()));
                 MedievalAddonRegistry.getInstance().registerUpgrade(tBaseShoes);
-                tMaterial.registerNewActivePart(References.InternalNames.AddonPositions.Shoes.BASE, true);
+                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBaseShoes, true);
             }
         }
         
@@ -170,7 +170,7 @@ public class ArmoryInitializer {
                 ArmorUpgradeMedieval tTopHead = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Helmet.TOP, References.InternalNames.Armor.MEDIEVALHELMET, References.InternalNames.AddonPositions.Helmet.TOP, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Helmet.TopHead, "", 2.5F, 60, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Helmet_TopHead"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Helmet_TopHead.png"));
                 MedievalAddonRegistry.getInstance().registerUpgrade(tTopHead);
 
-                tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Helmet.TOP, true);
+                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tTopHead, true);
             }
         }
 
@@ -181,8 +181,8 @@ public class ArmoryInitializer {
                 MedievalAddonRegistry.getInstance().registerUpgrade(tEarProtectionLeft);
                 MedievalAddonRegistry.getInstance().registerUpgrade(tEarProtectionRight);
 
-                tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Helmet.LEFT, true);
-                tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Helmet.RIGHT, true);
+                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tEarProtectionLeft, true);
+                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tEarProtectionRight, true);
             }
         }
 
@@ -193,8 +193,8 @@ public class ArmoryInitializer {
                 MedievalAddonRegistry.getInstance().registerUpgrade(tShoulderPadLeft);
                 MedievalAddonRegistry.getInstance().registerUpgrade(tShoulderPadRight);
 
-                tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Chestplate.SHOULDERLEFT, true);
-                tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Chestplate.SHOULDERRIGHT, true);
+                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tShoulderPadLeft, true);
+                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tShoulderPadRight, true);
             }
         }
 
@@ -206,11 +206,11 @@ public class ArmoryInitializer {
                 MedievalAddonRegistry.getInstance().registerUpgrade(tFrontChestProtectionRight);
 
                 if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN)) {
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Chestplate.FRONTLEFT, false);
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Chestplate.FRONTRIGHT, false);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontChestProtectionLeft, false);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontChestProtectionRight, false);
                 } else {
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Chestplate.FRONTLEFT, true);
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Chestplate.FRONTRIGHT, true);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontChestProtectionLeft, true);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontChestProtectionRight, true);
                 }
             }
         }
@@ -223,11 +223,11 @@ public class ArmoryInitializer {
                 MedievalAddonRegistry.getInstance().registerUpgrade(tBackChestProtectionRight);
 
                 if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN)) {
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Chestplate.BACKLEFT, false);
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Chestplate.BACKRIGHT, false);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackChestProtectionLeft, false);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackChestProtectionRight, false);
                 } else {
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Chestplate.BACKLEFT, true);
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Chestplate.BACKRIGHT, true);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackChestProtectionLeft, true);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackChestProtectionRight, true);
                 }
             }
         }
@@ -240,11 +240,11 @@ public class ArmoryInitializer {
                 MedievalAddonRegistry.getInstance().registerUpgrade(tFrontLeggingsProtectionRight);
 
                 if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN)) {
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Leggings.FRONTLEFT, false);
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Leggings.FRONTRIGHT, false);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontLeggingsProtectionLeft, false);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontLeggingsProtectionRight, false);
                 } else {
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Leggings.FRONTLEFT, true);
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Leggings.FRONTRIGHT, true);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontLeggingsProtectionLeft, true);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontLeggingsProtectionRight, true);
                 }
             }
         }
@@ -257,11 +257,11 @@ public class ArmoryInitializer {
                 MedievalAddonRegistry.getInstance().registerUpgrade(tBackLeggingsProtectionRight);
 
                 if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN)) {
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Leggings.BACKLEFT, false);
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Leggings.BACKRIGHT, false);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackLeggingsProtectionLeft, false);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackLeggingsProtectionRight, false);
                 } else {
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Leggings.BACKLEFT, true);
-                    tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Leggings.BACKRIGHT, true);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackLeggingsProtectionLeft, true);
+                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackLeggingsProtectionRight, true);
                 }
             }
         }
@@ -273,8 +273,8 @@ public class ArmoryInitializer {
                 MedievalAddonRegistry.getInstance().registerUpgrade(tShoeProtectionLeft);
                 MedievalAddonRegistry.getInstance().registerUpgrade(tShoeProtectionRight);
 
-                tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Shoes.LEFT, true);
-                tMaterial.registerNewActivePart(References.InternalNames.Upgrades.Shoes.RIGHT, true);
+                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tShoeProtectionLeft, true);
+                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tShoeProtectionRight, true);
             }
         }
 

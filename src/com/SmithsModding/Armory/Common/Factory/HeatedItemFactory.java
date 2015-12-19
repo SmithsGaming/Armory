@@ -8,13 +8,11 @@ package com.SmithsModding.Armory.Common.Factory;
 import com.SmithsModding.Armory.API.Item.*;
 import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Common.Item.*;
-import com.SmithsModding.Armory.Common.Material.*;
 import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Util.*;
 import com.SmithsModding.SmithsCore.Util.Common.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraftforge.oredict.*;
 
 import java.util.*;
 
@@ -54,7 +52,7 @@ public class HeatedItemFactory {
     }
 
     public ItemStack convertToHeatedIngot (ItemStack pCooledIngotStack) {
-        if (!isHeatable(pCooledIngotStack)) {
+        if (!HeatableItemRegistry.getInstance().isHeatable(pCooledIngotStack)) {
             Armory.getLogger().info("Got a not convertable item!:");
             Armory.getLogger().info(ItemStackHelper.toString(pCooledIngotStack));
             return null;
@@ -88,155 +86,5 @@ public class HeatedItemFactory {
         return tReturnStack;
     }
 
-    public void addHeatableItemstack (String pMaterialName, ItemStack pNewItemStack) {
-        ItemStack tStack = pNewItemStack.copy();
-        tStack.stackSize = 1;
-
-        addStackToMappings(pMaterialName, tStack);
-
-        reloadItemStackOreDic(tStack, pMaterialName);
-    }
-
-    public void reloadAllItemStackOreDic () {
-        ArrayList<ItemStack> tHeatableItems = new ArrayList<ItemStack>(iHeatableItems);
-        ArrayList<String> tMappedNames = new ArrayList<String>(iMappedNames);
-
-        Iterator<ItemStack> tStackIter = tHeatableItems.iterator();
-        Iterator<String> tNameIter = tMappedNames.iterator();
-
-        while (tStackIter.hasNext()) {
-            reloadItemStackOreDic(tStackIter.next(), tNameIter.next());
-        }
-    }
-
-    public void reloadItemStackOreDic (ItemStack pStack, String pMaterialName) {
-        int[] tOreIDs = OreDictionary.getOreIDs(pStack);
-        for (int tOreID : tOreIDs) {
-            for (ItemStack tStack : OreDictionary.getOres(OreDictionary.getOreName(tOreID))) {
-                addStackToMappings(pMaterialName, tStack);
-            }
-        }
-    }
-
-    private void addStackToMappings (String pMaterialName, ItemStack tStack) {
-        if (!isHeatable(tStack)) {
-            this.iHeatableItems.add(tStack);
-            this.iMappedNames.add(pMaterialName);
-
-            if (tStack.getItem() instanceof IHeatableItem) {
-                iMappedTypes.add(( (IHeatableItem) tStack.getItem() ).getInternalType());
-            } else {
-                iMappedTypes.add(References.InternalNames.HeatedItemTypes.INGOT);
-            }
-        }
-    }
-
-    public String getMaterialIDFromItemStack (ItemStack pItemStack) {
-        if (pItemStack.getItem() instanceof ItemHeatedItem) {
-            return pItemStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID);
-        }
-
-        ItemStack tSingledItemStack = pItemStack.copy();
-        tSingledItemStack.stackSize = 1;
-
-        if (isHeatable(tSingledItemStack)) {
-            return iMappedNames.get(getIndexOfStack(tSingledItemStack));
-        }
-
-        return "";
-    }
-
-    public float getMeltingPointFromMaterial (String pMaterialName) {
-        return MaterialRegistry.getInstance().getMaterial(pMaterialName).getMeltingPoint();
-    }
-
-    public ArrayList<ItemStack> getAllMappedStacks () {
-        return iHeatableItems;
-    }
-
-    public ArrayList<String> getAllMappedTypes () {
-        return iMappedTypes;
-    }
-
-    public float getMeltingPointFromMaterial (ItemStack pItemStack) {
-        return this.getMeltingPointFromMaterial(this.getMaterialIDFromItemStack(pItemStack));
-    }
-
-    public String getType (ItemStack pHeatedItemStack) {
-        if (!( pHeatedItemStack.getItem() instanceof ItemHeatedItem )) {
-            return "";
-        }
-
-        if (!pHeatedItemStack.getTagCompound().hasKey(References.NBTTagCompoundData.HeatedIngot.TYPE)) {
-            return References.InternalNames.HeatedItemTypes.INGOT;
-        }
-
-        return pHeatedItemStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.TYPE);
-    }
-
-    public boolean isHeatable (ItemStack pItemStack) {
-        ItemStack tSingledItemStack = pItemStack.copy();
-        tSingledItemStack.stackSize = 1;
-
-        Iterator<ItemStack> tStackIter = getAllMappedStacks().iterator();
-
-        while (tStackIter.hasNext()) {
-            if (ItemStackHelper.equalsIgnoreStackSize(tStackIter.next(), tSingledItemStack)) {
-                return true;
-            }
-        }
-
-        int[] tSearchedOreDicIDs = OreDictionary.getOreIDs(pItemStack);
-        tStackIter = getAllMappedStacks().iterator();
-
-        while (tStackIter.hasNext()) {
-            ItemStack tMappedStack = tStackIter.next();
-            int[] tRequestedOreDicIDs = OreDictionary.getOreIDs(tMappedStack);
-
-            for (int tRequestID : tRequestedOreDicIDs) {
-                for (int tSearchedID : tSearchedOreDicIDs) {
-                    if (tRequestID != tSearchedID)
-                        continue;
-
-                    if (OreDictionary.getOreName(tRequestID).contains("heatable"))
-                        continue;
-
-                    if (!( OreDictionary.getOreName(tRequestID).contains("ingot") || OreDictionary.getOreName(tRequestID).contains("plate") || OreDictionary.getOreName(tRequestID).contains("nugget") || OreDictionary.getOreName(tRequestID).contains("block") ))
-                        continue;
-
-
-                    this.iHeatableItems.add(tSingledItemStack);
-                    this.iMappedNames.add(getMaterialIDFromItemStack(tMappedStack));
-
-                    if (tSingledItemStack.getItem() instanceof IHeatableItem) {
-                        iMappedTypes.add(( (IHeatableItem) tSingledItemStack.getItem() ).getInternalType());
-                    } else {
-                        iMappedTypes.add(References.InternalNames.HeatedItemTypes.INGOT);
-                    }
-
-                    Armory.getLogger().info("OreDic Support for the FirePit added: " + ItemStackHelper.toString(tSingledItemStack) + " as " + getMaterialIDFromItemStack(tMappedStack) + ".");
-
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    private int getIndexOfStack (ItemStack pStack) {
-        Iterator<ItemStack> tStackIter = getAllMappedStacks().iterator();
-        int tIndex = 0;
-
-        while (tStackIter.hasNext()) {
-            if (ItemStackHelper.equalsIgnoreStackSize(tStackIter.next(), pStack)) {
-                return tIndex;
-            }
-
-            tIndex++;
-        }
-
-        return -1;
-    }
 }
 

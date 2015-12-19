@@ -6,6 +6,7 @@ package com.SmithsModding.Armory.Common.Material;
 */
 
 import com.SmithsModding.Armory.API.Materials.*;
+import com.SmithsModding.Armory.API.Registries.*;
 import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Common.Addons.*;
 import com.SmithsModding.Armory.Common.Factory.*;
@@ -15,171 +16,153 @@ import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.*;
 
-import java.security.*;
 import java.util.*;
 
 public class ArmorMaterial implements IArmorMaterial {
-    private static int iLastUsedID = 0;
+    private static int LASTUSEDID = 0;
 
-    int iMaterialID;
-    private String iOreDicName;
-    private String iInternalName;
-    private String iVisibleName;
-    private EnumChatFormatting iVisibleNameColor = EnumChatFormatting.RESET;
-    private boolean iBaseArmorMaterial;
+    private int materialIndex;
+    private String oreDictionaryIdentifier;
+    private String uniqueIdentifier;
+    private boolean isBaseMaterial;
+
+    private HashMap<String, Float> partAbsorptionRatios = new HashMap<String, Float>();
+    private HashMap<String, Integer> partDurabilities = new HashMap<String, Integer>();
+    private HashMap<String, Integer> partModifierCounts = new HashMap<String, Integer>();
+
+    private float meltingPoint;
+    private float heatCoefficient;
+    private ItemStack baseStack;
+
     private IMaterialRenderInfo renderInfo;
-    private HashMap<String, Boolean> iActiveParts = new HashMap<String, Boolean>();
-    private HashMap<String, Float> iBaseDamageAbsorption = new HashMap<String, Float>();
-    private HashMap<String, Integer> iBaseDurability = new HashMap<String, Integer>();
-    private HashMap<String, Integer> iPartModifiers = new HashMap<String, Integer>();
-    private float iMeltingPoint;
-    private float iHeatCoefficient;
-    private ItemStack iBaseStack;
+    private String translationKey;
+
 
     //Constructor
-    public ArmorMaterial(String pInternalName, String pVisibleName, String pOreDicName, boolean pBaseArmorMaterial, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack) {
-        iOreDicName = pOreDicName;
-        iInternalName = pInternalName;
-        iVisibleName = pVisibleName;
+    public ArmorMaterial (String uniqueIdentifier, String oreDictionaryIdentifier, boolean isBaseMaterial, float meltingPoint, float heatCoefficient, ItemStack baseStack) {
+        this.oreDictionaryIdentifier = oreDictionaryIdentifier;
+        this.uniqueIdentifier = uniqueIdentifier;
 
         if (Armory.side == Side.CLIENT) {
-            MinecraftColor metalColor = ColorSampler.getColorSampleFromItemStack(pBaseItemStack);
+            MinecraftColor metalColor = ColorSampler.getColorSampleFromItemStack(baseStack);
 
             renderInfo = new IMaterialRenderInfo.Metal(metalColor.getRGB());
-            iVisibleNameColor = ColorSampler.getSimpleChatMinecraftColor(metalColor);
         }
 
-        iBaseArmorMaterial = pBaseArmorMaterial;
-        iMeltingPoint = pMeltingPoint;
-        iHeatCoefficient = pHeatCoefficient;
+        this.isBaseMaterial = isBaseMaterial;
+        this.meltingPoint = meltingPoint;
+        this.heatCoefficient = heatCoefficient;
 
-        iBaseStack = pBaseItemStack;
-        if (pBaseItemStack != null && !HeatedItemFactory.getInstance().isHeatable(pBaseItemStack)) {
-            HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
+        this.baseStack = baseStack;
+        if (baseStack != null && !HeatedItemFactory.getInstance().isHeatable(baseStack)) {
+            HeatedItemFactory.getInstance().addHeatableItemstack(uniqueIdentifier, baseStack);
         }
 
-        setItemDamageMaterialID(iLastUsedID);
-        iLastUsedID++;
+        materialIndex = LASTUSEDID;
+        LASTUSEDID++;
 
         if (renderInfo != null) {
-            Armory.getLogger().info("Initialized Material: " + iInternalName + ", with ItemColor: " + renderInfo.getVertexColor().toString() + ", with EnumChatFormatting: " + iVisibleNameColor.name());
+            Armory.getLogger().info("Initialized Material: " + this.uniqueIdentifier + ", with ItemColor: " + renderInfo.getVertexColor().toString() + ", with EnumChatFormatting: " + getNameColor());
         } else {
-            Armory.getLogger().info("Initialized Material: " + iInternalName);
+            Armory.getLogger().info("Initialized Material: " + this.uniqueIdentifier);
         }
     }
 
-    public ArmorMaterial (String pInternalName, String pVisibleName, String pOreDicName, EnumChatFormatting pVisibileNameColor, boolean pBaseArmorMaterial, float pMeltingPoint, float pHeatCoefficient, ItemStack pBaseItemStack) {
-        iOreDicName = pOreDicName;
-        iInternalName = pInternalName;
-        iVisibleName = pVisibleName;
-        iVisibleNameColor = pVisibileNameColor;
-        iBaseArmorMaterial = pBaseArmorMaterial;
-        iMeltingPoint = pMeltingPoint;
-        iHeatCoefficient = pHeatCoefficient;
-
-        iBaseStack = pBaseItemStack;
-        if (pBaseItemStack != null && !HeatedItemFactory.getInstance().isHeatable(pBaseItemStack)) {
-            HeatedItemFactory.getInstance().addHeatableItemstack(pInternalName, pBaseItemStack);
-        }
-
-        setItemDamageMaterialID(iLastUsedID);
-        iLastUsedID++;
-
-        Armory.getLogger().info("Initialized Material: " + iInternalName + ", with unknown ItemColor.");
-    }
-
-    @Override
-    public int getItemDamageMaterialID () {
-        return iMaterialID;
-    }
-
-    @Override
-    public void setItemDamageMaterialID (int pNewID) {
-        iMaterialID = pNewID;
-    }
-
-    @Override
-    public ItemStack getRootItemStack() {
-        return iBaseStack;
-    }
 
     @Override
     public String getUniqueID () {
-        return iInternalName;
-    }
-
-    public void registerNewActivePart(String pUpgradeInternalName, boolean pPartState) {
-        if ((iActiveParts.size() != 0) && (iActiveParts.get(pUpgradeInternalName) != null)) {
-            throw new InvalidParameterException("The given upgrade: " + MedievalAddonRegistry.getInstance().getUpgrade(pUpgradeInternalName).getUniqueID() + ", is already registered  for this material: " + iVisibleName + ". The upgrades will automatically register them self's to the material.");
-        }
-
-        iActiveParts.put(pUpgradeInternalName, pPartState);
-    }
-
-    public void modifyPartState(String pUpgradeInternalName, boolean pPartState) {
-        if (iActiveParts.get(pUpgradeInternalName) == null) {
-            throw new InvalidParameterException("The given upgrade: " + MedievalAddonRegistry.getInstance().getUpgrade(pUpgradeInternalName).getUniqueID() + ", is not registered for the following material: " + iVisibleName + ". Something went wrong as this should have happened when registering the material!");
-        }
-        iActiveParts.put(pUpgradeInternalName, pPartState);
-    }
-
-    public boolean getPartState(String pUpgradeInternalName) {
-        if (!iActiveParts.containsKey(pUpgradeInternalName))
-            return false;
-
-        return iActiveParts.get(pUpgradeInternalName);
+        return uniqueIdentifier;
     }
 
     @Override
-    public HashMap<String, Boolean> getAllPartStates() {
-        return iActiveParts;
-    }
-
-    public void setBaseDamageAbsorption(String pTargetArmorInternalName, Float pBaseDamageAbsorption) {
-        iBaseDamageAbsorption.put(pTargetArmorInternalName, pBaseDamageAbsorption);
-    }
-
-    public Float getBaseDamageAbsorption(String pTargetArmorInternalName) {
-        return iBaseDamageAbsorption.get(pTargetArmorInternalName);
+    public int getItemDamageMaterialIndex () {
+        return materialIndex;
     }
 
     @Override
-    public HashMap<String, Float> getAllBaseDamageAbsorbtionValues() {
-        return iBaseDamageAbsorption;
+    public ItemStack getBaseItemStack () {
+        return baseStack;
     }
+
+    @Override
+    public String getOreDicName () {
+        return oreDictionaryIdentifier;
+    }
+
+    @Override
+    public String getType () {
+        return References.InternalNames.Tiers.MEDIEVAL;
+    }
+
+
+    public void setBaseDamageAbsorption (String pTargetArmorInternalName, Float pBaseDamageAbsorption) {
+        partAbsorptionRatios.put(pTargetArmorInternalName, pBaseDamageAbsorption);
+    }
+
+    public Float getBaseDamageAbsorption (String pTargetArmorInternalName) {
+        return partAbsorptionRatios.get(pTargetArmorInternalName);
+    }
+
+    @Override
+    public HashMap<String, Float> getAllBaseDamageAbsorptionValues () {
+        return partAbsorptionRatios;
+    }
+
+
+
 
     public void setBaseDurability(String pTargetArmorInternalName, int pBaseDurability) {
-        iBaseDurability.put(pTargetArmorInternalName, pBaseDurability);
+        partDurabilities.put(pTargetArmorInternalName, pBaseDurability);
     }
 
     public int getBaseDurability(String pTargetArmorInternalName) {
-        if (iBaseDurability.containsKey(pTargetArmorInternalName)) return iBaseDurability.get(pTargetArmorInternalName);
+        if (partDurabilities.containsKey(pTargetArmorInternalName))
+            return partDurabilities.get(pTargetArmorInternalName);
 
         return 100;
     }
 
     @Override
     public HashMap<String, Integer> getAllBaseDurabilityValues() {
-        return iBaseDurability;
+        return partDurabilities;
     }
 
+
     public void setMaxModifiersOnPart(String pTargetArmorInternalName, int pMaxModifiers) {
-        iPartModifiers.put(pTargetArmorInternalName, pMaxModifiers);
+        partModifierCounts.put(pTargetArmorInternalName, pMaxModifiers);
     }
 
     public int getMaxModifiersOnPart(String pTargetArmorInternalName) {
-        return iPartModifiers.get(pTargetArmorInternalName);
+        return partModifierCounts.get(pTargetArmorInternalName);
     }
 
     @Override
     public HashMap<String, Integer> getAllMaxModifiersAmounts() {
-        return iPartModifiers;
+        return partModifierCounts;
+    }
+
+
+    @Override
+    public boolean getIsBaseArmorMaterial () {
+        return isBaseMaterial;
     }
 
     @Override
-    public String getType() {
-        return References.InternalNames.Tiers.MEDIEVAL;
+    public float getMeltingPoint () {
+        return meltingPoint;
     }
+
+
+    @Override
+    public float getHeatCoefficient () {
+        return heatCoefficient;
+    }
+
+    @Override
+    public IArmorPartRegistry getPartRegistry () {
+        return MedievalAddonRegistry.getInstance();
+    }
+
 
     @Override
     public IMaterialRenderInfo getRenderInfo () {
@@ -187,54 +170,24 @@ public class ArmorMaterial implements IArmorMaterial {
     }
 
     @Override
-    public void setRenderInfo (IMaterialRenderInfo newInfo) {
+    public IArmorMaterial setRenderInfo (IMaterialRenderInfo newInfo) {
         renderInfo = newInfo;
-    }
-
-    public String getOreDicName() {
-        return iOreDicName;
-    }
-
-    public String getVisibleName() {
-        return iVisibleName;
-    }
-
-    public EnumChatFormatting getVisibleNameColor() {
-        return iVisibleNameColor;
+        return this;
     }
 
     @Override
-    public void setVisibleNameColor(EnumChatFormatting pFormatting) {
-        iVisibleNameColor = pFormatting;
+    public String getTranslationKey () {
+        return translationKey;
     }
 
     @Override
-    public boolean getIsBaseArmorMaterial() {
-        return iBaseArmorMaterial;
+    public IArmorMaterial setTranslationKey (String key) {
+        translationKey = key;
+        return this;
     }
 
     @Override
-    public void setIsBaseArmorMaterial(boolean pNewState) {
-        iBaseArmorMaterial = pNewState;
-    }
-
-    @Override
-    public float getMeltingPoint() {
-        return iMeltingPoint;
-    }
-
-    @Override
-    public void setMeltingPoint(float pNewMeltingPoint) {
-        iMeltingPoint = pNewMeltingPoint;
-    }
-
-    @Override
-    public float getHeatCoefficient() {
-        return iHeatCoefficient;
-    }
-
-    @Override
-    public void setHeatCoefficient(float pNewCoefficient) {
-        iHeatCoefficient = pNewCoefficient;
+    public EnumChatFormatting getNameColor () {
+        return ColorSampler.getSimpleChatMinecraftColor(renderInfo.getVertexColor());
     }
 }

@@ -1,10 +1,11 @@
 package com.SmithsModding.Armory.Common.Addons;
 
-import com.SmithsModding.Armory.API.Armor.MLAAddon;
-import com.SmithsModding.Armory.API.Registries.IMLAAddonRegistry;
-import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
+import com.SmithsModding.Armory.API.Armor.*;
+import com.SmithsModding.Armory.API.Materials.*;
+import com.SmithsModding.Armory.API.Registries.*;
+import com.SmithsModding.Armory.Common.Material.*;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by Orion
@@ -13,20 +14,23 @@ import java.util.HashMap;
  * <p/>
  * Copyrighted according to Project specific license
  */
-public class MedievalAddonRegistry implements IMLAAddonRegistry {
+public class MedievalAddonRegistry implements IArmorPartRegistry, IMLAAddonRegistry {
 
-    protected static MedievalAddonRegistry iInstance = new MedievalAddonRegistry();
+    protected static MedievalAddonRegistry INSTANCE = new MedievalAddonRegistry();
+
     //ArrayList for storing all the modifiers and upgrades
-    protected HashMap<String, MLAAddon> iArmorUpgrades = new HashMap<String, MLAAddon>();
+    protected HashMap<String, MLAAddon> addonHashMap = new HashMap<String, MLAAddon>();
+
+    protected HashMap<IArmorMaterial, HashMap<MLAAddon, Boolean>> upgradeStates = new HashMap<IArmorMaterial, HashMap<MLAAddon, Boolean>>();
 
     public static MedievalAddonRegistry getInstance() {
-        return iInstance;
+        return INSTANCE;
     }
 
     public HashMap<String, MLAAddon> getUpgrades() {
         HashMap<String, MLAAddon> tMedievalUpgrades = new HashMap<String, MLAAddon>();
 
-        for (MLAAddon tAddon : this.iArmorUpgrades.values()) {
+        for (MLAAddon tAddon : this.addonHashMap.values()) {
             if (tAddon instanceof ArmorUpgradeMedieval) {
                 tMedievalUpgrades.put(tAddon.getUniqueID(), tAddon);
             }
@@ -36,12 +40,31 @@ public class MedievalAddonRegistry implements IMLAAddonRegistry {
     }
 
     public void registerUpgrade(MLAAddon pUpgrade) {
-        iArmorUpgrades.put(pUpgrade.getUniqueID(), pUpgrade);
+        addonHashMap.put(pUpgrade.getUniqueID(), pUpgrade);
 
         MaterialRegistry.getInstance().getArmor(pUpgrade.getUniqueArmorID()).registerAddon(pUpgrade);
     }
 
     public MLAAddon getUpgrade (String pUpgradeInternalName) {
-        return this.iArmorUpgrades.get(pUpgradeInternalName);
+        return this.addonHashMap.get(pUpgradeInternalName);
+    }
+
+    @Override
+    public void setPartStateForMaterial (IArmorMaterial material, MLAAddon addon, boolean state) {
+        if (!upgradeStates.containsKey(material))
+            upgradeStates.put(material, new HashMap<MLAAddon, Boolean>());
+
+        upgradeStates.get(material).put(addon, state);
+    }
+
+    @Override
+    public boolean getPartStateForMaterial (IArmorMaterial material, MLAAddon addon) {
+        if (!upgradeStates.containsKey(material))
+            upgradeStates.put(material, new HashMap<MLAAddon, Boolean>());
+
+        if (!upgradeStates.get(material).containsKey(addon))
+            upgradeStates.get(material).put(addon, false);
+
+        return upgradeStates.get(material).get(addon);
     }
 }
