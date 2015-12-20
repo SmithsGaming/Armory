@@ -101,6 +101,14 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
     }
 
     @Override
+    public IArmorMaterial getMaterialFromStack (ItemStack stack) {
+        if (stack.getItem() instanceof ItemHeatedItem)
+            return getMaterialFromHeatedStack(stack);
+
+        return getMaterialFromCooledStack(stack);
+    }
+
+    @Override
     public IArmorMaterial getMaterialFromHeatedStack (ItemStack stack) {
         if (!( stack.getItem() instanceof ItemHeatedItem ))
             return null;

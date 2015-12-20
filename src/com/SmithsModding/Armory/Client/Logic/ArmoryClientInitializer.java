@@ -21,14 +21,15 @@ import net.minecraftforge.client.model.obj.*;
 
 public class ArmoryClientInitializer extends ArmoryInitializer {
     public static void InitializeClient() {
+        ArmoryInitializer.SystemInit.RegisterFluids();
         MedievalInitialization.Initialize();
-        MedievalClientInitialization.registerMaterialResources();
-        MedievalClientInitialization.registerUpgradeResources();
-        ArmoryInitializer.SystemInit.RegisterItems();
         ArmoryInitializer.SystemInit.RegisterBlocks();
+        ArmoryInitializer.SystemInit.RegisterItems();
         ArmoryInitializer.SystemInit.RegisterTileEntities();
         SystemInit.registerIIR();
         SystemInit.registerTESR();
+        MedievalClientInitialization.registerMaterialResources();
+        MedievalClientInitialization.registerUpgradeResources();
         MedievalClientInitialization.registerRingResources();
         MedievalClientInitialization.registerChainResources();
         MedievalClientInitialization.registerNuggetResources();

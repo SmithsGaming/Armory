@@ -23,6 +23,8 @@ public interface IHeatableItemRegistry {
 
     boolean isHeatable (ItemStack stack);
 
+    IArmorMaterial getMaterialFromStack (ItemStack stack);
+
     IArmorMaterial getMaterialFromHeatedStack (ItemStack stack);
 
     IArmorMaterial getMaterialFromCooledStack (ItemStack stack);

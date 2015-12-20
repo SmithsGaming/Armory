@@ -22,12 +22,11 @@ public interface IArmorMaterial {
 
     ItemStack getBaseItemStack ();
 
-
     String getType ();
-
 
     String getOreDicName ();
 
+    int getMeltingTime ();
 
 
 

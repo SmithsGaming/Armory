@@ -1,6 +1,6 @@
 package com.SmithsModding.Armory.Util.Client;
 
-import com.SmithsModding.Armory.Util.References;
+import com.SmithsModding.Armory.Util.*;
 
 /**
  * Created by Orion
@@ -124,6 +124,10 @@ public class TranslationKeys {
 
     public class Blocks {
 
+    }
+
+    public class Fluids {
+        public static final String MOLTEN = "Armory.Fluids.Molten";
     }
 
     public class GUI {

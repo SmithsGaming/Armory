@@ -12,6 +12,7 @@ package com.SmithsModding.Armory.Common.Block;
 */
 
 import com.SmithsModding.Armory.*;
+import com.SmithsModding.Armory.Common.TileEntity.*;
 import com.SmithsModding.Armory.Util.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.*;
@@ -20,6 +21,7 @@ import net.minecraft.block.state.*;
 import net.minecraft.client.*;
 import net.minecraft.creativetab.*;
 import net.minecraft.item.*;
+import net.minecraft.tileentity.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.model.obj.*;
@@ -27,7 +29,7 @@ import net.minecraftforge.common.property.*;
 
 import java.util.*;
 
-public class BlockFirePit extends Block {
+public class BlockFirePit extends BlockArmoryInventory {
 
     protected static Map<String, EnumFacing> directionsMapping = new HashMap<String, EnumFacing>();
 
@@ -41,8 +43,7 @@ public class BlockFirePit extends Block {
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{OBJModel.OBJProperty.instance});
 
     public BlockFirePit () {
-        super(Material.iron);
-        setUnlocalizedName(References.InternalNames.Blocks.FirePit);
+        super(References.InternalNames.Blocks.FirePit, Material.iron);
         setCreativeTab(CreativeTabs.tabCombat);
     }
 
@@ -142,6 +143,8 @@ public class BlockFirePit extends Block {
             else if (renderCase.toLowerCase().contains("alo"))
             {
                 requiredSides = 1;
+            } else if (renderCase.toLowerCase().contains("not")) {
+                requiredSides = 7;
             }
 
             if (requiredSides > 0)
@@ -168,5 +171,15 @@ public class BlockFirePit extends Block {
 
         OBJModel.OBJState retState = new OBJModel.OBJState(visibleParts, true);
         return ( (IExtendedBlockState) this.state.getBaseState() ).withProperty(OBJModel.OBJProperty.instance, retState);
+    }
+
+    @Override
+    public TileEntity createNewTileEntity (World worldIn, int meta) {
+        return new TileEntityFirePit();
+    }
+
+    @Override
+    public int getRenderType () {
+        return 3;
     }
 }

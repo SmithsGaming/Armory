@@ -211,7 +211,7 @@ public class References {
             public static final String BookBinder = "conainer.Armory.BookBinder";
 
             public static final class Structures {
-                public static final String FirePit = "Structure.Armory.FirePit";
+                public static final String FirePit = "Structures.Armory.FirePit";
             }
         }
 
@@ -495,7 +495,7 @@ public class References {
                 public static final String DIRECTION = "Direction";
                 public static final String NAME = "Name";
                 public static final String SLOT = "Slot";
-                public static final String STRUCTUREDATA = "Structure";
+                public static final String STRUCTUREDATA = "Structures";
                 public static final String INVENTORY = "Inventory";
 
                 public class Structures {
@@ -517,10 +517,12 @@ public class References {
                 public static final String CURRENTTEMPERATURE = "CurrentTemperature";
                 public static final String CURRENTLYBURNING = "IsBurning";
                 public static final String LASTADDEDHEAT = "LastAddedHeat";
+                public static final String LASTTEMPERATURE = "LastTemperature";
                 public static final String INGOTITEMSTACKS = "Ingots";
                 public static final String FUELITEMSTACKS = "FuelStacks";
                 public static final String FUELSTACKBURNINGTIME = "FuelStackBurningTime";
                 public static final String FUELSTACKFUELAMOUNT = "FuelStackFuelAmount";
+                public static final String MELTINGPROGRESS = "MeltingProgress";
             }
 
             public class Heater {

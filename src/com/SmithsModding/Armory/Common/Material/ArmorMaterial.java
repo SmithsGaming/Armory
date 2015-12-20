@@ -25,6 +25,7 @@ public class ArmorMaterial implements IArmorMaterial {
     private String oreDictionaryIdentifier;
     private String uniqueIdentifier;
     private boolean isBaseMaterial;
+    private int meltingTime;
 
     private HashMap<String, Float> partAbsorptionRatios = new HashMap<String, Float>();
     private HashMap<String, Integer> partDurabilities = new HashMap<String, Integer>();
@@ -39,7 +40,7 @@ public class ArmorMaterial implements IArmorMaterial {
 
 
     //Constructor
-    public ArmorMaterial (String uniqueIdentifier, String oreDictionaryIdentifier, boolean isBaseMaterial, float meltingPoint, float heatCoefficient, ItemStack baseStack) {
+    public ArmorMaterial (String uniqueIdentifier, String oreDictionaryIdentifier, boolean isBaseMaterial, float meltingPoint, int meltingTime, float heatCoefficient, ItemStack baseStack) {
         this.oreDictionaryIdentifier = oreDictionaryIdentifier;
         this.uniqueIdentifier = uniqueIdentifier;
 
@@ -54,6 +55,7 @@ public class ArmorMaterial implements IArmorMaterial {
         this.isBaseMaterial = isBaseMaterial;
         this.meltingPoint = meltingPoint;
         this.heatCoefficient = heatCoefficient;
+        this.meltingTime = meltingTime;
 
         this.baseStack = baseStack;
         if (baseStack != null && !HeatableItemRegistry.getInstance().isHeatable(baseStack)) {
@@ -95,6 +97,11 @@ public class ArmorMaterial implements IArmorMaterial {
     public String getType () {
         return References.InternalNames.Tiers.MEDIEVAL;
     }
+
+    public int getMeltingTime () {
+        return meltingTime;
+    }
+
 
 
     public void setBaseDamageAbsorption (String pTargetArmorInternalName, Float pBaseDamageAbsorption) {

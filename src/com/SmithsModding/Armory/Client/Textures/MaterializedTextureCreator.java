@@ -31,7 +31,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
 
     //Initializes the dummy gui material with a proper set of render info.
     static {
-        guiMaterial = new ArmorMaterial("_internal_gui", "Internal-Gui", false, 0F, 0F, null);
+        guiMaterial = new ArmorMaterial("_internal_gui", "Internal-Gui", false, 0F, -1, 0F, null);
         guiMaterial.setRenderInfo(new IMaterialRenderInfo.AbstractMaterialRenderInfo() {
             @Override
             public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {

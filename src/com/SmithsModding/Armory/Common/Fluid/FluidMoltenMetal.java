@@ -1,6 +1,8 @@
 package com.SmithsModding.Armory.Common.Fluid;
 
+import com.SmithsModding.Armory.API.Materials.*;
 import com.SmithsModding.Armory.Common.Material.*;
+import com.SmithsModding.Armory.Util.Client.*;
 import com.SmithsModding.Armory.Util.*;
 import net.minecraft.util.*;
 import net.minecraftforge.fluids.*;
@@ -21,4 +23,17 @@ public class FluidMoltenMetal extends Fluid {
         return MaterialRegistry.getInstance().getMaterial(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL)).getRenderInfo().getVertexColor().getRGB();
     }
 
+    @Override
+    public int getTemperature (FluidStack stack) {
+        IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL));
+
+        return (int) material.getMeltingPoint();
+    }
+
+    @Override
+    public String getLocalizedName (FluidStack stack) {
+        IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL));
+
+        return StatCollector.translateToLocal(TranslationKeys.Fluids.MOLTEN) + " " + material.getNameColor() + StatCollector.translateToLocal(material.getTranslationKey()) + EnumChatFormatting.RESET;
+    }
 }

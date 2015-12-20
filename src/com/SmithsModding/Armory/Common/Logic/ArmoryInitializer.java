@@ -17,6 +17,7 @@ import com.SmithsModding.Armory.Common.Item.*;
 import com.SmithsModding.Armory.Common.Item.Knowledge.*;
 import com.SmithsModding.Armory.Common.Material.*;
 import com.SmithsModding.Armory.Common.Registry.*;
+import com.SmithsModding.Armory.Common.TileEntity.*;
 import com.SmithsModding.Armory.Util.Client.*;
 import com.SmithsModding.Armory.Util.*;
 import com.SmithsModding.SmithsCore.Util.Common.*;
@@ -33,6 +34,7 @@ import java.util.*;
 
 public class ArmoryInitializer {
     public static void InitializeServer() {
+        SystemInit.RegisterFluids();
         MedievalInitialization.Initialize();
         SystemInit.RegisterBlocks();
         SystemInit.RegisterItems();
@@ -66,8 +68,8 @@ public class ArmoryInitializer {
         }
 
         private static void registerMaterials() {
-            ArmorMaterial tIron = new ArmorMaterial(References.InternalNames.Materials.Vanilla.IRON, "Iron", true, 1865, 0.225F, new ItemStack(Items.iron_ingot));
-            ArmorMaterial tObsidian = new ArmorMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN, "Obsidian", true, 1404, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
+            ArmorMaterial tIron = new ArmorMaterial(References.InternalNames.Materials.Vanilla.IRON, "Iron", true, 1865, 500, 0.225F, new ItemStack(Items.iron_ingot));
+            ArmorMaterial tObsidian = new ArmorMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN, "Obsidian", true, 1404, 3000, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.obsidian)));
 
             MaterialRegistry.getInstance().registerMaterial(tIron);
             MaterialRegistry.getInstance().registerMaterial(tObsidian);
@@ -360,8 +362,9 @@ public class ArmoryInitializer {
 
     public static class SystemInit {
         public static void RegisterBlocks() {
+            GeneralRegistry.Blocks.blockFirePit = new BlockFirePit();
 
-
+            GameRegistry.registerBlock(GeneralRegistry.Blocks.blockFirePit, References.InternalNames.Blocks.FirePit);
         }
 
         public static void RegisterItems() {
@@ -382,9 +385,7 @@ public class ArmoryInitializer {
         }
 
         public static void RegisterTileEntities() {
-            GeneralRegistry.Blocks.blockFirePit = new BlockFirePit();
-
-            GameRegistry.registerBlock(GeneralRegistry.Blocks.blockFirePit, References.InternalNames.Blocks.FirePit);
+            GameRegistry.registerTileEntity(TileEntityFirePit.class, References.InternalNames.TileEntities.FirePitContainer);
         }
 
         public static void loadMaterialConfig() {
