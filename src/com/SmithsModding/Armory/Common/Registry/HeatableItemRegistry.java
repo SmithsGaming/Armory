@@ -1,5 +1,6 @@
 package com.SmithsModding.Armory.Common.Registry;
 
+import com.SmithsModding.Armory.API.Events.Common.HeatableItemRegisteredEvent;
 import com.SmithsModding.Armory.API.Item.*;
 import com.SmithsModding.Armory.API.Materials.*;
 import com.SmithsModding.Armory.API.Registries.*;
@@ -208,6 +209,13 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
 
     private void addStackToMap (HashMap<IArmorMaterial, HashMap<String, ItemStack>> mapStack, HashMap<String, HashMap<ItemStack, IArmorMaterial>> reverseMapStack,
                                 HashMap<IArmorMaterial, HashMap<String, FluidStack>> mapFluid, IArmorMaterial material, ItemStack stack, String internalType, FluidStack moltenStack) {
+
+        HeatableItemRegisteredEvent event = new HeatableItemRegisteredEvent(material, internalType, stack, moltenStack, mapStack == mappedStacks?false:true);
+        event.PostCommon();
+
+        stack = event.getHeatableStack();
+        moltenStack = event.getMoltenStack();
+
         if (!mapStack.containsKey(material))
             mapStack.put(material, new HashMap<String, ItemStack>());
 

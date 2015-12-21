@@ -5,7 +5,7 @@ import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components.*;
 import com.SmithsModding.Armory.Client.Model.Item.Unbaked.*;
 import com.SmithsModding.Armory.Client.Textures.*;
-import com.SmithsModding.SmithsCore.Util.Client.*;
+import com.SmithsModding.SmithsCore.Util.Client.ModelHelper;
 import com.google.common.collect.*;
 import net.minecraft.client.resources.*;
 import net.minecraft.util.*;

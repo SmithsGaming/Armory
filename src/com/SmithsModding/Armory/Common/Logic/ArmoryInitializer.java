@@ -16,10 +16,12 @@ import com.SmithsModding.Armory.Common.Item.Armor.TierMedieval.*;
 import com.SmithsModding.Armory.Common.Item.*;
 import com.SmithsModding.Armory.Common.Item.Knowledge.*;
 import com.SmithsModding.Armory.Common.Material.*;
+import com.SmithsModding.Armory.Common.Material.FluidModifiers.ObsidianToLavaSetter;
 import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Common.TileEntity.*;
 import com.SmithsModding.Armory.Util.Client.*;
 import com.SmithsModding.Armory.Util.*;
+import com.SmithsModding.SmithsCore.SmithsCore;
 import com.SmithsModding.SmithsCore.Util.Common.*;
 import net.minecraft.init.*;
 import net.minecraft.item.*;
@@ -382,6 +384,9 @@ public class ArmoryInitializer {
             GeneralRegistry.Fluids.moltenMetal = new FluidMoltenMetal();
 
             FluidRegistry.registerFluid(GeneralRegistry.Fluids.moltenMetal);
+
+            //Makes sure that for Obsidian lava is produced instead of a molten metal.
+            SmithsCore.getRegistry().getCommonBus().register(new ObsidianToLavaSetter());
         }
 
         public static void RegisterTileEntities() {
