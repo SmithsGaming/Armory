@@ -20,6 +20,7 @@ import net.minecraft.block.properties.*;
 import net.minecraft.block.state.*;
 import net.minecraft.client.*;
 import net.minecraft.creativetab.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.*;
 import net.minecraft.util.*;
@@ -181,5 +182,19 @@ public class BlockFirePit extends BlockArmoryInventory {
     @Override
     public int getRenderType () {
         return 3;
+    }
+
+    @Override
+    public boolean onBlockActivated (World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if (playerIn.isSneaking()) {
+            return false;
+        } else {
+            if (!worldIn.isRemote) {
+                if (worldIn.getTileEntity(pos) instanceof TileEntityFirePit) {
+                    playerIn.openGui(Armory.instance, References.GuiIDs.FIREPITID, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                }
+            }
+            return true;
+        }
     }
 }
