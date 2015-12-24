@@ -18,6 +18,6 @@ public class GuiFirePit extends GuiContainerSmithsCore {
 
     @Override
     public void registerComponents (IGUIBasedComponentHost host) {
-        registerNewComponent(new ComponentBorder("test", host, new Coordinate2D(0, 0), 150, 150, new MinecraftColor(MinecraftColor.WHITE), ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts));
+        registerNewComponent(new ComponentBorder("test", host, new Coordinate2D(0, 0), 150, 150, new MinecraftColor(MinecraftColor.WHITE), ComponentBorder.CornerTypes.Outwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Outwarts));
     }
 }
