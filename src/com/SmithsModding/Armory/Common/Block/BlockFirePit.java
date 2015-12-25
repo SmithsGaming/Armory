@@ -12,14 +12,17 @@ package com.SmithsModding.Armory.Common.Block;
 */
 
 import com.SmithsModding.Armory.*;
+import com.SmithsModding.Armory.Common.TileEntity.State.*;
 import com.SmithsModding.Armory.Common.TileEntity.*;
 import com.SmithsModding.Armory.Util.*;
+import com.SmithsModding.SmithsCore.Common.Structures.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.*;
 import net.minecraft.block.properties.*;
 import net.minecraft.block.state.*;
 import net.minecraft.client.*;
 import net.minecraft.creativetab.*;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.*;
@@ -47,6 +50,38 @@ public class BlockFirePit extends BlockArmoryInventory {
         super(References.InternalNames.Blocks.FirePit, Material.iron);
         setCreativeTab(CreativeTabs.tabCombat);
     }
+
+
+    @Override
+    public void breakBlock (World worldIn, BlockPos pos, IBlockState state) {
+        TileEntityFirePit tTEFirePit = (TileEntityFirePit) worldIn.getTileEntity(pos);
+
+        if (!worldIn.isRemote) {
+            if (worldIn.getTileEntity(pos) instanceof TileEntityFirePit) {
+                StructureManager.destroyStructureComponent(tTEFirePit);
+            }
+        }
+
+        super.breakBlock(worldIn, pos, state);
+    }
+
+    @Override
+    public void onBlockPlacedBy (World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        //Armory.getLogger().info("Placed firepit at: " + pos.toString() + " client side: " + worldIn.isRemote);
+
+        TileEntityFirePit tTE = (TileEntityFirePit) worldIn.getTileEntity(pos);
+
+        if (stack.hasDisplayName()) {
+            tTE.setDisplayName(stack.getDisplayName());
+        }
+
+        if (!worldIn.isRemote) {
+            if (tTE instanceof TileEntityFirePit) {
+                StructureManager.createStructureComponent(tTE);
+            }
+        }
+    }
+    
 
     @Override
     public boolean canRenderInLayer (EnumWorldBlockLayer layer) {
@@ -122,6 +157,17 @@ public class BlockFirePit extends BlockArmoryInventory {
             {
                 if (name.contains(sideName))
                     relevantSides++;
+            }
+
+            if (name.toLowerCase().equals("Fuel".toLowerCase())) {
+                TileEntityFirePit tileEntityFirePit = (TileEntityFirePit) world.getTileEntity(pos);
+
+                if (tileEntityFirePit == null)
+                    continue;
+
+                if (!( (FirePitState) ( ( (TileEntityFirePit) tileEntityFirePit.getMasterEntity() ).getState() ) ).isBurning()) {
+                    continue;
+                }
             }
 
             if (connectionType.toLowerCase().contains("always"))

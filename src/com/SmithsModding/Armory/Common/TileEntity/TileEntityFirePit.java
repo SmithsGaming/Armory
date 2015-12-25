@@ -29,6 +29,7 @@ import com.SmithsModding.SmithsCore.Network.Structure.Messages.*;
 import com.SmithsModding.SmithsCore.Network.Structure.*;
 import com.SmithsModding.SmithsCore.Util.Common.*;
 import com.SmithsModding.SmithsCore.Util.Common.Postioning.*;
+import com.google.common.base.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -39,6 +40,7 @@ import net.minecraftforge.fluids.*;
 import net.minecraftforge.fml.common.network.*;
 
 import java.util.*;
+import java.util.concurrent.*;
 
 public class TileEntityFirePit extends TileEntityArmory implements IInventory, ITickable, IFirePitComponent, IStructureComponent, IFluidContainingEntity {
 
@@ -216,6 +218,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     @Override
     public void update () {
+        Stopwatch watch = Stopwatch.createStarted();
+
         if (( ( masterCoordinate != null ) && ( masterComponent == null ) ) || ( !slavesInitialized )) {
             regenStructure();
             slavesInitialized = true;
@@ -238,6 +242,18 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
         if (!worldObj.isRemote) {
             this.markDirty();
+
+            for (Coordinate3D coordinate : slaveCoordinates) {
+                if (coordinate.equals(this.getLocation()))
+                    continue;
+
+                worldObj.markBlockForUpdate(coordinate.toBlockPos());
+            }
+        }
+
+        if (watch.elapsed(TimeUnit.MILLISECONDS) > 1000) {
+            Armory.getLogger().info("TICK Took extremely long: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
+            watch.stop();
         }
     }
 

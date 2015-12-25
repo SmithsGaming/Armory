@@ -227,6 +227,9 @@ public class References {
             public static final String TAB = "Armory.Gui.BAse.Tab.";
 
             public static final class FirePit {
+                public static final String BACKGROUND = "Gui.FirePit.Background";
+                public static final String INVENTORY = "Gui.FirePit.Inventory.Player";
+                public static final String SLOT = "Gui.FirePit.Slots.";
                 public static final String FLAMEONE = "Flame1";
                 public static final String FLAMETWO = "Flame2";
                 public static final String FLAMETHREE = "Flame3";

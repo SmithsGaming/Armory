@@ -17,7 +17,7 @@ public class ContainerFirepit extends ContainerSmithsCore {
     private TileEntityFirePit iTEFirePit;
 
     public ContainerFirepit (InventoryPlayer pPlayerInventory, TileEntityFirePit pTEFirePit) {
-        super(References.InternalNames.TileEntities.FirePitContainer, pTEFirePit);
+        super(References.InternalNames.TileEntities.FirePitContainer, pTEFirePit, pTEFirePit, pPlayerInventory);
 
         this.iTEFirePit = pTEFirePit;
 
@@ -38,7 +38,7 @@ public class ContainerFirepit extends ContainerSmithsCore {
         }
 
         for (int actionBarSlotIndex = 0; actionBarSlotIndex < PLAYER_INVENTORY_COLUMNS; ++actionBarSlotIndex) {
-            this.addSlotToContainer(new Slot(pPlayerInventory, actionBarSlotIndex, 8 + actionBarSlotIndex * 18, 142));
+            this.addSlotToContainer(new Slot(pPlayerInventory, actionBarSlotIndex, 8 + actionBarSlotIndex * 18, 143));
         }
     }
 
