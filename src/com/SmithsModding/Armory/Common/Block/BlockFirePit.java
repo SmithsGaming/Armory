@@ -67,8 +67,6 @@ public class BlockFirePit extends BlockArmoryInventory {
 
     @Override
     public void onBlockPlacedBy (World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        //Armory.getLogger().info("Placed firepit at: " + pos.toString() + " client side: " + worldIn.isRemote);
-
         TileEntityFirePit tTE = (TileEntityFirePit) worldIn.getTileEntity(pos);
 
         if (stack.hasDisplayName()) {
@@ -78,6 +76,7 @@ public class BlockFirePit extends BlockArmoryInventory {
         if (!worldIn.isRemote) {
             if (tTE instanceof TileEntityFirePit) {
                 StructureManager.createStructureComponent(tTE);
+                worldIn.markBlockForUpdate(pos);
             }
         }
     }

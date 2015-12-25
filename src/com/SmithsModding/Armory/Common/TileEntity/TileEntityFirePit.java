@@ -19,6 +19,7 @@ import com.SmithsModding.Armory.Common.Factory.*;
 import com.SmithsModding.Armory.Common.Item.*;
 import com.SmithsModding.Armory.Common.Material.*;
 import com.SmithsModding.Armory.Common.Registry.*;
+import com.SmithsModding.Armory.Common.TileEntity.GUIManagers.*;
 import com.SmithsModding.Armory.Common.TileEntity.State.*;
 import com.SmithsModding.Armory.Util.*;
 import com.SmithsModding.SmithsCore.Client.GUI.Management.*;
@@ -72,6 +73,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
      */
     public TileEntityFirePit () {
         super(new FirePitState(), new TileStorageBasedGUIManager());
+        this.setManager(new FirePitGuiManager(this));
     }
 
 
