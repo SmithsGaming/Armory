@@ -415,9 +415,11 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     }
 
     public float getItemTemperature (ItemStack pItemStack) {
+
+
         if (pItemStack.getItem() instanceof ItemHeatedItem) {
 
-            NBTTagCompound stackCompound = NBTHelper.getTagCompound(pItemStack);
+            NBTTagCompound stackCompound = pItemStack.getTagCompound();
 
             return stackCompound.getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE);
         }
@@ -427,16 +429,21 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     }
 
     public void setItemTemperature (ItemStack pItemStack, float pNewTemp) {
+        if (true)
+            return;
+
+
         if (pItemStack.getItem() instanceof ItemHeatedItem) {
             if (pNewTemp < 20F)
                 pNewTemp = 20F;
 
-            NBTTagCompound stackCompound = NBTHelper.getTagCompound(pItemStack);
+            NBTTagCompound stackCompound = pItemStack.getTagCompound();
 
             stackCompound.setFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE, pNewTemp);
 
             pItemStack.setTagCompound(stackCompound);
         }
+
     }
 
 
