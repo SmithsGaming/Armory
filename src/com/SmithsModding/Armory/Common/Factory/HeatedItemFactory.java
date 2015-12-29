@@ -11,6 +11,7 @@ import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Common.Item.*;
 import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Util.*;
+import com.SmithsModding.SmithsCore.SmithsCore;
 import com.SmithsModding.SmithsCore.Util.Common.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -38,6 +39,11 @@ public class HeatedItemFactory {
     }
 
     public ItemStack convertToHeatedIngot (ItemStack pCooledIngotStack) {
+        if(SmithsCore.isInDevenvironment())
+        {
+            //Armory.getLogger().info("Converting " + ItemStackHelper.toString(pCooledIngotStack) + " to a Heated Stack.");
+        }
+
         if (!HeatableItemRegistry.getInstance().isHeatable(pCooledIngotStack)) {
             Armory.getLogger().info("Got a not convertable item!:");
             Armory.getLogger().info(ItemStackHelper.toString(pCooledIngotStack));

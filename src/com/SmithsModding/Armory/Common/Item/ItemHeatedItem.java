@@ -11,15 +11,20 @@ import com.SmithsModding.Armory.Common.Material.*;
 import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Util.Client.*;
 import com.SmithsModding.Armory.Util.*;
+import com.SmithsModding.SmithsCore.Util.Common.NBTHelper;
 import net.minecraft.creativetab.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.*;
 
 import java.util.*;
 
 public class ItemHeatedItem extends Item {
+
+    private static float temptest = 20f;
+
     public ItemHeatedItem () {
         setMaxStackSize(1);
         setCreativeTab(CreativeTabs.tabCombat);
@@ -28,13 +33,28 @@ public class ItemHeatedItem extends Item {
 
     public static void setItemTemperature (ItemStack pItemStack, float pNewTemp) {
         if (pItemStack.getItem() instanceof ItemHeatedItem) {
-            pItemStack.getTagCompound().setFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE, pNewTemp);
+            if (pNewTemp < 20F)
+                pNewTemp = 20F;
+
+            NBTTagCompound stackCompound = NBTHelper.getTagCompound(pItemStack);
+
+            stackCompound.setFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE, pNewTemp);
+
+            pItemStack.setTagCompound(stackCompound);
+
+            temptest = pNewTemp;
         }
     }
 
     public static float getItemTemperature (ItemStack pItemStack) {
         if (pItemStack.getItem() instanceof ItemHeatedItem) {
-            return pItemStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE);
+            return temptest;
+
+            /*
+            NBTTagCompound stackCompound = NBTHelper.getTagCompound(pItemStack);
+
+            return stackCompound.getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE);
+            */
         }
 
         return 0F;

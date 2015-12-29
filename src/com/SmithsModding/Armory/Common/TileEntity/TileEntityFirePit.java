@@ -28,6 +28,7 @@ import com.SmithsModding.SmithsCore.Common.PathFinding.*;
 import com.SmithsModding.SmithsCore.Common.Structures.*;
 import com.SmithsModding.SmithsCore.Network.Structure.Messages.*;
 import com.SmithsModding.SmithsCore.Network.Structure.*;
+import com.SmithsModding.SmithsCore.SmithsCore;
 import com.SmithsModding.SmithsCore.Util.Common.*;
 import com.SmithsModding.SmithsCore.Util.Common.Postioning.*;
 import com.google.common.base.*;
@@ -220,11 +221,22 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     @Override
     public void update () {
-        Stopwatch watch = Stopwatch.createStarted();
+        Stopwatch updateWatch = Stopwatch.createStarted();
+        Stopwatch operationWatch = Stopwatch.createStarted();
+
+        long structureRegenTimeInMs = 0;
+        long structureHeatFurnaceTimeInMs = 0;
+        long structureHeatIngotsTimeInMs = 0;
+        long structureMeltIngotsTimeInMs = 0;
+        long structureUpdateTimeInMs = 0;
 
         if (( ( masterCoordinate != null ) && ( masterComponent == null ) ) || ( !slavesInitialized )) {
             regenStructure();
             slavesInitialized = true;
+
+            structureRegenTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
+            operationWatch = operationWatch.reset();
+            operationWatch.start();
         }
 
         FirePitState state = (FirePitState) getStructureRelevantData();
@@ -234,11 +246,23 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
         heatFurnace();
 
+        structureHeatFurnaceTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
+        operationWatch = operationWatch.reset();
+        operationWatch.start();
+
         state.setBurning(( (Float) state.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F ));
 
-        heatIngots();
+        //heatIngots();
+
+        structureHeatIngotsTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
+        operationWatch = operationWatch.reset();
+        operationWatch.start();
 
         meltIngots();
+
+        structureMeltIngotsTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
+        operationWatch = operationWatch.reset();
+        operationWatch.start();
 
         state.setLastAddedHeat(state.getCurrentTemperature() - state.getLastTemperature());
 
@@ -253,10 +277,32 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             }
         }
 
-        if (watch.elapsed(TimeUnit.MILLISECONDS) > 1000) {
-            Armory.getLogger().info("TICK Took extremely long: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
-            watch.stop();
+        structureUpdateTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
+        operationWatch = operationWatch.reset();
+        operationWatch.start();
+
+        if (updateWatch.elapsed(TimeUnit.MILLISECONDS) > (50) && SmithsCore.isInDevenvironment()) {
+            Armory.getLogger().info("TICK Took extremely long: " + updateWatch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
+            Armory.getLogger().info("   -> Structure regen time:  " + structureRegenTimeInMs + " ms!");
+            Armory.getLogger().info("   -> Furnace heat up time:  " + structureHeatFurnaceTimeInMs + " ms!");
+            Armory.getLogger().info("   -> Ingot heat up time:    " + structureHeatIngotsTimeInMs + " ms!");
+            Armory.getLogger().info("   -> Ingot melt time:       " + structureMeltIngotsTimeInMs + " ms!");
+            Armory.getLogger().info("   -> Structure update time: " + structureUpdateTimeInMs + " ms!");
         }
+        else if(SmithsCore.isInDevenvironment() && false)
+        {
+            if(isSlaved())
+            {
+                Armory.getLogger().info("Running Tick on slave: " + pos.toString() + " took: " + updateWatch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
+            }
+            else
+            {
+                Armory.getLogger().info("Running Tick on master:" + pos.toString() + " took: " + updateWatch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
+            }
+        }
+
+        operationWatch.stop();
+        updateWatch.stop();
     }
 
     public void heatFurnace () {
@@ -364,6 +410,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
                 state.setCurrentTemperature(state.getCurrentTemperature() + tTargetDifference);
                 ItemHeatedItem.setItemTemperature(ingotStacks[tIngotStackCount], ItemHeatedItem.getItemTemperature(ingotStacks[tIngotStackCount]) + tSourceDifference);
             }
+
         }
     }
 
