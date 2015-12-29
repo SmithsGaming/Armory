@@ -11,7 +11,7 @@ import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Common.Item.*;
 import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.SmithsCore;
+import com.SmithsModding.SmithsCore.*;
 import com.SmithsModding.SmithsCore.Util.Common.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -33,7 +33,7 @@ public class HeatedItemFactory {
             return null;
 
         ItemStack pHeatedStack = convertToHeatedIngot(pBaseStack);
-        ItemHeatedItem.setItemTemperature(pHeatedStack, temp);
+        HeatableItemRegistry.getInstance().setItemTemperature(pHeatedStack, temp);
 
         return pHeatedStack;
     }

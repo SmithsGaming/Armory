@@ -22,13 +22,12 @@ import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Common.TileEntity.GUIManagers.*;
 import com.SmithsModding.Armory.Common.TileEntity.State.*;
 import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.Client.GUI.Management.*;
 import com.SmithsModding.SmithsCore.Common.Fluid.*;
 import com.SmithsModding.SmithsCore.Common.PathFinding.*;
 import com.SmithsModding.SmithsCore.Common.Structures.*;
 import com.SmithsModding.SmithsCore.Network.Structure.Messages.*;
 import com.SmithsModding.SmithsCore.Network.Structure.*;
-import com.SmithsModding.SmithsCore.SmithsCore;
+import com.SmithsModding.SmithsCore.*;
 import com.SmithsModding.SmithsCore.Util.Common.*;
 import com.SmithsModding.SmithsCore.Util.Common.Postioning.*;
 import com.google.common.base.*;
@@ -73,7 +72,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
      * Constructor for a new FirePit
      */
     public TileEntityFirePit () {
-        super(new FirePitState(), new TileStorageBasedGUIManager());
+        super(new FirePitState(), null);
         this.setManager(new FirePitGuiManager(this));
     }
 
@@ -252,7 +251,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
         state.setBurning(( (Float) state.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F ));
 
-        //heatIngots();
+        heatIngots();
 
         structureHeatIngotsTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
         operationWatch = operationWatch.reset();
@@ -392,9 +391,10 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
                 ingotStacks[tIngotStackCount] = HeatedItemFactory.getInstance().convertToHeatedIngot(ingotStacks[tIngotStackCount]);
             }
 
-            IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromStack(ingotStacks[tIngotStackCount]);
+            ItemStack stack = ingotStacks[tIngotStackCount];
+            IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromHeatedStack(stack);
 
-            float tCurrentStackTemp = ItemHeatedItem.getItemTemperature(ingotStacks[tIngotStackCount]);
+            float tCurrentStackTemp = getItemTemperature(stack);
             float tCurrentStackCoefficient = material.getHeatCoefficient();
 
             float tSourceDifference = negativeHeatTerm - tCurrentStackCoefficient;
@@ -405,14 +405,40 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
                 ingotStacks[tIngotStackCount] = HeatedItemFactory.getInstance().convertToCooledIngot(ingotStacks[tIngotStackCount]);
             } else if (tCurrentStackTemp <= state.getCurrentTemperature()) {
                 state.setCurrentTemperature(state.getCurrentTemperature() + tSourceDifference);
-                ItemHeatedItem.setItemTemperature(ingotStacks[tIngotStackCount], ItemHeatedItem.getItemTemperature(ingotStacks[tIngotStackCount]) + tTargetDifference);
-            } else if (ItemHeatedItem.getItemTemperature(ingotStacks[tIngotStackCount]) > state.getCurrentTemperature()) {
+                setItemTemperature(stack, getItemTemperature(stack) + tTargetDifference);
+            } else if (getItemTemperature(stack) > state.getCurrentTemperature()) {
                 state.setCurrentTemperature(state.getCurrentTemperature() + tTargetDifference);
-                ItemHeatedItem.setItemTemperature(ingotStacks[tIngotStackCount], ItemHeatedItem.getItemTemperature(ingotStacks[tIngotStackCount]) + tSourceDifference);
+                //setItemTemperature(stack, getItemTemperature(stack) + tSourceDifference);
             }
 
         }
     }
+
+    public float getItemTemperature (ItemStack pItemStack) {
+        if (pItemStack.getItem() instanceof ItemHeatedItem) {
+
+            NBTTagCompound stackCompound = NBTHelper.getTagCompound(pItemStack);
+
+            return stackCompound.getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE);
+        }
+
+
+        return 20F;
+    }
+
+    public void setItemTemperature (ItemStack pItemStack, float pNewTemp) {
+        if (pItemStack.getItem() instanceof ItemHeatedItem) {
+            if (pNewTemp < 20F)
+                pNewTemp = 20F;
+
+            NBTTagCompound stackCompound = NBTHelper.getTagCompound(pItemStack);
+
+            stackCompound.setFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE, pNewTemp);
+
+            pItemStack.setTagCompound(stackCompound);
+        }
+    }
+
 
     public void meltIngots () {
         FirePitState state = (FirePitState) getStructureRelevantData();
@@ -427,7 +453,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
                 continue;
 
             IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromHeatedStack(stack);
-            float stackTemp = ItemHeatedItem.getItemTemperature(stack);
+            float stackTemp = HeatableItemRegistry.getInstance().getItemTemperature(stack);
 
             if (state.getCurrentTemperature() < stackTemp * 0.95 && state.getMeltingProgess(i) > -1) {
                 ingotStacks[i] = null;
@@ -450,7 +476,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
                 state.setMeltingProgress(i, state.getMeltingProgess(i) + 1F / material.getMeltingTime());
 
-                ItemHeatedItem.setItemTemperature(stack, material.getMeltingPoint());
+                setItemTemperature(stack, material.getMeltingPoint());
             }
 
             if (state.getMeltingProgess(i) > 1F) {

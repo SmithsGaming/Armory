@@ -6,12 +6,15 @@ import com.SmithsModding.SmithsCore.Client.GUI.Components.Core.*;
 import com.SmithsModding.SmithsCore.Client.GUI.Components.Implementations.*;
 import com.SmithsModding.SmithsCore.Client.GUI.*;
 import com.SmithsModding.SmithsCore.Client.GUI.Host.*;
+import com.SmithsModding.SmithsCore.Client.GUI.Ledgers.Core.*;
 import com.SmithsModding.SmithsCore.Client.GUI.State.*;
 import com.SmithsModding.SmithsCore.Common.Inventory.*;
 import com.SmithsModding.SmithsCore.Util.Client.Color.*;
 import com.SmithsModding.SmithsCore.Util.Client.*;
 import com.SmithsModding.SmithsCore.Util.Common.Postioning.*;
 import net.minecraft.inventory.*;
+
+import java.util.*;
 
 /**
  * Created by Marc on 22.12.2015.
@@ -43,5 +46,35 @@ public class GuiFirePit extends GuiContainerSmithsCore {
             registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.FirePit.SLOT + tSlotIndex, new SlotComponentState(null, tSlotIndex, ( (ContainerSmithsCore) inventorySlots ).getContainerInventory(), null), this, slot, Colors.DEFAULT));
         }
 
+    }
+
+    /**
+     * Function used to register the sub components of this ComponentHost
+     *
+     * @param parent This ComponentHosts host. For the Root GUIObject a reference to itself will be passed in..
+     */
+    @Override
+    public void registerLedgers (IGUIBasedLedgerHost parent) {
+
+    }
+
+    /**
+     * Method used to register a new Component to this Host.
+     *
+     * @param ledger The new component.
+     */
+    @Override
+    public void registerNewLedger (IGUILedger ledger) {
+
+    }
+
+    /**
+     * Function to get all the Components registered to this Host.
+     *
+     * @return A ID to ledger map that holds all the Components (but not their SubComponents) of this Host.
+     */
+    @Override
+    public LinkedHashMap<String, IGUILedger> getAllLedgers () {
+        return null;
     }
 }

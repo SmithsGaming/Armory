@@ -1,6 +1,6 @@
 package com.SmithsModding.Armory.Common.Registry;
 
-import com.SmithsModding.Armory.API.Events.Common.HeatableItemRegisteredEvent;
+import com.SmithsModding.Armory.API.Events.Common.*;
 import com.SmithsModding.Armory.API.Item.*;
 import com.SmithsModding.Armory.API.Materials.*;
 import com.SmithsModding.Armory.API.Registries.*;
@@ -33,6 +33,31 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
 
     public static HeatableItemRegistry getInstance () {
         return INSTANCE;
+    }
+
+    public float getItemTemperature (ItemStack pItemStack) {
+        if (pItemStack.getItem() instanceof ItemHeatedItem) {
+
+            NBTTagCompound stackCompound = NBTHelper.getTagCompound(pItemStack);
+
+            return stackCompound.getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE);
+        }
+
+
+        return 20F;
+    }
+
+    public void setItemTemperature (ItemStack pItemStack, float pNewTemp) {
+        if (pItemStack.getItem() instanceof ItemHeatedItem) {
+            if (pNewTemp < 20F)
+                pNewTemp = 20F;
+
+            NBTTagCompound stackCompound = NBTHelper.getTagCompound(pItemStack);
+
+            stackCompound.setFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE, pNewTemp);
+
+            pItemStack.setTagCompound(stackCompound);
+        }
     }
 
     @Override
