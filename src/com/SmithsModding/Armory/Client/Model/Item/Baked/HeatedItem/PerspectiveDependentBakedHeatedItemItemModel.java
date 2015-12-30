@@ -15,7 +15,7 @@ import java.util.*;
 /**
  * Created by Marc on 08.12.2015.
  */
-public class PerspectiveDependentBakedHeatedItemItemModel extends ItemLayerModel.BakedModel {
+public class PerspectiveDependentBakedHeatedItemItemModel extends ItemLayerModel.BakedModel implements IPerspectiveAwareModel {
 
     public IBakedModel parent;
 
@@ -56,11 +56,11 @@ public class PerspectiveDependentBakedHeatedItemItemModel extends ItemLayerModel
     }
 
     @Override
-    public Pair<IBakedModel, Matrix4f> handlePerspective (ItemCameraTransforms.TransformType cameraTransformType) {
+    public Pair<? extends IFlexibleBakedModel, Matrix4f> handlePerspective (ItemCameraTransforms.TransformType cameraTransformType) {
         if (parent instanceof IPerspectiveAwareModel) {
-            return Pair.of((IBakedModel) this, ( (IPerspectiveAwareModel) parent ).handlePerspective(cameraTransformType).getRight());
+            return Pair.of(this, ( (IPerspectiveAwareModel) parent ).handlePerspective(cameraTransformType).getRight());
         }
 
-        return super.handlePerspective(cameraTransformType);
+        return Pair.of(this, null);
     }
 }

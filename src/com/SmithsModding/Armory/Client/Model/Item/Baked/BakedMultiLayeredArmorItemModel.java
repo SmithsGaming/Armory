@@ -11,7 +11,6 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraftforge.client.model.*;
 
-import javax.vecmath.*;
 import java.util.*;
 
 /**
@@ -30,7 +29,6 @@ public class BakedMultiLayeredArmorItemModel extends ItemLayerModel.BakedModel i
         }
     }
 
-    protected final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
     protected Pair<String, BakedComponentModel> baseLayer;
     protected HashMap<String, BakedComponentModel> parts;
     protected HashMap<String, BakedComponentModel> brokenParts;
@@ -39,13 +37,12 @@ public class BakedMultiLayeredArmorItemModel extends ItemLayerModel.BakedModel i
      * The length of brokenParts has to match the length of parts. If a part does not have a broken texture, the entry in
      * the array simply is null.
      */
-    public BakedMultiLayeredArmorItemModel (IFlexibleBakedModel parent, Pair baseLayer, HashMap parts, HashMap brokenParts, ImmutableMap transform) {
-        super((ImmutableList<BakedQuad>) parent.getGeneralQuads(), parent.getParticleTexture(), parent.getFormat(), transform);
+    public BakedMultiLayeredArmorItemModel (IFlexibleBakedModel parent, Pair baseLayer, HashMap parts, HashMap brokenParts) {
+        super((ImmutableList<BakedQuad>) parent.getGeneralQuads(), parent.getParticleTexture(), parent.getFormat());
 
         this.parts = parts;
         this.baseLayer = baseLayer;
         this.brokenParts = brokenParts;
-        this.transforms = transform;
     }
 
     @Override
@@ -94,13 +91,8 @@ public class BakedMultiLayeredArmorItemModel extends ItemLayerModel.BakedModel i
             quads.addAll(partModel.getGeneralQuads());
         }
 
-        IFlexibleBakedModel model = new ItemLayerModel.BakedModel(quads.build(), this.getParticleTexture(), this.getFormat(), transforms);
+        IFlexibleBakedModel model = new ItemLayerModel.BakedModel(quads.build(), this.getParticleTexture(), this.getFormat());
 
         return model;
-    }
-
-    @Override
-    public org.apache.commons.lang3.tuple.Pair<IBakedModel, Matrix4f> handlePerspective (ItemCameraTransforms.TransformType cameraTransformType) {
-        return null;
     }
 }

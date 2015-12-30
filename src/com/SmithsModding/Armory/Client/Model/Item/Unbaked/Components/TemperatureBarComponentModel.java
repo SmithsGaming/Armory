@@ -14,7 +14,7 @@ import java.util.*;
 /**
  * Created by Marc on 08.12.2015.
  */
-public class TemperatureBarComponentModel extends ItemLayerModel {
+public class TemperatureBarComponentModel extends ItemLayerModel implements IModelPart {
 
     /**
      * Creates a new unbaked model, given the parameters list of possible textures.

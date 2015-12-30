@@ -6,7 +6,6 @@ import com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components.*;
 import com.SmithsModding.SmithsCore.Util.Client.*;
 import com.google.common.base.*;
 import com.google.common.collect.*;
-import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.vertex.*;
 import net.minecraft.util.*;
@@ -37,16 +36,13 @@ public class HeatedItemItemModel extends ItemLayerModel {
     public IFlexibleBakedModel bake (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         //Get ourselfs the base model to use.
         IFlexibleBakedModel base = super.bake(state, format, bakedTextureGetter);
-
-        ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms = ModelHelper.getTransformsFromState(state, this);
-
         float additionalScale = 64 / 40F;
 
         BakedTemperatureBarModel unrotatedModel = gaugeDisplay.generateBackedComponentModel(state, format, bakedTextureGetter);
-        BakedTemperatureBarModel rotatedModel = gaugeDisplay.generateBackedComponentModel(state.apply(gaugeDisplay).compose(new TRSRTransformation(new Vector3f(4f, +2f, -1.9f), TRSRTransformation.quatFromYXZDegrees(new Vector3f(-30f, -225f, 0f)), new Vector3f(additionalScale, additionalScale, additionalScale), null)), format, bakedTextureGetter);
+        BakedTemperatureBarModel rotatedModel = gaugeDisplay.generateBackedComponentModel(state.apply(Optional.of(gaugeDisplay)).get().compose(new TRSRTransformation(new Vector3f(4f, +2f, -1.9f), TRSRTransformation.quatFromYXZDegrees(new Vector3f(-30f, -225f, 0f)), new Vector3f(additionalScale, additionalScale, additionalScale), null)), format, bakedTextureGetter);
 
         //Bake the model.
-        return new BakedHeatedItemModel(base, unrotatedModel, rotatedModel, transforms);
+        return new BakedHeatedItemModel(base, unrotatedModel, rotatedModel);
     }
 
     @Override

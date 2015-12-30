@@ -1,5 +1,5 @@
 #################################################
-         ForgeGradle 2.1-SNAPSHOT-12e92a7        
+         ForgeGradle 2.1-SNAPSHOT-9fb7522        
   https://github.com/MinecraftForge/ForgeGradle  
 #################################################
                Powered by MCP unknown               
@@ -11,47 +11,33 @@ Found AccessTransformer: Armory_at.cfg
 :deobfCompileDummyTask
 :deobfProvidedDummyTask
 :getVersionJson
-:extractUserdev
+:extractUserdev UP-TO-DATE
 :extractDependencyATs SKIPPED
 :extractMcpData SKIPPED
-:extractMcpMappings SKIPPED
+:extractMcpMappings
 :genSrgs SKIPPED
 :downloadClient SKIPPED
 :downloadServer SKIPPED
 :splitServerJar SKIPPED
 :mergeJars SKIPPED
-:deobfMcSRG
-Applying SpecialSource...
-Applying Exceptor...
-:decompileMc
-:fixMcSources
+:deobfMcSRG SKIPPED
+:decompileMc SKIPPED
+:fixMcSources SKIPPED
 :applySourcePatches
-:remapMcSources
-:recompileMc
-[ant:javac] warning: [options] bootstrap class path not set in conjunction with -source 1.6
-[ant:javac] Note: Some input files use or override a deprecated API.
-[ant:javac] Note: Recompile with -Xlint:deprecation for details.
-[ant:javac] Note: Some input files use unchecked or unsafe operations.
-[ant:javac] Note: Recompile with -Xlint:unchecked for details.
-[ant:javac] 1 warning
+:remapMcSources SKIPPED
+:recompileMc SKIPPED
 :extractNatives SKIPPED
 :getAssetIndex UP-TO-DATE
 :getAssets
-Current status: 231/734   31%
-Current status: 494/734   67%
-Current status: 668/734   91%
 :makeStart
 [ant:javac] warning: [options] bootstrap class path not set in conjunction with -source 1.6
 [ant:javac] 1 warning
 :setupDecompWorkspace
 :ideaModule
-Download http://mavenrepo.smithscore.orionminecraft.com/com/SmithsModding/SmithsCore/SmithsCore/1.1.0.1-42-SNAPSHOT/SmithsCore-1.1.0.1-42-20151205.215711-1-dev.jar
-Download http://mavenrepo.smithscore.orionminecraft.com/com/SmithsModding/SmithsCore/SmithsCore/1.1.0.1-42-SNAPSHOT/SmithsCore-1.1.0.1-42-20151205.215711-1-sources.jar
-Download http://mavenrepo.smithscore.orionminecraft.com/com/SmithsModding/SmithsCore/SmithsCore/1.1.0.1-42-SNAPSHOT/SmithsCore-1.1.0.1-42-20151205.215711-1-javadoc.jar
 :ideaProject
 :ideaWorkspace
 :idea
 
 BUILD SUCCESSFUL
 
-Total time: 4 mins 51.816 secs
+Total time: 29.025 secs

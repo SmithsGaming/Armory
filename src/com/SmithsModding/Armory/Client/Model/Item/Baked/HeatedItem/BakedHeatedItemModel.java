@@ -27,7 +27,6 @@ public class BakedHeatedItemModel extends ItemLayerModel.BakedModel implements I
         }
     }
 
-    protected final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
     protected BakedTemperatureBarModel gaugeDisplay;
     protected BakedTemperatureBarModel gaugeDisplayTurned;
 
@@ -35,12 +34,11 @@ public class BakedHeatedItemModel extends ItemLayerModel.BakedModel implements I
      * The length of brokenParts has to match the length of parts. If a part does not have a broken texture, the entry
      * in the array simply is null.
      */
-    public BakedHeatedItemModel (IFlexibleBakedModel parent, BakedTemperatureBarModel gaugeDislay, BakedTemperatureBarModel gaugeDisplayTurned, ImmutableMap transform) {
-        super((ImmutableList<BakedQuad>) parent.getGeneralQuads(), parent.getParticleTexture(), parent.getFormat(), transform);
+    public BakedHeatedItemModel (IFlexibleBakedModel parent, BakedTemperatureBarModel gaugeDislay, BakedTemperatureBarModel gaugeDisplayTurned) {
+        super((ImmutableList<BakedQuad>) parent.getGeneralQuads(), parent.getParticleTexture(), parent.getFormat());
 
         this.gaugeDisplayTurned = gaugeDisplayTurned;
         this.gaugeDisplay = gaugeDislay;
-        this.transforms = transform;
 
     }
 

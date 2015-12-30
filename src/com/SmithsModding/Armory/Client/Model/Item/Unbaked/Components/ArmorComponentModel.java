@@ -22,7 +22,7 @@ import java.util.*;
  * Model used to display singular components of the Armor.
  * Is in implementation nearly the same as the TinkersConstruct Toolparts.
  */
-public class ArmorComponentModel extends ItemLayerModel {
+public class ArmorComponentModel extends ItemLayerModel implements IModelPart {
 
     /**
      * Creates a new unbaked model, given the parameters list of possible textures.
@@ -118,11 +118,10 @@ public class ArmorComponentModel extends ItemLayerModel {
                     IPerspectiveState ps = (IPerspectiveState) state;
                     Map<ItemCameraTransforms.TransformType, TRSRTransformation> map = Maps.newHashMap();
                     for (ItemCameraTransforms.TransformType type : ItemCameraTransforms.TransformType.values()) {
-                        map.put(type, ps.forPerspective(type).apply(this));
+                        map.put(type, ps.forPerspective(type).apply(Optional.of(this)).get());
                     }
                     bakedModel2 =
-                            new ItemLayerModel.BakedModel(quads.build(), bakedModel2.getParticleTexture(), bakedModel2.getFormat(), Maps
-                                    .immutableEnumMap(map));
+                            new ItemLayerModel.BakedModel(quads.build(), bakedModel2.getParticleTexture(), bakedModel2.getFormat());
                 } else {
                     bakedModel2 = new ItemLayerModel.BakedModel(quads.build(), bakedModel2.getParticleTexture(), bakedModel2.getFormat());
                 }

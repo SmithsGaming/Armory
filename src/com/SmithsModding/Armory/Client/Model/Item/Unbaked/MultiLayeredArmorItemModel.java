@@ -9,7 +9,6 @@ import com.SmithsModding.SmithsCore.Util.Client.*;
 import com.SmithsModding.SmithsCore.Util.Common.*;
 import com.google.common.base.*;
 import com.google.common.collect.*;
-import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.vertex.*;
 import net.minecraft.util.*;
@@ -72,10 +71,8 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
             }
         }
 
-        ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms = ModelHelper.getTransformsFromState(state, this);
-
         //Bake the model.
-        return new BakedMultiLayeredArmorItemModel(base, mappedBaseLayer, mappedParts, mappedBrokenParts, transforms);
+        return new BakedMultiLayeredArmorItemModel(base, mappedBaseLayer, mappedParts, mappedBrokenParts);
     }
 
     @Override
