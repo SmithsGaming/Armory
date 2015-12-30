@@ -53,11 +53,6 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
         return textures.get(0);
     }
 
-    @Override
-    public IModelState getDefaultState () {
-        return ModelHelper.DEFAULT_ITEM_STATE;
-    }
-
     /**
      * Function to get a baked model from outside of the baking proces.
      *

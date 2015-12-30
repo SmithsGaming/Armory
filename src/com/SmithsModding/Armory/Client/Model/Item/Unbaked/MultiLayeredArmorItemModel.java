@@ -5,7 +5,6 @@ import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Client.Model.Item.Baked.*;
 import com.SmithsModding.Armory.Client.Model.Item.Baked.Components.*;
 import com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components.*;
-import com.SmithsModding.SmithsCore.Util.Client.*;
 import com.SmithsModding.SmithsCore.Util.Common.*;
 import com.google.common.base.*;
 import com.google.common.collect.*;
@@ -73,10 +72,5 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
 
         //Bake the model.
         return new BakedMultiLayeredArmorItemModel(base, mappedBaseLayer, mappedParts, mappedBrokenParts);
-    }
-
-    @Override
-    public IModelState getDefaultState () {
-        return ModelHelper.DEFAULT_ITEM_STATE;
     }
 }

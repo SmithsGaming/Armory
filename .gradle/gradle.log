@@ -14,7 +14,7 @@ Found AccessTransformer: Armory_at.cfg
 :extractUserdev UP-TO-DATE
 :extractDependencyATs SKIPPED
 :extractMcpData SKIPPED
-:extractMcpMappings
+:extractMcpMappings SKIPPED
 :genSrgs SKIPPED
 :downloadClient SKIPPED
 :downloadServer SKIPPED
@@ -40,4 +40,4 @@ Found AccessTransformer: Armory_at.cfg
 
 BUILD SUCCESSFUL
 
-Total time: 29.025 secs
+Total time: 28.394 secs
