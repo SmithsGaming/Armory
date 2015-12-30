@@ -31,7 +31,12 @@ public class FirePitGuiManager extends TileStorageBasedGUIManager {
             return 0F;
 
         FirePitState state = (FirePitState) tileEntityFirePit.getState();
+        Float burningTime = (Float) state.getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME);
 
-        return (Float) state.getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) / (Float) state.getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT);
+        if (burningTime < 1F)
+            return 0F;
+
+
+        return burningTime / (Float) state.getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT);
     }
 }

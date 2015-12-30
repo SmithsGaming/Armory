@@ -3,11 +3,13 @@ package com.SmithsModding.Armory.Client;
 import com.SmithsModding.Armory.API.Armor.*;
 import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Client.Logic.*;
+import com.SmithsModding.Armory.Client.Model.Event.*;
 import com.SmithsModding.Armory.Client.Model.Loaders.*;
 import com.SmithsModding.Armory.Client.Textures.*;
 import com.SmithsModding.Armory.Common.*;
 import com.SmithsModding.Armory.Common.Item.*;
 import com.SmithsModding.Armory.Util.*;
+import com.SmithsModding.SmithsCore.*;
 import com.SmithsModding.SmithsCore.Util.Client.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
@@ -54,6 +56,8 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
     @Override
     public void registerEventHandlers() {
         super.registerEventHandlers();
+
+        SmithsCore.getRegistry().getNetworkBus().register(new FIrePitUpdateHandler());
     }
 
     public void registerBlockModel (Block block) {

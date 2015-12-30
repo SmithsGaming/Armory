@@ -17,7 +17,6 @@ import com.SmithsModding.Armory.API.Materials.*;
 import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Common.Factory.*;
 import com.SmithsModding.Armory.Common.Item.*;
-import com.SmithsModding.Armory.Common.Material.*;
 import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Common.TileEntity.GUIManagers.*;
 import com.SmithsModding.Armory.Common.TileEntity.State.*;
@@ -468,7 +467,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             }
 
             if (stackTemp >= material.getMeltingPoint()) {
-                if (material.getMeltingTime() < 0 || material.getMeltingTime() < 0) {
+                if (material.getMeltingTime() < 0 || material.getMeltingPoint() < 0) {
                     ingotStacks[i] = null;
                     continue;
                 }
@@ -481,7 +480,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
                 if (state.getMeltingProgess(i) < 0)
                     state.setMeltingProgress(i, 0f);
 
-                state.setMeltingProgress(i, state.getMeltingProgess(i) + 1F / material.getMeltingTime());
+                state.setMeltingProgress(i, ( state.getMeltingProgess(i) * material.getMeltingTime() ) + 1F / material.getMeltingTime());
 
                 setItemTemperature(stack, material.getMeltingPoint());
             }
@@ -496,9 +495,9 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         while (iterator.hasNext()) {
             FluidStack fluidStack = iterator.next();
 
-            IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(fluidStack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL));
+            IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromMoltenStack(fluidStack);
 
-            if (state.getCurrentTemperature() < material.getMeltingPoint())
+            if (state.getCurrentTemperature() < material.getMeltingPoint() * 0.95F)
                 iterator.remove();
         }
     }
@@ -518,7 +517,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             amount = ( (IHeatableItem) HeatedItemFactory.getInstance().convertToCooledIngot(stack).getItem() ).getMoltenMilibucket();
         }
 
-        addFluidToTheTop(new FluidStack(GeneralRegistry.Fluids.moltenMetal, amount, fluidCompound));
+        addFluidToTheTop(HeatableItemRegistry.getInstance().getMoltenStack(stack));
     }
 
     public int getIngotAmount () {

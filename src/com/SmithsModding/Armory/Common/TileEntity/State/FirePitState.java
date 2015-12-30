@@ -43,6 +43,12 @@ public class FirePitState implements ITileEntityState, IStructureData {
 
     @Override
     public Object getData (IStructureComponent requestingComponent, String propertyRequested) {
+        if (propertyRequested.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) && ( (TileEntityFirePit) parent ).isSlaved())
+            return ( (TileEntityFirePit) parent ).getMasterEntity().getStructureRelevantData().getData(requestingComponent, propertyRequested);
+
+        if (propertyRequested.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT) && ( (TileEntityFirePit) parent ).isSlaved())
+            return ( (TileEntityFirePit) parent ).getMasterEntity().getStructureRelevantData().getData(requestingComponent, propertyRequested);
+
         if (propertyRequested.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME))
             return totalBurningTicksLeft;
 

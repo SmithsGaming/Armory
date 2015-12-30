@@ -15,6 +15,8 @@ public interface IHeatableItemRegistry {
 
     FluidStack getMoltenStack (IArmorMaterial material, String internalType);
 
+    FluidStack getMoltenStack (ItemStack stackToBeMolten);
+
 
     void addBaseStack (IArmorMaterial material, ItemStack stack);
 
@@ -28,6 +30,9 @@ public interface IHeatableItemRegistry {
     IArmorMaterial getMaterialFromHeatedStack (ItemStack stack);
 
     IArmorMaterial getMaterialFromCooledStack (ItemStack stack);
+
+    IArmorMaterial getMaterialFromMoltenStack (FluidStack stack);
+
 
 
     ArrayList<ItemStack> getAllMappedItems ();

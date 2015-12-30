@@ -1,13 +1,15 @@
 package com.SmithsModding.Armory.API.Events.Common;
 
-import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import com.SmithsModding.SmithsCore.Common.Event.SmithsCoreEvent;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
+import com.SmithsModding.Armory.API.Materials.*;
+import com.SmithsModding.SmithsCore.Common.Event.*;
+import net.minecraft.item.*;
+import net.minecraftforge.fluids.*;
+import net.minecraftforge.fml.common.eventhandler.*;
 
 /**
  * Created by marcf on 12/21/2015.
  */
+@Cancelable
 public class HeatableItemRegisteredEvent extends SmithsCoreEvent
 {
     private final boolean oreDictionaryAddition;
@@ -43,12 +45,12 @@ public class HeatableItemRegisteredEvent extends SmithsCoreEvent
         return moltenStack;
     }
 
-    public ItemStack getHeatableStack() {
-        return heatableStack;
-    }
-
     public void setMoltenStack(FluidStack moltenStack) {
         this.moltenStack = moltenStack;
+    }
+
+    public ItemStack getHeatableStack () {
+        return heatableStack;
     }
 
     public void setHeatableStack(ItemStack heatableStack) {
