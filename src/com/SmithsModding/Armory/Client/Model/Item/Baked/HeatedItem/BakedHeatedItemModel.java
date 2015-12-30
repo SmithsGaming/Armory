@@ -57,13 +57,13 @@ public class BakedHeatedItemModel extends ItemLayerModel.BakedModel implements I
         IBakedModel original = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(cooledStack);
 
         ItemHeatedItem item = (ItemHeatedItem) stack.getItem();
-        int barIndex = (int) ( item.getDurabilityForDisplay(stack) * gaugeDisplay.getModelCount() );
+        int barIndex = (int) ( item.getDurabilityForDisplay(stack) * ( gaugeDisplay.getModelCount() - 1 ) );
 
         if (cooledStack.getItem() instanceof ItemBlock) {
-            quads.addAll(gaugeDisplayTurned.getModel(barIndex).getGeneralQuads());
+            quads.addAll(new ArrayList<BakedQuad>(gaugeDisplayTurned.getModel(barIndex).getGeneralQuads()));
         } else {
-            quads.addAll(original.getGeneralQuads());
-            quads.addAll(gaugeDisplay.getModel(barIndex).getGeneralQuads());
+            quads.addAll(new ArrayList<BakedQuad>(original.getGeneralQuads()));
+            quads.addAll(new ArrayList<BakedQuad>(gaugeDisplay.getModel(barIndex).getGeneralQuads()));
         }
 
         PerspectiveUnawareBakedHeatedItemItemModel combinedModel = new PerspectiveUnawareBakedHeatedItemItemModel(quads.build(), original.getParticleTexture(), getFormat(), original);

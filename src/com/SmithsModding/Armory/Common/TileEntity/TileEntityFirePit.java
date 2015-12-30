@@ -429,7 +429,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     }
 
     public void setItemTemperature (ItemStack pItemStack, float pNewTemp) {
-        if (true)
+        if (false)
             return;
 
 
