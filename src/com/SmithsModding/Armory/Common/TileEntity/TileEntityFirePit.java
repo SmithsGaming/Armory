@@ -21,7 +21,6 @@ import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Common.TileEntity.GUIManagers.*;
 import com.SmithsModding.Armory.Common.TileEntity.State.*;
 import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.Client.Events.Models.Block.*;
 import com.SmithsModding.SmithsCore.Common.Fluid.*;
 import com.SmithsModding.SmithsCore.Common.PathFinding.*;
 import com.SmithsModding.SmithsCore.Common.Structures.*;
@@ -554,7 +553,11 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         if (isSlaved())
             return;
 
-        SmithsCore.getRegistry().getCommonBus().post(new BlockModelUpdateEvent(this));
+
+        if (this.shouldUpdateBlock()) {
+            this.onUpdateBlock();
+            //SmithsCore.getRegistry().getCommonBus().post(new BlockModelUpdateEvent(this));
+        }
 
         for (Coordinate3D slaveLocation : slaveCoordinates) {
             if (getWorld().getTileEntity(slaveLocation.toBlockPos()) == null)
@@ -563,7 +566,11 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             if (getLocation().equals(slaveLocation))
                 continue;
 
-            SmithsCore.getRegistry().getCommonBus().post(new BlockModelUpdateEvent((TileEntitySmithsCore) getWorld().getTileEntity(slaveLocation.toBlockPos())));
+            IBlockModelUpdatingTileEntity tileEntity = (IBlockModelUpdatingTileEntity) worldObj.getTileEntity(slaveLocation.toBlockPos());
+            if (tileEntity.shouldUpdateBlock()) {
+                tileEntity.onUpdateBlock();
+                //SmithsCore.getRegistry().getCommonBus().post(new BlockModelUpdateEvent((TileEntitySmithsCore) getWorld().getTileEntity(slaveLocation.toBlockPos())));
+            }
         }
     }
 
@@ -863,11 +870,14 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     public boolean shouldUpdateBlock () {
         IBlockState blockState = getWorld().getBlockState(pos);
 
-        return true;
+        return blockState.getValue(BlockFirePit.BURNING) != ( (FirePitState) getStructureRelevantData() ).isBurning();
     }
 
     @Override
     public void onUpdateBlock () {
-        BlockFirePit.setBurningState(true, getWorld(), getPos());
+        if (worldObj.isRemote)
+            return;
+
+        BlockFirePit.setBurningState(( (FirePitState) getStructureRelevantData() ).isBurning(), getWorld(), getPos());
     }
 }
