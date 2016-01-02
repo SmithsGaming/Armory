@@ -16,8 +16,8 @@ import net.minecraft.inventory.*;
 public class ContainerFirepit extends ContainerSmithsCore {
     private TileEntityFirePit iTEFirePit;
 
-    public ContainerFirepit (InventoryPlayer pPlayerInventory, TileEntityFirePit pTEFirePit) {
-        super(References.InternalNames.TileEntities.FirePitContainer, pTEFirePit, pTEFirePit, pPlayerInventory);
+    public ContainerFirepit (EntityPlayer playerMP, TileEntityFirePit pTEFirePit) {
+        super(References.InternalNames.TileEntities.FirePitContainer, pTEFirePit, pTEFirePit, playerMP);
 
         this.iTEFirePit = pTEFirePit;
 
@@ -33,12 +33,12 @@ public class ContainerFirepit extends ContainerSmithsCore {
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < PLAYER_INVENTORY_ROWS; ++inventoryRowIndex) {
             for (int inventoryColumnIndex = 0; inventoryColumnIndex < PLAYER_INVENTORY_COLUMNS; ++inventoryColumnIndex) {
-                this.addSlotToContainer(new Slot(pPlayerInventory, inventoryColumnIndex + inventoryRowIndex * 9 + 9, 8 + inventoryColumnIndex * 18, 84 + inventoryRowIndex * 18));
+                this.addSlotToContainer(new Slot(playerMP.inventory, inventoryColumnIndex + inventoryRowIndex * 9 + 9, 8 + inventoryColumnIndex * 18, 84 + inventoryRowIndex * 18));
             }
         }
 
         for (int actionBarSlotIndex = 0; actionBarSlotIndex < PLAYER_INVENTORY_COLUMNS; ++actionBarSlotIndex) {
-            this.addSlotToContainer(new Slot(pPlayerInventory, actionBarSlotIndex, 8 + actionBarSlotIndex * 18, 143));
+            this.addSlotToContainer(new Slot(playerMP.inventory, actionBarSlotIndex, 8 + actionBarSlotIndex * 18, 143));
         }
     }
 

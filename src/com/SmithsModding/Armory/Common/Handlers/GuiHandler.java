@@ -20,7 +20,7 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement (int pID, EntityPlayer pPlayer, World pWorld, int pX, int pY, int pZ) {
         if (pID == References.GuiIDs.FIREPITID) {
-            return new ContainerFirepit(pPlayer.inventory, (TileEntityFirePit) pWorld.getTileEntity(new BlockPos(pX, pY, pZ)));
+            return new ContainerFirepit(pPlayer, (TileEntityFirePit) pWorld.getTileEntity(new BlockPos(pX, pY, pZ)));
         }
 
         return null;
@@ -29,7 +29,7 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getClientGuiElement (int pID, EntityPlayer pPlayer, World pWorld, int pX, int pY, int pZ) {
         if (pID == References.GuiIDs.FIREPITID) {
-            return new GuiFirePit(new ContainerFirepit(pPlayer.inventory, (TileEntityFirePit) pWorld.getTileEntity(new BlockPos(pX, pY, pZ))));
+            return new GuiFirePit(new ContainerFirepit(pPlayer, (TileEntityFirePit) pWorld.getTileEntity(new BlockPos(pX, pY, pZ))));
         }
 
         return null;

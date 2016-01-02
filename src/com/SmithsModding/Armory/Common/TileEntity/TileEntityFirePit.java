@@ -12,24 +12,27 @@ package com.SmithsModding.Armory.Common.TileEntity;
 */
 
 
-import com.SmithsModding.Armory.API.Item.*;
 import com.SmithsModding.Armory.API.Materials.*;
 import com.SmithsModding.Armory.*;
+import com.SmithsModding.Armory.Common.Block.*;
 import com.SmithsModding.Armory.Common.Factory.*;
 import com.SmithsModding.Armory.Common.Item.*;
 import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Common.TileEntity.GUIManagers.*;
 import com.SmithsModding.Armory.Common.TileEntity.State.*;
 import com.SmithsModding.Armory.Util.*;
+import com.SmithsModding.SmithsCore.Client.Events.Models.Block.*;
 import com.SmithsModding.SmithsCore.Common.Fluid.*;
 import com.SmithsModding.SmithsCore.Common.PathFinding.*;
 import com.SmithsModding.SmithsCore.Common.Structures.*;
+import com.SmithsModding.SmithsCore.Common.TileEntity.*;
 import com.SmithsModding.SmithsCore.Network.Structure.Messages.*;
 import com.SmithsModding.SmithsCore.Network.Structure.*;
 import com.SmithsModding.SmithsCore.*;
 import com.SmithsModding.SmithsCore.Util.Common.*;
 import com.SmithsModding.SmithsCore.Util.Common.Postioning.*;
 import com.google.common.base.*;
+import net.minecraft.block.state.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -42,7 +45,7 @@ import net.minecraftforge.fml.common.network.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class TileEntityFirePit extends TileEntityArmory implements IInventory, ITickable, IFirePitComponent, IStructureComponent, IFluidContainingEntity {
+public class TileEntityFirePit extends TileEntityArmory implements IInventory, ITickable, IFirePitComponent, IStructureComponent, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
 
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
@@ -217,6 +220,30 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         writeStructureToNBT(compound);
     }
 
+    /**
+     * Method called by the synchronization system to send the data to the Client.
+     *
+     * @param synchronizationCompound The NBTTagCompound to write your data to.
+     *
+     * @return A NBTTagCompound containing all the data required for the synchronization of this TE.
+     */
+    @Override
+    public NBTTagCompound writeToSynchronizationCompound (NBTTagCompound synchronizationCompound) {
+        writeToNBT(synchronizationCompound);
+
+        return synchronizationCompound;
+    }
+
+    /**
+     * Method called by the synchronization system to read the data from the Server.
+     *
+     * @param synchronizationCompound The NBTTagCompound to read your data from.
+     */
+    @Override
+    public void readFromSynchronizationCompound (NBTTagCompound synchronizationCompound) {
+        readFromNBT(synchronizationCompound);
+    }
+
     @Override
     public void update () {
         Stopwatch updateWatch = Stopwatch.createStarted();
@@ -267,12 +294,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         if (!worldObj.isRemote) {
             this.markDirty();
 
-            for (Coordinate3D coordinate : slaveCoordinates) {
-                if (coordinate.equals(this.getLocation()))
-                    continue;
-
-                worldObj.markBlockForUpdate(coordinate.toBlockPos());
-            }
+            queBlockModelUpdateOnClients();
         }
 
         structureUpdateTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
@@ -511,12 +533,6 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         NBTTagCompound fluidCompound = new NBTTagCompound();
         fluidCompound.setString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL, material.getUniqueID());
 
-        int amount = References.General.FLUID_INGOT;
-
-        if (HeatedItemFactory.getInstance().convertToCooledIngot(stack).getItem() instanceof IHeatableItem) {
-            amount = ( (IHeatableItem) HeatedItemFactory.getInstance().convertToCooledIngot(stack).getItem() ).getMoltenMilibucket();
-        }
-
         addFluidToTheTop(HeatableItemRegistry.getInstance().getMoltenStack(stack));
     }
 
@@ -532,6 +548,23 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         }
 
         return tIngotAmount;
+    }
+
+    public void queBlockModelUpdateOnClients () {
+        if (isSlaved())
+            return;
+
+        SmithsCore.getRegistry().getCommonBus().post(new BlockModelUpdateEvent(this));
+
+        for (Coordinate3D slaveLocation : slaveCoordinates) {
+            if (getWorld().getTileEntity(slaveLocation.toBlockPos()) == null)
+                continue;
+
+            if (getLocation().equals(slaveLocation))
+                continue;
+
+            SmithsCore.getRegistry().getCommonBus().post(new BlockModelUpdateEvent((TileEntitySmithsCore) getWorld().getTileEntity(slaveLocation.toBlockPos())));
+        }
     }
 
     @Override
@@ -586,8 +619,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         masterComponent = null;
         masterCoordinate = null;
         slaveComponents = new HashMap<Coordinate3D, IStructureComponent>();
+        slaveCoordinates = new ArrayList<Coordinate3D>();
 
-        //iData = new FirePitStructureData();
+        if (getWorld() == null || getPos() == null)
+            return;
+
+        BlockFirePit.setMasterState(true, getWorld(), getPos());
     }
 
     @Override
@@ -636,6 +673,15 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     @Override
     public void initiateAsSlaveEntity (IStructureComponent pMasterEntity) {
         masterComponent = pMasterEntity;
+
+        slaveComponents = new HashMap<Coordinate3D, IStructureComponent>();
+        slaveCoordinates = new ArrayList<Coordinate3D>();
+
+        if (getWorld() == null || getPos() == null)
+            return;
+
+
+        BlockFirePit.setMasterState(false, getWorld(), getPos());
     }
 
     @Override
@@ -674,6 +720,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         }
 
         initiateAsMasterEntity();
+
         NBTTagList tSlaveList = tStructureCompound.getTagList(References.NBTTagCompoundData.TE.Basic.Structures.COORDINATES, 10);
         for (int tTagIndex = 0; tTagIndex < tSlaveList.tagCount(); tTagIndex++) {
             Coordinate3D tSlaveCoordinate = NBTHelper.readCoordinate3DFromNBT(tSlaveList.getCompoundTagAt(tTagIndex));
@@ -810,5 +857,17 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     @Override
     public void addFluidToTheTop (FluidStack stack) {
         moltenMetals.add(stack);
+    }
+
+    @Override
+    public boolean shouldUpdateBlock () {
+        IBlockState blockState = getWorld().getBlockState(pos);
+
+        return true;
+    }
+
+    @Override
+    public void onUpdateBlock () {
+        BlockFirePit.setBurningState(true, getWorld(), getPos());
     }
 }

@@ -2,7 +2,7 @@ package com.SmithsModding.Armory.Common.TileEntity.State;
 
 import com.SmithsModding.Armory.Common.TileEntity.*;
 import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.Common.Event.*;
+import com.SmithsModding.SmithsCore.Common.Events.*;
 import com.SmithsModding.SmithsCore.Common.Structures.*;
 import com.SmithsModding.SmithsCore.Common.TileEntity.State.*;
 import com.SmithsModding.SmithsCore.Common.TileEntity.*;

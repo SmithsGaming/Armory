@@ -12,6 +12,7 @@ package com.SmithsModding.Armory.Common.Block;
 */
 
 import com.SmithsModding.Armory.*;
+import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Common.TileEntity.State.*;
 import com.SmithsModding.Armory.Common.TileEntity.*;
 import com.SmithsModding.Armory.Util.*;
@@ -35,6 +36,9 @@ import java.util.*;
 
 public class BlockFirePit extends BlockArmoryInventory {
 
+    public static final PropertyBool BURNING = PropertyBool.create("burning");
+    public static final PropertyBool ISMASTER = PropertyBool.create("master");
+
     protected static Map<String, EnumFacing> directionsMapping = new HashMap<String, EnumFacing>();
 
     static {
@@ -49,9 +53,36 @@ public class BlockFirePit extends BlockArmoryInventory {
     public BlockFirePit () {
         super(References.InternalNames.Blocks.FirePit, Material.iron);
         setCreativeTab(CreativeTabs.tabCombat);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BURNING, false));
     }
 
+    public static void setBurningState (boolean burning, World worldIn, BlockPos pos) {
+        IBlockState original = worldIn.getBlockState(pos);
 
+        if (original == null)
+            original = GeneralRegistry.Blocks.blockFirePit.getDefaultState();
+
+        original = original.withProperty(BURNING, burning);
+
+        worldIn.setBlockState(pos, original, 3);
+    }
+
+    public static void setMasterState (boolean isMaster, World worldIn, BlockPos pos) {
+        IBlockState original = worldIn.getBlockState(pos);
+
+        if (original == null)
+            original = GeneralRegistry.Blocks.blockFirePit.getDefaultState();
+
+        original = original.withProperty(ISMASTER, isMaster);
+
+        worldIn.setBlockState(pos, original, 3);
+    }
+
+    @Override
+    protected BlockState createBlockState () {
+        return new BlockState(this, BURNING, ISMASTER);
+    }
+    
     @Override
     public void breakBlock (World worldIn, BlockPos pos, IBlockState state) {
         TileEntityFirePit tTEFirePit = (TileEntityFirePit) worldIn.getTileEntity(pos);
@@ -80,7 +111,6 @@ public class BlockFirePit extends BlockArmoryInventory {
             }
         }
     }
-    
 
     @Override
     public boolean canRenderInLayer (EnumWorldBlockLayer layer) {
@@ -109,10 +139,6 @@ public class BlockFirePit extends BlockArmoryInventory {
 
     @Override
     public IBlockState getExtendedState (IBlockState state, IBlockAccess world, BlockPos pos) {
-        //OBJModel.OBJState retState = new OBJModel.OBJState(Lists.newArrayList(OBJModel.Group.ALL), true);
-        //return ( (IExtendedBlockState) this.state.getBaseState() ).withProperty(OBJModel.OBJProperty.instance, retState);
-
-
         ItemStack blockStack = new ItemStack(Item.getItemFromBlock(this));
 
         OBJModel model = ((OBJModel.OBJBakedModel) Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(blockStack)).getModel();
@@ -241,5 +267,45 @@ public class BlockFirePit extends BlockArmoryInventory {
             }
             return true;
         }
+    }
+
+    /**
+     * Convert the given metadata into a BlockState for this Block
+     */
+    public IBlockState getStateFromMeta (int meta) {
+        int burningMeta = meta % 2;
+        int masterMeta = meta / 2;
+
+        return this.getDefaultState().withProperty(BURNING, burningMeta >= 1 ? true : false).withProperty(ISMASTER, masterMeta >= 1 ? true : false);
+    }
+
+    /**
+     * Convert the BlockState into the correct metadata value
+     */
+    public int getMetaFromState (IBlockState state) {
+        boolean burningValue = state.getValue(BURNING);
+        boolean masterValue = state.getValue(ISMASTER);
+
+        int meta = 0;
+
+        if (burningValue)
+            meta += 2;
+        else
+            meta += 0;
+
+        if (masterValue)
+            meta += 1;
+        else
+            meta += 0;
+
+        return meta;
+    }
+
+    /**
+     * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
+     * IBlockstate
+     */
+    public IBlockState onBlockPlaced (World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+        return this.getDefaultState().withProperty(BURNING, false);
     }
 }

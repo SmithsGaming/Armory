@@ -3,17 +3,18 @@ package com.SmithsModding.Armory.Client;
 import com.SmithsModding.Armory.API.Armor.*;
 import com.SmithsModding.Armory.*;
 import com.SmithsModding.Armory.Client.Logic.*;
-import com.SmithsModding.Armory.Client.Model.Event.*;
 import com.SmithsModding.Armory.Client.Model.Loaders.*;
 import com.SmithsModding.Armory.Client.Textures.*;
 import com.SmithsModding.Armory.Common.*;
 import com.SmithsModding.Armory.Common.Item.*;
+import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.*;
 import com.SmithsModding.SmithsCore.Util.Client.*;
 import net.minecraft.block.*;
+import net.minecraft.block.state.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.block.statemap.*;
 import net.minecraft.client.resources.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.entity.player.*;
@@ -41,6 +42,13 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(materializedTextureCreator);
 
         ArmoryClientInitializer.InitializeClient();
+
+        ModelLoader.setCustomStateMapper(GeneralRegistry.Blocks.blockFirePit, new StateMapperBase() {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation (IBlockState state) {
+                return new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + References.InternalNames.Blocks.FirePit, "normal");
+            }
+        });
     }
 
     @Override
@@ -56,8 +64,6 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
     @Override
     public void registerEventHandlers() {
         super.registerEventHandlers();
-
-        SmithsCore.getRegistry().getNetworkBus().register(new FIrePitUpdateHandler());
     }
 
     public void registerBlockModel (Block block) {

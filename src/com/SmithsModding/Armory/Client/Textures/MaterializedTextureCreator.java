@@ -71,7 +71,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      * Actual construction method is called from the ForgeEvent system.
      * This method kicks the creation of the textures of and provided a map to put the textures in.
      *
-     * @param event The Event fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
+     * @param event The Events fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
      */
     @SubscribeEvent(priority = EventPriority.LOW)
     public void createCustomTextures (TextureStitchEvent.Pre event) {

@@ -1,13 +1,12 @@
 package com.SmithsModding.Armory.Client.Model.Item.Events;
 
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.Armory;
-import com.SmithsModding.SmithsCore.Common.Event.SmithsCoreEvent;
-import com.SmithsModding.SmithsCore.Util.Client.ModelHelper;
-import net.minecraft.util.ResourceLocation;
+import com.SmithsModding.Armory.API.Armor.*;
+import com.SmithsModding.Armory.*;
+import com.SmithsModding.SmithsCore.Common.Events.*;
+import com.SmithsModding.SmithsCore.Util.Client.*;
+import net.minecraft.util.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Marc on 07.12.2015.
