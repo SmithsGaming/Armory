@@ -704,6 +704,10 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
         if (!isSlaved()) {
             NBTTagList tSlaveList = new NBTTagList();
+
+            if (slaveComponents == null)
+                slaveComponents = new HashMap<Coordinate3D, IStructureComponent>();
+
             for (Coordinate3D tSlaveCoord : slaveComponents.keySet()) {
                 NBTTagCompound tCoordinateCompound = NBTHelper.writeCoordinate3DToNBT(tSlaveCoord);
                 tSlaveList.appendTag(tCoordinateCompound);
@@ -869,6 +873,9 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     @Override
     public boolean shouldUpdateBlock () {
         IBlockState blockState = getWorld().getBlockState(pos);
+
+        if (!( blockState.getBlock() instanceof BlockFirePit ))
+            return false;
 
         return blockState.getValue(BlockFirePit.BURNING) != ( (FirePitState) getStructureRelevantData() ).isBurning();
     }

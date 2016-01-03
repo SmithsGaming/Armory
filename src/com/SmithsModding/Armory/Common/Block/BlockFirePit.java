@@ -62,7 +62,7 @@ public class BlockFirePit extends BlockArmoryInventory {
         if (original == null)
             original = GeneralRegistry.Blocks.blockFirePit.getDefaultState();
 
-        original = original.withProperty(BURNING, true);
+        original = original.withProperty(BURNING, burning);
 
         worldIn.setBlockState(pos, original, 3);
     }
@@ -73,9 +73,9 @@ public class BlockFirePit extends BlockArmoryInventory {
         if (original == null)
             original = GeneralRegistry.Blocks.blockFirePit.getDefaultState();
 
-        original = original.withProperty(ISMASTER, false);
+        original = original.withProperty(ISMASTER, isMaster);
 
-        worldIn.setBlockState(pos, original, 2);
+        worldIn.setBlockState(pos, original, 3);
     }
 
     @Override
@@ -289,15 +289,7 @@ public class BlockFirePit extends BlockArmoryInventory {
 
         int meta = 0;
 
-        if (burningValue)
-            meta += 2;
-        else
-            meta += 0;
-
-        if (masterValue)
-            meta += 1;
-        else
-            meta += 0;
+        meta = ( masterValue ? 1 : 0 ) | ( burningValue ? 2 : 0 );
 
         return meta;
     }
