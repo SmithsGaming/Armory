@@ -16,7 +16,9 @@ import com.SmithsModding.Armory.Common.Registry.*;
 import com.SmithsModding.Armory.Common.TileEntity.State.*;
 import com.SmithsModding.Armory.Common.TileEntity.*;
 import com.SmithsModding.Armory.Util.*;
+import com.SmithsModding.SmithsCore.Client.Block.*;
 import com.SmithsModding.SmithsCore.Common.Structures.*;
+import com.SmithsModding.SmithsCore.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.*;
 import net.minecraft.block.properties.*;
@@ -29,12 +31,13 @@ import net.minecraft.item.*;
 import net.minecraft.tileentity.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.model.obj.*;
 import net.minecraftforge.common.property.*;
 
 import java.util.*;
 
-public class BlockFirePit extends BlockArmoryInventory {
+public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugInformationBlock {
 
     public static final PropertyBool BURNING = PropertyBool.create("burning");
     public static final PropertyBool ISMASTER = PropertyBool.create("master");
@@ -53,7 +56,7 @@ public class BlockFirePit extends BlockArmoryInventory {
     public BlockFirePit () {
         super(References.InternalNames.Blocks.FirePit, Material.iron);
         setCreativeTab(CreativeTabs.tabCombat);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(BURNING, false));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BURNING, false).withProperty(ISMASTER, false));
     }
 
     public static void setBurningState (boolean burning, World worldIn, BlockPos pos) {
@@ -301,5 +304,87 @@ public class BlockFirePit extends BlockArmoryInventory {
      */
     public IBlockState onBlockPlaced (World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         return this.getDefaultState().withProperty(BURNING, false);
+    }
+
+    /**
+     * Method to handle displaying or removing of additional information on the F3 Screen.
+     *
+     * @param event   The event with the displayed data.
+     * @param worldIn The world
+     * @param pos     Position of the block the player is looking at.
+     */
+    @Override
+    public void handleDebugInformation (RenderGameOverlayEvent.Text event, World worldIn, BlockPos pos) {
+        if (!SmithsCore.isInDevenvironment() && !Minecraft.getMinecraft().gameSettings.showDebugInfo)
+            return;
+
+        TileEntityFirePit tileEntityFirePit = (TileEntityFirePit) worldIn.getTileEntity(pos);
+
+        Float burningTicks = (Float) tileEntityFirePit.getStructureRelevantData().getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME);
+        Float totalBurningTicks = (Float) tileEntityFirePit.getStructureRelevantData().getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT);
+
+        Float currentTemp = ( (FirePitState) tileEntityFirePit.getState() ).getCurrentTemperature();
+        Float maxTemp = ( (FirePitState) tileEntityFirePit.getState() ).getMaxTemperature();
+
+        float burningFormattingType = burningTicks / ( totalBurningTicks / 3 );
+        float tempFormattingType = currentTemp / ( maxTemp / 3 );
+
+        EnumChatFormatting burningTime;
+        EnumChatFormatting temp;
+
+        if (burningFormattingType < 1F && burningFormattingType > 0F)
+            burningTime = EnumChatFormatting.RED;
+        else if (burningFormattingType < 2F && burningFormattingType > 0F)
+            burningTime = EnumChatFormatting.GOLD;
+        else if (burningFormattingType <= 3f && burningFormattingType > 0F)
+            burningTime = EnumChatFormatting.DARK_BLUE;
+        else
+            burningTime = EnumChatFormatting.RESET;
+
+        if (tempFormattingType < 1F && tempFormattingType > 0F)
+            temp = EnumChatFormatting.DARK_BLUE;
+        else if (tempFormattingType < 2F && tempFormattingType > 0F)
+            temp = EnumChatFormatting.GOLD;
+        else if (tempFormattingType <= 3f && tempFormattingType > 0F)
+            temp = EnumChatFormatting.RED;
+        else
+            temp = EnumChatFormatting.RESET;
+
+        event.right.add("burning tick left:" + burningTime + burningTicks + EnumChatFormatting.RESET);
+        event.right.add("temp:" + temp + currentTemp + EnumChatFormatting.RESET);
+        event.right.add("molten metal count:" + tileEntityFirePit.getAllFluids().size());
+
+        EnumChatFormatting slaveCount;
+        int count;
+        if (tileEntityFirePit.isSlaved()) {
+            slaveCount = EnumChatFormatting.STRIKETHROUGH;
+            count = -2;
+        } else if (tileEntityFirePit.getSlaveEntities() == null) {
+            slaveCount = EnumChatFormatting.UNDERLINE;
+            count = -1;
+        } else if (tileEntityFirePit.getSlaveEntities().size() == 0) {
+            slaveCount = EnumChatFormatting.RED;
+            count = 0;
+        } else {
+            slaveCount = EnumChatFormatting.GREEN;
+            count = tileEntityFirePit.getSlaveEntities().size();
+        }
+
+        EnumChatFormatting masterTeLocation;
+        String location;
+        if (!tileEntityFirePit.isSlaved()) {
+            masterTeLocation = EnumChatFormatting.STRIKETHROUGH;
+            location = "current";
+        } else if (tileEntityFirePit.getMasterEntity() == null) {
+            masterTeLocation = EnumChatFormatting.RED;
+            location = "unknown";
+        } else {
+            masterTeLocation = EnumChatFormatting.GREEN;
+            location = tileEntityFirePit.getMasterEntity().getLocation().toString();
+        }
+
+        event.right.add("slave count:" + slaveCount + count + EnumChatFormatting.RESET);
+        event.right.add("masterlocation:" + masterTeLocation + location + EnumChatFormatting.RESET);
+
     }
 }

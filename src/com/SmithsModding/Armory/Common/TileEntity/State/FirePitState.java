@@ -2,7 +2,6 @@ package com.SmithsModding.Armory.Common.TileEntity.State;
 
 import com.SmithsModding.Armory.Common.TileEntity.*;
 import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.Common.Events.*;
 import com.SmithsModding.SmithsCore.Common.Structures.*;
 import com.SmithsModding.SmithsCore.Common.TileEntity.State.*;
 import com.SmithsModding.SmithsCore.Common.TileEntity.*;
@@ -60,6 +59,12 @@ public class FirePitState implements ITileEntityState, IStructureData {
 
     @Override
     public void setData (IStructureComponent sendingComponent, String propertySend, Object data) {
+        if (propertySend.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) && ( (TileEntityFirePit) parent ).isSlaved())
+            ( (TileEntityFirePit) parent ).getMasterEntity().getStructureRelevantData().setData(sendingComponent, propertySend, data);
+
+        if (propertySend.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT) && ( (TileEntityFirePit) parent ).isSlaved())
+            ( (TileEntityFirePit) parent ).getMasterEntity().getStructureRelevantData().setData(sendingComponent, propertySend, data);
+
         if (propertySend.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME))
             totalBurningTicksLeft = (Float) data;
         else if (propertySend.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT))
@@ -76,8 +81,6 @@ public class FirePitState implements ITileEntityState, IStructureData {
 
     @Override
     public void onStateUpdated () {
-        TileEntityDataUpdatedEvent event = new TileEntityDataUpdatedEvent(parent);
-        event.PostCommon();
     }
 
     @Override

@@ -38,6 +38,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.tileentity.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.fml.common.network.*;
 
@@ -62,7 +63,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     private float heatedProcentage;
 
     private IStructureComponent masterComponent;
-    private HashMap<Coordinate3D, IStructureComponent> slaveComponents;
+    private ConcurrentHashMap<Coordinate3D, IStructureComponent> slaveComponents;
     private Cube structureBounds;
 
     private boolean slavesInitialized = false;
@@ -245,6 +246,11 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     @Override
     public void update () {
+        if (!worldObj.isRemote)
+            Armory.getLogger().info("Ticking Server Side");
+        else
+            Armory.getLogger().info("Ticking Client Side");
+
         Stopwatch updateWatch = Stopwatch.createStarted();
         Stopwatch operationWatch = Stopwatch.createStarted();
 
@@ -263,7 +269,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             operationWatch.start();
         }
 
-        FirePitState state = (FirePitState) getStructureRelevantData();
+        FirePitState state = getStructureRelevantData();
 
         state.setLastTemperature(state.getCurrentTemperature());
         state.setBurning(false);
@@ -276,13 +282,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
         state.setBurning(( (Float) state.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F ));
 
-        heatIngots();
+        //heatIngots();
 
         structureHeatIngotsTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
         operationWatch = operationWatch.reset();
         operationWatch.start();
 
-        meltIngots();
+        //meltIngots();
 
         structureMeltIngotsTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
         operationWatch = operationWatch.reset();
@@ -324,16 +330,31 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         updateWatch.stop();
     }
 
+    /**
+     * Called from Chunk.setBlockIDWithMetadata, determines if this tile entity should be re-created when the ID, or
+     * Metadata changes. Use with caution as this will leave straggler TileEntities, or create conflicts with other
+     * TileEntities if not used properly.
+     *
+     * @param world    Current world
+     * @param pos      Tile's world position
+     * @param oldState
+     * @param newSate  @return True to remove the old tile entity, false to keep it in tact {and create a new one if the
+     *                 new values specify to}
+     */
+    @Override
+    public boolean shouldRefresh (World world, BlockPos pos, IBlockState oldState, IBlockState newSate) {
+        return oldState.getBlock() != newSate.getBlock();
+    }
+
     public void heatFurnace () {
         calculateHeatTerms();
 
-        FirePitState state = (FirePitState) getStructureRelevantData();
+        FirePitState structureState = getStructureRelevantData();
+        FirePitState tileState = (FirePitState) getState();
 
-        state.setLastAddedHeat(0F);
+        tileState.setLastAddedHeat(0F);
 
-        IStructureData tData = getStructureRelevantData();
-
-        if ((Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) < 1F) {
+        if ((Float) structureState.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) < 1F) {
             for (int tFuelStackIndex = 0; tFuelStackIndex < FUELSTACK_AMOUNT; tFuelStackIndex++) {
 
                 if (fuelStacks[tFuelStackIndex] == null) {
@@ -346,7 +367,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
                 if (( tTargetedFuelStack != null ) && ( TileEntityFurnace.isItemFuel(tTargetedFuelStack) )) {
                     --tTargetedFuelStack.stackSize;
 
-                    tData.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, (Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) + TileEntityFurnace.getItemBurnTime(tTargetedFuelStack));
+                    structureState.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, (Float) structureState.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) + TileEntityFurnace.getItemBurnTime(tTargetedFuelStack));
 
                     if (tTargetedFuelStack.stackSize == 0) {
                         fuelStacks[tFuelStackIndex] = tTargetedFuelStack.getItem().getContainerItem(tTargetedFuelStack);
@@ -356,21 +377,21 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
             }
 
-            tData.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT, tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME));
+            structureState.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT, structureState.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME));
         }
 
-        if ((Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F) {
+        if ((Float) structureState.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F) {
 
-            tData.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, (Float) tData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) - 1F);
-            state.setLastAddedHeat(state.getLastAddedHeat() + positiveHeatTerm);
+            structureState.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, (Float) structureState.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) - 1F);
+            structureState.setLastAddedHeat(structureState.getLastAddedHeat() + positiveHeatTerm);
         }
 
-        heatedProcentage = Math.round(( state.getCurrentTemperature() / state.getMaxTemperature() ) * 100) / 100F;
-        state.setLastAddedHeat(state.getLastAddedHeat() * ( 1 - heatedProcentage ));
+        heatedProcentage = Math.round(( structureState.getCurrentTemperature() / structureState.getMaxTemperature() ) * 100) / 100F;
+        tileState.setLastAddedHeat(structureState.getLastAddedHeat() * ( 1 - heatedProcentage ));
     }
 
     private void calculateHeatTerms () {
-        FirePitState state = (FirePitState) getStructureRelevantData();
+        FirePitState state = (FirePitState) getState();
 
         state.setMaxTemperature(1500);
         positiveHeatTerm = POSITIVEHEAT;
@@ -389,12 +410,11 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     }
 
     public void heatIngots () {
-        FirePitState state = (FirePitState) getStructureRelevantData();
+        FirePitState state = (FirePitState) getState();
 
         if (( state.getLastAddedHeat() == 0F ) && ( state.getCurrentTemperature() <= 20F ) && ( getIngotAmount() == 0 )) {
             return;
         }
-
 
         state.setCurrentTemperature(state.getCurrentTemperature() + state.getLastAddedHeat());
 
@@ -428,15 +448,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
                 setItemTemperature(stack, getItemTemperature(stack) + tTargetDifference);
             } else if (getItemTemperature(stack) > state.getCurrentTemperature()) {
                 state.setCurrentTemperature(state.getCurrentTemperature() + tTargetDifference);
-                //setItemTemperature(stack, getItemTemperature(stack) + tSourceDifference);
+                setItemTemperature(stack, getItemTemperature(stack) + tSourceDifference);
             }
 
         }
     }
 
     public float getItemTemperature (ItemStack pItemStack) {
-
-
         if (pItemStack.getItem() instanceof ItemHeatedItem) {
 
             NBTTagCompound stackCompound = pItemStack.getTagCompound();
@@ -444,15 +462,10 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             return stackCompound.getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE);
         }
 
-
         return 20F;
     }
 
     public void setItemTemperature (ItemStack pItemStack, float pNewTemp) {
-        if (false)
-            return;
-
-
         if (pItemStack.getItem() instanceof ItemHeatedItem) {
             if (pNewTemp < 20F)
                 pNewTemp = 20F;
@@ -468,7 +481,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
 
     public void meltIngots () {
-        FirePitState state = (FirePitState) getStructureRelevantData();
+        FirePitState state = (FirePitState) getState();
 
         for (int i = 0; i < INGOTSTACKS_AMOUNT; i++) {
             ItemStack stack = ingotStacks[i];
@@ -556,20 +569,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
         if (this.shouldUpdateBlock()) {
             this.onUpdateBlock();
-            //SmithsCore.getRegistry().getCommonBus().post(new BlockModelUpdateEvent(this));
         }
 
-        for (Coordinate3D slaveLocation : slaveCoordinates) {
-            if (getWorld().getTileEntity(slaveLocation.toBlockPos()) == null)
-                continue;
+        for (IStructureComponent component : slaveComponents.values()) {
+            IBlockModelUpdatingTileEntity tileEntity = (IBlockModelUpdatingTileEntity) component;
 
-            if (getLocation().equals(slaveLocation))
-                continue;
-
-            IBlockModelUpdatingTileEntity tileEntity = (IBlockModelUpdatingTileEntity) worldObj.getTileEntity(slaveLocation.toBlockPos());
             if (tileEntity.shouldUpdateBlock()) {
                 tileEntity.onUpdateBlock();
-                //SmithsCore.getRegistry().getCommonBus().post(new BlockModelUpdateEvent((TileEntitySmithsCore) getWorld().getTileEntity(slaveLocation.toBlockPos())));
             }
         }
     }
@@ -580,7 +586,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     }
 
     @Override
-    public HashMap<Coordinate3D, IStructureComponent> getSlaveEntities () {
+    public ConcurrentHashMap<Coordinate3D, IStructureComponent> getSlaveEntities () {
         return slaveComponents;
     }
 
@@ -625,8 +631,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         structureBounds = new Cube(getPos().getX(), getPos().getY() + 1, getPos().getZ(), 0, 0, 0);
         masterComponent = null;
         masterCoordinate = null;
-        slaveComponents = new HashMap<Coordinate3D, IStructureComponent>();
-        slaveCoordinates = new ArrayList<Coordinate3D>();
+        slaveComponents = new ConcurrentHashMap<Coordinate3D, IStructureComponent>();
 
         if (getWorld() == null || getPos() == null)
             return;
@@ -635,12 +640,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     }
 
     @Override
-    public IStructureData getStructureRelevantData () {
+    public FirePitState getStructureRelevantData () {
         if (isSlaved())
-            return getMasterEntity().getStructureRelevantData();
+            return (FirePitState) getMasterEntity().getStructureRelevantData();
 
 
-        return (IStructureData) getState();
+        return (FirePitState) getState();
     }
 
     @Override
@@ -680,13 +685,14 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     @Override
     public void initiateAsSlaveEntity (IStructureComponent pMasterEntity) {
         masterComponent = pMasterEntity;
+        masterCoordinate = pMasterEntity.getLocation();
 
-        slaveComponents = new HashMap<Coordinate3D, IStructureComponent>();
-        slaveCoordinates = new ArrayList<Coordinate3D>();
+        slavesInitialized = true;
+        slaveComponents = null;
+        slaveCoordinates = null;
 
         if (getWorld() == null || getPos() == null)
             return;
-
 
         BlockFirePit.setMasterState(false, getWorld(), getPos());
     }
@@ -706,9 +712,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             NBTTagList tSlaveList = new NBTTagList();
 
             if (slaveComponents == null)
-                slaveComponents = new HashMap<Coordinate3D, IStructureComponent>();
+                slaveComponents = new ConcurrentHashMap<Coordinate3D, IStructureComponent>();
 
-            for (Coordinate3D tSlaveCoord : slaveComponents.keySet()) {
+            Iterator<Coordinate3D> coordinate3DIterator = slaveComponents.keySet().iterator();
+
+            while (coordinate3DIterator.hasNext()) {
+                Coordinate3D tSlaveCoord = coordinate3DIterator.next();
                 NBTTagCompound tCoordinateCompound = NBTHelper.writeCoordinate3DToNBT(tSlaveCoord);
                 tSlaveList.appendTag(tCoordinateCompound);
             }
@@ -877,7 +886,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         if (!( blockState.getBlock() instanceof BlockFirePit ))
             return false;
 
-        return blockState.getValue(BlockFirePit.BURNING) != ( (FirePitState) getStructureRelevantData() ).isBurning();
+        return blockState.getValue(BlockFirePit.BURNING) != getStructureRelevantData().isBurning();
     }
 
     @Override
@@ -885,6 +894,6 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         if (worldObj.isRemote)
             return;
 
-        BlockFirePit.setBurningState(( (FirePitState) getStructureRelevantData() ).isBurning(), getWorld(), getPos());
+        BlockFirePit.setBurningState(getStructureRelevantData().isBurning(), getWorld(), getPos());
     }
 }
