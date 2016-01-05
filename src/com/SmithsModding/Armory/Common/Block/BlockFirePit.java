@@ -193,7 +193,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
                 if (tileEntityFirePit == null)
                     continue;
 
-                if (!( (FirePitState) ( ( (TileEntityFirePit) tileEntityFirePit.getMasterEntity() ).getState() ) ).isBurning()) {
+                if (tileEntityFirePit.getStructureData() == null || !( (FirePitState) tileEntityFirePit.getStructureData() ).isBurning()) {
                     continue;
                 }
             }
@@ -320,8 +320,11 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
 
         TileEntityFirePit tileEntityFirePit = (TileEntityFirePit) worldIn.getTileEntity(pos);
 
-        Float burningTicks = (Float) tileEntityFirePit.getStructureRelevantData().getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME);
-        Float totalBurningTicks = (Float) tileEntityFirePit.getStructureRelevantData().getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT);
+        if (tileEntityFirePit.getStructureData() == null)
+            return;
+
+        Float burningTicks = (Float) tileEntityFirePit.getStructureData().getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME);
+        Float totalBurningTicks = (Float) tileEntityFirePit.getStructureData().getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT);
 
         Float currentTemp = ( (FirePitState) tileEntityFirePit.getState() ).getCurrentTemperature();
         Float maxTemp = ( (FirePitState) tileEntityFirePit.getState() ).getMaxTemperature();
@@ -359,15 +362,15 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
         if (tileEntityFirePit.isSlaved()) {
             slaveCount = EnumChatFormatting.STRIKETHROUGH;
             count = -2;
-        } else if (tileEntityFirePit.getSlaveEntities() == null) {
+        } else if (tileEntityFirePit.getSlaveCoordinates() == null) {
             slaveCount = EnumChatFormatting.UNDERLINE;
             count = -1;
-        } else if (tileEntityFirePit.getSlaveEntities().size() == 0) {
+        } else if (tileEntityFirePit.getSlaveCoordinates().size() == 0) {
             slaveCount = EnumChatFormatting.RED;
             count = 0;
         } else {
             slaveCount = EnumChatFormatting.GREEN;
-            count = tileEntityFirePit.getSlaveEntities().size();
+            count = tileEntityFirePit.getSlaveCoordinates().size();
         }
 
         EnumChatFormatting masterTeLocation;
@@ -375,12 +378,12 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
         if (!tileEntityFirePit.isSlaved()) {
             masterTeLocation = EnumChatFormatting.STRIKETHROUGH;
             location = "current";
-        } else if (tileEntityFirePit.getMasterEntity() == null) {
+        } else if (tileEntityFirePit.getMasterLocation() == null) {
             masterTeLocation = EnumChatFormatting.RED;
             location = "unknown";
         } else {
             masterTeLocation = EnumChatFormatting.GREEN;
-            location = tileEntityFirePit.getMasterEntity().getLocation().toString();
+            location = tileEntityFirePit.getMasterLocation().toString();
         }
 
         event.right.add("slave count:" + slaveCount + count + EnumChatFormatting.RESET);

@@ -42,11 +42,11 @@ public class FirePitState implements ITileEntityState, IStructureData {
 
     @Override
     public Object getData (IStructureComponent requestingComponent, String propertyRequested) {
-        if (propertyRequested.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) && ( (TileEntityFirePit) parent ).isSlaved())
-            return ( (TileEntityFirePit) parent ).getMasterEntity().getStructureRelevantData().getData(requestingComponent, propertyRequested);
+        if (propertyRequested.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) && ( (TileEntityFirePit) parent ).isSlaved() && ( (TileEntityFirePit) parent ).getStructureData() != null)
+            return ( (TileEntityFirePit) parent ).getStructureData().getData(requestingComponent, propertyRequested);
 
-        if (propertyRequested.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT) && ( (TileEntityFirePit) parent ).isSlaved())
-            return ( (TileEntityFirePit) parent ).getMasterEntity().getStructureRelevantData().getData(requestingComponent, propertyRequested);
+        if (propertyRequested.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT) && ( (TileEntityFirePit) parent ).isSlaved() && ( (TileEntityFirePit) parent ).getStructureData() != null)
+            return ( (TileEntityFirePit) parent ).getStructureData().getData(requestingComponent, propertyRequested);
 
         if (propertyRequested.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME))
             return totalBurningTicksLeft;
@@ -60,10 +60,10 @@ public class FirePitState implements ITileEntityState, IStructureData {
     @Override
     public void setData (IStructureComponent sendingComponent, String propertySend, Object data) {
         if (propertySend.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) && ( (TileEntityFirePit) parent ).isSlaved())
-            ( (TileEntityFirePit) parent ).getMasterEntity().getStructureRelevantData().setData(sendingComponent, propertySend, data);
+            ( (TileEntityFirePit) parent ).getStructureData().setData(sendingComponent, propertySend, data);
 
         if (propertySend.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT) && ( (TileEntityFirePit) parent ).isSlaved())
-            ( (TileEntityFirePit) parent ).getMasterEntity().getStructureRelevantData().setData(sendingComponent, propertySend, data);
+            ( (TileEntityFirePit) parent ).getStructureData().setData(sendingComponent, propertySend, data);
 
         if (propertySend.equals(References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME))
             totalBurningTicksLeft = (Float) data;

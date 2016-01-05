@@ -25,10 +25,7 @@ import com.SmithsModding.SmithsCore.Common.Fluid.*;
 import com.SmithsModding.SmithsCore.Common.PathFinding.*;
 import com.SmithsModding.SmithsCore.Common.Structures.*;
 import com.SmithsModding.SmithsCore.Common.TileEntity.*;
-import com.SmithsModding.SmithsCore.Network.Structure.Messages.*;
-import com.SmithsModding.SmithsCore.Network.Structure.*;
 import com.SmithsModding.SmithsCore.*;
-import com.SmithsModding.SmithsCore.Util.Common.*;
 import com.SmithsModding.SmithsCore.Util.Common.Postioning.*;
 import com.google.common.base.*;
 import net.minecraft.block.state.*;
@@ -40,7 +37,6 @@ import net.minecraft.tileentity.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.fluids.*;
-import net.minecraftforge.fml.common.network.*;
 
 import java.util.*;
 import java.util.concurrent.*;
@@ -62,13 +58,10 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     private float heatedProcentage;
 
-    private IStructureComponent masterComponent;
-    private ConcurrentHashMap<Coordinate3D, IStructureComponent> slaveComponents;
-    private Cube structureBounds;
-
-    private boolean slavesInitialized = false;
-    private ArrayList<Coordinate3D> slaveCoordinates = new ArrayList<Coordinate3D>();
     private Coordinate3D masterCoordinate;
+    private ArrayList<Coordinate3D> slaveCoordinates;
+    private Cube structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
+
 
     /**
      * Constructor for a new FirePit
@@ -205,71 +198,23 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         fuelStacks = new ItemStack[5];
     }
 
-
-    @Override
-    public void readFromNBT (NBTTagCompound compound) {
-        super.readFromNBT(compound);
-
-        readStructureFromNBT(compound);
-    }
-
-    @Override
-    public void writeToNBT (NBTTagCompound compound) {
-        super.writeToNBT(compound);
-
-        writeStructureToNBT(compound);
-    }
-
-    /**
-     * Method called by the synchronization system to send the data to the Client.
-     *
-     * @param synchronizationCompound The NBTTagCompound to write your data to.
-     *
-     * @return A NBTTagCompound containing all the data required for the synchronization of this TE.
-     */
-    @Override
-    public NBTTagCompound writeToSynchronizationCompound (NBTTagCompound synchronizationCompound) {
-        writeToNBT(synchronizationCompound);
-
-        return synchronizationCompound;
-    }
-
-    /**
-     * Method called by the synchronization system to read the data from the Server.
-     *
-     * @param synchronizationCompound The NBTTagCompound to read your data from.
-     */
-    @Override
-    public void readFromSynchronizationCompound (NBTTagCompound synchronizationCompound) {
-        readFromNBT(synchronizationCompound);
-    }
-
     @Override
     public void update () {
-        if (!worldObj.isRemote)
-            Armory.getLogger().info("Ticking Server Side");
-        else
-            Armory.getLogger().info("Ticking Client Side");
-
         Stopwatch updateWatch = Stopwatch.createStarted();
         Stopwatch operationWatch = Stopwatch.createStarted();
 
-        long structureRegenTimeInMs = 0;
+        if (masterCoordinate == null)
+            initiateAsMasterEntity();
+
         long structureHeatFurnaceTimeInMs = 0;
         long structureHeatIngotsTimeInMs = 0;
         long structureMeltIngotsTimeInMs = 0;
         long structureUpdateTimeInMs = 0;
 
-        if (( ( masterCoordinate != null ) && ( masterComponent == null ) ) || ( !slavesInitialized )) {
-            regenStructure();
-            slavesInitialized = true;
+        FirePitState state = (FirePitState) getStructureData();
 
-            structureRegenTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
-            operationWatch = operationWatch.reset();
-            operationWatch.start();
-        }
-
-        FirePitState state = getStructureRelevantData();
+        if (state == null)
+            return;
 
         state.setLastTemperature(state.getCurrentTemperature());
         state.setBurning(false);
@@ -282,13 +227,13 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
         state.setBurning(( (Float) state.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F ));
 
-        //heatIngots();
+        heatIngots();
 
         structureHeatIngotsTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
         operationWatch = operationWatch.reset();
         operationWatch.start();
 
-        //meltIngots();
+        meltIngots();
 
         structureMeltIngotsTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
         operationWatch = operationWatch.reset();
@@ -308,7 +253,6 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
         if (updateWatch.elapsed(TimeUnit.MILLISECONDS) > (50) && SmithsCore.isInDevenvironment()) {
             Armory.getLogger().info("TICK Took extremely long: " + updateWatch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
-            Armory.getLogger().info("   -> Structure regen time:  " + structureRegenTimeInMs + " ms!");
             Armory.getLogger().info("   -> Furnace heat up time:  " + structureHeatFurnaceTimeInMs + " ms!");
             Armory.getLogger().info("   -> Ingot heat up time:    " + structureHeatIngotsTimeInMs + " ms!");
             Armory.getLogger().info("   -> Ingot melt time:       " + structureMeltIngotsTimeInMs + " ms!");
@@ -349,7 +293,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     public void heatFurnace () {
         calculateHeatTerms();
 
-        FirePitState structureState = getStructureRelevantData();
+        FirePitState structureState = (FirePitState) getStructureData();
         FirePitState tileState = (FirePitState) getState();
 
         tileState.setLastAddedHeat(0F);
@@ -562,6 +506,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         return tIngotAmount;
     }
 
+    @Override
     public void queBlockModelUpdateOnClients () {
         if (isSlaved())
             return;
@@ -571,8 +516,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             this.onUpdateBlock();
         }
 
-        for (IStructureComponent component : slaveComponents.values()) {
-            IBlockModelUpdatingTileEntity tileEntity = (IBlockModelUpdatingTileEntity) component;
+        for (Coordinate3D slaveLocation : slaveCoordinates) {
+            IBlockModelUpdatingTileEntity tileEntity = (IBlockModelUpdatingTileEntity) getWorld().getTileEntity(slaveLocation.toBlockPos());
 
             if (tileEntity.shouldUpdateBlock()) {
                 tileEntity.onUpdateBlock();
@@ -580,225 +525,12 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         }
     }
 
-    @Override
-    public String getStructureType () {
-        return References.InternalNames.TileEntities.Structures.FirePit;
-    }
 
-    @Override
-    public ConcurrentHashMap<Coordinate3D, IStructureComponent> getSlaveEntities () {
-        return slaveComponents;
-    }
-
-    @Override
-    public void registerNewSlave (TileEntity pNewSlaveEntity) {
-        if (!( pNewSlaveEntity instanceof IStructureComponent ))
-            return;
-
-        if (!( ( (IStructureComponent) pNewSlaveEntity ).getStructureType().equals(this.getStructureType()) ))
-            return;
-
-        if (slaveComponents.containsKey(new Coordinate3D(pNewSlaveEntity.getPos()))) {
-            return;
-        }
-
-        slaveComponents.put(new Coordinate3D(pNewSlaveEntity.getPos()), (IStructureComponent) pNewSlaveEntity);
-
-        if (structureBounds == null) {
-            structureBounds = new Cube(getPos().getX(), getPos().getY() + 1, getPos().getZ(), 0, 0, 0);
-        }
-
-        if (!structureBounds.ContainsCoordinate(( (IStructureComponent) pNewSlaveEntity ).getLocation())) {
-            structureBounds.IncludeCoordinate(new Coordinate3D(pNewSlaveEntity.getPos()));
-        }
-    }
-
-    @Override
-    public void removeSlave (Coordinate3D pSlaveCoordinate) {
-        slaveComponents.remove(pSlaveCoordinate);
-    }
-
-    @Override
-    public Cube getStructureSpace () {
-        if (isSlaved())
-            return getMasterEntity().getStructureSpace();
-
-        return structureBounds;
-    }
-
-    @Override
-    public void initiateAsMasterEntity () {
-        structureBounds = new Cube(getPos().getX(), getPos().getY() + 1, getPos().getZ(), 0, 0, 0);
-        masterComponent = null;
-        masterCoordinate = null;
-        slaveComponents = new ConcurrentHashMap<Coordinate3D, IStructureComponent>();
-
-        if (getWorld() == null || getPos() == null)
-            return;
-
-        BlockFirePit.setMasterState(true, getWorld(), getPos());
-    }
-
-    @Override
-    public FirePitState getStructureRelevantData () {
-        if (isSlaved())
-            return (FirePitState) getMasterEntity().getStructureRelevantData();
-
-
-        return (FirePitState) getState();
-    }
-
-    @Override
-    public void setStructureData (IStructureData pNewData) {
-        if (isSlaved()) {
-            getMasterEntity().setStructureData(pNewData);
-            return;
-        }
-
-        setState(pNewData);
-    }
-
-
-    @Override
-    public float getDistanceToMasterEntity () {
-        if (!isSlaved())
-            return 0;
-
-        TileEntityFirePit tMasterEntity = (TileEntityFirePit) getMasterEntity();
-
-        return getLocation().getDistanceTo(tMasterEntity.getLocation());
-    }
-
-    @Override
-    public boolean isSlaved () {
-        return masterComponent != null;
-    }
-
-    @Override
-    public IStructureComponent getMasterEntity () {
-        if (masterComponent == null)
-            return this;
-
-        return masterComponent;
-    }
-
-    @Override
-    public void initiateAsSlaveEntity (IStructureComponent pMasterEntity) {
-        masterComponent = pMasterEntity;
-        masterCoordinate = pMasterEntity.getLocation();
-
-        slavesInitialized = true;
-        slaveComponents = null;
-        slaveCoordinates = null;
-
-        if (getWorld() == null || getPos() == null)
-            return;
-
-        BlockFirePit.setMasterState(false, getWorld(), getPos());
-    }
-
-    @Override
-    public boolean countsAsConnectingComponent () {
-        return true;
-    }
-
-
-    @Override
-    public void writeStructureToNBT (NBTTagCompound pTileEntityCompound) {
-        NBTTagCompound tStructureCompound = new NBTTagCompound();
-        tStructureCompound.setBoolean(References.NBTTagCompoundData.TE.Basic.Structures.ISSLAVE, isSlaved());
-
-        if (!isSlaved()) {
-            NBTTagList tSlaveList = new NBTTagList();
-
-            if (slaveComponents == null)
-                slaveComponents = new ConcurrentHashMap<Coordinate3D, IStructureComponent>();
-
-            Iterator<Coordinate3D> coordinate3DIterator = slaveComponents.keySet().iterator();
-
-            while (coordinate3DIterator.hasNext()) {
-                Coordinate3D tSlaveCoord = coordinate3DIterator.next();
-                NBTTagCompound tCoordinateCompound = NBTHelper.writeCoordinate3DToNBT(tSlaveCoord);
-                tSlaveList.appendTag(tCoordinateCompound);
-            }
-
-            tStructureCompound.setTag(References.NBTTagCompoundData.TE.Basic.Structures.COORDINATES, tSlaveList);
-        } else {
-            tStructureCompound.setTag(References.NBTTagCompoundData.TE.Basic.Structures.MASTERTE, NBTHelper.writeCoordinate3DToNBT(masterComponent.getLocation()));
-        }
-
-        pTileEntityCompound.setTag(References.NBTTagCompoundData.TE.Basic.STRUCTUREDATA, tStructureCompound);
-    }
-
-    @Override
-    public void readStructureFromNBT (NBTTagCompound pTileEntityCompound) {
-        NBTTagCompound tStructureCompound = pTileEntityCompound.getCompoundTag(References.NBTTagCompoundData.TE.Basic.STRUCTUREDATA);
-
-        if (tStructureCompound.getBoolean(References.NBTTagCompoundData.TE.Basic.Structures.ISSLAVE)) {
-            masterCoordinate = NBTHelper.readCoordinate3DFromNBT(tStructureCompound.getCompoundTag(References.NBTTagCompoundData.TE.Basic.Structures.MASTERTE));
-            return;
-        }
-
-        initiateAsMasterEntity();
-
-        NBTTagList tSlaveList = tStructureCompound.getTagList(References.NBTTagCompoundData.TE.Basic.Structures.COORDINATES, 10);
-        for (int tTagIndex = 0; tTagIndex < tSlaveList.tagCount(); tTagIndex++) {
-            Coordinate3D tSlaveCoordinate = NBTHelper.readCoordinate3DFromNBT(tSlaveList.getCompoundTagAt(tTagIndex));
-
-            if (slaveComponents.containsKey(tSlaveCoordinate))
-                continue;
-
-            if (slavesInitialized) {
-                registerNewSlave(worldObj.getTileEntity(tSlaveCoordinate.toBlockPos()));
-            } else {
-                slaveCoordinates.add(tSlaveCoordinate);
-            }
-        }
-    }
 
     @Override
     public Coordinate3D getLocation () {
         return new Coordinate3D(getPos());
     }
-
-    public void regenStructure () {
-        if (worldObj.isRemote)
-            return;
-
-        if (masterComponent != null)
-            return;
-
-        if (masterCoordinate != null) {
-            TileEntity tMasterEntity = worldObj.getTileEntity(masterCoordinate.toBlockPos());
-            if (tMasterEntity == null)
-                return;
-
-            initiateAsSlaveEntity((IStructureComponent) tMasterEntity);
-            StructureNetworkManager.getInstance().sendToAllAround(new MessageOnCreateSlaveEntity(this, (IStructureComponent) tMasterEntity), new NetworkRegistry.TargetPoint(worldObj.provider.getDimensionId(), (double) this.getPos().getX(), (double) this.getPos().getY(), (double) this.getPos().getZ(), 128));
-            return;
-        }
-
-        initiateAsMasterEntity();
-
-        for (Coordinate3D tStoredCoordinate : slaveCoordinates) {
-            TileEntity tSlaveEntity = worldObj.getTileEntity(tStoredCoordinate.toBlockPos());
-
-            if (tSlaveEntity == null) {
-                Armory.getLogger().error("Failed to reregister a TE from NBT. No TE exists on the stored coordinates!");
-                continue;
-            }
-
-            ( (IStructureComponent) tSlaveEntity ).initiateAsSlaveEntity(this);
-            try {
-                this.registerNewSlave(tSlaveEntity);
-                StructureNetworkManager.getInstance().sendToAllAround(new MessageOnCreateSlaveEntity((IStructureComponent) tSlaveEntity, this), new NetworkRegistry.TargetPoint(tSlaveEntity.getWorld().provider.getDimensionId(), (double) tSlaveEntity.getPos().getX(), (double) tSlaveEntity.getPos().getY(), (double) tSlaveEntity.getPos().getZ(), 128));
-            } catch (Exception IAEx) {
-                continue;
-            }
-        }
-        StructureNetworkManager.getInstance().sendToAllAround(new MessageOnUpdateMasterData(this), new NetworkRegistry.TargetPoint(getWorld().provider.getDimensionId(), (double) getPos().getX(), (double) getPos().getY(), (double) getPos().getZ(), 128));
-    }
-
 
     @Override
     public ArrayList<IPathComponent> getValidPathableNeighborComponents () {
@@ -812,7 +544,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
             if (!( tNeighborEntity instanceof IStructureComponent ))
                 continue;
 
-            if (!( (IStructureComponent) tNeighborEntity ).getStructureType().equals(getStructureType()))
+            if (!( (IStructureComponent) tNeighborEntity ).getStructureTypeUniqueID().equals(getStructureTypeUniqueID()))
                 continue;
 
             if (!( (IStructureComponent) tNeighborEntity ).countsAsConnectingComponent())
@@ -886,14 +618,137 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         if (!( blockState.getBlock() instanceof BlockFirePit ))
             return false;
 
-        return blockState.getValue(BlockFirePit.BURNING) != getStructureRelevantData().isBurning();
+        return blockState.getValue(BlockFirePit.BURNING) != ( (FirePitState) getStructureData() ).isBurning();
     }
 
     @Override
     public void onUpdateBlock () {
-        if (worldObj.isRemote)
+        if (!worldObj.isRemote) {
             return;
+        }
 
-        BlockFirePit.setBurningState(getStructureRelevantData().isBurning(), getWorld(), getPos());
+        BlockFirePit.setBurningState(( (FirePitState) getStructureData() ).isBurning(), getWorld(), getPos());
+    }
+
+    @Override
+    public String getStructureTypeUniqueID () {
+        return References.InternalNames.TileEntities.Structures.FirePit;
+    }
+
+    @Override
+    public Cube getStructureBoundingBox () {
+        if (isSlaved())
+            return ( (IStructureComponent) getWorld().getTileEntity(getMasterLocation().toBlockPos()) ).getStructureBoundingBox();
+
+        return structureBounds;
+    }
+
+    @Override
+    public boolean countsAsConnectingComponent () {
+        return true;
+    }
+
+    @Override
+    public IStructureData getStructureData () {
+        if (!isSlaved())
+            return (IStructureData) getState();
+
+        if (getWorld().getTileEntity(masterCoordinate.toBlockPos()) == null)
+            return null;
+
+        return ( (IStructureComponent) getWorld().getTileEntity(masterCoordinate.toBlockPos()) ).getStructureData();
+    }
+
+    @Override
+    public void initiateAsMasterEntity () {
+        masterCoordinate = getLocation();
+        slaveCoordinates = new ArrayList<Coordinate3D>();
+        structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
+
+        BlockFirePit.setMasterState(true, getWorld(), getPos());
+
+        queBlockModelUpdateOnClients();
+    }
+
+    @Override
+    public void initiateAsSlaveEntity (Coordinate3D masterLocation) {
+        masterCoordinate = masterLocation;
+        slaveCoordinates = new ArrayList<Coordinate3D>();
+        structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
+
+        BlockFirePit.setMasterState(false, getWorld(), getPos());
+    }
+
+    @Override
+    public ArrayList<Coordinate3D> getSlaveCoordinates () {
+        if (isSlaved())
+            return ( (IStructureComponent) getWorld().getTileEntity(getMasterLocation().toBlockPos()) ).getSlaveCoordinates();
+
+        return slaveCoordinates;
+    }
+
+    @Override
+    public void setSlaveCoordinates (ArrayList<Coordinate3D> newSlaveCoordinates) {
+        if (isSlaved()) {
+            return;
+        }
+
+        slaveCoordinates = newSlaveCoordinates;
+        rebuildBoundingBox();
+    }
+
+    @Override
+    public void registerNewSlave (Coordinate3D newSlaveLocation) {
+        if (isSlaved()) {
+            ( (IStructureComponent) getWorld().getTileEntity(getMasterLocation().toBlockPos()) ).registerNewSlave(newSlaveLocation);
+        }
+
+        slaveCoordinates.add(newSlaveLocation);
+
+        getStructureBoundingBox().IncludeCoordinate(newSlaveLocation);
+
+        queBlockModelUpdateOnClients();
+    }
+
+    @Override
+    public void removeSlave (Coordinate3D slaveLocation) {
+        if (isSlaved()) {
+            ( (IStructureComponent) getWorld().getTileEntity(getMasterLocation().toBlockPos()) ).removeSlave(slaveLocation);
+        }
+
+        slaveCoordinates.remove(slaveLocation);
+        rebuildBoundingBox();
+
+        queBlockModelUpdateOnClients();
+    }
+
+    @Override
+    public boolean isSlaved () {
+        if (masterCoordinate == null || getLocation() == null)
+            return false;
+
+        return !masterCoordinate.equals(getLocation());
+    }
+
+    @Override
+    public float getDistanceToMasterEntity () {
+        return getLocation().getDistanceTo(getMasterLocation());
+    }
+
+    @Override
+    public Coordinate3D getMasterLocation () {
+        return masterCoordinate;
+    }
+
+    @Override
+    public void setMasterLocation (Coordinate3D newMasterLocation) {
+        masterCoordinate = newMasterLocation;
+    }
+
+    private void rebuildBoundingBox () {
+        structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
+
+        for (Coordinate3D coordinate3D : slaveCoordinates)
+            structureBounds.IncludeCoordinate(coordinate3D);
     }
 }
