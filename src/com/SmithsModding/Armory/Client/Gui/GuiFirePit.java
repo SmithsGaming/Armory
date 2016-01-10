@@ -6,16 +6,12 @@ import com.SmithsModding.SmithsCore.Client.GUI.Components.Core.*;
 import com.SmithsModding.SmithsCore.Client.GUI.Components.Implementations.*;
 import com.SmithsModding.SmithsCore.Client.GUI.*;
 import com.SmithsModding.SmithsCore.Client.GUI.Host.*;
-import com.SmithsModding.SmithsCore.Client.GUI.Ledgers.Core.*;
-import com.SmithsModding.SmithsCore.Client.GUI.Management.*;
 import com.SmithsModding.SmithsCore.Client.GUI.State.*;
 import com.SmithsModding.SmithsCore.Common.Inventory.*;
 import com.SmithsModding.SmithsCore.Util.Client.Color.*;
 import com.SmithsModding.SmithsCore.Util.Client.*;
 import com.SmithsModding.SmithsCore.Util.Common.Postioning.*;
 import net.minecraft.inventory.*;
-
-import java.util.*;
 
 /**
  * Created by Marc on 22.12.2015.
@@ -57,35 +53,5 @@ public class GuiFirePit extends GuiContainerSmithsCore {
     @Override
     public void registerLedgers (IGUIBasedLedgerHost parent) {
 
-    }
-
-    /**
-     * Method used to register a new Component to this Host.
-     *
-     * @param ledger The new component.
-     */
-    @Override
-    public void registerNewLedger (IGUILedger ledger) {
-
-    }
-
-    /**
-     * Function to get all the Components registered to this Host.
-     *
-     * @return A ID to ledger map that holds all the Components (but not their SubComponents) of this Host.
-     */
-    @Override
-    public LinkedHashMap<String, IGUILedger> getAllLedgers () {
-        return null;
-    }
-
-    /**
-     * Method to get the LedgerManager for this host.
-     *
-     * @return The LedgerManager of this host.
-     */
-    @Override
-    public ILedgerManager getLedgerManager () {
-        return null;
     }
 }
