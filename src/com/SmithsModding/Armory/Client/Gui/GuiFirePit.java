@@ -6,12 +6,16 @@ import com.SmithsModding.SmithsCore.Client.GUI.Components.Core.*;
 import com.SmithsModding.SmithsCore.Client.GUI.Components.Implementations.*;
 import com.SmithsModding.SmithsCore.Client.GUI.*;
 import com.SmithsModding.SmithsCore.Client.GUI.Host.*;
+import com.SmithsModding.SmithsCore.Client.GUI.Ledgers.Core.*;
+import com.SmithsModding.SmithsCore.Client.GUI.Ledgers.Implementations.*;
 import com.SmithsModding.SmithsCore.Client.GUI.State.*;
 import com.SmithsModding.SmithsCore.Common.Inventory.*;
 import com.SmithsModding.SmithsCore.Util.Client.Color.*;
 import com.SmithsModding.SmithsCore.Util.Client.*;
 import com.SmithsModding.SmithsCore.Util.Common.Postioning.*;
 import net.minecraft.inventory.*;
+
+import java.util.*;
 
 /**
  * Created by Marc on 22.12.2015.
@@ -52,6 +56,11 @@ public class GuiFirePit extends GuiContainerSmithsCore {
      */
     @Override
     public void registerLedgers (IGUIBasedLedgerHost parent) {
+        ArrayList<String> information = new ArrayList<String>();
 
+        information.add("test");
+        information.add("Lorei ipsum");
+
+        registerNewLedger(new InformationLedger(getID() + ".Ledgers.Information", this, LedgerConnectionSide.LEFT, "FirePit", new MinecraftColor(MinecraftColor.YELLOW), information));
     }
 }

@@ -1,19 +1,15 @@
 package com.SmithsModding.Armory;
 
-import com.SmithsModding.Armory.Common.ArmoryCommonProxy;
-import com.SmithsModding.Armory.Common.Logic.ArmoryInitializer;
-import com.SmithsModding.Armory.Util.References;
-import com.google.common.base.Stopwatch;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.SmithsModding.Armory.Common.*;
+import com.SmithsModding.Armory.Common.Logic.*;
+import com.SmithsModding.Armory.Util.*;
+import com.google.common.base.*;
+import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.relauncher.*;
+import org.apache.logging.log4j.*;
 
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * Base class for Armory
@@ -22,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 @Mod(modid = References.General.MOD_ID, name = "Armory", version = References.General.VERSION,
-        dependencies = "required-after:Forge@[10.13,);after:TConstruct")
+        dependencies = "required-after:Forge@[11.15,);required-after:SmithsCore;")
 public class Armory {
     // Instance of this mod use for internal and Forge references
     @Mod.Instance(References.General.MOD_ID)
