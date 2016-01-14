@@ -62,5 +62,7 @@ public class GuiFirePit extends GuiContainerSmithsCore {
         information.add("Lorei ipsum");
 
         registerNewLedger(new InformationLedger(getID() + ".Ledgers.Information", this, LedgerConnectionSide.LEFT, "FirePit", new MinecraftColor(MinecraftColor.YELLOW), information));
+        registerNewLedger(new InformationLedger(getID() + ".Ledgers.Information2", this, LedgerConnectionSide.LEFT, "FirePit", new MinecraftColor(MinecraftColor.ORANGE), information));
+        registerNewLedger(new InformationLedger(getID() + ".Ledgers.Information3", this, LedgerConnectionSide.LEFT, "FirePit", new MinecraftColor(MinecraftColor.RED), information));
     }
 }

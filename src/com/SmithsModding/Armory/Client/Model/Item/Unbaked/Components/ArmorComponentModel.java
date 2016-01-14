@@ -113,18 +113,9 @@ public class ArmorComponentModel extends ItemLayerModel implements IModelPart {
                     quads.add(ModelHelper.colorQuad(color, quad));
                 }
 
-                //Now we redo the process of creating a baked model, but this time we use the colored quads.
-                if (state instanceof IPerspectiveState) {
-                    IPerspectiveState ps = (IPerspectiveState) state;
-                    Map<ItemCameraTransforms.TransformType, TRSRTransformation> map = Maps.newHashMap();
-                    for (ItemCameraTransforms.TransformType type : ItemCameraTransforms.TransformType.values()) {
-                        map.put(type, ps.forPerspective(type).apply(Optional.of(this)).get());
-                    }
-                    bakedModel2 =
-                            new ItemLayerModel.BakedModel(quads.build(), bakedModel2.getParticleTexture(), bakedModel2.getFormat());
-                } else {
+
                     bakedModel2 = new ItemLayerModel.BakedModel(quads.build(), bakedModel2.getParticleTexture(), bakedModel2.getFormat());
-                }
+
             }
 
             bakedMaterialModel.addMaterialModel(material, bakedModel2);

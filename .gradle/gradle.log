@@ -1,5 +1,5 @@
 #################################################
-         ForgeGradle 2.1-SNAPSHOT-9fb7522        
+         ForgeGradle 2.1-SNAPSHOT-8e42161        
   https://github.com/MinecraftForge/ForgeGradle  
 #################################################
                Powered by MCP unknown               
@@ -11,33 +11,42 @@ Found AccessTransformer: Armory_at.cfg
 :deobfCompileDummyTask
 :deobfProvidedDummyTask
 :getVersionJson
-:extractUserdev UP-TO-DATE
+:extractUserdev
 :extractDependencyATs SKIPPED
 :extractMcpData SKIPPED
-:extractMcpMappings SKIPPED
-:genSrgs SKIPPED
+:extractMcpMappings
+Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/mcp_snapshot/20151230-1.8.9/mcp_snapshot-20151230-1.8.9.zip
+:genSrgs
 :downloadClient SKIPPED
 :downloadServer SKIPPED
 :splitServerJar SKIPPED
 :mergeJars SKIPPED
-:deobfMcSRG SKIPPED
-:decompileMc SKIPPED
-:fixMcSources SKIPPED
+:deobfMcSRG
+Applying SpecialSource...
+Applying Exceptor...
+:decompileMc
+Download https://libraries.minecraft.net/com/mojang/realms/1.7.48/realms-1.7.48.pom
+Download https://libraries.minecraft.net/com/mojang/realms/1.7.48/realms-1.7.48.jar
+:fixMcSources
 :applySourcePatches
-:remapMcSources SKIPPED
-:recompileMc SKIPPED
+:remapMcSources
+:recompileMc
 :extractNatives SKIPPED
 :getAssetIndex UP-TO-DATE
 :getAssets
+Current status: 207/734   28%
+Current status: 456/734   62%
+Current status: 578/734   78%
 :makeStart
-[ant:javac] warning: [options] bootstrap class path not set in conjunction with -source 1.6
-[ant:javac] 1 warning
 :setupDecompWorkspace
 :ideaModule
+Download http://mavenrepo.smithscore.orionminecraft.com/com/SmithsModding/SmithsCore/SmithsCore/1.1.0.1-59-SNAPSHOT/SmithsCore-1.1.0.1-59-20151229.183642-1-dev.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/SmithsModding/SmithsCore/SmithsCore/1.1.0.1-59-SNAPSHOT/SmithsCore-1.1.0.1-59-20151229.183642-1-sources.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/SmithsModding/SmithsCore/SmithsCore/1.1.0.1-59-SNAPSHOT/SmithsCore-1.1.0.1-59-20151229.183642-1-javadoc.jar
 :ideaProject
 :ideaWorkspace
 :idea
 
 BUILD SUCCESSFUL
 
-Total time: 28.394 secs
+Total time: 4 mins 37.422 secs
