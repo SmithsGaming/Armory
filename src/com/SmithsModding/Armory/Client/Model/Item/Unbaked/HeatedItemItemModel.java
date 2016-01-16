@@ -4,6 +4,7 @@ import com.SmithsModding.Armory.Client.Model.Item.Baked.Components.*;
 import com.SmithsModding.Armory.Client.Model.Item.Baked.HeatedItem.*;
 import com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components.*;
 import com.google.common.base.*;
+import com.google.common.base.Optional;
 import com.google.common.collect.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.vertex.*;
