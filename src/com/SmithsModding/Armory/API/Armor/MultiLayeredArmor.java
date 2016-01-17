@@ -1,12 +1,12 @@
-package com.SmithsModding.Armory.API.Armor;
+package com.smithsmodding.Armory.API.Armor;
 /*
 *   MultiLayeredArmor
 *   Created by: Orion
 *   Created on: 28-6-2014
 */
 
-import com.SmithsModding.Armory.Client.Model.Entity.*;
-import com.SmithsModding.Armory.Common.Registry.*;
+import com.smithsmodding.Armory.Client.Model.Entity.*;
+import com.smithsmodding.Armory.Common.Registry.*;
 import net.minecraft.client.model.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;

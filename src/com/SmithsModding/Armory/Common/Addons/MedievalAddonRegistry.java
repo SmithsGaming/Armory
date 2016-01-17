@@ -1,9 +1,9 @@
-package com.SmithsModding.Armory.Common.Addons;
+package com.smithsmodding.Armory.Common.Addons;
 
-import com.SmithsModding.Armory.API.Armor.*;
-import com.SmithsModding.Armory.API.Materials.*;
-import com.SmithsModding.Armory.API.Registries.*;
-import com.SmithsModding.Armory.Common.Material.*;
+import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.API.Registries.*;
+import com.smithsmodding.Armory.Common.Material.*;
 
 import java.util.*;
 

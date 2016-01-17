@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.API.Textures;
+package com.smithsmodding.Armory.API.Textures;
 
 /*
   A BIG NOTE UPFRONT. Due to the similarities between TiC ToolSystem and Armories Armor system this is a near repackage.
@@ -6,24 +6,17 @@ package com.SmithsModding.Armory.API.Textures;
   of Wrapper classes instead of direct access.
  */
 
-import com.SmithsModding.Armory.Armory;
-import com.google.common.collect.Lists;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.texture.TextureUtil;
-import net.minecraft.client.resources.IResource;
-import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.client.resources.data.AnimationMetadataSection;
-import net.minecraft.client.resources.data.TextureMetadataSection;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
+import com.google.common.collect.*;
+import com.smithsmodding.Armory.*;
+import net.minecraft.client.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.client.resources.*;
+import net.minecraft.client.resources.data.*;
+import net.minecraft.util.*;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.awt.image.*;
+import java.io.*;
+import java.util.*;
 
 /**
  * Custom base class for textures used in armory.

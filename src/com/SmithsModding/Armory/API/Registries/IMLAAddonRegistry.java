@@ -1,8 +1,8 @@
-package com.SmithsModding.Armory.API.Registries;
+package com.smithsmodding.Armory.API.Registries;
 
-import com.SmithsModding.Armory.API.Armor.MLAAddon;
+import com.smithsmodding.Armory.API.Armor.*;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by Orion

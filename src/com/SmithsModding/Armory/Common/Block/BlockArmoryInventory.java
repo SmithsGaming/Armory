@@ -4,7 +4,7 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.SmithsModding.Armory.Common.Block;
+package com.smithsmodding.Armory.Common.Block;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.*;

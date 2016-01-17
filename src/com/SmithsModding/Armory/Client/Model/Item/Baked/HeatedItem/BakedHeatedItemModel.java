@@ -1,9 +1,9 @@
-package com.SmithsModding.Armory.Client.Model.Item.Baked.HeatedItem;
+package com.smithsmodding.Armory.Client.Model.Item.Baked.HeatedItem;
 
-import com.SmithsModding.Armory.Client.Model.Item.Baked.Components.*;
-import com.SmithsModding.Armory.Common.Factory.*;
-import com.SmithsModding.Armory.Common.Item.*;
 import com.google.common.collect.*;
+import com.smithsmodding.Armory.Client.Model.Item.Baked.Components.*;
+import com.smithsmodding.Armory.Common.Factory.*;
+import com.smithsmodding.Armory.Common.Item.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.resources.model.*;

@@ -1,16 +1,12 @@
-package com.SmithsModding.Armory.Client.Model.Item.Unbaked;
+package com.smithsmodding.Armory.Client.Model.Item.Unbaked;
 
-import com.google.common.base.Function;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.IFlexibleBakedModel;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.IModelState;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
+import com.google.common.base.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.client.renderer.vertex.*;
+import net.minecraft.util.*;
+import net.minecraftforge.client.model.*;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 /**
  * Dummy Model to be returned on the initial load to silence the missing model messages.

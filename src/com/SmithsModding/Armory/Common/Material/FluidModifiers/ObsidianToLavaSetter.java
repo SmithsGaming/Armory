@@ -1,11 +1,9 @@
-package com.SmithsModding.Armory.Common.Material.FluidModifiers;
+package com.smithsmodding.Armory.Common.Material.FluidModifiers;
 
-import com.SmithsModding.Armory.API.Events.Common.HeatableItemRegisteredEvent;
-import com.SmithsModding.Armory.Util.References;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import com.smithsmodding.Armory.API.Events.Common.*;
+import com.smithsmodding.Armory.Util.*;
+import net.minecraftforge.fluids.*;
+import net.minecraftforge.fml.common.eventhandler.*;
 
 /**
  * Created by marcf on 12/21/2015.

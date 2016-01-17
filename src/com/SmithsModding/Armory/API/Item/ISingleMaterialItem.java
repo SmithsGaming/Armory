@@ -1,6 +1,6 @@
-package com.SmithsModding.Armory.API.Item;
+package com.smithsmodding.Armory.API.Item;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 
 /**
  * Created by Marc on 06.12.2015.

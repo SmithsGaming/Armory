@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.Client.Model.Item.Baked.HeatedItem;
+package com.smithsmodding.Armory.Client.Model.Item.Baked.HeatedItem;
 
 import com.google.common.collect.*;
 import net.minecraft.client.renderer.block.model.*;

@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.API.Armor;
+package com.smithsmodding.Armory.API.Armor;
 /*
 *   ArmorAddonPosition
 *   Created by: Orion

@@ -1,9 +1,9 @@
-package com.SmithsModding.Armory.Client.Model.Item.Baked.Components;
+package com.smithsmodding.Armory.Client.Model.Item.Baked.Components;
 
-import com.SmithsModding.Armory.API.Armor.*;
-import com.SmithsModding.Armory.API.Item.*;
-import com.SmithsModding.Armory.API.Materials.*;
-import com.SmithsModding.Armory.Common.Material.*;
+import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.Armory.API.Item.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.Common.Material.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.item.*;
 import net.minecraftforge.client.model.*;

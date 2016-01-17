@@ -5,7 +5,7 @@
  * <p/>
  * Copyrighted according to Project specific license
  */
-@API(owner = "Armory", apiVersion = References.General.API_VERSION, provides = "Armory-API|Events|Client") package com.SmithsModding.Armory.API.Events.Client;
+@API(owner = "Armory", apiVersion = References.General.API_VERSION, provides = "Armory-API|Events|Client") package com.smithsmodding.Armory.API.Events.Client;
 
-import com.SmithsModding.Armory.Util.References;
-import net.minecraftforge.fml.common.API;
+import com.smithsmodding.Armory.Util.*;
+import net.minecraftforge.fml.common.*;

@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.Common.Handlers;
+package com.smithsmodding.Armory.Common.Handlers;
 /*
  *   GuiHandler
  *   Created by: Orion
@@ -6,10 +6,10 @@ package com.SmithsModding.Armory.Common.Handlers;
  */
 
 
-import com.SmithsModding.Armory.Client.Gui.*;
-import com.SmithsModding.Armory.Common.Inventory.*;
-import com.SmithsModding.Armory.Common.TileEntity.*;
-import com.SmithsModding.Armory.Util.*;
+import com.smithsmodding.Armory.Client.Gui.*;
+import com.smithsmodding.Armory.Common.Inventory.*;
+import com.smithsmodding.Armory.Common.TileEntity.*;
+import com.smithsmodding.Armory.Util.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;

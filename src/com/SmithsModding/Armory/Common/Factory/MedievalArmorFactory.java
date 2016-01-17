@@ -1,20 +1,17 @@
-package com.SmithsModding.Armory.Common.Factory;
+package com.smithsmodding.Armory.Common.Factory;
 /*
 /  StandardMLAFactory
 /  Created by : Orion
 /  Created on : 04/07/2014
 */
 
-import com.SmithsModding.Armory.API.Armor.MLAAddon;
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.Util.Armor.ArmorNBTHelper;
-import com.SmithsModding.Armory.Util.References;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.Armory.Util.Armor.*;
+import com.smithsmodding.Armory.Util.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class MedievalArmorFactory implements IMLAFactory {
     private static MedievalArmorFactory iInstance;

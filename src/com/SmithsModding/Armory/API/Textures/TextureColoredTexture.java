@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.API.Textures;
+package com.smithsmodding.Armory.API.Textures;
 
 /*
   A BIG NOTE UPFRONT. Due to the similarities between TiC ToolSystem and Armories Armor system this is a near repackage.
@@ -6,9 +6,9 @@ package com.SmithsModding.Armory.API.Textures;
   of Wrapper classes instead of direct access.
  */
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.util.*;
 
 public class TextureColoredTexture extends AbstractColoredTexture {
 

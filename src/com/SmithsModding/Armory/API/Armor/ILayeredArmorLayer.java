@@ -1,8 +1,7 @@
-package com.SmithsModding.Armory.API.Armor;
+package com.smithsmodding.Armory.API.Armor;
 
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.util.*;
+import net.minecraftforge.fml.relauncher.*;
 
 /**
  * Created by Marc on 06.12.2015.

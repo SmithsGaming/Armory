@@ -1,9 +1,9 @@
-package com.SmithsModding.Armory.Common.Fluid;
+package com.smithsmodding.Armory.Common.Fluid;
 
-import com.SmithsModding.Armory.API.Materials.*;
-import com.SmithsModding.Armory.Common.Material.*;
-import com.SmithsModding.Armory.Util.Client.*;
-import com.SmithsModding.Armory.Util.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.Armory.Util.Client.*;
+import com.smithsmodding.Armory.Util.*;
 import net.minecraft.util.*;
 import net.minecraftforge.fluids.*;
 

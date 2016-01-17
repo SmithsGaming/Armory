@@ -1,6 +1,6 @@
-package com.SmithsModding.Armory.API.Materials;
+package com.smithsmodding.Armory.API.Materials;
 
-import com.SmithsModding.Armory.API.Registries.*;
+import com.smithsmodding.Armory.API.Registries.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 

@@ -1,6 +1,6 @@
-package com.SmithsModding.Armory.Util.Client;
+package com.smithsmodding.Armory.Util.Client;
 
-import com.SmithsModding.Armory.Util.*;
+import com.smithsmodding.Armory.Util.*;
 
 /**
  * Created by Orion

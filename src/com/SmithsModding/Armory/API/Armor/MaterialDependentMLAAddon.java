@@ -1,6 +1,6 @@
-package com.SmithsModding.Armory.API.Armor;
+package com.smithsmodding.Armory.API.Armor;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 
 /**
  * Created by Marc on 07.12.2015.

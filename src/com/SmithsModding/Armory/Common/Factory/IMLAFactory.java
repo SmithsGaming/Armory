@@ -1,15 +1,14 @@
-package com.SmithsModding.Armory.Common.Factory;
+package com.smithsmodding.Armory.Common.Factory;
 /*
 /  IMLAFactory
 /  Created by : Orion
 /  Created on : 03/07/2014
 */
 
-import com.SmithsModding.Armory.API.Armor.MLAAddon;
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import net.minecraft.item.ItemStack;
+import com.smithsmodding.Armory.API.Armor.*;
+import net.minecraft.item.*;
 
-import java.util.HashMap;
+import java.util.*;
 
 public interface IMLAFactory {
     /**

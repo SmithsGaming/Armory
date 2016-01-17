@@ -1,6 +1,6 @@
-package com.SmithsModding.Armory.API.Registries;
+package com.smithsmodding.Armory.API.Registries;
 
-import com.SmithsModding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.API.Materials.*;
 import net.minecraftforge.fluids.*;
 
 /**

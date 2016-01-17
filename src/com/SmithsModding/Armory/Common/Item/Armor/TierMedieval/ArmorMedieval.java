@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.Common.Item.Armor.TierMedieval;
+package com.smithsmodding.Armory.Common.Item.Armor.TierMedieval;
 
 /*
  *   ArmorMedieval
@@ -6,13 +6,13 @@ package com.SmithsModding.Armory.Common.Item.Armor.TierMedieval;
  *   Created on: 24-9-2014
  */
 
-import com.SmithsModding.Armory.API.Armor.*;
-import com.SmithsModding.Armory.API.Materials.*;
-import com.SmithsModding.Armory.Common.Addons.*;
-import com.SmithsModding.Armory.Common.Factory.*;
-import com.SmithsModding.Armory.Common.Material.*;
-import com.SmithsModding.Armory.Util.Armor.*;
-import com.SmithsModding.Armory.Util.*;
+import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.Common.Addons.*;
+import com.smithsmodding.Armory.Common.Factory.*;
+import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.Armory.Util.Armor.*;
+import com.smithsmodding.Armory.Util.*;
 import net.minecraft.creativetab.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;

@@ -4,9 +4,9 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.SmithsModding.Armory.API.Knowledge;
+package com.smithsmodding.Armory.API.Knowledge;
 
-import com.SmithsModding.Armory.Common.Item.Knowledge.*;
+import com.smithsmodding.Armory.Common.Item.Knowledge.*;
 import net.minecraft.item.*;
 
 import java.util.*;

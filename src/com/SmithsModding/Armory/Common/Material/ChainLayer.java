@@ -1,7 +1,7 @@
-package com.SmithsModding.Armory.Common.Material;
+package com.smithsmodding.Armory.Common.Material;
 
-import com.SmithsModding.Armory.API.Armor.MaterialDependentMLAAddon;
-import net.minecraft.util.ResourceLocation;
+import com.smithsmodding.Armory.API.Armor.*;
+import net.minecraft.util.*;
 
 /**
  * Created by Marc on 06.12.2015.

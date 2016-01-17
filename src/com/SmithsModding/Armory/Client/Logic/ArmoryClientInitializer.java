@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.Client.Logic;
+package com.smithsmodding.Armory.Client.Logic;
 
 /*
  *   ArmoryClientInitializer
@@ -6,14 +6,14 @@ package com.SmithsModding.Armory.Client.Logic;
  *   Created on: 19-9-2014
  */
 
-import com.SmithsModding.Armory.API.Armor.*;
-import com.SmithsModding.Armory.API.Materials.*;
-import com.SmithsModding.Armory.*;
-import com.SmithsModding.Armory.Client.*;
-import com.SmithsModding.Armory.Common.Logic.*;
-import com.SmithsModding.Armory.Common.Material.*;
-import com.SmithsModding.Armory.Common.Registry.*;
-import com.SmithsModding.Armory.Util.*;
+import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.Armory.Client.*;
+import com.smithsmodding.Armory.Common.Logic.*;
+import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.Armory.Common.Registry.*;
+import com.smithsmodding.Armory.Util.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.item.*;
 import net.minecraftforge.client.model.*;

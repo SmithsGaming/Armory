@@ -19,7 +19,7 @@ buildscript {
 
 repositories {
     maven {
-        name = "SmithsCore"
+        name = "smithscore"
         url = "http://mavenrepo.smithscore.orionminecraft.com/"
     }
 }
@@ -62,7 +62,7 @@ if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
     apiversion = apiversion + "-SNAPSHOT"
 }
 
-group = "com.SmithsModding.Armory"
+group = "com.smithsmodding.Armory"
 archivesBaseName = "Armory"
 
 minecraft {
@@ -79,7 +79,7 @@ minecraft {
 
 dependencies {
     //Mod dependencies
-    compile group: 'com.SmithsModding.SmithsCore', name: 'SmithsCore', version: config.smithscore_version, classifier: 'dev'
+    compile group: 'com.smithsmodding.smithscore', name: 'smithscore', version: config.smithscore_version, classifier: 'dev'
 
     //Maven uploader
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.8'

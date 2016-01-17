@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.API.Materials;
+package com.smithsmodding.Armory.API.Materials;
 
 /**
  * Created by Orion

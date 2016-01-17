@@ -1,12 +1,12 @@
-package com.SmithsModding.Armory.Common.Inventory.Slots;
+package com.smithsmodding.Armory.Common.Inventory.Slots;
 /*
  *   SlotHeatable
  *   Created by: Orion
  *   Created on: 18-1-2015
  */
 
-import com.SmithsModding.Armory.Common.Item.*;
-import com.SmithsModding.Armory.Common.Registry.*;
+import com.smithsmodding.Armory.Common.Item.*;
+import com.smithsmodding.Armory.Common.Registry.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 

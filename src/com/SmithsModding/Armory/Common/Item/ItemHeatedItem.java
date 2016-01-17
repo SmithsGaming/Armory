@@ -1,16 +1,16 @@
-package com.SmithsModding.Armory.Common.Item;
+package com.smithsmodding.Armory.Common.Item;
 /*
 /  ItemHeatedItem
 /  Created by : Orion
 /  Created on : 03/10/2014
 */
 
-import com.SmithsModding.Armory.*;
-import com.SmithsModding.Armory.Common.Factory.*;
-import com.SmithsModding.Armory.Common.Material.*;
-import com.SmithsModding.Armory.Common.Registry.*;
-import com.SmithsModding.Armory.Util.Client.*;
-import com.SmithsModding.Armory.Util.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.Armory.Common.Factory.*;
+import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.Armory.Common.Registry.*;
+import com.smithsmodding.Armory.Util.Client.*;
+import com.smithsmodding.Armory.Util.*;
 import net.minecraft.creativetab.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;

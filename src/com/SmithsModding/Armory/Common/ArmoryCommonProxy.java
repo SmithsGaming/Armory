@@ -1,9 +1,9 @@
-package com.SmithsModding.Armory.Common;
+package com.smithsmodding.Armory.Common;
 
 
-import com.SmithsModding.Armory.*;
-import com.SmithsModding.Armory.Common.Handlers.*;
-import com.SmithsModding.Armory.Common.Logic.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.Armory.Common.Handlers.*;
+import com.smithsmodding.Armory.Common.Logic.*;
 import net.minecraft.entity.player.*;
 import net.minecraftforge.fml.common.network.*;
 import net.minecraftforge.fml.common.network.simpleimpl.*;

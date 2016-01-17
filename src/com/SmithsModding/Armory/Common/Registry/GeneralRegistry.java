@@ -1,14 +1,14 @@
-package com.SmithsModding.Armory.Common.Registry;
+package com.smithsmodding.Armory.Common.Registry;
 /*
  *   GeneralRegistry
  *   Created by: Orion
  *   Created on: 24-9-2014
  */
 
-import com.SmithsModding.Armory.Common.Block.*;
-import com.SmithsModding.Armory.Common.Fluid.*;
-import com.SmithsModding.Armory.Common.Item.*;
-import com.SmithsModding.Armory.Common.Item.Knowledge.*;
+import com.smithsmodding.Armory.Common.Block.*;
+import com.smithsmodding.Armory.Common.Fluid.*;
+import com.smithsmodding.Armory.Common.Item.*;
+import com.smithsmodding.Armory.Common.Item.Knowledge.*;
 import net.minecraft.item.*;
 import net.minecraftforge.common.util.*;
 

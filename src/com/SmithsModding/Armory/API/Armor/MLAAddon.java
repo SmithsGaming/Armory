@@ -1,4 +1,4 @@
-package com.SmithsModding.Armory.API.Armor;
+package com.smithsmodding.Armory.API.Armor;
 /*
 /  MLAAddon
 /  Created by : Orion
@@ -6,7 +6,7 @@ package com.SmithsModding.Armory.API.Armor;
 */
 
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 
 public abstract class MLAAddon implements ILayeredArmorLayer {
     protected String uniqueID = "";
