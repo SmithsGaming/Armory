@@ -1,12 +1,14 @@
-package com.SmithsModding.Armory.Util.Client;
+package com.smithsmodding.Armory.Util.Client;
 
-import com.SmithsModding.SmithsCore.Util.Client.Color.MinecraftColor;
+import com.smithsmodding.smithscore.util.client.color.*;
+
+import java.awt.*;
 
 /**
  * Created by Marc on 06.12.2015.
  */
 public class Colors {
-    public static MinecraftColor DEFAULT = (MinecraftColor) MinecraftColor.WHITE;
+    public static MinecraftColor DEFAULT = new MinecraftColor(Color.WHITE);
 
     public static class Metals {
         public static MinecraftColor IRON = new MinecraftColor(255, 255, 255);
