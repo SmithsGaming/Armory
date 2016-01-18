@@ -1,25 +1,20 @@
-package com.SmithsModding.Armory.Util.Armor;
+package com.smithsmodding.Armory.Util.Armor;
 /*
  *   ArmorNBTHelper
  *   Created by: Orion
  *   Created on: 14-9-2014
  */
 
-import com.SmithsModding.Armory.API.Armor.ArmorAddonPosition;
-import com.SmithsModding.Armory.API.Armor.MLAAddon;
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.API.Materials.IArmorMaterial;
-import com.SmithsModding.Armory.Common.Addons.ArmorUpgradeMedieval;
-import com.SmithsModding.Armory.Common.Addons.MedievalAddonRegistry;
-import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
-import com.SmithsModding.Armory.Util.References;
-import com.SmithsModding.SmithsCore.Util.Common.NBTHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.Common.Addons.*;
+import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.smithscore.util.common.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class ArmorNBTHelper {
     public static HashMap<MLAAddon, Integer> getAddonMap(ItemStack pItemStack) {

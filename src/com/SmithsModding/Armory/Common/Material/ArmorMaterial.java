@@ -1,17 +1,17 @@
-package com.SmithsModding.Armory.Common.Material;
+package com.smithsmodding.Armory.Common.Material;
 /*
 *   ArmorMaterial
 *   Created by: Orion
 *   Created on: 6-4-2014
 */
 
-import com.SmithsModding.Armory.API.Materials.*;
-import com.SmithsModding.Armory.API.Registries.*;
-import com.SmithsModding.Armory.*;
-import com.SmithsModding.Armory.Common.Addons.*;
-import com.SmithsModding.Armory.Common.Registry.*;
-import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.Util.Client.Color.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.API.Registries.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.Armory.Common.Addons.*;
+import com.smithsmodding.Armory.Common.Registry.*;
+import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.smithscore.util.client.color.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.*;

@@ -1,9 +1,9 @@
-package com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components;
+package com.smithsmodding.Armory.Client.Model.Item.Unbaked.Components;
 
-import com.SmithsModding.Armory.Client.Model.Item.Baked.Components.*;
-import com.SmithsModding.SmithsCore.Util.Client.*;
 import com.google.common.base.*;
 import com.google.common.collect.*;
+import com.smithsmodding.Armory.Client.Model.Item.Baked.Components.*;
+import com.smithsmodding.smithscore.util.client.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.vertex.*;
 import net.minecraft.util.*;

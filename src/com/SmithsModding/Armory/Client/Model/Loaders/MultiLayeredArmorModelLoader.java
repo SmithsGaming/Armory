@@ -1,29 +1,23 @@
-package com.SmithsModding.Armory.Client.Model.Loaders;
+package com.smithsmodding.Armory.Client.Model.Loaders;
 
 
-import com.SmithsModding.Armory.API.Armor.MultiLayeredArmor;
-import com.SmithsModding.Armory.Armory;
-import com.SmithsModding.Armory.Client.Model.Item.Events.MultiLayeredArmorModelTextureLoadEvent;
-import com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components.ArmorComponentModel;
-import com.SmithsModding.Armory.Client.Model.Item.Unbaked.DummyModel;
-import com.SmithsModding.Armory.Client.Model.Item.Unbaked.MultiLayeredArmorItemModel;
-import com.SmithsModding.Armory.Client.Textures.MaterializedTextureCreator;
-import com.SmithsModding.Armory.Common.Material.MaterialRegistry;
-import com.SmithsModding.SmithsCore.Util.Client.ModelHelper;
-import com.google.common.collect.ImmutableList;
-import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ICustomModelLoader;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
-import org.apache.commons.io.FilenameUtils;
+import com.google.common.collect.*;
+import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.Armory.Client.Model.Item.Events.*;
+import com.smithsmodding.Armory.Client.Model.Item.Unbaked.Components.*;
+import com.smithsmodding.Armory.Client.Model.Item.Unbaked.*;
+import com.smithsmodding.Armory.Client.Textures.*;
+import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.smithscore.util.client.*;
+import net.minecraft.client.resources.*;
+import net.minecraft.util.*;
+import net.minecraftforge.client.model.*;
+import net.minecraftforge.fml.common.*;
+import org.apache.commons.io.*;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 /**
  * Created by Marc on 06.12.2015.

@@ -1,10 +1,10 @@
-package com.SmithsModding.Armory.Client.Model.Item.Baked;
+package com.smithsmodding.Armory.Client.Model.Item.Baked;
 
-import com.SmithsModding.Armory.API.Armor.*;
-import com.SmithsModding.Armory.Client.Model.Item.Baked.Components.*;
-import com.SmithsModding.Armory.Util.Armor.*;
-import com.SmithsModding.SmithsCore.Util.Common.*;
 import com.google.common.collect.*;
+import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.Armory.Client.Model.Item.Baked.Components.*;
+import com.smithsmodding.Armory.Util.Armor.*;
+import com.smithsmodding.smithscore.util.common.*;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.item.*;

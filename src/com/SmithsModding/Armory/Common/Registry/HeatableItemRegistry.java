@@ -1,14 +1,14 @@
-package com.SmithsModding.Armory.Common.Registry;
+package com.smithsmodding.Armory.Common.Registry;
 
-import com.SmithsModding.Armory.API.Events.Common.*;
-import com.SmithsModding.Armory.API.Item.*;
-import com.SmithsModding.Armory.API.Materials.*;
-import com.SmithsModding.Armory.API.Registries.*;
-import com.SmithsModding.Armory.*;
-import com.SmithsModding.Armory.Common.Item.*;
-import com.SmithsModding.Armory.Common.Material.*;
-import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.Util.Common.*;
+import com.smithsmodding.Armory.API.Events.Common.*;
+import com.smithsmodding.Armory.API.Item.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.API.Registries.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.Armory.Common.Item.*;
+import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.smithscore.util.common.*;
 import gnu.trove.map.hash.*;
 import gnu.trove.strategy.*;
 import net.minecraft.item.*;

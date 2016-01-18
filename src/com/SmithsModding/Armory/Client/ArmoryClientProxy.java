@@ -1,15 +1,15 @@
-package com.SmithsModding.Armory.Client;
+package com.smithsmodding.Armory.Client;
 
-import com.SmithsModding.Armory.API.Armor.*;
-import com.SmithsModding.Armory.*;
-import com.SmithsModding.Armory.Client.Logic.*;
-import com.SmithsModding.Armory.Client.Model.Loaders.*;
-import com.SmithsModding.Armory.Client.Textures.*;
-import com.SmithsModding.Armory.Common.*;
-import com.SmithsModding.Armory.Common.Item.*;
-import com.SmithsModding.Armory.Common.Registry.*;
-import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.Util.Client.*;
+import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.Armory.Client.Logic.*;
+import com.smithsmodding.Armory.Client.Model.Loaders.*;
+import com.smithsmodding.Armory.Client.Textures.*;
+import com.smithsmodding.Armory.Common.*;
+import com.smithsmodding.Armory.Common.Item.*;
+import com.smithsmodding.Armory.Common.Registry.*;
+import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.smithscore.util.client.*;
 import net.minecraft.block.*;
 import net.minecraft.block.state.*;
 import net.minecraft.client.*;

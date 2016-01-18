@@ -4,7 +4,7 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.SmithsModding.Armory.API.Entity;
+package com.smithsmodding.Armory.API.Entity;
 
 import net.minecraft.entity.*;
 import net.minecraftforge.common.*;
@@ -53,7 +53,7 @@ public interface ICustomEntityProperty extends IExtendedEntityProperties {
     void loadProxyData ();
 
     /**
-     * Function used to sync the instance of this between Client and Server.
+     * Function used to sync the instance of this between client and Server.
      */
     void syncProperties ();
 }

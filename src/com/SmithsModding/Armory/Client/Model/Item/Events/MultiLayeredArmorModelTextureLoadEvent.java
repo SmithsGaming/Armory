@@ -1,9 +1,9 @@
-package com.SmithsModding.Armory.Client.Model.Item.Events;
+package com.smithsmodding.Armory.Client.Model.Item.Events;
 
-import com.SmithsModding.Armory.API.Armor.*;
-import com.SmithsModding.Armory.*;
-import com.SmithsModding.SmithsCore.Common.Events.*;
-import com.SmithsModding.SmithsCore.Util.Client.*;
+import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.smithscore.common.events.*;
+import com.smithsmodding.smithscore.util.client.*;
 import net.minecraft.util.*;
 
 import java.util.*;

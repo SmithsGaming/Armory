@@ -4,9 +4,9 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.SmithsModding.Armory.Common.TileEntity;
+package com.smithsmodding.Armory.Common.TileEntity;
 
-import com.SmithsModding.SmithsCore.Util.Common.Postioning.*;
+import com.smithsmodding.smithscore.util.common.positioning.*;
 
 public interface IFirePitComponent {
 

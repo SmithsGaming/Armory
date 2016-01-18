@@ -1,13 +1,13 @@
-package com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components;
+package com.smithsmodding.Armory.Client.Model.Item.Unbaked.Components;
 
-import com.SmithsModding.Armory.API.Materials.*;
-import com.SmithsModding.Armory.Client.Model.Item.Baked.Components.*;
-import com.SmithsModding.Armory.Client.Textures.*;
-import com.SmithsModding.Armory.Common.Material.*;
-import com.SmithsModding.SmithsCore.Util.Client.Color.*;
-import com.SmithsModding.SmithsCore.Util.Client.*;
 import com.google.common.base.*;
 import com.google.common.collect.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.Client.Model.Item.Baked.Components.*;
+import com.smithsmodding.Armory.Client.Textures.*;
+import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.smithscore.util.client.*;
+import com.smithsmodding.smithscore.util.client.color.*;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.vertex.*;

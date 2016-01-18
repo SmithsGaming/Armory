@@ -1,18 +1,17 @@
-package com.SmithsModding.Armory.Common.Factory;
+package com.smithsmodding.Armory.Common.Factory;
 /*
 /  HeatedItemFactory
 /  Created by : Orion
 /  Created on : 03/10/2014
 */
 
-import com.SmithsModding.Armory.API.Item.*;
-import com.SmithsModding.Armory.API.Materials.*;
-import com.SmithsModding.Armory.*;
-import com.SmithsModding.Armory.Common.Item.*;
-import com.SmithsModding.Armory.Common.Registry.*;
-import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.*;
-import com.SmithsModding.SmithsCore.Util.Common.*;
+import com.smithsmodding.Armory.API.Item.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.Armory.Common.Item.*;
+import com.smithsmodding.Armory.Common.Registry.*;
+import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.smithscore.util.common.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 
@@ -39,11 +38,6 @@ public class HeatedItemFactory {
     }
 
     public ItemStack convertToHeatedIngot (ItemStack pCooledIngotStack) {
-        if(SmithsCore.isInDevenvironment())
-        {
-            //Armory.getLogger().info("Converting " + ItemStackHelper.toString(pCooledIngotStack) + " to a Heated Stack.");
-        }
-
         if (!HeatableItemRegistry.getInstance().isHeatable(pCooledIngotStack)) {
             Armory.getLogger().info("Got a not convertable item!:");
             Armory.getLogger().info(ItemStackHelper.toString(pCooledIngotStack));

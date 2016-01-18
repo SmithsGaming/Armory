@@ -1,11 +1,11 @@
-package com.SmithsModding.Armory.Common.TileEntity.GUIManagers;
+package com.smithsmodding.Armory.Common.TileEntity.GUIManagers;
 
-import com.SmithsModding.Armory.Common.TileEntity.State.*;
-import com.SmithsModding.Armory.Common.TileEntity.*;
-import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.Client.GUI.Components.Core.*;
-import com.SmithsModding.SmithsCore.Client.GUI.Components.Implementations.*;
-import com.SmithsModding.SmithsCore.Client.GUI.Management.*;
+import com.smithsmodding.Armory.Common.TileEntity.State.*;
+import com.smithsmodding.Armory.Common.TileEntity.*;
+import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.smithscore.client.gui.components.core.*;
+import com.smithsmodding.smithscore.client.gui.components.implementations.*;
+import com.smithsmodding.smithscore.client.gui.management.*;
 
 /**
  * Created by Marc on 25.12.2015.

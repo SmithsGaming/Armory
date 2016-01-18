@@ -1,11 +1,11 @@
-package com.SmithsModding.Armory.Client.Textures;
+package com.smithsmodding.Armory.Client.Textures;
 
-import com.SmithsModding.Armory.API.Materials.*;
-import com.SmithsModding.Armory.API.Textures.*;
-import com.SmithsModding.Armory.*;
-import com.SmithsModding.Armory.Common.Material.*;
-import com.SmithsModding.SmithsCore.Util.Client.*;
 import com.google.common.collect.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.API.Textures.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.smithscore.util.client.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.resources.*;
 import net.minecraft.util.*;

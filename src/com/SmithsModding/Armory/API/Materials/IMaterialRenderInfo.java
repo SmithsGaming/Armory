@@ -1,12 +1,11 @@
-package com.SmithsModding.Armory.API.Materials;
+package com.smithsmodding.Armory.API.Materials;
 
-import com.SmithsModding.Armory.API.Textures.*;
-import com.SmithsModding.SmithsCore.Util.Client.Color.MinecraftColor;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import com.smithsmodding.Armory.API.Textures.*;
+import com.smithsmodding.smithscore.util.client.color.*;
+import net.minecraft.block.*;
+import net.minecraft.client.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraftforge.fml.relauncher.*;
 
 /*
   A BIG NOTE UPFRONT. Due to the similarities between TiC ToolSystem and Armories Armor system this is a near repackage.

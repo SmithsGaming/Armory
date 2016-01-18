@@ -4,17 +4,17 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.SmithsModding.Armory.Common.TileEntity;
+package com.smithsmodding.Armory.Common.TileEntity;
 /*
  *   TileEntityArmory
  *   Created by: Orion
  *   Created on: 13-1-2015
  */
 
-import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.Client.GUI.Management.*;
-import com.SmithsModding.SmithsCore.Common.TileEntity.State.*;
-import com.SmithsModding.SmithsCore.Common.TileEntity.*;
+import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.smithscore.client.gui.management.*;
+import com.smithsmodding.smithscore.common.tileentity.*;
+import com.smithsmodding.smithscore.common.tileentity.state.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -24,7 +24,7 @@ public abstract class TileEntityArmory extends TileEntitySmithsCore implements I
     private EnumFacing direction = EnumFacing.NORTH;
 
     /**
-     * Constructor to create a new TileEntity for a SmithsCore Mod.
+     * Constructor to create a new TileEntity for a smithscore Mod.
      * <p/>
      * Handles the setting of the core system values like the state, and the GUIManager.
      *

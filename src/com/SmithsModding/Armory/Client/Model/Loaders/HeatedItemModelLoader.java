@@ -1,12 +1,12 @@
-package com.SmithsModding.Armory.Client.Model.Loaders;
+package com.smithsmodding.Armory.Client.Model.Loaders;
 
 
-import com.SmithsModding.Armory.*;
-import com.SmithsModding.Armory.Client.Model.Item.Unbaked.Components.*;
-import com.SmithsModding.Armory.Client.Model.Item.Unbaked.*;
-import com.SmithsModding.Armory.Client.Textures.*;
-import com.SmithsModding.SmithsCore.Util.Client.ModelHelper;
 import com.google.common.collect.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.Armory.Client.Model.Item.Unbaked.Components.*;
+import com.smithsmodding.Armory.Client.Model.Item.Unbaked.*;
+import com.smithsmodding.Armory.Client.Textures.*;
+import com.smithsmodding.smithscore.util.client.*;
 import net.minecraft.client.resources.*;
 import net.minecraft.util.*;
 import net.minecraftforge.client.model.*;

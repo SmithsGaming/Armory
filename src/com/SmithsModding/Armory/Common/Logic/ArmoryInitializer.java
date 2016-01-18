@@ -1,28 +1,28 @@
-package com.SmithsModding.Armory.Common.Logic;
+package com.smithsmodding.Armory.Common.Logic;
 /*
  *   ArmoryInitializer
  *   Created by: Orion
  *   Created on: 17-9-2014
  */
 
-import com.SmithsModding.Armory.API.Armor.*;
-import com.SmithsModding.Armory.API.Events.Common.*;
-import com.SmithsModding.Armory.API.Materials.*;
-import com.SmithsModding.Armory.*;
-import com.SmithsModding.Armory.Common.Addons.*;
-import com.SmithsModding.Armory.Common.Block.*;
-import com.SmithsModding.Armory.Common.Fluid.*;
-import com.SmithsModding.Armory.Common.Item.Armor.TierMedieval.*;
-import com.SmithsModding.Armory.Common.Item.*;
-import com.SmithsModding.Armory.Common.Item.Knowledge.*;
-import com.SmithsModding.Armory.Common.Material.*;
-import com.SmithsModding.Armory.Common.Material.FluidModifiers.ObsidianToLavaSetter;
-import com.SmithsModding.Armory.Common.Registry.*;
-import com.SmithsModding.Armory.Common.TileEntity.*;
-import com.SmithsModding.Armory.Util.Client.*;
-import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.SmithsCore;
-import com.SmithsModding.SmithsCore.Util.Common.*;
+import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.Armory.API.Events.Common.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.Armory.Common.Addons.*;
+import com.smithsmodding.Armory.Common.Block.*;
+import com.smithsmodding.Armory.Common.Fluid.*;
+import com.smithsmodding.Armory.Common.Item.Armor.TierMedieval.*;
+import com.smithsmodding.Armory.Common.Item.*;
+import com.smithsmodding.Armory.Common.Item.Knowledge.*;
+import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.Armory.Common.Material.FluidModifiers.*;
+import com.smithsmodding.Armory.Common.Registry.*;
+import com.smithsmodding.Armory.Common.TileEntity.*;
+import com.smithsmodding.Armory.Util.Client.*;
+import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.smithscore.*;
+import com.smithsmodding.smithscore.util.common.*;
 import net.minecraft.init.*;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.*;

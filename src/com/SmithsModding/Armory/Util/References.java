@@ -4,7 +4,7 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.SmithsModding.Armory.Util;
+package com.smithsmodding.Armory.Util;
 /*
 *   References
 *   Created by: Orion

@@ -1,9 +1,9 @@
-package com.SmithsModding.Armory;
+package com.smithsmodding.Armory;
 
-import com.SmithsModding.Armory.Common.*;
-import com.SmithsModding.Armory.Common.Logic.*;
-import com.SmithsModding.Armory.Util.*;
 import com.google.common.base.*;
+import com.smithsmodding.Armory.Common.*;
+import com.smithsmodding.Armory.Common.Logic.*;
+import com.smithsmodding.Armory.Util.*;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.relauncher.*;
@@ -25,7 +25,7 @@ public class Armory {
     public static Armory instance;
 
     // Proxies used to register stuff client and server side.
-    @SidedProxy(clientSide = "com.SmithsModding.Armory.Client.ArmoryClientProxy", serverSide = "com.SmithsModding.Armory.Common.ArmoryCommonProxy")
+    @SidedProxy(clientSide = "com.smithsmodding.Armory.Client.ArmoryClientProxy", serverSide = "com.smithsmodding.Armory.Common.ArmoryCommonProxy")
     public static ArmoryCommonProxy proxy;
     //Stored to get the loaded side when needed
     public static Side side;

@@ -1,18 +1,19 @@
-package com.SmithsModding.Armory.Client.Gui;
+package com.smithsmodding.Armory.Client.Gui;
 
-import com.SmithsModding.Armory.Common.TileEntity.*;
-import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.Client.GUI.Components.Core.*;
-import com.SmithsModding.SmithsCore.Client.GUI.Components.Implementations.*;
-import com.SmithsModding.SmithsCore.Client.GUI.*;
-import com.SmithsModding.SmithsCore.Client.GUI.Host.*;
-import com.SmithsModding.SmithsCore.Client.GUI.Ledgers.Core.*;
-import com.SmithsModding.SmithsCore.Client.GUI.Ledgers.Implementations.*;
-import com.SmithsModding.SmithsCore.Client.GUI.State.*;
-import com.SmithsModding.SmithsCore.Common.Inventory.*;
-import com.SmithsModding.SmithsCore.Util.Client.Color.*;
-import com.SmithsModding.SmithsCore.Util.Client.*;
-import com.SmithsModding.SmithsCore.Util.Common.Postioning.*;
+import com.smithsmodding.Armory.Common.TileEntity.*;
+import com.smithsmodding.Armory.Util.Client.Colors;
+import com.smithsmodding.Armory.Util.Client.*;
+import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.smithscore.client.gui.*;
+import com.smithsmodding.smithscore.client.gui.components.core.*;
+import com.smithsmodding.smithscore.client.gui.components.implementations.*;
+import com.smithsmodding.smithscore.client.gui.hosts.*;
+import com.smithsmodding.smithscore.client.gui.legders.core.*;
+import com.smithsmodding.smithscore.client.gui.legders.implementations.*;
+import com.smithsmodding.smithscore.client.gui.state.*;
+import com.smithsmodding.smithscore.common.inventory.*;
+import com.smithsmodding.smithscore.util.client.color.*;
+import com.smithsmodding.smithscore.util.common.positioning.*;
 import net.minecraft.inventory.*;
 
 import java.util.*;

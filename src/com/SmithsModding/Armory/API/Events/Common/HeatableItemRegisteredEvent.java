@@ -1,7 +1,7 @@
-package com.SmithsModding.Armory.API.Events.Common;
+package com.smithsmodding.Armory.API.Events.Common;
 
-import com.SmithsModding.Armory.API.Materials.*;
-import com.SmithsModding.SmithsCore.Common.Events.*;
+import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.smithscore.common.events.*;
 import net.minecraft.item.*;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.fml.common.eventhandler.*;

@@ -1,10 +1,8 @@
-package com.SmithsModding.Armory.Util.Client;
+package com.smithsmodding.Armory.Util.Client;
 
-import com.SmithsModding.Armory.Util.References;
-import com.SmithsModding.SmithsCore.Util.Client.CustomResource;
-import com.SmithsModding.SmithsCore.Util.Client.GUI.MultiComponentTexture;
-import com.SmithsModding.SmithsCore.Util.Client.GUI.TextureComponent;
-import com.SmithsModding.SmithsCore.Util.Client.TextureAddressHelper;
+import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.smithscore.util.client.*;
+import com.smithsmodding.smithscore.util.client.gui.*;
 
 /**
  * Created by Marc on 06.12.2015.

@@ -4,21 +4,21 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.SmithsModding.Armory.Common.Block;
+package com.smithsmodding.Armory.Common.Block;
 /*
 /  BlockFirePit
 /  Created by : Orion
 /  Created on : 02/10/2014
 */
 
-import com.SmithsModding.Armory.*;
-import com.SmithsModding.Armory.Common.Registry.*;
-import com.SmithsModding.Armory.Common.TileEntity.State.*;
-import com.SmithsModding.Armory.Common.TileEntity.*;
-import com.SmithsModding.Armory.Util.*;
-import com.SmithsModding.SmithsCore.Client.Block.*;
-import com.SmithsModding.SmithsCore.Common.Structures.*;
-import com.SmithsModding.SmithsCore.*;
+import com.smithsmodding.Armory.*;
+import com.smithsmodding.Armory.Common.Registry.*;
+import com.smithsmodding.Armory.Common.TileEntity.State.*;
+import com.smithsmodding.Armory.Common.TileEntity.*;
+import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.smithscore.*;
+import com.smithsmodding.smithscore.client.block.*;
+import com.smithsmodding.smithscore.common.structures.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.*;
 import net.minecraft.block.properties.*;
