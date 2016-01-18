@@ -1,4 +1,4 @@
-package com.smithsmodding.Armory.API.Armor;
+package com.smithsmodding.armory.api.armor;
 
 import net.minecraft.util.*;
 

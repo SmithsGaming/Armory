@@ -1,4 +1,4 @@
-package com.smithsmodding.Armory.Client.Model.Item.Unbaked;
+package com.smithsmodding.armory.client.model.Item.Unbaked;
 
 import com.google.common.base.*;
 import net.minecraft.client.renderer.texture.*;
@@ -9,7 +9,7 @@ import net.minecraftforge.client.model.*;
 import java.util.*;
 
 /**
- * Dummy Model to be returned on the initial load to silence the missing model messages.
+ * Dummy model to be returned on the initial load to silence the missing model messages.
  * It's never actually used and gets replaced with the real models when the resource manager reloads.
  * <p/>
  * Thanks to TinkersConstruct as a resource of how to load multilayered objects.

@@ -1,15 +1,15 @@
-package com.smithsmodding.Armory.Util.Armor;
+package com.smithsmodding.armory.util.Armor;
 /*
  *   ArmorNBTHelper
  *   Created by: Orion
  *   Created on: 14-9-2014
  */
 
-import com.smithsmodding.Armory.API.Armor.*;
-import com.smithsmodding.Armory.API.Materials.*;
-import com.smithsmodding.Armory.Common.Addons.*;
-import com.smithsmodding.Armory.Common.Material.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.common.addons.*;
+import com.smithsmodding.armory.common.material.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.util.common.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;

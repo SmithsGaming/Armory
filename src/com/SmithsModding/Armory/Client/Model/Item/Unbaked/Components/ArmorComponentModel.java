@@ -1,11 +1,11 @@
-package com.smithsmodding.Armory.Client.Model.Item.Unbaked.Components;
+package com.smithsmodding.armory.client.model.Item.Unbaked.Components;
 
 import com.google.common.base.*;
 import com.google.common.collect.*;
-import com.smithsmodding.Armory.API.Materials.*;
-import com.smithsmodding.Armory.Client.Model.Item.Baked.Components.*;
-import com.smithsmodding.Armory.Client.Textures.*;
-import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.client.model.Item.Baked.Components.*;
+import com.smithsmodding.armory.client.textures.*;
+import com.smithsmodding.armory.common.material.*;
 import com.smithsmodding.smithscore.util.client.*;
 import com.smithsmodding.smithscore.util.client.color.*;
 import net.minecraft.client.renderer.block.model.*;
@@ -19,7 +19,7 @@ import java.util.*;
 /**
  * Created by Marc on 06.12.2015.
  * <p/>
- * Model used to display singular components of the Armor.
+ * model used to display singular components of the armor.
  * Is in implementation nearly the same as the TinkersConstruct Toolparts.
  */
 public class ArmorComponentModel extends ItemLayerModel implements IModelPart {
@@ -27,7 +27,7 @@ public class ArmorComponentModel extends ItemLayerModel implements IModelPart {
     /**
      * Creates a new unbaked model, given the parameters list of possible textures.
      *
-     * @param textures The possible textures for the unbaked Model.
+     * @param textures The possible textures for the unbaked model.
      */
     public ArmorComponentModel (ImmutableList<ResourceLocation> textures) {
         super(textures);
@@ -38,7 +38,7 @@ public class ArmorComponentModel extends ItemLayerModel implements IModelPart {
      *
      * @param state              The modelstate you want a model for.
      * @param format             The format the vertexes are stored in.
-     * @param bakedTextureGetter Function to get the Texture for the Model.
+     * @param bakedTextureGetter Function to get the Texture for the model.
      * @return A ItemStack depending model that is ready to be used.
      */
     @Override
@@ -47,7 +47,7 @@ public class ArmorComponentModel extends ItemLayerModel implements IModelPart {
     }
 
     /**
-     * Function to get the grayscale texture location of this Model faster.
+     * Function to get the grayscale texture location of this model faster.
      *
      * @return The location of the grayscale texture.
      */

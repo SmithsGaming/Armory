@@ -4,9 +4,9 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.Armory.Common.Item.Knowledge;
+package com.smithsmodding.armory.common.item.knowledge;
 
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.util.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 
@@ -44,7 +44,7 @@ public class LabelledBlueprintGroup {
 
     public NBTTagCompound writeToCompound () {
         NBTTagCompound tStoreCompound = new NBTTagCompound();
-        //tStoreCompound.setTag(References.NBTTagCompoundData.Item.ItemInventory.STACK, LabelStack.writeToNBT(new NBTTagCompound()));
+        //tStoreCompound.setTag(References.NBTTagCompoundData.item.ItemInventory.STACK, LabelStack.writeToNBT(new NBTTagCompound()));
 
         NBTTagList tStacks = new NBTTagList();
         for (ItemStack tStack : Stacks) {

@@ -1,16 +1,16 @@
-package com.smithsmodding.Armory.Common.Item;
+package com.smithsmodding.armory.common.item;
 /*
 /  ItemHeatedItem
 /  Created by : Orion
 /  Created on : 03/10/2014
 */
 
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Common.Factory.*;
-import com.smithsmodding.Armory.Common.Material.*;
-import com.smithsmodding.Armory.Common.Registry.*;
-import com.smithsmodding.Armory.Util.Client.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.common.factory.*;
+import com.smithsmodding.armory.common.material.*;
+import com.smithsmodding.armory.common.registry.*;
+import com.smithsmodding.armory.util.Client.*;
+import com.smithsmodding.armory.util.*;
 import net.minecraft.creativetab.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
@@ -92,7 +92,7 @@ public class ItemHeatedItem extends Item {
 
 
     /**
-     @Override public void onUpdate(ItemStack pStack, World pWorldObj, Entity pEntity, int pSlotIndex, boolean pSelected) {
+     @Override public void onUpdate(ItemStack pStack, World pWorldObj, entity pEntity, int pSlotIndex, boolean pSelected) {
 
      if (!(pEntity instanceof EntityPlayer))
      return;

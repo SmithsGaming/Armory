@@ -1,7 +1,7 @@
-package com.smithsmodding.Armory.API.Registries;
+package com.smithsmodding.armory.api.registries;
 
-import com.smithsmodding.Armory.API.Armor.*;
-import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.api.materials.*;
 
 /**
  * Created by Marc on 19.12.2015.

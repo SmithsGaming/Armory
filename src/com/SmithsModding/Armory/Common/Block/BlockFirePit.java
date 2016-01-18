@@ -4,18 +4,18 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.Armory.Common.Block;
+package com.smithsmodding.armory.common.block;
 /*
 /  BlockFirePit
 /  Created by : Orion
 /  Created on : 02/10/2014
 */
 
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Common.Registry.*;
-import com.smithsmodding.Armory.Common.TileEntity.State.*;
-import com.smithsmodding.Armory.Common.TileEntity.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.common.registry.*;
+import com.smithsmodding.armory.common.tileentity.state.*;
+import com.smithsmodding.armory.common.tileentity.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.*;
 import com.smithsmodding.smithscore.client.block.*;
 import com.smithsmodding.smithscore.common.structures.*;
@@ -274,7 +274,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
 
 
     /**
-     * Convert the given metadata into a BlockState for this Block
+     * Convert the given metadata into a BlockState for this block
      */
     public IBlockState getStateFromMeta (int meta) {
         int burningMeta = meta / 2;

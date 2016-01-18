@@ -4,10 +4,10 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.Armory.API.Knowledge;
+package com.smithsmodding.armory.api.knowledge;
 
-import com.smithsmodding.Armory.API.Entity.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.api.entity.*;
+import com.smithsmodding.armory.util.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;

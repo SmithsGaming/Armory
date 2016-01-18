@@ -1,10 +1,10 @@
-package com.smithsmodding.Armory.Client.Model.Item.Unbaked;
+package com.smithsmodding.armory.client.model.Item.Unbaked;
 
 import com.google.common.base.*;
 import com.google.common.collect.*;
-import com.smithsmodding.Armory.Client.Model.Item.Baked.Components.*;
-import com.smithsmodding.Armory.Client.Model.Item.Baked.HeatedItem.*;
-import com.smithsmodding.Armory.Client.Model.Item.Unbaked.Components.*;
+import com.smithsmodding.armory.client.model.Item.Baked.Components.*;
+import com.smithsmodding.armory.client.model.Item.Baked.HeatedItem.*;
+import com.smithsmodding.armory.client.model.Item.Unbaked.Components.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.vertex.*;
 import net.minecraft.util.*;

@@ -1,6 +1,6 @@
-package com.smithsmodding.Armory.API.Materials;
+package com.smithsmodding.armory.api.materials;
 
-import com.smithsmodding.Armory.API.Textures.*;
+import com.smithsmodding.armory.api.textures.*;
 import com.smithsmodding.smithscore.util.client.color.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.texture.*;
 import net.minecraftforge.fml.relauncher.*;
 
 /*
-  A BIG NOTE UPFRONT. Due to the similarities between TiC ToolSystem and Armories Armor system this is a near repackage.
+  A BIG NOTE UPFRONT. Due to the similarities between TiC ToolSystem and Armories armor system this is a near repackage.
   Most of this code falls under their license, although some changes are made to fit the system in with Armories used
   of Wrapper classes instead of direct access.
  */

@@ -1,12 +1,12 @@
-package com.smithsmodding.Armory.Client.Model.Item.Unbaked;
+package com.smithsmodding.armory.client.model.Item.Unbaked;
 
 import com.google.common.base.*;
 import com.google.common.collect.*;
-import com.smithsmodding.Armory.API.Armor.*;
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Client.Model.Item.Baked.*;
-import com.smithsmodding.Armory.Client.Model.Item.Baked.Components.*;
-import com.smithsmodding.Armory.Client.Model.Item.Unbaked.Components.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.client.model.Item.Baked.*;
+import com.smithsmodding.armory.client.model.Item.Baked.Components.*;
+import com.smithsmodding.armory.client.model.Item.Unbaked.Components.*;
 import com.smithsmodding.smithscore.util.common.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.vertex.*;
@@ -66,7 +66,7 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
                 }
             } else if (!addon.getItemWholeTextureLocation().equals(baseLayer.getTexture())) {
                 //For a given MLAAddon on the armor was no texture found.
-                Armory.getLogger().error("A given Armor: " + armor.getUniqueID() + " has a MLAAddon: " + addon.getUniqueID() + " that has no texture registered in the model. It is being skipped.");
+                Armory.getLogger().error("A given armor: " + armor.getUniqueID() + " has a MLAAddon: " + addon.getUniqueID() + " that has no texture registered in the model. It is being skipped.");
             }
         }
 

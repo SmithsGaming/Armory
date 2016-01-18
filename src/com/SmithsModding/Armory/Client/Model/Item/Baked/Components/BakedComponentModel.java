@@ -1,9 +1,9 @@
-package com.smithsmodding.Armory.Client.Model.Item.Baked.Components;
+package com.smithsmodding.armory.client.model.Item.Baked.Components;
 
-import com.smithsmodding.Armory.API.Armor.*;
-import com.smithsmodding.Armory.API.Item.*;
-import com.smithsmodding.Armory.API.Materials.*;
-import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.api.item.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.common.material.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.item.*;
 import net.minecraftforge.client.model.*;
@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * Created by Marc on 06.12.2015.
  * <p/>
- * A baked model for a component made up out of a single Material.
+ * A baked model for a component made up out of a single material.
  */
 public class BakedComponentModel extends IFlexibleBakedModel.Wrapper implements ISmartItemModel {
     //Map that contains a premapped combination of materials to models.
@@ -31,7 +31,7 @@ public class BakedComponentModel extends IFlexibleBakedModel.Wrapper implements 
     }
 
     /**
-     * Function to register a new PreBakeable model to this Model
+     * Function to register a new PreBakeable model to this model
      *
      * @param material The material to register a new model for.
      * @param model    The model to register.
@@ -43,7 +43,7 @@ public class BakedComponentModel extends IFlexibleBakedModel.Wrapper implements 
     /**
      * Function used to get a Baked model from an ItemStack.
      *
-     * @param stack The ItemStack to get the Model for.
+     * @param stack The ItemStack to get the model for.
      * @return The baked model.
      */
     @Override

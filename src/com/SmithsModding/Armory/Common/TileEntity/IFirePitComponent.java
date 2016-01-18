@@ -4,7 +4,7 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.Armory.Common.TileEntity;
+package com.smithsmodding.armory.common.tileentity;
 
 import com.smithsmodding.smithscore.util.common.positioning.*;
 

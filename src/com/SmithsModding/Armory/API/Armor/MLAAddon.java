@@ -1,4 +1,4 @@
-package com.smithsmodding.Armory.API.Armor;
+package com.smithsmodding.armory.api.armor;
 /*
 /  MLAAddon
 /  Created by : Orion
@@ -25,7 +25,7 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
      * Standard constructor sets the Internal Name and the position of the Addon on the armor
      *
      * @param uniqueID    The internal name of the addon
-     * @param uniqueArmorID      The MLA Armor this addon should be registered to.
+     * @param uniqueArmorID      The MLA armor this addon should be registered to.
      * @param addonPositionID The position of the addon on the MLA armor.
      *                         <p/>
      *                         Classes you might be interested in:
@@ -37,10 +37,10 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
     }
 
     /**
-     * Standard constructor used to create Addons which support multiple of them selves on a single position
+     * Standard constructor used to create addons which support multiple of them selves on a single position
      *
      * @param uniqueID       The internal name of the addon
-     * @param uniqueArmorID         The MLA Armor this addon should be registered to.
+     * @param uniqueArmorID         The MLA armor this addon should be registered to.
      * @param addonPositionID    The position of the addon on the MLA armor.
      * @param maximumInstalledAmount The max amount of addons that are allowed on a single position
      */
@@ -137,7 +137,7 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
     /**
      * Function to be implemented by programmer that vaildates the crafting.
      *
-     * @param pAddonIDToCheckAgainst The Addon ID that is already on the Armor, or that is being put on the armor. You need to allow (return true) or cancel the addition (return false)
+     * @param pAddonIDToCheckAgainst The Addon ID that is already on the armor, or that is being put on the armor. You need to allow (return true) or cancel the addition (return false)
      *                               Do this by comparing the ID given in this parameter anyway you like and returning the proper bool value.
      * @return A Bool that tells the factory to either allow(true) or disallow(false) the crafting.
      */

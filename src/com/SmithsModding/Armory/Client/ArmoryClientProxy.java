@@ -1,14 +1,14 @@
-package com.smithsmodding.Armory.Client;
+package com.smithsmodding.armory.client;
 
-import com.smithsmodding.Armory.API.Armor.*;
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Client.Logic.*;
-import com.smithsmodding.Armory.Client.Model.Loaders.*;
-import com.smithsmodding.Armory.Client.Textures.*;
-import com.smithsmodding.Armory.Common.*;
-import com.smithsmodding.Armory.Common.Item.*;
-import com.smithsmodding.Armory.Common.Registry.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.client.logic.*;
+import com.smithsmodding.armory.client.model.Loaders.*;
+import com.smithsmodding.armory.client.textures.*;
+import com.smithsmodding.armory.common.*;
+import com.smithsmodding.armory.common.item.*;
+import com.smithsmodding.armory.common.registry.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.util.client.*;
 import net.minecraft.block.*;
 import net.minecraft.block.state.*;
@@ -77,7 +77,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
             return null;
         }
 
-        String path = "Armor/" + itemLocation.getResourcePath() + MultiLayeredArmorModelLoader.EXTENSION;
+        String path = "armor/" + itemLocation.getResourcePath() + MultiLayeredArmorModelLoader.EXTENSION;
 
         return registerArmorItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
     }
@@ -116,7 +116,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
 
     public ResourceLocation registerItemModelDefinition (Item item, final ResourceLocation location, String requiredExtension) {
         if (!location.getResourcePath().endsWith(requiredExtension)) {
-            Armory.getLogger().error("The Item-Model " + location.toString() + " does not end with '"
+            Armory.getLogger().error("The item-model " + location.toString() + " does not end with '"
                     + requiredExtension
                     + "' and will therefore not be loaded by the custom model loader!");
         }

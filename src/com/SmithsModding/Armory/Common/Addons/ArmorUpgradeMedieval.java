@@ -1,6 +1,6 @@
-package com.smithsmodding.Armory.Common.Addons;
+package com.smithsmodding.armory.common.addons;
 
-import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.armory.api.armor.*;
 import net.minecraft.util.*;
 
 /**

@@ -1,16 +1,16 @@
-package com.smithsmodding.Armory.Common.Factory;
+package com.smithsmodding.armory.common.factory;
 /*
 /  HeatedItemFactory
 /  Created by : Orion
 /  Created on : 03/10/2014
 */
 
-import com.smithsmodding.Armory.API.Item.*;
-import com.smithsmodding.Armory.API.Materials.*;
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Common.Item.*;
-import com.smithsmodding.Armory.Common.Registry.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.api.item.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.common.item.*;
+import com.smithsmodding.armory.common.registry.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.util.common.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;

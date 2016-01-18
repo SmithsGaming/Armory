@@ -1,13 +1,13 @@
-package com.smithsmodding.Armory.Common.Registry;
+package com.smithsmodding.armory.common.registry;
 
-import com.smithsmodding.Armory.API.Events.Common.*;
-import com.smithsmodding.Armory.API.Item.*;
-import com.smithsmodding.Armory.API.Materials.*;
-import com.smithsmodding.Armory.API.Registries.*;
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Common.Item.*;
-import com.smithsmodding.Armory.Common.Material.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.api.events.common.*;
+import com.smithsmodding.armory.api.item.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.api.registries.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.common.item.*;
+import com.smithsmodding.armory.common.material.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.util.common.*;
 import gnu.trove.map.hash.*;
 import gnu.trove.strategy.*;

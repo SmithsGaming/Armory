@@ -1,4 +1,4 @@
-package com.smithsmodding.Armory.API.Armor;
+package com.smithsmodding.armory.api.armor;
 /*
 *   ArmorAddonPosition
 *   Created by: Orion
@@ -14,7 +14,7 @@ public class ArmorAddonPosition {
      * Constructor to create a new MLAAddon position on MLA Compatible armor.
      *
      * @param pInternalName        The internal name for this position. Attention these have to be unique!
-     * @param pParentArmorID       The Internalname of the MLA Armor object this position will be bound to.
+     * @param pParentArmorID       The Internalname of the MLA armor object this position will be bound to.
      * @param pMaxAddonsOnPosition The max addons allowed on this position
      *                             <p/>
      *                             Classes you might be interested in:
@@ -57,7 +57,7 @@ public class ArmorAddonPosition {
     /**
      * Function to get the max amount of MLA addons that are allowed on this position
      *
-     * @return The max amount of MLA Addons that are allowed on this position
+     * @return The max amount of MLA addons that are allowed on this position
      * <p/>
      * Classes you might be interested in:
      * @see MultiLayeredArmor

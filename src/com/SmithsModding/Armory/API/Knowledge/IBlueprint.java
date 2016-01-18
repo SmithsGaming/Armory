@@ -4,7 +4,7 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.Armory.API.Knowledge;
+package com.smithsmodding.armory.api.knowledge;
 
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;

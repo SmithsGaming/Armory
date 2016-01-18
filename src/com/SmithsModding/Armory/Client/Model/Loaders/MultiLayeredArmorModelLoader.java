@@ -1,14 +1,14 @@
-package com.smithsmodding.Armory.Client.Model.Loaders;
+package com.smithsmodding.armory.client.model.Loaders;
 
 
 import com.google.common.collect.*;
-import com.smithsmodding.Armory.API.Armor.*;
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Client.Model.Item.Events.*;
-import com.smithsmodding.Armory.Client.Model.Item.Unbaked.Components.*;
-import com.smithsmodding.Armory.Client.Model.Item.Unbaked.*;
-import com.smithsmodding.Armory.Client.Textures.*;
-import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.client.model.Item.Events.*;
+import com.smithsmodding.armory.client.model.Item.Unbaked.Components.*;
+import com.smithsmodding.armory.client.model.Item.Unbaked.*;
+import com.smithsmodding.armory.client.textures.*;
+import com.smithsmodding.armory.common.material.*;
 import com.smithsmodding.smithscore.util.client.*;
 import net.minecraft.client.resources.*;
 import net.minecraft.util.*;
@@ -23,11 +23,11 @@ import java.util.*;
  * Created by Marc on 06.12.2015.
  */
 public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
-    public static final String EXTENSION = ".MLA-Armory";
+    public static final String EXTENSION = ".MLA-armory";
 
     @Override
     public boolean accepts (ResourceLocation modelLocation) {
-        return modelLocation.getResourcePath().endsWith(EXTENSION); // MLA Armory extension. Foo.MLA-Armory.json
+        return modelLocation.getResourcePath().endsWith(EXTENSION); // MLA armory extension. Foo.MLA-armory.json
     }
 
     @Override
@@ -37,14 +37,14 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
         }
 
         try {
-            //Retrieve the Name of the Armor.
+            //Retrieve the Name of the armor.
             //The file name without the extension has to be equal to the Name used in Armories registry.
             String armorInternalName = FilenameUtils.getBaseName(modelLocation.getResourcePath());
             MultiLayeredArmor armor = MaterialRegistry.getInstance().getArmor(armorInternalName);
 
             //If none is registered return missing model and print out an error.
             if (armor == null) {
-                Armory.getLogger().error("The given Model: " + modelLocation.toString() + " Is not registered to any Armor known to Armory.");
+                Armory.getLogger().error("The given model: " + modelLocation.toString() + " Is not registered to any armor known to armory.");
                 return ModelLoaderRegistry.getMissingModel();
             }
 
@@ -71,7 +71,7 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
             //Possible layer types:
             //    * layer (Component texture used when the armor is not broken)
             //    * broken (Component texture used when the armor is broken)
-            //    * base (The base layer of a Armor (in case of MedievalArmor it is the chain base layer texture))
+            //    * base (The base layer of a armor (in case of MedievalArmor it is the chain base layer texture))
             for (Map.Entry<String, String> entry : textures.entrySet()) {
                 String name = entry.getKey();
 

@@ -1,4 +1,4 @@
-package com.smithsmodding.Armory.API.Item;
+package com.smithsmodding.armory.api.item;
 
 /**
  * Created by Orion Created on 02.05.2015 15:04

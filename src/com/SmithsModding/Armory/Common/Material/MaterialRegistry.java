@@ -1,14 +1,14 @@
-package com.smithsmodding.Armory.Common.Material;
+package com.smithsmodding.armory.common.material;
 /*
  *   MaterialRegistry
  *   Created by: Orion
  *   Created on: 24-9-2014
  */
 
-import com.smithsmodding.Armory.API.Armor.*;
-import com.smithsmodding.Armory.API.Materials.*;
-import com.smithsmodding.Armory.API.Registries.*;
-import com.smithsmodding.Armory.Common.Registry.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.api.registries.*;
+import com.smithsmodding.armory.common.registry.*;
 
 import java.util.*;
 

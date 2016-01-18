@@ -1,7 +1,7 @@
-package com.smithsmodding.Armory.Common.TileEntity.State;
+package com.smithsmodding.armory.common.tileentity.state;
 
-import com.smithsmodding.Armory.Common.TileEntity.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.common.tileentity.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.common.structures.*;
 import com.smithsmodding.smithscore.common.tileentity.*;
 import com.smithsmodding.smithscore.common.tileentity.state.*;

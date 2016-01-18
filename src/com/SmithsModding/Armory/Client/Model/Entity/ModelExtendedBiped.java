@@ -1,14 +1,14 @@
-package com.smithsmodding.Armory.Client.Model.Entity;
+package com.smithsmodding.armory.client.model.Entity;
 /*
  *   ModelAExtendenBiped
  *   Created by: Orion
  *   Created on: 23-9-2014
  */
 
-import com.smithsmodding.Armory.API.Armor.*;
-import com.smithsmodding.Armory.API.Materials.*;
-import com.smithsmodding.Armory.Common.Material.*;
-import com.smithsmodding.Armory.Util.Armor.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.common.material.*;
+import com.smithsmodding.armory.util.Armor.*;
 import com.smithsmodding.smithscore.util.client.color.*;
 import net.minecraft.client.*;
 import net.minecraft.client.model.*;

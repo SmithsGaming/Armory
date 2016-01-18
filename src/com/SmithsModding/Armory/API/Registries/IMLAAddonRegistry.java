@@ -1,6 +1,6 @@
-package com.smithsmodding.Armory.API.Registries;
+package com.smithsmodding.armory.api.registries;
 
-import com.smithsmodding.Armory.API.Armor.*;
+import com.smithsmodding.armory.api.armor.*;
 
 import java.util.*;
 

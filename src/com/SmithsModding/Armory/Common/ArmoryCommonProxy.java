@@ -1,9 +1,9 @@
-package com.smithsmodding.Armory.Common;
+package com.smithsmodding.armory.common;
 
 
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Common.Handlers.*;
-import com.smithsmodding.Armory.Common.Logic.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.common.handlers.*;
+import com.smithsmodding.armory.common.logic.*;
 import net.minecraft.entity.player.*;
 import net.minecraftforge.fml.common.network.*;
 import net.minecraftforge.fml.common.network.simpleimpl.*;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.*;
 /**
  * Created by Orion on 26-4-2014
  * <p/>
- * com.Orion.Armory.Common proxy for Armory
+ * com.Orion.armory.common proxy for armory
  */
 public class ArmoryCommonProxy {
     public void preInitializeArmory() {

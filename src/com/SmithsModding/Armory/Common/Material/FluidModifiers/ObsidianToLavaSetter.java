@@ -1,7 +1,7 @@
-package com.smithsmodding.Armory.Common.Material.FluidModifiers;
+package com.smithsmodding.armory.common.material.fluidmodifiers;
 
-import com.smithsmodding.Armory.API.Events.Common.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.api.events.common.*;
+import com.smithsmodding.armory.util.*;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.fml.common.eventhandler.*;
 

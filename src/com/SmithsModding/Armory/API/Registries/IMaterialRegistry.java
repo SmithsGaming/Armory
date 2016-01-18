@@ -1,7 +1,7 @@
-package com.smithsmodding.Armory.API.Registries;
+package com.smithsmodding.armory.api.registries;
 
-import com.smithsmodding.Armory.API.Armor.*;
-import com.smithsmodding.Armory.API.Materials.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.api.materials.*;
 
 import java.util.*;
 
@@ -14,21 +14,21 @@ import java.util.*;
  */
 public interface IMaterialRegistry {
     /**
-     * Function to retrieve all of the types registered to this Registry
+     * Function to retrieve all of the types registered to this registry
      *
-     * @return A HashMap with as Key the uniqueID of the Armor and as Value a instance of a MultiLayeredArmor
+     * @return A HashMap with as Key the uniqueID of the armor and as Value a instance of a MultiLayeredArmor
      */
     HashMap<String, MultiLayeredArmor> getAllRegisteredArmors();
 
     /**
      * Function to register a new Instance of MultiLayeredArmor
      *
-     * @param pArmor The Armor you want to register.
+     * @param pArmor The armor you want to register.
      */
     void registerNewArmor(MultiLayeredArmor pArmor);
 
     /**
-     * Returns the Armor for a given uniqueID or null if not registered
+     * Returns the armor for a given uniqueID or null if not registered
      *
      * @param pInternalName The uniqueID of the requested armor.
      * @return The instance of MultiLayeredArmor registered to this IMaterialRegistry with the given uniqueID, if present or null if none is registerd with that name.
@@ -38,21 +38,21 @@ public interface IMaterialRegistry {
     /**
      * Function to get all the materials registered to this IMaterialRegistry
      *
-     * @return A HashMap with as Key the uniqueID of the Material and as Value the a instance of IArmorMaterial
+     * @return A HashMap with as Key the uniqueID of the material and as Value the a instance of IArmorMaterial
      */
     HashMap<String, IArmorMaterial> getArmorMaterials();
 
     /**
-     * Sets all the Materials at once.
+     * Sets all the materials at once.
      *
-     * @param pNewMaterials A new HashMap with Material Definitions.
+     * @param pNewMaterials A new HashMap with material Definitions.
      */
     void setAllArmorMaterials(HashMap<String, IArmorMaterial> pNewMaterials);
 
     /**
-     * Function to register a new Material to this registry
+     * Function to register a new material to this registry
      *
-     * @param pMaterial The new Material you want to register
+     * @param pMaterial The new material you want to register
      */
     void registerMaterial(IArmorMaterial pMaterial);
 

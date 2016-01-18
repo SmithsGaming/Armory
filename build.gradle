@@ -27,7 +27,7 @@ repositories {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven'
 
-//Buildscript: Armory
+//Buildscript: armory
 // Load the properties of this project.
 ext.configFile = file "build.properties"
 
@@ -62,8 +62,8 @@ if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
     apiversion = apiversion + "-SNAPSHOT"
 }
 
-group = "com.smithsmodding.Armory"
-archivesBaseName = "Armory"
+group = "com.smithsmodding.armory"
+archivesBaseName = "armory"
 
 minecraft {
     version = config.minecraft_version + "-" + config.forge_version

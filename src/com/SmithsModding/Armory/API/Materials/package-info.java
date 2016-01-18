@@ -5,7 +5,7 @@
  * <p/>
  * Copyrighted according to Project specific license
  */
-@API(owner = "Armory", apiVersion = References.General.API_VERSION, provides = "Armory-API|Materials") package com.smithsmodding.Armory.API.Materials;
+@API(owner = "armory", apiVersion = References.General.API_VERSION, provides = "armory-api|materials") package com.smithsmodding.armory.api.materials;
 
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.util.*;
 import net.minecraftforge.fml.common.*;

@@ -1,8 +1,8 @@
-package com.smithsmodding.Armory.Common.TileEntity.GUIManagers;
+package com.smithsmodding.armory.common.tileentity.guimanagers;
 
-import com.smithsmodding.Armory.Common.TileEntity.State.*;
-import com.smithsmodding.Armory.Common.TileEntity.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.common.tileentity.state.*;
+import com.smithsmodding.armory.common.tileentity.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.client.gui.components.core.*;
 import com.smithsmodding.smithscore.client.gui.components.implementations.*;
 import com.smithsmodding.smithscore.client.gui.management.*;

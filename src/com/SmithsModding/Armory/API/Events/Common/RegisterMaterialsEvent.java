@@ -1,4 +1,4 @@
-package com.smithsmodding.Armory.API.Events.Common;
+package com.smithsmodding.armory.api.events.common;
 /*
 *   RegisterMaterialsEvent (This event is used to notify other mods of moment to register their materials.)
 *   Created by: Orion

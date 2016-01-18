@@ -4,7 +4,7 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.Armory.Util;
+package com.smithsmodding.armory.util;
 /*
 *   References
 *   Created by: Orion
@@ -22,7 +22,7 @@ public class References {
     }
 
     public static final class General {
-        public static final String MOD_ID = "Armory";
+        public static final String MOD_ID = "armory";
         public static final String VERSION = "@VERSION@";
         public static final String MC_VERSION = "@MCVERSION@";
         public static final String API_VERSION = "@APIVERSION@";
@@ -32,10 +32,10 @@ public class References {
 
     public static final class InternalNames {
         public static final class Armor {
-            public static final String MEDIEVALHELMET = "Armory.Helmet.Medieval";
-            public static final String MEDIEVALCHESTPLATE = "Armory.Chestplate.Medieval";
-            public static final String MEDIEVALLEGGINGS = "Armory.Leggings.Medieval";
-            public static final String MEDIEVALSHOES = "Armory.Shoes.Medieval";
+            public static final String MEDIEVALHELMET = "armory.Helmet.Medieval";
+            public static final String MEDIEVALCHESTPLATE = "armory.Chestplate.Medieval";
+            public static final String MEDIEVALLEGGINGS = "armory.Leggings.Medieval";
+            public static final String MEDIEVALSHOES = "armory.Shoes.Medieval";
         }
 
         public static final class Materials {
@@ -46,172 +46,172 @@ public class References {
         }
 
         public static final class Fluids {
-            public static final String MOLTENMETAL = "Armory.Fluids.Molten";
+            public static final String MOLTENMETAL = "armory.Fluids.Molten";
         }
 
         public static final class AddonPositions {
 
             public static final class Helmet {
                 public static final String BASE = Armor.MEDIEVALHELMET;
-                public static final String TOP = "Armory.TopHelmet";
-                public static final String LEFT = "Armory.LeftHelmet";
-                public static final String RIGHT = "Armory.RightHelmet";
-                public static final String AQUABREATHING = "Armory.AquaBreathingHelmet";
-                public static final String NIGHTSIGHT = "Armory.NightsightHelmet";
-                public static final String THORNS = "Armory.ThornsHelmet";
-                public static final String AUTOREPAIR = "Armory.AutoRepairHelmet";
-                public static final String REINFORCED = "Armory.ReinforcedHelmet";
-                public static final String ELECTRIC = "Armory.ElectricHelmet";
+                public static final String TOP = "armory.TopHelmet";
+                public static final String LEFT = "armory.LeftHelmet";
+                public static final String RIGHT = "armory.RightHelmet";
+                public static final String AQUABREATHING = "armory.AquaBreathingHelmet";
+                public static final String NIGHTSIGHT = "armory.NightsightHelmet";
+                public static final String THORNS = "armory.ThornsHelmet";
+                public static final String AUTOREPAIR = "armory.AutoRepairHelmet";
+                public static final String REINFORCED = "armory.ReinforcedHelmet";
+                public static final String ELECTRIC = "armory.ElectricHelmet";
             }
 
             public static final class Chestplate {
                 public static final String BASE = Armor.MEDIEVALCHESTPLATE;
-                public static final String SHOULDERLEFT = "Armory.ShoulderLeftChestplate";
-                public static final String SHOULDERRIGHT = "Armory.ShoulderRightChestplate";
-                public static final String FRONTLEFT = "Armory.FrontLeftChestplate";
-                public static final String FRONTRIGHT = "Armory.FrontRightChestplate";
-                public static final String BACKLEFT = "Armory.BackLeftChestplate";
-                public static final String BACKRIGHT = "Armory.BackrightChestplate";
-                public static final String STRENGTH = "Armory.StrengthChestplate";
-                public static final String HASTE = "Armory.HasteChestplate";
-                public static final String FLYING = "Armory.FlyingChestplate";
-                public static final String THORNS = "Armory.ThornsChestplate";
-                public static final String AUTOREPAIR = "Armory.AutoRepairChestplate";
-                public static final String REINFORCED = "Armory.ReinforcedChestplate";
-                public static final String ELECTRIC = "Armory.ElectricChestplate";
+                public static final String SHOULDERLEFT = "armory.ShoulderLeftChestplate";
+                public static final String SHOULDERRIGHT = "armory.ShoulderRightChestplate";
+                public static final String FRONTLEFT = "armory.FrontLeftChestplate";
+                public static final String FRONTRIGHT = "armory.FrontRightChestplate";
+                public static final String BACKLEFT = "armory.BackLeftChestplate";
+                public static final String BACKRIGHT = "armory.BackrightChestplate";
+                public static final String STRENGTH = "armory.StrengthChestplate";
+                public static final String HASTE = "armory.HasteChestplate";
+                public static final String FLYING = "armory.FlyingChestplate";
+                public static final String THORNS = "armory.ThornsChestplate";
+                public static final String AUTOREPAIR = "armory.AutoRepairChestplate";
+                public static final String REINFORCED = "armory.ReinforcedChestplate";
+                public static final String ELECTRIC = "armory.ElectricChestplate";
             }
 
             public static final class Leggings {
                 public static final String BASE = Armor.MEDIEVALLEGGINGS;
-                public static final String FRONTLEFT = "Armory.FrontLeftLeggings";
-                public static final String FRONTRIGHT = "Armory.FrontRightLeggings";
-                public static final String BACKLEFT = "Armory.BackLeftLeggings";
-                public static final String BACKRIGHT = "Armory.BackRightLeggings";
-                public static final String SPEED = "Armory.SpeedLeggings";
-                public static final String JUMPASSIST = "Armory.JumpAssistLeggings";
-                public static final String UPHILLASSIST = "Armory.UpHillAssistLeggings";
-                public static final String THORNS = "Armory.ThornsLeggings";
-                public static final String AUTOREPAIR = "Armory.AutoRepairLeggings";
-                public static final String REINFORCED = "Armory.ReinforcedLeggings";
-                public static final String ELECTRIC = "Armory.ElectricLeggings";
+                public static final String FRONTLEFT = "armory.FrontLeftLeggings";
+                public static final String FRONTRIGHT = "armory.FrontRightLeggings";
+                public static final String BACKLEFT = "armory.BackLeftLeggings";
+                public static final String BACKRIGHT = "armory.BackRightLeggings";
+                public static final String SPEED = "armory.SpeedLeggings";
+                public static final String JUMPASSIST = "armory.JumpAssistLeggings";
+                public static final String UPHILLASSIST = "armory.UpHillAssistLeggings";
+                public static final String THORNS = "armory.ThornsLeggings";
+                public static final String AUTOREPAIR = "armory.AutoRepairLeggings";
+                public static final String REINFORCED = "armory.ReinforcedLeggings";
+                public static final String ELECTRIC = "armory.ElectricLeggings";
             }
 
             public static final class Shoes {
                 public static final String BASE = Armor.MEDIEVALSHOES;
-                public static final String LEFT = "Armory.LeftShoes";
-                public static final String RIGHT = "Armory.RightShoes";
-                public static final String FALLASSIST = "Armory.FallAssistShoes";
-                public static final String SWIMASSIST = "Armory.SwimAssistShoes";
-                public static final String AUTOREPAIR = "Armory.AutoRepairShoes";
-                public static final String REINFORCED = "Armory.ReinforcedShoes";
-                public static final String ELECTRIC = "Armory.ElectricShoes";
+                public static final String LEFT = "armory.LeftShoes";
+                public static final String RIGHT = "armory.RightShoes";
+                public static final String FALLASSIST = "armory.FallAssistShoes";
+                public static final String SWIMASSIST = "armory.SwimAssistShoes";
+                public static final String AUTOREPAIR = "armory.AutoRepairShoes";
+                public static final String REINFORCED = "armory.ReinforcedShoes";
+                public static final String ELECTRIC = "armory.ElectricShoes";
             }
         }
 
         public static final class Upgrades {
             public static final class Helmet {
-                public static final String TOP = "Armory.TopHelmet";
-                public static final String LEFT = "Armory.LeftHelmet";
-                public static final String RIGHT = "Armory.RightHelmet";
+                public static final String TOP = "armory.TopHelmet";
+                public static final String LEFT = "armory.LeftHelmet";
+                public static final String RIGHT = "armory.RightHelmet";
             }
 
             public static final class Chestplate {
-                public static final String SHOULDERLEFT = "Armory.ShoulderLeftChestplate";
-                public static final String SHOULDERRIGHT = "Armory.ShoulderRightChestplate";
-                public static final String FRONTLEFT = "Armory.FrontLeftChestplate";
-                public static final String FRONTRIGHT = "Armory.FrontRightChestplate";
-                public static final String BACKLEFT = "Armory.BackLeftChestplate";
-                public static final String BACKRIGHT = "Armory.BackrightChestplate";
+                public static final String SHOULDERLEFT = "armory.ShoulderLeftChestplate";
+                public static final String SHOULDERRIGHT = "armory.ShoulderRightChestplate";
+                public static final String FRONTLEFT = "armory.FrontLeftChestplate";
+                public static final String FRONTRIGHT = "armory.FrontRightChestplate";
+                public static final String BACKLEFT = "armory.BackLeftChestplate";
+                public static final String BACKRIGHT = "armory.BackrightChestplate";
             }
 
             public static final class Leggings {
-                public static final String FRONTLEFT = "Armory.FrontLeftLeggings";
-                public static final String FRONTRIGHT = "Armory.FrontRightLeggings";
-                public static final String BACKLEFT = "Armory.BackLeftLeggings";
-                public static final String BACKRIGHT = "Armory.BackRightLeggings";
+                public static final String FRONTLEFT = "armory.FrontLeftLeggings";
+                public static final String FRONTRIGHT = "armory.FrontRightLeggings";
+                public static final String BACKLEFT = "armory.BackLeftLeggings";
+                public static final String BACKRIGHT = "armory.BackRightLeggings";
             }
 
             public static final class Shoes {
-                public static final String LEFT = "Armory.LeftShoes";
-                public static final String RIGHT = "Armory.RightShoes";
+                public static final String LEFT = "armory.LeftShoes";
+                public static final String RIGHT = "armory.RightShoes";
             }
         }
 
         public static final class Modifiers {
             public static final class Helmet {
-                public static final String AQUABREATHING = "Armory.AquaBreathingHelmet";
-                public static final String NIGHTSIGHT = "Armory.NightsightHelmet";
-                public static final String THORNS = "Armory.ThornsHelmet";
-                public static final String AUTOREPAIR = "Armory.AutoRepairHelmet";
-                public static final String REINFORCED = "Armory.ReinforcedHelmet";
-                public static final String ELECTRIC = "Armory.ElectricHelmet";
+                public static final String AQUABREATHING = "armory.AquaBreathingHelmet";
+                public static final String NIGHTSIGHT = "armory.NightsightHelmet";
+                public static final String THORNS = "armory.ThornsHelmet";
+                public static final String AUTOREPAIR = "armory.AutoRepairHelmet";
+                public static final String REINFORCED = "armory.ReinforcedHelmet";
+                public static final String ELECTRIC = "armory.ElectricHelmet";
             }
 
             public static final class Chestplate {
-                public static final String STRENGTH = "Armory.StrengthChestplate";
-                public static final String HASTE = "Armory.HasteChestplate";
-                public static final String FLYING = "Armory.FlyingChestplate";
-                public static final String THORNS = "Armory.ThornsChestplate";
-                public static final String AUTOREPAIR = "Armory.AutoRepairChestplate";
-                public static final String REINFORCED = "Armory.ReinforcedChestplate";
-                public static final String ELECTRIC = "Armory.ElectricChestplate";
+                public static final String STRENGTH = "armory.StrengthChestplate";
+                public static final String HASTE = "armory.HasteChestplate";
+                public static final String FLYING = "armory.FlyingChestplate";
+                public static final String THORNS = "armory.ThornsChestplate";
+                public static final String AUTOREPAIR = "armory.AutoRepairChestplate";
+                public static final String REINFORCED = "armory.ReinforcedChestplate";
+                public static final String ELECTRIC = "armory.ElectricChestplate";
             }
 
             public static final class Leggins {
-                public static final String SPEED = "Armory.SpeedLegigns";
-                public static final String JUMPASSIST = "Armory.JumpAssistLeggins";
-                public static final String UPHILLASSIST = "Armory.UpHillAssistLeggins";
-                public static final String THORNS = "Armory.ThornsLeggins";
-                public static final String AUTOREPAIR = "Armory.AutoRepairLeggins";
-                public static final String REINFORCED = "Armory.ReinforcedLeggins";
-                public static final String ELECTRIC = "Armory.ElectricLeggins";
+                public static final String SPEED = "armory.SpeedLegigns";
+                public static final String JUMPASSIST = "armory.JumpAssistLeggins";
+                public static final String UPHILLASSIST = "armory.UpHillAssistLeggins";
+                public static final String THORNS = "armory.ThornsLeggins";
+                public static final String AUTOREPAIR = "armory.AutoRepairLeggins";
+                public static final String REINFORCED = "armory.ReinforcedLeggins";
+                public static final String ELECTRIC = "armory.ElectricLeggins";
             }
 
             public static final class Shoes {
-                public static final String FALLASSIST = "Armory.FallAssistShoes";
-                public static final String SWIMASSIST = "Armory.SwimAssistShoes";
-                public static final String AUTOREPAIR = "Armory.AutoRepairShoes";
-                public static final String REINFORCED = "Armory.ReinforcedShoes";
-                public static final String ELECTRIC = "Armory.ElectricShoes";
+                public static final String FALLASSIST = "armory.FallAssistShoes";
+                public static final String SWIMASSIST = "armory.SwimAssistShoes";
+                public static final String AUTOREPAIR = "armory.AutoRepairShoes";
+                public static final String REINFORCED = "armory.ReinforcedShoes";
+                public static final String ELECTRIC = "armory.ElectricShoes";
             }
         }
 
         public static final class Tiers {
             public static final String MEDIEVAL = "Amrory.Tiers.Medieval";
-            public static final String PLATED = "Armory.Tiers.Plated";
-            public static final String QUANTUM = "Armory.Tiers.Quantum";
+            public static final String PLATED = "armory.Tiers.Plated";
+            public static final String QUANTUM = "armory.Tiers.Quantum";
         }
 
         public static final class Items {
-            public static final String ItemMetalRing = "Armory.Items.Components.MetalRing";
-            public static final String ItemMetalChain = "Armory.Items.Components.MetalChain";
-            public static final String ItemHeatedIngot = "Armory.Items.Components.HeatedIngots";
-            public static final String ItemFan = "Armory.Items.HeatedFan";
-            public static final String ItemHammer = "Armory.Items.ItemHammer";
-            public static final String ItemTongs = "Armory.Items.Tongs";
-            public static final String ItemNugget = "Armory.Items.Nugget";
-            public static final String ItemPlate = "Armory.Items.Plate";
-            public static final String ItemMedievalUpdrade = "Armory.Items.Medieval.Upgrade";
-            public static final String ItemSmithingsGuide = "Armory.Items.SmithingsGuide";
-            public static final String ItemBlueprint = "Armory.Items.Blueprint";
-            public static final String ItemGuideLabel = "Armory.Items.Tab";
+            public static final String ItemMetalRing = "armory.Items.Components.MetalRing";
+            public static final String ItemMetalChain = "armory.Items.Components.MetalChain";
+            public static final String ItemHeatedIngot = "armory.Items.Components.HeatedIngots";
+            public static final String ItemFan = "armory.Items.HeatedFan";
+            public static final String ItemHammer = "armory.Items.ItemHammer";
+            public static final String ItemTongs = "armory.Items.Tongs";
+            public static final String ItemNugget = "armory.Items.Nugget";
+            public static final String ItemPlate = "armory.Items.Plate";
+            public static final String ItemMedievalUpdrade = "armory.Items.Medieval.Upgrade";
+            public static final String ItemSmithingsGuide = "armory.Items.SmithingsGuide";
+            public static final String ItemBlueprint = "armory.Items.Blueprint";
+            public static final String ItemGuideLabel = "armory.Items.Tab";
         }
 
         public static final class Blocks {
-            public static final String FirePit = "Armory.Blocks.FirePit";
-            public static final String Heater = "Armory.Blocks.Heater";
-            public static final String ArmorsAnvil = "Armory.Blocks.Anvil";
-            public static final String BookBinder = "Armory.Blocks.Binder";
+            public static final String FirePit = "armory.Blocks.FirePit";
+            public static final String Heater = "armory.Blocks.Heater";
+            public static final String ArmorsAnvil = "armory.Blocks.Anvil";
+            public static final String BookBinder = "armory.Blocks.Binder";
         }
 
         public static final class TileEntities {
-            public static final String FirePitContainer = "container.Armory.FirePit";
-            public static final String HeaterComponent = "container.Armory.Heater";
-            public static final String ArmorsAnvil = "container.Armory.Anvil";
-            public static final String BookBinder = "conainer.Armory.BookBinder";
+            public static final String FirePitContainer = "container.armory.FirePit";
+            public static final String HeaterComponent = "container.armory.Heater";
+            public static final String ArmorsAnvil = "container.armory.Anvil";
+            public static final String BookBinder = "conainer.armory.BookBinder";
 
             public static final class Structures {
-                public static final String FirePit = "Structures.Armory.FirePit";
+                public static final String FirePit = "Structures.armory.FirePit";
             }
         }
 
@@ -224,12 +224,12 @@ public class References {
         }
 
         public static final class GUIComponents {
-            public static final String TAB = "Armory.Gui.BAse.Tab.";
+            public static final String TAB = "armory.gui.BAse.Tab.";
 
             public static final class FirePit {
-                public static final String BACKGROUND = "Gui.FirePit.Background";
-                public static final String INVENTORY = "Gui.FirePit.Inventory.Player";
-                public static final String SLOT = "Gui.FirePit.Slots.";
+                public static final String BACKGROUND = "gui.FirePit.Background";
+                public static final String INVENTORY = "gui.FirePit.inventory.Player";
+                public static final String SLOT = "gui.FirePit.slots.";
                 public static final String FLAMEONE = "Flame1";
                 public static final String FLAMETWO = "Flame2";
                 public static final String FLAMETHREE = "Flame3";
@@ -238,61 +238,61 @@ public class References {
             }
 
             public static final class Anvil {
-                public static final String BACKGROUND = "Gui.Anvil.Background";
-                public static final String PLAYERINVENTORY = "Gui.Anvil.Player";
-                public static final String EXTENDEDCRAFTING = "Gui.Anvil.ExtendedCrafting";
-                public static final String EXPERIENCELABEL = "Gui.Anvil.Label.Experience";
-                public static final String TOOLSLOTBORDER = "Gui.Anvil.Tools.Border";
-                public static final String HAMMERSLOT = "Gui.Anvil.Tools.Slot.Hammer";
-                public static final String TONGSLOT = "Gui.Anvil.Tools.Slot.Tongs";
-                public static final String LOGO = "Gui.Anvil.Logo";
-                public static final String TEXTBOXBORDER = "Gui,Anvil.Name.Border";
-                public static final String TEXTBOX = "Gui.Anvil.Name.Textbox";
+                public static final String BACKGROUND = "gui.Anvil.Background";
+                public static final String PLAYERINVENTORY = "gui.Anvil.Player";
+                public static final String EXTENDEDCRAFTING = "gui.Anvil.ExtendedCrafting";
+                public static final String EXPERIENCELABEL = "gui.Anvil.Label.Experience";
+                public static final String TOOLSLOTBORDER = "gui.Anvil.Tools.Border";
+                public static final String HAMMERSLOT = "gui.Anvil.Tools.Slot.Hammer";
+                public static final String TONGSLOT = "gui.Anvil.Tools.Slot.Tongs";
+                public static final String LOGO = "gui.Anvil.Logo";
+                public static final String TEXTBOXBORDER = "gui,Anvil.Name.Border";
+                public static final String TEXTBOX = "gui.Anvil.Name.Textbox";
                 public static final String CRAFTINGPROGRESS = "CraftingProgress";
-                public static final String SMITHINGSGUIDEBORDER = "Gui,Anvil.Guide.Border";
-                public static final String SMITHINGSGUIDESLOT = "Gui.Anvil.Guide.Slot";
+                public static final String SMITHINGSGUIDEBORDER = "gui,Anvil.Guide.Border";
+                public static final String SMITHINGSGUIDESLOT = "gui.Anvil.Guide.Slot";
             }
 
             public static final class BookBinder {
-                public static final String TabBookBinder = "Gui.BookBinder.Tab.BookBinder";
-                public static final String TabResearchStation = "Gui.BookBinder.Tab.ReasearchStation";
+                public static final String TabBookBinder = "gui.BookBinder.Tab.BookBinder";
+                public static final String TabResearchStation = "gui.BookBinder.Tab.ReasearchStation";
 
                 public static final class TabBook {
-                    public static final String BACKGROUND = "Gui.BookBinder.TabBookBinder.Background";
+                    public static final String BACKGROUND = "gui.BookBinder.TabBookBinder.Background";
 
-                    public static final String BORDERBOOKSLOT = "Gui.BookBinder.TabBookBinder.Border.BookSlot";
-                    public static final String BORDERBLUEPRINTS = "Gui.BookBinder.TabBookBinder.Border.Blueprints";
+                    public static final String BORDERBOOKSLOT = "gui.BookBinder.TabBookBinder.Border.BookSlot";
+                    public static final String BORDERBLUEPRINTS = "gui.BookBinder.TabBookBinder.Border.Blueprints";
 
-                    public static final String PROGRESSARROW = "Gui.BookBinder.TabBookBinder.ProgressArrow";
+                    public static final String PROGRESSARROW = "gui.BookBinder.TabBookBinder.ProgressArrow";
 
-                    public static final String BOOKSLOT = "Gui.BookBinder.TabBookBinder.BookSlot";
-                    public static final String BLUEPRINTBACKGROUND = "Gui.BookBinder.TabBookBinder.BluePrintBackground";
-                    public static final String BLUEPRINTSLOT = "Gui.BookBinder.TabBookBinder.BlueprintSlot";
+                    public static final String BOOKSLOT = "gui.BookBinder.TabBookBinder.BookSlot";
+                    public static final String BLUEPRINTBACKGROUND = "gui.BookBinder.TabBookBinder.BluePrintBackground";
+                    public static final String BLUEPRINTSLOT = "gui.BookBinder.TabBookBinder.BlueprintSlot";
 
-                    public static final String PLAYERINVENTORY = "Gui.BookBinder.TabBookBinder.PlayerInventory";
+                    public static final String PLAYERINVENTORY = "gui.BookBinder.TabBookBinder.PlayerInventory";
                 }
 
                 public static final class TabResearch {
-                    public static final String BACKGROUND = "Gui.BookBinder.TabResearchStation.Background";
+                    public static final String BACKGROUND = "gui.BookBinder.TabResearchStation.Background";
 
-                    public static final String RESEARCHBACKGROUND = "Gui.BookBinder.TabResearchStation.Borders.Research";
+                    public static final String RESEARCHBACKGROUND = "gui.BookBinder.TabResearchStation.Borders.Research";
 
-                    public static final String BUTTONAPPLYHEAT = "Gui.BookBinder.TabResearchStation.Button.PerformResearch.ApplyHeat";
-                    public static final String BUTTONCUTSTACK = "Gui.BookBinder.TabResearchStation.Button.CutStack";
-                    public static final String BUTTONHITSTACK = "Gui.BookBinder.TabResearchStation.Button.HitStack";
-                    public static final String BUTTONANALYZESTACK = "Gui.BookBinder.TabResearchStation.Button.AnalyzeStack";
+                    public static final String BUTTONAPPLYHEAT = "gui.BookBinder.TabResearchStation.Button.PerformResearch.ApplyHeat";
+                    public static final String BUTTONCUTSTACK = "gui.BookBinder.TabResearchStation.Button.CutStack";
+                    public static final String BUTTONHITSTACK = "gui.BookBinder.TabResearchStation.Button.HitStack";
+                    public static final String BUTTONANALYZESTACK = "gui.BookBinder.TabResearchStation.Button.AnalyzeStack";
 
-                    public static final String SLOTTARGETSTACK = "Gui.BookBinder.TabResearchStation.Slot.TargetStack";
+                    public static final String SLOTTARGETSTACK = "gui.BookBinder.TabResearchStation.Slot.TargetStack";
 
-                    public static final String SLOTPAPER = "Gui.BookBinder.TabResearchStation.Slot.Paper";
-                    public static final String SLOTBLUEPRINT = "Gui.BookBinder.TabResearchStation.Slot.Output";
-                    public static final String IMAGEARROW = "Gui.BookBinder.TabResearchStation.Image.Arrow";
+                    public static final String SLOTPAPER = "gui.BookBinder.TabResearchStation.Slot.Paper";
+                    public static final String SLOTBLUEPRINT = "gui.BookBinder.TabResearchStation.Slot.Output";
+                    public static final String IMAGEARROW = "gui.BookBinder.TabResearchStation.Image.Arrow";
 
-                    public static final String RESEARCHHISTORYBACKGROUND = "Gui.BookBinder.TabResearchStation.Borders.ResearchHistory";
+                    public static final String RESEARCHHISTORYBACKGROUND = "gui.BookBinder.TabResearchStation.Borders.ResearchHistory";
 
-                    public static final String RESEARCHHISTORY = "Gui.BookBinder.TabReseachStation.Research.History";
+                    public static final String RESEARCHHISTORY = "gui.BookBinder.TabReseachStation.Research.History";
 
-                    public static final String PLAYERINVENTORY = "Gui.BookBinder.TabResearch.PlayerInventory";
+                    public static final String PLAYERINVENTORY = "gui.BookBinder.TabResearch.PlayerInventory";
                 }
             }
         }
@@ -314,7 +314,7 @@ public class References {
             }
 
             public static final class BookBinder {
-                public static final String INPUTSWITCH = "Input.Inventory.Research.Stack.TargetSwitch";
+                public static final String INPUTSWITCH = "Input.inventory.Research.Stack.TargetSwitch";
                 public static final String HEAT = "Input.Research.Heat";
                 public static final String HAMMER = "Input.Research.Hammer";
                 public static final String TONGS = "Input.Research.Tongs";
@@ -326,8 +326,8 @@ public class References {
         }
 
         public static final class ExtendedEntityProperties {
-            public static final String KNOWLEDGE = "Armory.Crafting.Knowledge";
-            public static final String ANVILRECIPEEXPERIENCE = "Armory.Crafting.Knowledge.AnvilRecipeExperience";
+            public static final String KNOWLEDGE = "armory.Crafting.knowledge";
+            public static final String ANVILRECIPEEXPERIENCE = "armory.Crafting.knowledge.AnvilRecipeExperience";
 
         }
 
@@ -412,7 +412,7 @@ public class References {
         public static final String InstalledAddons = "InstalledAddons";
         public static final String ArmorData = "ArmorData";
         public static final String RenderCompound = "RenderCompound";
-        public static final String Material = "Material";
+        public static final String Material = "material";
         public static final String CustomName = "Name";
 
         //Versioning used when there is a change in the NBT tag structure.
@@ -460,7 +460,7 @@ public class References {
             public class ItemInventory {
                 public static final String ID = "UUID";
                 public static final String OPEN = "Open";
-                public static final String INVENTORY = "Inventory";
+                public static final String INVENTORY = "inventory";
                 public static final String SLOTID = "SlotIndex";
                 public static final String STACK = "StackData";
             }
@@ -499,7 +499,7 @@ public class References {
                 public static final String NAME = "Name";
                 public static final String SLOT = "Slot";
                 public static final String STRUCTUREDATA = "Structures";
-                public static final String INVENTORY = "Inventory";
+                public static final String INVENTORY = "inventory";
 
                 public class Structures {
                     public static final String COORDINATES = "Coordinates";

@@ -1,4 +1,4 @@
-package com.smithsmodding.Armory.Common.Inventory;
+package com.smithsmodding.armory.common.inventory;
 /*
  *   ContainerFirepit
  *   Created by: Orion
@@ -6,9 +6,9 @@ package com.smithsmodding.Armory.Common.Inventory;
  */
 
 
-import com.smithsmodding.Armory.Common.Inventory.Slots.*;
-import com.smithsmodding.Armory.Common.TileEntity.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.common.inventory.slots.*;
+import com.smithsmodding.armory.common.tileentity.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.common.inventory.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;

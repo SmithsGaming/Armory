@@ -1,26 +1,26 @@
-package com.smithsmodding.Armory.Common.Logic;
+package com.smithsmodding.armory.common.logic;
 /*
  *   ArmoryInitializer
  *   Created by: Orion
  *   Created on: 17-9-2014
  */
 
-import com.smithsmodding.Armory.API.Armor.*;
-import com.smithsmodding.Armory.API.Events.Common.*;
-import com.smithsmodding.Armory.API.Materials.*;
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Common.Addons.*;
-import com.smithsmodding.Armory.Common.Block.*;
-import com.smithsmodding.Armory.Common.Fluid.*;
-import com.smithsmodding.Armory.Common.Item.Armor.TierMedieval.*;
-import com.smithsmodding.Armory.Common.Item.*;
-import com.smithsmodding.Armory.Common.Item.Knowledge.*;
-import com.smithsmodding.Armory.Common.Material.*;
-import com.smithsmodding.Armory.Common.Material.FluidModifiers.*;
-import com.smithsmodding.Armory.Common.Registry.*;
-import com.smithsmodding.Armory.Common.TileEntity.*;
-import com.smithsmodding.Armory.Util.Client.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.api.events.common.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.common.addons.*;
+import com.smithsmodding.armory.common.block.*;
+import com.smithsmodding.armory.common.fluid.*;
+import com.smithsmodding.armory.common.item.armor.tiermedieval.*;
+import com.smithsmodding.armory.common.item.*;
+import com.smithsmodding.armory.common.item.knowledge.*;
+import com.smithsmodding.armory.common.material.*;
+import com.smithsmodding.armory.common.material.fluidmodifiers.*;
+import com.smithsmodding.armory.common.registry.*;
+import com.smithsmodding.armory.common.tileentity.*;
+import com.smithsmodding.armory.util.Client.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.*;
 import com.smithsmodding.smithscore.util.common.*;
 import net.minecraft.init.*;

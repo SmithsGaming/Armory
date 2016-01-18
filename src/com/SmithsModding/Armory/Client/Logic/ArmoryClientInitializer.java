@@ -1,4 +1,4 @@
-package com.smithsmodding.Armory.Client.Logic;
+package com.smithsmodding.armory.client.logic;
 
 /*
  *   ArmoryClientInitializer
@@ -6,14 +6,14 @@ package com.smithsmodding.Armory.Client.Logic;
  *   Created on: 19-9-2014
  */
 
-import com.smithsmodding.Armory.API.Armor.*;
-import com.smithsmodding.Armory.API.Materials.*;
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Client.*;
-import com.smithsmodding.Armory.Common.Logic.*;
-import com.smithsmodding.Armory.Common.Material.*;
-import com.smithsmodding.Armory.Common.Registry.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.client.*;
+import com.smithsmodding.armory.common.logic.*;
+import com.smithsmodding.armory.common.material.*;
+import com.smithsmodding.armory.common.registry.*;
+import com.smithsmodding.armory.util.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.item.*;
 import net.minecraftforge.client.model.*;
@@ -77,7 +77,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
             proxy.registerHeatedItemItemModel(GeneralRegistry.Items.heatedItem);
 
             OBJLoader.instance.addDomain(References.General.MOD_ID.toLowerCase());
-            ModelLoader.setCustomModelResourceLocation(GeneralRegistry.Items.guide, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + "Armory.Items.SmithingsGuide", "inventory"));
+            ModelLoader.setCustomModelResourceLocation(GeneralRegistry.Items.guide, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + "armory.Items.SmithingsGuide", "inventory"));
         }
 
 

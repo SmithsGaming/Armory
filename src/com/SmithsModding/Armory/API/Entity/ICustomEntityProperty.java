@@ -4,7 +4,7 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.Armory.API.Entity;
+package com.smithsmodding.armory.api.entity;
 
 import net.minecraft.entity.*;
 import net.minecraftforge.common.*;
@@ -12,7 +12,7 @@ import net.minecraftforge.common.*;
 public interface ICustomEntityProperty extends IExtendedEntityProperties {
 
     /**
-     * Gets the Entity this KnowledgeProperty belongs to
+     * Gets the entity this KnowledgeProperty belongs to
      *
      * @return The entity.
      */

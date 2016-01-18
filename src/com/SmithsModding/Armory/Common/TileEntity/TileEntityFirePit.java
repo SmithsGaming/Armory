@@ -4,7 +4,7 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.Armory.Common.TileEntity;
+package com.smithsmodding.armory.common.tileentity;
 /*
 /  TileEntityFirePit
 /  Created by : Orion
@@ -13,15 +13,15 @@ package com.smithsmodding.Armory.Common.TileEntity;
 
 
 import com.google.common.base.*;
-import com.smithsmodding.Armory.API.Materials.*;
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Common.Block.*;
-import com.smithsmodding.Armory.Common.Factory.*;
-import com.smithsmodding.Armory.Common.Item.*;
-import com.smithsmodding.Armory.Common.Registry.*;
-import com.smithsmodding.Armory.Common.TileEntity.GUIManagers.*;
-import com.smithsmodding.Armory.Common.TileEntity.State.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.common.block.*;
+import com.smithsmodding.armory.common.factory.*;
+import com.smithsmodding.armory.common.item.*;
+import com.smithsmodding.armory.common.registry.*;
+import com.smithsmodding.armory.common.tileentity.guimanagers.*;
+import com.smithsmodding.armory.common.tileentity.state.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.*;
 import com.smithsmodding.smithscore.common.fluid.*;
 import com.smithsmodding.smithscore.common.pathfinding.*;

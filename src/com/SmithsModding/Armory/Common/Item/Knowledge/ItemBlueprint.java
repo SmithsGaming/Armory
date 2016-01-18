@@ -4,12 +4,12 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.Armory.Common.Item.Knowledge;
+package com.smithsmodding.armory.common.item.knowledge;
 
-import com.smithsmodding.Armory.API.Knowledge.*;
-import com.smithsmodding.Armory.Common.Registry.*;
-import com.smithsmodding.Armory.Util.Client.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.api.knowledge.*;
+import com.smithsmodding.armory.common.registry.*;
+import com.smithsmodding.armory.util.Client.*;
+import com.smithsmodding.armory.util.*;
 import net.minecraft.creativetab.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;

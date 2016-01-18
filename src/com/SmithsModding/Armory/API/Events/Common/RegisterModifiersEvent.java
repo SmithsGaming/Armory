@@ -1,4 +1,4 @@
-package com.smithsmodding.Armory.API.Events.Common;
+package com.smithsmodding.armory.api.events.common;
 /*
 *   RegisterModifiersEvent
 *   Created by: Orion

@@ -4,9 +4,9 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.Armory.API.Knowledge;
+package com.smithsmodding.armory.api.knowledge;
 
-import com.smithsmodding.Armory.*;
+import com.smithsmodding.armory.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 
@@ -38,7 +38,7 @@ public class KnowledgeRegistry {
         try {
             return (IKnowledgedGameElement) iExperiencedCraftingClass.getConstructor().newInstance();
         } catch (Exception ex) {
-            Armory.getLogger().error("Could not create a Knowledge for: " + pKnowledgeName + " the class associated with the Knowledge does not have a empty constructor.", ex);
+            Armory.getLogger().error("Could not create a knowledge for: " + pKnowledgeName + " the class associated with the knowledge does not have a empty constructor.", ex);
             return null;
         }
     }

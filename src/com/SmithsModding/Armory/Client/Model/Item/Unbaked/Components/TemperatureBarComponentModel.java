@@ -1,8 +1,8 @@
-package com.smithsmodding.Armory.Client.Model.Item.Unbaked.Components;
+package com.smithsmodding.armory.client.model.Item.Unbaked.Components;
 
 import com.google.common.base.*;
 import com.google.common.collect.*;
-import com.smithsmodding.Armory.Client.Model.Item.Baked.Components.*;
+import com.smithsmodding.armory.client.model.Item.Baked.Components.*;
 import com.smithsmodding.smithscore.util.client.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.vertex.*;
@@ -19,7 +19,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
     /**
      * Creates a new unbaked model, given the parameters list of possible textures.
      *
-     * @param textures The possible textures for the unbaked Model.
+     * @param textures The possible textures for the unbaked model.
      */
     public TemperatureBarComponentModel (ImmutableList<ResourceLocation> textures) {
         super(textures);
@@ -30,7 +30,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
      *
      * @param state              The modelstate you want a model for.
      * @param format             The format the vertexes are stored in.
-     * @param bakedTextureGetter Function to get the Texture for the Model.
+     * @param bakedTextureGetter Function to get the Texture for the model.
      * @return A ItemStack depending model that is ready to be used.
      */
     @Override
@@ -39,7 +39,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
     }
 
     /**
-     * Function to get the grayscale texture location of this Model faster.
+     * Function to get the grayscale texture location of this model faster.
      *
      * @return The location of the grayscale texture.
      */

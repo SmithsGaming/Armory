@@ -1,16 +1,16 @@
-package com.smithsmodding.Armory.Common.Material;
+package com.smithsmodding.armory.common.material;
 /*
 *   ArmorMaterial
 *   Created by: Orion
 *   Created on: 6-4-2014
 */
 
-import com.smithsmodding.Armory.API.Materials.*;
-import com.smithsmodding.Armory.API.Registries.*;
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Common.Addons.*;
-import com.smithsmodding.Armory.Common.Registry.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.api.registries.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.common.addons.*;
+import com.smithsmodding.armory.common.registry.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.util.client.color.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
@@ -66,9 +66,9 @@ public class ArmorMaterial implements IArmorMaterial {
         LASTUSEDID++;
 
         if (renderInfo != null) {
-            Armory.getLogger().info("Initialized Material: " + this.uniqueIdentifier + ", with ItemColor: " + renderInfo.getVertexColor().toString() + ", with EnumChatFormatting: " + getNameColor());
+            Armory.getLogger().info("Initialized material: " + this.uniqueIdentifier + ", with ItemColor: " + renderInfo.getVertexColor().toString() + ", with EnumChatFormatting: " + getNameColor());
         } else {
-            Armory.getLogger().info("Initialized Material: " + this.uniqueIdentifier);
+            Armory.getLogger().info("Initialized material: " + this.uniqueIdentifier);
         }
     }
 

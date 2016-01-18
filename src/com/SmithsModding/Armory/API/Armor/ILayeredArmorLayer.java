@@ -1,4 +1,4 @@
-package com.smithsmodding.Armory.API.Armor;
+package com.smithsmodding.armory.api.armor;
 
 import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.*;
@@ -18,22 +18,22 @@ public interface ILayeredArmorLayer {
     /**
      * Indicates if this layer is depending on a material or not.
      *
-     * @return True when this layer is Material dependent, false when not.
+     * @return True when this layer is material dependent, false when not.
      */
     boolean isMaterialDependent ();
 
     /**
-     * Method to get the texture location of the item when the Armor is not broken.
+     * Method to get the texture location of the item when the armor is not broken.
      *
-     * @return The texture location of the item when the Armor is not broken.
+     * @return The texture location of the item when the armor is not broken.
      */
     @SideOnly(Side.CLIENT)
     ResourceLocation getItemWholeTextureLocation ();
 
     /**
-     * Method to get the texture location of the item when the Armor is broken.
+     * Method to get the texture location of the item when the armor is broken.
      *
-     * @return The texture location of the item when the Armor is broken.
+     * @return The texture location of the item when the armor is broken.
      */
     @SideOnly(Side.CLIENT)
     ResourceLocation getItemBrokenTextureLocation ();

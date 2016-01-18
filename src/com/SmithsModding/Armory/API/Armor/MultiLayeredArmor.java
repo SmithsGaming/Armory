@@ -1,12 +1,12 @@
-package com.smithsmodding.Armory.API.Armor;
+package com.smithsmodding.armory.api.armor;
 /*
 *   MultiLayeredArmor
 *   Created by: Orion
 *   Created on: 28-6-2014
 */
 
-import com.smithsmodding.Armory.Client.Model.Entity.*;
-import com.smithsmodding.Armory.Common.Registry.*;
+import com.smithsmodding.armory.client.model.Entity.*;
+import com.smithsmodding.armory.common.registry.*;
 import net.minecraft.client.model.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -33,7 +33,7 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
     }
 
     ///#############################################Functions for grabbing data#########################################
-    //Returns the InternalName (ID as handled by the Armory Registry etc), which has to be unique, of this instance of a
+    //Returns the InternalName (ID as handled by the armory registry etc), which has to be unique, of this instance of a
     //MultiLayeredArmor (MLA).
     public String getUniqueID () {
         return uniqueID;
@@ -44,7 +44,7 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
         return armorIndex;
     }
 
-    //Registers the Addon to this Armor as its parent.
+    //Registers the Addon to this armor as its parent.
     public void registerAddon (MLAAddon pNewAddon) {
         possibleAddons.put(pNewAddon.getUniqueID(), pNewAddon);
     }
@@ -73,7 +73,7 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
     }
 
     ///############################################Functions for handeling the ISpecialArmorRequirements################
-    //Events have to be created to implement these functions.
+    //events have to be created to implement these functions.
     //Might actually leave to the implementer to implement these
     @Override
     public abstract ArmorProperties getProperties (EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot);

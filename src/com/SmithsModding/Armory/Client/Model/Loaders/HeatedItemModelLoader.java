@@ -1,11 +1,11 @@
-package com.smithsmodding.Armory.Client.Model.Loaders;
+package com.smithsmodding.armory.client.model.Loaders;
 
 
 import com.google.common.collect.*;
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Client.Model.Item.Unbaked.Components.*;
-import com.smithsmodding.Armory.Client.Model.Item.Unbaked.*;
-import com.smithsmodding.Armory.Client.Textures.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.client.model.Item.Unbaked.Components.*;
+import com.smithsmodding.armory.client.model.Item.Unbaked.*;
+import com.smithsmodding.armory.client.textures.*;
 import com.smithsmodding.smithscore.util.client.*;
 import net.minecraft.client.resources.*;
 import net.minecraft.util.*;
@@ -19,11 +19,11 @@ import java.util.*;
  * Created by Marc on 06.12.2015.
  */
 public class HeatedItemModelLoader implements ICustomModelLoader {
-    public static final String EXTENSION = ".HI-Armory";
+    public static final String EXTENSION = ".HI-armory";
 
     @Override
     public boolean accepts (ResourceLocation modelLocation) {
-        return modelLocation.getResourcePath().endsWith(EXTENSION); // HeatedItem Armory extension. Foo.HI-Armory.json
+        return modelLocation.getResourcePath().endsWith(EXTENSION); // HeatedItem armory extension. Foo.HI-armory.json
     }
 
     @Override

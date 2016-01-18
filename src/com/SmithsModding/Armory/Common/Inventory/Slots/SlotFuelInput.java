@@ -1,4 +1,4 @@
-package com.smithsmodding.Armory.Common.Inventory.Slots;
+package com.smithsmodding.armory.common.inventory.slots;
 /*
  *   SlotFuelInput
  *   Created by: Orion

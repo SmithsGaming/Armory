@@ -1,13 +1,13 @@
-package com.smithsmodding.Armory.Common.Factory;
+package com.smithsmodding.armory.common.factory;
 /*
 /  StandardMLAFactory
 /  Created by : Orion
 /  Created on : 04/07/2014
 */
 
-import com.smithsmodding.Armory.API.Armor.*;
-import com.smithsmodding.Armory.Util.Armor.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.util.Armor.*;
+import com.smithsmodding.armory.util.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 

@@ -1,12 +1,12 @@
-package com.smithsmodding.Armory.API.Item;
+package com.smithsmodding.armory.api.item;
 
 import net.minecraft.item.*;
 
 /**
  * Created by Marc on 06.12.2015.
  * <p/>
- * Interface declaring an Item that is made up out of a single Material
- * A good example are the Components of Armor Upgrade.
+ * Interface declaring an item that is made up out of a single material
+ * A good example are the Components of armor Upgrade.
  */
 public interface ISingleMaterialItem {
 

@@ -1,9 +1,9 @@
-package com.smithsmodding.Armory.Client.Gui;
+package com.smithsmodding.armory.client.gui;
 
-import com.smithsmodding.Armory.Common.TileEntity.*;
-import com.smithsmodding.Armory.Util.Client.Colors;
-import com.smithsmodding.Armory.Util.Client.*;
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.common.tileentity.*;
+import com.smithsmodding.armory.util.Client.Colors;
+import com.smithsmodding.armory.util.Client.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.client.gui.*;
 import com.smithsmodding.smithscore.client.gui.components.core.*;
 import com.smithsmodding.smithscore.client.gui.components.implementations.*;

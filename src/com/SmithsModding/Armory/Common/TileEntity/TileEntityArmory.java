@@ -4,14 +4,14 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.Armory.Common.TileEntity;
+package com.smithsmodding.armory.common.tileentity;
 /*
  *   TileEntityArmory
  *   Created by: Orion
  *   Created on: 13-1-2015
  */
 
-import com.smithsmodding.Armory.Util.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.client.gui.management.*;
 import com.smithsmodding.smithscore.common.tileentity.*;
 import com.smithsmodding.smithscore.common.tileentity.state.*;
@@ -24,11 +24,11 @@ public abstract class TileEntityArmory extends TileEntitySmithsCore implements I
     private EnumFacing direction = EnumFacing.NORTH;
 
     /**
-     * Constructor to create a new TileEntity for a smithscore Mod.
+     * Constructor to create a new tileentity for a smithscore Mod.
      * <p/>
      * Handles the setting of the core system values like the state, and the GUIManager.
      *
-     * @param initialState The TE State that gets set on default when a new Instance is created.
+     * @param initialState The TE state that gets set on default when a new Instance is created.
      * @param manager      The GUIManager that handles interactins with events comming from UI's
      */
     protected TileEntityArmory (ITileEntityState initialState, IGUIManager manager) {

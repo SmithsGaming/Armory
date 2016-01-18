@@ -1,10 +1,10 @@
-package com.smithsmodding.Armory.Client.Textures;
+package com.smithsmodding.armory.client.textures;
 
 import com.google.common.collect.*;
-import com.smithsmodding.Armory.API.Materials.*;
-import com.smithsmodding.Armory.API.Textures.*;
-import com.smithsmodding.Armory.*;
-import com.smithsmodding.Armory.Common.Material.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.api.textures.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.common.material.*;
 import com.smithsmodding.smithscore.util.client.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.resources.*;
@@ -31,7 +31,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
 
     //Initializes the dummy gui material with a proper set of render info.
     static {
-        guiMaterial = new ArmorMaterial("_internal_gui", "Internal-Gui", false, 0F, -1, 0F, null);
+        guiMaterial = new ArmorMaterial("_internal_gui", "Internal-gui", false, 0F, -1, 0F, null);
         guiMaterial.setRenderInfo(new IMaterialRenderInfo.AbstractMaterialRenderInfo() {
             @Override
             public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {
@@ -52,7 +52,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     /**
      * Static method to register more then one GrayScale texture to the Creator.
      *
-     * @param locations The location of the Textures to register.
+     * @param locations The location of the textures to register.
      */
     public static void registerBaseTexture (Collection<ResourceLocation> locations) {
         baseTextures.addAll(locations);
@@ -71,7 +71,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      * Actual construction method is called from the ForgeEvent system.
      * This method kicks the creation of the textures of and provided a map to put the textures in.
      *
-     * @param event The Events fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
+     * @param event The events fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
      */
     @SubscribeEvent(priority = EventPriority.LOW)
     public void createCustomTextures (TextureStitchEvent.Pre event) {
