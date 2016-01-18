@@ -3,7 +3,7 @@ package com.smithsmodding.armory.client.model.Item.Baked;
 import com.google.common.collect.*;
 import com.smithsmodding.armory.api.armor.*;
 import com.smithsmodding.armory.client.model.Item.Baked.Components.*;
-import com.smithsmodding.armory.util.Armor.*;
+import com.smithsmodding.armory.util.armor.*;
 import com.smithsmodding.smithscore.util.common.*;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.resources.model.*;

@@ -8,7 +8,7 @@ package com.smithsmodding.armory.client.model.Entity;
 import com.smithsmodding.armory.api.armor.*;
 import com.smithsmodding.armory.api.materials.*;
 import com.smithsmodding.armory.common.material.*;
-import com.smithsmodding.armory.util.Armor.*;
+import com.smithsmodding.armory.util.armor.*;
 import com.smithsmodding.smithscore.util.client.color.*;
 import net.minecraft.client.*;
 import net.minecraft.client.model.*;

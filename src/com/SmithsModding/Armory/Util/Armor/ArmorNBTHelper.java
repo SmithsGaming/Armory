@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.util.Armor;
+package com.smithsmodding.armory.util.armor;
 /*
  *   ArmorNBTHelper
  *   Created by: Orion

@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.util.Client;
+package com.smithsmodding.armory.util.client;
 
 import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.util.client.*;

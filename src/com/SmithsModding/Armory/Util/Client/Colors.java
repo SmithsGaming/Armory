@@ -1,4 +1,4 @@
-package com.smithsmodding.Armory.Util.Client;
+package com.smithsmodding.armory.util.client;
 
 import com.smithsmodding.smithscore.util.client.color.*;
 
