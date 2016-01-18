@@ -8,8 +8,8 @@ package com.smithsmodding.armory.common.item.knowledge;
 
 import com.smithsmodding.armory.api.knowledge.*;
 import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.util.Client.*;
 import com.smithsmodding.armory.util.*;
+import com.smithsmodding.armory.util.client.*;
 import net.minecraft.creativetab.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;

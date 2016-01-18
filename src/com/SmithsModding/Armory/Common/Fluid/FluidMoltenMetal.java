@@ -2,8 +2,8 @@ package com.smithsmodding.armory.common.fluid;
 
 import com.smithsmodding.armory.api.materials.*;
 import com.smithsmodding.armory.common.material.*;
-import com.smithsmodding.armory.util.Client.*;
 import com.smithsmodding.armory.util.*;
+import com.smithsmodding.armory.util.client.*;
 import net.minecraft.util.*;
 import net.minecraftforge.fluids.*;
 

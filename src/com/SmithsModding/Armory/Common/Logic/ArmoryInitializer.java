@@ -5,22 +5,22 @@ package com.smithsmodding.armory.common.logic;
  *   Created on: 17-9-2014
  */
 
+import com.smithsmodding.armory.*;
 import com.smithsmodding.armory.api.armor.*;
 import com.smithsmodding.armory.api.events.common.*;
 import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.*;
 import com.smithsmodding.armory.common.addons.*;
 import com.smithsmodding.armory.common.block.*;
 import com.smithsmodding.armory.common.fluid.*;
-import com.smithsmodding.armory.common.item.armor.tiermedieval.*;
 import com.smithsmodding.armory.common.item.*;
+import com.smithsmodding.armory.common.item.armor.tiermedieval.*;
 import com.smithsmodding.armory.common.item.knowledge.*;
 import com.smithsmodding.armory.common.material.*;
 import com.smithsmodding.armory.common.material.fluidmodifiers.*;
 import com.smithsmodding.armory.common.registry.*;
 import com.smithsmodding.armory.common.tileentity.*;
-import com.smithsmodding.armory.util.Client.*;
 import com.smithsmodding.armory.util.*;
+import com.smithsmodding.armory.util.client.*;
 import com.smithsmodding.smithscore.*;
 import com.smithsmodding.smithscore.util.common.*;
 import net.minecraft.init.*;

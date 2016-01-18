@@ -6,8 +6,8 @@ package com.smithsmodding.armory.common.factory;
 */
 
 import com.smithsmodding.armory.api.armor.*;
-import com.smithsmodding.armory.util.Armor.*;
 import com.smithsmodding.armory.util.*;
+import com.smithsmodding.armory.util.armor.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 
