@@ -61,6 +61,11 @@ if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
     version = version + "-SNAPSHOT"
     apiversion = apiversion + "-SNAPSHOT"
 }
+if(System.getenv().TRAVIS_BRANCH.toString().toLowerCase().contains("master") && config.build_mode.toString().trim().equals("RELEASE"))
+{
+	version = version + "-RC"
+    apiversion = apiversion + "-RC"
+}
 
 group = "com.smithsmodding.armory"
 archivesBaseName = "armory"
