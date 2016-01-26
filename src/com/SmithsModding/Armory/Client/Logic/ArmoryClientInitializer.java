@@ -6,14 +6,15 @@ package com.smithsmodding.armory.client.logic;
  *   Created on: 19-9-2014
  */
 
+import com.smithsmodding.armory.*;
 import com.smithsmodding.armory.api.armor.*;
 import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.*;
 import com.smithsmodding.armory.client.*;
 import com.smithsmodding.armory.common.logic.*;
 import com.smithsmodding.armory.common.material.*;
 import com.smithsmodding.armory.common.registry.*;
 import com.smithsmodding.armory.util.*;
+import com.smithsmodding.smithscore.util.client.color.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.item.*;
 import net.minecraftforge.client.model.*;
@@ -40,7 +41,13 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
 
     public static class MedievalClientInitialization {
         public static void registerMaterialResources() {
-            MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).setRenderInfo(new IMaterialRenderInfo.Metal(0xcacaca, 0f, 0.3f, 0f));
+            MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).setRenderInfo(new IMaterialRenderInfo.Metal(0xcacaca, 0f, 0.3f, 0f) {
+                @Override
+                public MinecraftColor getLiquidColor () {
+                    return new MinecraftColor(MinecraftColor.RED);
+                }
+            });
+
             MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN).setRenderInfo(new IMaterialRenderInfo.MultiColor(0x71589c, 0x8f60d4, 0x8c53df));
         }
 

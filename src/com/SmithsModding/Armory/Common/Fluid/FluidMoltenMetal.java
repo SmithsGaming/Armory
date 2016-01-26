@@ -15,12 +15,12 @@ public class FluidMoltenMetal extends Fluid {
     public FluidMoltenMetal () {
 
         //TODO: Add metal Icons.
-        super(References.InternalNames.Fluids.MOLTENMETAL, new ResourceLocation("blocks/water_still"), new ResourceLocation("blocks/water_flow"));
+        super(References.InternalNames.Fluids.MOLTENMETAL, new ResourceLocation(Textures.Blocks.LiquidMetalStill.getPrimaryLocation()), new ResourceLocation(Textures.Blocks.LiquidMetalFlow.getPrimaryLocation()));
     }
 
     @Override
     public int getColor (FluidStack stack) {
-        return MaterialRegistry.getInstance().getMaterial(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL)).getRenderInfo().getVertexColor().getRGB();
+        return MaterialRegistry.getInstance().getMaterial(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL)).getRenderInfo().getLiquidColor().getRGB();
     }
 
     @Override

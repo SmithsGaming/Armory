@@ -51,6 +51,13 @@ public interface IMaterialRenderInfo {
     MinecraftColor getVertexColor ();
 
     /**
+     * Method used by the rendering system to get the Vertex color for liquids.
+     *
+     * @return The color for the molten metal if armories default system should be used.
+     */
+    MinecraftColor getLiquidColor ();
+
+    /**
      * A special suffix for the texture.
      *
      * @return "" When no suffix exists or a suffix.
@@ -84,6 +91,16 @@ public interface IMaterialRenderInfo {
         @Override
         public MinecraftColor getVertexColor () {
             return new MinecraftColor(MinecraftColor.white);
+        }
+
+        /**
+         * Method used by the rendering system to get the Vertex color for liquids.
+         *
+         * @return The color for the molten metal if armories default system should be used.
+         */
+        @Override
+        public MinecraftColor getLiquidColor () {
+            return getVertexColor();
         }
 
         @Override
@@ -183,7 +200,6 @@ public interface IMaterialRenderInfo {
         public Metal (int color) {
             this(color, 0.4f, 0.4f, 0.1f);
         }
-
 
         @Override
         public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {
