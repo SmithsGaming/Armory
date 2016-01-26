@@ -229,12 +229,14 @@ public class References {
             public static final class FirePit {
                 public static final String BACKGROUND = "Gui.FirePit.Background";
                 public static final String INVENTORY = "Gui.FirePit.inventory.Player";
-                public static final String SLOT = "Gui.FirePit.slots.";
-                public static final String FLAMEONE = "Flame1";
-                public static final String FLAMETWO = "Flame2";
-                public static final String FLAMETHREE = "Flame3";
-                public static final String FLAMEFOUR = "Flame4";
-                public static final String FLAMEFIVE = "Flame5";
+                public static final String SLOT = "Gui.FirePit.inventory.slots.";
+                public static final String FLAMEONE = "Gui.FirePit.inventory.Flame1";
+                public static final String FLAMETWO = "Gui.FirePit.inventory.Flame2";
+                public static final String FLAMETHREE = "Gui.FirePit.inventory.Flame3";
+                public static final String FLAMEFOUR = "Gui.FirePit.inventory.Flame4";
+                public static final String FLAMEFIVE = "Gui.FirePit.inventory.Flame5";
+
+                public static final String MOLTENMETALS = "Gui.FirePit.moltenmetals.moltenmetals";
             }
 
             public static final class Anvil {

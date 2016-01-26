@@ -14,40 +14,73 @@ import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 
 public class ContainerFirepit extends ContainerSmithsCore {
-    private TileEntityFirePit iTEFirePit;
+    private TileEntityFirePit tileEntityFirePit;
 
     public ContainerFirepit (EntityPlayer playerMP, TileEntityFirePit pTEFirePit) {
         super(References.InternalNames.TileEntities.FirePitContainer, pTEFirePit, pTEFirePit, playerMP);
 
-        this.iTEFirePit = pTEFirePit;
+        this.tileEntityFirePit = pTEFirePit;
 
-        this.addSlotToContainer(new SlotHeatable(pTEFirePit, 0, 23, 27));
-        this.addSlotToContainer(new SlotHeatable(pTEFirePit, 1, 51, 13));
-        this.addSlotToContainer(new SlotHeatable(pTEFirePit, 2, 80, 9));
-        this.addSlotToContainer(new SlotHeatable(pTEFirePit, 3, 109, 13));
-        this.addSlotToContainer(new SlotHeatable(pTEFirePit, 4, 138, 27));
-
-        for (int tSlotIndex = 0; tSlotIndex < TileEntityFirePit.FUELSTACK_AMOUNT; tSlotIndex++) {
-            this.addSlotToContainer(new SlotFuelInput(pTEFirePit, tSlotIndex + 5, 44 + tSlotIndex * 18, 59));
-        }
-
-        for (int inventoryRowIndex = 0; inventoryRowIndex < PLAYER_INVENTORY_ROWS; ++inventoryRowIndex) {
-            for (int inventoryColumnIndex = 0; inventoryColumnIndex < PLAYER_INVENTORY_COLUMNS; ++inventoryColumnIndex) {
-                this.addSlotToContainer(new Slot(playerMP.inventory, inventoryColumnIndex + inventoryRowIndex * 9 + 9, 8 + inventoryColumnIndex * 18, 84 + inventoryRowIndex * 18));
-            }
-        }
-
-        for (int actionBarSlotIndex = 0; actionBarSlotIndex < PLAYER_INVENTORY_COLUMNS; ++actionBarSlotIndex) {
-            this.addSlotToContainer(new Slot(playerMP.inventory, actionBarSlotIndex, 8 + actionBarSlotIndex * 18, 143));
-        }
+        generateStandardInventory();
     }
 
     public TileEntityFirePit GetTileEntity () {
-        return iTEFirePit;
+        return tileEntityFirePit;
     }
 
     @Override
     public boolean canInteractWith (EntityPlayer playerIn) {
         return true;
+    }
+
+    @Override
+    public void onTabChanged (String newActiveTabID) {
+        inventorySlots.clear();
+        inventoryItemStacks.clear();
+
+        if (newActiveTabID.endsWith("Inventory"))
+        {
+            generateStandardInventory();
+        }
+        else
+        {
+            generateMoltenInventory();
+        }
+    }
+
+    private void generateStandardInventory()
+    {
+        this.addSlotToContainer(new SlotHeatable(tileEntityFirePit, 0, 23, 51));
+        this.addSlotToContainer(new SlotHeatable(tileEntityFirePit, 1, 51, 37));
+        this.addSlotToContainer(new SlotHeatable(tileEntityFirePit, 2, 80, 33));
+        this.addSlotToContainer(new SlotHeatable(tileEntityFirePit, 3, 109, 37));
+        this.addSlotToContainer(new SlotHeatable(tileEntityFirePit, 4, 138, 51));
+
+        for (int fuelStackIndex = 0; fuelStackIndex < TileEntityFirePit.FUELSTACK_AMOUNT; fuelStackIndex++) {
+            this.addSlotToContainer(new SlotFuelInput(tileEntityFirePit, fuelStackIndex + 5, 44 + fuelStackIndex * 18, 83));
+        }
+
+        for (int inventoryRowIndex = 0; inventoryRowIndex < PLAYER_INVENTORY_ROWS; ++inventoryRowIndex) {
+            for (int inventoryColumnIndex = 0; inventoryColumnIndex < PLAYER_INVENTORY_COLUMNS; ++inventoryColumnIndex) {
+                this.addSlotToContainer(new Slot(getPlayerInventory(), inventoryColumnIndex + inventoryRowIndex * 9 + 9, 8 + inventoryColumnIndex * 18, 108 + inventoryRowIndex * 18));
+            }
+        }
+
+        for (int actionBarSlotIndex = 0; actionBarSlotIndex < PLAYER_INVENTORY_COLUMNS; ++actionBarSlotIndex) {
+            this.addSlotToContainer(new Slot(getPlayerInventory(), actionBarSlotIndex, 8 + actionBarSlotIndex * 18, 167));
+        }
+    }
+
+    private void generateMoltenInventory()
+    {
+        for (int inventoryRowIndex = 0; inventoryRowIndex < PLAYER_INVENTORY_ROWS; ++inventoryRowIndex) {
+            for (int inventoryColumnIndex = 0; inventoryColumnIndex < PLAYER_INVENTORY_COLUMNS; ++inventoryColumnIndex) {
+                this.addSlotToContainer(new Slot(getPlayerInventory(), inventoryColumnIndex + inventoryRowIndex * 9 + 9, 8 + inventoryColumnIndex * 18, 108 + inventoryRowIndex * 18));
+            }
+        }
+
+        for (int actionBarSlotIndex = 0; actionBarSlotIndex < PLAYER_INVENTORY_COLUMNS; ++actionBarSlotIndex) {
+            this.addSlotToContainer(new Slot(getPlayerInventory(), actionBarSlotIndex, 8 + actionBarSlotIndex * 18, 167));
+        }
     }
 }

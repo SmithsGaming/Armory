@@ -3,11 +3,32 @@ package com.smithsmodding.armory.util.client;
 import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.util.client.*;
 import com.smithsmodding.smithscore.util.client.gui.*;
+import net.minecraft.util.*;
+import net.minecraftforge.client.event.*;
+import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.eventhandler.*;
 
 /**
  * Created by Marc on 06.12.2015.
  */
 public class Textures {
+
+    /**
+     * Actual construction method is called from the ForgeEvent system. This method kicks the creation of the textures
+     * of and provided a map to put the textures in.
+     *
+     * @param event The events fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
+     */
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public void loadTextures (TextureStitchEvent.Pre event) {
+        //Only run the creation once, after all mods have been loaded.
+        if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
+            return;
+        }
+
+        Blocks.LiquidMetalFlow.addIcon(event.map.registerSprite(new ResourceLocation(Blocks.LiquidMetalFlow.getPrimaryLocation())));
+        Blocks.LiquidMetalStill.addIcon(event.map.registerSprite(new ResourceLocation(Blocks.LiquidMetalStill.getPrimaryLocation())));
+    }
 
     public static class MultiArmor {
         public static class Materials {
@@ -185,6 +206,11 @@ public class Textures {
                 }
             }
         }
+    }
+
+    public static class Blocks {
+        public static final CustomResource LiquidMetalFlow = new CustomResource("Armory.Blocks.LiquidMetal.Flow", "armory:blocks/LiquidMetal/flow");
+        public static final CustomResource LiquidMetalStill = new CustomResource("Armory.Blocks.LiquidMetal.Still", "armory:blocks/LiquidMetal/still");
     }
 
 }

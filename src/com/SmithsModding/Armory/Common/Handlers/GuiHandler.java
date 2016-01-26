@@ -6,7 +6,7 @@ package com.smithsmodding.armory.common.handlers;
  */
 
 
-import com.smithsmodding.armory.client.gui.*;
+import com.smithsmodding.armory.client.gui.firepit.*;
 import com.smithsmodding.armory.common.inventory.*;
 import com.smithsmodding.armory.common.tileentity.*;
 import com.smithsmodding.armory.util.*;

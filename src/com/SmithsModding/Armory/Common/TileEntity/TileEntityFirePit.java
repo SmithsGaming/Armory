@@ -13,8 +13,8 @@ package com.smithsmodding.armory.common.tileentity;
 
 
 import com.google.common.base.*;
-import com.smithsmodding.armory.api.materials.*;
 import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.api.materials.*;
 import com.smithsmodding.armory.common.block.*;
 import com.smithsmodding.armory.common.factory.*;
 import com.smithsmodding.armory.common.item.*;
@@ -609,6 +609,16 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     @Override
     public void addFluidToTheTop (FluidStack stack) {
         moltenMetals.add(stack);
+    }
+
+    @Override
+    public int getTankSize () {
+        int sum = 0;
+
+        for(FluidStack stack : getAllFluids())
+            sum += stack.amount;
+
+        return sum;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.client;
 
-import com.smithsmodding.armory.api.armor.*;
 import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.api.armor.*;
 import com.smithsmodding.armory.client.logic.*;
 import com.smithsmodding.armory.client.model.Loaders.*;
 import com.smithsmodding.armory.client.textures.*;
@@ -49,6 +49,8 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
                 return new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + References.InternalNames.Blocks.FirePit, "normal");
             }
         });
+
+        MinecraftForge.EVENT_BUS.register(new com.smithsmodding.armory.util.client.Textures());
     }
 
     @Override
