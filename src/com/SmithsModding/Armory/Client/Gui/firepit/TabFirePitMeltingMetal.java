@@ -17,11 +17,11 @@ import net.minecraft.item.*;
 /**
  * Created by Marc on 24.01.2016.
  */
-public class TabFirePitInventory extends CoreTab {
+public class TabFirePitMeltingMetal extends CoreTab {
 
     GuiFirePit firePit;
 
-    public TabFirePitInventory (String uniqueID, IGUIBasedTabHost root, ItemStack displayStack, MinecraftColor tabColor, String toolTipString) {
+    public TabFirePitMeltingMetal (String uniqueID, IGUIBasedTabHost root, ItemStack displayStack, MinecraftColor tabColor, String toolTipString) {
         super(uniqueID, root, new CoreComponentState(), displayStack, tabColor, toolTipString);
 
         firePit = (GuiFirePit) root;
