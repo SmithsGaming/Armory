@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.client.model.Item.Unbaked;
 
 import com.google.common.base.*;
+import com.google.common.base.Optional;
 import com.google.common.collect.*;
 import com.smithsmodding.armory.client.model.Item.Baked.Components.*;
 import com.smithsmodding.armory.client.model.Item.Baked.HeatedItem.*;
