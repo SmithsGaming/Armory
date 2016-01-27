@@ -236,7 +236,15 @@ public class References {
                 public static final String FLAMEFOUR = "Gui.FirePit.inventory.Flame4";
                 public static final String FLAMEFIVE = "Gui.FirePit.inventory.Flame5";
 
-                public static final String MOLTENMETALS = "Gui.FirePit.moltenmetals.moltenmetals";
+                public static final String MOLTENMETALSLEFT = "Gui.FirePit.MoltenMetals.liquids.left";
+                public static final String MOLTENMETALSRIGHT = "Gui.FirePit.MoltenMetals.liquids.right";
+                public static final String MOLTENMETALSOUT = "Gui.FirePit.MoltenMetals.liquids.out";
+
+                public static final String PROGRESSMIXINGLEFT = "Gui.FirePit.MoltenMetals.MixingProgress.Left";
+                public static final String PROGRESSMIXINGRIGHT = "Gui.FirePit.MoltenMetals.MixingProgress.Right";
+                public static final String PROGRESSMIXINGVERTICAL = "Gui.FirePit.MoltenMetals.MixingProgress.Vertical";
+
+                public static final String PROGRESSSOLIDIFYING = "Gui.FirePit.MoltenMetals.SolidifyingProgress";
             }
 
             public static final class Anvil {

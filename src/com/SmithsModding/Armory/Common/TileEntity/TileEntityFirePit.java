@@ -95,13 +95,17 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         if (tItemStack == null) {
             return tItemStack;
         }
+
         if (tItemStack.stackSize < pDecrAmount) {
             setInventorySlotContents(pSlotIndex, null);
         } else {
-            tItemStack = tItemStack.splitStack(pDecrAmount);
+            ItemStack returnStack = tItemStack.splitStack(pDecrAmount);
+
             if (tItemStack.stackSize == 0) {
                 setInventorySlotContents(pSlotIndex, null);
             }
+
+            return returnStack;
         }
 
         return tItemStack;
