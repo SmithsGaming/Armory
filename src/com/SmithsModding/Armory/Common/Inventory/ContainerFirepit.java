@@ -73,7 +73,9 @@ public class ContainerFirepit extends ContainerSmithsCore {
 
     private void generateMoltenInventory()
     {
-        addSlotToContainer(new Slot(getContainerInventory(), TileEntityFirePit.FUELSTACK_AMOUNT + TileEntityFirePit.INGOTSTACKS_AMOUNT, ( ContainerSmithsCore.PLAYER_INVENTORY_COLUMNS * 18 + 2 * 7 ) / 2 - 9, 41));
+        for (int infusionStackIndex = 0; infusionStackIndex < TileEntityFirePit.INFUSIONSTACK_AMOUNT; infusionStackIndex++) {
+            this.addSlotToContainer(new SlotFuelInput(tileEntityFirePit, infusionStackIndex + TileEntityFirePit.INGOTSTACKS_AMOUNT + TileEntityFirePit.FUELSTACK_AMOUNT, 59 + infusionStackIndex * 21, 63));
+        }
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < PLAYER_INVENTORY_ROWS; ++inventoryRowIndex) {
             for (int inventoryColumnIndex = 0; inventoryColumnIndex < PLAYER_INVENTORY_COLUMNS; ++inventoryColumnIndex) {

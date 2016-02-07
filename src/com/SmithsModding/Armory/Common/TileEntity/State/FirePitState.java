@@ -25,6 +25,8 @@ public class FirePitState implements ITileEntityState, IStructureData {
     private float lastTemperature = 20;
     private float lastAddedHeat = 0;
 
+    private float mixingProgress = 0;
+
     private ArrayList<Float> meltingProgress = new ArrayList<Float>();
 
     public FirePitState () {
@@ -106,6 +108,8 @@ public class FirePitState implements ITileEntityState, IStructureData {
         lastAddedHeat = compound.getFloat(References.NBTTagCompoundData.TE.FirePit.LASTADDEDHEAT);
         lastTemperature = compound.getFloat(References.NBTTagCompoundData.TE.FirePit.LASTTEMPERATURE);
 
+        mixingProgress = compound.getFloat(References.NBTTagCompoundData.TE.FirePit.MIXINGPROGRESS);
+
         NBTTagCompound meltingCompound = compound.getCompoundTag(References.NBTTagCompoundData.TE.FirePit.MELTINGPROGRESS);
         for (int i = 0; i < TileEntityFirePit.INGOTSTACKS_AMOUNT; i++) {
             meltingProgress.set(i, meltingCompound.getFloat(String.valueOf(i)));
@@ -124,6 +128,8 @@ public class FirePitState implements ITileEntityState, IStructureData {
         compound.setFloat(References.NBTTagCompoundData.TE.FirePit.MAXTEMPERATURE, maxTemperature);
         compound.setFloat(References.NBTTagCompoundData.TE.FirePit.LASTADDEDHEAT, lastAddedHeat);
         compound.setFloat(References.NBTTagCompoundData.TE.FirePit.LASTTEMPERATURE, lastTemperature);
+
+        compound.setFloat(References.NBTTagCompoundData.TE.FirePit.MIXINGPROGRESS, mixingProgress);
 
         NBTTagCompound meltingCompound = new NBTTagCompound();
         for (int i = 0; i < TileEntityFirePit.INGOTSTACKS_AMOUNT; i++) {
@@ -188,6 +194,14 @@ public class FirePitState implements ITileEntityState, IStructureData {
 
     public void setCurrentTemperature (float currentTemperature) {
         this.currentTemperature = currentTemperature;
+    }
+
+    public float getMixingProgress () {
+        return mixingProgress;
+    }
+
+    public void setMixingProgress (float mixingProgress) {
+        this.mixingProgress = mixingProgress;
     }
 
     public float getMeltingProgess (int slotIndex) {

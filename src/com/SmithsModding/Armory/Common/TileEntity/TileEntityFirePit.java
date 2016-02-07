@@ -45,6 +45,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
+    public static int INFUSIONSTACK_AMOUNT = 3;
     public static float POSITIVEHEAT = 2.625F;
     public static float NEGATIVEHEAT = 0.75F;
     public static int STRUCTURECOMPONENTADDITION = 1425;

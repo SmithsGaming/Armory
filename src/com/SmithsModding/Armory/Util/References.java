@@ -224,7 +224,7 @@ public class References {
         }
 
         public static final class GUIComponents {
-            public static final String TAB = "Armory.gui.BAse.Tab.";
+            public static final String TAB = "Armory.gui.Base.Tab.";
 
             public static final class FirePit {
                 public static final String BACKGROUND = "Gui.FirePit.Background";
@@ -238,11 +238,18 @@ public class References {
 
                 public static final String MOLTENMETALSLEFT = "Gui.FirePit.MoltenMetals.liquids.left";
                 public static final String MOLTENMETALSRIGHT = "Gui.FirePit.MoltenMetals.liquids.right";
-                public static final String MOLTENMETALSOUT = "Gui.FirePit.MoltenMetals.liquids.out";
 
-                public static final String PROGRESSMIXINGLEFT = "Gui.FirePit.MoltenMetals.MixingProgress.Left";
-                public static final String PROGRESSMIXINGRIGHT = "Gui.FirePit.MoltenMetals.MixingProgress.Right";
-                public static final String PROGRESSMIXINGVERTICAL = "Gui.FirePit.MoltenMetals.MixingProgress.Vertical";
+                public static final String INFUSIONSTACKSBACKGROUND = "Gui.FirePit.MoltenMetals.InfusionStacks.Background";
+
+                public static final String PROGRESSMIXINGINLEFTHORIZONTAL = "Gui.FirePit.MoltenMetals.MixingProgress.In.Left.Horizontal";
+                public static final String PROGRESSMIXINGINRIGHTHORIZONTAL = "Gui.FirePit.MoltenMetals.MixingProgress.In.Right.Horizontal";
+                public static final String PROGRESSMIXINGINLEFTVERTICAL = "Gui.FirePit.MoltenMetals.MixingProgress.In.Left.Vertical";
+                public static final String PROGRESSMIXINGINRIGHTVERTICAL = "Gui.FirePit.MoltenMetals.MixingProgress.In.Right.Vertical";
+
+                public static final String PROGRESSMIXINGOUTLEFTHORIZONTAL = "Gui.FirePit.MoltenMetals.MixingProgress.Out.Left.Horizontal";
+                public static final String PROGRESSMIXINGOUTRIGHTHORIZONTAL = "Gui.FirePit.MoltenMetals.MixingProgress.Out.Right.Horizontal";
+                public static final String PROGRESSMIXINGOUTLEFTVERTICAL = "Gui.FirePit.MoltenMetals.MixingProgress.Out.Left.Vertical";
+                public static final String PROGRESSMIXINGOUTRIGHTVERTICAL = "Gui.FirePit.MoltenMetals.MixingProgress.Out.Right.Vertical";
 
                 public static final String PROGRESSSOLIDIFYING = "Gui.FirePit.MoltenMetals.SolidifyingProgress";
             }
@@ -535,6 +542,7 @@ public class References {
                 public static final String FUELITEMSTACKS = "FuelStacks";
                 public static final String FUELSTACKBURNINGTIME = "FuelStackBurningTime";
                 public static final String FUELSTACKFUELAMOUNT = "FuelStackFuelAmount";
+                public static final String MIXINGPROGRESS = "MixingProgress";
                 public static final String MELTINGPROGRESS = "MeltingProgress";
             }
 
