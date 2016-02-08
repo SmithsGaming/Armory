@@ -86,10 +86,31 @@ public class Textures {
             }
 
             public static class Components {
-                public static CustomResource PROGRESSHORIZONTALEMPTY = new CustomResource("Gui.Components.ProgressBars.Horizontal.Empty", GUITEXTUREPATH + "Components/RandomElements.png", Colors.DEFAULT, 16, 16, 25, 16);
-                public static CustomResource PROGRESSHORIZONTALFULL = new CustomResource("Gui.Components.ProgressBars.Horizontal.Full", GUITEXTUREPATH + "Components/RandomElements.png", Colors.DEFAULT, 16, 39, 25, 16);
-                public static CustomResource PROGRESSDOWNEMPTY = new CustomResource("Gui.Components.ProgressBars.Down.Empty", GUITEXTUREPATH + "Components/RandomElements.png", Colors.DEFAULT, 16, 64, 15, 23);
-                public static CustomResource PROGRESSDOWNFULL = new CustomResource("Gui.Components.ProgressBars.Down.Empty", GUITEXTUREPATH + "Components/RandomElements.png", Colors.DEFAULT, 16, 79, 16, 23);
+                private static final String RANDOMTEXTUREFILE = GUITEXTUREPATH + "Components/RandomElements.png";
+
+                public static final CustomResource HORIZONTALTAILLEFTTORIGHTEMPTY = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Tail.LTR.Empty", RANDOMTEXTUREFILE, 32, 3, 50, 4);
+                public static final CustomResource HORIZONTALTAILLEFTTORIGHTFULL = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Tail.LTR.Full", RANDOMTEXTUREFILE, 32, 0, 50, 3);
+
+                public static final CustomResource HORIZONTALTAILRIGHTTOLEFTEMPTY = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Tail.RTL.Empty", RANDOMTEXTUREFILE, 32, 10, 50, 4);
+                public static final CustomResource HORIZONTALTAILRIGHTTOLEFTFULL = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Tail.RTL.Full", RANDOMTEXTUREFILE, 32, 7, 50, 3);
+
+                public static final CustomResource HORIZONTALHEADLEFTTORIGHTEMPTY = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Head.LTR.Empty", RANDOMTEXTUREFILE, 82, 16, 50, 16);
+                public static final CustomResource HORIZONTALHEADLEFTTORIGHTFULL = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Head.LTR.Full", RANDOMTEXTUREFILE, 132, 16, 50, 16);
+
+                public static final CustomResource HORIZONTALHEADRIGHTTOLEFTEMPTY = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Head.RTL.Empty", RANDOMTEXTUREFILE, 82, 0, 50, 16);
+                public static final CustomResource HORIZONTALHEADRIGHTTOLEFTFULL = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Head.RTL.Full", RANDOMTEXTUREFILE, 132, 0, 50, 16);
+
+                public static final CustomResource VERTICALHEADTOPTOBOTTOMLEFTCONNTECTOREMPTY = new CustomResource("Gui.Components.ProgressBars.Vertical.Left.Head.TTB.Empty", RANDOMTEXTUREFILE, 182, 0, 16, 26);
+                public static final CustomResource VERTICALHEADTOPTOBOTTOMLEFTCONNTECTORFULL = new CustomResource("Gui.Components.ProgressBars.Vertical.Left.Head.TTB.Full", RANDOMTEXTUREFILE, 198, 0, 16, 26);
+
+                public static final CustomResource VERTICALHEADTOPTOBOTTOMRIGHTCONNTECTOREMPTY = new CustomResource("Gui.Components.ProgressBars.Vertical.Right.Head.TTB.Empty", RANDOMTEXTUREFILE, 214, 0, 16, 26);
+                public static final CustomResource VERTICALHEADTOPTOBOTTOMRIGHTCONNTECTORFULL = new CustomResource("Gui.Components.ProgressBars.Vertical.Right.Head.TTB.Full", RANDOMTEXTUREFILE, 230, 0, 16, 26);
+
+                public static final CustomResource VERTICALTAILTOPTOBOTTOMLEFTCONNTECTOREMPTY = new CustomResource("Gui.Components.ProgressBars.Vertical.Left.Tail.TTB.Empty", RANDOMTEXTUREFILE, 0, 38, 4, 20);
+                public static final CustomResource VERTICALTAILTOPTOBOTTOMLEFTCONNTECTORFULL = new CustomResource("Gui.Components.ProgressBars.Vertical.Left.Tail.TTB.Full", RANDOMTEXTUREFILE, 4, 38, 4, 20);
+
+                public static final CustomResource VERTICALTAILTOPTOBOTTOMRIGHTCONNTECTOREMPTY = new CustomResource("Gui.Components.ProgressBars.Vertical.Right.Tail.TTB.Empty", RANDOMTEXTUREFILE, 8, 38, 4, 20);
+                public static final CustomResource VERTICALTAILTOPTOBOTTOMRIGHTCONNTECTORFULL = new CustomResource("Gui.Components.ProgressBars.Vertical.Right.Tail.TTB.Full", RANDOMTEXTUREFILE, 12, 38, 4, 20);
             }
 
 
@@ -101,7 +122,7 @@ public class Textures {
         }
 
         public static class FirePit {
-            public static CustomResource THERMOMETERICON = new CustomResource("Gui.FirePit.Thermometer", TextureAddressHelper.getTextureAddress("armory", "Gui-Icons/16x Thermo"), Colors.DEFAULT);
+            public static CustomResource THERMOMETERICON = new CustomResource("Gui.FirePit.Thermometer", "armory:gui/Images/16x ThermoALT", Colors.DEFAULT, 0, 0, 16, 16);
         }
 
         public static class Anvil {
