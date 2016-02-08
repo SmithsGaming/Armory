@@ -6,6 +6,8 @@ import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.client.gui.components.core.*;
 import com.smithsmodding.smithscore.client.gui.components.implementations.*;
 import com.smithsmodding.smithscore.client.gui.management.*;
+import com.smithsmodding.smithscore.util.client.*;
+import net.minecraft.util.*;
 import net.minecraftforge.fluids.*;
 
 import java.text.*;
@@ -98,6 +100,36 @@ public class FirePitGuiManager extends TileStorageBasedGUIManager {
         }
 
         return 0F;
+    }
+
+    /**
+     * Method used by components that support overriding tooltips to grab the new tooltip string.
+     *
+     * @param component The component requesting the override.
+     *
+     * @return A string displayed as tooltip for the IGUIComponent during rendering.
+     */
+    @Override
+    public String getCustomToolTipDisplayString (IGUIComponent component) {
+        if (!( component instanceof ComponentProgressBar ))
+            return "";
+
+        FirePitState state = (FirePitState) tileEntityFirePit.getState();
+
+        if (component.getID().toLowerCase().contains("mixingprogress"))
+        {
+            Float mixingprogress = (Float) state.getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.MIXINGPROGRESS);
+
+            if (mixingprogress <= 0F)
+                return StatCollector.translateToLocal(TranslationKeys.GUI.PROGRESS) + ": 0 %";
+
+            if (mixingprogress >= 4F)
+                return StatCollector.translateToLocal(TranslationKeys.GUI.PROGRESS) + ": 100 %";
+
+            return StatCollector.translateToLocal(TranslationKeys.GUI.PROGRESS) + ": " + Math.round(mixingprogress / 4F) + " %";
+        }
+
+        return "";
     }
 
     @Override
