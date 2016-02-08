@@ -54,6 +54,9 @@ public class FirePitGuiManager extends TileStorageBasedGUIManager {
 
             if (component.getID().endsWith("In.Left.Horizontal") || component.getID().endsWith("In.Right.Horizontal"))
             {
+                if (mixingprogress <= 0F)
+                    return 0F;
+
                 if (mixingprogress >= 1F)
                     return 1F;
 
@@ -62,6 +65,9 @@ public class FirePitGuiManager extends TileStorageBasedGUIManager {
 
             if (component.getID().endsWith("In.Left.Vertical") || component.getID().endsWith("In.Right.Vertical"))
             {
+                if (mixingprogress <= 1F)
+                    return 0F;
+
                 if (mixingprogress >= 2F)
                     return 1F;
 
@@ -70,6 +76,9 @@ public class FirePitGuiManager extends TileStorageBasedGUIManager {
 
             if (component.getID().endsWith("Out.Left.Vertical") || component.getID().endsWith("Out.Right.Vertical"))
             {
+                if (mixingprogress <= 2F)
+                    return 0F;
+
                 if (mixingprogress >= 3F)
                     return 1F;
 
@@ -78,6 +87,9 @@ public class FirePitGuiManager extends TileStorageBasedGUIManager {
 
             if (component.getID().endsWith("Out.Left.Horizontal") || component.getID().endsWith("Out.Right.Horizontal"))
             {
+                if (mixingprogress <= 3F)
+                    return 0F;
+
                 if (mixingprogress >= 4F)
                     return 1F;
 
