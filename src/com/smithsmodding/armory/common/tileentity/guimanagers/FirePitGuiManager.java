@@ -182,7 +182,7 @@ public class FirePitGuiManager extends TileStorageBasedGUIManager {
     public float getMaxTemperature () {
         FirePitState state = (FirePitState) tileEntityFirePit.getState();
 
-        return state.getCurrentTemperature();
+        return state.getMaxTemperature();
     }
 
     public float getCurrentTemperature () {
