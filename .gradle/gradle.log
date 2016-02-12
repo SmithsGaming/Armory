@@ -1,5 +1,5 @@
 #################################################
-         ForgeGradle 2.1-SNAPSHOT-8e42161        
+         ForgeGradle 2.1-SNAPSHOT-75bb646        
   https://github.com/MinecraftForge/ForgeGradle  
 #################################################
                Powered by MCP unknown               
@@ -15,7 +15,6 @@ Found AccessTransformer: Armory_at.cfg
 :extractDependencyATs SKIPPED
 :extractMcpData SKIPPED
 :extractMcpMappings
-Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/mcp_snapshot/20151230-1.8.9/mcp_snapshot-20151230-1.8.9.zip
 :genSrgs
 :downloadClient SKIPPED
 :downloadServer SKIPPED
@@ -25,8 +24,6 @@ Download http://files.minecraftforge.net/maven/de/oceanlabs/mcp/mcp_snapshot/201
 Applying SpecialSource...
 Applying Exceptor...
 :decompileMc
-Download https://libraries.minecraft.net/com/mojang/realms/1.7.48/realms-1.7.48.pom
-Download https://libraries.minecraft.net/com/mojang/realms/1.7.48/realms-1.7.48.jar
 :fixMcSources
 :applySourcePatches
 :remapMcSources
@@ -34,19 +31,16 @@ Download https://libraries.minecraft.net/com/mojang/realms/1.7.48/realms-1.7.48.
 :extractNatives SKIPPED
 :getAssetIndex UP-TO-DATE
 :getAssets
-Current status: 207/734   28%
-Current status: 456/734   62%
-Current status: 578/734   78%
 :makeStart
 :setupDecompWorkspace
 :ideaModule
-Download http://mavenrepo.smithscore.orionminecraft.com/com/SmithsModding/SmithsCore/SmithsCore/1.1.0.1-59-SNAPSHOT/SmithsCore-1.1.0.1-59-20151229.183642-1-dev.jar
-Download http://mavenrepo.smithscore.orionminecraft.com/com/SmithsModding/SmithsCore/SmithsCore/1.1.0.1-59-SNAPSHOT/SmithsCore-1.1.0.1-59-20151229.183642-1-sources.jar
-Download http://mavenrepo.smithscore.orionminecraft.com/com/SmithsModding/SmithsCore/SmithsCore/1.1.0.1-59-SNAPSHOT/SmithsCore-1.1.0.1-59-20151229.183642-1-javadoc.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-84-SNAPSHOT/smithscore-1.1.0.1-84-20160117.234324-1-dev.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-84-SNAPSHOT/smithscore-1.1.0.1-84-20160117.234324-1-sources.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-84-SNAPSHOT/smithscore-1.1.0.1-84-20160117.234324-1-javadoc.jar
 :ideaProject
 :ideaWorkspace
 :idea
 
 BUILD SUCCESSFUL
 
-Total time: 4 mins 37.422 secs
+Total time: 2 mins 24.561 secs
