@@ -205,44 +205,25 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     @Override
     public void update () {
-        Stopwatch updateWatch = Stopwatch.createStarted();
-        Stopwatch operationWatch = Stopwatch.createStarted();
-
         if (masterCoordinate == null)
             initiateAsMasterEntity();
 
-        long structureHeatFurnaceTimeInMs = 0;
-        long structureHeatIngotsTimeInMs = 0;
-        long structureMeltIngotsTimeInMs = 0;
-        long structureUpdateTimeInMs = 0;
+        FirePitState structureData = (FirePitState) getStructureData();
+        FirePitState state = (FirePitState) getState();
 
-        FirePitState state = (FirePitState) getStructureData();
-
-        if (state == null)
+        if (structureData == null)
             return;
 
         state.setLastTemperature(state.getCurrentTemperature());
-        state.setBurning(false);
+        structureData.setBurning(false);
 
         heatFurnace();
 
-        structureHeatFurnaceTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
-        operationWatch = operationWatch.reset();
-        operationWatch.start();
-
-        state.setBurning(( (Float) state.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F ));
+        structureData.setBurning(( (Float) structureData.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F ));
 
         heatIngots();
 
-        structureHeatIngotsTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
-        operationWatch = operationWatch.reset();
-        operationWatch.start();
-
         meltIngots();
-
-        structureMeltIngotsTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
-        operationWatch = operationWatch.reset();
-        operationWatch.start();
 
         state.setLastAddedHeat(state.getCurrentTemperature() - state.getLastTemperature());
 
@@ -251,32 +232,6 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
             queBlockModelUpdateOnClients();
         }
-
-        structureUpdateTimeInMs = operationWatch.elapsed(TimeUnit.MILLISECONDS);
-        operationWatch = operationWatch.reset();
-        operationWatch.start();
-
-        if (updateWatch.elapsed(TimeUnit.MILLISECONDS) > (50) && SmithsCore.isInDevenvironment()) {
-            Armory.getLogger().info("TICK Took extremely long: " + updateWatch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
-            Armory.getLogger().info("   -> Furnace heat up time:  " + structureHeatFurnaceTimeInMs + " ms!");
-            Armory.getLogger().info("   -> Ingot heat up time:    " + structureHeatIngotsTimeInMs + " ms!");
-            Armory.getLogger().info("   -> Ingot melt time:       " + structureMeltIngotsTimeInMs + " ms!");
-            Armory.getLogger().info("   -> Structure update time: " + structureUpdateTimeInMs + " ms!");
-        }
-        else if(SmithsCore.isInDevenvironment() && false)
-        {
-            if(isSlaved())
-            {
-                Armory.getLogger().info("Running Tick on slave: " + pos.toString() + " took: " + updateWatch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
-            }
-            else
-            {
-                Armory.getLogger().info("Running Tick on master:" + pos.toString() + " took: " + updateWatch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
-            }
-        }
-
-        operationWatch.stop();
-        updateWatch.stop();
     }
 
     /**
@@ -332,11 +287,11 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         if ((Float) structureState.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F) {
 
             structureState.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, (Float) structureState.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) - 1F);
-            structureState.setLastAddedHeat(structureState.getLastAddedHeat() + positiveHeatTerm);
+            tileState.setLastAddedHeat(tileState.getLastAddedHeat() + positiveHeatTerm);
         }
 
-        heatedProcentage = Math.round(( structureState.getCurrentTemperature() / structureState.getMaxTemperature() ) * 100) / 100F;
-        tileState.setLastAddedHeat(structureState.getLastAddedHeat() * ( 1 - heatedProcentage ));
+        heatedProcentage = Math.round(( tileState.getCurrentTemperature() / tileState.getMaxTemperature() ) * 100) / 100F;
+        tileState.setLastAddedHeat(tileState.getLastAddedHeat() * ( 1 - heatedProcentage ));
     }
 
     private void calculateHeatTerms () {

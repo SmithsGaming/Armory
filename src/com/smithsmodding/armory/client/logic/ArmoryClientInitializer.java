@@ -14,6 +14,9 @@ import com.smithsmodding.armory.common.logic.*;
 import com.smithsmodding.armory.common.material.*;
 import com.smithsmodding.armory.common.registry.*;
 import com.smithsmodding.armory.util.*;
+import com.smithsmodding.armory.util.client.*;
+import com.smithsmodding.armory.util.client.TranslationKeys;
+import com.smithsmodding.smithscore.util.client.*;
 import com.smithsmodding.smithscore.util.client.color.*;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.item.*;
@@ -47,8 +50,10 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
                     return new MinecraftColor(MinecraftColor.RED);
                 }
             });
+            MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).setTranslationKey(TranslationKeys.Materials.VisibleNames.Iron);
 
             MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN).setRenderInfo(new IMaterialRenderInfo.MultiColor(0x71589c, 0x8f60d4, 0x8c53df));
+            MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN).setTranslationKey(TranslationKeys.Materials.VisibleNames.Obsidian);
         }
 
         public static void registerUpgradeResources() {

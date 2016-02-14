@@ -114,7 +114,7 @@ public class GuiFirePit extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update (int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.TempCurrent) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.TempCurrent) + " " + getManager().getLabelContents(this);
                 }
             });
 
@@ -128,7 +128,7 @@ public class GuiFirePit extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update (int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.TempMax) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.TempMax) + " " + getManager().getLabelContents(this);
                 }
             });
 
@@ -142,7 +142,7 @@ public class GuiFirePit extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update (int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.LastAdded) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.LastAdded) + " " + getManager().getLabelContents(this);
                 }
             });
 

@@ -16,27 +16,12 @@ Armory.GUI.FirePit.Ledger.TempMax=Maximum:
 Armory.GUI.FirePit.Ledger.TempCurrent=Current:
 Armory.GUI.FirePit.Ledger.LastAdded=Last added:
 #
-#Heater specific information
-Armory.GUI.Heater.Ledger.InfoLine1=The heater is an additional component of the FirePit.
-Armory.GUI.Heater.Ledger.InfoLine2=It raises both its efficiency and its maximum temperature.
-#
 #ArmorsAnvil GUi Specific information
 Armory.GUI.Anvil.Ledger.InfoLine1=The Blacksmiths Anvil is used by Smiths to craft several Items from hot Metals.
 Armory.GUI.Anvil.Ledger.InfoLine2=It takes some time to process and sometimes a Hammer and a pair of Tongs.
 #
-#BookBinder specific information
-Armory.Gui.BookBinder.Tabs.BookBinder.ToolTip=Bind new blueprints into your Smithing's Guide.
-Armory.Gui.BookBinder.Tabs.ResearchStation.ToolTip=Create and learn new Crafting processes.
-#
 #NEI Compat
 Armory.NEI.Compatibility.ArmorsAnvilRecipe=Blacksmiths Anvil
-#
-#UI Components
-Armory.GUI.Components.Flame.ToolTip=Fuel left
-Armory.GUI.Components.ProgressBar.ToolTip=Progress
-Armory.Gui.Components.FluidTank.ToolTip.Amount=Amount
-Armory.Gui.Components.FluidTank.ToolTip.Capacity=Capacity
-Armory.Gui.Components.FluidTank.ToolTip.NoLiquid=No fluid in the tank.
 #
 #Blocks
 tile.Armory.Blocks.FirePit.name=FirePit
@@ -95,46 +80,9 @@ armory.usage=/armory
 give-heated-item.usage=Gives heated Items. Syntax: <Player> <MaterialID> <ItemType> <Temperature>
 temp-decay.usage=Enables or disables the server wide decay of a heated Item in a PlayerInventory. Syntax <True/False>
 #
-#AnvilRecipeKnowledge
-Armory.Knowledge.AnvilRecipeKnowledge.Tier1=Complete Amateur
-Armory.Knowledge.AnvilRecipeKnowledge.Tier2=Poor Blacksmith
-Armory.Knowledge.AnvilRecipeKnowledge.Tier3=Good Blacksmith
-Armory.Knowledge.AnvilRecipeKnowledge.Tier4=Professional Blacksmith
-Armory.Knowledge.AnvilRecipeKnowledge.Tier5=War Hero
-Armory.Knowledge.AnvilRecipeKnowledge.Creative=Assigned By God!
-#
-#Blueprint Quality
-Armory.Items.Blueprint.Tier1=Food smudges all over it
-Armory.Items.Blueprint.Tier2=Extremely poor handwriting
-Armory.Items.Blueprint.Tier3=Readable piece of paper
-Armory.Items.Blueprint.Tier4=Bestseller
-Armory.Items.Blueprint.Tier5=Sells for a million dollars.
-Armory.Items.Blueprint.Creative=Printed By The Almighty Blacksmith!
-#
-#Blueprint Tooltip
-Armory.Items.BluePrint.Quality=  - Quality:
-Armory.Items.BluePrint.Produces=  - Produces:
-Armory.Items.BluePrint.Produces.Upgrade.1=1 Upgraded
-Armory.Items.BluePrint.Produces.Upgrade.2=with
-Armory.Items.Blueprint.Material.1=  - Contains knowledge of
-Armory.Items.Blueprint.Material.2= and its properties.
-Armory.Items.Blueprint.MedievalUpgrade.1=  - Explains how to upgrade basic medieval Armor out of
-Armory.Items.Blueprint.MedievalUpgrade.2= with upgrades.
-#
-#Label Tooltips
-Armory.Items.Label.GroupName=Group name:
-Armory.Items.Label.Logo=Group logo:
-#
 #Smithings Guide Tooltip
 Armory.Items.SmithingsGuide.Tooltip1=Contains:
 Armory.Items.SmithingsGuide.Tooltip2= Blueprints.
 #
-#Research display text
-Armory.Gui.Research.Complete=Research finished!
-Armory.Gui.Research.Start.BeforeItemStackName=Modify the:
-Armory.Gui.Research.HeatApplied=  - Heat it up.
-Armory.Gui.Research.Hammer=  - Hit it.
-Armory.Gui.Research.Tongs=  - Cut it.
-Armory.Gui.Research.Analyze=  - Check for damage.
-Armory.Gui.Research.Failed=Research Failed.
-
+#Molten Metals
+Armory.Fluids.Molten=Molten
