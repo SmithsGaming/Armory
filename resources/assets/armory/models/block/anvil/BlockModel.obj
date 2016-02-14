@@ -1,6 +1,6 @@
 # Blender v2.74 (sub 0) OBJ File: 'ArmorersAnvil.blend'
 # www.blender.org
-mtllib ArmorersAnvil.mtl
+mtllib BlockModel.mtl
 o Cube_Anvil
 v 0.000000 0.000000 0.100000
 v 0.000000 0.000000 0.900000
