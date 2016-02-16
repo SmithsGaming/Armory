@@ -272,7 +272,6 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
         }
     }
 
-
     /**
      * Convert the given metadata into a BlockState for this block
      */
@@ -296,7 +295,6 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
 
         return meta;
     }
-
 
     /**
      * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the

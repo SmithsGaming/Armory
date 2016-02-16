@@ -15,7 +15,7 @@ Found AccessTransformer: Armory_at.cfg
 :extractDependencyATs SKIPPED
 :extractMcpData SKIPPED
 :extractMcpMappings
-:genSrgs
+:genSrgs SKIPPED
 :downloadClient SKIPPED
 :downloadServer SKIPPED
 :splitServerJar SKIPPED
@@ -34,13 +34,13 @@ Applying Exceptor...
 :makeStart
 :setupDecompWorkspace
 :ideaModule
-Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-84-SNAPSHOT/smithscore-1.1.0.1-84-20160117.234324-1-dev.jar
-Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-84-SNAPSHOT/smithscore-1.1.0.1-84-20160117.234324-1-sources.jar
-Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-84-SNAPSHOT/smithscore-1.1.0.1-84-20160117.234324-1-javadoc.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-101-SNAPSHOT/smithscore-1.1.0.1-101-20160212.161231-1-dev.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-101-SNAPSHOT/smithscore-1.1.0.1-101-20160212.161231-1-sources.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-101-SNAPSHOT/smithscore-1.1.0.1-101-20160212.161231-1-javadoc.jar
 :ideaProject
 :ideaWorkspace
 :idea
 
 BUILD SUCCESSFUL
 
-Total time: 2 mins 24.561 secs
+Total time: 2 mins 57.987 secs
