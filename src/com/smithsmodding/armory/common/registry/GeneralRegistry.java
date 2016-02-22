@@ -41,6 +41,7 @@ public class GeneralRegistry {
 
     public static class Blocks {
         public static BlockFirePit blockFirePit;
+        public static BlockBlackSmithsAnvil blockBlackSmithsAnvil;
     }
 
     public static class Fluids {

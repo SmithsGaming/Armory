@@ -1,8 +1,8 @@
-package com.smithsmodding.armory.client.model.Item.Unbaked.Components;
+package com.smithsmodding.armory.client.model.item.unbaked.components;
 
 import com.google.common.base.*;
 import com.google.common.collect.*;
-import com.smithsmodding.armory.client.model.Item.Baked.Components.*;
+import com.smithsmodding.armory.client.model.item.baked.components.*;
 import com.smithsmodding.smithscore.util.client.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.renderer.vertex.*;
@@ -73,7 +73,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
             TextureAtlasSprite sprite = bakedTextureGetter.apply(textureLocation);
 
             //We retexture this model with the newly colored textured from ther creator and get a Copy of this model
-            IModel model2 = this.retexture(ImmutableMap.of("layer0", sprite.getIconName()));
+            IModel model2 = ItemLayerModel.instance.retexture(ImmutableMap.of("layer0", sprite.getIconName()));
 
             //We bake the new model to get a ready to use textured and ready to be colored baked model.
             IFlexibleBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);

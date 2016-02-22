@@ -11,9 +11,6 @@ package com.smithsmodding.armory.common.tileentity;
 /  Created on : 02/10/2014
 */
 
-
-import com.google.common.base.*;
-import com.smithsmodding.armory.*;
 import com.smithsmodding.armory.api.materials.*;
 import com.smithsmodding.armory.common.block.*;
 import com.smithsmodding.armory.common.factory.*;
@@ -22,13 +19,10 @@ import com.smithsmodding.armory.common.registry.*;
 import com.smithsmodding.armory.common.tileentity.guimanagers.*;
 import com.smithsmodding.armory.common.tileentity.state.*;
 import com.smithsmodding.armory.util.*;
-import com.smithsmodding.smithscore.*;
 import com.smithsmodding.smithscore.common.fluid.*;
 import com.smithsmodding.smithscore.common.pathfinding.*;
 import com.smithsmodding.smithscore.common.structures.*;
 import com.smithsmodding.smithscore.common.tileentity.*;
-import com.smithsmodding.smithscore.common.tileentity.Capabilities.*;
-import com.smithsmodding.smithscore.util.common.*;
 import com.smithsmodding.smithscore.util.common.positioning.*;
 import net.minecraft.block.state.*;
 import net.minecraft.entity.player.*;
@@ -38,15 +32,12 @@ import net.minecraft.nbt.*;
 import net.minecraft.tileentity.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
-import net.minecraftforge.common.capabilities.*;
 import net.minecraftforge.fluids.*;
-import net.minecraftforge.items.*;
-import sun.text.resources.*;
 
 import java.util.*;
 import java.util.concurrent.*;
 
-public class TileEntityFirePit extends TileEntityArmory implements ISmithsCoreItemHandler, ITickable, IFirePitComponent, IStructureComponent, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
+public class TileEntityFirePit extends TileEntityArmory implements IInventory, ITickable, IFirePitComponent, IStructureComponent, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
 
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
@@ -59,7 +50,6 @@ public class TileEntityFirePit extends TileEntityArmory implements ISmithsCoreIt
     private float negativeHeatTerm = -0.25F;
     private ItemStack[] ingotStacks = new ItemStack[INGOTSTACKS_AMOUNT];
     private ItemStack[] fuelStacks = new ItemStack[FUELSTACK_AMOUNT];
-    private ItemStack[] infusionStacks = new ItemStack[INFUSIONSTACK_AMOUNT];
 
     private ArrayList<FluidStack> moltenMetals = new ArrayList<FluidStack>();
 
@@ -78,98 +68,53 @@ public class TileEntityFirePit extends TileEntityArmory implements ISmithsCoreIt
         this.setManager(new FirePitGuiManager(this));
     }
 
-    @Override
-    public boolean hasCapability (Capability<?> capability, EnumFacing facing) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return true;
 
-        return super.hasCapability(capability, facing);
+    @Override
+    public int getSizeInventory () {
+        return INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT;
     }
 
-    @Override
-    public <T> T getCapability (Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return (T) new SmithsCoreDefaultItemHandler(this);
-
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public int getSlotCount() { return INFUSIONSTACK_AMOUNT + INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT; }
-
-    @Override
-    public ItemStack getStackInHandler (int pSlotID, int amount, boolean simulate) {
-        ItemStack returnedStack = null;
-
+    public ItemStack getStackInSlot (int pSlotID) {
         if (pSlotID < INGOTSTACKS_AMOUNT) {
-            if (ingotStacks[pSlotID] == null)
-                return null;
-
-            if (amount <= ingotStacks[pSlotID].stackSize)
-            {
-                returnedStack = ingotStacks[pSlotID].copy();
-
-                returnedStack.stackSize = amount;
-
-                if(!simulate)
-                    ingotStacks[pSlotID].stackSize -= amount;
-            }
-            else
-            {
-                returnedStack = ingotStacks[pSlotID].copy();
-
-                if(!simulate)
-                    ingotStacks[pSlotID] = null;
-            }
-        }
-        else if (pSlotID < INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT) {
-            if (fuelStacks[pSlotID - INGOTSTACKS_AMOUNT] == null)
-                return null;
-
-            if (amount <= fuelStacks[pSlotID - INGOTSTACKS_AMOUNT].stackSize)
-            {
-                returnedStack = fuelStacks[pSlotID - INGOTSTACKS_AMOUNT].copy();
-
-                returnedStack.stackSize = amount;
-
-                if(!simulate)
-                    fuelStacks[pSlotID - INGOTSTACKS_AMOUNT].stackSize -= amount;
-            }
-            else
-            {
-                returnedStack = fuelStacks[pSlotID - INGOTSTACKS_AMOUNT].copy();
-
-                if(!simulate)
-                    fuelStacks[pSlotID - INGOTSTACKS_AMOUNT] = null;
-            }
-        }
-        else if (pSlotID < INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT + INFUSIONSTACK_AMOUNT) {
-            if (infusionStacks[pSlotID - INGOTSTACKS_AMOUNT - FUELSTACK_AMOUNT] == null)
-                return null;
-
-            if (amount <= infusionStacks[pSlotID - INGOTSTACKS_AMOUNT - FUELSTACK_AMOUNT].stackSize)
-            {
-                returnedStack = infusionStacks[pSlotID - INGOTSTACKS_AMOUNT - FUELSTACK_AMOUNT].copy();
-
-                returnedStack.stackSize = amount;
-
-                if(!simulate)
-                    infusionStacks[pSlotID - INGOTSTACKS_AMOUNT - FUELSTACK_AMOUNT].stackSize -= amount;
-            }
-            else
-            {
-                returnedStack = infusionStacks[pSlotID - INGOTSTACKS_AMOUNT - FUELSTACK_AMOUNT].copy();
-
-                if(!simulate)
-                    infusionStacks[pSlotID - INGOTSTACKS_AMOUNT - FUELSTACK_AMOUNT] = null;
-            }
+            return ingotStacks[pSlotID];
         }
 
-        return returnedStack;
+        if (pSlotID < INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT) {
+            return fuelStacks[pSlotID - INGOTSTACKS_AMOUNT];
+        }
+
+        return null;
     }
 
     @Override
-    public ItemStack setHandlerSlotContents (int pSlotIndex, ItemStack pNewItemStack, boolean simulate) {
+    public ItemStack decrStackSize (int pSlotIndex, int pDecrAmount) {
+        ItemStack tItemStack = getStackInSlot(pSlotIndex);
+        if (tItemStack == null) {
+            return tItemStack;
+        }
+
+        if (tItemStack.stackSize < pDecrAmount) {
+            setInventorySlotContents(pSlotIndex, null);
+        } else {
+            ItemStack returnStack = tItemStack.splitStack(pDecrAmount);
+
+            if (tItemStack.stackSize == 0) {
+                setInventorySlotContents(pSlotIndex, null);
+            }
+
+            return returnStack;
+        }
+
+        return tItemStack;
+    }
+
+    @Override
+    public ItemStack removeStackFromSlot (int index) {
+        return null;
+    }
+
+    @Override
+    public void setInventorySlotContents (int pSlotIndex, ItemStack pNewItemStack) {
         if (pSlotIndex < INGOTSTACKS_AMOUNT) {
             ItemStack pSettingStack = null;
             if (pNewItemStack != null) {
@@ -177,34 +122,46 @@ public class TileEntityFirePit extends TileEntityArmory implements ISmithsCoreIt
                 pSettingStack.stackSize = 1;
             }
 
-            if (!simulate)
-                ingotStacks[pSlotIndex] = pSettingStack;
-
+            ingotStacks[pSlotIndex] = pSettingStack;
             if (pNewItemStack != null && pNewItemStack.stackSize > 1) {
                 --pNewItemStack.stackSize;
             }
-
-            if (pNewItemStack == null)
-                return null;
-
-            return pNewItemStack.copy();
+        } else if (pSlotIndex < INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT) {
+            fuelStacks[pSlotIndex - INGOTSTACKS_AMOUNT] = pNewItemStack;
         }
-        else if (pSlotIndex < INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT) {
-            if (!simulate)
-                fuelStacks[pSlotIndex - INGOTSTACKS_AMOUNT] = pNewItemStack;
-
-            return null;
-        }
-        else if (pSlotIndex < INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT + INFUSIONSTACK_AMOUNT)
-        {
-            if (!simulate)
-                infusionStacks[pSlotIndex - INGOTSTACKS_AMOUNT - FUELSTACK_AMOUNT] = pNewItemStack;
-
-            return null;
-        }
-
-        return pNewItemStack.copy();
     }
+
+    @Override
+    public String getName () {
+        return this.hasCustomName() ? super.getName() : StatCollector.translateToLocal(References.InternalNames.Blocks.FirePit);
+    }
+
+    @Override
+    public boolean hasCustomName () {
+        return ( ( super.getName().length() > 0 ) && !super.getName().isEmpty() );
+    }
+
+    @Override
+    public int getInventoryStackLimit () {
+        return 64;
+    }
+
+    @Override
+    public boolean isUseableByPlayer (EntityPlayer pPlayer) {
+        return true;
+    }
+
+
+    @Override
+    public void openInventory (EntityPlayer player) {
+        //No animation and definitely no cat on top of this nice puppy
+    }
+
+    @Override
+    public void closeInventory (EntityPlayer player) {
+        //NOOP
+    }
+
 
     @Override
     public boolean isItemValidForSlot (int pSlotIndex, ItemStack pItemStack) {
@@ -221,17 +178,26 @@ public class TileEntityFirePit extends TileEntityArmory implements ISmithsCoreIt
         return false;
     }
 
-
     @Override
-    public String getName () {
-        return this.hasCustomName() ? super.getName() : StatCollector.translateToLocal(References.InternalNames.Blocks.FirePit);
+    public int getField (int id) {
+        return 0;  //Custom GUI Sytstem -> Not needed
     }
 
     @Override
-    public boolean hasCustomName () {
-        return ( ( super.getName().length() > 0 ) && !super.getName().isEmpty() );
+    public void setField (int id, int value) {
+        //NOOP
     }
 
+    @Override
+    public int getFieldCount () {
+        return 0;
+    }
+
+    @Override
+    public void clear () {
+        ingotStacks = new ItemStack[5];
+        fuelStacks = new ItemStack[5];
+    }
 
     @Override
     public void update () {
@@ -279,7 +245,6 @@ public class TileEntityFirePit extends TileEntityArmory implements ISmithsCoreIt
     public boolean shouldRefresh (World world, BlockPos pos, IBlockState oldState, IBlockState newSate) {
         return oldState.getBlock() != newSate.getBlock();
     }
-
 
     public void heatFurnace () {
         calculateHeatTerms();
@@ -414,6 +379,7 @@ public class TileEntityFirePit extends TileEntityArmory implements ISmithsCoreIt
 
     }
 
+
     public void meltIngots () {
         FirePitState state = (FirePitState) getState();
 
@@ -455,6 +421,7 @@ public class TileEntityFirePit extends TileEntityArmory implements ISmithsCoreIt
 
             if (state.getMeltingProgess(i) > 1F) {
                 meltIngot(i);
+                state.setMeltingProgress(i, 0F);
             }
         }
 
@@ -496,7 +463,6 @@ public class TileEntityFirePit extends TileEntityArmory implements ISmithsCoreIt
         return tIngotAmount;
     }
 
-
     @Override
     public void queBlockModelUpdateOnClients () {
         if (isSlaved())
@@ -515,6 +481,7 @@ public class TileEntityFirePit extends TileEntityArmory implements ISmithsCoreIt
             }
         }
     }
+
 
 
     @Override
@@ -568,7 +535,7 @@ public class TileEntityFirePit extends TileEntityArmory implements ISmithsCoreIt
 
     @Override
     public String getContainerID () {
-        return References.InternalNames.TileEntities.FirePitContainer + " - " + getLocation().toString();
+        return References.InternalNames.TileEntities.FirePitContainer;
     }
 
     @Override
@@ -752,3 +719,4 @@ public class TileEntityFirePit extends TileEntityArmory implements ISmithsCoreIt
             structureBounds.IncludeCoordinate(coordinate3D);
     }
 }
+

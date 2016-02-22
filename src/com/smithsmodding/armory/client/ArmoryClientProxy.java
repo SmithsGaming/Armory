@@ -3,7 +3,7 @@ package com.smithsmodding.armory.client;
 import com.smithsmodding.armory.*;
 import com.smithsmodding.armory.api.armor.*;
 import com.smithsmodding.armory.client.logic.*;
-import com.smithsmodding.armory.client.model.Loaders.*;
+import com.smithsmodding.armory.client.model.loaders.*;
 import com.smithsmodding.armory.client.textures.*;
 import com.smithsmodding.armory.common.*;
 import com.smithsmodding.armory.common.item.*;

@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.client.model.Item.Unbaked;
+package com.smithsmodding.armory.client.model.item.unbaked;
 
 import com.google.common.base.*;
 import net.minecraft.client.renderer.texture.*;

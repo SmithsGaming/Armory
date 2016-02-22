@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.client.model.Item.Events;
+package com.smithsmodding.armory.client.model.item.events;
 
 import com.smithsmodding.armory.api.armor.*;
 import com.smithsmodding.armory.*;

@@ -1,8 +1,8 @@
-package com.smithsmodding.armory.client.model.Item.Baked;
+package com.smithsmodding.armory.client.model.item.baked;
 
 import com.google.common.collect.*;
 import com.smithsmodding.armory.api.armor.*;
-import com.smithsmodding.armory.client.model.Item.Baked.Components.*;
+import com.smithsmodding.armory.client.model.item.baked.components.*;
 import com.smithsmodding.armory.util.armor.*;
 import com.smithsmodding.smithscore.util.common.*;
 import net.minecraft.client.renderer.block.model.*;

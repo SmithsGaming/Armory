@@ -1,9 +1,9 @@
-package com.smithsmodding.armory.client.model.Item.Unbaked.Components;
+package com.smithsmodding.armory.client.model.item.unbaked.components;
 
 import com.google.common.base.*;
 import com.google.common.collect.*;
 import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.client.model.Item.Baked.Components.*;
+import com.smithsmodding.armory.client.model.item.baked.components.*;
 import com.smithsmodding.armory.client.textures.*;
 import com.smithsmodding.armory.common.material.*;
 import com.smithsmodding.smithscore.util.client.*;

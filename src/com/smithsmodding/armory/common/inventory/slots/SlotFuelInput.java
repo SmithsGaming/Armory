@@ -5,15 +5,13 @@ package com.smithsmodding.armory.common.inventory.slots;
  *   Created on: 18-1-2015
  */
 
-import com.smithsmodding.smithscore.common.slots.*;
-import com.smithsmodding.smithscore.common.tileentity.Capabilities.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.*;
 
-public class SlotFuelInput extends SlotSmithsCore {
+public class SlotFuelInput extends Slot {
 
-    public SlotFuelInput (ISmithsCoreItemHandler pInventory, int pSlotIndex, int pXLocation, int pYLocation) {
+    public SlotFuelInput (IInventory pInventory, int pSlotIndex, int pXLocation, int pYLocation) {
         super(pInventory, pSlotIndex, pXLocation, pYLocation);
     }
 

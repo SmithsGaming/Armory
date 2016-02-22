@@ -95,7 +95,10 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
 
         public static void registerTESR() {
             Item itemBlockFirePit = Item.getItemFromBlock(GeneralRegistry.Blocks.blockFirePit);
+            Item itemBlockBlackSmithsAnvil = Item.getItemFromBlock(GeneralRegistry.Blocks.blockBlackSmithsAnvil);
+
             ModelLoader.setCustomModelResourceLocation(itemBlockFirePit, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + References.InternalNames.Blocks.FirePit, "inventory"));
+            ModelLoader.setCustomModelResourceLocation(itemBlockBlackSmithsAnvil, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + References.InternalNames.Blocks.ArmorsAnvil, "inventory"));
         }
     }
 

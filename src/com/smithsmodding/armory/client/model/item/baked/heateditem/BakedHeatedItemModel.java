@@ -1,7 +1,7 @@
-package com.smithsmodding.armory.client.model.Item.Baked.HeatedItem;
+package com.smithsmodding.armory.client.model.item.baked.heateditem;
 
 import com.google.common.collect.*;
-import com.smithsmodding.armory.client.model.Item.Baked.Components.*;
+import com.smithsmodding.armory.client.model.item.baked.components.*;
 import com.smithsmodding.armory.common.factory.*;
 import com.smithsmodding.armory.common.item.*;
 import net.minecraft.client.*;

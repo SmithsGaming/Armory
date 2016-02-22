@@ -12,9 +12,11 @@ Found AccessTransformer: Armory_at.cfg
 :deobfProvidedDummyTask
 :getVersionJson
 :extractUserdev
+Download http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8.9-11.15.1.1757/forge-1.8.9-11.15.1.1757.pom
+Download http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8.9-11.15.1.1757/forge-1.8.9-11.15.1.1757-userdev.jar
 :extractDependencyATs SKIPPED
 :extractMcpData SKIPPED
-:extractMcpMappings
+:extractMcpMappings SKIPPED
 :genSrgs SKIPPED
 :downloadClient SKIPPED
 :downloadServer SKIPPED
@@ -34,13 +36,10 @@ Applying Exceptor...
 :makeStart
 :setupDecompWorkspace
 :ideaModule
-Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-101-SNAPSHOT/smithscore-1.1.0.1-101-20160212.161231-1-dev.jar
-Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-101-SNAPSHOT/smithscore-1.1.0.1-101-20160212.161231-1-sources.jar
-Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-101-SNAPSHOT/smithscore-1.1.0.1-101-20160212.161231-1-javadoc.jar
 :ideaProject
 :ideaWorkspace
 :idea
 
 BUILD SUCCESSFUL
 
-Total time: 2 mins 57.987 secs
+Total time: 2 mins 50.811 secs

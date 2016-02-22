@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.client.model.Item.Baked.Components;
+package com.smithsmodding.armory.client.model.item.baked.components;
 
 import com.smithsmodding.armory.api.armor.*;
 import com.smithsmodding.armory.api.item.*;

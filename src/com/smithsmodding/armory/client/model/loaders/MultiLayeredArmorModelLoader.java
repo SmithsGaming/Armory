@@ -1,12 +1,11 @@
-package com.smithsmodding.armory.client.model.Loaders;
-
+package com.smithsmodding.armory.client.model.loaders;
 
 import com.google.common.collect.*;
 import com.smithsmodding.armory.api.armor.*;
 import com.smithsmodding.armory.*;
-import com.smithsmodding.armory.client.model.Item.Events.*;
-import com.smithsmodding.armory.client.model.Item.Unbaked.Components.*;
-import com.smithsmodding.armory.client.model.Item.Unbaked.*;
+import com.smithsmodding.armory.client.model.item.events.*;
+import com.smithsmodding.armory.client.model.item.unbaked.*;
+import com.smithsmodding.armory.client.model.item.unbaked.components.*;
 import com.smithsmodding.armory.client.textures.*;
 import com.smithsmodding.armory.common.material.*;
 import com.smithsmodding.smithscore.util.client.*;

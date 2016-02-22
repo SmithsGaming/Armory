@@ -7,14 +7,12 @@ package com.smithsmodding.armory.common.inventory.slots;
 
 import com.smithsmodding.armory.common.item.*;
 import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.smithscore.common.slots.*;
-import com.smithsmodding.smithscore.common.tileentity.Capabilities.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 
-public class SlotHeatable extends SlotSmithsCore {
+public class SlotHeatable extends Slot {
 
-    public SlotHeatable (ISmithsCoreItemHandler pInventory, int pSlotIndex, int pXLocation, int pYLocation) {
+    public SlotHeatable (IInventory pInventory, int pSlotIndex, int pXLocation, int pYLocation) {
         super(pInventory, pSlotIndex, pXLocation, pYLocation);
     }
 

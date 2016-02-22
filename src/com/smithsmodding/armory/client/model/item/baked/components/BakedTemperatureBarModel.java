@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.client.model.Item.Baked.Components;
+package com.smithsmodding.armory.client.model.item.baked.components;
 
 import net.minecraft.client.resources.model.*;
 import net.minecraftforge.client.model.*;

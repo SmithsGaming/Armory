@@ -365,8 +365,10 @@ public class ArmoryInitializer {
     public static class SystemInit {
         public static void RegisterBlocks() {
             GeneralRegistry.Blocks.blockFirePit = new BlockFirePit();
+            GeneralRegistry.Blocks.blockBlackSmithsAnvil = new BlockBlackSmithsAnvil();
 
             GameRegistry.registerBlock(GeneralRegistry.Blocks.blockFirePit, References.InternalNames.Blocks.FirePit);
+            GameRegistry.registerBlock(GeneralRegistry.Blocks.blockBlackSmithsAnvil, References.InternalNames.Blocks.ArmorsAnvil);
         }
 
         public static void RegisterItems() {
@@ -391,6 +393,7 @@ public class ArmoryInitializer {
 
         public static void RegisterTileEntities() {
             GameRegistry.registerTileEntity(TileEntityFirePit.class, References.InternalNames.TileEntities.FirePitContainer);
+            GameRegistry.registerTileEntity(TileEntityBlackSmithsAnvil.class, References.InternalNames.TileEntities.ArmorsAnvil);
         }
 
         public static void loadMaterialConfig() {

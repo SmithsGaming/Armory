@@ -4,21 +4,31 @@ import com.smithsmodding.armory.*;
 import com.smithsmodding.armory.common.tileentity.*;
 import com.smithsmodding.armory.util.*;
 import net.minecraft.block.material.*;
+import net.minecraft.block.properties.*;
 import net.minecraft.block.state.*;
+import net.minecraft.creativetab.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import net.minecraftforge.client.model.obj.*;
+import net.minecraftforge.common.property.*;
 
 /**
  * Created by Marc on 14.02.2016.
  */
 public class BlockBlackSmithsAnvil extends BlockArmoryInventory
 {
+
+    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{OBJModel.OBJProperty.instance});
+
+
     public BlockBlackSmithsAnvil () {
         super(References.InternalNames.Blocks.ArmorsAnvil, Material.anvil);
+        setCreativeTab(CreativeTabs.tabCombat);
+        this.setDefaultState(this.blockState.getBaseState());
     }
 
     @Override
