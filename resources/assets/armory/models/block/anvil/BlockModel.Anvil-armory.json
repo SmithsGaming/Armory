@@ -1,0 +1,7 @@
+{
+  "model":"armory:block/anvil/BlockModel.obj",
+  "textures":
+  {
+    "Vanilla.Obsidian":"minecraft:blocks/obsidian"
+  }
+}

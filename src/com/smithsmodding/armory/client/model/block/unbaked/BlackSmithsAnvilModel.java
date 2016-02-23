@@ -18,15 +18,15 @@ import java.util.*;
  */
 public class BlackSmithsAnvilModel implements IModel {
 
-    OBJModel original;
-    HashMap<String, OBJModel> unbakedOBJModels = new HashMap<>();
+    IModel original;
+    HashMap<String, IModel> unbakedOBJModels = new HashMap<>();
 
-    public BlackSmithsAnvilModel(OBJModel original)
+    public BlackSmithsAnvilModel(IModel original)
     {
         this.original = original;
     }
 
-    public void registerNewMaterializedModel(OBJModel model, String materialID)
+    public void registerNewMaterializedModel(IModel model, String materialID)
     {
         unbakedOBJModels.put(materialID, model);
     }
@@ -40,7 +40,7 @@ public class BlackSmithsAnvilModel implements IModel {
     public Collection<ResourceLocation> getTextures () {
         ArrayList<ResourceLocation> resourceLocations = new ArrayList<>();
 
-        for (OBJModel model : unbakedOBJModels.values())
+        for (IModel model : unbakedOBJModels.values())
         {
             resourceLocations.addAll(model.getTextures());
         }
@@ -52,9 +52,10 @@ public class BlackSmithsAnvilModel implements IModel {
     public IFlexibleBakedModel bake (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         BlackSmithsAnvilBakedModel bakedModel = new BlackSmithsAnvilBakedModel(original.bake(state, format, bakedTextureGetter));
 
-        for(Map.Entry<String, OBJModel> modelEntry : unbakedOBJModels.entrySet())
+        for(Map.Entry<String, IModel> modelEntry : unbakedOBJModels.entrySet())
         {
-            bakedModel.registerBakedModel(modelEntry.getValue().bake(state, format, bakedTextureGetter), modelEntry.getKey());
+            OBJModel.OBJBakedModel bakedCustomModel = (OBJModel.OBJBakedModel) modelEntry.getValue().bake(state, format, bakedTextureGetter);
+            bakedModel.registerBakedModel(bakedCustomModel, modelEntry.getKey());
         }
 
         return bakedModel;

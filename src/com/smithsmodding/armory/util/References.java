@@ -39,6 +39,11 @@ public class References {
         }
 
         public static final class Materials {
+            public static final class Anvil {
+                public static final String IRON = "Vanilla.Iron";
+                public static final String OBSIDIAN = "Vanilla.Obsidian";
+            }
+
             public static final class Vanilla {
                 public static final String IRON = "Vanilla.Iron";
                 public static final String OBSIDIAN = "Vanilla.Obsidian";
@@ -552,6 +557,7 @@ public class References {
 
             public class Anvil {
                 public static final String CRAFTINGPROGRESS = "CraftingProgress";
+                public static final String MATERIAL = "Material";
             }
 
             public class BookBinder {

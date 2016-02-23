@@ -5,18 +5,24 @@ import com.google.common.collect.*;
 import com.google.gson.*;
 import com.google.gson.reflect.*;
 import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.api.materials.*;
 import com.smithsmodding.armory.client.model.block.events.*;
+import com.smithsmodding.armory.client.model.block.unbaked.*;
 import com.smithsmodding.armory.client.model.item.unbaked.*;
 import com.smithsmodding.armory.client.model.item.unbaked.components.*;
 import com.smithsmodding.armory.client.textures.*;
+import com.smithsmodding.armory.common.registry.*;
 import com.smithsmodding.armory.common.tileentity.guimanagers.*;
 import com.smithsmodding.smithscore.util.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.resources.*;
 import net.minecraft.util.*;
 import net.minecraftforge.client.model.*;
+import net.minecraftforge.client.model.obj.*;
 import net.minecraftforge.fml.common.*;
+import scala.tools.nsc.transform.patmat.*;
 
+import javax.vecmath.*;
 import java.io.*;
 import java.lang.reflect.*;
 import java.util.*;
@@ -30,7 +36,7 @@ public class AnvilModelLoader implements ICustomModelLoader {
 
     @Override
     public boolean accepts (ResourceLocation modelLocation) {
-        return modelLocation.getResourcePath().endsWith(EXTENSION); // HeatedItem armory extension. Foo.HI-armory.json
+        return modelLocation.getResourcePath().endsWith(EXTENSION); // Anvil armory extension. Foo.Anvil-armory.json
     }
 
     @Override
@@ -49,8 +55,37 @@ public class AnvilModelLoader implements ICustomModelLoader {
 
             modelDefinition.texturePaths.putAll(event.getAdditionalTextureLayers());
 
+            BlackSmithsAnvilModel model = new BlackSmithsAnvilModel(objModel);
 
+            for(IAnvilMaterial material : AnvilMaterialRegistry.getInstance().getAllRegisteredAnvilMaterials().values())
+            {
+                if (modelDefinition.texturePaths.containsKey(material.getID()))
+                {
+                    ImmutableMap.Builder<String, String> builder = new ImmutableMap.Builder<>();
 
+                    builder.put("#Anvil", modelDefinition.texturePaths.get(material.getID()));
+
+                    model.registerNewMaterializedModel(((IRetexturableModel<OBJModel>) objModel).retexture(builder.build()), material.getID());
+                }
+                else
+                {
+                    OBJModel newModel = (OBJModel) ModelHelper.forceLoadOBJModel(new ResourceLocation(modelDefinition.modelPath));
+
+                    OBJModel.Material materialOBJ = newModel.getMatLib().getMaterial("Anvil");
+
+                    Vector4f colorVec = new Vector4f();
+                    colorVec.w = 1F;
+                    colorVec.x = material.getRenderInfo().getVertexColor().getRedFloat();
+                    colorVec.y = material.getRenderInfo().getVertexColor().getGreenFloat();
+                    colorVec.z = material.getRenderInfo().getVertexColor().getBlueFloat();
+
+                    materialOBJ.setColor(colorVec);
+
+                    model.registerNewMaterializedModel(newModel, material.getID());
+                }
+            }
+
+            return model;
         } catch (IOException e) {
             Armory.getLogger().error("Could not load Anvil-Model {}", modelLocation.toString());
         }

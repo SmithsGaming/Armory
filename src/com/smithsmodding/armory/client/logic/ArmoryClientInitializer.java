@@ -27,6 +27,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
     public static void InitializeClient() {
         ArmoryInitializer.SystemInit.RegisterFluids();
         MedievalInitialization.Initialize();
+        GlobalInitialization.RegisterAnvilMaterials();
         ArmoryInitializer.SystemInit.RegisterBlocks();
         ArmoryInitializer.SystemInit.RegisterItems();
         ArmoryInitializer.SystemInit.RegisterTileEntities();
@@ -39,6 +40,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
         MedievalClientInitialization.registerNuggetResources();
         MedievalClientInitialization.registerPlateResources();
         MedievalInitialization.prepareGame();
+        GlobalClientInitialization.RegisterAnvilMaterialRenderInfo();
         ArmoryInitializer.SystemInit.initializeOreDic();
     }
 
@@ -76,6 +78,18 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
 
         }
 
+    }
+
+    public static class GlobalClientInitialization
+    {
+        public static void RegisterAnvilMaterialRenderInfo()
+        {
+            IArmorMaterial iron = MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON);
+            IArmorMaterial obsidian = MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN);
+
+            AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.IRON).setRenderInfo(iron.getRenderInfo());
+            AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.OBSIDIAN).setRenderInfo(obsidian.getRenderInfo());
+        }
     }
 
     public static class SystemInit {

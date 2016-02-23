@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.api.materials;
 
+import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.*;
 
 /**
@@ -10,4 +11,12 @@ public interface IAnvilMaterial
     String getID();
 
     int durability();
+
+    String translatedDisplayName();
+
+    EnumChatFormatting translatedDisplayNameColor();
+
+    IMaterialRenderInfo getRenderInfo();
+
+    void setRenderInfo(IMaterialRenderInfo info);
 }

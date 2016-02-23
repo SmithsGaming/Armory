@@ -10,10 +10,12 @@ import com.smithsmodding.armory.api.armor.*;
 import com.smithsmodding.armory.api.events.common.*;
 import com.smithsmodding.armory.api.materials.*;
 import com.smithsmodding.armory.common.addons.*;
+import com.smithsmodding.armory.common.anvil.*;
 import com.smithsmodding.armory.common.block.*;
 import com.smithsmodding.armory.common.fluid.*;
 import com.smithsmodding.armory.common.item.*;
 import com.smithsmodding.armory.common.item.armor.tiermedieval.*;
+import com.smithsmodding.armory.common.item.block.*;
 import com.smithsmodding.armory.common.item.knowledge.*;
 import com.smithsmodding.armory.common.material.*;
 import com.smithsmodding.armory.common.material.fluidmodifiers.*;
@@ -23,6 +25,7 @@ import com.smithsmodding.armory.util.*;
 import com.smithsmodding.armory.util.client.*;
 import com.smithsmodding.smithscore.*;
 import com.smithsmodding.smithscore.util.common.*;
+import net.minecraft.client.renderer.block.statemap.*;
 import net.minecraft.init.*;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.*;
@@ -38,6 +41,7 @@ public class ArmoryInitializer {
     public static void InitializeServer() {
         SystemInit.RegisterFluids();
         MedievalInitialization.Initialize();
+        GlobalInitialization.RegisterAnvilMaterials();
         SystemInit.RegisterBlocks();
         SystemInit.RegisterItems();
         SystemInit.RegisterTileEntities();
@@ -362,13 +366,21 @@ public class ArmoryInitializer {
         }
     }
 
+    public static class GlobalInitialization {
+        public static void RegisterAnvilMaterials()
+        {
+            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.IRON, 1500, StatCollector.translateToLocal(TranslationKeys.Materials.Anvil.Iron)));
+            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.OBSIDIAN, 2200, StatCollector.translateToLocal(TranslationKeys.Materials.Anvil.Obsidian)));
+        }
+    }
+
     public static class SystemInit {
         public static void RegisterBlocks() {
             GeneralRegistry.Blocks.blockFirePit = new BlockFirePit();
             GeneralRegistry.Blocks.blockBlackSmithsAnvil = new BlockBlackSmithsAnvil();
 
             GameRegistry.registerBlock(GeneralRegistry.Blocks.blockFirePit, References.InternalNames.Blocks.FirePit);
-            GameRegistry.registerBlock(GeneralRegistry.Blocks.blockBlackSmithsAnvil, References.InternalNames.Blocks.ArmorsAnvil);
+            GameRegistry.registerBlock(GeneralRegistry.Blocks.blockBlackSmithsAnvil, ItemBlockBlackSmithsAnvil.class, References.InternalNames.Blocks.ArmorsAnvil);
         }
 
         public static void RegisterItems() {

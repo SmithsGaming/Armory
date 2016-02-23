@@ -65,11 +65,7 @@ public class ArmorMaterial implements IArmorMaterial {
         materialIndex = LASTUSEDID;
         LASTUSEDID++;
 
-        if (renderInfo != null) {
-            Armory.getLogger().info("Initialized material: " + this.uniqueIdentifier + ", with ItemColor: " + renderInfo.getVertexColor().toString() + ", with EnumChatFormatting: " + getNameColor());
-        } else {
-            Armory.getLogger().info("Initialized material: " + this.uniqueIdentifier);
-        }
+        Armory.getLogger().info("Initialized material: " + this.uniqueIdentifier);
     }
 
 
@@ -197,6 +193,6 @@ public class ArmorMaterial implements IArmorMaterial {
 
     @Override
     public EnumChatFormatting getNameColor () {
-        return ColorSampler.getSimpleChatMinecraftColor(renderInfo.getVertexColor());
+        return ColorSampler.getChatMinecraftColorSample(renderInfo.getVertexColor());
     }
 }

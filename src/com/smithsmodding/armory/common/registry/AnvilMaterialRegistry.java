@@ -10,7 +10,14 @@ import java.util.*;
  */
 public class AnvilMaterialRegistry implements IAnvilMaterialRegistry {
 
+    protected static AnvilMaterialRegistry instance = new AnvilMaterialRegistry();
+
     HashMap<String, IAnvilMaterial> materialHashMap = new HashMap<>();
+
+    public static AnvilMaterialRegistry getInstance()
+    {
+        return instance;
+    }
 
     /**
      * Function to retrieve all of the types registered to this registry

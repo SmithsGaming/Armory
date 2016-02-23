@@ -31,11 +31,13 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
 
     private static MultiLayeredArmorModelLoader multiLayeredArmorModelLoader = new MultiLayeredArmorModelLoader();
     private static HeatedItemModelLoader heatedItemModelLoader = new HeatedItemModelLoader();
+    private static AnvilModelLoader anvilBlockModelLoader = new AnvilModelLoader();
 
     @Override
     public void preInitializeArmory() {
         ModelLoaderRegistry.registerLoader(multiLayeredArmorModelLoader);
         ModelLoaderRegistry.registerLoader(heatedItemModelLoader);
+        ModelLoaderRegistry.registerLoader(anvilBlockModelLoader);
 
         MaterializedTextureCreator materializedTextureCreator = new MaterializedTextureCreator();
         MinecraftForge.EVENT_BUS.register(materializedTextureCreator);
@@ -47,6 +49,13 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
             @Override
             protected ModelResourceLocation getModelResourceLocation (IBlockState state) {
                 return new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + References.InternalNames.Blocks.FirePit, "normal");
+            }
+        });
+
+        ModelLoader.setCustomStateMapper(GeneralRegistry.Blocks.blockBlackSmithsAnvil, new StateMapperBase() {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation (IBlockState state) {
+                return new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + References.InternalNames.Blocks.ArmorsAnvil, "normal");
             }
         });
 

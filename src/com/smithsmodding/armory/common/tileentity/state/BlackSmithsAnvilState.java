@@ -1,5 +1,9 @@
 package com.smithsmodding.armory.common.tileentity.state;
 
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.common.registry.*;
+import com.smithsmodding.armory.common.tileentity.*;
+import com.smithsmodding.armory.util.*;
 import com.smithsmodding.smithscore.common.tileentity.*;
 import com.smithsmodding.smithscore.common.tileentity.state.*;
 import net.minecraft.nbt.*;
@@ -9,7 +13,9 @@ import net.minecraft.nbt.*;
  */
 public class BlackSmithsAnvilState implements ITileEntityState {
 
-
+    float craftingprogress;
+    IAnvilMaterial material;
+    TileEntityBlackSmithsAnvil anvil;
 
     /**
      * Method called when this state get attached to a TE. Allows it to store a reference or modify values of the TE.
@@ -18,7 +24,7 @@ public class BlackSmithsAnvilState implements ITileEntityState {
      */
     @Override
     public void onStateCreated (TileEntitySmithsCore tileEntitySmithsCore) {
-
+        this.anvil = (TileEntityBlackSmithsAnvil) tileEntitySmithsCore;
     }
 
     /**
@@ -47,7 +53,7 @@ public class BlackSmithsAnvilState implements ITileEntityState {
      */
     @Override
     public boolean requiresNBTStorage () {
-        return false;
+        return true;
     }
 
     /**
@@ -57,7 +63,15 @@ public class BlackSmithsAnvilState implements ITileEntityState {
      */
     @Override
     public void readFromNBTTagCompound (NBTBase stateData) {
-
+        try{
+            this.material = AnvilMaterialRegistry.getInstance().getAnvilMaterial(((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL));
+            this.craftingprogress = ((NBTTagCompound) stateData).getFloat(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS);
+        }
+        catch (Exception ex)
+        {
+            this.material = AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.IRON);
+            this.craftingprogress = 0F;
+        }
     }
 
     /**
@@ -67,7 +81,12 @@ public class BlackSmithsAnvilState implements ITileEntityState {
      */
     @Override
     public NBTBase writeToNBTTagCompound () {
-        return null;
+        NBTTagCompound compound = new NBTTagCompound();
+
+        compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, material.getID());
+        compound.setFloat(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS, craftingprogress);
+
+        return compound;
     }
 
     /**
@@ -78,7 +97,11 @@ public class BlackSmithsAnvilState implements ITileEntityState {
      */
     @Override
     public boolean requiresSynchronization () {
-        return false;
+        return true;
+    }
+
+    public TileEntityBlackSmithsAnvil getAnvil () {
+        return anvil;
     }
 
     /**
@@ -88,7 +111,7 @@ public class BlackSmithsAnvilState implements ITileEntityState {
      */
     @Override
     public void readFromSynchronizationCompound (NBTBase stateData) {
-
+        readFromNBTTagCompound(stateData);
     }
 
     /**
@@ -98,6 +121,24 @@ public class BlackSmithsAnvilState implements ITileEntityState {
      */
     @Override
     public NBTBase writeToSynchronizationCompound () {
-        return null;
+        return writeToNBTTagCompound();
     }
+
+    public IAnvilMaterial getMaterial () {
+        return material;
+    }
+
+    public void setMaterial (IAnvilMaterial material) {
+        this.material = material;
+    }
+
+    public float getCraftingprogress () {
+        return craftingprogress;
+    }
+
+    public void setCraftingprogress (float craftingprogress) {
+        this.craftingprogress = craftingprogress;
+    }
+
+
 }

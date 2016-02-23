@@ -1,19 +1,26 @@
 package com.smithsmodding.armory.common.tileentity;
 
+import com.smithsmodding.armory.common.registry.*;
 import com.smithsmodding.armory.common.tileentity.guimanagers.*;
 import com.smithsmodding.armory.common.tileentity.state.*;
 import com.smithsmodding.armory.util.*;
+import com.smithsmodding.smithscore.*;
+import com.smithsmodding.smithscore.common.events.*;
+import net.minecraft.block.material.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
+import net.minecraft.util.*;
 
 /**
  * Created by Marc on 14.02.2016.
  */
-public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInventory {
+public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInventory, ITickable {
 
     public TileEntityBlackSmithsAnvil () {
         super(new BlackSmithsAnvilState(), null);
+
+        ((BlackSmithsAnvilState) this.getState()).setMaterial(AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.IRON));
 
         this.setManager(new BlackSmithsAnvilGuiManager(this));
     }
@@ -137,5 +144,14 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
     @Override
     public void clear () {
 
+    }
+
+    /**
+     * Like the old updateEntity(), except more generic.
+     */
+    @Override
+    public void update () {
+        //Notify the events system of a update.
+        SmithsCore.getRegistry().getCommonBus().post(new TileEntityDataUpdatedEvent(this));
     }
 }

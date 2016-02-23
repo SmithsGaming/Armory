@@ -1,11 +1,12 @@
 package com.smithsmodding.armory.common.block.properties;
 
+import com.smithsmodding.armory.common.registry.*;
 import net.minecraftforge.common.property.*;
 
 /**
  * Created by Marc on 22.02.2016.
  */
-public class PropertyAnvilMaterial implements IUnlistedProperty<String> {
+public class PropertyAnvilMaterial implements IUnlistedProperty<String>{
 
     private String name;
 
@@ -20,7 +21,7 @@ public class PropertyAnvilMaterial implements IUnlistedProperty<String> {
 
     @Override
     public boolean isValid (String value) {
-        return false;
+        return AnvilMaterialRegistry.getInstance().getAnvilMaterial(value) != null;
     }
 
     @Override

@@ -13,8 +13,7 @@ import com.smithsmodding.armory.common.registry.*;
 import java.util.*;
 
 public class MaterialRegistry implements IMaterialRegistry {
-    protected static MaterialRegistry iInstance;
-    protected static GeneralRegistry iGeneralRegistry = GeneralRegistry.getInstance();
+    protected static MaterialRegistry instance;
 
     //Hashmap for storing all the materials
     protected HashMap<String, IArmorMaterial> iArmorMaterials = new HashMap<String, IArmorMaterial>();
@@ -22,11 +21,11 @@ public class MaterialRegistry implements IMaterialRegistry {
     protected HashMap<String, MultiLayeredArmor> iArmorMappings = new HashMap<String, MultiLayeredArmor>();
 
     public static MaterialRegistry getInstance() {
-        if (iInstance == null) {
-            iInstance = new MaterialRegistry();
+        if (instance == null) {
+            instance = new MaterialRegistry();
         }
 
-        return iInstance;
+        return instance;
     }
 
     //ArmorMappings
