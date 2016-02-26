@@ -20,6 +20,10 @@
         "transform": "forge:default-block"
       }
     ]
-  }
+  },
+  "facing=north": {},
+  "facing=south": {"y": 180 },
+  "facing=west":  {"y": 270 },
+  "facing=east":  {"y": 90 }
 }
 

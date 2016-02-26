@@ -33,14 +33,15 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
 {
 
     public static final PropertyAnvilMaterial PROPERTY_ANVIL_MATERIAL = new PropertyAnvilMaterial("Material");
+    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{OBJModel.OBJProperty.instance, PROPERTY_ANVIL_MATERIAL});
+    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.instance, PROPERTY_ANVIL_MATERIAL});
 
 
     public BlockBlackSmithsAnvil () {
         super(References.InternalNames.Blocks.ArmorsAnvil, Material.anvil);
         setCreativeTab(CreativeTabs.tabCombat);
-        this.setDefaultState(this.blockState.getBaseState());
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
     @Override
@@ -109,6 +110,12 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
         return super.getLocalizedName();
     }
 
+    @Override
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+    }
+
     /**
      * Called by ItemBlocks after a block is set in the world, to allow post-place logic
      *
@@ -123,6 +130,8 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
         String materialID = stack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL);
 
         ((BlackSmithsAnvilState) ((TileEntityBlackSmithsAnvil) worldIn.getTileEntity(pos)).getState()).setMaterial(AnvilMaterialRegistry.getInstance().getAnvilMaterial(materialID));
+
+        worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
 
         worldIn.getTileEntity(pos).markDirty();
     }
@@ -181,5 +190,33 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
             }
             return true;
         }
+    }
+
+    /**
+     * Convert the given metadata into a BlockState for this Block
+     */
+    public IBlockState getStateFromMeta(int meta)
+    {
+        EnumFacing enumfacing = EnumFacing.getFront(meta);
+
+        if (enumfacing.getAxis() == EnumFacing.Axis.Y)
+        {
+            enumfacing = EnumFacing.NORTH;
+        }
+
+        return this.getDefaultState().withProperty(FACING, enumfacing);
+    }
+
+    /**
+     * Convert the BlockState into the correct metadata value
+     */
+    public int getMetaFromState(IBlockState state)
+    {
+        return ((EnumFacing)state.getValue(FACING)).getIndex();
+    }
+
+    protected BlockState createBlockState()
+    {
+        return new BlockState(this, new IProperty[] {FACING});
     }
 }
