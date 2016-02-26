@@ -2,13 +2,11 @@ package com.smithsmodding.armory.common.block;
 
 import com.smithsmodding.armory.*;
 import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.common.anvil.*;
 import com.smithsmodding.armory.common.block.properties.*;
 import com.smithsmodding.armory.common.registry.*;
 import com.smithsmodding.armory.common.tileentity.*;
 import com.smithsmodding.armory.common.tileentity.state.*;
 import com.smithsmodding.armory.util.*;
-import com.smithsmodding.armory.util.client.*;
 import net.minecraft.block.material.*;
 import net.minecraft.block.properties.*;
 import net.minecraft.block.state.*;
@@ -20,9 +18,9 @@ import net.minecraft.nbt.*;
 import net.minecraft.tileentity.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import net.minecraftforge.client.model.*;
 import net.minecraftforge.client.model.obj.*;
 import net.minecraftforge.common.property.*;
-import scala.tools.nsc.doc.model.*;
 
 import java.util.*;
 
@@ -33,47 +31,20 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
 {
 
     public static final PropertyAnvilMaterial PROPERTY_ANVIL_MATERIAL = new PropertyAnvilMaterial("Material");
+    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{OBJModel.OBJProperty.instance, PROPERTY_ANVIL_MATERIAL});
+    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.instance, PROPERTY_ANVIL_MATERIAL});
 
 
     public BlockBlackSmithsAnvil () {
         super(References.InternalNames.Blocks.ArmorsAnvil, Material.anvil);
         setCreativeTab(CreativeTabs.tabCombat);
-        this.setDefaultState(this.blockState.getBaseState());
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityBlackSmithsAnvil();
-    }
-
-    public void onBlockPlacedBy(World pWorld, int pX, int pY, int pZ, EntityLivingBase pPlacingEntity, ItemStack pItemStack) {
-        int l = MathHelper.floor_double((double) (pPlacingEntity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-
-        TileEntityBlackSmithsAnvil tTE = (TileEntityBlackSmithsAnvil) pWorld.getTileEntity(new BlockPos(pX, pY, pZ));
-
-        if (l == 0) {
-            tTE.setDirection(EnumFacing.NORTH);
-        }
-
-        if (l == 1) {
-            tTE.setDirection(EnumFacing.EAST);
-        }
-
-        if (l == 2) {
-            tTE.setDirection(EnumFacing.SOUTH);
-        }
-
-        if (l == 3) {
-            tTE.setDirection(EnumFacing.WEST);
-        }
-
-        if (pItemStack.hasDisplayName()) {
-            tTE.setDisplayName(pItemStack.getDisplayName());
-        }
-
-
     }
 
     @Override
@@ -109,6 +80,12 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
         return super.getLocalizedName();
     }
 
+    @Override
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+    }
+
     /**
      * Called by ItemBlocks after a block is set in the world, to allow post-place logic
      *
@@ -123,6 +100,8 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
         String materialID = stack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL);
 
         ((BlackSmithsAnvilState) ((TileEntityBlackSmithsAnvil) worldIn.getTileEntity(pos)).getState()).setMaterial(AnvilMaterialRegistry.getInstance().getAnvilMaterial(materialID));
+
+        worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
 
         worldIn.getTileEntity(pos).markDirty();
     }
@@ -161,7 +140,18 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
     public IBlockState getExtendedState (IBlockState state, IBlockAccess world, BlockPos pos) {
         if (world.getTileEntity(pos) == null) return this.state.getBaseState();
 
-        return ( (IExtendedBlockState) this.state.getBaseState() ).withProperty(PROPERTY_ANVIL_MATERIAL, (( BlackSmithsAnvilState) ((TileEntityBlackSmithsAnvil) world.getTileEntity(pos)).getState()).getMaterial().getID());
+        OBJModel.OBJState objState = ( (IExtendedBlockState) state ).getValue(OBJModel.OBJProperty.instance);
+
+        if (objState == null) {
+            ArrayList<String> parts = new ArrayList<>();
+            parts.add(OBJModel.Group.ALL);
+
+            objState = new OBJModel.OBJState(parts, true);
+        }
+
+        objState.parent = new TRSRTransformation(state.getValue(FACING));
+
+        return ( (IExtendedBlockState) state ).withProperty(PROPERTY_ANVIL_MATERIAL, ( (BlackSmithsAnvilState) ( (TileEntityBlackSmithsAnvil) world.getTileEntity(pos) ).getState() ).getMaterial().getID()).withProperty(OBJModel.OBJProperty.instance, objState);
     }
 
     @Override
@@ -181,5 +171,33 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
             }
             return true;
         }
+    }
+
+    /**
+     * Convert the given metadata into a BlockState for this Block
+     */
+    public IBlockState getStateFromMeta(int meta)
+    {
+        EnumFacing enumfacing = EnumFacing.getFront(meta);
+
+        if (enumfacing.getAxis() == EnumFacing.Axis.Y)
+        {
+            enumfacing = EnumFacing.NORTH;
+        }
+
+        return this.getDefaultState().withProperty(FACING, enumfacing);
+    }
+
+    /**
+     * Convert the BlockState into the correct metadata value
+     */
+    public int getMetaFromState(IBlockState state)
+    {
+        return state.getValue(FACING).getIndex();
+    }
+
+    protected BlockState createBlockState()
+    {
+        return new ExtendedBlockState(this, new IProperty[] {FACING}, new IUnlistedProperty[] {OBJModel.OBJProperty.instance, PROPERTY_ANVIL_MATERIAL});
     }
 }

@@ -11,12 +11,21 @@
     "normal": [
       {}
     ],
+    "facing": {
+      "east": {
+        "y": 90
+      },
+      "west": {
+        "y": 270
+      },
+      "north": {
+      },
+      "south": {
+        "y": 180
+      }
+    },
     "inventory": [
       {
-        "model": "armory:anvil/BlockModel.Anvil-armory",
-        "custom": {
-          "flip-v": true
-        },
         "transform": "forge:default-block"
       }
     ]
