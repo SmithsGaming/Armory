@@ -108,6 +108,7 @@ public class TranslationKeys {
 
     public class Materials {
         public class Anvil {
+            public static final String Stone = "Armory.Materials.AnvilOnly.Vanilla.Stone";
             public static final String Iron = "Armory.Materials.Vanilla.Iron";
             public static final String Obsidian = "Armory.Materials.Vanilla.Obsidian";
         }

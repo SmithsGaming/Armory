@@ -369,6 +369,7 @@ public class ArmoryInitializer {
     public static class GlobalInitialization {
         public static void RegisterAnvilMaterials()
         {
+            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.STONE, 250, StatCollector.translateToLocal(TranslationKeys.Materials.Anvil.Stone)));
             AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.IRON, 1500, StatCollector.translateToLocal(TranslationKeys.Materials.Anvil.Iron)));
             AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.OBSIDIAN, 2200, StatCollector.translateToLocal(TranslationKeys.Materials.Anvil.Obsidian)));
         }

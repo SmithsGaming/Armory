@@ -14,11 +14,7 @@ package com.smithsmodding.armory.util;
 public class References {
     public static final class GuiIDs {
         public static int FIREPITID = 0;
-        public static int HEATERID = 1;
         public static int ANVILID = 2;
-        public static int BOOKBINDERID = 3;
-        public static int SMITHINGSGUIDE = 50;
-        public static int SMITHINGSGUIDEINVENTORY = 51;
     }
 
     public static final class General {
@@ -40,6 +36,7 @@ public class References {
 
         public static final class Materials {
             public static final class Anvil {
+                public static final String STONE = "Vanilla.Stone";
                 public static final String IRON = "Vanilla.Iron";
                 public static final String OBSIDIAN = "Vanilla.Obsidian";
             }

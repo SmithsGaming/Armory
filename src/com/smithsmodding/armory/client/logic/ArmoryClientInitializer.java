@@ -10,6 +10,7 @@ import com.smithsmodding.armory.*;
 import com.smithsmodding.armory.api.armor.*;
 import com.smithsmodding.armory.api.materials.*;
 import com.smithsmodding.armory.client.*;
+import com.smithsmodding.armory.common.anvil.*;
 import com.smithsmodding.armory.common.logic.*;
 import com.smithsmodding.armory.common.material.*;
 import com.smithsmodding.armory.common.registry.*;
@@ -87,6 +88,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
             IArmorMaterial iron = MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON);
             IArmorMaterial obsidian = MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN);
 
+            AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.STONE).setRenderInfo(new IMaterialRenderInfo.BlockTexture("minecraft:blocks/stone"));
             AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.IRON).setRenderInfo(iron.getRenderInfo());
             AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.OBSIDIAN).setRenderInfo(obsidian.getRenderInfo());
         }

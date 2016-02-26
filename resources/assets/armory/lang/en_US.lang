@@ -49,6 +49,7 @@ item.Armory.Items.Tab.name=Guide label
 Armory.Items.HeatedIngot.Tooltip.Temperature=Current Temperature
 #
 #Materials
+Armory.Materials.AnvilOnly.Vanilla.Stone=Stone
 Armory.Materials.Vanilla.Iron=Iron
 Armory.Materials.Vanilla.Chain=Steel
 Armory.Materials.Vanilla.Obsidian=Obsidian

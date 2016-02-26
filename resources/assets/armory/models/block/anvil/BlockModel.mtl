@@ -5,4 +5,5 @@ newmtl Anvil
 map_Kd armory:blocks\Anvil\AnvilTextured
 
 newmtl Bottom
-map_Kd minecraft:blocks/iron_block
+Kd 0.65 0.65 0.65
+map_Kd armory:blocks\Anvil\AnvilTextured

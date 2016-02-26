@@ -9,18 +9,15 @@ import com.smithsmodding.armory.api.materials.*;
 import com.smithsmodding.armory.client.model.block.events.*;
 import com.smithsmodding.armory.client.model.block.unbaked.*;
 import com.smithsmodding.armory.client.model.item.unbaked.*;
-import com.smithsmodding.armory.client.model.item.unbaked.components.*;
-import com.smithsmodding.armory.client.textures.*;
 import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.common.tileentity.guimanagers.*;
 import com.smithsmodding.smithscore.util.client.*;
+import com.sun.xml.internal.ws.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.resources.*;
 import net.minecraft.util.*;
 import net.minecraftforge.client.model.*;
 import net.minecraftforge.client.model.obj.*;
 import net.minecraftforge.fml.common.*;
-import scala.tools.nsc.transform.patmat.*;
 
 import javax.vecmath.*;
 import java.io.*;
@@ -53,17 +50,23 @@ public class AnvilModelLoader implements ICustomModelLoader {
             BlackSmithsAnvilModelTextureLoadEvent event = new BlackSmithsAnvilModelTextureLoadEvent();
             event.PostClient();
 
-            modelDefinition.texturePaths.putAll(event.getAdditionalTextureLayers());
+            modelDefinition.textureTopPaths.putAll(event.getAdditionalTopTextureLayers());
+            modelDefinition.textureBottomPaths.putAll(event.getAdditionalBottomTextureLayers());
 
             BlackSmithsAnvilModel model = new BlackSmithsAnvilModel(objModel);
 
             for(IAnvilMaterial material : AnvilMaterialRegistry.getInstance().getAllRegisteredAnvilMaterials().values())
             {
-                if (modelDefinition.texturePaths.containsKey(material.getID()))
+                if (modelDefinition.textureTopPaths.containsKey(material.getID()) || modelDefinition.textureBottomPaths.containsKey(material.getID()))
                 {
                     ImmutableMap.Builder<String, String> builder = new ImmutableMap.Builder<>();
 
-                    builder.put("#Anvil", modelDefinition.texturePaths.get(material.getID()));
+                    if (modelDefinition.textureTopPaths.containsKey(material.getID()))
+                        builder.put("#Anvil", modelDefinition.textureTopPaths.get(material.getID()));
+
+                    if (modelDefinition.textureBottomPaths.containsKey(material.getID()))
+                        builder.put("#Bottom", modelDefinition.textureBottomPaths.get(material.getID()));
+
 
                     model.registerNewMaterializedModel(((IRetexturableModel<OBJModel>) objModel).retexture(builder.build()), material.getID());
                 }
@@ -100,31 +103,59 @@ public class AnvilModelLoader implements ICustomModelLoader {
 
     }
 
-    private static class AnvilModelDefinition{
+    public static class AnvilModelDefinition{
         String modelPath;
-        Map<String, String> texturePaths;
+        Map<String, String> textureTopPaths;
+        Map<String, String> textureBottomPaths;
 
-        private static final Type type = new TypeToken<String>() {
+        private static final Type stringType = new TypeToken<String>() {
+        }.getType();
+
+        static final Type maptype = new TypeToken<Map<String, String>>() {
         }.getType();
 
         private static final Gson
-                GSON =
-                new GsonBuilder().registerTypeAdapter(type, AnvilModelDeserializer.instance).create();
+                GSONMODEL =
+                new GsonBuilder().registerTypeAdapter(stringType, AnvilModelDeserializer.instance).create();
 
-        private AnvilModelDefinition(String modelPath, Map<String, String> texturePaths)
+        private static final Gson
+                GSONTOP =
+                new GsonBuilder().registerTypeAdapter(maptype, AnvilTopTextureDeserializer.instance).create();
+
+        private static final Gson
+                GSONBOTTOM =
+                new GsonBuilder().registerTypeAdapter(maptype, AnvilBottomTextureDeserializer.instance).create();
+
+        private AnvilModelDefinition(String modelPath, Map<String, String> textureTopPaths, Map<String, String> textureBottomPaths)
         {
             this.modelPath = modelPath;
-            this.texturePaths = texturePaths;
+            this.textureTopPaths = textureTopPaths;
+            this.textureBottomPaths = textureBottomPaths;
         }
 
         public static AnvilModelDefinition loadModel(ResourceLocation modelLocation) throws IOException {
-            Map<String, String> textures = ModelHelper.loadTexturesFromJson(modelLocation);
+            return new AnvilModelDefinition(loadModelDefinition(modelLocation), loadModelTexturesForTop(modelLocation), loadModelTexturesForBottom(modelLocation));
+        }
 
-            // get the json
+        public static String loadModelDefinition(ResourceLocation modelLocation) throws IOException {
             IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
             Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
 
-            return new AnvilModelDefinition(GSON.fromJson(reader, type), textures);
+            return GSONMODEL.fromJson(reader, stringType);
+        }
+
+        public static Map<String, String> loadModelTexturesForTop(ResourceLocation modelLocation) throws IOException {
+            IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
+            Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
+
+            return GSONTOP.fromJson(reader, maptype);
+        }
+
+        public static Map<String, String> loadModelTexturesForBottom(ResourceLocation modelLocation) throws IOException {
+            IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
+            Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
+
+            return GSONBOTTOM.fromJson(reader, maptype);
         }
 
         public static class AnvilModelDeserializer implements JsonDeserializer<String> {
@@ -156,7 +187,49 @@ public class AnvilModelLoader implements ICustomModelLoader {
                     throw new JsonParseException("Missing model entry in json");
                 }
 
-                return GSON.fromJson(texElem, type);
+                return GSON.fromJson(texElem, stringType);
+            }
+        }
+
+        public static class AnvilBottomTextureDeserializer implements JsonDeserializer<Map<String, String>> {
+
+            public static final AnvilBottomTextureDeserializer instance = new AnvilBottomTextureDeserializer();
+
+            private static final Gson GSON = new Gson();
+
+            @Override
+            public Map<String, String> deserialize (JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                    throws JsonParseException {
+
+                JsonObject obj = json.getAsJsonObject();
+                JsonElement texElem = obj.get("textures-bottom");
+
+                if (texElem == null) {
+                    throw new JsonParseException("Missing bottom textures entry in json");
+                }
+
+                return GSON.fromJson(texElem, maptype);
+            }
+        }
+
+        public static class AnvilTopTextureDeserializer implements JsonDeserializer<Map<String, String>> {
+
+            public static final AnvilTopTextureDeserializer instance = new AnvilTopTextureDeserializer();
+
+            private static final Gson GSON = new Gson();
+
+            @Override
+            public Map<String, String> deserialize (JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                    throws JsonParseException {
+
+                JsonObject obj = json.getAsJsonObject();
+                JsonElement texElem = obj.get("textures-top");
+
+                if (texElem == null) {
+                    throw new JsonParseException("Missing top textures entry in json");
+                }
+
+                return GSON.fromJson(texElem, maptype);
             }
         }
     }

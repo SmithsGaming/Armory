@@ -1,7 +1,12 @@
 {
   "model":"armory:block/anvil/BlockModel.obj",
-  "textures":
+  "textures-top":
   {
-    "Vanilla.Obsidian":"minecraft:blocks/obsidian"
+    "Vanilla.Obsidian":"minecraft:blocks/obsidian",
+    "Vanilla.Stone":"minecraft:blocks/stone"
+  },
+  "textures-bottom":
+  {
+    "Vanilla.Stone":"minecraft:blocks/cobblestone"
   }
 }
