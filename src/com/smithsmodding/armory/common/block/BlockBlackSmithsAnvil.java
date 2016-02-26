@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.common.block;
 
+import com.google.common.collect.*;
 import com.smithsmodding.armory.*;
 import com.smithsmodding.armory.api.materials.*;
 import com.smithsmodding.armory.common.block.properties.*;
@@ -140,16 +141,10 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
     public IBlockState getExtendedState (IBlockState state, IBlockAccess world, BlockPos pos) {
         if (world.getTileEntity(pos) == null) return this.state.getBaseState();
 
-        OBJModel.OBJState objState = ( (IExtendedBlockState) state ).getValue(OBJModel.OBJProperty.instance);
+        EnumFacing facing = state.getValue(FACING);
+        TRSRTransformation transformation = new TRSRTransformation(facing);
 
-        if (objState == null) {
-            ArrayList<String> parts = new ArrayList<>();
-            parts.add(OBJModel.Group.ALL);
-
-            objState = new OBJModel.OBJState(parts, true);
-        }
-
-        objState.parent = new TRSRTransformation(state.getValue(FACING));
+        OBJModel.OBJState objState = new OBJModel.OBJState(Lists.newArrayList(OBJModel.Group.ALL), true, transformation);
 
         return ( (IExtendedBlockState) state ).withProperty(PROPERTY_ANVIL_MATERIAL, ( (BlackSmithsAnvilState) ( (TileEntityBlackSmithsAnvil) world.getTileEntity(pos) ).getState() ).getMaterial().getID()).withProperty(OBJModel.OBJProperty.instance, objState);
     }
