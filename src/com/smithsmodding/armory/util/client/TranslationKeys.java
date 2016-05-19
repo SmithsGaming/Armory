@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.util.client;
 
-import com.smithsmodding.armory.util.*;
+import com.smithsmodding.armory.util.References;
 
 /**
  * Created by Orion
@@ -132,7 +132,6 @@ public class TranslationKeys {
         public static final String InformationTitel = "Armory.GUI.InfoTitel";
 
         public class FirePit {
-
             public static final String InfoLine1 = "Armory.GUI.FirePit.Ledger.InfoLine1";
             public static final String InfoLine2 = "Armory.GUI.FirePit.Ledger.InfoLine2";
             public static final String InfoLine3 = "Armory.GUI.FirePit.Ledger.InfoLine3";
@@ -140,6 +139,17 @@ public class TranslationKeys {
             public static final String TempMax = "Armory.GUI.FirePit.Ledger.TempMax";
             public static final String TempCurrent = "Armory.GUI.FirePit.Ledger.TempCurrent";
             public static final String LastAdded = "Armory.GUI.FirePit.Ledger.LastAdded";
+        }
+
+        public class Fireplace {
+            public static final String InfoLine1 = "Armory.GUI.Fireplace.Ledger.InfoLine1";
+            public static final String InfoLine2 = "Armory.GUI.Fireplace.Ledger.InfoLine2";
+            public static final String InfoLine3 = "Armory.GUI.Fireplace.Ledger.InfoLine3";
+            public static final String TempTitel = "Armory.GUI.Fireplace.Ledger.TempTitel";
+            public static final String TempMax = "Armory.GUI.Fireplace.Ledger.TempMax";
+            public static final String TempCurrent = "Armory.GUI.Fireplace.Ledger.TempCurrent";
+            public static final String LastAdded = "Armory.GUI.Fireplace.Ledger.LastAdded";
+            public static final String CookingMultiplier = "Armory.GUI.Fireplace.Ledger.CookingMultiplier";
         }
 
         public class Heater {

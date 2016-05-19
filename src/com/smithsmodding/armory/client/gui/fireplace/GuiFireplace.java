@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.client.gui.firepit;
+package com.smithsmodding.armory.client.gui.fireplace;
 
 import com.smithsmodding.armory.util.client.Textures;
 import com.smithsmodding.armory.util.client.TranslationKeys;
@@ -30,11 +30,11 @@ import java.util.ArrayList;
 /**
  * Created by Marc on 22.12.2015.
  */
-public class GuiFirePit extends GuiContainerSmithsCore {
+public class GuiFireplace extends GuiContainerSmithsCore {
 
     public static Plane GUI = new Plane(0, 0, ComponentPlayerInventory.WIDTH, 245);
 
-    public GuiFirePit (ContainerSmithsCore container) {
+    public GuiFireplace(ContainerSmithsCore container) {
         super(container);
     }
 
@@ -44,9 +44,9 @@ public class GuiFirePit extends GuiContainerSmithsCore {
      * @param host The host for the tabs.
      */
     @Override
-    public void registerTabs (IGUIBasedTabHost host) {
-        registerNewTab(new TabFirePitMeltingMetal(getID() + ".Tabs.Inventory", host, new ItemStack(Items.iron_ingot), Colors.DEFAULT, "Melting ingots"));
-        registerNewTab(new TabFirePitMoltenMetal(getID() + ".Tabs.MoltenMetal", host, new ItemStack(Items.lava_bucket), Colors.DEFAULT, "Molten metals."));
+    public void registerTabs(IGUIBasedTabHost host) {
+        registerNewTab(new TabFireplaceMeltingMetal(getID() + ".Tabs.Inventory", host, new ItemStack(Items.iron_ingot), Colors.DEFAULT, "Melting ingots"));
+        registerNewTab(new TabFireplaceFood(getID() + ".Tabs.MoltenMetal", host, new ItemStack(Items.cooked_beef), Colors.DEFAULT, "Molten metals."));
     }
 
     /**
@@ -55,15 +55,15 @@ public class GuiFirePit extends GuiContainerSmithsCore {
      * @param parent This ComponentHosts host. For the Root GUIObject a reference to itself will be passed in..
      */
     @Override
-    public void registerLedgers (IGUIBasedLedgerHost parent) {
+    public void registerLedgers(IGUIBasedLedgerHost parent) {
         ArrayList<String> information = new ArrayList<String>();
 
-        information.add(StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.InfoLine1));
-        information.add(StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.InfoLine2));
-        information.add(StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.InfoLine3));
+        information.add(StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.InfoLine1));
+        information.add(StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.InfoLine2));
+        information.add(StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.InfoLine3));
 
         registerNewLedger(new InformationLedger(getID() + ".Ledgers.Information", this, LedgerConnectionSide.LEFT, StatCollector.translateToLocal(TranslationKeys.Gui.InformationTitel), new MinecraftColor(MinecraftColor.YELLOW), information));
-        registerNewLedger(new TemperatureLedger(getID() + ".Ledgers.Temperature", this, LedgerConnectionSide.RIGHT, Textures.Gui.FirePit.THERMOMETERICON, StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.TempTitel), new MinecraftColor(MinecraftColor.RED)));
+        registerNewLedger(new TemperatureLedger(getID() + ".Ledgers.Temperature", this, LedgerConnectionSide.RIGHT, Textures.Gui.FirePit.THERMOMETERICON, StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.TempTitel), new MinecraftColor(MinecraftColor.RED)));
     }
 
     public class TemperatureLedger extends CoreLedger {
@@ -72,8 +72,9 @@ public class GuiFirePit extends GuiContainerSmithsCore {
         private String currentTemperatureLabel = "";
         private String maxTemperatureLabel = "";
         private String lastAddedLabel = "";
+        private String cookingMultiplayerLabel = "";
 
-        public TemperatureLedger (String uniqueID, IGUIBasedLedgerHost root, LedgerConnectionSide side, CustomResource ledgerIcon, String translatedLedgerHeader, MinecraftColor color) {
+        public TemperatureLedger(String uniqueID, IGUIBasedLedgerHost root, LedgerConnectionSide side, CustomResource ledgerIcon, String translatedLedgerHeader, MinecraftColor color) {
             super(uniqueID, new LedgerComponentState(), root, side, ledgerIcon, translatedLedgerHeader, color);
         }
 
@@ -83,7 +84,7 @@ public class GuiFirePit extends GuiContainerSmithsCore {
          * @return An int bigger then 16 plus the icon width that describes the maximum width of the Ledger when expanded.
          */
         @Override
-        public int getMaxWidth () {
+        public int getMaxWidth() {
             return maxArea.getWidth();
         }
 
@@ -93,7 +94,7 @@ public class GuiFirePit extends GuiContainerSmithsCore {
          * @return An int bigger then 16 plus the icon height that describes the maximum height of the Ledger when expanded.
          */
         @Override
-        public int getMaxHeight () {
+        public int getMaxHeight() {
             return maxArea.getHeigth();
         }
 
@@ -103,12 +104,13 @@ public class GuiFirePit extends GuiContainerSmithsCore {
          * @param host This ComponentHosts host. For the Root GUIObject a reference to itself will be passed in..
          */
         @Override
-        public void registerComponents (IGUIBasedComponentHost host) {
+        public void registerComponents(IGUIBasedComponentHost host) {
             super.registerComponents(host);
 
-            currentTemperatureLabel = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.TempCurrent) + ": 10000C";
-            maxTemperatureLabel = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.TempMax) + ": 10000C";
-            lastAddedLabel = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.LastAdded) + ": 10000C";
+            currentTemperatureLabel = StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.TempCurrent) + ": 10000C";
+            maxTemperatureLabel = StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.TempMax) + ": 10000C";
+            lastAddedLabel = StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.LastAdded) + ": 10000C";
+            cookingMultiplayerLabel = StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.CookingMultiplier) + ": 10000C";
 
             registerNewComponent(new ComponentLabel(getID() + ".CurrentTemperature", host, new CoreComponentState(), new Coordinate2D(10, 26), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, currentTemperatureLabel) {
                 /**
@@ -119,12 +121,12 @@ public class GuiFirePit extends GuiContainerSmithsCore {
                  * @param partialTickTime The partial tick time, used to calculate fluent animations.
                  */
                 @Override
-                public void update (int mouseX, int mouseY, float partialTickTime) {
+                public void update(int mouseX, int mouseY, float partialTickTime) {
                     this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.TempCurrent) + ": " + getManager().getLabelContents(this);
                 }
             });
 
-            registerNewComponent(new ComponentLabel(getID() + ".MaxTemperature", host, new CoreComponentState(), new Coordinate2D(10, 26 + Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT + 3), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, maxTemperatureLabel){
+            registerNewComponent(new ComponentLabel(getID() + ".MaxTemperature", host, new CoreComponentState(), new Coordinate2D(10, 26 + Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT + 3), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, maxTemperatureLabel) {
                 /**
                  * Method gets called before the component gets rendered, allows for animations to calculate through.
                  *
@@ -133,12 +135,12 @@ public class GuiFirePit extends GuiContainerSmithsCore {
                  * @param partialTickTime The partial tick time, used to calculate fluent animations.
                  */
                 @Override
-                public void update (int mouseX, int mouseY, float partialTickTime) {
+                public void update(int mouseX, int mouseY, float partialTickTime) {
                     this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.TempMax) + ": " + getManager().getLabelContents(this);
                 }
             });
 
-            registerNewComponent(new ComponentLabel(getID() + ".LastChange", host, new CoreComponentState(), new Coordinate2D(10, 26 + 2 *(Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT + 3)), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, lastAddedLabel){
+            registerNewComponent(new ComponentLabel(getID() + ".LastChange", host, new CoreComponentState(), new Coordinate2D(10, 26 + 2 * (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT + 3)), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, lastAddedLabel) {
                 /**
                  * Method gets called before the component gets rendered, allows for animations to calculate through.
                  *
@@ -147,8 +149,22 @@ public class GuiFirePit extends GuiContainerSmithsCore {
                  * @param partialTickTime The partial tick time, used to calculate fluent animations.
                  */
                 @Override
-                public void update (int mouseX, int mouseY, float partialTickTime) {
+                public void update(int mouseX, int mouseY, float partialTickTime) {
                     this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.LastAdded) + ": " + getManager().getLabelContents(this);
+                }
+            });
+
+            registerNewComponent(new ComponentLabel(getID() + ".CookingMultiplier", host, new CoreComponentState(), new Coordinate2D(10, 26 + 4 * (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT + 3)), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, cookingMultiplayerLabel) {
+                /**
+                 * Method gets called before the component gets rendered, allows for animations to calculate through.
+                 *
+                 * @param mouseX          The X-Coordinate of the mouse.
+                 * @param mouseY          The Y-Coordinate of the mouse.
+                 * @param partialTickTime The partial tick time, used to calculate fluent animations.
+                 */
+                @Override
+                public void update(int mouseX, int mouseY, float partialTickTime) {
+                    this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.CookingMultiplier) + ": " + getManager().getLabelContents(this);
                 }
             });
 
@@ -158,7 +174,7 @@ public class GuiFirePit extends GuiContainerSmithsCore {
                 area.IncludeCoordinate(new Plane(component.getLocalCoordinate(), component.getSize().getWidth(), component.getSize().getHeigth()));
             }
 
-            maxArea = new Plane(new Coordinate2D(0,0), area.getWidth() + 10, area.getHeigth() + 10);
+            maxArea = new Plane(new Coordinate2D(0, 0), area.getWidth() + 10, area.getHeigth() + 10);
         }
     }
 }

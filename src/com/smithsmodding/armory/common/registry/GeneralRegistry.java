@@ -5,14 +5,17 @@ package com.smithsmodding.armory.common.registry;
  *   Created on: 24-9-2014
  */
 
-import com.smithsmodding.armory.common.block.*;
-import com.smithsmodding.armory.common.fluid.*;
-import com.smithsmodding.armory.common.item.*;
-import com.smithsmodding.armory.common.item.knowledge.*;
-import net.minecraft.item.*;
-import net.minecraftforge.common.util.*;
+import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
+import com.smithsmodding.armory.common.block.BlockFirePit;
+import com.smithsmodding.armory.common.block.BlockFirePlace;
+import com.smithsmodding.armory.common.fluid.FluidMoltenMetal;
+import com.smithsmodding.armory.common.item.ItemHeatedItem;
+import com.smithsmodding.armory.common.item.knowledge.ItemBlueprint;
+import com.smithsmodding.armory.common.item.knowledge.ItemSmithingsGuide;
+import net.minecraft.item.ItemArmor;
+import net.minecraftforge.common.util.EnumHelper;
 
-import java.util.*;
+import java.util.Properties;
 
 public class GeneralRegistry {
     public static boolean isInDevEnvironment = false;
@@ -42,6 +45,7 @@ public class GeneralRegistry {
     public static class Blocks {
         public static BlockFirePit blockFirePit;
         public static BlockBlackSmithsAnvil blockBlackSmithsAnvil;
+        public static BlockFirePlace blockFirePlace;
     }
 
     public static class Fluids {

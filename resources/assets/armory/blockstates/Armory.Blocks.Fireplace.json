@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "armory:firepit/BlockModel.obj",
+    "model": "armory:fireplace/BlockModel.obj",
     "custom": {
       "flip-v": true
     }
@@ -13,22 +13,13 @@
     ],
     "inventory": [
       {
-        "model": "armory:firepit/BlockModel.obj",
+        "model": "armory:fireplace/BlockModel.obj",
         "custom": {
           "flip-v": true
         },
         "transform": "forge:default-block"
       }
-    ],
-    "burning": {
-      "true": {},
-      "false": {}
-    },
-    "master": {
-      "true": {},
-      "false": {}
-    }
-
+    ]
   }
 }
 

@@ -12,9 +12,19 @@ Armory.GUI.FirePit.Ledger.InfoLine1=The Firepit can heat ingots up to its own ma
 Armory.GUI.FirePit.Ledger.InfoLine2=To raise its maximum temperature add Heaters.
 Armory.GUI.FirePit.Ledger.InfoLine3=Keep your eye on it though as it can meld ingots that get to hot.
 Armory.GUI.FirePit.Ledger.TempTitel=Firepit - Temperature
-Armory.GUI.FirePit.Ledger.TempMax=Maximum:
-Armory.GUI.FirePit.Ledger.TempCurrent=Current:
-Armory.GUI.FirePit.Ledger.LastAdded=Last added:
+Armory.GUI.FirePit.Ledger.TempMax=Maximum
+Armory.GUI.FirePit.Ledger.TempCurrent=Current
+Armory.GUI.FirePit.Ledger.LastAdded=Last added
+#
+#Fireplace specific information
+Armory.GUI.Fireplace.Ledger.InfoLine1=The Fireplace is your basic heat source.
+Armory.GUI.Fireplace.Ledger.InfoLine2=It can heat up most of the basic materials and cook your food at twice the efficiency of a normal furnace.
+Armory.GUI.Fireplace.Ledger.InfoLine3=The hotter it gets the faster it cooks your food.
+Armory.GUI.Fireplace.Ledger.TempTitel=Fireplace - Temperature
+Armory.GUI.Fireplace.Ledger.TempMax=Maximum
+Armory.GUI.Fireplace.Ledger.TempCurrent=Current
+Armory.GUI.Fireplace.Ledger.LastAdded=Last added
+Armory.GUI.Fireplace.Ledger.CookingMultiplier=Cooking Speed
 #
 #ArmorsAnvil GUi Specific information
 Armory.GUI.Anvil.Ledger.InfoLine1=The Blacksmiths Anvil is used by Smiths to craft several Items from hot Metals.
@@ -25,6 +35,7 @@ Armory.NEI.Compatibility.ArmorsAnvilRecipe=Blacksmiths Anvil
 #
 #Blocks
 tile.Armory.Blocks.FirePit.name=FirePit
+tile.Armory.Blocks.Fireplace.name=Fireplace
 tile.Armory.Blocks.Heater.name=FirePit - Heater Extension
 tile.Armory.Blocks.Anvil.name=Blacksmiths Anvil
 tile.Armory.Blocks.Binder.name=Book binder

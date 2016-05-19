@@ -1,12 +1,13 @@
 package com.smithsmodding.armory.common.item.block;
 
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.common.material.*;
-import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.util.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import com.smithsmodding.armory.api.materials.IAnvilMaterial;
+import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
+import com.smithsmodding.armory.util.References;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 
 /**
  * Created by Marc on 23.02.2016.
@@ -20,6 +21,9 @@ public class ItemBlockBlackSmithsAnvil extends ItemBlock
 
     @Override
     public String getItemStackDisplayName(ItemStack pStack) {
+        if (pStack.getTagCompound() == null)
+            return "";
+
         if (pStack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
             return pStack.getTagCompound().getString(References.NBTTagCompoundData.CustomName);
 

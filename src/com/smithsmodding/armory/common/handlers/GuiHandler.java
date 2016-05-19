@@ -6,14 +6,17 @@ package com.smithsmodding.armory.common.handlers;
  */
 
 
-import com.smithsmodding.armory.client.gui.firepit.*;
-import com.smithsmodding.armory.common.inventory.*;
-import com.smithsmodding.armory.common.tileentity.*;
-import com.smithsmodding.armory.util.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
-import net.minecraftforge.fml.common.network.*;
+import com.smithsmodding.armory.client.gui.firepit.GuiFirePit;
+import com.smithsmodding.armory.client.gui.fireplace.GuiFireplace;
+import com.smithsmodding.armory.common.inventory.ContainerFirepit;
+import com.smithsmodding.armory.common.inventory.ContainerFireplace;
+import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
+import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
+import com.smithsmodding.armory.util.References;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
 
@@ -23,6 +26,10 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerFirepit(pPlayer, (TileEntityFirePit) pWorld.getTileEntity(new BlockPos(pX, pY, pZ)));
         }
 
+        if (pID == References.GuiIDs.FIREPLACEID) {
+            return new ContainerFireplace(pPlayer, (TileEntityFireplace) pWorld.getTileEntity(new BlockPos(pX, pY, pZ)));
+        }
+
         return null;
     }
 
@@ -30,6 +37,10 @@ public class GuiHandler implements IGuiHandler {
     public Object getClientGuiElement (int pID, EntityPlayer pPlayer, World pWorld, int pX, int pY, int pZ) {
         if (pID == References.GuiIDs.FIREPITID) {
             return new GuiFirePit(new ContainerFirepit(pPlayer, (TileEntityFirePit) pWorld.getTileEntity(new BlockPos(pX, pY, pZ))));
+        }
+
+        if (pID == References.GuiIDs.FIREPLACEID) {
+            return new GuiFireplace(new ContainerFireplace(pPlayer, (TileEntityFireplace) pWorld.getTileEntity(new BlockPos(pX, pY, pZ))));
         }
 
         return null;

@@ -6,23 +6,21 @@ package com.smithsmodding.armory.client.logic;
  *   Created on: 19-9-2014
  */
 
-import com.smithsmodding.armory.*;
-import com.smithsmodding.armory.api.armor.*;
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.client.*;
-import com.smithsmodding.armory.common.anvil.*;
-import com.smithsmodding.armory.common.logic.*;
-import com.smithsmodding.armory.common.material.*;
-import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.armory.util.client.*;
+import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.materials.IMaterialRenderInfo;
+import com.smithsmodding.armory.client.ArmoryClientProxy;
+import com.smithsmodding.armory.common.logic.ArmoryInitializer;
+import com.smithsmodding.armory.common.material.MaterialRegistry;
+import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
+import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.TranslationKeys;
-import com.smithsmodding.smithscore.util.client.*;
-import com.smithsmodding.smithscore.util.client.color.*;
-import net.minecraft.client.resources.model.*;
-import net.minecraft.item.*;
-import net.minecraftforge.client.model.*;
-import net.minecraftforge.client.model.obj.*;
+import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.obj.OBJLoader;
 
 public class ArmoryClientInitializer extends ArmoryInitializer {
     public static void InitializeClient() {
@@ -99,10 +97,10 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
             ArmoryClientProxy proxy = (ArmoryClientProxy) Armory.proxy;
 
             for (MultiLayeredArmor armor : MaterialRegistry.getInstance().getAllRegisteredArmors().values()) {
-                proxy.registerArmorItemModel(armor);
+                ArmoryClientProxy.registerArmorItemModel(armor);
             }
 
-            proxy.registerHeatedItemItemModel(GeneralRegistry.Items.heatedItem);
+            ArmoryClientProxy.registerHeatedItemItemModel(GeneralRegistry.Items.heatedItem);
 
             OBJLoader.instance.addDomain(References.General.MOD_ID.toLowerCase());
             ModelLoader.setCustomModelResourceLocation(GeneralRegistry.Items.guide, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + "armory.Items.SmithingsGuide", "inventory"));
@@ -110,11 +108,9 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
 
 
         public static void registerTESR() {
-            Item itemBlockFirePit = Item.getItemFromBlock(GeneralRegistry.Blocks.blockFirePit);
-            Item itemBlockBlackSmithsAnvil = Item.getItemFromBlock(GeneralRegistry.Blocks.blockBlackSmithsAnvil);
-
-            ModelLoader.setCustomModelResourceLocation(itemBlockFirePit, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + References.InternalNames.Blocks.FirePit, "inventory"));
-            ModelLoader.setCustomModelResourceLocation(itemBlockBlackSmithsAnvil, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + References.InternalNames.Blocks.ArmorsAnvil, "inventory"));
+            ArmoryClientProxy.registerBlockModel(GeneralRegistry.Blocks.blockFirePit);
+            ArmoryClientProxy.registerBlockModel(GeneralRegistry.Blocks.blockBlackSmithsAnvil);
+            ArmoryClientProxy.registerBlockModel(GeneralRegistry.Blocks.blockFirePlace);
         }
     }
 

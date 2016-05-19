@@ -11,31 +11,37 @@ package com.smithsmodding.armory.common.tileentity;
 /  Created on : 02/10/2014
 */
 
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.common.block.*;
-import com.smithsmodding.armory.common.factory.*;
-import com.smithsmodding.armory.common.item.*;
-import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.common.tileentity.guimanagers.*;
-import com.smithsmodding.armory.common.tileentity.state.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.smithscore.common.fluid.*;
-import com.smithsmodding.smithscore.common.pathfinding.*;
-import com.smithsmodding.smithscore.common.structures.*;
-import com.smithsmodding.smithscore.common.tileentity.*;
-import com.smithsmodding.smithscore.util.common.positioning.*;
-import net.minecraft.block.state.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
-import net.minecraft.tileentity.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
-import net.minecraftforge.fluids.*;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.common.block.BlockFirePit;
+import com.smithsmodding.armory.common.factory.HeatedItemFactory;
+import com.smithsmodding.armory.common.item.ItemHeatedItem;
+import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
+import com.smithsmodding.armory.common.tileentity.guimanagers.FirePitGuiManager;
+import com.smithsmodding.armory.common.tileentity.state.FirePitState;
+import com.smithsmodding.armory.util.References;
+import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
+import com.smithsmodding.smithscore.common.pathfinding.IPathComponent;
+import com.smithsmodding.smithscore.common.structures.IStructureComponent;
+import com.smithsmodding.smithscore.common.structures.IStructureData;
+import com.smithsmodding.smithscore.common.tileentity.IBlockModelUpdatingTileEntity;
+import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;
+import com.smithsmodding.smithscore.util.common.positioning.Cube;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TileEntityFirePit extends TileEntityArmory implements IInventory, ITickable, IFirePitComponent, IStructureComponent, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
 
@@ -110,7 +116,9 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     @Override
     public ItemStack removeStackFromSlot (int index) {
-        return null;
+        ItemStack current = getStackInSlot(index);
+        setInventorySlotContents(index, null);
+        return current;
     }
 
     @Override

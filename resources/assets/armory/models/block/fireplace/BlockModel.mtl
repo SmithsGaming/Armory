@@ -1,0 +1,6 @@
+# Blender MTL File: 'gladius_s_feuer1.blend'
+# Material Count: 1
+
+newmtl fireplace
+Kd 0.762469 0.762469 0.762469
+map_Kd armory:blocks\Fireplace\Feuer_tex

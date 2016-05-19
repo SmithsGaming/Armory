@@ -6,12 +6,13 @@ package com.smithsmodding.armory.common.inventory;
  */
 
 
-import com.smithsmodding.armory.common.inventory.slots.*;
-import com.smithsmodding.armory.common.tileentity.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.smithscore.common.inventory.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
+import com.smithsmodding.armory.common.inventory.slots.SlotFuelInput;
+import com.smithsmodding.armory.common.inventory.slots.SlotHeatable;
+import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
+import com.smithsmodding.armory.util.References;
+import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Slot;
 
 public class ContainerFirepit extends ContainerSmithsCore {
     private TileEntityFirePit tileEntityFirePit;
@@ -74,7 +75,7 @@ public class ContainerFirepit extends ContainerSmithsCore {
     private void generateMoltenInventory()
     {
         for (int infusionStackIndex = 0; infusionStackIndex < TileEntityFirePit.INFUSIONSTACK_AMOUNT; infusionStackIndex++) {
-            this.addSlotToContainer(new SlotFuelInput(tileEntityFirePit, infusionStackIndex + TileEntityFirePit.INGOTSTACKS_AMOUNT + TileEntityFirePit.FUELSTACK_AMOUNT, 59 + infusionStackIndex * 21, 63));
+            this.addSlotToContainer(new Slot(tileEntityFirePit, infusionStackIndex + TileEntityFirePit.INGOTSTACKS_AMOUNT + TileEntityFirePit.FUELSTACK_AMOUNT, 59 + infusionStackIndex * 21, 63));
         }
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < PLAYER_INVENTORY_ROWS; ++inventoryRowIndex) {

@@ -5,37 +5,52 @@ package com.smithsmodding.armory.common.logic;
  *   Created on: 17-9-2014
  */
 
-import com.smithsmodding.armory.*;
-import com.smithsmodding.armory.api.armor.*;
-import com.smithsmodding.armory.api.events.common.*;
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.common.addons.*;
-import com.smithsmodding.armory.common.anvil.*;
-import com.smithsmodding.armory.common.block.*;
-import com.smithsmodding.armory.common.fluid.*;
-import com.smithsmodding.armory.common.item.*;
-import com.smithsmodding.armory.common.item.armor.tiermedieval.*;
-import com.smithsmodding.armory.common.item.block.*;
-import com.smithsmodding.armory.common.item.knowledge.*;
-import com.smithsmodding.armory.common.material.*;
-import com.smithsmodding.armory.common.material.fluidmodifiers.*;
-import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.common.tileentity.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.armory.util.client.*;
-import com.smithsmodding.smithscore.*;
-import com.smithsmodding.smithscore.util.common.*;
-import net.minecraft.client.renderer.block.statemap.*;
-import net.minecraft.init.*;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.*;
-import net.minecraft.util.*;
-import net.minecraftforge.common.*;
-import net.minecraftforge.fluids.*;
-import net.minecraftforge.fml.common.registry.*;
-import net.minecraftforge.oredict.*;
+import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.armor.ArmorAddonPosition;
+import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
+import com.smithsmodding.armory.api.events.common.ModifyMaterialEvent;
+import com.smithsmodding.armory.api.events.common.RegisterArmorEvent;
+import com.smithsmodding.armory.api.events.common.RegisterMaterialsEvent;
+import com.smithsmodding.armory.api.events.common.RegisterUpgradesEvent;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
+import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
+import com.smithsmodding.armory.common.anvil.AnvilMaterial;
+import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
+import com.smithsmodding.armory.common.block.BlockFirePit;
+import com.smithsmodding.armory.common.block.BlockFirePlace;
+import com.smithsmodding.armory.common.fluid.FluidMoltenMetal;
+import com.smithsmodding.armory.common.item.ItemHeatedItem;
+import com.smithsmodding.armory.common.item.armor.tiermedieval.ArmorMedieval;
+import com.smithsmodding.armory.common.item.block.ItemBlockBlackSmithsAnvil;
+import com.smithsmodding.armory.common.item.knowledge.ItemSmithingsGuide;
+import com.smithsmodding.armory.common.material.ArmorMaterial;
+import com.smithsmodding.armory.common.material.ChainLayer;
+import com.smithsmodding.armory.common.material.MaterialRegistry;
+import com.smithsmodding.armory.common.material.fluidmodifiers.ObsidianToLavaSetter;
+import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
+import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
+import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
+import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
+import com.smithsmodding.armory.util.References;
+import com.smithsmodding.armory.util.client.Textures;
+import com.smithsmodding.armory.util.client.TranslationKeys;
+import com.smithsmodding.smithscore.SmithsCore;
+import com.smithsmodding.smithscore.util.common.ItemStackHelper;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.*;
+import java.util.Iterator;
 
 public class ArmoryInitializer {
     public static void InitializeServer() {
@@ -379,9 +394,11 @@ public class ArmoryInitializer {
         public static void RegisterBlocks() {
             GeneralRegistry.Blocks.blockFirePit = new BlockFirePit();
             GeneralRegistry.Blocks.blockBlackSmithsAnvil = new BlockBlackSmithsAnvil();
+            GeneralRegistry.Blocks.blockFirePlace = new BlockFirePlace();
 
             GameRegistry.registerBlock(GeneralRegistry.Blocks.blockFirePit, References.InternalNames.Blocks.FirePit);
             GameRegistry.registerBlock(GeneralRegistry.Blocks.blockBlackSmithsAnvil, ItemBlockBlackSmithsAnvil.class, References.InternalNames.Blocks.ArmorsAnvil);
+            GameRegistry.registerBlock(GeneralRegistry.Blocks.blockFirePlace, References.InternalNames.Blocks.Fireplace);
         }
 
         public static void RegisterItems() {
@@ -406,6 +423,7 @@ public class ArmoryInitializer {
 
         public static void RegisterTileEntities() {
             GameRegistry.registerTileEntity(TileEntityFirePit.class, References.InternalNames.TileEntities.FirePitContainer);
+            GameRegistry.registerTileEntity(TileEntityFireplace.class, References.InternalNames.TileEntities.FireplaceContainer);
             GameRegistry.registerTileEntity(TileEntityBlackSmithsAnvil.class, References.InternalNames.TileEntities.ArmorsAnvil);
         }
 

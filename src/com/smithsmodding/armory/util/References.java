@@ -14,6 +14,7 @@ package com.smithsmodding.armory.util;
 public class References {
     public static final class GuiIDs {
         public static int FIREPITID = 0;
+        public static int FIREPLACEID = 1;
         public static int ANVILID = 2;
     }
 
@@ -201,16 +202,15 @@ public class References {
 
         public static final class Blocks {
             public static final String FirePit = "Armory.Blocks.FirePit";
-            public static final String Heater = "Armory.Blocks.Heater";
+            public static final String Fireplace = "Armory.Blocks.Fireplace";
             public static final String ArmorsAnvil = "Armory.Blocks.Anvil";
             public static final String BookBinder = "Armory.Blocks.Binder";
         }
 
         public static final class TileEntities {
             public static final String FirePitContainer = "Container.Armory.FirePit";
-            public static final String HeaterComponent = "Container.Armory.Heater";
+            public static final String FireplaceContainer = "Container.Armory.Fireplace";
             public static final String ArmorsAnvil = "Container.Armory.Anvil";
-            public static final String BookBinder = "Container.Armory.BookBinder";
 
             public static final class Structures {
                 public static final String FirePit = "Structures.Armory.FirePit";
@@ -256,6 +256,17 @@ public class References {
                 public static final String PROGRESSSOLIDIFYING = "Gui.FirePit.MoltenMetals.SolidifyingProgress";
             }
 
+            public static final class Fireplace {
+                public static final String BACKGROUND = "Gui.Fireplace.Background";
+                public static final String INVENTORY = "Gui.Fireplace.inventory.Player";
+                public static final String SLOT = "Gui.Fireplace.inventory.slots.";
+                public static final String FLAMEONE = "Gui.Fireplace.inventory.Flame1";
+                public static final String FLAMETWO = "Gui.Fireplace.inventory.Flame2";
+                public static final String FLAMETHREE = "Gui.Fireplace.inventory.Flame3";
+
+                public static final String COOKINGPROGRESS = "Gui.Fireplace.cooking.progress";
+            }
+            
             public static final class Anvil {
                 public static final String BACKGROUND = "Gui.Anvil.Background";
                 public static final String PLAYERINVENTORY = "Gui.Anvil.Player";
@@ -546,6 +557,20 @@ public class References {
                 public static final String FUELSTACKFUELAMOUNT = "FuelStackFuelAmount";
                 public static final String MIXINGPROGRESS = "MixingProgress";
                 public static final String MELTINGPROGRESS = "MeltingProgress";
+            }
+
+            public class Fireplace {
+                public static final String MAXTEMPERATURE = "MaxTemperature";
+                public static final String CURRENTTEMPERATURE = "CurrentTemperature";
+                public static final String CURRENTLYBURNING = "IsBurning";
+                public static final String LASTADDEDHEAT = "LastAddedHeat";
+                public static final String LASTTEMPERATURE = "LastTemperature";
+                public static final String INGOTITEMSTACKS = "Ingots";
+                public static final String FUELITEMSTACKS = "FuelStacks";
+                public static final String FUELSTACKBURNINGTIME = "FuelStackBurningTime";
+                public static final String FUELSTACKFUELAMOUNT = "FuelStackFuelAmount";
+                public static final String COOKINGPROGRESS = "CookingProgress";
+                public static final String COOKINGSPEED = "CookingSpeed";
             }
 
             public class Heater {
