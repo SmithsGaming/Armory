@@ -11,13 +11,15 @@ package com.smithsmodding.armory.common.tileentity;
  *   Created on: 13-1-2015
  */
 
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.smithscore.client.gui.management.*;
-import com.smithsmodding.smithscore.common.tileentity.*;
-import com.smithsmodding.smithscore.common.tileentity.state.*;
-import net.minecraft.nbt.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import com.smithsmodding.armory.util.References;
+import com.smithsmodding.smithscore.client.gui.management.IGUIManager;
+import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
+import com.smithsmodding.smithscore.common.tileentity.state.ITileEntityState;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.IWorldNameable;
 
 public abstract class TileEntityArmory extends TileEntitySmithsCore implements IWorldNameable {
     private String name = "";
@@ -78,8 +80,8 @@ public abstract class TileEntityArmory extends TileEntitySmithsCore implements I
     }
 
     @Override
-    public ChatComponentText getDisplayName () {
-        return new ChatComponentText(name);
+    public ITextComponent getDisplayName() {
+        return new TextComponentString(name);
     }
 
     public void setDisplayName (String name) {

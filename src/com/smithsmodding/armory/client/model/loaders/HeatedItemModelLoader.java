@@ -1,19 +1,25 @@
 package com.smithsmodding.armory.client.model.loaders;
 
 
-import com.google.common.collect.*;
-import com.smithsmodding.armory.*;
-import com.smithsmodding.armory.client.model.item.unbaked.*;
-import com.smithsmodding.armory.client.model.item.unbaked.components.*;
-import com.smithsmodding.armory.client.textures.*;
-import com.smithsmodding.smithscore.util.client.*;
-import net.minecraft.client.resources.*;
-import net.minecraft.util.*;
-import net.minecraftforge.client.model.*;
-import net.minecraftforge.fml.common.*;
+import com.google.common.collect.ImmutableList;
+import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.client.model.item.unbaked.HeatedItemItemModel;
+import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorComponentModel;
+import com.smithsmodding.armory.client.model.item.unbaked.components.TemperatureBarComponentModel;
+import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
+import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
+import com.smithsmodding.smithscore.util.client.ModelHelper;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ICustomModelLoader;
+import net.minecraftforge.client.model.IModel;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.LoaderState;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Marc on 06.12.2015.

@@ -18,7 +18,7 @@ import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.TranslationKeys;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 
@@ -102,7 +102,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
 
             ArmoryClientProxy.registerHeatedItemItemModel(GeneralRegistry.Items.heatedItem);
 
-            OBJLoader.instance.addDomain(References.General.MOD_ID.toLowerCase());
+            OBJLoader.INSTANCE.addDomain(References.General.MOD_ID.toLowerCase());
             ModelLoader.setCustomModelResourceLocation(GeneralRegistry.Items.guide, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + "armory.Items.SmithingsGuide", "inventory"));
         }
 

@@ -1,5 +1,5 @@
 #################################################
-         ForgeGradle 2.1-SNAPSHOT-75bb646        
+         ForgeGradle 2.1-SNAPSHOT-da90449        
   https://github.com/MinecraftForge/ForgeGradle  
 #################################################
                Powered by MCP unknown               
@@ -8,15 +8,14 @@
          R4wk, ZeuX, IngisKahn, bspkrs           
 #################################################
 Found AccessTransformer: Armory_at.cfg
+:clean
 :deobfCompileDummyTask
 :deobfProvidedDummyTask
 :getVersionJson
 :extractUserdev
-Download http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8.9-11.15.1.1757/forge-1.8.9-11.15.1.1757.pom
-Download http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8.9-11.15.1.1757/forge-1.8.9-11.15.1.1757-userdev.jar
 :extractDependencyATs SKIPPED
 :extractMcpData SKIPPED
-:extractMcpMappings SKIPPED
+:extractMcpMappings
 :genSrgs SKIPPED
 :downloadClient SKIPPED
 :downloadServer SKIPPED
@@ -36,10 +35,13 @@ Applying Exceptor...
 :makeStart
 :setupDecompWorkspace
 :ideaModule
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-106-SNAPSHOT/smithscore-1.1.0.1-106-20160519.110103-1-dev.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-106-SNAPSHOT/smithscore-1.1.0.1-106-20160519.110103-1-sources.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.1.0.1-106-SNAPSHOT/smithscore-1.1.0.1-106-20160519.110103-1-javadoc.jar
 :ideaProject
 :ideaWorkspace
 :idea
 
 BUILD SUCCESSFUL
 
-Total time: 2 mins 50.811 secs
+Total time: 2 mins 20.428 secs

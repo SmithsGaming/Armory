@@ -6,23 +6,29 @@ package com.smithsmodding.armory.common.item.armor.tiermedieval;
  *   Created on: 24-9-2014
  */
 
-import com.smithsmodding.armory.api.armor.*;
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.common.addons.*;
-import com.smithsmodding.armory.common.factory.*;
-import com.smithsmodding.armory.common.material.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.armory.util.armor.*;
-import net.minecraft.creativetab.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
-import net.minecraftforge.common.*;
-import net.minecraftforge.fml.relauncher.*;
+import com.smithsmodding.armory.api.armor.MLAAddon;
+import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
+import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
+import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
+import com.smithsmodding.armory.common.material.ChainLayer;
+import com.smithsmodding.armory.common.material.MaterialRegistry;
+import com.smithsmodding.armory.util.References;
+import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraftforge.common.ISpecialArmor;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.security.*;
-import java.util.*;
+import java.security.InvalidParameterException;
+import java.util.HashMap;
+import java.util.List;
 
 public class ArmorMedieval extends MultiLayeredArmor {
 
@@ -149,6 +155,6 @@ public class ArmorMedieval extends MultiLayeredArmor {
 
         IArmorMaterial tMaterial = MaterialRegistry.getInstance().getMaterial(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.MaterialID));
 
-        return tMaterial.getNameColor() + StatCollector.translateToLocal(tMaterial.getTranslationKey()) + " " + EnumChatFormatting.RESET + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name");
+        return tMaterial.getNameColor() + I18n.translateToLocal(tMaterial.getTranslationKey()) + " " + TextFormatting.RESET + I18n.translateToLocal(this.getUnlocalizedName() + ".name");
     }
 }

@@ -33,10 +33,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -141,7 +141,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
 
     @Override
     public String getName () {
-        return this.hasCustomName() ? super.getName() : StatCollector.translateToLocal(References.InternalNames.Blocks.FirePit);
+        return this.hasCustomName() ? super.getName() : I18n.translateToLocal(References.InternalNames.Blocks.FirePit);
     }
 
     @Override

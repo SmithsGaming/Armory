@@ -5,19 +5,21 @@ package com.smithsmodding.armory.common.item;
 /  Created on : 03/10/2014
 */
 
-import com.smithsmodding.armory.*;
-import com.smithsmodding.armory.common.factory.*;
-import com.smithsmodding.armory.common.material.*;
-import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.armory.util.client.*;
-import net.minecraft.creativetab.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
-import net.minecraftforge.fml.relauncher.*;
+import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.common.factory.HeatedItemFactory;
+import com.smithsmodding.armory.common.material.MaterialRegistry;
+import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
+import com.smithsmodding.armory.util.References;
+import com.smithsmodding.armory.util.client.TranslationKeys;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 
 public class ItemHeatedItem extends Item {
 
@@ -56,7 +58,7 @@ public class ItemHeatedItem extends Item {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation (ItemStack pStack, EntityPlayer pPlayer, List pTooltipList, boolean pBoolean) {
-        String tTemperatureLine = StatCollector.translateToLocal(TranslationKeys.Items.HeatedIngot.TemperatureTag);
+        String tTemperatureLine = I18n.translateToLocal(TranslationKeys.Items.HeatedIngot.TemperatureTag);
         tTemperatureLine = tTemperatureLine + ": " + Math.round(HeatableItemRegistry.getInstance().getItemTemperature(pStack));
 
         pTooltipList.add(tTemperatureLine);

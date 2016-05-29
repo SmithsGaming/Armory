@@ -7,18 +7,20 @@
 package com.smithsmodding.armory.common.item.knowledge;
 
 import com.smithsmodding.armory.api.knowledge.*;
-import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.armory.util.client.*;
-import net.minecraft.creativetab.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
+import com.smithsmodding.armory.util.References;
+import com.smithsmodding.armory.util.client.TranslationKeys;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemSmithingsGuide extends Item implements IBluePrintContainerItem {
 
@@ -144,7 +146,7 @@ public class ItemSmithingsGuide extends Item implements IBluePrintContainerItem 
     public void addInformation (ItemStack pStack, EntityPlayer pPlayer, List pList, boolean pAdvanced) {
         super.addInformation(pStack, pPlayer, pList, pAdvanced);
 
-        pList.add(StatCollector.translateToLocal(TranslationKeys.Items.SmithingsGuide.Tooltip1) + " " + getBlueprintGroups(pStack).get(0).Stacks.size() + StatCollector.translateToLocal(TranslationKeys.Items.SmithingsGuide.Tooltip2));
+        pList.add(I18n.translateToLocal(TranslationKeys.Items.SmithingsGuide.Tooltip1) + " " + getBlueprintGroups(pStack).get(0).Stacks.size() + I18n.translateToLocal(TranslationKeys.Items.SmithingsGuide.Tooltip2));
     }
 
     @Override

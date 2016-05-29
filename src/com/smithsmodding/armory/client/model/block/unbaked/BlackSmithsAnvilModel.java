@@ -1,17 +1,19 @@
 package com.smithsmodding.armory.client.model.block.unbaked;
 
-import com.google.common.base.*;
-import com.smithsmodding.armory.client.model.block.baked.*;
-import net.minecraft.block.state.*;
-import net.minecraft.client.renderer.block.model.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.client.renderer.vertex.*;
-import net.minecraft.client.resources.model.*;
-import net.minecraft.util.*;
-import net.minecraftforge.client.model.*;
-import net.minecraftforge.client.model.obj.*;
+import com.google.common.base.Function;
+import com.smithsmodding.armory.client.model.block.baked.BlackSmithsAnvilBakedModel;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.vertex.VertexFormat;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.IModel;
+import net.minecraftforge.client.model.obj.OBJModel;
+import net.minecraftforge.common.model.IModelState;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Marc on 22.02.2016.
@@ -49,7 +51,7 @@ public class BlackSmithsAnvilModel implements IModel {
     }
 
     @Override
-    public IFlexibleBakedModel bake (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+    public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         BlackSmithsAnvilBakedModel bakedModel = new BlackSmithsAnvilBakedModel(original.bake(state, format, bakedTextureGetter));
 
         for(Map.Entry<String, IModel> modelEntry : unbakedOBJModels.entrySet())

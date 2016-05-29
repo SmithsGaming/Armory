@@ -1,14 +1,12 @@
 package com.smithsmodding.armory.client.model.block.baked;
 
-import com.smithsmodding.armory.common.block.*;
-import com.smithsmodding.armory.util.*;
-import net.minecraft.block.state.*;
-import net.minecraft.client.resources.model.*;
-import net.minecraft.item.*;
-import net.minecraftforge.client.model.*;
-import net.minecraftforge.common.property.*;
+import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
+import com.smithsmodding.armory.util.References;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.property.IExtendedBlockState;
 
-import java.util.*;
+import java.util.HashMap;
 
 /**
  * Created by Marc on 22.02.2016.

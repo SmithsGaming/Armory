@@ -5,18 +5,20 @@ package com.smithsmodding.armory.common.material;
 *   Created on: 6-4-2014
 */
 
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.api.registries.*;
-import com.smithsmodding.armory.*;
-import com.smithsmodding.armory.common.addons.*;
-import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.smithscore.util.client.color.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
-import net.minecraftforge.fml.relauncher.*;
+import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.materials.IMaterialRenderInfo;
+import com.smithsmodding.armory.api.registries.IArmorPartRegistry;
+import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
+import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
+import com.smithsmodding.armory.util.References;
+import com.smithsmodding.smithscore.util.client.color.ColorSampler;
+import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
 
-import java.util.*;
+import java.util.HashMap;
 
 public class ArmorMaterial implements IArmorMaterial {
     private static int LASTUSEDID = 0;
@@ -192,7 +194,7 @@ public class ArmorMaterial implements IArmorMaterial {
     }
 
     @Override
-    public EnumChatFormatting getNameColor () {
+    public TextFormatting getNameColor() {
         return ColorSampler.getChatMinecraftColorSample(renderInfo.getVertexColor());
     }
 }

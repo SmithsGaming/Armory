@@ -1,14 +1,13 @@
 package com.smithsmodding.armory.client.model.item.baked.components;
 
-import com.smithsmodding.armory.api.armor.*;
-import com.smithsmodding.armory.api.item.*;
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.common.material.*;
+import com.smithsmodding.armory.api.item.ISingleMaterialItem;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.common.material.MaterialRegistry;
 import net.minecraft.client.resources.model.*;
-import net.minecraft.item.*;
-import net.minecraftforge.client.model.*;
+import net.minecraft.item.ItemStack;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Marc on 06.12.2015.
@@ -48,7 +47,7 @@ public class BakedComponentModel extends IFlexibleBakedModel.Wrapper implements 
      */
     @Override
     public IBakedModel handleItemState (ItemStack stack) {
-        if (stack.getItem() instanceof MultiLayeredArmor) {
+        if (stack.getItem() instanceof ISingleMaterialItem) {
             String id = ((ISingleMaterialItem) stack.getItem()).getMaterialInternalName(stack);
             return getModelByIdentifier(id);
         }

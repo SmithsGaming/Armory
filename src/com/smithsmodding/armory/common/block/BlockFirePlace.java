@@ -4,14 +4,16 @@ import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import com.smithsmodding.armory.util.References;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /**
@@ -38,27 +40,27 @@ public class BlockFirePlace extends BlockArmoryInventory {
     }
 
     @Override
-    protected BlockState createBlockState() {
-        return new BlockState(this);
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this);
     }
 
     @Override
-    public boolean canRenderInLayer(EnumWorldBlockLayer layer) {
-        return layer == EnumWorldBlockLayer.CUTOUT;
+    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
+        return layer == BlockRenderLayer.CUTOUT;
     }
 
     @Override
-    public boolean isTranslucent() {
+    public boolean isTranslucent(IBlockState state) {
         return true;
     }
 
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube() {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
@@ -68,12 +70,7 @@ public class BlockFirePlace extends BlockArmoryInventory {
     }
 
     @Override
-    public int getRenderType() {
-        return 3;
-    }
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (playerIn.isSneaking()) {
             return false;
         } else {

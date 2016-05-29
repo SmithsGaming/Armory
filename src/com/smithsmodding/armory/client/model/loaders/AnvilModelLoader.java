@@ -1,28 +1,34 @@
 package com.smithsmodding.armory.client.model.loaders;
 
-import com.google.common.base.*;
-import com.google.common.collect.*;
+import com.google.common.base.Charsets;
+import com.google.common.collect.ImmutableMap;
 import com.google.gson.*;
-import com.google.gson.reflect.*;
-import com.smithsmodding.armory.*;
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.client.model.block.events.*;
-import com.smithsmodding.armory.client.model.block.unbaked.*;
-import com.smithsmodding.armory.client.model.item.unbaked.*;
-import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.smithscore.util.client.*;
-import com.sun.xml.internal.ws.api.*;
-import net.minecraft.client.*;
-import net.minecraft.client.resources.*;
-import net.minecraft.util.*;
-import net.minecraftforge.client.model.*;
-import net.minecraftforge.client.model.obj.*;
-import net.minecraftforge.fml.common.*;
+import com.google.gson.reflect.TypeToken;
+import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.materials.IAnvilMaterial;
+import com.smithsmodding.armory.client.model.block.events.BlackSmithsAnvilModelTextureLoadEvent;
+import com.smithsmodding.armory.client.model.block.unbaked.BlackSmithsAnvilModel;
+import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
+import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
+import com.smithsmodding.smithscore.util.client.ModelHelper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.IResource;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ICustomModelLoader;
+import net.minecraftforge.client.model.IModel;
+import net.minecraftforge.client.model.IRetexturableModel;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.client.model.obj.OBJModel;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.LoaderState;
 
-import javax.vecmath.*;
-import java.io.*;
-import java.lang.reflect.*;
-import java.util.*;
+import javax.vecmath.Vector4f;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
+import java.util.Map;
 
 /**
  * Created by Marc on 22.02.2016.
@@ -104,27 +110,22 @@ public class AnvilModelLoader implements ICustomModelLoader {
     }
 
     public static class AnvilModelDefinition{
-        String modelPath;
-        Map<String, String> textureTopPaths;
-        Map<String, String> textureBottomPaths;
-
-        private static final Type stringType = new TypeToken<String>() {
-        }.getType();
-
         static final Type maptype = new TypeToken<Map<String, String>>() {
         }.getType();
-
+        private static final Type stringType = new TypeToken<String>() {
+        }.getType();
         private static final Gson
                 GSONMODEL =
                 new GsonBuilder().registerTypeAdapter(stringType, AnvilModelDeserializer.instance).create();
-
         private static final Gson
                 GSONTOP =
                 new GsonBuilder().registerTypeAdapter(maptype, AnvilTopTextureDeserializer.instance).create();
-
         private static final Gson
                 GSONBOTTOM =
                 new GsonBuilder().registerTypeAdapter(maptype, AnvilBottomTextureDeserializer.instance).create();
+        String modelPath;
+        Map<String, String> textureTopPaths;
+        Map<String, String> textureBottomPaths;
 
         private AnvilModelDefinition(String modelPath, Map<String, String> textureTopPaths, Map<String, String> textureBottomPaths)
         {
@@ -159,9 +160,8 @@ public class AnvilModelLoader implements ICustomModelLoader {
         }
 
         public static class AnvilModelDeserializer implements JsonDeserializer<String> {
-            public static AnvilModelDeserializer instance = new AnvilModelDeserializer();
-
             private static final Gson GSON = new Gson();
+            public static AnvilModelDeserializer instance = new AnvilModelDeserializer();
 
             /**
              * Gson invokes this call-back method during deserialization when it encounters a field of the specified type. <p>In

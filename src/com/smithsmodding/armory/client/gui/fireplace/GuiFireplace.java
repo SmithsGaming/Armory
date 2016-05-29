@@ -23,7 +23,7 @@ import com.smithsmodding.smithscore.util.common.positioning.Plane;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 
 import java.util.ArrayList;
 
@@ -58,12 +58,12 @@ public class GuiFireplace extends GuiContainerSmithsCore {
     public void registerLedgers(IGUIBasedLedgerHost parent) {
         ArrayList<String> information = new ArrayList<String>();
 
-        information.add(StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.InfoLine1));
-        information.add(StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.InfoLine2));
-        information.add(StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.InfoLine3));
+        information.add(I18n.translateToLocal(TranslationKeys.Gui.Fireplace.InfoLine1));
+        information.add(I18n.translateToLocal(TranslationKeys.Gui.Fireplace.InfoLine2));
+        information.add(I18n.translateToLocal(TranslationKeys.Gui.Fireplace.InfoLine3));
 
-        registerNewLedger(new InformationLedger(getID() + ".Ledgers.Information", this, LedgerConnectionSide.LEFT, StatCollector.translateToLocal(TranslationKeys.Gui.InformationTitel), new MinecraftColor(MinecraftColor.YELLOW), information));
-        registerNewLedger(new TemperatureLedger(getID() + ".Ledgers.Temperature", this, LedgerConnectionSide.RIGHT, Textures.Gui.FirePit.THERMOMETERICON, StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.TempTitel), new MinecraftColor(MinecraftColor.RED)));
+        registerNewLedger(new InformationLedger(getID() + ".Ledgers.Information", this, LedgerConnectionSide.LEFT, I18n.translateToLocal(TranslationKeys.Gui.InformationTitel), new MinecraftColor(MinecraftColor.YELLOW), information));
+        registerNewLedger(new TemperatureLedger(getID() + ".Ledgers.Temperature", this, LedgerConnectionSide.RIGHT, Textures.Gui.FirePit.THERMOMETERICON, I18n.translateToLocal(TranslationKeys.Gui.Fireplace.TempTitel), new MinecraftColor(MinecraftColor.RED)));
     }
 
     public class TemperatureLedger extends CoreLedger {
@@ -107,10 +107,10 @@ public class GuiFireplace extends GuiContainerSmithsCore {
         public void registerComponents(IGUIBasedComponentHost host) {
             super.registerComponents(host);
 
-            currentTemperatureLabel = StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.TempCurrent) + ": 10000C";
-            maxTemperatureLabel = StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.TempMax) + ": 10000C";
-            lastAddedLabel = StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.LastAdded) + ": 10000C";
-            cookingMultiplayerLabel = StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.CookingMultiplier) + ": 10000C";
+            currentTemperatureLabel = I18n.translateToLocal(TranslationKeys.Gui.Fireplace.TempCurrent) + ": 10000C";
+            maxTemperatureLabel = I18n.translateToLocal(TranslationKeys.Gui.Fireplace.TempMax) + ": 10000C";
+            lastAddedLabel = I18n.translateToLocal(TranslationKeys.Gui.Fireplace.LastAdded) + ": 10000C";
+            cookingMultiplayerLabel = I18n.translateToLocal(TranslationKeys.Gui.Fireplace.CookingMultiplier) + ": 10000C";
 
             registerNewComponent(new ComponentLabel(getID() + ".CurrentTemperature", host, new CoreComponentState(), new Coordinate2D(10, 26), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, currentTemperatureLabel) {
                 /**
@@ -122,7 +122,7 @@ public class GuiFireplace extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update(int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.TempCurrent) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = I18n.translateToLocal(TranslationKeys.Gui.FirePit.TempCurrent) + ": " + getManager().getLabelContents(this);
                 }
             });
 
@@ -136,7 +136,7 @@ public class GuiFireplace extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update(int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.TempMax) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = I18n.translateToLocal(TranslationKeys.Gui.FirePit.TempMax) + ": " + getManager().getLabelContents(this);
                 }
             });
 
@@ -150,7 +150,7 @@ public class GuiFireplace extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update(int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.FirePit.LastAdded) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = I18n.translateToLocal(TranslationKeys.Gui.FirePit.LastAdded) + ": " + getManager().getLabelContents(this);
                 }
             });
 
@@ -164,7 +164,7 @@ public class GuiFireplace extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update(int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = StatCollector.translateToLocal(TranslationKeys.Gui.Fireplace.CookingMultiplier) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = I18n.translateToLocal(TranslationKeys.Gui.Fireplace.CookingMultiplier) + ": " + getManager().getLabelContents(this);
                 }
             });
 

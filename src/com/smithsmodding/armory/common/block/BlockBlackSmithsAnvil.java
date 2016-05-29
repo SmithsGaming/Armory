@@ -1,29 +1,38 @@
 package com.smithsmodding.armory.common.block;
 
-import com.google.common.collect.*;
-import com.smithsmodding.armory.*;
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.common.block.properties.*;
-import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.common.tileentity.*;
-import com.smithsmodding.armory.common.tileentity.state.*;
-import com.smithsmodding.armory.util.*;
-import net.minecraft.block.material.*;
-import net.minecraft.block.properties.*;
-import net.minecraft.block.state.*;
-import net.minecraft.creativetab.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
-import net.minecraft.tileentity.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
-import net.minecraftforge.client.model.*;
-import net.minecraftforge.client.model.obj.*;
-import net.minecraftforge.common.property.*;
+import com.google.common.collect.Lists;
+import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.materials.IAnvilMaterial;
+import com.smithsmodding.armory.common.block.properties.PropertyAnvilMaterial;
+import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
+import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
+import com.smithsmodding.armory.common.tileentity.state.BlackSmithsAnvilState;
+import com.smithsmodding.armory.util.References;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.client.model.obj.OBJModel;
+import net.minecraftforge.common.model.TRSRTransformation;
+import net.minecraftforge.common.property.ExtendedBlockState;
+import net.minecraftforge.common.property.IExtendedBlockState;
+import net.minecraftforge.common.property.IUnlistedProperty;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * Created by Marc on 14.02.2016.
@@ -34,7 +43,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
     public static final PropertyAnvilMaterial PROPERTY_ANVIL_MATERIAL = new PropertyAnvilMaterial("Material");
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.instance, PROPERTY_ANVIL_MATERIAL});
+    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE, PROPERTY_ANVIL_MATERIAL});
 
 
     public BlockBlackSmithsAnvil () {
@@ -49,27 +58,22 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
     }
 
     @Override
-    public int getRenderType() {
-        return 3;
+    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
+        return layer == BlockRenderLayer.CUTOUT;
     }
 
     @Override
-    public boolean canRenderInLayer (EnumWorldBlockLayer layer) {
-        return layer == EnumWorldBlockLayer.CUTOUT;
-    }
-
-    @Override
-    public boolean isTranslucent () {
+    public boolean isTranslucent(IBlockState state) {
         return true;
     }
 
     @Override
-    public boolean isOpaqueCube () {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube () {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
@@ -146,7 +150,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
 
         OBJModel.OBJState objState = new OBJModel.OBJState(Lists.newArrayList(OBJModel.Group.ALL), true, transformation);
 
-        return ( (IExtendedBlockState) state ).withProperty(PROPERTY_ANVIL_MATERIAL, ( (BlackSmithsAnvilState) ( (TileEntityBlackSmithsAnvil) world.getTileEntity(pos) ).getState() ).getMaterial().getID()).withProperty(OBJModel.OBJProperty.instance, objState);
+        return ((IExtendedBlockState) state).withProperty(PROPERTY_ANVIL_MATERIAL, ((BlackSmithsAnvilState) ((TileEntityBlackSmithsAnvil) world.getTileEntity(pos)).getState()).getMaterial().getID()).withProperty(OBJModel.OBJProperty.INSTANCE, objState);
     }
 
     @Override
@@ -155,7 +159,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
     }
 
     @Override
-    public boolean onBlockActivated (World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (playerIn.isSneaking()) {
             return false;
         } else {
@@ -191,8 +195,8 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
         return state.getValue(FACING).getIndex();
     }
 
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new ExtendedBlockState(this, new IProperty[] {FACING}, new IUnlistedProperty[] {OBJModel.OBJProperty.instance, PROPERTY_ANVIL_MATERIAL});
+        return new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE, PROPERTY_ANVIL_MATERIAL});
     }
 }

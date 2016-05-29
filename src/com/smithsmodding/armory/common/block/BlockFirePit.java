@@ -11,31 +11,45 @@ package com.smithsmodding.armory.common.block;
 /  Created on : 02/10/2014
 */
 
-import com.smithsmodding.armory.*;
-import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.common.tileentity.state.*;
-import com.smithsmodding.armory.common.tileentity.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.smithscore.*;
-import com.smithsmodding.smithscore.client.block.*;
-import com.smithsmodding.smithscore.common.structures.*;
-import net.minecraft.block.*;
-import net.minecraft.block.material.*;
-import net.minecraft.block.properties.*;
-import net.minecraft.block.state.*;
-import net.minecraft.client.*;
-import net.minecraft.creativetab.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.tileentity.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
-import net.minecraftforge.client.event.*;
-import net.minecraftforge.client.model.obj.*;
-import net.minecraftforge.common.property.*;
+import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
+import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
+import com.smithsmodding.armory.common.tileentity.state.FirePitState;
+import com.smithsmodding.armory.util.References;
+import com.smithsmodding.smithscore.SmithsCore;
+import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;
+import com.smithsmodding.smithscore.common.structures.StructureManager;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.model.obj.OBJModel;
+import net.minecraftforge.common.property.ExtendedBlockState;
+import net.minecraftforge.common.property.IExtendedBlockState;
+import net.minecraftforge.common.property.IUnlistedProperty;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugInformationBlock {
 
@@ -51,7 +65,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
         directionsMapping.put("PosY", EnumFacing.NORTH);
     }
 
-    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{OBJModel.OBJProperty.instance});
+    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
 
     public BlockFirePit () {
         super(References.InternalNames.Blocks.FirePit, Material.iron);
@@ -82,8 +96,8 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
     }
 
     @Override
-    protected BlockState createBlockState () {
-        return new BlockState(this, BURNING, ISMASTER);
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, BURNING, ISMASTER);
     }
     
     @Override
@@ -110,28 +124,28 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
         if (!worldIn.isRemote) {
             if (tTE instanceof TileEntityFirePit) {
                 StructureManager.createStructureComponent(tTE);
-                worldIn.markBlockForUpdate(pos);
+                worldIn.markChunkDirty(pos, tTE);
             }
         }
     }
 
     @Override
-    public boolean canRenderInLayer (EnumWorldBlockLayer layer) {
-        return layer == EnumWorldBlockLayer.CUTOUT;
+    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
+        return layer == BlockRenderLayer.CUTOUT;
     }
 
     @Override
-    public boolean isTranslucent () {
+    public boolean isTranslucent(IBlockState state) {
         return true;
     }
 
     @Override
-    public boolean isOpaqueCube () {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube () {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
@@ -245,7 +259,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
         }
 
         OBJModel.OBJState retState = new OBJModel.OBJState(visibleParts, true);
-        return ( (IExtendedBlockState) this.state.getBaseState() ).withProperty(OBJModel.OBJProperty.instance, retState);
+        return ((IExtendedBlockState) this.state.getBaseState()).withProperty(OBJModel.OBJProperty.INSTANCE, retState);
     }
 
     @Override
@@ -254,12 +268,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
     }
 
     @Override
-    public int getRenderType () {
-        return 3;
-    }
-
-    @Override
-    public boolean onBlockActivated (World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (playerIn.isSneaking()) {
             return false;
         } else {
@@ -279,7 +288,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
         int burningMeta = meta / 2;
         int masterMeta = meta % 2;
 
-        return this.getDefaultState().withProperty(BURNING, burningMeta >= 1 ? true : false).withProperty(ISMASTER, masterMeta >= 1 ? true : false);
+        return this.getDefaultState().withProperty(BURNING, burningMeta >= 1).withProperty(ISMASTER, masterMeta >= 1);
     }
 
     /**
@@ -330,62 +339,62 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
         float burningFormattingType = burningTicks / ( totalBurningTicks / 3 );
         float tempFormattingType = currentTemp / ( maxTemp / 3 );
 
-        EnumChatFormatting burningTime;
-        EnumChatFormatting temp;
+        TextFormatting burningTime;
+        TextFormatting temp;
 
         if (burningFormattingType < 1F && burningFormattingType > 0F)
-            burningTime = EnumChatFormatting.RED;
+            burningTime = TextFormatting.RED;
         else if (burningFormattingType < 2F && burningFormattingType > 0F)
-            burningTime = EnumChatFormatting.GOLD;
+            burningTime = TextFormatting.GOLD;
         else if (burningFormattingType <= 3f && burningFormattingType > 0F)
-            burningTime = EnumChatFormatting.DARK_BLUE;
+            burningTime = TextFormatting.DARK_BLUE;
         else
-            burningTime = EnumChatFormatting.RESET;
+            burningTime = TextFormatting.RESET;
 
         if (tempFormattingType < 1F && tempFormattingType > 0F)
-            temp = EnumChatFormatting.DARK_BLUE;
+            temp = TextFormatting.DARK_BLUE;
         else if (tempFormattingType < 2F && tempFormattingType > 0F)
-            temp = EnumChatFormatting.GOLD;
+            temp = TextFormatting.GOLD;
         else if (tempFormattingType <= 3f && tempFormattingType > 0F)
-            temp = EnumChatFormatting.RED;
+            temp = TextFormatting.RED;
         else
-            temp = EnumChatFormatting.RESET;
+            temp = TextFormatting.RESET;
 
-        event.right.add("burning tick left:" + burningTime + burningTicks + EnumChatFormatting.RESET);
-        event.right.add("temp:" + temp + currentTemp + EnumChatFormatting.RESET);
-        event.right.add("molten metal count:" + tileEntityFirePit.getAllFluids().size());
+        event.getRight().add("burning tick left:" + burningTime + burningTicks + TextFormatting.RESET);
+        event.getRight().add("temp:" + temp + currentTemp + TextFormatting.RESET);
+        event.getRight().add("molten metal count:" + tileEntityFirePit.getAllFluids().size());
 
-        EnumChatFormatting slaveCount;
+        TextFormatting slaveCount;
         int count;
         if (tileEntityFirePit.isSlaved()) {
-            slaveCount = EnumChatFormatting.STRIKETHROUGH;
+            slaveCount = TextFormatting.STRIKETHROUGH;
             count = -2;
         } else if (tileEntityFirePit.getSlaveCoordinates() == null) {
-            slaveCount = EnumChatFormatting.UNDERLINE;
+            slaveCount = TextFormatting.UNDERLINE;
             count = -1;
         } else if (tileEntityFirePit.getSlaveCoordinates().size() == 0) {
-            slaveCount = EnumChatFormatting.RED;
+            slaveCount = TextFormatting.RED;
             count = 0;
         } else {
-            slaveCount = EnumChatFormatting.GREEN;
+            slaveCount = TextFormatting.GREEN;
             count = tileEntityFirePit.getSlaveCoordinates().size();
         }
 
-        EnumChatFormatting masterTeLocation;
+        TextFormatting masterTeLocation;
         String location;
         if (!tileEntityFirePit.isSlaved()) {
-            masterTeLocation = EnumChatFormatting.STRIKETHROUGH;
+            masterTeLocation = TextFormatting.STRIKETHROUGH;
             location = "current";
         } else if (tileEntityFirePit.getMasterLocation() == null) {
-            masterTeLocation = EnumChatFormatting.RED;
+            masterTeLocation = TextFormatting.RED;
             location = "unknown";
         } else {
-            masterTeLocation = EnumChatFormatting.GREEN;
+            masterTeLocation = TextFormatting.GREEN;
             location = tileEntityFirePit.getMasterLocation().toString();
         }
 
-        event.right.add("slave count:" + slaveCount + count + EnumChatFormatting.RESET);
-        event.right.add("masterlocation:" + masterTeLocation + location + EnumChatFormatting.RESET);
+        event.getRight().add("slave count:" + slaveCount + count + TextFormatting.RESET);
+        event.getRight().add("masterlocation:" + masterTeLocation + location + TextFormatting.RESET);
 
     }
 }

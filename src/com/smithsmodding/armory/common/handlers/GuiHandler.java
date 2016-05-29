@@ -14,7 +14,7 @@ import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import com.smithsmodding.armory.util.References;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 

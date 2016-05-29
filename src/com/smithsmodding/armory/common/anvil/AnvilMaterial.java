@@ -1,8 +1,8 @@
 package com.smithsmodding.armory.common.anvil;
 
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.smithscore.util.client.color.*;
-import net.minecraft.util.*;
+import com.smithsmodding.armory.api.materials.IAnvilMaterial;
+import com.smithsmodding.armory.api.materials.IMaterialRenderInfo;
+import com.smithsmodding.smithscore.util.client.color.ColorSampler;
 
 /**
  * Created by Marc on 22.02.2016.
@@ -12,7 +12,7 @@ public class AnvilMaterial implements IAnvilMaterial {
     String id;
     int durability;
     String translatedDisplayName;
-    EnumChatFormatting translatedDisplayNameColor;
+    TextFormatting translatedDisplayNameColor;
     IMaterialRenderInfo info;
 
     public AnvilMaterial (String id, int durability, String translatedDisplayName) {
@@ -38,7 +38,7 @@ public class AnvilMaterial implements IAnvilMaterial {
     }
 
     @Override
-    public EnumChatFormatting translatedDisplayNameColor () {
+    public TextFormatting translatedDisplayNameColor() {
         if (translatedDisplayNameColor == null)
             translatedDisplayNameColor = ColorSampler.getChatMinecraftColorSample(info.getVertexColor());
 

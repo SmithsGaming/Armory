@@ -6,13 +6,13 @@
 
 package com.smithsmodding.armory.common.block;
 
-import net.minecraft.block.*;
-import net.minecraft.block.material.*;
-import net.minecraft.block.state.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.Random;
 
 public abstract class BlockArmoryInventory extends BlockContainer {
     Random iRand = new Random();

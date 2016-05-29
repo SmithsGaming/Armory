@@ -1,17 +1,16 @@
 package com.smithsmodding.armory.common.tileentity.guimanagers;
 
-import com.smithsmodding.armory.common.tileentity.*;
-import com.smithsmodding.armory.common.tileentity.state.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.smithscore.client.gui.components.core.*;
-import com.smithsmodding.smithscore.client.gui.components.implementations.*;
-import com.smithsmodding.smithscore.client.gui.management.*;
-import com.smithsmodding.smithscore.util.client.*;
-import net.minecraft.util.*;
-import net.minecraftforge.fluids.*;
+import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
+import com.smithsmodding.armory.common.tileentity.state.FirePitState;
+import com.smithsmodding.armory.util.References;
+import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
+import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentProgressBar;
+import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIManager;
+import com.smithsmodding.smithscore.util.client.TranslationKeys;
+import net.minecraftforge.fluids.FluidStack;
 
-import java.text.*;
-import java.util.*;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 /**
  * Created by Marc on 25.12.2015.
@@ -121,12 +120,12 @@ public class FirePitGuiManager extends TileStorageBasedGUIManager {
             Float mixingprogress = (Float) state.getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.MIXINGPROGRESS);
 
             if (mixingprogress <= 0F)
-                return StatCollector.translateToLocal(TranslationKeys.GUI.PROGRESS) + ": 0 %";
+                return I18n.translateToLocal(TranslationKeys.GUI.PROGRESS) + ": 0 %";
 
             if (mixingprogress >= 4F)
-                return StatCollector.translateToLocal(TranslationKeys.GUI.PROGRESS) + ": 100 %";
+                return I18n.translateToLocal(TranslationKeys.GUI.PROGRESS) + ": 100 %";
 
-            return StatCollector.translateToLocal(TranslationKeys.GUI.PROGRESS) + ": " + Math.round(mixingprogress / 4F) + " %";
+            return I18n.translateToLocal(TranslationKeys.GUI.PROGRESS) + ": " + Math.round(mixingprogress / 4F) + " %";
         }
 
         return "";

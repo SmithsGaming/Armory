@@ -1,10 +1,10 @@
 package com.smithsmodding.armory.api.materials;
 
-import com.smithsmodding.armory.api.registries.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import com.smithsmodding.armory.api.registries.IArmorPartRegistry;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 
-import java.util.*;
+import java.util.HashMap;
 
 /**
  * Created by Orion
@@ -68,5 +68,5 @@ public interface IArmorMaterial {
 
     IArmorMaterial setTranslationKey (String key);
 
-    EnumChatFormatting getNameColor ();
+    TextFormatting getNameColor();
 }

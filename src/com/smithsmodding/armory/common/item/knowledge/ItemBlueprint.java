@@ -7,22 +7,22 @@
 package com.smithsmodding.armory.common.item.knowledge;
 
 import com.smithsmodding.armory.api.knowledge.*;
-import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.armory.util.client.*;
-import net.minecraft.creativetab.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
+import com.smithsmodding.armory.util.References;
+import com.smithsmodding.armory.util.client.TranslationKeys;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.List;
 
 public class ItemBlueprint extends Item implements IBluePrintItem {
 
-    public static final String UNKNOWN = EnumChatFormatting.DARK_RED + "" + EnumChatFormatting.ITALIC + "UNKNOWN" + EnumChatFormatting.RESET;
+    public static final String UNKNOWN = TextFormatting.DARK_RED + "" + TextFormatting.ITALIC + "UNKNOWN" + TextFormatting.RESET;
 
     public ItemBlueprint () {
         this.setMaxStackSize(1);
@@ -32,7 +32,7 @@ public class ItemBlueprint extends Item implements IBluePrintItem {
 
     @Override
     public String getItemStackDisplayName (ItemStack pStack) {
-        return StatCollector.translateToLocal(getUnlocalizedName() + ".name");
+        return I18n.translateToLocal(getUnlocalizedName() + ".name");
     }
 
     @Override
@@ -113,11 +113,11 @@ public class ItemBlueprint extends Item implements IBluePrintItem {
     public void addInformation (ItemStack pStack, EntityPlayer pPlayer, List pTags, boolean pAdvancedTooltip) {
         super.addInformation(pStack, pPlayer, pTags, pAdvancedTooltip);
 
-        pTags.add(StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Quality) + " " + getTranslatedBluePrintQuality(pStack));
+        pTags.add(I18n.translateToLocal(TranslationKeys.Items.Blueprint.Quality) + " " + getTranslatedBluePrintQuality(pStack));
 
         IBlueprint tPrint = BlueprintRegistry.getInstance().getBlueprint(getBlueprintID(pStack));
         if (tPrint == null) {
-            pTags.add(StatCollector.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + UNKNOWN + " (" + getBlueprintID(pStack) + ")");
+            pTags.add(I18n.translateToLocal(TranslationKeys.Items.Blueprint.Produces) + " " + UNKNOWN + " (" + getBlueprintID(pStack) + ")");
         } else {
             pTags.add(tPrint.getProductionInfoLine(pStack));
         }

@@ -44,7 +44,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -384,9 +384,9 @@ public class ArmoryInitializer {
     public static class GlobalInitialization {
         public static void RegisterAnvilMaterials()
         {
-            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.STONE, 250, StatCollector.translateToLocal(TranslationKeys.Materials.Anvil.Stone)));
-            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.IRON, 1500, StatCollector.translateToLocal(TranslationKeys.Materials.Anvil.Iron)));
-            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.OBSIDIAN, 2200, StatCollector.translateToLocal(TranslationKeys.Materials.Anvil.Obsidian)));
+            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.STONE, 250, I18n.translateToLocal(TranslationKeys.Materials.Anvil.Stone)));
+            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.IRON, 1500, I18n.translateToLocal(TranslationKeys.Materials.Anvil.Iron)));
+            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.OBSIDIAN, 2200, I18n.translateToLocal(TranslationKeys.Materials.Anvil.Obsidian)));
         }
     }
 
