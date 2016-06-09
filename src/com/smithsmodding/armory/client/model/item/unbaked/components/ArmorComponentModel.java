@@ -1,20 +1,25 @@
 package com.smithsmodding.armory.client.model.item.unbaked.components;
 
-import com.google.common.base.*;
-import com.google.common.collect.*;
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.client.model.item.baked.components.*;
-import com.smithsmodding.armory.client.textures.*;
-import com.smithsmodding.armory.common.material.*;
-import com.smithsmodding.smithscore.util.client.*;
-import com.smithsmodding.smithscore.util.client.color.*;
-import net.minecraft.client.renderer.block.model.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.client.renderer.vertex.*;
-import net.minecraft.util.*;
-import net.minecraftforge.client.model.*;
+import com.google.common.base.Function;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.client.model.item.baked.components.BakedComponentModel;
+import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
+import com.smithsmodding.armory.common.material.MaterialRegistry;
+import com.smithsmodding.smithscore.util.client.ModelHelper;
+import com.smithsmodding.smithscore.util.client.ResourceHelper;
+import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.vertex.VertexFormat;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.IModel;
+import net.minecraftforge.client.model.ItemLayerModel;
+import net.minecraftforge.common.model.IModelState;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by Marc on 06.12.2015.
@@ -22,7 +27,7 @@ import java.util.*;
  * model used to display singular components of the armor.
  * Is in implementation nearly the same as the TinkersConstruct Toolparts.
  */
-public class ArmorComponentModel extends ItemLayerModel implements IModelPart {
+public class ArmorComponentModel implements IModel {
 
     /**
      * Creates a new unbaked model, given the parameters list of possible textures.
