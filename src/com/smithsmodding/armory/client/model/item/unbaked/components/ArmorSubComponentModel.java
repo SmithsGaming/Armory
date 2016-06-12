@@ -4,18 +4,20 @@ import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.client.model.item.baked.components.BakedComponentModel;
+import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
+import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import com.smithsmodding.smithscore.util.client.ResourceHelper;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ItemLayerModel;
+import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import net.minecraftforge.common.model.IModelState;
 
 import java.util.ArrayList;
@@ -27,14 +29,14 @@ import java.util.Map;
  * model used to display singular components of the armor.
  * Is in implementation nearly the same as the TinkersConstruct Toolparts.
  */
-public class ArmorComponentModel implements IModel {
+public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
 
     /**
      * Creates a new unbaked model, given the parameters list of possible textures.
      *
      * @param textures The possible textures for the unbaked model.
      */
-    public ArmorComponentModel (ImmutableList<ResourceLocation> textures) {
+    public ArmorSubComponentModel(ImmutableList<ResourceLocation> textures) {
         super(textures);
     }
 
@@ -47,7 +49,7 @@ public class ArmorComponentModel implements IModel {
      * @return A ItemStack depending model that is ready to be used.
      */
     @Override
-    public IFlexibleBakedModel bake (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+    public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         return generateBackedComponentModel(state, format, bakedTextureGetter);
     }
 
@@ -79,12 +81,12 @@ public class ArmorComponentModel implements IModel {
      * @param bakedTextureGetter Function to get the baked textures.
      * @return A baked model containing all individual possible textures this model can have.
      */
-    public BakedComponentModel generateBackedComponentModel (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+    public BakedSubComponentModel generateBackedComponentModel(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         // Get ourselfs a normal model to use.
-        IFlexibleBakedModel base = super.bake(state, format, bakedTextureGetter);
+        IBakedModel base = super.bake(state, format, bakedTextureGetter);
 
         // Use it as our base for the BakedComponentModel.
-        BakedComponentModel bakedMaterialModel = new BakedComponentModel(base);
+        BakedSubComponentModel bakedMaterialModel = new BakedSubComponentModel(base);
 
         //In between the loading of the model from the JSON and the baking the MaterializedTextureCreator was able to
         // generate all the necessary textures for the models.
@@ -102,7 +104,7 @@ public class ArmorComponentModel implements IModel {
             IModel model2 = this.retexture(ImmutableMap.of("layer0", entry.getValue().getIconName()));
 
             //We bake the new model to get a ready to use textured and ready to be colored baked model.
-            IFlexibleBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
+            IBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
 
             // We check if a special texture for that item exists in our textures collection.
             // If not we check if the material needs coloring and color the vertexes individually.
@@ -114,12 +116,12 @@ public class ArmorComponentModel implements IModel {
                 ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
 
                 //We color all the quads in the GeneralQuads (As the ItemLayeredModel.BakedModel only uses the General Quads)
-                for (BakedQuad quad : bakedModel2.getGeneralQuads()) {
+                for (BakedQuad quad : bakedModel2.getQuads(null, null, 0)) {
                     quads.add(ModelHelper.colorQuad(color, quad));
                 }
 
 
-                    bakedModel2 = new ItemLayerModel.BakedModel(quads.build(), bakedModel2.getParticleTexture(), bakedModel2.getFormat());
+                bakedModel2 = new ItemLayerModel.BakedItemModel(quads.build(), bakedModel2.getParticleTexture(), IPerspectiveAwareModel.MapWrapper.getTransforms(state), bakedModel2.getOverrides(), null);
 
             }
 

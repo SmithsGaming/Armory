@@ -9,10 +9,12 @@ import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
 import com.smithsmodding.armory.common.block.BlockFirePit;
 import com.smithsmodding.armory.common.block.BlockFirePlace;
 import com.smithsmodding.armory.common.fluid.FluidMoltenMetal;
+import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
-import com.smithsmodding.armory.common.item.knowledge.ItemBlueprint;
-import com.smithsmodding.armory.common.item.knowledge.ItemSmithingsGuide;
+import com.smithsmodding.armory.common.item.ItemSmithingsGuide;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.util.EnumHelper;
 
 import java.util.Properties;
@@ -20,7 +22,7 @@ import java.util.Properties;
 public class GeneralRegistry {
     public static boolean isInDevEnvironment = false;
     protected static GeneralRegistry INSTANCE;
-    private static ItemArmor.ArmorMaterial armorMaterial = EnumHelper.addArmorMaterial("armory-Dummy", "missingno", 100, new int[]{0, 0, 0, 0}, 0);
+    private static ItemArmor.ArmorMaterial armorMaterial = EnumHelper.addArmorMaterial("armory-Dummy", "missingno", 100, new int[]{0, 0, 0, 0}, 0, SoundEvent.soundEventRegistry.getObject(new ResourceLocation("item.armor.equip_chain")));
 
     public GeneralRegistry() {
         Properties tSysProp = System.getProperties();
@@ -38,7 +40,7 @@ public class GeneralRegistry {
 
     public static class Items {
         public static ItemHeatedItem heatedItem;
-        public static ItemBlueprint blueprint;
+        public static ItemArmorComponent armorComponent;
         public static ItemSmithingsGuide guide;
     }
 

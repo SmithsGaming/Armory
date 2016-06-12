@@ -1,15 +1,20 @@
 package com.smithsmodding.armory.client.model.item.unbaked.components;
 
-import com.google.common.base.*;
-import com.google.common.collect.*;
-import com.smithsmodding.armory.client.model.item.baked.components.*;
-import com.smithsmodding.smithscore.util.client.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.client.renderer.vertex.*;
-import net.minecraft.util.*;
-import net.minecraftforge.client.model.*;
+import com.google.common.base.Function;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.smithsmodding.armory.client.model.item.baked.components.BakedTemperatureBarModel;
+import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
+import com.smithsmodding.smithscore.util.client.ModelHelper;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.vertex.VertexFormat;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.IModel;
+import net.minecraftforge.common.model.IModelPart;
+import net.minecraftforge.common.model.IModelState;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Created by Marc on 08.12.2015.
@@ -34,7 +39,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
      * @return A ItemStack depending model that is ready to be used.
      */
     @Override
-    public IFlexibleBakedModel bake (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+    public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         return generateBackedComponentModel(state, format, bakedTextureGetter);
     }
 
@@ -63,7 +68,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
      */
     public BakedTemperatureBarModel generateBackedComponentModel (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         // Get ourselfs a normal model to use.
-        IFlexibleBakedModel base = super.bake(state, format, bakedTextureGetter);
+        IBakedModel base = super.bake(state, format, bakedTextureGetter);
 
         // Use it as our base for the BakedComponentModel.
         BakedTemperatureBarModel bakedTemperatureBar = new BakedTemperatureBarModel(base);
@@ -73,10 +78,10 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
             TextureAtlasSprite sprite = bakedTextureGetter.apply(textureLocation);
 
             //We retexture this model with the newly colored textured from ther creator and get a Copy of this model
-            IModel model2 = ItemLayerModel.instance.retexture(ImmutableMap.of("layer0", sprite.getIconName()));
+            IModel model2 = ItemLayerModel.INSTANCE.retexture(ImmutableMap.of("layer0", sprite.getIconName()));
 
             //We bake the new model to get a ready to use textured and ready to be colored baked model.
-            IFlexibleBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
+            IBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
 
             //Set normals to ignore lighting.
             ModelHelper.setNormalsToIgnoreLightingOnItemModel(bakedModel2);

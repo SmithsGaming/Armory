@@ -6,7 +6,7 @@ package com.smithsmodding.armory.api.armor;
 */
 
 
-import net.minecraft.util.*;
+import net.minecraft.util.ResourceLocation;
 
 public abstract class MLAAddon implements ILayeredArmorLayer {
     protected String uniqueID = "";
@@ -130,6 +130,8 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
     public int getLayerPriority () {
         return layerPriority;
     }
+
+    public abstract String getDisplayName();
 
 
     //##################Functions used to configure most of the crafting logic##########################################

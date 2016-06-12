@@ -1,11 +1,11 @@
 package com.smithsmodding.armory.client.model.loaders;
 
-
-import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.client.model.item.unbaked.HeatedItemItemModel;
+import com.smithsmodding.armory.client.model.item.unbaked.ArmorComponentModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.TemperatureBarComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
+import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.resources.IResourceManager;
@@ -20,18 +20,18 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by Marc on 06.12.2015.
+ * @Author Marc (Created on: 12.06.2016)
  */
-public class HeatedItemModelLoader implements ICustomModelLoader {
-    public static final String EXTENSION = ".HI-armory";
+public class ArmorComponentModelLoader implements ICustomModelLoader {
+    public static final String EXTENSION = ".AC-armory";
 
     @Override
-    public boolean accepts (ResourceLocation modelLocation) {
-        return modelLocation.getResourcePath().endsWith(EXTENSION); // HeatedItem armory extension. Foo.HI-armory.json
+    public boolean accepts(ResourceLocation modelLocation) {
+        return modelLocation.getResourcePath().endsWith(EXTENSION); // HeatedItem armory extension. Foo.AC-armory.json
     }
 
     @Override
-    public IModel loadModel (ResourceLocation modelLocation) throws IOException {
+    public IModel loadModel(ResourceLocation modelLocation) throws IOException {
         if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
             return DummyModel.INSTANCE;
         }
@@ -41,12 +41,12 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
             Map<String, String> textures = ModelHelper.loadTexturesFromJson(modelLocation);
 
             //Create the final list builder.
-            ImmutableList.Builder<ResourceLocation> builder = ImmutableList.builder();
+            ImmutableMap.Builder<String, ResourceLocation> pairBuilder = new ImmutableMap.Builder<>();
 
             //Iterate over all entries to define what they are
             //At least required is a layer if type base for the model to load succesfully.
             //Possible layer types:
-            //    * Temp (Component texture used when the armor is not broken)
+            //    * AddonID (Component texture used when the armor is not broken)
             for (Map.Entry<String, String> entry : textures.entrySet()) {
                 String name = entry.getKey();
 
@@ -54,37 +54,37 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
                 TemperatureBarComponentModel partModel = null;
 
                 try {
-                    if (name.startsWith("temp")) {
+                    if (MedievalAddonRegistry.getInstance().getAddonForMaterialIndependantName(name) != null) {
                         //Standard Layer
                         location = new ResourceLocation(entry.getValue());
                     } else {
                         //Unknown layer, warning and skipping.
-                        Armory.getLogger().warn("HeatedItemModel {} has invalid texture entry {}; Skipping layer.", modelLocation, name);
+                        Armory.getLogger().warn("ArmorComponentModel {} has invalid texture entry {}; Skipping layer.", modelLocation, name);
                         continue;
                     }
                     //If the texture was added to any layer, add it to the list of used textures.
                     if (location != null) {
-                        builder.add(location);
+                        pairBuilder.put(name, location);
                     }
                 } catch (NumberFormatException e) {
-                    Armory.getLogger().error("HeatedItemModel{} has invalid texture entry {}; Skipping layer.", modelLocation, name);
+                    Armory.getLogger().error("ArmorComponentModel{} has invalid texture entry {}; Skipping layer.", modelLocation, name);
                 }
             }
 
-            if (builder.build().size() == 0) {
-                Armory.getLogger().error("A given model definition for the HeatedItems did not contain any gauges.");
+            if (pairBuilder.build().size() == 0) {
+                Armory.getLogger().error("A given model definition for an ArmorComponentModel did not contain any Components.");
                 return ModelLoaderRegistry.getMissingModel();
             }
 
             //Construct the new unbaked model from the collected data.
-            IModel output = new HeatedItemItemModel(builder.build());
+            IModel output = new ArmorComponentModel(pairBuilder.build());
 
             // Load all textures we need in to the creator.
-            MaterializedTextureCreator.registerBaseTexture(builder.build());
+            MaterializedTextureCreator.registerBaseTexture(pairBuilder.build().values());
 
             return output;
         } catch (IOException e) {
-            Armory.getLogger().error("Could not load multimodel {}", modelLocation.toString());
+            Armory.getLogger().error("Could not load ArmorComponentModel {}", modelLocation.toString());
         }
 
         //If all fails return a Missing model.
@@ -92,7 +92,7 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
     }
 
     @Override
-    public void onResourceManagerReload (IResourceManager resourceManager) {
+    public void onResourceManagerReload(IResourceManager resourceManager) {
 
     }
 }

@@ -15,6 +15,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -27,6 +28,7 @@ public class ItemHeatedItem extends Item {
         setMaxStackSize(1);
         setCreativeTab(CreativeTabs.tabCombat);
         setUnlocalizedName(References.InternalNames.Items.ItemHeatedIngot);
+        this.setRegistryName(References.General.MOD_ID, References.InternalNames.Items.ItemHeatedIngot);
     }
 
     public boolean areStacksEqualExceptTemp (ItemStack pFirstStack, ItemStack pSecondStack) {
