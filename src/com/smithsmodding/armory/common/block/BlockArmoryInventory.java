@@ -23,7 +23,7 @@ public abstract class BlockArmoryInventory extends BlockContainer {
         setUnlocalizedName(pBlockName);
         setHardness(5F);
         setResistance(10F);
-        setRegistryName(References.General.MOD_ID, getUnlocalizedName());
+        setRegistryName(References.General.MOD_ID, pBlockName);
     }
 
     @Override
