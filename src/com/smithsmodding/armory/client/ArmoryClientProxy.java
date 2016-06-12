@@ -39,7 +39,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
 
     public static void registerBlockModel(Block block) {
         Item blockItem = Item.getItemFromBlock(block);
-        ModelLoader.setCustomModelResourceLocation(blockItem, 0, new ModelResourceLocation(block.getUnlocalizedName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(blockItem, 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
     }
 
     public static ResourceLocation registerComponentItemModel(ItemArmorComponent item) {
