@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.client.model.item.baked;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MaterialDependentMLAAddon;
@@ -12,19 +13,20 @@ import com.smithsmodding.smithscore.util.common.NBTHelper;
 import com.smithsmodding.smithscore.util.common.Pair;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.IPerspectiveAwareModel;
+import net.minecraftforge.common.model.TRSRTransformation;
 
 import java.util.*;
 
 /**
  * Created by Marc on 06.12.2015.
  */
-public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel {
+public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.PerspectiveAware {
 
     private static final List<List<BakedQuad>> empty_face_quads;
     private static final List<BakedQuad> empty_list;
@@ -38,6 +40,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel {
     }
 
     protected final Overrides overrides;
+    protected final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
     protected Pair<String, BakedSubComponentModel> baseLayer;
     protected HashMap<String, BakedSubComponentModel> parts;
     protected HashMap<String, BakedSubComponentModel> brokenParts;
@@ -46,13 +49,14 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel {
      * The length of brokenParts has to match the length of parts. If a part does not have a broken texture, the entry in
      * the array simply is null.
      */
-    public BakedMultiLayeredArmorItemModel(IBakedModel parent, Pair baseLayer, HashMap parts, HashMap brokenParts) {
-        super(parent);
+    public BakedMultiLayeredArmorItemModel(IBakedModel parent, Pair baseLayer, HashMap parts, HashMap brokenParts, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+        super(parent, transforms);
 
         this.parts = parts;
         this.baseLayer = baseLayer;
         this.brokenParts = brokenParts;
         overrides = new Overrides(this);
+        this.transforms = transforms;
     }
 
     @Override
@@ -115,7 +119,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel {
                 quads.addAll(partModel.getQuads(null, null, 0));
             }
 
-            IBakedModel model = new ItemLayerModel.BakedItemModel(quads.build(), parent.getParticleTexture(), IPerspectiveAwareModel.MapWrapper.getTransforms(parent.getItemCameraTransforms()), parent.getOverrides(), parent);
+            IBakedModel model = new ItemLayerModel.BakedItemModel(quads.build(), parent.getParticleTexture(), parent.transforms, parent.getOverrides(), null);
 
             return model;
         }

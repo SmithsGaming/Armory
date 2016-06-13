@@ -2,6 +2,7 @@ package com.smithsmodding.armory.client.model.item.unbaked;
 
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MaterialDependentMLAAddon;
@@ -10,14 +11,16 @@ import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorIt
 import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorSubComponentModel;
 import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
+import com.smithsmodding.smithscore.util.client.ModelHelper;
 import com.smithsmodding.smithscore.util.common.Pair;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.model.IModelState;
+import net.minecraftforge.common.model.TRSRTransformation;
 
-import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -29,18 +32,20 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
     private final ArmorSubComponentModel baseLayer;
     private final HashMap<String, ArmorSubComponentModel> parts;
     private final HashMap<String, ArmorSubComponentModel> brokenParts;
+    private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
 
-    public MultiLayeredArmorItemModel(MultiLayeredArmor armor, ImmutableList<ResourceLocation> defaultTextures, ArmorSubComponentModel baseLayer, HashMap<String, ArmorSubComponentModel> parts, HashMap<String, ArmorSubComponentModel> brokenPartBlocks) {
+    public MultiLayeredArmorItemModel(MultiLayeredArmor armor, ImmutableList<ResourceLocation> defaultTextures, ArmorSubComponentModel baseLayer, HashMap<String, ArmorSubComponentModel> parts, HashMap<String, ArmorSubComponentModel> brokenPartBlocks, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
         super(defaultTextures);
         this.armor = armor;
         this.baseLayer = baseLayer;
         this.parts = parts;
         this.brokenParts = brokenPartBlocks;
+        this.transforms = transforms;
     }
 
     @Override
-    public Collection<ResourceLocation> getDependencies () {
-        return ImmutableList.of();
+    public IModelState getDefaultState() {
+        return ModelHelper.DEFAULT_ITEM_STATE;
     }
 
     @Override
@@ -76,6 +81,6 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
         }
 
         //Bake the model.
-        return new BakedMultiLayeredArmorItemModel(base, mappedBaseLayer, mappedParts, mappedBrokenParts);
+        return new BakedMultiLayeredArmorItemModel(base, mappedBaseLayer, mappedParts, mappedBrokenParts, transforms);
     }
 }

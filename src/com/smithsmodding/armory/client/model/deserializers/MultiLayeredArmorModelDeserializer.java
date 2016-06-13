@@ -4,6 +4,7 @@ import com.google.common.base.Charsets;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.smithsmodding.armory.client.model.deserializers.definition.MultiLayeredArmorModelDefinition;
+import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
@@ -65,6 +66,6 @@ public class MultiLayeredArmorModelDeserializer implements JsonDeserializer<Mult
         if (json.getAsJsonObject().has("base"))
             baseLocation = new ResourceLocation(json.getAsJsonObject().get("base").getAsString());
 
-        return new MultiLayeredArmorModelDefinition(baseLocation, layersLocations, brokenLocations);
+        return new MultiLayeredArmorModelDefinition(baseLocation, layersLocations, brokenLocations, ModelHelper.TransformDeserializer.INSTANCE.deserialize(json, typeOfT, context));
     }
 }

@@ -71,21 +71,21 @@ Armory.Materials.TConstruct.Manyullun=Manyullun
 Armory.Materials.Common.Bronze=Bronze
 #
 #MultiArmor Tier 1 Upgrades
-item.Armory.MultiArmor.Upgrade.Helmet.Top.name=Head Protector
-item.Armory.MultiArmor.Upgrade.Helmet.RightEar.name=Right ear Protector
-item.Armory.MultiArmor.Upgrade.Helmet.LeftEar.name=Left ear Protector
-item.Armory.MultiArmor.Upgrade.ChestPlate.ShoulderLeft.name=Left shoulder Protector Pad
-item.Armory.MultiArmor.Upgrade.ChestPlate.ShoulderRight.name=Right shoulder Protector Pad
-item.Armory.MultiArmor.Upgrade.ChestPlate.FrontLeft.name=Left stomach Protector
-item.Armory.MultiArmor.Upgrade.ChestPlate.FrontRight.name=Right stomach Protector
-item.Armory.MultiArmor.Upgrade.ChestPlate.BackLeft.name=Left back Protector
-item.Armory.MultiArmor.Upgrade.ChestPlate.BackRight.name=Right back Protector
-item.Armory.MultiArmor.Upgrade.Leggings.FrontLeft.name=Left front leg Protector
-item.Armory.MultiArmor.Upgrade.Leggings.FrontRight.name=Right front leg Protector
-item.Armory.MultiArmor.Upgrade.Leggings.BackLeft.name=Left calf Protector
-item.Armory.MultiArmor.Upgrade.Leggings.BackRight.name=Right calf Protector
-item.Armory.MultiArmor.Upgrade.Shoes.Left.name=Left foot Protector
-item.Armory.MultiArmor.Upgrade.Shoes.Right.name=Right foot Protector
+item.Armory.MultiArmor.Upgrade.Helmet.Top=Head Protector
+item.Armory.MultiArmor.Upgrade.Helmet.RightEar=Right ear Protector
+item.Armory.MultiArmor.Upgrade.Helmet.LeftEar=Left ear Protector
+item.Armory.MultiArmor.Upgrade.ChestPlate.ShoulderLeft=Left shoulder Protector Pad
+item.Armory.MultiArmor.Upgrade.ChestPlate.ShoulderRight=Right shoulder Protector Pad
+item.Armory.MultiArmor.Upgrade.ChestPlate.FrontLeft=Left stomach Protector
+item.Armory.MultiArmor.Upgrade.ChestPlate.FrontRight=Right stomach Protector
+item.Armory.MultiArmor.Upgrade.ChestPlate.BackLeft=Left back Protector
+item.Armory.MultiArmor.Upgrade.ChestPlate.BackRight=Right back Protector
+item.Armory.MultiArmor.Upgrade.Leggings.FrontLeft=Left front leg Protector
+item.Armory.MultiArmor.Upgrade.Leggings.FrontRight=Right front leg Protector
+item.Armory.MultiArmor.Upgrade.Leggings.BackLeft=Left calf Protector
+item.Armory.MultiArmor.Upgrade.Leggings.BackRight=Right calf Protector
+item.Armory.MultiArmor.Upgrade.Shoes.Left=Left foot Protector
+item.Armory.MultiArmor.Upgrade.Shoes.Right=Right foot Protector
 #
 #Commands
 armory.usage=/armory
