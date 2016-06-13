@@ -1,5 +1,5 @@
 {
-  "parent": "builtin/generated",
+  "parent": "item/generated",
   "textures": {
     "Armory.BackLeftChestplate": "armory:items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left",
     "Armory.BackrightChestplate": "armory:items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right",

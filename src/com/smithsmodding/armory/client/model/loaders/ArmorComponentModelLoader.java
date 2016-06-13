@@ -8,11 +8,13 @@ import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
 
@@ -39,6 +41,7 @@ public class ArmorComponentModelLoader implements ICustomModelLoader {
         try {
             //Load the default definition of the model as defined by the registrar first.
             Map<String, String> textures = ModelHelper.loadTexturesFromJson(modelLocation);
+            ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms = ModelHelper.loadTransformFromJson(modelLocation);
 
             //Create the final list builder.
             ImmutableMap.Builder<String, ResourceLocation> pairBuilder = new ImmutableMap.Builder<>();
@@ -77,7 +80,7 @@ public class ArmorComponentModelLoader implements ICustomModelLoader {
             }
 
             //Construct the new unbaked model from the collected data.
-            IModel output = new ArmorComponentModel(pairBuilder.build());
+            IModel output = new ArmorComponentModel(pairBuilder.build(), transforms);
 
             // Load all textures we need in to the creator.
             MaterializedTextureCreator.registerBaseTexture(pairBuilder.build().values());

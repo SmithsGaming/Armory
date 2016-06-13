@@ -6,23 +6,26 @@ import com.smithsmodding.armory.client.model.item.baked.components.BakedSubCompo
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.model.TRSRTransformation;
 
 import java.util.ArrayList;
 
 /**
  * @Author Marc (Created on: 12.06.2016)
  */
-public class BakedArmorComponentModel extends BakedWrappedModel {
+public class BakedArmorComponentModel extends BakedWrappedModel.PerspectiveAware {
 
     private final ImmutableMap<String, BakedSubComponentModel> typeModels;
+
     private final Override overrides;
 
-    public BakedArmorComponentModel(IBakedModel parentModel, ImmutableMap<String, BakedSubComponentModel> typeModels) {
-        super(parentModel);
+    public BakedArmorComponentModel(IBakedModel parentModel, ImmutableMap<String, BakedSubComponentModel> typeModels, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+        super(parentModel, transforms);
         this.typeModels = typeModels;
         overrides = new Override(this);
     }
