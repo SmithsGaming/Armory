@@ -16,8 +16,11 @@ import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.TranslationKeys;
+import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
+import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 
@@ -99,9 +102,17 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
 
             ArmoryClientProxy.registerHeatedItemItemModel(GeneralRegistry.Items.heatedItem);
             ArmoryClientProxy.registerComponentItemModel(GeneralRegistry.Items.armorComponent);
+            ArmoryClientProxy.registerMaterializedItemModel(GeneralRegistry.Items.metalChain);
+            ArmoryClientProxy.registerMaterializedItemModel(GeneralRegistry.Items.metalPlate);
+            ArmoryClientProxy.registerMaterializedItemModel(GeneralRegistry.Items.metalRing);
+            ArmoryClientProxy.registerMaterializedItemModel(GeneralRegistry.Items.metalNugget);
 
             OBJLoader.INSTANCE.addDomain(References.General.MOD_ID.toLowerCase());
             ModelLoader.setCustomModelResourceLocation(GeneralRegistry.Items.guide, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + "armory.Items.SmithingsGuide", "inventory"));
+
+            MultiComponentModelLoader.instance.registerDomain(References.General.MOD_ID);
+            CoreClientProxy.registerMultiComponentItemModel(GeneralRegistry.Items.tongs, new ResourceLocation("armory", "Armory.Resources." + MultiComponentModelLoader.EXTENSION));
+            CoreClientProxy.registerMultiComponentItemModel(GeneralRegistry.Items.hammer, new ResourceLocation("armory", "Armory.Resources." + MultiComponentModelLoader.EXTENSION));
         }
 
 

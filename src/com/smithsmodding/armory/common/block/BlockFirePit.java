@@ -69,7 +69,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
 
     public BlockFirePit () {
         super(References.InternalNames.Blocks.FirePit, Material.iron);
-        setCreativeTab(GeneralRegistry.CreativeTabs.blocksTab);
+        setCreativeTab(GeneralRegistry.CreativeTabs.generalTab);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BURNING, false).withProperty(ISMASTER, false));
     }
 

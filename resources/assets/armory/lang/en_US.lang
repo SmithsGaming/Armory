@@ -1,6 +1,6 @@
 #Creative tabs
 Armory.Tabs.Components=Armory - Components
-Armory.Tabs.Blocks=Armory - Blocks
+Armory.Tabs.General=Armory - General
 Armory.Tabs.Armor=Armory - Creative Armor sets
 Armory.Tabs.HeatedItem=Armory - Heatable items
 #
@@ -50,8 +50,8 @@ item.Armory.Leggings.Medieval.name=Medieval Leggings
 item.Armory.Shoes.Medieval.name=Medieval Shoes
 item.Armory.Items.ItemHammer.name=Smith's Hammer
 item.Armory.Items.Tongs.name=Smith's Tongs
-item.Armory.Items.Nugget.name=Nugget
-item.Armory.Items.Plate.name=Plate
+item.Armory.Items.Components.MetalNugget.name=Nugget
+item.Armory.Items.Components.MetalPlate.name=Plate
 item.Armory.Items.SmithingsGuide.name=Smithing's Guide
 item.Armory.Items.Blueprint.name=Blacksmiths's Blueprint
 item.Armory.Items.Tab.name=Guide label

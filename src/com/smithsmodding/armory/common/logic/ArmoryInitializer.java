@@ -20,9 +20,7 @@ import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
 import com.smithsmodding.armory.common.block.BlockFirePit;
 import com.smithsmodding.armory.common.block.BlockFirePlace;
 import com.smithsmodding.armory.common.fluid.FluidMoltenMetal;
-import com.smithsmodding.armory.common.item.ItemArmorComponent;
-import com.smithsmodding.armory.common.item.ItemHeatedItem;
-import com.smithsmodding.armory.common.item.ItemSmithingsGuide;
+import com.smithsmodding.armory.common.item.*;
 import com.smithsmodding.armory.common.item.armor.tiermedieval.ArmorMedieval;
 import com.smithsmodding.armory.common.item.block.ItemBlockBlackSmithsAnvil;
 import com.smithsmodding.armory.common.material.ArmorMaterial;
@@ -412,12 +410,24 @@ public class ArmoryInitializer {
             GeneralRegistry.Items.heatedItem = new ItemHeatedItem();
             GeneralRegistry.Items.guide = new ItemSmithingsGuide();
             GeneralRegistry.Items.armorComponent = new ItemArmorComponent();
+            GeneralRegistry.Items.tongs = new ItemTongs();
+            GeneralRegistry.Items.hammer = new ItemHammer();
+            GeneralRegistry.Items.metalRing = new ItemMetalRing();
+            GeneralRegistry.Items.metalChain = new ItemMetalChain();
+            GeneralRegistry.Items.metalNugget = new ItemNugget();
+            GeneralRegistry.Items.metalPlate = new ItemPlate();
 
             MaterialRegistry.getInstance().getAllRegisteredArmors().values().forEach(GameRegistry::register);
 
             GameRegistry.register(GeneralRegistry.Items.heatedItem);
             GameRegistry.register(GeneralRegistry.Items.guide);
             GameRegistry.register(GeneralRegistry.Items.armorComponent);
+            GameRegistry.register(GeneralRegistry.Items.tongs);
+            GameRegistry.register(GeneralRegistry.Items.hammer);
+            GameRegistry.register(GeneralRegistry.Items.metalRing);
+            GameRegistry.register(GeneralRegistry.Items.metalChain);
+            GameRegistry.register(GeneralRegistry.Items.metalNugget);
+            GameRegistry.register(GeneralRegistry.Items.metalPlate);
         }
 
         public static void RegisterFluids () {

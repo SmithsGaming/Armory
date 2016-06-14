@@ -141,8 +141,8 @@ public class Textures {
     }
 
     public static class Blocks {
-        public static final CustomResource LiquidMetalFlow = new CustomResource("Armory.Blocks.LiquidMetal.Flow", "armory:blocks/LiquidMetal/flow");
-        public static final CustomResource LiquidMetalStill = new CustomResource("Armory.Blocks.LiquidMetal.Still", "armory:blocks/LiquidMetal/still");
+        public static final CustomResource LiquidMetalFlow = new CustomResource("Armory.General.LiquidMetal.Flow", "armory:blocks/LiquidMetal/flow");
+        public static final CustomResource LiquidMetalStill = new CustomResource("Armory.General.LiquidMetal.Still", "armory:blocks/LiquidMetal/still");
     }
 
 }
