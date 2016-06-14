@@ -5,6 +5,7 @@ import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MaterialDependentMLAAddon;
 import com.smithsmodding.armory.api.item.ISingleMaterialItem;
 import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.util.References;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -20,7 +21,7 @@ public class ItemArmorComponent extends Item implements ISingleMaterialItem, ISi
 
     public ItemArmorComponent() {
         this.setMaxStackSize(1);
-        this.setCreativeTab(CreativeTabs.tabCombat);
+        this.setCreativeTab(GeneralRegistry.CreativeTabs.componentsTab);
         this.setUnlocalizedName(References.InternalNames.Items.ItemArmorComponent);
         this.setRegistryName(References.General.MOD_ID, References.InternalNames.Items.ItemArmorComponent);
     }

@@ -1,8 +1,8 @@
 #Creative tabs
 Armory.Tabs.Components=Armory - Components
-Armory.Tabs.Blueprint=Armory - Blueprints
-Armory.Tabs.Medieval=Armory - Medieval armor
-Armory.Tabs.Medieval.Upgrade=Armory - Medieval upgrades
+Armory.Tabs.Blocks=Armory - Blocks
+Armory.Tabs.Armor=Armory - Creative Armor sets
+Armory.Tabs.HeatedItem=Armory - Heatable items
 #
 #General GUI Elements
 Armory.GUI.InfoTitel=Information

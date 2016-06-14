@@ -1,12 +1,12 @@
 package com.smithsmodding.armory.common.block;
 
 import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import com.smithsmodding.armory.util.References;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -24,7 +24,7 @@ public class BlockFirePlace extends BlockArmoryInventory {
 
     public BlockFirePlace() {
         super(References.InternalNames.Blocks.Fireplace, Material.rock);
-        setCreativeTab(CreativeTabs.tabCombat);
+        setCreativeTab(GeneralRegistry.CreativeTabs.blocksTab);
         this.setDefaultState(this.blockState.getBaseState());
     }
 

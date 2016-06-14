@@ -12,10 +12,10 @@ import com.smithsmodding.armory.util.References;
 public class TranslationKeys {
 
     public static final class CreativeTabs {
-        public static final String Blueprint = "Armory.Tabs.Blueprint";
+        public static final String Blocks = "Armory.Tabs.Blocks";
         public static final String Components = "Armory.Tabs.Components";
-        public static final String Medieval = "Armory.Tabs.Medieval";
-        public static final String MedievalUpgrade = "Armory.Tabs.Medieval.Upgrade";
+        public static final String Armor = "Armory.Tabs.Armor";
+        public static final String HeatedItems = "Armory.Tabs.HeatedItem";
     }
 
     public static final class Messages {
