@@ -31,7 +31,7 @@ public class ArmorUpgradeMedieval extends MaterialDependentMLAAddon {
     @Override
     public String getDisplayName() {
         IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(materialInternalName);
-        return material.getNameColor() + I18n.translateToLocal(material.getTranslationKey()) + getVisibleNameColor() + " " + I18n.translateToLocal(getVisibleName()) + TextFormatting.RESET;
+        return material.getNameColor() + I18n.translateToLocal(material.getTranslationKey()) + getVisibleNameColor() + I18n.translateToLocal(getVisibleName()) + TextFormatting.RESET;
     }
 
     @Override

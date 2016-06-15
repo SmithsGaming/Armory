@@ -100,10 +100,6 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      */
     public void createMaterialTextures (TextureMap map) {
         for (ResourceLocation baseTexture : baseTextures) {
-            //NO Reason doing something twice!
-            if (buildSprites.containsKey(baseTexture.toString()))
-                continue;
-
             if (baseTexture.toString().equals("minecraft:missingno")) {
                 //A missing texture does not need coloring. Skipping.
                 continue;
