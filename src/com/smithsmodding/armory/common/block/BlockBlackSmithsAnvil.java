@@ -25,7 +25,6 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.obj.OBJModel;
@@ -116,19 +115,6 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
 
         worldIn.getTileEntity(pos).markDirty();
-    }
-
-    @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        state = getExtendedState(state, world, pos);
-
-        ItemStack stack = new ItemStack(Item.getItemFromBlock(state.getBlock()));
-        NBTTagCompound compound = new NBTTagCompound();
-
-        compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, ((IExtendedBlockState) state).getValue(PROPERTY_ANVIL_MATERIAL));
-        stack.setTagCompound(compound);
-
-        return stack;
     }
 
     /**
