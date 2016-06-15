@@ -9,9 +9,9 @@ import net.minecraft.util.text.translation.I18n;
 /**
  * @Author Marc (Created on: 14.06.2016)
  */
-public class GeneralTabs extends CreativeTabs {
-    public GeneralTabs() {
-        super(I18n.translateToLocal(TranslationKeys.CreativeTabs.General));
+public class BlocksTab extends CreativeTabs {
+    public BlocksTab() {
+        super(I18n.translateToLocal(TranslationKeys.CreativeTabs.Blocks));
     }
 
     @Override

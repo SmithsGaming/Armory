@@ -3,7 +3,10 @@ package com.smithsmodding.armory.client;
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
 import com.smithsmodding.armory.client.logic.ArmoryClientInitializer;
-import com.smithsmodding.armory.client.model.loaders.*;
+import com.smithsmodding.armory.client.model.loaders.AnvilModelLoader;
+import com.smithsmodding.armory.client.model.loaders.ArmorComponentModelLoader;
+import com.smithsmodding.armory.client.model.loaders.HeatedItemModelLoader;
+import com.smithsmodding.armory.client.model.loaders.MultiLayeredArmorModelLoader;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.ArmoryCommonProxy;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
@@ -33,22 +36,10 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
     private static MultiLayeredArmorModelLoader multiLayeredArmorModelLoader = new MultiLayeredArmorModelLoader();
     private static HeatedItemModelLoader heatedItemModelLoader = new HeatedItemModelLoader();
     private static AnvilModelLoader anvilBlockModelLoader = new AnvilModelLoader();
-    private static MaterializedItemModelLoader materializedItemModelLoader = new MaterializedItemModelLoader();
 
     public static void registerBlockModel(Block block) {
         Item blockItem = Item.getItemFromBlock(block);
         ModelLoader.setCustomModelResourceLocation(blockItem, 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
-    }
-
-    public static ResourceLocation registerMaterializedItemModel(Item item) {
-        ResourceLocation itemLocation = ResourceHelper.getItemLocation(item);
-        if (itemLocation == null) {
-            return null;
-        }
-
-        String path = "materialized/" + itemLocation.getResourcePath() + MaterializedItemModelLoader.EXTENSION;
-
-        return registerMaterializedItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
     }
 
     public static ResourceLocation registerComponentItemModel(ItemArmorComponent item) {
@@ -84,19 +75,9 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         return registerHeatedItemItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
     }
 
-    public static ResourceLocation registerMaterializedItemModel(Item item, final ResourceLocation location) {
-        if (!location.getResourcePath().endsWith(MaterializedItemModelLoader.EXTENSION)) {
-            Armory.getLogger().error("The materialized-model " + location.toString() + " does not end with '"
-                    + MaterializedItemModelLoader.EXTENSION
-                    + "' and will therefore not be loaded by the custom model loader!");
-        }
-
-        return registerItemModelDefinition(item, location, MaterializedItemModelLoader.EXTENSION);
-    }
-
     public static ResourceLocation registerComponentItemModel(ItemArmorComponent item, final ResourceLocation location) {
         if (!location.getResourcePath().endsWith(ArmorComponentModelLoader.EXTENSION)) {
-            Armory.getLogger().error("The component-model " + location.toString() + " does not end with '"
+            Armory.getLogger().error("The material-model " + location.toString() + " does not end with '"
                     + ArmorComponentModelLoader.EXTENSION
                     + "' and will therefore not be loaded by the custom model loader!");
         }
@@ -106,7 +87,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
 
     public static ResourceLocation registerArmorItemModel(MultiLayeredArmor item, final ResourceLocation location) {
         if (!location.getResourcePath().endsWith(MultiLayeredArmorModelLoader.EXTENSION)) {
-            Armory.getLogger().error("The armor-model " + location.toString() + " does not end with '"
+            Armory.getLogger().error("The material-model " + location.toString() + " does not end with '"
                     + MultiLayeredArmorModelLoader.EXTENSION
                     + "' and will therefore not be loaded by the custom model loader!");
         }
@@ -116,7 +97,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
 
     public static ResourceLocation registerHeatedItemItemModel(ItemHeatedItem item, final ResourceLocation location) {
         if (!location.getResourcePath().endsWith(HeatedItemModelLoader.EXTENSION)) {
-            Armory.getLogger().error("The heated-model " + location.toString() + " does not end with '"
+            Armory.getLogger().error("The material-model " + location.toString() + " does not end with '"
                     + HeatedItemModelLoader.EXTENSION
                     + "' and will therefore not be loaded by the custom model loader!");
         }
@@ -152,7 +133,6 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         ModelLoaderRegistry.registerLoader(heatedItemModelLoader);
         ModelLoaderRegistry.registerLoader(anvilBlockModelLoader);
         ModelLoaderRegistry.registerLoader(armorComponentModelLoader);
-        ModelLoaderRegistry.registerLoader(materializedItemModelLoader);
 
         MaterializedTextureCreator materializedTextureCreator = new MaterializedTextureCreator();
         MinecraftForge.EVENT_BUS.register(materializedTextureCreator);

@@ -24,7 +24,7 @@ public class BlockFirePlace extends BlockArmoryInventory {
 
     public BlockFirePlace() {
         super(References.InternalNames.Blocks.Fireplace, Material.rock);
-        setCreativeTab(GeneralRegistry.CreativeTabs.generalTab);
+        setCreativeTab(GeneralRegistry.CreativeTabs.blocksTab);
         this.setDefaultState(this.blockState.getBaseState());
     }
 

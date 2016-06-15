@@ -188,19 +188,24 @@ public class References {
         public static final class Items {
             public static final String ItemMetalRing = "Armory.Items.Components.MetalRing";
             public static final String ItemMetalChain = "Armory.Items.Components.MetalChain";
-            public static final String ItemMetalNugget = "Armory.Items.Components.MetalNugget";
-            public static final String ItemMetalPlate = "Armory.Items.Components.MetalPlate";
             public static final String ItemHeatedIngot = "Armory.Items.Components.HeatedIngots";
+            public static final String ItemFan = "Armory.Items.HeatedFan";
             public static final String ItemHammer = "Armory.Items.ItemHammer";
             public static final String ItemTongs = "Armory.Items.Tongs";
+            public static final String ItemNugget = "Armory.Items.Nugget";
+            public static final String ItemPlate = "Armory.Items.Plate";
+            public static final String ItemMedievalUpdrade = "Armory.Items.Armor.Upgrade";
             public static final String ItemSmithingsGuide = "Armory.Items.SmithingsGuide";
             public static final String ItemArmorComponent = "Armory.Items.ArmorComponent";
+            public static final String ItemBlueprint = "Armory.Items.Blueprint";
+            public static final String ItemGuideLabel = "Armory.Items.Tab";
         }
 
         public static final class Blocks {
             public static final String FirePit = "Armory.Blocks.FirePit";
             public static final String Fireplace = "Armory.Blocks.Fireplace";
             public static final String ArmorsAnvil = "Armory.Blocks.Anvil";
+            public static final String BookBinder = "Armory.Blocks.Binder";
         }
 
         public static final class TileEntities {
@@ -559,9 +564,6 @@ public class References {
             public class Anvil {
                 public static final String CRAFTINGPROGRESS = "CraftingProgress";
                 public static final String MATERIAL = "Material";
-                public static final String ITEMNAME = "ItemName";
-                public static final String PROCESSING = "Processing";
-                public static final String RECIPE = "Recipe";
             }
 
             public class BookBinder {

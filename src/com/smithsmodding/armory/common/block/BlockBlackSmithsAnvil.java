@@ -51,7 +51,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
 
     public BlockBlackSmithsAnvil () {
         super(References.InternalNames.Blocks.ArmorsAnvil, Material.anvil);
-        setCreativeTab(GeneralRegistry.CreativeTabs.generalTab);
+        setCreativeTab(GeneralRegistry.CreativeTabs.blocksTab);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 

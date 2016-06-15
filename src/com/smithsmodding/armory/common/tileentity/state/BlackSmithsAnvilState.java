@@ -1,26 +1,21 @@
 package com.smithsmodding.armory.common.tileentity.state;
 
-import com.smithsmodding.armory.api.materials.IAnvilMaterial;
-import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
-import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
-import com.smithsmodding.armory.util.References;
-import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
-import com.smithsmodding.smithscore.common.tileentity.state.ITileEntityState;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.common.registry.*;
+import com.smithsmodding.armory.common.tileentity.*;
+import com.smithsmodding.armory.util.*;
+import com.smithsmodding.smithscore.common.tileentity.*;
+import com.smithsmodding.smithscore.common.tileentity.state.*;
+import net.minecraft.nbt.*;
 
 /**
  * Created by Marc on 14.02.2016.
  */
 public class BlackSmithsAnvilState implements ITileEntityState {
 
-    private float craftingprogress;
-    private IAnvilMaterial material;
-    private TileEntityBlackSmithsAnvil anvil;
-    private String recipeId;
-
-    private String itemName = "";
-    private boolean processingCraftingResult = false;
+    float craftingprogress;
+    IAnvilMaterial material;
+    TileEntityBlackSmithsAnvil anvil;
 
     /**
      * Method called when this state get attached to a TE. Allows it to store a reference or modify values of the TE.
@@ -71,17 +66,11 @@ public class BlackSmithsAnvilState implements ITileEntityState {
         try{
             this.material = AnvilMaterialRegistry.getInstance().getAnvilMaterial(((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL));
             this.craftingprogress = ((NBTTagCompound) stateData).getFloat(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS);
-            this.itemName = ((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.ITEMNAME);
-            this.processingCraftingResult = ((NBTTagCompound) stateData).getBoolean(References.NBTTagCompoundData.TE.Anvil.PROCESSING);
-            this.recipeId = ((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.RECIPE);
         }
         catch (Exception ex)
         {
             this.material = AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.IRON);
             this.craftingprogress = 0F;
-            this.itemName = "";
-            this.processingCraftingResult = false;
-            this.recipeId = "";
         }
     }
 
@@ -96,9 +85,6 @@ public class BlackSmithsAnvilState implements ITileEntityState {
 
         compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, material.getID());
         compound.setFloat(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS, craftingprogress);
-        compound.setString(References.NBTTagCompoundData.TE.Anvil.ITEMNAME, itemName);
-        compound.setBoolean(References.NBTTagCompoundData.TE.Anvil.PROCESSING, processingCraftingResult);
-        compound.setString(References.NBTTagCompoundData.TE.Anvil.RECIPE, recipeId);
 
         return compound;
     }
@@ -154,30 +140,5 @@ public class BlackSmithsAnvilState implements ITileEntityState {
         this.craftingprogress = craftingprogress;
     }
 
-    public String getItemName() {
-        return itemName;
-    }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public boolean isProcessingCraftingResult() {
-        return processingCraftingResult;
-    }
-
-    public void setProcessingCraftingResult(boolean processingCraftingResult) {
-        this.processingCraftingResult = processingCraftingResult;
-    }
-
-    public String getRecipeId() {
-        return recipeId;
-    }
-
-    public void setRecipeId(String recipeId) {
-        if (recipeId == null)
-            recipeId = "";
-
-        this.recipeId = recipeId;
-    }
 }

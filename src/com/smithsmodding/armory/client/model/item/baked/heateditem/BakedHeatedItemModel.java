@@ -77,7 +77,6 @@ public class BakedHeatedItemModel extends BakedWrappedModel {
 
             ItemStack cooledStack = HeatedItemFactory.getInstance().convertToCooledIngot(stack);
             IBakedModel original = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(cooledStack);
-            original = original.getOverrides().handleItemState(original, cooledStack, world, entity);
 
             ItemHeatedItem item = (ItemHeatedItem) stack.getItem();
             int barIndex = (int) (item.getDurabilityForDisplay(stack) * (parent.gaugeDisplay.getModelCount() - 1));

@@ -1,8 +1,0 @@
-{
-  "parent": "item/generated",
-  "components": {
-    "default": "minecraft:items/egg",
-    "Armory.Items.Tongs": "armory:items/basic/16x Tongs",
-    "Armory.Items.ItemHammer": "armory:items/basic/16x Work Hammer"
-  }
-}
