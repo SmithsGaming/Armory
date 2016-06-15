@@ -7,11 +7,12 @@ package com.smithsmodding.armory.common.material;
 
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.api.materials.IMaterialRenderInfo;
+import com.smithsmodding.armory.api.materials.MaterialRenderControllers;
 import com.smithsmodding.armory.api.registries.IArmorPartRegistry;
 import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.util.References;
+import com.smithsmodding.smithscore.client.textures.ITextureController;
 import com.smithsmodding.smithscore.util.client.color.ColorSampler;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.item.ItemStack;
@@ -37,7 +38,7 @@ public class ArmorMaterial implements IArmorMaterial {
     private float heatCoefficient;
     private ItemStack baseStack;
 
-    private IMaterialRenderInfo renderInfo;
+    private ITextureController renderInfo;
     private String translationKey;
 
 
@@ -49,9 +50,9 @@ public class ArmorMaterial implements IArmorMaterial {
         if (Armory.side == Side.CLIENT && baseStack != null) {
             MinecraftColor metalColor = ColorSampler.getColorSampleFromItemStack(baseStack);
 
-            renderInfo = new IMaterialRenderInfo.Metal(metalColor.getRGB());
+            renderInfo = new MaterialRenderControllers.Metal(metalColor.getRGB());
         } else if (Armory.side == Side.CLIENT) {
-            renderInfo = new IMaterialRenderInfo.Metal(MinecraftColor.WHITE.getRGB());
+            renderInfo = new MaterialRenderControllers.Metal(MinecraftColor.WHITE.getRGB());
         }
 
         this.isBaseMaterial = isBaseMaterial;
@@ -172,12 +173,12 @@ public class ArmorMaterial implements IArmorMaterial {
 
 
     @Override
-    public IMaterialRenderInfo getRenderInfo () {
+    public ITextureController getRenderInfo() {
         return renderInfo;
     }
 
     @Override
-    public IArmorMaterial setRenderInfo (IMaterialRenderInfo newInfo) {
+    public IArmorMaterial setRenderInfo(ITextureController newInfo) {
         renderInfo = newInfo;
         return this;
     }

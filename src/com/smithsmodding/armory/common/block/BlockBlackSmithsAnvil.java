@@ -5,6 +5,7 @@ import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.materials.IAnvilMaterial;
 import com.smithsmodding.armory.common.block.properties.PropertyAnvilMaterial;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.armory.common.tileentity.state.BlackSmithsAnvilState;
 import com.smithsmodding.armory.util.References;
@@ -21,9 +22,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.obj.OBJModel;
@@ -48,13 +51,18 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
 
     public BlockBlackSmithsAnvil () {
         super(References.InternalNames.Blocks.ArmorsAnvil, Material.anvil);
-        setCreativeTab(CreativeTabs.tabCombat);
+        setCreativeTab(GeneralRegistry.CreativeTabs.generalTab);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityBlackSmithsAnvil();
+    }
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
     }
 
     @Override
@@ -109,6 +117,19 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
 
         worldIn.getTileEntity(pos).markDirty();
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+        state = getExtendedState(state, world, pos);
+
+        ItemStack stack = new ItemStack(Item.getItemFromBlock(state.getBlock()));
+        NBTTagCompound compound = new NBTTagCompound();
+
+        compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, ((IExtendedBlockState) state).getValue(PROPERTY_ANVIL_MATERIAL));
+        stack.setTagCompound(compound);
+
+        return stack;
     }
 
     /**

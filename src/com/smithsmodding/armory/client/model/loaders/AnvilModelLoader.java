@@ -17,7 +17,6 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.IRetexturableModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.fml.common.Loader;
@@ -74,7 +73,7 @@ public class AnvilModelLoader implements ICustomModelLoader {
                         builder.put("#Bottom", modelDefinition.textureBottomPaths.get(material.getID()));
 
 
-                    model.registerNewMaterializedModel(((IRetexturableModel<OBJModel>) objModel).retexture(builder.build()), material.getID());
+                    model.registerNewMaterializedModel(((OBJModel) objModel).retexture(builder.build()), material.getID());
                 }
                 else
                 {
@@ -95,7 +94,7 @@ public class AnvilModelLoader implements ICustomModelLoader {
             }
 
             return model;
-        } catch (IOException e) {
+        } catch (Exception e) {
             Armory.getLogger().error("Could not load Anvil-Model {}", modelLocation.toString());
         }
 

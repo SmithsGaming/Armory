@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.api.materials;
 
+import com.smithsmodding.smithscore.client.textures.ITextureController;
 import net.minecraft.util.text.TextFormatting;
 
 /**
@@ -15,7 +16,7 @@ public interface IAnvilMaterial
 
     TextFormatting translatedDisplayNameColor();
 
-    IMaterialRenderInfo getRenderInfo();
+    ITextureController getRenderInfo();
 
-    void setRenderInfo(IMaterialRenderInfo info);
+    void setRenderInfo(ITextureController info);
 }

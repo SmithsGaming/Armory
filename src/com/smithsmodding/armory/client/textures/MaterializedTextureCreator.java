@@ -1,19 +1,28 @@
 package com.smithsmodding.armory.client.textures;
 
-import com.google.common.collect.*;
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.api.textures.*;
-import com.smithsmodding.armory.*;
-import com.smithsmodding.armory.common.material.*;
-import com.smithsmodding.smithscore.util.client.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.client.resources.*;
-import net.minecraft.util.*;
-import net.minecraftforge.client.event.*;
-import net.minecraftforge.fml.common.*;
-import net.minecraftforge.fml.common.eventhandler.*;
+import com.google.common.collect.Maps;
+import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.materials.MaterialRenderControllers;
+import com.smithsmodding.armory.api.textures.GuiOutlineTexture;
+import com.smithsmodding.armory.common.material.ArmorMaterial;
+import com.smithsmodding.armory.common.material.MaterialRegistry;
+import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
+import com.smithsmodding.smithscore.util.client.ResourceHelper;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.client.resources.IResourceManagerReloadListener;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.LoaderState;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * Created by Marc on 06.12.2015.
@@ -32,7 +41,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     //Initializes the dummy gui material with a proper set of render info.
     static {
         guiMaterial = new ArmorMaterial("_internal_gui", "Internal-gui", false, 0F, -1, 0F, null);
-        guiMaterial.setRenderInfo(new IMaterialRenderInfo.AbstractMaterialRenderInfo() {
+        guiMaterial.setRenderInfo(new MaterialRenderControllers.AbstractMaterialTextureController() {
             @Override
             public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {
                 return new GuiOutlineTexture(baseTexture, location);
@@ -81,7 +90,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
         }
 
         //Function is called so that all textures can be created.
-        createMaterialTextures(event.map);
+        createMaterialTextures(event.getMap());
     }
 
     /**
@@ -91,6 +100,10 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      */
     public void createMaterialTextures (TextureMap map) {
         for (ResourceLocation baseTexture : baseTextures) {
+            //NO Reason doing something twice!
+            if (buildSprites.containsKey(baseTexture.toString()))
+                continue;
+
             if (baseTexture.toString().equals("minecraft:missingno")) {
                 //A missing texture does not need coloring. Skipping.
                 continue;
@@ -170,9 +183,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     @Override
     public void onResourceManagerReload (IResourceManager resourceManager) {
         baseTextures.clear();
-        for (Map map : buildSprites.values()) {
-            map.clear();
-        }
+        buildSprites.values().forEach(Map::clear);
         buildSprites.clear();
     }
 }

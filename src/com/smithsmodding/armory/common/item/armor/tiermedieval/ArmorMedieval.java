@@ -14,14 +14,18 @@ import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
 import com.smithsmodding.armory.common.material.ChainLayer;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -32,13 +36,13 @@ import java.util.List;
 
 public class ArmorMedieval extends MultiLayeredArmor {
 
-    public ArmorMedieval(String pInternalName, int pArmorPart) {
-        super(pInternalName, 1, pArmorPart);
+    public ArmorMedieval(String pInternalName, EntityEquipmentSlot slotPart) {
+        super(pInternalName, 1, slotPart);
         this.setUnlocalizedName(pInternalName);
         this.setMaxStackSize(1);
         this.uniqueID = pInternalName;
-        this.armorIndex = pArmorPart;
-        this.setCreativeTab(CreativeTabs.tabCombat);
+        this.setCreativeTab(GeneralRegistry.CreativeTabs.armorTab);
+        this.setRegistryName(References.General.MOD_ID, pInternalName);
     }
 
     //Functions for ISpecialArmor. TODO: Needs to be implemented.
@@ -48,7 +52,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
         float tDamageRatio = tBaseMaterial.getBaseDamageAbsorption(this.getUniqueID());
 
         for (ArmorUpgradeMedieval tUpgrade : ArmorNBTHelper.getInstalledArmorMedievalUpgradesOnItemStack(pStack).keySet()) {
-            tDamageRatio += tUpgrade.iProtection;
+            tDamageRatio += tUpgrade.getProtection();
         }
 
         return new ISpecialArmor.ArmorProperties(0, tDamageRatio, (int) (2 * tDamageRatio));
@@ -60,7 +64,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
         float tDamageRatio = tBaseMaterial.getBaseDamageAbsorption(this.getUniqueID());
 
         for (ArmorUpgradeMedieval tUpgrade : ArmorNBTHelper.getInstalledArmorMedievalUpgradesOnItemStack(pStack).keySet()) {
-            tDamageRatio += tUpgrade.iProtection;
+            tDamageRatio += tUpgrade.getProtection();
         }
 
         return (int) tDamageRatio;

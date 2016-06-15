@@ -7,6 +7,7 @@ import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentProgressBar;
 import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIManager;
 import com.smithsmodding.smithscore.util.client.TranslationKeys;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.text.DecimalFormat;

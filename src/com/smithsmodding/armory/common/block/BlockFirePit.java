@@ -27,13 +27,13 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -69,7 +69,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
 
     public BlockFirePit () {
         super(References.InternalNames.Blocks.FirePit, Material.iron);
-        setCreativeTab(CreativeTabs.tabCombat);
+        setCreativeTab(GeneralRegistry.CreativeTabs.generalTab);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BURNING, false).withProperty(ISMASTER, false));
     }
 
@@ -127,6 +127,11 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
                 worldIn.markChunkDirty(pos, tTE);
             }
         }
+    }
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
     }
 
     @Override

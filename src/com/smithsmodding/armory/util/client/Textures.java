@@ -1,11 +1,13 @@
 package com.smithsmodding.armory.util.client;
 
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.smithscore.util.client.*;
-import net.minecraft.util.*;
-import net.minecraftforge.client.event.*;
-import net.minecraftforge.fml.common.*;
-import net.minecraftforge.fml.common.eventhandler.*;
+import com.smithsmodding.armory.util.References;
+import com.smithsmodding.smithscore.util.client.CustomResource;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.LoaderState;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * Created by Marc on 06.12.2015.
@@ -25,9 +27,9 @@ public class Textures {
             return;
         }
 
-        Gui.FirePit.THERMOMETERICON.addIcon(event.map.registerSprite(new ResourceLocation(Gui.FirePit.THERMOMETERICON.getPrimaryLocation())));
-        Blocks.LiquidMetalFlow.addIcon(event.map.registerSprite(new ResourceLocation(Blocks.LiquidMetalFlow.getPrimaryLocation())));
-        Blocks.LiquidMetalStill.addIcon(event.map.registerSprite(new ResourceLocation(Blocks.LiquidMetalStill.getPrimaryLocation())));
+        Gui.FirePit.THERMOMETERICON.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.FirePit.THERMOMETERICON.getPrimaryLocation())));
+        Blocks.LiquidMetalFlow.addIcon(event.getMap().registerSprite(new ResourceLocation(Blocks.LiquidMetalFlow.getPrimaryLocation())));
+        Blocks.LiquidMetalStill.addIcon(event.getMap().registerSprite(new ResourceLocation(Blocks.LiquidMetalStill.getPrimaryLocation())));
     }
 
     public static class MultiArmor {
@@ -139,8 +141,8 @@ public class Textures {
     }
 
     public static class Blocks {
-        public static final CustomResource LiquidMetalFlow = new CustomResource("Armory.Blocks.LiquidMetal.Flow", "armory:blocks/LiquidMetal/flow");
-        public static final CustomResource LiquidMetalStill = new CustomResource("Armory.Blocks.LiquidMetal.Still", "armory:blocks/LiquidMetal/still");
+        public static final CustomResource LiquidMetalFlow = new CustomResource("Armory.General.LiquidMetal.Flow", "armory:blocks/LiquidMetal/flow");
+        public static final CustomResource LiquidMetalStill = new CustomResource("Armory.General.LiquidMetal.Still", "armory:blocks/LiquidMetal/still");
     }
 
 }

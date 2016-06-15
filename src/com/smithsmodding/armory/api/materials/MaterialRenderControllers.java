@@ -1,11 +1,13 @@
 package com.smithsmodding.armory.api.materials;
 
 import com.smithsmodding.armory.api.textures.*;
-import com.smithsmodding.smithscore.util.client.color.*;
-import net.minecraft.block.*;
-import net.minecraft.client.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraftforge.fml.relauncher.*;
+import com.smithsmodding.smithscore.client.textures.ITextureController;
+import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /*
   A BIG NOTE UPFRONT. Due to the similarities between TiC ToolSystem and Armories armor system this is a near repackage.
@@ -17,66 +19,14 @@ import net.minecraftforge.fml.relauncher.*;
  * Determines the type of texture used for rendering a specific material
  */
 @SideOnly(Side.CLIENT)
-public interface IMaterialRenderInfo {
-
-    /**
-     * Function to get teh Texture based of the baseTexture and the location.
-     * Loads the location and generates a Sprite.
-     *
-     * @param baseTexture The base texture.
-     * @param location    The location of the new texture.
-     * @return A modified verion of the base texture.
-     */
-    TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location);
-
-    /**
-     * Indicates if the texture has been stitched or not. The Texture creator will stitch it if false is returned.
-     *
-     * @return True when the texture is already stitched.
-     */
-    boolean isStitched ();
-
-    /**
-     * Indicates if vertex coloring is used during the creation of the modified texture´.
-     *
-     * @return True when VertexColoring is used, false when not.
-     */
-    boolean useVertexColoring ();
-
-    /**
-     * The color in which the material should be rendered.
-     *
-     * @return A MinecraftColor instance that shows which color the material has.
-     */
-    MinecraftColor getVertexColor ();
-
-    /**
-     * Method used by the rendering system to get the Vertex color for liquids.
-     *
-     * @return The color for the molten metal if armories default system should be used.
-     */
-    MinecraftColor getLiquidColor ();
-
-    /**
-     * A special suffix for the texture.
-     *
-     * @return "" When no suffix exists or a suffix.
-     */
-    String getTextureSuffix ();
-
-    /**
-     * Function used to set the suffix. Returns the instance the method was called on.
-     *
-     * @param suffix The new Suffix.
-     * @return The instance this method was called on, used for method chaining.
-     */
-    IMaterialRenderInfo setTextureSuffix (String suffix);
+public class MaterialRenderControllers {
 
     /**
      * Abstract core implementation of the RenderInfo.
      */
-    abstract class AbstractMaterialRenderInfo implements IMaterialRenderInfo {
+    public static abstract class AbstractMaterialTextureController implements ITextureController {
         private String suffix;
+        private String identifier;
 
         @Override
         public boolean isStitched () {
@@ -109,8 +59,19 @@ public interface IMaterialRenderInfo {
         }
 
         @Override
-        public IMaterialRenderInfo setTextureSuffix (String suffix) {
+        public ITextureController setTextureSuffix(String suffix) {
             this.suffix = suffix;
+            return this;
+        }
+
+        @Override
+        public String getCreationIdentifier() {
+            return identifier;
+        }
+
+        @Override
+        public ITextureController setCreationIdentifier(String identifier) {
+            this.identifier = identifier;
             return this;
         }
     }
@@ -119,7 +80,7 @@ public interface IMaterialRenderInfo {
      * Does not actually generate a new texture. Used for vertex-coloring in the model generation
      * Safes VRAM, so we use vertex colors instead of creating new data.
      */
-    class Default extends AbstractMaterialRenderInfo {
+    public static class Default extends AbstractMaterialTextureController {
         public final MinecraftColor color;
 
         public Default (MinecraftColor color) {
@@ -150,7 +111,7 @@ public interface IMaterialRenderInfo {
     /**
      * Colors the texture of the tool with the material color
      */
-    class MultiColor extends AbstractMaterialRenderInfo {
+    public static class MultiColor extends AbstractMaterialTextureController {
 
         // colors to be used
         protected final int low, mid, high;
@@ -172,7 +133,7 @@ public interface IMaterialRenderInfo {
         }
     }
 
-    class InverseMultiColor extends MultiColor {
+    public static class InverseMultiColor extends MultiColor {
 
         public InverseMultiColor (int low, int mid, int high) {
             super(low, mid, high);
@@ -184,7 +145,7 @@ public interface IMaterialRenderInfo {
         }
     }
 
-    class Metal extends AbstractMaterialRenderInfo {
+    public static class Metal extends AbstractMaterialTextureController {
         public int color;
         protected float shinyness;
         protected float brightness;
@@ -210,7 +171,7 @@ public interface IMaterialRenderInfo {
     /**
      * Uses a (block) texture instead of a color to create the texture
      */
-    class BlockTexture extends AbstractMaterialRenderInfo {
+    public static class BlockTexture extends AbstractMaterialTextureController {
 
         protected String texturePath;
         protected Block block;
@@ -238,7 +199,7 @@ public interface IMaterialRenderInfo {
      * Creates an animated texture from an animated base texture. USE WITH CAUTION.
      * ACTUALLY ONLY USE THIS IF YOU KNOW EXACTLY WHAT YOU'RE DOING.
      */
-    class AnimatedTexture extends AbstractMaterialRenderInfo {
+    public static class AnimatedTexture extends AbstractMaterialTextureController {
 
         protected String texturePath;
 

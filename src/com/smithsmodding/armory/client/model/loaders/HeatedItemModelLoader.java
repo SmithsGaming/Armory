@@ -4,7 +4,6 @@ package com.smithsmodding.armory.client.model.loaders;
 import com.google.common.collect.ImmutableList;
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.client.model.item.unbaked.HeatedItemItemModel;
-import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorComponentModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.TemperatureBarComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
@@ -18,7 +17,6 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -91,13 +89,6 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
 
         //If all fails return a Missing model.
         return ModelLoaderRegistry.getMissingModel();
-    }
-
-    private void addComponentToList (List<ArmorComponentModel> list, int index, ArmorComponentModel model) {
-        while (list.size() <= index) {
-            list.add(null);
-        }
-        list.set(index, model);
     }
 
     @Override

@@ -6,8 +6,9 @@ package com.smithsmodding.armory.api.textures;
   of Wrapper classes instead of direct access.
  */
 
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.util.*;
+import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;
 

@@ -36,6 +36,8 @@ public class ContainerFirepit extends ContainerSmithsCore {
 
     @Override
     public void onTabChanged (String newActiveTabID) {
+        super.onTabChanged(newActiveTabID);
+
         inventorySlots.clear();
         inventoryItemStacks.clear();
 

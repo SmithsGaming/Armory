@@ -8,6 +8,7 @@ package com.smithsmodding.armory.common.item;
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.common.factory.HeatedItemFactory;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.TranslationKeys;
@@ -15,6 +16,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -25,8 +27,9 @@ public class ItemHeatedItem extends Item {
 
     public ItemHeatedItem () {
         setMaxStackSize(1);
-        setCreativeTab(CreativeTabs.tabCombat);
+        setCreativeTab(GeneralRegistry.CreativeTabs.heatedItemTab);
         setUnlocalizedName(References.InternalNames.Items.ItemHeatedIngot);
+        this.setRegistryName(References.General.MOD_ID, References.InternalNames.Items.ItemHeatedIngot);
     }
 
     public boolean areStacksEqualExceptTemp (ItemStack pFirstStack, ItemStack pSecondStack) {
