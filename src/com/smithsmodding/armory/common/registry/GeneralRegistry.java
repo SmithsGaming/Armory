@@ -8,10 +8,6 @@ package com.smithsmodding.armory.common.registry;
 import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
 import com.smithsmodding.armory.common.block.BlockFirePit;
 import com.smithsmodding.armory.common.block.BlockFirePlace;
-import com.smithsmodding.armory.common.creativetabs.ArmorTab;
-import com.smithsmodding.armory.common.creativetabs.BlocksTab;
-import com.smithsmodding.armory.common.creativetabs.ComponentsTab;
-import com.smithsmodding.armory.common.creativetabs.HeatedItemTab;
 import com.smithsmodding.armory.common.fluid.FluidMoltenMetal;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
@@ -56,12 +52,5 @@ public class GeneralRegistry {
 
     public static class Fluids {
         public static FluidMoltenMetal moltenMetal;
-    }
-
-    public static class CreativeTabs {
-        public static BlocksTab blocksTab = new BlocksTab();
-        public static ComponentsTab componentsTab = new ComponentsTab();
-        public static HeatedItemTab heatedItemTab = new HeatedItemTab();
-        public static ArmorTab armorTab = new ArmorTab();
     }
 }

@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.common.item;
 
-import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.util.References;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 /**
@@ -11,7 +11,7 @@ public class ItemSmithingsGuide extends Item {
 
     public ItemSmithingsGuide() {
         this.setMaxStackSize(1);
-        this.setCreativeTab(GeneralRegistry.CreativeTabs.componentsTab);
+        this.setCreativeTab(CreativeTabs.tabCombat);
         this.setUnlocalizedName(References.InternalNames.Items.ItemSmithingsGuide);
         this.setRegistryName(References.General.MOD_ID, References.InternalNames.Items.ItemSmithingsGuide);
     }

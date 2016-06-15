@@ -27,6 +27,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -69,7 +70,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
 
     public BlockFirePit () {
         super(References.InternalNames.Blocks.FirePit, Material.iron);
-        setCreativeTab(GeneralRegistry.CreativeTabs.blocksTab);
+        setCreativeTab(CreativeTabs.tabCombat);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BURNING, false).withProperty(ISMASTER, false));
     }
 

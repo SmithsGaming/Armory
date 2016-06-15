@@ -180,7 +180,7 @@ public class References {
         }
 
         public static final class Tiers {
-            public static final String MEDIEVAL = "Amrory.Tiers.Armor";
+            public static final String MEDIEVAL = "Amrory.Tiers.Medieval";
             public static final String PLATED = "Armory.Tiers.Plated";
             public static final String QUANTUM = "Armory.Tiers.Quantum";
         }
@@ -194,7 +194,7 @@ public class References {
             public static final String ItemTongs = "Armory.Items.Tongs";
             public static final String ItemNugget = "Armory.Items.Nugget";
             public static final String ItemPlate = "Armory.Items.Plate";
-            public static final String ItemMedievalUpdrade = "Armory.Items.Armor.Upgrade";
+            public static final String ItemMedievalUpdrade = "Armory.Items.Medieval.Upgrade";
             public static final String ItemSmithingsGuide = "Armory.Items.SmithingsGuide";
             public static final String ItemArmorComponent = "Armory.Items.ArmorComponent";
             public static final String ItemBlueprint = "Armory.Items.Blueprint";
@@ -375,53 +375,53 @@ public class References {
                 public static final String HEATER = "Recipes.Anvil.Heater";
                 public static final String FAN = "Recipes.Anvil.Fan";
 
-                public static final String RING = "Recipes.Anvil.Armor.Ring.";
-                public static final String CHAIN = "Recipes.Anvil.Armor.Chain.";
-                public static final String PLATE = "Recipes.Anvil.Armor.Plate.";
-                public static final String NUGGET = "Recipes.Anvil.Armor.Nugget.";
+                public static final String RING = "Recipes.Anvil.Medieval.Ring.";
+                public static final String CHAIN = "Recipes.Anvil.Medieval.Chain.";
+                public static final String PLATE = "Recipes.Anvil.Medieval.Plate.";
+                public static final String NUGGET = "Recipes.Anvil.Medieval.Nugget.";
 
-                public static final String HELMET = "Recipes.Anvil.Armor.Helmet.";
-                public static final String CHESTPLATE = "Recipes.Anvil.Armor.Chestplate.";
-                public static final String LEGGINGS = "Recipes.Anvil.Armor.Leggings.";
-                public static final String SHOES = "Recipes.Anvil.Armor.Shoes.";
+                public static final String HELMET = "Recipes.Anvil.Medieval.Helmet.";
+                public static final String CHESTPLATE = "Recipes.Anvil.Medieval.Chestplate.";
+                public static final String LEGGINGS = "Recipes.Anvil.Medieval.Leggings.";
+                public static final String SHOES = "Recipes.Anvil.Medieval.Shoes.";
 
-                public static final String HELMETTOP = "Recipes.Anvil.Armor.Helmet.Protection.Top.";
-                public static final String HELMETLEFT = "Recipes.Anvil.Armor.Helmet.Protection.Left.";
-                public static final String HELMETRIGHT = "Recipes.Anvil.Armor.Helmet.Protection.Right.";
+                public static final String HELMETTOP = "Recipes.Anvil.Medieval.Helmet.Protection.Top.";
+                public static final String HELMETLEFT = "Recipes.Anvil.Medieval.Helmet.Protection.Left.";
+                public static final String HELMETRIGHT = "Recipes.Anvil.Medieval.Helmet.Protection.Right.";
 
-                public static final String CHESTPLATESHOULDERLEFT = "Recipes.Anvil.Armor.Chestplate.Protection.Shoulder.Left.";
-                public static final String CHESTPLATESHOULDERRIGHT = "Recipes.Anvil.Armor.Chestplate.Protection.Shoulder.Right.";
-                public static final String CHESTPLATEBACKLEFT = "Recipes.Anvil.Armor.Chestplate.Protection.Back.Left.";
-                public static final String CHESTPLATEBACKRIGHT = "Recipes.Anvil.Armor.Chestplate.Protection.Back.Right.";
-                public static final String CHESTPLATEFRONTLEFT = "Recipes.Anvil.Armor.Chestplate.Protection.Front.Left.";
-                public static final String CHESTPLATEFRONTRIGHT = "Recipes.Anvil.Armor.Chestplate.Protection.Front.Right.";
+                public static final String CHESTPLATESHOULDERLEFT = "Recipes.Anvil.Medieval.Chestplate.Protection.Shoulder.Left.";
+                public static final String CHESTPLATESHOULDERRIGHT = "Recipes.Anvil.Medieval.Chestplate.Protection.Shoulder.Right.";
+                public static final String CHESTPLATEBACKLEFT = "Recipes.Anvil.Medieval.Chestplate.Protection.Back.Left.";
+                public static final String CHESTPLATEBACKRIGHT = "Recipes.Anvil.Medieval.Chestplate.Protection.Back.Right.";
+                public static final String CHESTPLATEFRONTLEFT = "Recipes.Anvil.Medieval.Chestplate.Protection.Front.Left.";
+                public static final String CHESTPLATEFRONTRIGHT = "Recipes.Anvil.Medieval.Chestplate.Protection.Front.Right.";
 
-                public static final String LEGGINGSBACKLEFT = "Recipes.Anvil.Armor.Leggings.Protection.Back.Left.";
-                public static final String LEGGINGSBACKRIGHT = "Recipes.Anvil.Armor.Leggings.Protection.Back.Right.";
-                public static final String LEGGINGSFRONTLEFT = "Recipes.Anvil.Armor.Leggings.Protection.Front.Left.";
-                public static final String LEGGINGSFRONTRIGHT = "Recipes.Anvil.Armor.Leggings.Protection.Front.Right.";
+                public static final String LEGGINGSBACKLEFT = "Recipes.Anvil.Medieval.Leggings.Protection.Back.Left.";
+                public static final String LEGGINGSBACKRIGHT = "Recipes.Anvil.Medieval.Leggings.Protection.Back.Right.";
+                public static final String LEGGINGSFRONTLEFT = "Recipes.Anvil.Medieval.Leggings.Protection.Front.Left.";
+                public static final String LEGGINGSFRONTRIGHT = "Recipes.Anvil.Medieval.Leggings.Protection.Front.Right.";
 
-                public static final String SHOESLEFT = "Recipes.Anvil.Armor.Shoes.Protection.Left.";
-                public static final String SHOESRIGHT = "Recipes.Anvil.Armor.Shoes.Protection.Right.";
+                public static final String SHOESLEFT = "Recipes.Anvil.Medieval.Shoes.Protection.Left.";
+                public static final String SHOESRIGHT = "Recipes.Anvil.Medieval.Shoes.Protection.Right.";
 
-                public static final String HELMETUPGRADETOP = "Recipes.Anvil.Armor.Helmet.Protection.Top.";
-                public static final String HELMETUPGRADELEFT = "Recipes.Anvil.Armor.Helmet.Protection.Left.";
-                public static final String HELMETUPGRADERIGHT = "Recipes.Anvil.Armor.Helmet.Protection.Right.";
+                public static final String HELMETUPGRADETOP = "Recipes.Anvil.Medieval.Helmet.Protection.Top.";
+                public static final String HELMETUPGRADELEFT = "Recipes.Anvil.Medieval.Helmet.Protection.Left.";
+                public static final String HELMETUPGRADERIGHT = "Recipes.Anvil.Medieval.Helmet.Protection.Right.";
 
-                public static final String CHESTPLATEUPGRADESHOULDERLEFT = "Recipes.Anvil.Armor.Chestplate.Upgrade.Shoulder.Left.";
-                public static final String CHESTPLATEUPGRADESHOULDERRIGHT = "Recipes.Anvil.Armor.Chestplate.Upgrade.Shoulder.Right.";
-                public static final String CHESTPLATEUPGRADEBACKLEFT = "Recipes.Anvil.Armor.Chestplate.Upgrade.Back.Left.";
-                public static final String CHESTPLATEUPGRADEBACKRIGHT = "Recipes.Anvil.Armor.Chestplate.Upgrade.Back.Right.";
-                public static final String CHESTPLATEUPGRADEFRONTLEFT = "Recipes.Anvil.Armor.Chestplate.Upgrade.Front.Left.";
-                public static final String CHESTPLATEUPGRADEFRONTRIGHT = "Recipes.Anvil.Armor.Chestplate.Upgrade.Front.Right.";
+                public static final String CHESTPLATEUPGRADESHOULDERLEFT = "Recipes.Anvil.Medieval.Chestplate.Upgrade.Shoulder.Left.";
+                public static final String CHESTPLATEUPGRADESHOULDERRIGHT = "Recipes.Anvil.Medieval.Chestplate.Upgrade.Shoulder.Right.";
+                public static final String CHESTPLATEUPGRADEBACKLEFT = "Recipes.Anvil.Medieval.Chestplate.Upgrade.Back.Left.";
+                public static final String CHESTPLATEUPGRADEBACKRIGHT = "Recipes.Anvil.Medieval.Chestplate.Upgrade.Back.Right.";
+                public static final String CHESTPLATEUPGRADEFRONTLEFT = "Recipes.Anvil.Medieval.Chestplate.Upgrade.Front.Left.";
+                public static final String CHESTPLATEUPGRADEFRONTRIGHT = "Recipes.Anvil.Medieval.Chestplate.Upgrade.Front.Right.";
 
-                public static final String LEGGINGSUPGRADEBACKLEFT = "Recipes.Anvil.Armor.Leggings.Upgrade.Back.Left.";
-                public static final String LEGGINGSUPGRADEBACKRIGHT = "Recipes.Anvil.Armor.Leggings.Upgrade.Back.Right.";
-                public static final String LEGGINGSUPGRADEFRONTLEFT = "Recipes.Anvil.Armor.Leggings.Upgrade.Front.Left.";
-                public static final String LEGGINGSUPGRADEFRONTRIGHT = "Recipes.Anvil.Armor.Leggings.Upgrade.Front.Right.";
+                public static final String LEGGINGSUPGRADEBACKLEFT = "Recipes.Anvil.Medieval.Leggings.Upgrade.Back.Left.";
+                public static final String LEGGINGSUPGRADEBACKRIGHT = "Recipes.Anvil.Medieval.Leggings.Upgrade.Back.Right.";
+                public static final String LEGGINGSUPGRADEFRONTLEFT = "Recipes.Anvil.Medieval.Leggings.Upgrade.Front.Left.";
+                public static final String LEGGINGSUPGRADEFRONTRIGHT = "Recipes.Anvil.Medieval.Leggings.Upgrade.Front.Right.";
 
-                public static final String SHOESUPGRADELEFT = "Recipes.Anvil.Armor.Shoes.Upgrade.Left.";
-                public static final String SHOESUPGRADERIGHT = "Recipes.Anvil.Armor.Shoes.Upgrade.Right.";
+                public static final String SHOESUPGRADELEFT = "Recipes.Anvil.Medieval.Shoes.Upgrade.Left.";
+                public static final String SHOESUPGRADERIGHT = "Recipes.Anvil.Medieval.Shoes.Upgrade.Right.";
             }
         }
     }

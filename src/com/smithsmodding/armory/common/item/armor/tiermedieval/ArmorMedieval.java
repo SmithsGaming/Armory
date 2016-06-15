@@ -14,7 +14,6 @@ import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
 import com.smithsmodding.armory.common.material.ChainLayer;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
-import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.creativetab.CreativeTabs;
@@ -41,7 +40,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
         this.setUnlocalizedName(pInternalName);
         this.setMaxStackSize(1);
         this.uniqueID = pInternalName;
-        this.setCreativeTab(GeneralRegistry.CreativeTabs.armorTab);
+        this.setCreativeTab(CreativeTabs.tabCombat);
         this.setRegistryName(References.General.MOD_ID, pInternalName);
     }
 

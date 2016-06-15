@@ -5,7 +5,6 @@ import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.materials.IAnvilMaterial;
 import com.smithsmodding.armory.common.block.properties.PropertyAnvilMaterial;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
-import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.armory.common.tileentity.state.BlackSmithsAnvilState;
 import com.smithsmodding.armory.util.References;
@@ -51,7 +50,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
 
     public BlockBlackSmithsAnvil () {
         super(References.InternalNames.Blocks.ArmorsAnvil, Material.anvil);
-        setCreativeTab(GeneralRegistry.CreativeTabs.blocksTab);
+        setCreativeTab(CreativeTabs.tabCombat);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
