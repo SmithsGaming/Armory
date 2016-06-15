@@ -1,19 +1,15 @@
 package com.smithsmodding.armory.client.model.item.baked.components;
 
-import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.item.ISingleMaterialItem;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
-import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.model.TRSRTransformation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +20,7 @@ import java.util.Map;
  * <p/>
  * A baked model for a component made up out of a single material.
  */
-public class BakedSubComponentModel extends BakedWrappedModel.PerspectiveAware {
+public class BakedSubComponentModel extends BakedWrappedModel {
     private final Overrides overrides;
     //Map that contains a premapped combination of materials to models.
     protected Map<String, IBakedModel> materializedComponents;
@@ -35,14 +31,7 @@ public class BakedSubComponentModel extends BakedWrappedModel.PerspectiveAware {
      * @param base The models base.
      */
     public BakedSubComponentModel(IBakedModel base) {
-        super(base, ModelHelper.DEFAULT_ITEM_TRANSFORMS);
-
-        materializedComponents = new HashMap<String, IBakedModel>(MaterialRegistry.getInstance().getArmorMaterials().size());
-        overrides = new Overrides(this);
-    }
-
-    public BakedSubComponentModel(IBakedModel base, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
-        super(base, transforms);
+        super(base);
 
         materializedComponents = new HashMap<String, IBakedModel>(MaterialRegistry.getInstance().getArmorMaterials().size());
         overrides = new Overrides(this);

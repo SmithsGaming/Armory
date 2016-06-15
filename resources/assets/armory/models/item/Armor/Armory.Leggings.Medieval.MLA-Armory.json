@@ -1,5 +1,5 @@
 {
-  "parent": "item/generated",
+  "parent": "armory:item/Armor/MLA",
   "base": "armory:items/multiarmor/base/armory.Leggins_Base",
   "layers": {
     "layer0": "armory:items/multiarmor/upgrades/armory.Leggins_Protection_Back_Left",

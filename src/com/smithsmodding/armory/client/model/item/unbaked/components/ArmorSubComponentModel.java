@@ -13,14 +13,12 @@ import com.smithsmodding.smithscore.util.client.ResourceHelper;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import net.minecraftforge.common.model.IModelState;
-import net.minecraftforge.common.model.TRSRTransformation;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -33,8 +31,6 @@ import java.util.Map;
  */
 public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
 
-    private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
-
     /**
      * Creates a new unbaked model, given the parameters list of possible textures.
      *
@@ -42,12 +38,6 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
      */
     public ArmorSubComponentModel(ImmutableList<ResourceLocation> textures) {
         super(textures);
-        transforms = ModelHelper.DEFAULT_ITEM_TRANSFORMS;
-    }
-
-    public ArmorSubComponentModel(ImmutableList<ResourceLocation> textures, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
-        super(textures);
-        this.transforms = transforms;
     }
 
     /**
@@ -61,6 +51,11 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         return generateBackedComponentModel(state, format, bakedTextureGetter);
+    }
+
+    @Override
+    public IModelState getDefaultState() {
+        return ModelHelper.DEFAULT_ITEM_STATE;
     }
 
     /**

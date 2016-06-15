@@ -11,6 +11,7 @@ import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorIt
 import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorSubComponentModel;
 import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
+import com.smithsmodding.smithscore.util.client.ModelHelper;
 import com.smithsmodding.smithscore.util.common.Pair;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -40,6 +41,11 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
         this.parts = parts;
         this.brokenParts = brokenPartBlocks;
         this.transforms = transforms;
+    }
+
+    @Override
+    public IModelState getDefaultState() {
+        return ModelHelper.DEFAULT_ITEM_STATE;
     }
 
     @Override
