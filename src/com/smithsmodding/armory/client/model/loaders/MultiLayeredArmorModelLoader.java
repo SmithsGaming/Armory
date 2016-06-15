@@ -12,13 +12,11 @@ import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorSubCom
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
 import org.apache.commons.io.FilenameUtils;
@@ -66,21 +64,18 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
             //Combine the original with the added
             ImmutableMap.Builder<String, ResourceLocation> combineLayeredBuilder = new ImmutableMap.Builder<>();
             ImmutableMap.Builder<String, ResourceLocation> combineBrokenBuilder = new ImmutableMap.Builder<>();
-            ImmutableMap.Builder<ItemCameraTransforms.TransformType, TRSRTransformation> transformBuilder = new ImmutableMap.Builder<>();
 
             ResourceLocation baseLocation = definition.getBaseLocation();
             combineLayeredBuilder.putAll(definition.getLayerLocations());
             combineBrokenBuilder.putAll(definition.getBrokenLocations());
-            transformBuilder.putAll(definition.getTransforms());
             for (MultiLayeredArmorModelDefinition subDef : textureLoadEvent.getAdditionalTextureLayers()) {
                 combineLayeredBuilder.putAll(subDef.getLayerLocations());
                 combineBrokenBuilder.putAll(subDef.getBrokenLocations());
-                transformBuilder.putAll(subDef.getTransforms());
 
                 if (subDef.getBaseLocation() != null)
                     baseLocation = subDef.getBaseLocation();
             }
-            definition = new MultiLayeredArmorModelDefinition(baseLocation, combineLayeredBuilder.build(), combineBrokenBuilder.build(), transformBuilder.build());
+            definition = new MultiLayeredArmorModelDefinition(baseLocation, combineLayeredBuilder.build(), combineBrokenBuilder.build());
 
             if (definition.getBaseLocation() == null)
                 throw new IllegalArgumentException("The given model does not have a Base assigned.");
@@ -150,7 +145,7 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
             }
 
             //Construct the new unbaked model from the collected data.
-            IModel output = new MultiLayeredArmorItemModel(MaterialRegistry.getInstance().getArmor(armorInternalName), builder.build(), base, parts, brokenParts, ImmutableMap.copyOf(definition.getTransforms()));
+            IModel output = new MultiLayeredArmorItemModel(MaterialRegistry.getInstance().getArmor(armorInternalName), builder.build(), base, parts, brokenParts);
 
             // Load all textures we need in to the creator.
             MaterializedTextureCreator.registerBaseTexture(builder.build());

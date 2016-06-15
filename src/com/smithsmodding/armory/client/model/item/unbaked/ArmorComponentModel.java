@@ -7,7 +7,6 @@ import com.smithsmodding.armory.client.model.item.baked.BakedArmorComponentModel
 import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorSubComponentModel;
 import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
-import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
@@ -27,11 +26,6 @@ public class ArmorComponentModel extends ItemLayerModel {
     public ArmorComponentModel(ImmutableMap<String, ResourceLocation> textures) {
         super(ImmutableList.copyOf(textures.values()));
         this.textures = textures;
-    }
-
-    @Override
-    public IModelState getDefaultState() {
-        return ModelHelper.DEFAULT_ITEM_STATE;
     }
 
     @Override

@@ -1,5 +1,5 @@
 {
-  "parent": "item/handheld",
+  "parent": "armory:item/Armor/MLA",
   "base": "armory:items/multiarmor/base/armory.Chestplate_Base",
   "layers": {
     "layer0": "armory:items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left",

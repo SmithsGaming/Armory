@@ -53,11 +53,6 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
         return generateBackedComponentModel(state, format, bakedTextureGetter);
     }
 
-    @Override
-    public IModelState getDefaultState() {
-        return ModelHelper.DEFAULT_ITEM_STATE;
-    }
-
     /**
      * Function to get the grayscale texture location of this model faster.
      *
@@ -71,6 +66,11 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
             return null;
 
         return textures.get(0);
+    }
+
+    @Override
+    public IModelState getDefaultState () {
+        return ModelHelper.DEFAULT_ITEM_STATE;
     }
 
     /**

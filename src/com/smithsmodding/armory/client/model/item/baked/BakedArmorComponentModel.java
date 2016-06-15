@@ -46,7 +46,7 @@ public class BakedArmorComponentModel extends BakedWrappedModel {
             if (stack.getItem() instanceof ISingleComponentItem) {
                 String id = ((ISingleComponentItem) stack.getItem()).getComponentTypeFromItemStack(stack);
                 if (parent.typeModels.containsKey(id))
-                    return parent.typeModels.get(id).getOverrides().handleItemState(originalModel, stack, world, entity);
+                    return parent.typeModels.get(id);
 
                 return DummyModel.BAKED_MODEL;
             }
