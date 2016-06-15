@@ -5,31 +5,31 @@ package com.smithsmodding.armory.api.armor;
 *   Created on: 28-6-2014
 */
 
-import com.smithsmodding.armory.client.model.entity.ModelExtendedBiped;
-import com.smithsmodding.armory.common.registry.GeneralRegistry;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.ISpecialArmor;
+import com.smithsmodding.armory.client.model.Entity.*;
+import com.smithsmodding.armory.common.registry.*;
+import net.minecraft.client.model.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraftforge.common.*;
+import net.minecraftforge.fml.relauncher.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArmor {
     //Data for the registering of MultiLayeredArmor
     protected String uniqueID = "";
+    protected Integer armorIndex = -1;
     protected HashMap<String, ArmorAddonPosition> possibleAddonPositions = new HashMap<String, ArmorAddonPosition>();
     protected HashMap<String, MLAAddon> possibleAddons = new HashMap<String, MLAAddon>();
 
     ///#############################################Constructors########################################################
     //Standard constructor to created an ItemArmor. Sets the InternalName and stores the ArmorPart separately
-    public MultiLayeredArmor(String uniqueID, int vanillaRenderType, EntityEquipmentSlot slot) {
-        super(GeneralRegistry.getVanillaArmorDefitinition(), vanillaRenderType, slot);
+    public MultiLayeredArmor (String uniqueID, int vanillaRenderType, int armorIndex) {
+        super(GeneralRegistry.getVanillaArmorDefitinition(), vanillaRenderType, armorIndex);
         this.uniqueID = uniqueID;
+        this.armorIndex = armorIndex;
     }
 
     ///#############################################Functions for grabbing data#########################################
@@ -37,6 +37,11 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
     //MultiLayeredArmor (MLA).
     public String getUniqueID () {
         return uniqueID;
+    }
+
+    //Returns the ArmorPart of the current instance of a MLA. See ItemArmor for more details.
+    public Integer getArmorIndex () {
+        return armorIndex;
     }
 
     //Registers the Addon to this armor as its parent.
@@ -79,18 +84,19 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
     @Override
     public abstract void damageArmor (EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot);
 
+    @SideOnly(Side.CLIENT)
     @Override
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-        ModelExtendedBiped tModel = new ModelExtendedBiped(1F, itemStack);
+    public ModelBiped getArmorModel (EntityLivingBase pEntityLiving, ItemStack pItemStack, int pArmorSlot) {
+        ModelExtendedBiped tModel = new ModelExtendedBiped(1F, pItemStack);
 
-        switch (this.getEquipmentSlot()) {
-            case HEAD:
-                tModel = new ModelExtendedBiped(1.5F, itemStack);
+        switch (this.armorIndex) {
+            case 0:
+                tModel = new ModelExtendedBiped(1.5F, pItemStack);
                 break;
-            case CHEST:
-                tModel = new ModelExtendedBiped(1.00001F, itemStack);
-            case LEGS:
-                tModel = new ModelExtendedBiped(1.5F, itemStack);
+            case 1:
+                tModel = new ModelExtendedBiped(1.00001F, pItemStack);
+            case 3:
+                tModel = new ModelExtendedBiped(1.5F, pItemStack);
                 break;
             default:
                 break;

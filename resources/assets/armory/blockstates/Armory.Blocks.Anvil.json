@@ -4,8 +4,7 @@
     "textures": {},
     "model": "armory:anvil/BlockModel.Anvil-armory",
     "custom": {
-      "flip-v": true,
-      "gui3d": false
+      "flip-v": true
     }
   },
   "variants": {

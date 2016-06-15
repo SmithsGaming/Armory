@@ -8,7 +8,6 @@ package com.smithsmodding.armory.api.textures;
 
 import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;
 

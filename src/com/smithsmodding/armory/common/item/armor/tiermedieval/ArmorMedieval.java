@@ -19,12 +19,9 @@ import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -35,13 +32,13 @@ import java.util.List;
 
 public class ArmorMedieval extends MultiLayeredArmor {
 
-    public ArmorMedieval(String pInternalName, EntityEquipmentSlot slotPart) {
-        super(pInternalName, 1, slotPart);
+    public ArmorMedieval(String pInternalName, int pArmorPart) {
+        super(pInternalName, 1, pArmorPart);
         this.setUnlocalizedName(pInternalName);
         this.setMaxStackSize(1);
         this.uniqueID = pInternalName;
+        this.armorIndex = pArmorPart;
         this.setCreativeTab(CreativeTabs.tabCombat);
-        this.setRegistryName(References.General.MOD_ID, this.getUnlocalizedName());
     }
 
     //Functions for ISpecialArmor. TODO: Needs to be implemented.
@@ -51,7 +48,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
         float tDamageRatio = tBaseMaterial.getBaseDamageAbsorption(this.getUniqueID());
 
         for (ArmorUpgradeMedieval tUpgrade : ArmorNBTHelper.getInstalledArmorMedievalUpgradesOnItemStack(pStack).keySet()) {
-            tDamageRatio += tUpgrade.getProtection();
+            tDamageRatio += tUpgrade.iProtection;
         }
 
         return new ISpecialArmor.ArmorProperties(0, tDamageRatio, (int) (2 * tDamageRatio));
@@ -63,7 +60,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
         float tDamageRatio = tBaseMaterial.getBaseDamageAbsorption(this.getUniqueID());
 
         for (ArmorUpgradeMedieval tUpgrade : ArmorNBTHelper.getInstalledArmorMedievalUpgradesOnItemStack(pStack).keySet()) {
-            tDamageRatio += tUpgrade.getProtection();
+            tDamageRatio += tUpgrade.iProtection;
         }
 
         return (int) tDamageRatio;

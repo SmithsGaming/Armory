@@ -4,8 +4,7 @@
     "textures": {},
     "model": "armory:fireplace/BlockModel.obj",
     "custom": {
-      "flip-v": true,
-      "gui3d": false
+      "flip-v": true
     }
   },
   "variants": {
@@ -16,8 +15,7 @@
       {
         "model": "armory:fireplace/BlockModel.obj",
         "custom": {
-          "flip-v": true,
-          "gui3d": false
+          "flip-v": true
         },
         "transform": "forge:default-block"
       }

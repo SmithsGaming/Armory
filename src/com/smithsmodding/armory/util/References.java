@@ -19,7 +19,7 @@ public class References {
     }
 
     public static final class General {
-        public static final String MOD_ID = "armory";
+        public static final String MOD_ID = "Armory";
         public static final String VERSION = "@VERSION@";
         public static final String MC_VERSION = "@MCVERSION@";
         public static final String API_VERSION = "@APIVERSION@";
@@ -196,7 +196,6 @@ public class References {
             public static final String ItemPlate = "Armory.Items.Plate";
             public static final String ItemMedievalUpdrade = "Armory.Items.Medieval.Upgrade";
             public static final String ItemSmithingsGuide = "Armory.Items.SmithingsGuide";
-            public static final String ItemArmorComponent = "Armory.Items.ArmorComponent";
             public static final String ItemBlueprint = "Armory.Items.Blueprint";
             public static final String ItemGuideLabel = "Armory.Items.Tab";
         }
@@ -488,9 +487,26 @@ public class References {
         }
 
         public class Item {
-            public class ItemComponent {
-                public static final String MATERIAL = "Material";
-                public static final String TYPE = "AddonID";
+            public class ItemInventory {
+                public static final String ID = "UUID";
+                public static final String OPEN = "Open";
+                public static final String INVENTORY = "Inventory";
+                public static final String SLOTID = "SlotIndex";
+                public static final String STACK = "StackData";
+            }
+
+            public class Blueprints {
+                public static final String BLUEPRINTID = "BlueprintID";
+                public static final String FLOATVALUE = "Float";
+            }
+
+            public class Labels {
+                public static final String LOGOSTACK = "LogoStack";
+            }
+
+            public class SmithingsGuide {
+                public static final String LABELSTACKS = "Labels";
+                public static final String GROUPSDATA = "Groups";
             }
         }
 

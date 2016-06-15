@@ -4,8 +4,7 @@
     "textures": {},
     "model": "armory:Guide/Guide.obj",
     "custom": {
-      "flip-v": true,
-      "gui3d": false
+      "flip-v": true
     }
   },
   "variants": {

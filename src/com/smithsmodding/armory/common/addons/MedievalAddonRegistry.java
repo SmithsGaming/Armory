@@ -1,13 +1,11 @@
 package com.smithsmodding.armory.common.addons;
 
-import com.smithsmodding.armory.api.armor.MLAAddon;
-import com.smithsmodding.armory.api.armor.MaterialDependentMLAAddon;
-import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.api.registries.IArmorPartRegistry;
-import com.smithsmodding.armory.api.registries.IMLAAddonRegistry;
-import com.smithsmodding.armory.common.material.MaterialRegistry;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.api.registries.*;
+import com.smithsmodding.armory.common.material.*;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by Orion
@@ -32,22 +30,13 @@ public class MedievalAddonRegistry implements IArmorPartRegistry, IMLAAddonRegis
     public HashMap<String, MLAAddon> getUpgrades() {
         HashMap<String, MLAAddon> tMedievalUpgrades = new HashMap<String, MLAAddon>();
 
-        this.addonHashMap.values().stream().filter(tAddon -> tAddon instanceof ArmorUpgradeMedieval).forEachOrdered(tAddon -> {
-            tMedievalUpgrades.put(tAddon.getUniqueID(), tAddon);
-        });
+        for (MLAAddon tAddon : this.addonHashMap.values()) {
+            if (tAddon instanceof ArmorUpgradeMedieval) {
+                tMedievalUpgrades.put(tAddon.getUniqueID(), tAddon);
+            }
+        }
 
         return tMedievalUpgrades;
-    }
-
-    @Override
-    public MLAAddon getAddonForMaterialIndependantName(String addonId) {
-        for (MLAAddon addon : getUpgrades().values())
-            if (addon instanceof MaterialDependentMLAAddon && addon.isMaterialDependent() && ((MaterialDependentMLAAddon) addon).getMaterialIndependentID().equals(addonId))
-                return addon;
-            else if (addon.getUniqueID().equals(addonId))
-                return addon;
-
-        return null;
     }
 
     public void registerUpgrade(MLAAddon pUpgrade) {

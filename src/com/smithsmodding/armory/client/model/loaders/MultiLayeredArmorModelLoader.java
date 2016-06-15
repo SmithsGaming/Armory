@@ -4,11 +4,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
-import com.smithsmodding.armory.client.model.deserializers.MultiLayeredArmorModelDeserializer;
-import com.smithsmodding.armory.client.model.deserializers.definition.MultiLayeredArmorModelDefinition;
+import com.smithsmodding.armory.client.deserializers.MultiLayeredArmorModelDeserializer;
+import com.smithsmodding.armory.client.deserializers.definition.MultiLayeredArmorModelDefinition;
 import com.smithsmodding.armory.client.model.item.events.MultiLayeredArmorModelTextureLoadEvent;
 import com.smithsmodding.armory.client.model.item.unbaked.MultiLayeredArmorItemModel;
-import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorSubComponentModel;
+import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
@@ -23,6 +23,7 @@ import org.apache.commons.io.FilenameUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -65,32 +66,21 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
             ImmutableMap.Builder<String, ResourceLocation> combineLayeredBuilder = new ImmutableMap.Builder<>();
             ImmutableMap.Builder<String, ResourceLocation> combineBrokenBuilder = new ImmutableMap.Builder<>();
 
-            ResourceLocation baseLocation = definition.getBaseLocation();
             combineLayeredBuilder.putAll(definition.getLayerLocations());
             combineBrokenBuilder.putAll(definition.getBrokenLocations());
             for (MultiLayeredArmorModelDefinition subDef : textureLoadEvent.getAdditionalTextureLayers()) {
                 combineLayeredBuilder.putAll(subDef.getLayerLocations());
                 combineBrokenBuilder.putAll(subDef.getBrokenLocations());
-
-                if (subDef.getBaseLocation() != null)
-                    baseLocation = subDef.getBaseLocation();
             }
-            definition = new MultiLayeredArmorModelDefinition(baseLocation, combineLayeredBuilder.build(), combineBrokenBuilder.build());
-
-            if (definition.getBaseLocation() == null)
-                throw new IllegalArgumentException("The given model does not have a Base assigned.");
+            definition = new MultiLayeredArmorModelDefinition(combineLayeredBuilder.build(), combineBrokenBuilder.build());
 
             //Create the final list builder.
             ImmutableList.Builder<ResourceLocation> builder = ImmutableList.builder();
 
             //Define the model structure components.
-            ArmorSubComponentModel base = null;
-            HashMap<String, ArmorSubComponentModel> parts = new HashMap<String, ArmorSubComponentModel>();
-            HashMap<String, ArmorSubComponentModel> brokenParts = new HashMap<String, ArmorSubComponentModel>();
-
-            ResourceLocation location = null;
-            ArmorSubComponentModel partModel = null;
-            String name = "";
+            ArmorComponentModel base = null;
+            HashMap<String, ArmorComponentModel> parts = new HashMap<String, ArmorComponentModel>();
+            HashMap<String, ArmorComponentModel> brokenParts = new HashMap<String, ArmorComponentModel>();
 
             //Iterate over all entries to define what they are
             //At least required is a layer if type base for the model to load succesfully.
@@ -98,44 +88,46 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
             //    * layer (Component texture used when the armor is not broken)
             //    * broken (Component texture used when the armor is broken)
             //    * base (The base layer of a armor (in case of MedievalArmor it is the chain base layer texture))
+            for (Map.Entry<String, String> entry : textures.entrySet()) {
+                String name = entry.getKey();
 
-            //Base layer
-            try {
-                name = "Base";
-                location = definition.getBaseLocation();
-                partModel = new ArmorSubComponentModel(ImmutableList.of(location));
-                base = partModel;
-                if (location != null)
-                    builder.add(location);
+                ResourceLocation location = null;
+                ArmorComponentModel partModel = null;
+
+                try {
+                    if (name.startsWith("layer")) {
+                        //Standard Layer
+                        location = new ResourceLocation(entry.getValue());
+                        partModel = new ArmorComponentModel(ImmutableList.of(location));
+
+                        parts.put(location.toString(), partModel);
+                    } else if (name.startsWith("broken")) {
+                        //Broken layer
+                        location = new ResourceLocation(entry.getValue());
+                        partModel = new ArmorComponentModel(ImmutableList.of(location));
+
+                        brokenParts.put(location.toString(), partModel);
+                    } else if (name.startsWith("base")) {
+                        //Base layer
+                        location = new ResourceLocation(entry.getValue());
+                        partModel = new ArmorComponentModel(ImmutableList.of(location));
+
+                        base = partModel;
+                    }
+                    else {
+                        //Unknown layer, warning and skipping.
+                        Armory.getLogger().warn("MLAModel {} has invalid texture entry {}; Skipping layer.", modelLocation, name);
+                        continue;
+                    }
 
 
-                for (Map.Entry<String, ResourceLocation> entry : definition.getLayerLocations().entrySet()) {
-                    name = entry.getKey();
-
-                    location = entry.getValue();
-                    partModel = new ArmorSubComponentModel(ImmutableList.of(location));
-
-                    parts.put(location.toString(), partModel);
-
+                    //If the texture was added to any layer, add it to the list of used textures.
                     if (location != null) {
                         builder.add(location);
                     }
+                } catch (NumberFormatException e) {
+                    Armory.getLogger().error("MLAModel {} has invalid texture entry {}; Skipping layer.", modelLocation, name);
                 }
-
-                for (Map.Entry<String, ResourceLocation> entry : definition.getBrokenLocations().entrySet()) {
-                    name = entry.getKey();
-
-                    location = entry.getValue();
-                    partModel = new ArmorSubComponentModel(ImmutableList.of(location));
-
-                    brokenParts.put(location.toString(), partModel);
-
-                    if (location != null) {
-                        builder.add(location);
-                    }
-                }
-            } catch (Exception ex) {
-                Armory.getLogger().error("MLAModel {} has invalid texture entry {}; Skipping layer.", modelLocation, name);
             }
 
             //Check if at least a base layer is found.
@@ -157,6 +149,13 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
 
         //If all fails return a Missing model.
         return ModelLoaderRegistry.getMissingModel();
+    }
+
+    private void addComponentToList (List<ArmorComponentModel> list, int index, ArmorComponentModel model) {
+        while (list.size() <= index) {
+            list.add(null);
+        }
+        list.set(index, model);
     }
 
     @Override

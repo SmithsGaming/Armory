@@ -1,63 +1,33 @@
 package com.smithsmodding.armory.common.addons;
 
-import com.smithsmodding.armory.api.armor.MLAAddon;
-import com.smithsmodding.armory.api.armor.MaterialDependentMLAAddon;
-import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.common.material.MaterialRegistry;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
+import com.smithsmodding.armory.api.armor.*;
+import net.minecraft.util.*;
 
 /**
  * Created by Orion on 27-3-2014.
  */
 public class ArmorUpgradeMedieval extends MaterialDependentMLAAddon {
-    private final String materialInternalName;
-    private final String visibleName;
-    private final TextFormatting visibleNameColor;
-    private final float protection;
-    private final int extraDurability;
+    public String iMaterialInternalName;
+    public String iVisibleName;
+    public String iVisibleNameColor;
+    public float iProtection;
+    public int iExtraDurability;
 
     //Constructors
-    public ArmorUpgradeMedieval(String internalName, String parentID, String armorPositionID, String materialInternalName, String visibleName, TextFormatting visibleNameColor, float protection, int extraDurability, int maxUpgrades, ResourceLocation itemTextureWhole, ResourceLocation modelTextureLocation) {
-        super(internalName, materialInternalName, parentID, armorPositionID, maxUpgrades, itemTextureWhole, modelTextureLocation, 1);
-        this.materialInternalName = materialInternalName;
-        this.visibleName = visibleName;
-        this.visibleNameColor = visibleNameColor;
-        this.protection = protection;
-        this.extraDurability = extraDurability;
+    public ArmorUpgradeMedieval (String pInternalName, String pParentID, String pArmorPositionID, String pMaterialInternalName, String pVisibleName, String pVisibleNameColor, float pProtection, int pExtraDurability, int pMaxUpgrades, ResourceLocation itemTextureWhole, ResourceLocation modelTextureLocation) {
+        super(pInternalName, pMaterialInternalName, pParentID, pArmorPositionID, pMaxUpgrades, itemTextureWhole, modelTextureLocation, 1);
+        this.iMaterialInternalName = pMaterialInternalName;
+        this.iVisibleName = pVisibleName;
+        this.iVisibleNameColor = pVisibleNameColor;
+        this.iProtection = pProtection;
+        this.iExtraDurability = pExtraDurability;
     }
 
     @Override
-    public String getDisplayName() {
-        IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(materialInternalName);
-        return material.getNameColor() + I18n.translateToLocal(material.getTranslationKey()) + getVisibleNameColor() + I18n.translateToLocal(getVisibleName()) + TextFormatting.RESET;
-    }
+    public boolean validateCrafting(String pAddonIDToCheckAgainst, boolean pInstalled) {
+        MLAAddon tUpgrade = MedievalAddonRegistry.getInstance().getUpgrade(pAddonIDToCheckAgainst);
+        return !((this.getAddonPositionID() == tUpgrade.getAddonPositionID()) && (this.getUniqueID() != pAddonIDToCheckAgainst));
 
-    @Override
-    public boolean validateCrafting(String addonIdToCheckAgainst, boolean installed) {
-        MLAAddon upgrade = MedievalAddonRegistry.getInstance().getUpgrade(addonIdToCheckAgainst);
-        return !((this.getAddonPositionID() == upgrade.getAddonPositionID()) && (this.getUniqueID() != addonIdToCheckAgainst));
-    }
-
-    public String getMaterialInternalName() {
-        return materialInternalName;
-    }
-
-    public String getVisibleName() {
-        return visibleName;
-    }
-
-    public TextFormatting getVisibleNameColor() {
-        return visibleNameColor;
-    }
-
-    public float getProtection() {
-        return protection;
-    }
-
-    public int getExtraDurability() {
-        return extraDurability;
     }
 }
 

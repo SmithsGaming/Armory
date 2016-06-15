@@ -1,8 +1,8 @@
 package com.smithsmodding.armory.api.registries;
 
-import com.smithsmodding.armory.api.armor.MLAAddon;
+import com.smithsmodding.armory.api.armor.*;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by Orion
@@ -33,12 +33,4 @@ public interface IMLAAddonRegistry {
      * @return A MLAAddon instance with that uniqueID if registered, else null.
      */
     MLAAddon getUpgrade(String pUpgradeInternalName);
-
-    /**
-     * Gets the first registered instance of a MLAAddon registered with the given addonID as material independent ID.
-     *
-     * @param addonId The searched AddonID.
-     * @return The first registered instance of a MLAAddon registered with the given addonID as material independent ID.
-     */
-    MLAAddon getAddonForMaterialIndependantName(String addonId);
 }

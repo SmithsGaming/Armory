@@ -1,9 +1,8 @@
 package com.smithsmodding.armory.common.anvil;
 
 import com.smithsmodding.armory.api.materials.IAnvilMaterial;
-import com.smithsmodding.smithscore.client.textures.ITextureController;
+import com.smithsmodding.armory.api.materials.IMaterialRenderInfo;
 import com.smithsmodding.smithscore.util.client.color.ColorSampler;
-import net.minecraft.util.text.TextFormatting;
 
 /**
  * Created by Marc on 22.02.2016.
@@ -14,7 +13,7 @@ public class AnvilMaterial implements IAnvilMaterial {
     int durability;
     String translatedDisplayName;
     TextFormatting translatedDisplayNameColor;
-    ITextureController info;
+    IMaterialRenderInfo info;
 
     public AnvilMaterial (String id, int durability, String translatedDisplayName) {
         this.id = id;
@@ -47,12 +46,12 @@ public class AnvilMaterial implements IAnvilMaterial {
     }
 
     @Override
-    public ITextureController getRenderInfo() {
+    public IMaterialRenderInfo getRenderInfo () {
         return info;
     }
 
     @Override
-    public void setRenderInfo(ITextureController info) {
+    public void setRenderInfo (IMaterialRenderInfo info) {
         this.info = info;
     }
 

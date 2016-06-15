@@ -1,9 +1,10 @@
-package com.smithsmodding.armory.client.model.deserializers;
+package com.smithsmodding.armory.client.deserializers;
 
 import com.google.common.base.Charsets;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import com.smithsmodding.armory.client.model.deserializers.definition.MultiLayeredArmorModelDefinition;
+import com.smithsmodding.armory.client.deserializers.definition.MultiLayeredArmorModelDefinition;
+import com.smithsmodding.smithscore.util.common.Pair;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
@@ -18,12 +19,12 @@ import java.util.Map;
 /**
  * @Author Marc (Created on: 28.05.2016)
  */
-public class MultiLayeredArmorModelDeserializer implements JsonDeserializer<MultiLayeredArmorModelDefinition> {
+public class MultiLayeredArmorModelDeserializer implements JsonDeserializer<Pair<HashMap<String, ResourceLocation>, HashMap<String, ResourceLocation>>> {
     public static final MultiLayeredArmorModelDeserializer instance = new MultiLayeredArmorModelDeserializer();
 
-    private static final Type definitionType = new TypeToken<MultiLayeredArmorModelDefinition>() {
+    private static final Type layerBrokenType = new TypeToken<Pair<HashMap<String, ResourceLocation>, HashMap<String, ResourceLocation>>>() {
     }.getType();
-    private static final Gson gson = new GsonBuilder().registerTypeAdapter(definitionType, instance).create();
+    private static final Gson gson = new GsonBuilder().registerTypeAdapter(layerBrokenType, instance).create();
 
     private MultiLayeredArmorModelDeserializer() {
     }
@@ -40,11 +41,13 @@ public class MultiLayeredArmorModelDeserializer implements JsonDeserializer<Mult
         IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
         Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
 
-        return gson.fromJson(reader, definitionType);
+        Pair<HashMap<String, ResourceLocation>, HashMap<String, ResourceLocation>> layerData = gson.fromJson(reader, layerBrokenType);
+
+        return new MultiLayeredArmorModelDefinition(layerData.getKey(), layerData.getValue());
     }
 
     @Override
-    public MultiLayeredArmorModelDefinition deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public Pair<HashMap<String, ResourceLocation>, HashMap<String, ResourceLocation>> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();
         JsonObject layers = jsonObject.get("layers").getAsJsonObject();
         JsonObject broken = jsonObject.get("broken").getAsJsonObject();
@@ -60,11 +63,6 @@ public class MultiLayeredArmorModelDeserializer implements JsonDeserializer<Mult
             brokenLocations.put(entry.getKey(), new ResourceLocation(entry.getValue().getAsString()));
         }
 
-        ResourceLocation baseLocation = null;
-
-        if (json.getAsJsonObject().has("base"))
-            baseLocation = new ResourceLocation(json.getAsJsonObject().get("base").getAsString());
-
-        return new MultiLayeredArmorModelDefinition(baseLocation, layersLocations, brokenLocations);
+        return new Pair<>(layersLocations, brokenLocations);
     }
 }

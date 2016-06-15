@@ -24,9 +24,8 @@ public class MaterialRenderControllers {
     /**
      * Abstract core implementation of the RenderInfo.
      */
-    public static abstract class AbstractMaterialTextureController implements ITextureController {
+    abstract class AbstractMaterialTextureController implements ITextureController {
         private String suffix;
-        private String identifier;
 
         @Override
         public boolean isStitched () {
@@ -63,24 +62,13 @@ public class MaterialRenderControllers {
             this.suffix = suffix;
             return this;
         }
-
-        @Override
-        public String getCreationIdentifier() {
-            return identifier;
-        }
-
-        @Override
-        public ITextureController setCreationIdentifier(String identifier) {
-            this.identifier = identifier;
-            return this;
-        }
     }
 
     /**
      * Does not actually generate a new texture. Used for vertex-coloring in the model generation
      * Safes VRAM, so we use vertex colors instead of creating new data.
      */
-    public static class Default extends AbstractMaterialTextureController {
+    class Default extends AbstractMaterialTextureController {
         public final MinecraftColor color;
 
         public Default (MinecraftColor color) {
@@ -111,7 +99,7 @@ public class MaterialRenderControllers {
     /**
      * Colors the texture of the tool with the material color
      */
-    public static class MultiColor extends AbstractMaterialTextureController {
+    class MultiColor extends AbstractMaterialTextureController {
 
         // colors to be used
         protected final int low, mid, high;
@@ -133,7 +121,7 @@ public class MaterialRenderControllers {
         }
     }
 
-    public static class InverseMultiColor extends MultiColor {
+    class InverseMultiColor extends MultiColor {
 
         public InverseMultiColor (int low, int mid, int high) {
             super(low, mid, high);
@@ -145,7 +133,7 @@ public class MaterialRenderControllers {
         }
     }
 
-    public static class Metal extends AbstractMaterialTextureController {
+    class Metal extends AbstractMaterialTextureController {
         public int color;
         protected float shinyness;
         protected float brightness;
@@ -171,7 +159,7 @@ public class MaterialRenderControllers {
     /**
      * Uses a (block) texture instead of a color to create the texture
      */
-    public static class BlockTexture extends AbstractMaterialTextureController {
+    class BlockTexture extends AbstractMaterialTextureController {
 
         protected String texturePath;
         protected Block block;
@@ -199,7 +187,7 @@ public class MaterialRenderControllers {
      * Creates an animated texture from an animated base texture. USE WITH CAUTION.
      * ACTUALLY ONLY USE THIS IF YOU KNOW EXACTLY WHAT YOU'RE DOING.
      */
-    public static class AnimatedTexture extends AbstractMaterialTextureController {
+    class AnimatedTexture extends AbstractMaterialTextureController {
 
         protected String texturePath;
 

@@ -6,7 +6,6 @@
 
 package com.smithsmodding.armory.common.block;
 
-import com.smithsmodding.armory.util.References;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -23,7 +22,6 @@ public abstract class BlockArmoryInventory extends BlockContainer {
         setUnlocalizedName(pBlockName);
         setHardness(5F);
         setResistance(10F);
-        setRegistryName(References.General.MOD_ID, getUnlocalizedName());
     }
 
     @Override

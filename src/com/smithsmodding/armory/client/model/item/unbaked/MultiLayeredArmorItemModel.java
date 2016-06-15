@@ -1,24 +1,19 @@
 package com.smithsmodding.armory.client.model.item.unbaked;
 
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
-import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.armor.MLAAddon;
-import com.smithsmodding.armory.api.armor.MaterialDependentMLAAddon;
-import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
-import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
-import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
-import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorSubComponentModel;
-import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
-import com.smithsmodding.smithscore.util.common.Pair;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.model.IModelState;
+import com.google.common.base.*;
+import com.google.common.collect.*;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.armory.client.model.item.baked.*;
+import com.smithsmodding.armory.client.model.item.baked.components.*;
+import com.smithsmodding.armory.client.model.item.unbaked.components.*;
+import com.smithsmodding.smithscore.util.common.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.client.renderer.vertex.*;
+import net.minecraft.util.*;
+import net.minecraftforge.client.model.*;
 
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by Marc on 06.12.2015.
@@ -26,11 +21,11 @@ import java.util.HashMap;
 public class MultiLayeredArmorItemModel extends ItemLayerModel {
 
     private final MultiLayeredArmor armor;
-    private final ArmorSubComponentModel baseLayer;
-    private final HashMap<String, ArmorSubComponentModel> parts;
-    private final HashMap<String, ArmorSubComponentModel> brokenParts;
+    private final ArmorComponentModel baseLayer;
+    private final HashMap<String, ArmorComponentModel> parts;
+    private final HashMap<String, ArmorComponentModel> brokenParts;
 
-    public MultiLayeredArmorItemModel(MultiLayeredArmor armor, ImmutableList<ResourceLocation> defaultTextures, ArmorSubComponentModel baseLayer, HashMap<String, ArmorSubComponentModel> parts, HashMap<String, ArmorSubComponentModel> brokenPartBlocks) {
+    public MultiLayeredArmorItemModel (MultiLayeredArmor armor, ImmutableList<ResourceLocation> defaultTextures, ArmorComponentModel baseLayer, HashMap<String, ArmorComponentModel> parts, HashMap<String, ArmorComponentModel> brokenPartBlocks) {
         super(defaultTextures);
         this.armor = armor;
         this.baseLayer = baseLayer;
@@ -44,14 +39,14 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
     }
 
     @Override
-    public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+    public IFlexibleBakedModel bake (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         //Get ourselfs the base model to use.
-        IBakedModel base = super.bake(state, format, bakedTextureGetter);
+        IFlexibleBakedModel base = super.bake(state, format, bakedTextureGetter);
 
         //Setup the maps that contain the converted baked sub models.
-        Pair<String, BakedSubComponentModel> mappedBaseLayer = null;
-        HashMap<String, BakedSubComponentModel> mappedParts = new HashMap<String, BakedSubComponentModel>();
-        HashMap<String, BakedSubComponentModel> mappedBrokenParts = new HashMap<String, BakedSubComponentModel>();
+        Pair<String, BakedComponentModel> mappedBaseLayer = null;
+        HashMap<String, BakedComponentModel> mappedParts = new HashMap<String, BakedComponentModel>();
+        HashMap<String, BakedComponentModel> mappedBrokenParts = new HashMap<String, BakedComponentModel>();
 
         //Check every possible addon for a texture and register it accordingly
         for (final MLAAddon addon : armor.getAllowedAddons()) {
@@ -61,7 +56,7 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
             }
 
             if (addon.getItemWholeTextureLocation().equals(baseLayer.getTexture()) && mappedBaseLayer == null) {
-                mappedBaseLayer = new Pair<String, BakedSubComponentModel>(addonID, baseLayer.generateBackedComponentModel(state, format, bakedTextureGetter));
+                mappedBaseLayer = new Pair<String, BakedComponentModel>(addonID, baseLayer.generateBackedComponentModel(state, format, bakedTextureGetter));
             } else if (parts.containsKey(addon.getItemWholeTextureLocation().toString())) {
                 mappedParts.put(addonID, parts.get(addon.getItemWholeTextureLocation().toString()).generateBackedComponentModel(state, format, bakedTextureGetter));
 

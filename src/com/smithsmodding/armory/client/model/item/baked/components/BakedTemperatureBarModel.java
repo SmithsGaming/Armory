@@ -1,24 +1,23 @@
 package com.smithsmodding.armory.client.model.item.baked.components;
 
+import net.minecraft.client.resources.model.*;
+import net.minecraftforge.client.model.*;
 
-import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by Marc on 08.12.2015.
  */
-public class BakedTemperatureBarModel extends BakedWrappedModel {
+public class BakedTemperatureBarModel extends MultiTextureBakedComponentModelLayer {
 
-    ArrayList<IBakedModel> textures = new ArrayList<>();
+    ArrayList<IBakedModel> textures = new ArrayList<IBakedModel>();
 
     /**
      * Creates a new Baked model from its parent for a single Component.
      *
      * @param base The models base.
      */
-    public BakedTemperatureBarModel(IBakedModel base) {
+    public BakedTemperatureBarModel (IFlexibleBakedModel base) {
         super(base);
     }
 

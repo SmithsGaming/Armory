@@ -1,10 +1,9 @@
 {
   "parent": "armory:item/Armor/MLA",
-  "base": "armory:items/multiarmor/base/armory.Helmet_Base",
-  "layers": {
+  "textures": {
+    "base": "armory:items/multiarmor/base/armory.Helmet_Base",
     "layer0": "armory:items/multiarmor/upgrades/armory.Helmet_TopHead",
     "layer1": "armory:items/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left",
     "layer2": "armory:items/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right"
-  },
-  "broken": {}
+  }
 }

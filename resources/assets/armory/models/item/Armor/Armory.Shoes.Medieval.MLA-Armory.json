@@ -1,9 +1,8 @@
 {
   "parent": "armory:item/Armor/MLA",
-  "base": "armory:items/multiarmor/base/armory.Shoes_Base",
-  "layers": {
+  "textures": {
+    "base": "armory:items/multiarmor/base/armory.Shoes_Base",
     "layer0": "armory:items/multiarmor/upgrades/armory.Shoes_Protection_Left",
     "layer1": "armory:items/multiarmor/upgrades/armory.Shoes_Protection_Right"
-  },
-  "broken": {}
+  }
 }

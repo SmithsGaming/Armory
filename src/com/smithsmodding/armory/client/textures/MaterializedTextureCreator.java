@@ -3,7 +3,6 @@ package com.smithsmodding.armory.client.textures;
 import com.google.common.collect.Maps;
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.api.materials.MaterialRenderControllers;
 import com.smithsmodding.armory.api.textures.GuiOutlineTexture;
 import com.smithsmodding.armory.common.material.ArmorMaterial;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
@@ -41,7 +40,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     //Initializes the dummy gui material with a proper set of render info.
     static {
         guiMaterial = new ArmorMaterial("_internal_gui", "Internal-gui", false, 0F, -1, 0F, null);
-        guiMaterial.setRenderInfo(new MaterialRenderControllers.AbstractMaterialTextureController() {
+        guiMaterial.setRenderInfo(new IMaterialRenderInfo.AbstractMaterialRenderInfo() {
             @Override
             public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {
                 return new GuiOutlineTexture(baseTexture, location);
@@ -90,7 +89,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
         }
 
         //Function is called so that all textures can be created.
-        createMaterialTextures(event.getMap());
+        createMaterialTextures(event.map);
     }
 
     /**
@@ -179,7 +178,9 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     @Override
     public void onResourceManagerReload (IResourceManager resourceManager) {
         baseTextures.clear();
-        buildSprites.values().forEach(Map::clear);
+        for (Map map : buildSprites.values()) {
+            map.clear();
+        }
         buildSprites.clear();
     }
 }

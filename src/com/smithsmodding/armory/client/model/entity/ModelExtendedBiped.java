@@ -1,30 +1,23 @@
-package com.smithsmodding.armory.client.model.entity;
+package com.smithsmodding.armory.client.model.Entity;
 /*
  *   ModelAExtendenBiped
  *   Created by: Orion
  *   Created on: 23-9-2014
  */
 
-import com.smithsmodding.armory.api.armor.MLAAddon;
-import com.smithsmodding.armory.api.armor.MaterialDependentMLAAddon;
-import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
-import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.common.material.MaterialRegistry;
-import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
-import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.common.material.*;
+import com.smithsmodding.armory.util.armor.*;
+import com.smithsmodding.smithscore.util.client.color.*;
+import net.minecraft.client.*;
+import net.minecraft.client.model.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import org.lwjgl.opengl.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 public class ModelExtendedBiped extends ModelBiped {
     public ModelRenderer bipedRightFoot;
@@ -107,7 +100,7 @@ public class ModelExtendedBiped extends ModelBiped {
         ResourceLocation modelLocation = layer.getModelTextureLocation();
         Minecraft.getMinecraft().renderEngine.bindTexture(modelLocation);
 
-        handleArmorType(armor.getEquipmentSlot(), layerModel);
+        handleArmorType(armor.getArmorIndex(), layerModel);
 
         if (layer.isMaterialDependent()) {
             IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(( (MaterialDependentMLAAddon) layer ).getUniqueMaterialID());
@@ -149,27 +142,27 @@ public class ModelExtendedBiped extends ModelBiped {
             MinecraftColor.resetOpenGLColoring();
     }
 
-    private static void handleArmorType(EntityEquipmentSlot slot, ModelExtendedBiped model) {
-        switch (slot) {
-            case HEAD:
+    private static void handleArmorType (int armorIndex, ModelExtendedBiped model) {
+        switch (armorIndex) {
+            case 0:
                 model.bipedHead.showModel = true;
                 model.bipedBody.showModel = model.bipedRightArm.showModel = model.bipedLeftArm.showModel = false;
                 model.bipedWaist.showModel = model.bipedRightLeg.showModel = model.bipedLeftLeg.showModel = false;
                 model.bipedRightFoot.showModel = model.bipedLeftFoot.showModel = false;
                 break;
-            case CHEST:
+            case 1:
                 model.bipedHead.showModel = false;
                 model.bipedBody.showModel = model.bipedRightArm.showModel = model.bipedLeftArm.showModel = true;
                 model.bipedWaist.showModel = model.bipedRightLeg.showModel = model.bipedLeftLeg.showModel = false;
                 model.bipedRightFoot.showModel = model.bipedLeftFoot.showModel = false;
                 break;
-            case LEGS:
+            case 2:
                 model.bipedHead.showModel = false;
                 model.bipedBody.showModel = model.bipedRightArm.showModel = model.bipedLeftArm.showModel = false;
                 model.bipedWaist.showModel = model.bipedRightLeg.showModel = model.bipedLeftLeg.showModel = true;
                 model.bipedRightFoot.showModel = model.bipedLeftFoot.showModel = false;
                 break;
-            case FEET:
+            case 3:
                 model.bipedHead.showModel = false;
                 model.bipedBody.showModel = model.bipedRightArm.showModel = model.bipedLeftArm.showModel = false;
                 model.bipedWaist.showModel = model.bipedRightLeg.showModel = model.bipedLeftLeg.showModel = false;

@@ -17,7 +17,6 @@ public class ItemBlockBlackSmithsAnvil extends ItemBlock
 
     public ItemBlockBlackSmithsAnvil (Block block) {
         super(block);
-        this.setRegistryName(block.getRegistryName());
     }
 
     @Override

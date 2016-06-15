@@ -5,16 +5,13 @@ package com.smithsmodding.armory.common.factory;
 /  Created on : 04/07/2014
 */
 
-import com.smithsmodding.armory.api.armor.MLAAddon;
-import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
-import com.smithsmodding.armory.util.References;
-import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.util.*;
+import com.smithsmodding.armory.util.armor.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class MedievalArmorFactory implements IMLAFactory {
     private static MedievalArmorFactory iInstance;
@@ -53,7 +50,7 @@ public class MedievalArmorFactory implements IMLAFactory {
         tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.CurrentDurability, tOldCurrentDurability + (pNewTotalDurability - tOldTotalDurability));
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.MaterialID, pInternalMaterialName);
         tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.Addons, tAddonMap.size());
-        tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.ArmorPart, pBaseArmor.getEquipmentSlot().ordinal());
+        tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.ArmorPart, pBaseArmor.getArmorIndex());
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, pBaseArmor.getUniqueID());
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorTier, References.InternalNames.Tiers.MEDIEVAL);
         tNewStackCompound.setTag(References.NBTTagCompoundData.ArmorData, tNewDataCompound);
@@ -81,7 +78,7 @@ public class MedievalArmorFactory implements IMLAFactory {
         tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.CurrentDurability, pTotalDurability);
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.MaterialID, pInternalMaterialName);
         tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.Addons, pAddons.size());
-        tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.ArmorPart, pBaseArmor.getEquipmentSlot().ordinal());
+        tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.ArmorPart, pBaseArmor.getArmorIndex());
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, pBaseArmor.getUniqueID());
         tNewDataCompound.setString(References.NBTTagCompoundData.Armor.ArmorTier, References.InternalNames.Tiers.MEDIEVAL);
         tNewStackCompound.setTag(References.NBTTagCompoundData.ArmorData, tNewDataCompound);
