@@ -1,14 +1,12 @@
 package com.smithsmodding.armory.client.model.item.events;
 
-import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
-import com.smithsmodding.armory.client.deserializers.MultiLayeredArmorModelDeserializer;
-import com.smithsmodding.armory.client.deserializers.definition.MultiLayeredArmorModelDefinition;
-import com.smithsmodding.smithscore.common.events.SmithsCoreEvent;
-import net.minecraft.util.ResourceLocation;
+import com.smithsmodding.armory.api.armor.*;
+import com.smithsmodding.armory.*;
+import com.smithsmodding.smithscore.common.events.*;
+import com.smithsmodding.smithscore.util.client.*;
+import net.minecraft.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Marc on 07.12.2015.
@@ -16,7 +14,7 @@ import java.util.List;
 public class MultiLayeredArmorModelTextureLoadEvent extends SmithsCoreEvent {
 
     private final MultiLayeredArmor armor;
-    List<MultiLayeredArmorModelDefinition> additionalTextureDefinitions = new ArrayList<>();
+    Map<java.lang.String, java.lang.String> additionalTextureLayers = new HashMap<java.lang.String, java.lang.String>();
 
     public MultiLayeredArmorModelTextureLoadEvent (MultiLayeredArmor armor) {
         this.armor = armor;
@@ -26,13 +24,13 @@ public class MultiLayeredArmorModelTextureLoadEvent extends SmithsCoreEvent {
         return armor;
     }
 
-    public List<MultiLayeredArmorModelDefinition> getAdditionalTextureLayers() {
-        return additionalTextureDefinitions;
+    public Map<String, String> getAdditionalTextureLayers () {
+        return additionalTextureLayers;
     }
 
     public void addAdditionalTextureLayers (ResourceLocation modelDefinitionLocation) {
         try {
-            additionalTextureDefinitions.add(MultiLayeredArmorModelDeserializer.instance.deserialize(modelDefinitionLocation));
+            additionalTextureLayers.putAll(ModelHelper.loadTexturesFromJson(modelDefinitionLocation));
         } catch (Exception ex) {
             Armory.getLogger().error("Error while attempting to add: " + modelDefinitionLocation.toString() + " to the model definition of: " + armor.getUniqueID());
         }

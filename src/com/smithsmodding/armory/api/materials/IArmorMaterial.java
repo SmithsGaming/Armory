@@ -1,7 +1,6 @@
 package com.smithsmodding.armory.api.materials;
 
 import com.smithsmodding.armory.api.registries.IArmorPartRegistry;
-import com.smithsmodding.smithscore.client.textures.ITextureController;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
@@ -61,9 +60,9 @@ public interface IArmorMaterial {
     IArmorPartRegistry getPartRegistry ();
 
 
-    ITextureController getRenderInfo();
+    IMaterialRenderInfo getRenderInfo ();
 
-    IArmorMaterial setRenderInfo(ITextureController newInfo);
+    IArmorMaterial setRenderInfo (IMaterialRenderInfo newInfo);
 
     String getTranslationKey ();
 

@@ -6,10 +6,9 @@ package com.smithsmodding.armory.api.textures;
   of Wrapper classes instead of direct access.
  */
 
-import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.util.*;
 
 public class TextureColoredTexture extends AbstractColoredTexture {
 

@@ -1,17 +1,15 @@
 package com.smithsmodding.armory.client.model.loaders;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
-import com.smithsmodding.armory.client.deserializers.MultiLayeredArmorModelDeserializer;
-import com.smithsmodding.armory.client.deserializers.definition.MultiLayeredArmorModelDefinition;
 import com.smithsmodding.armory.client.model.item.events.MultiLayeredArmorModelTextureLoadEvent;
 import com.smithsmodding.armory.client.model.item.unbaked.MultiLayeredArmorItemModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
+import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
@@ -56,23 +54,14 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
             }
 
             //Load the default definition of the model as defined by the registrar first.
-            MultiLayeredArmorModelDefinition definition = MultiLayeredArmorModelDeserializer.instance.deserialize(modelLocation);
+            Map<String, String> textures = ModelHelper.loadTexturesFromJson(modelLocation);
 
             //Fire the TextureLoadEvent to allow third parties to add additional layers to the model if necessary
             MultiLayeredArmorModelTextureLoadEvent textureLoadEvent = new MultiLayeredArmorModelTextureLoadEvent(armor);
             textureLoadEvent.PostClient();
 
-            //Combine the original with the added
-            ImmutableMap.Builder<String, ResourceLocation> combineLayeredBuilder = new ImmutableMap.Builder<>();
-            ImmutableMap.Builder<String, ResourceLocation> combineBrokenBuilder = new ImmutableMap.Builder<>();
-
-            combineLayeredBuilder.putAll(definition.getLayerLocations());
-            combineBrokenBuilder.putAll(definition.getBrokenLocations());
-            for (MultiLayeredArmorModelDefinition subDef : textureLoadEvent.getAdditionalTextureLayers()) {
-                combineLayeredBuilder.putAll(subDef.getLayerLocations());
-                combineBrokenBuilder.putAll(subDef.getBrokenLocations());
-            }
-            definition = new MultiLayeredArmorModelDefinition(combineLayeredBuilder.build(), combineBrokenBuilder.build());
+            //Add the additional textures to the list to load.
+            textures.putAll(textureLoadEvent.getAdditionalTextureLayers());
 
             //Create the final list builder.
             ImmutableList.Builder<ResourceLocation> builder = ImmutableList.builder();
