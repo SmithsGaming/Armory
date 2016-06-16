@@ -17,7 +17,7 @@ public class BlackSmithsAnvilState implements ITileEntityState {
     private float craftingprogress;
     private IAnvilMaterial material;
     private TileEntityBlackSmithsAnvil anvil;
-    private String recipeId;
+    private String recipeId = "";
 
     private String itemName = "";
     private boolean processingCraftingResult = false;

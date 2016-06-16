@@ -1,6 +1,8 @@
 package com.smithsmodding.armory.util.client;
 
 import com.smithsmodding.armory.util.References;
+import com.smithsmodding.smithscore.client.textures.HolographicTexture;
+import com.smithsmodding.smithscore.client.textures.TextureCreator;
 import com.smithsmodding.smithscore.util.client.CustomResource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -21,15 +23,34 @@ public class Textures {
      * @param event The events fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
      */
     @SubscribeEvent(priority = EventPriority.LOW)
-    public void loadTextures (TextureStitchEvent.Pre event) {
+    public void registerTexturesToMap (TextureStitchEvent.Pre event) {
+        TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWPICKAXE.getPrimaryLocation()));
+        TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWBOOK.getPrimaryLocation()));
+        TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWHAMMER.getPrimaryLocation()));
+        TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWTONGS.getPrimaryLocation()));
+
         //Only run the creation once, after all mods have been loaded.
         if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
             return;
         }
 
+        Gui.Anvil.LOGO.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.Anvil.LOGO.getPrimaryLocation())));
         Gui.FirePit.THERMOMETERICON.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.FirePit.THERMOMETERICON.getPrimaryLocation())));
         Blocks.LiquidMetalFlow.addIcon(event.getMap().registerSprite(new ResourceLocation(Blocks.LiquidMetalFlow.getPrimaryLocation())));
         Blocks.LiquidMetalStill.addIcon(event.getMap().registerSprite(new ResourceLocation(Blocks.LiquidMetalStill.getPrimaryLocation())));
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public void loadTexturesAfterCreation (TextureStitchEvent.Post event) {
+        if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
+            return;
+        }
+
+        //Only run the creation once, after all mods have been loaded.
+        Gui.Anvil.HOLOWPICKAXE.addIcon(TextureCreator.getBuildSprites().get(Gui.Anvil.HOLOWPICKAXE.getPrimaryLocation()).get(HolographicTexture.HolographicTextureController.IDENTIFIER));
+        Gui.Anvil.HOLOWBOOK.addIcon(TextureCreator.getBuildSprites().get(Gui.Anvil.HOLOWBOOK.getPrimaryLocation()).get(HolographicTexture.HolographicTextureController.IDENTIFIER));
+        Gui.Anvil.HOLOWHAMMER.addIcon(TextureCreator.getBuildSprites().get(Gui.Anvil.HOLOWHAMMER.getPrimaryLocation()).get(HolographicTexture.HolographicTextureController.IDENTIFIER));
+        Gui.Anvil.HOLOWTONGS.addIcon(TextureCreator.getBuildSprites().get(Gui.Anvil.HOLOWTONGS.getPrimaryLocation()).get(HolographicTexture.HolographicTextureController.IDENTIFIER));
     }
 
     public static class MultiArmor {
@@ -128,7 +149,12 @@ public class Textures {
         }
 
         public static class Anvil {
+            public static CustomResource LOGO = new CustomResource("Gui.Anvil.Image.Logo", "gui/Images/AnvilHammer.png", Colors.DEFAULT, 0,0,15,15);
             public static CustomResource EXPERIENCEORB = new CustomResource("Gui.Anvil.Image.ExperienceOrb", GUITEXTUREPATH + "Components/RandomElements.png", Colors.DEFAULT, 16, 0, 16, 16);
+            public static CustomResource HOLOWPICKAXE = new CustomResource("Gui.Anvil.SlotHolo.Pickaxe", "minecraft:items/iron_pickaxe", Colors.DEFAULT, 0, 0, 16, 16);
+            public static CustomResource HOLOWBOOK = new CustomResource("Gui.Anvil.SlotHolo.Book", "minecraft:items/book_normal", Colors.DEFAULT, 0,0, 16, 16);
+            public static CustomResource HOLOWHAMMER = new CustomResource("Gui.Anvil.SlotHolo.Hammer", "armory:items/basic/16x Work Hammer", Colors.DEFAULT, 0,0,16,16);
+            public static CustomResource HOLOWTONGS = new CustomResource("Gui.Anvil.SlotHolo.Tongs", "armory:items/basic/16x Tongs", Colors.DEFAULT, 0,0,16,16);
         }
 
         public static class Compatibility {

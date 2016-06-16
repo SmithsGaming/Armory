@@ -6,10 +6,13 @@ package com.smithsmodding.armory.common.handlers;
  */
 
 
+import com.smithsmodding.armory.client.gui.blacksmithsanvil.GuiBlacksmithsAnvil;
 import com.smithsmodding.armory.client.gui.firepit.GuiFirePit;
 import com.smithsmodding.armory.client.gui.fireplace.GuiFireplace;
+import com.smithsmodding.armory.common.inventory.ContainerBlacksmithsAnvil;
 import com.smithsmodding.armory.common.inventory.ContainerFirepit;
 import com.smithsmodding.armory.common.inventory.ContainerFireplace;
+import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import com.smithsmodding.armory.util.References;
@@ -30,6 +33,10 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerFireplace(pPlayer, (TileEntityFireplace) pWorld.getTileEntity(new BlockPos(pX, pY, pZ)));
         }
 
+        if (pID == References.GuiIDs.ANVILID) {
+            return new ContainerBlacksmithsAnvil(pPlayer, (TileEntityBlackSmithsAnvil) pWorld.getTileEntity(new BlockPos(pX, pY, pZ)));
+        }
+
         return null;
     }
 
@@ -41,6 +48,10 @@ public class GuiHandler implements IGuiHandler {
 
         if (pID == References.GuiIDs.FIREPLACEID) {
             return new GuiFireplace(new ContainerFireplace(pPlayer, (TileEntityFireplace) pWorld.getTileEntity(new BlockPos(pX, pY, pZ))));
+        }
+
+        if (pID == References.GuiIDs.ANVILID) {
+            return new GuiBlacksmithsAnvil(new ContainerBlacksmithsAnvil(pPlayer, (TileEntityBlackSmithsAnvil) pWorld.getTileEntity(new BlockPos(pX, pY, pZ))));
         }
 
         return null;
