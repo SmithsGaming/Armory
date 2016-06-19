@@ -16,7 +16,9 @@ import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
 import com.smithsmodding.smithscore.util.client.Textures;
 import com.smithsmodding.smithscore.util.client.color.Colors;
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate2D;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 
 import java.util.LinkedHashMap;
 
@@ -59,14 +61,22 @@ public class Component5X5CraftingGrid extends CoreComponent implements IGUIBased
 
     @Override
     public void registerComponents(IGUIBasedComponentHost host) {
-        registerNewComponent(new ComponentBorder(getID() + ".Border", host, getLocalCoordinate(), 162, 104, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts));
+        registerNewComponent(new ComponentBorder(getID() + ".Border", host, new Coordinate2D(0,0), 162, 104, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts));
 
         for (int slotIndex = startSlotIndexCraftingGrid; slotIndex < endSlotIndexCraftingGrid; slotIndex++) {
-            registerNewComponent(new ComponentSlot(getID() + ".Grid.Slot." + (slotIndex - startSlotIndexCraftingGrid), new SlotComponentState(null, crafter.getSlot(slotIndex), crafter.getContainerInventory(), null), host, crafter.getSlot(slotIndex), Colors.DEFAULT));
+            TextureAtlasSprite holoSprite = null;
+
+            Slot slot = crafter.getSlot(slotIndex);
+            Coordinate2D slotLocation = new Coordinate2D(slot.xDisplayPosition - 1, slot.yDisplayPosition - 1).getTranslatedCoordinate(getLocalCoordinate().getInvertedCoordinate());
+
+            registerNewComponent(new ComponentSlot(getID() + ".Grid.Slot." + (slotIndex - startSlotIndexCraftingGrid), new SlotComponentState(null, slot, crafter.getContainerInventory(), holoSprite), host, slotLocation, Colors.DEFAULT));
         }
 
         registerNewComponent(new ComponentProgressBar(getID() + ".Progress", host, new CoreComponentState(), new Coordinate2D(105, 45), ComponentOrientation.HORIZONTALLEFTTORIGHT, Textures.Gui.Basic.Components.ARROWEMPTY, Textures.Gui.Basic.Components.ARROWFULL));
-        registerNewComponent(new ComponentSlot(getID() + ".Out", new SlotComponentState(null, crafter.getSlot(craftingProductionSlotIndex), crafter.getContainerInventory(), null), host, crafter.getSlot(craftingProductionSlotIndex), Colors.DEFAULT));
+
+        Slot slot = crafter.getSlot(craftingProductionSlotIndex);
+        Coordinate2D slotLocation = new Coordinate2D(slot.xDisplayPosition - 1, slot.yDisplayPosition - 1).getTranslatedCoordinate(getLocalCoordinate().getInvertedCoordinate());
+        registerNewComponent(new ComponentSlot(getID() + ".Out", new SlotComponentState(null, slot, crafter.getContainerInventory(), null), host, slotLocation, Colors.DEFAULT));
     }
 
     @Override

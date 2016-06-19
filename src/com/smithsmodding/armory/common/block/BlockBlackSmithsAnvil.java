@@ -171,7 +171,11 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
 
         OBJModel.OBJState objState = new OBJModel.OBJState(Lists.newArrayList(OBJModel.Group.ALL), true, transformation);
 
-        return ((IExtendedBlockState) state).withProperty(PROPERTY_ANVIL_MATERIAL, ((BlackSmithsAnvilState) ((TileEntityBlackSmithsAnvil) world.getTileEntity(pos)).getState()).getMaterial().getID()).withProperty(OBJModel.OBJProperty.INSTANCE, objState);
+        IAnvilMaterial material = ((BlackSmithsAnvilState) ((TileEntityBlackSmithsAnvil) world.getTileEntity(pos)).getState()).getMaterial();
+        if (material == null)
+            material = AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.IRON);
+
+        return ((IExtendedBlockState) state).withProperty(PROPERTY_ANVIL_MATERIAL, material.getID()).withProperty(OBJModel.OBJProperty.INSTANCE, objState);
     }
 
     @Override
