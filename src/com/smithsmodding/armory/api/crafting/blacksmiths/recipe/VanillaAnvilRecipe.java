@@ -13,6 +13,7 @@ import com.smithsmodding.smithscore.util.common.XPUtil;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemEnchantedBook;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AnvilUpdateEvent;
@@ -119,13 +120,18 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
         iEntity.setInventorySlotContents(11, null);
 
         if (iRightInputStack != null) {
-            iRightInputStack.stackSize -= iStackSizeToBeUsedInRepair;
-            if (iRightInputStack.stackSize <= 0) {
+            if (iRightInputStack.getItem() instanceof ItemEnchantedBook) {
                 iRightInputStack = null;
+            } else {
+                iRightInputStack.stackSize -= iStackSizeToBeUsedInRepair;
+                if (iRightInputStack.stackSize <= 0) {
+                    iRightInputStack = null;
+                }
             }
         }
 
         iEntity.setInventorySlotContents(13, iRightInputStack);
+        ((BlackSmithsAnvilState) iEntity.getState()).setItemName("");
     }
 
     public int getRequiredLevelsPerPlayer() {
@@ -160,7 +166,6 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
             this.iMaximumCost = 0;
         } else {
             ItemStack tEventStack = iLeftInputStack.copy();
-            ItemStack tAdditionStack = iRightInputStack.copy();
             Map<Enchantment, Integer> tEnchantmentsMap = EnchantmentHelper.getEnchantments(tEventStack);
             boolean tFlagIsEnchantableByBook = false;
             int tBaseLevelExperienceCost = b0 + iLeftInputStack.getRepairCost() + (iRightInputStack == null ? 0 : iRightInputStack.getRepairCost());
@@ -270,7 +275,7 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
                 }
             }
 
-            if (tFlagIsEnchantableByBook && !tEventStack.getItem().isBookEnchantable(tEventStack, tAdditionStack))
+            if (tFlagIsEnchantableByBook && !tEventStack.getItem().isBookEnchantable(tEventStack, iRightInputStack))
                 tEventStack = null;
 
             if (StringUtils.isBlank(((BlackSmithsAnvilState) iEntity.getState()).getItemName())) {
@@ -302,8 +307,8 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
             if (tEventStack != null) {
                 int i2 = tEventStack.getRepairCost();
 
-                if (tAdditionStack != null && i2 < tAdditionStack.getRepairCost()) {
-                    i2 = tAdditionStack.getRepairCost();
+                if (iRightInputStack != null && i2 < iRightInputStack.getRepairCost()) {
+                    i2 = iRightInputStack.getRepairCost();
                 }
 
                 if (j != i || j == 0) {

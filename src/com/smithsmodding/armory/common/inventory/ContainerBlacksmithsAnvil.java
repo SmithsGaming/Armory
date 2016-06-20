@@ -5,6 +5,7 @@ import com.smithsmodding.armory.common.item.ItemTongs;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
+import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -20,17 +21,17 @@ public class ContainerBlacksmithsAnvil extends ContainerSmithsCore {
             int tRowIndex = ((tSlotIndex) / 5);
             int tColumnIndex = (tSlotIndex) % 5;
 
-            addSlotToContainer(new Slot(te, tSlotIndex, 18 + 18 * tColumnIndex, 59 + 18 * tRowIndex));
+            addSlotToContainer(new SlotSmithsCore(te, tSlotIndex, 18 + 18 * tColumnIndex, 59 + 18 * tRowIndex));
         }
 
-        addSlotToContainer(new Slot(te, TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS, 148, 95) {
+        addSlotToContainer(new SlotSmithsCore(te, TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS, 148, 95) {
             @Override
             public boolean isItemValid(ItemStack pItemStack) {
                 return false;
             }
         });
 
-        addSlotToContainer(new Slot(te, TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS, 185, 110) {
+        addSlotToContainer(new SlotSmithsCore(te, TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS, 185, 110) {
 
             @Override
             public boolean isItemValid(ItemStack pItemStack) {
@@ -38,7 +39,7 @@ public class ContainerBlacksmithsAnvil extends ContainerSmithsCore {
             }
         });
 
-        addSlotToContainer(new Slot(te, TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS, 185, 132) {
+        addSlotToContainer(new SlotSmithsCore(te, TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS, 185, 132) {
 
             @Override
             public boolean isItemValid(ItemStack pItemStack) {

@@ -9,9 +9,8 @@ import com.smithsmodding.armory.common.tileentity.guimanagers.BlackSmithsAnvilGu
 import com.smithsmodding.armory.common.tileentity.state.BlackSmithsAnvilState;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.SmithsCore;
+import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.util.common.ItemStackHelper;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -22,7 +21,7 @@ import java.util.*;
 /**
  * Created by Marc on 14.02.2016.
  */
-public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInventory, ITickable {
+public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IItemStorage, ITickable {
     public static int MAX_CRAFTINGSLOTS = 25;
     public static int MAX_OUTPUTSLOTS = 1;
     public static int MAX_HAMMERSLOTS = 1;
@@ -32,14 +31,12 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
     public static int MAX_BLUEPRINTLIBRARYSLOTS = 1;
     public static int MAX_SLOTS = MAX_CRAFTINGSLOTS + MAX_OUTPUTSLOTS + MAX_HAMMERSLOTS + MAX_TONGSLOTS + MAX_ADDITIONALSLOTS + MAX_COOLSLOTS + MAX_BLUEPRINTLIBRARYSLOTS;
 
-    private ItemStack[] craftinStacks = new ItemStack[MAX_CRAFTINGSLOTS];
+    private ItemStack[] craftingStacks = new ItemStack[MAX_CRAFTINGSLOTS];
     private ItemStack[] outputStacks = new ItemStack[MAX_OUTPUTSLOTS];
     private ItemStack[] hammerStacks = new ItemStack[MAX_HAMMERSLOTS];
     private ItemStack[] tongStacks = new ItemStack[MAX_TONGSLOTS];
     private ItemStack[] additionalCraftingStacks = new ItemStack[MAX_ADDITIONALSLOTS];
     private ItemStack[] coolingStacks = new ItemStack[MAX_COOLSLOTS];
-
-    private int connectedPlayerCount = 0;
 
     public TileEntityBlackSmithsAnvil() {
         super(new BlackSmithsAnvilState(), null);
@@ -59,7 +56,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
     @Override
     public ItemStack getStackInSlot(int pSlotID) {
         if (pSlotID < MAX_CRAFTINGSLOTS)
-            return craftinStacks[pSlotID];
+            return craftingStacks[pSlotID];
 
         pSlotID -= MAX_CRAFTINGSLOTS;
 
@@ -111,31 +108,14 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        ItemStack stack = getStackInSlot(index);
-        setInventorySlotContents(index, null);
-        return stack;
+    public void clearInventory() {
+        craftingStacks = new ItemStack[MAX_CRAFTINGSLOTS];
+        outputStacks = new ItemStack[MAX_OUTPUTSLOTS];
+        hammerStacks = new ItemStack[MAX_HAMMERSLOTS];
+        tongStacks = new ItemStack[MAX_TONGSLOTS];
+        additionalCraftingStacks = new ItemStack[MAX_ADDITIONALSLOTS];
+        coolingStacks = new ItemStack[MAX_COOLSLOTS];
     }
-
-    /*
-    @Override
-    public Object getGUIComponentRelatedObject(String pComponentID) {
-        if (pComponentID.equals("Gui.Anvil.Cooling.Tank"))
-            return new FluidStack(FluidRegistry.WATER, 3500);
-
-        if (pComponentID.equals(References.InternalNames.GUIComponents.Anvil.EXPERIENCELABEL + ".Value")) {
-            if (currentRecipe == null)
-                return -1;
-
-            if (!(currentRecipe instanceof VanillaAnvilRecipe))
-                return -1;
-
-            return ((VanillaAnvilRecipe) currentRecipe).getRequiredLevelsPerPlayer();
-        }
-
-        return null;
-    }
-    */
 
     @Override
     public void setInventorySlotContents(int pSlotID, ItemStack pNewItemStack) {
@@ -143,7 +123,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
             return;
 
         if (pSlotID < MAX_CRAFTINGSLOTS) {
-            craftinStacks[pSlotID] = pNewItemStack;
+            craftingStacks[pSlotID] = pNewItemStack;
             ((BlackSmithsAnvilState) getState()).setCraftingprogress(0);
             findValidRecipe();
             return;
@@ -201,21 +181,6 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer pPlayer) {
-        return true;
-    }
-
-    @Override
-    public void openInventory(EntityPlayer player) {
-        //NOOP Tracked by SmithsCore
-    }
-
-    @Override
-    public void closeInventory(EntityPlayer player) {
-        //NOOP Tracked by SmithsCore
-    }
-
-    @Override
     public boolean isItemValidForSlot(int pSlotID, ItemStack pTargetStack) {
         if (pSlotID < MAX_CRAFTINGSLOTS)
             return true;
@@ -257,26 +222,6 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
     }
 
     @Override
-    public int getField(int id) {
-        return 0;
-    }
-
-    @Override
-    public void setField(int id, int value) {
-
-    }
-
-    @Override
-    public int getFieldCount() {
-        return 0;
-    }
-
-    @Override
-    public void clear() {
-
-    }
-
-    @Override
     public void update() {
         boolean tUpdated = false;
 
@@ -285,9 +230,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
 
             if ((((BlackSmithsAnvilState) getState()).getCraftingprogress() >= getCurrentRecipe().getMinimumProgress()) && !worldObj.isRemote) {
                 if (outputStacks[0] != null) {
-                    outputStacks[0].stackSize += getCurrentRecipe().getResult(craftinStacks, additionalCraftingStacks).stackSize;
+                    outputStacks[0].stackSize += getCurrentRecipe().getResult(craftingStacks, additionalCraftingStacks).stackSize;
                 } else {
-                    outputStacks[0] = getCurrentRecipe().getResult(craftinStacks, additionalCraftingStacks);
+                    outputStacks[0] = getCurrentRecipe().getResult(craftingStacks, additionalCraftingStacks);
                     if (!((BlackSmithsAnvilState) getState()).getItemName().equals("")) {
                         outputStacks[0].getTagCompound().setString(References.NBTTagCompoundData.CustomName, ((BlackSmithsAnvilState) getState()).getItemName());
                     }
@@ -316,7 +261,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
 
         if (SmithsCore.isInDevenvironment()) {
             Armory.getLogger().info("Checking Recipe for:");
-            for (ItemStack tStack : craftinStacks) {
+            for (ItemStack tStack : craftingStacks) {
                 Armory.getLogger().info("   " + ItemStackHelper.toString(tStack));
             }
         }
@@ -331,9 +276,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
             tTongUsagesLeft = tongStacks[0].getItemDamage();
 
         for (AnvilRecipe tRecipe : AnvilRecipeRegistry.getInstance().getRecipes().values()) {
-            if (tRecipe.matchesRecipe(craftinStacks, additionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft)) {
+            if (tRecipe.matchesRecipe(craftingStacks, additionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft)) {
                 if (outputStacks[0] != null) {
-                    ItemStack tResultStack = tRecipe.getResult(craftinStacks, additionalCraftingStacks);
+                    ItemStack tResultStack = tRecipe.getResult(craftingStacks, additionalCraftingStacks);
 
                     if (!ItemStackHelper.equalsIgnoreStackSize(tResultStack, outputStacks[0]))
                         continue;
@@ -349,13 +294,13 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
             }
         }
 
-        if (craftinStacks[11] != null) {
+        if (craftingStacks[11] != null) {
             for (int tCraftingStack = 0; tCraftingStack < MAX_CRAFTINGSLOTS; tCraftingStack++) {
                 if (tCraftingStack == 11 || tCraftingStack == 13) {
                     continue;
                 }
 
-                if (craftinStacks[tCraftingStack] != null) {
+                if (craftingStacks[tCraftingStack] != null) {
                     setCurrentRecipe(null);
                     return;
                 }
@@ -370,7 +315,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
 
 
             VanillaAnvilRecipe tRecipe = new VanillaAnvilRecipe(this);
-            if (tRecipe.matchesRecipe(craftinStacks, additionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft)) {
+            if (tRecipe.matchesRecipe(craftingStacks, additionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft)) {
                 setCurrentRecipe(tRecipe);
                 return;
             }
@@ -380,14 +325,11 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
     }
 
     public AnvilRecipe getCurrentRecipe() {
-        if (((BlackSmithsAnvilState) getState()).getRecipeId() == "")
-            return null;
-
-        return AnvilRecipeRegistry.getInstance().getRecipe(((BlackSmithsAnvilState) getState()).getRecipeId());
+        return ((BlackSmithsAnvilState) getState()).getRecipe();
     }
 
     public void setCurrentRecipe(AnvilRecipe recipe) {
-        ((BlackSmithsAnvilState) getState()).setRecipeId(AnvilRecipeRegistry.getInstance().getID(recipe));
+        ((BlackSmithsAnvilState) getState()).setRecipe(recipe);
     }
 
     public void ProcessPerformedCrafting() {
@@ -402,7 +344,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
         } else if (getCurrentRecipe().isShapeless()) {
             ArrayList<IAnvilRecipeComponent> tComponentList = new ArrayList<IAnvilRecipeComponent>(Arrays.asList(getCurrentRecipe().getComponents().clone()));
             for (int tSlotIndex = 0; tSlotIndex < MAX_CRAFTINGSLOTS; tSlotIndex++) {
-                if (craftinStacks[tSlotIndex] != null) {
+                if (craftingStacks[tSlotIndex] != null) {
                     boolean tProcessedStack = false;
 
                     Iterator<IAnvilRecipeComponent> tIter = tComponentList.iterator();
@@ -410,9 +352,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
                         IAnvilRecipeComponent tComponent = tIter.next();
 
                         if (tComponent != null) {
-                            craftinStacks[tSlotIndex].stackSize = tComponent.getResultingStackSizeForComponent(craftinStacks[tSlotIndex]);
-                            if (craftinStacks[tSlotIndex].stackSize == 0) {
-                                craftinStacks[tSlotIndex] = null;
+                            craftingStacks[tSlotIndex].stackSize = tComponent.getResultingStackSizeForComponent(craftingStacks[tSlotIndex]);
+                            if (craftingStacks[tSlotIndex].stackSize == 0) {
+                                craftingStacks[tSlotIndex] = null;
                             }
 
                             tProcessedStack = true;
@@ -422,16 +364,16 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
             }
         } else {
             for (int tSlotIndex = 0; tSlotIndex < MAX_CRAFTINGSLOTS; tSlotIndex++) {
-                if (craftinStacks[tSlotIndex] == null)
+                if (craftingStacks[tSlotIndex] == null)
                     continue;
 
                 IAnvilRecipeComponent tTargetComponent = getCurrentRecipe().getComponent(tSlotIndex);
                 if (tTargetComponent == null)
                     continue;
 
-                craftinStacks[tSlotIndex].stackSize = tTargetComponent.getResultingStackSizeForComponent(craftinStacks[tSlotIndex]);
-                if (craftinStacks[tSlotIndex].stackSize < 1)
-                    craftinStacks[tSlotIndex] = null;
+                craftingStacks[tSlotIndex].stackSize = tTargetComponent.getResultingStackSizeForComponent(craftingStacks[tSlotIndex]);
+                if (craftingStacks[tSlotIndex].stackSize < 1)
+                    craftingStacks[tSlotIndex] = null;
             }
         }
 
@@ -553,11 +495,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IInv
 
     //TODO: FIX ME!
     public int getConnectedPlayerCount() {
-        if (worldObj.isRemote) {
-            return connectedPlayerCount;
-        } else {
-            return getWatchingPlayers().size();
-        }
+        return getWatchingPlayers().size();
     }
 
     public enum AnvilType {

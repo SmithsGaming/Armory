@@ -33,6 +33,7 @@ public class ComponentExperienceLabel extends CoreComponent {
 
         if (level > 0) {
             GlStateManager.pushMatrix();
+            GlStateManager.enableBlend();
             GlStateManager.scale(0.6F, 0.6F, 0.6F);
             StandardRenderManager.pushColorOnRenderStack(Colors.Experience.ORB);
             GuiHelper.bindTexture(Textures.Gui.Anvil.EXPERIENCEORB.getPrimaryLocation());

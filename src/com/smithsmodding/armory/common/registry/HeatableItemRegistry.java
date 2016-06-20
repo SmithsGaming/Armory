@@ -38,8 +38,8 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
     TCustomHashMap<ItemStack, Pair<IArmorMaterial, String>> reverseStackToMaterialMap = new TCustomHashMap<>(new ItemStackHashingStrategy());
     TCustomHashMap<ItemStack, Pair<IArmorMaterial, String>> reverseOreDicStackToMaterialMap = new TCustomHashMap<>(new ItemStackHashingStrategy());
 
-    TCustomHashMap<FluidStack, Pair<IArmorMaterial, String>> reverseFluidStackToMaterialMap = new TCustomHashMap<>(new FluidStackHashingStrategy());
-    TCustomHashMap<FluidStack, Pair<IArmorMaterial, String>> reverseOreDicFluidStackToMaterialMap = new TCustomHashMap<>(new FluidStackHashingStrategy());
+    TCustomHashMap<FluidStack, Pair<IArmorMaterial, ArrayList<String>>> reverseFluidStackToMaterialMap = new TCustomHashMap<>(new FluidStackHashingStrategy());
+    TCustomHashMap<FluidStack, Pair<IArmorMaterial, ArrayList<String>>> reverseOreDicFluidStackToMaterialMap = new TCustomHashMap<>(new FluidStackHashingStrategy());
 
     public static HeatableItemRegistry getInstance () {
         return INSTANCE;
@@ -294,7 +294,7 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
 
 
     private void addStackToMap(HashMap<IArmorMaterial, HashMap<String, ItemStack>> materialStack, TCustomHashMap<ItemStack, Pair<IArmorMaterial, String>> reverseMaterialStack,
-                               HashMap<IArmorMaterial, HashMap<String, FluidStack>> fluidStack, TCustomHashMap<FluidStack, Pair<IArmorMaterial, String>> reverseFluidStack, IArmorMaterial material, ItemStack stack, String internalType, FluidStack moltenStack) {
+                               HashMap<IArmorMaterial, HashMap<String, FluidStack>> fluidStack, TCustomHashMap<FluidStack, Pair<IArmorMaterial, ArrayList<String>>> reverseFluidStack, IArmorMaterial material, ItemStack stack, String internalType, FluidStack moltenStack) {
 
         HeatableItemRegisteredEvent event = new HeatableItemRegisteredEvent(material, internalType, stack, moltenStack, materialStack != mappedStacks);
         event.PostCommon();
@@ -320,10 +320,11 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
 
         fluidStack.get(material).put(internalType, moltenStack);
 
-        if (!reverseFluidStack.containsKey(moltenStack))
-            reverseFluidStack.put(moltenStack, new Pair<>(material, internalType));
-        else
-            Armory.getLogger().warn("Could not register: " + moltenStack.toString() + " to material: " + material.getUniqueID() + " it already is mapped!");
+        if (!reverseFluidStack.containsKey(moltenStack)) {
+            reverseFluidStack.put(moltenStack, new Pair<>(material, new ArrayList<>()));
+            reverseFluidStack.get(moltenStack).getValue().add(internalType);
+        } else if (!reverseFluidStack.get(moltenStack).getValue().contains(internalType))
+            reverseFluidStack.get(moltenStack).getValue().add(internalType);
     }
 
     private class ItemStackHashingStrategy implements HashingStrategy<ItemStack> {
@@ -351,7 +352,7 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
             if (object.tag != null)
                 hash ^= object.tag.hashCode();
 
-            return hash;
+            return hash + object.amount;
         }
 
         public boolean equals (FluidStack o1, FluidStack o2) {

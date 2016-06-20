@@ -5,14 +5,15 @@ package com.smithsmodding.armory.common.inventory.slots;
  *   Created on: 18-1-2015
  */
 
-import com.smithsmodding.armory.common.item.*;
-import com.smithsmodding.armory.common.registry.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
+import com.smithsmodding.armory.common.item.ItemHeatedItem;
+import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
+import com.smithsmodding.smithscore.common.inventory.IItemStorage;
+import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
+import net.minecraft.item.ItemStack;
 
-public class SlotHeatable extends Slot {
+public class SlotHeatable extends SlotSmithsCore {
 
-    public SlotHeatable (IInventory pInventory, int pSlotIndex, int pXLocation, int pYLocation) {
+    public SlotHeatable(IItemStorage pInventory, int pSlotIndex, int pXLocation, int pYLocation) {
         super(pInventory, pSlotIndex, pXLocation, pYLocation);
     }
 

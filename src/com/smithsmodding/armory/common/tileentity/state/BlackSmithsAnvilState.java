@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.common.tileentity.state;
 
+import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.smithsmodding.armory.api.materials.IAnvilMaterial;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
@@ -17,7 +18,7 @@ public class BlackSmithsAnvilState implements ITileEntityState {
     private float craftingprogress;
     private IAnvilMaterial material;
     private TileEntityBlackSmithsAnvil anvil;
-    private String recipeId = "";
+    private AnvilRecipe recipe = null;
 
     private String itemName = "";
     private boolean processingCraftingResult = false;
@@ -73,7 +74,6 @@ public class BlackSmithsAnvilState implements ITileEntityState {
             this.craftingprogress = ((NBTTagCompound) stateData).getFloat(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS);
             this.itemName = ((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.ITEMNAME);
             this.processingCraftingResult = ((NBTTagCompound) stateData).getBoolean(References.NBTTagCompoundData.TE.Anvil.PROCESSING);
-            this.recipeId = ((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.RECIPE);
         }
         catch (Exception ex)
         {
@@ -81,7 +81,6 @@ public class BlackSmithsAnvilState implements ITileEntityState {
             this.craftingprogress = 0F;
             this.itemName = "";
             this.processingCraftingResult = false;
-            this.recipeId = "";
         }
     }
 
@@ -98,7 +97,6 @@ public class BlackSmithsAnvilState implements ITileEntityState {
         compound.setFloat(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS, craftingprogress);
         compound.setString(References.NBTTagCompoundData.TE.Anvil.ITEMNAME, itemName);
         compound.setBoolean(References.NBTTagCompoundData.TE.Anvil.PROCESSING, processingCraftingResult);
-        compound.setString(References.NBTTagCompoundData.TE.Anvil.RECIPE, recipeId);
 
         return compound;
     }
@@ -160,6 +158,7 @@ public class BlackSmithsAnvilState implements ITileEntityState {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
+        anvil.findValidRecipe();
     }
 
     public boolean isProcessingCraftingResult() {
@@ -170,14 +169,11 @@ public class BlackSmithsAnvilState implements ITileEntityState {
         this.processingCraftingResult = processingCraftingResult;
     }
 
-    public String getRecipeId() {
-        return recipeId;
+    public AnvilRecipe getRecipe() {
+        return recipe;
     }
 
-    public void setRecipeId(String recipeId) {
-        if (recipeId == null)
-            recipeId = "";
-
-        this.recipeId = recipeId;
+    public void setRecipe(AnvilRecipe recipe) {
+        this.recipe = recipe;
     }
 }

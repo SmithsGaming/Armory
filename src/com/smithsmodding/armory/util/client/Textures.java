@@ -140,7 +140,7 @@ public class Textures {
             public static class Images {
                 private static String IMAGETEXTUREPATH = GUITEXTUREPATH + "Images/";
 
-                public static CustomResource HAMMER = new CustomResource("Gui.Anvil.Image.Hammer", Basic.Images.IMAGETEXTUREPATH + "AnvilHammer.png", Colors.DEFAULT, 0, 0, 30, 30);
+                public static CustomResource HAMMER = new CustomResource("Gui.Anvil.Image.Hammer", Basic.Images.IMAGETEXTUREPATH + "AnvilHammer", Colors.DEFAULT, 0, 0, 30, 30);
             }
         }
 
@@ -149,7 +149,7 @@ public class Textures {
         }
 
         public static class Anvil {
-            public static CustomResource LOGO = new CustomResource("Gui.Anvil.Image.Logo", "gui/Images/AnvilHammer.png", Colors.DEFAULT, 0,0,15,15);
+            public static CustomResource LOGO = new CustomResource("Gui.Anvil.Image.Logo", "armory:gui/Images/AnvilHammer", Colors.DEFAULT, 0, 0, 15, 15);
             public static CustomResource EXPERIENCEORB = new CustomResource("Gui.Anvil.Image.ExperienceOrb", GUITEXTUREPATH + "Components/RandomElements.png", Colors.DEFAULT, 16, 0, 16, 16);
             public static CustomResource HOLOWPICKAXE = new CustomResource("Gui.Anvil.SlotHolo.Pickaxe", "minecraft:items/iron_pickaxe", Colors.DEFAULT, 0, 0, 16, 16);
             public static CustomResource HOLOWBOOK = new CustomResource("Gui.Anvil.SlotHolo.Book", "minecraft:items/book_normal", Colors.DEFAULT, 0,0, 16, 16);

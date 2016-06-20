@@ -45,7 +45,7 @@ public class BlackSmithsAnvilGuiManager extends TileStorageBasedGUIManager
 
     @Override
     public float getProgressBarValue(IGUIComponent component) {
-        if (component.getID().equals(References.InternalNames.GUIComponents.Anvil.CRAFTINGPROGRESS)) {
+        if (component.getID().equals(References.InternalNames.GUIComponents.Anvil.EXTENDEDCRAFTING + ".Progress")) {
             if (anvil.getCurrentRecipe() == null) {
                 return 0F;
             }

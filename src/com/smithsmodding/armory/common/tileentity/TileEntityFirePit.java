@@ -20,6 +20,7 @@ import com.smithsmodding.armory.common.tileentity.guimanagers.FirePitGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.FirePitState;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
+import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.pathfinding.IPathComponent;
 import com.smithsmodding.smithscore.common.structures.IStructureComponent;
 import com.smithsmodding.smithscore.common.structures.IStructureData;
@@ -27,8 +28,6 @@ import com.smithsmodding.smithscore.common.tileentity.IBlockModelUpdatingTileEnt
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;
 import com.smithsmodding.smithscore.util.common.positioning.Cube;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -43,7 +42,7 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class TileEntityFirePit extends TileEntityArmory implements IInventory, ITickable, IFirePitComponent, IStructureComponent, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
+public class TileEntityFirePit extends TileEntityArmory implements IItemStorage, ITickable, IFirePitComponent, IStructureComponent, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
 
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
@@ -115,10 +114,9 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     }
 
     @Override
-    public ItemStack removeStackFromSlot (int index) {
-        ItemStack current = getStackInSlot(index);
-        setInventorySlotContents(index, null);
-        return current;
+    public void clearInventory() {
+        ingotStacks = new ItemStack[INGOTSTACKS_AMOUNT];
+        fuelStacks = new ItemStack[FUELSTACK_AMOUNT];
     }
 
     @Override
@@ -155,23 +153,6 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
     }
 
     @Override
-    public boolean isUseableByPlayer (EntityPlayer pPlayer) {
-        return true;
-    }
-
-
-    @Override
-    public void openInventory (EntityPlayer player) {
-        //No animation and definitely no cat on top of this nice puppy
-    }
-
-    @Override
-    public void closeInventory (EntityPlayer player) {
-        //NOOP
-    }
-
-
-    @Override
     public boolean isItemValidForSlot (int pSlotIndex, ItemStack pItemStack) {
         if (pSlotIndex < INGOTSTACKS_AMOUNT) {
             if (pItemStack.getItem() instanceof ItemHeatedItem) {
@@ -184,27 +165,6 @@ public class TileEntityFirePit extends TileEntityArmory implements IInventory, I
         }
 
         return false;
-    }
-
-    @Override
-    public int getField (int id) {
-        return 0;  //Custom GUI Sytstem -> Not needed
-    }
-
-    @Override
-    public void setField (int id, int value) {
-        //NOOP
-    }
-
-    @Override
-    public int getFieldCount () {
-        return 0;
-    }
-
-    @Override
-    public void clear () {
-        ingotStacks = new ItemStack[5];
-        fuelStacks = new ItemStack[5];
     }
 
     @Override

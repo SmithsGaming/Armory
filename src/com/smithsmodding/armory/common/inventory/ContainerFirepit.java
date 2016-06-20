@@ -11,6 +11,7 @@ import com.smithsmodding.armory.common.inventory.slots.SlotHeatable;
 import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
+import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
 
@@ -77,7 +78,7 @@ public class ContainerFirepit extends ContainerSmithsCore {
     private void generateMoltenInventory()
     {
         for (int infusionStackIndex = 0; infusionStackIndex < TileEntityFirePit.INFUSIONSTACK_AMOUNT; infusionStackIndex++) {
-            this.addSlotToContainer(new Slot(tileEntityFirePit, infusionStackIndex + TileEntityFirePit.INGOTSTACKS_AMOUNT + TileEntityFirePit.FUELSTACK_AMOUNT, 59 + infusionStackIndex * 21, 63));
+            this.addSlotToContainer(new SlotSmithsCore(tileEntityFirePit, infusionStackIndex + TileEntityFirePit.INGOTSTACKS_AMOUNT + TileEntityFirePit.FUELSTACK_AMOUNT, 59 + infusionStackIndex * 21, 63));
         }
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < PLAYER_INVENTORY_ROWS; ++inventoryRowIndex) {

@@ -7,8 +7,7 @@ import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.common.tileentity.guimanagers.FireplaceGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.FireplaceState;
 import com.smithsmodding.armory.util.References;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -19,7 +18,7 @@ import net.minecraft.util.ITickable;
 /**
  * Created by Marc on 27.02.2016.
  */
-public class TileEntityFireplace extends TileEntityArmory implements IInventory, ITickable {
+public class TileEntityFireplace extends TileEntityArmory implements IItemStorage, ITickable {
 
     public static final int INGOTSLOTCOUNT = 3;
     public static final int FOODCOOKINPUTCOUNT = 1;
@@ -133,16 +132,12 @@ public class TileEntityFireplace extends TileEntityArmory implements IInventory,
         return tItemStack;
     }
 
-    /**
-     * Removes a stack from the given slot and returns it.
-     *
-     * @param index
-     */
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        ItemStack current = getStackInSlot(index);
-        setInventorySlotContents(index, null);
-        return current;
+    public void clearInventory() {
+        ingotStacks = new ItemStack[INGOTSLOTCOUNT];
+        foodInputStacks = new ItemStack[FOODCOOKINPUTCOUNT];
+        foodOutputStacks = new ItemStack[FOODCOOKOUTPUTCOUNT];
+        fuelStacks = new ItemStack[FUELSLOTCOUNT];
     }
 
     /**
@@ -195,26 +190,6 @@ public class TileEntityFireplace extends TileEntityArmory implements IInventory,
     }
 
     /**
-     * Do not make give this method the name canInteractWith because it clashes with Container
-     *
-     * @param player
-     */
-    @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        return true;
-    }
-
-    @Override
-    public void openInventory(EntityPlayer player) {
-        //NOOP
-    }
-
-    @Override
-    public void closeInventory(EntityPlayer player) {
-        //NOOP
-    }
-
-    /**
      * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
      *
      * @param index
@@ -261,26 +236,6 @@ public class TileEntityFireplace extends TileEntityArmory implements IInventory,
         //index -= FUELSLOTCOUNT;
 
         return false;
-    }
-
-    @Override
-    public int getField(int id) {
-        return 0;
-    }
-
-    @Override
-    public void setField(int id, int value) {
-
-    }
-
-    @Override
-    public int getFieldCount() {
-        return 0;
-    }
-
-    @Override
-    public void clear() {
-
     }
 
     /**
