@@ -5,9 +5,9 @@ import com.smithsmodding.armory.common.material.MaterialRegistry;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.Textures;
 import com.smithsmodding.armory.util.client.TranslationKeys;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -38,6 +38,6 @@ public class FluidMoltenMetal extends Fluid {
     public String getLocalizedName (FluidStack stack) {
         IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL));
 
-        return I18n.translateToLocal(TranslationKeys.Fluids.MOLTEN) + " " + material.getNameColor() + I18n.translateToLocal(material.getTranslationKey()) + TextFormatting.RESET;
+        return I18n.format(TranslationKeys.Fluids.MOLTEN) + " " + material.getNameColor() + I18n.format(material.getTranslationKey()) + TextFormatting.RESET;
     }
 }

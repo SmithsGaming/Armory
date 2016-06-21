@@ -6,10 +6,10 @@ import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.TranslationKeys;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
 
 import java.util.HashMap;
 
@@ -19,7 +19,7 @@ import java.util.HashMap;
 public class ArmorTab extends CreativeTabs {
 
     public ArmorTab() {
-        super(I18n.translateToLocal(TranslationKeys.CreativeTabs.Armor));
+        super(I18n.format(TranslationKeys.CreativeTabs.Armor));
     }
 
     @Override

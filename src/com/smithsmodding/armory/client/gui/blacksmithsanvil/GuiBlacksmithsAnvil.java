@@ -20,7 +20,7 @@ import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
 import com.smithsmodding.smithscore.util.client.color.Colors;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate2D;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 
 import java.util.ArrayList;
 
@@ -37,10 +37,10 @@ public class GuiBlacksmithsAnvil extends GuiContainerSmithsCore {
     public void registerLedgers(IGUIBasedLedgerHost parent) {
         ArrayList<String> information = new ArrayList<String>();
 
-        information.add(I18n.translateToLocal(TranslationKeys.Gui.Anvil.InfoLine1));
-        information.add(I18n.translateToLocal(TranslationKeys.Gui.Anvil.InfoLine2));
+        information.add(I18n.format(TranslationKeys.Gui.Anvil.InfoLine1));
+        information.add(I18n.format(TranslationKeys.Gui.Anvil.InfoLine2));
 
-        registerNewLedger(new InformationLedger(getID() + ".Ledgers.Information", this, LedgerConnectionSide.LEFT, I18n.translateToLocal(TranslationKeys.Gui.InformationTitel), new MinecraftColor(MinecraftColor.YELLOW), information));
+        registerNewLedger(new InformationLedger(getID() + ".Ledgers.Information", this, LedgerConnectionSide.LEFT, I18n.format(TranslationKeys.Gui.InformationTitel), new MinecraftColor(MinecraftColor.YELLOW), information));
     }
 
     @Override

@@ -12,11 +12,11 @@ import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.TranslationKeys;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -61,7 +61,7 @@ public class ItemHeatedItem extends Item {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation (ItemStack pStack, EntityPlayer pPlayer, List pTooltipList, boolean pBoolean) {
-        String tTemperatureLine = I18n.translateToLocal(TranslationKeys.Items.HeatedIngot.TemperatureTag);
+        String tTemperatureLine = I18n.format(TranslationKeys.Items.HeatedIngot.TemperatureTag);
         tTemperatureLine = tTemperatureLine + ": " + Math.round(HeatableItemRegistry.getInstance().getItemTemperature(pStack));
 
         pTooltipList.add(tTemperatureLine);
@@ -92,7 +92,7 @@ public class ItemHeatedItem extends Item {
     @Override
     public String getItemStackDisplayName (ItemStack pStack) {
         if (!pStack.hasTagCompound())
-            return I18n.translateToLocal(this.getUnlocalizedName() + ".name");
+            return I18n.format(this.getUnlocalizedName() + ".name");
 
         ItemStack tOriginalItemStack = ItemStack.loadItemStackFromNBT(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.HeatedIngot.ORIGINALITEM));
         return tOriginalItemStack.getItem().getItemStackDisplayName(tOriginalItemStack);

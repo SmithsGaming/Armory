@@ -21,9 +21,9 @@ import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate2D;
 import com.smithsmodding.smithscore.util.common.positioning.Plane;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
 
 import java.util.ArrayList;
 
@@ -58,12 +58,12 @@ public class GuiFirePit extends GuiContainerSmithsCore {
     public void registerLedgers (IGUIBasedLedgerHost parent) {
         ArrayList<String> information = new ArrayList<String>();
 
-        information.add(I18n.translateToLocal(TranslationKeys.Gui.FirePit.InfoLine1));
-        information.add(I18n.translateToLocal(TranslationKeys.Gui.FirePit.InfoLine2));
-        information.add(I18n.translateToLocal(TranslationKeys.Gui.FirePit.InfoLine3));
+        information.add(I18n.format(TranslationKeys.Gui.FirePit.InfoLine1));
+        information.add(I18n.format(TranslationKeys.Gui.FirePit.InfoLine2));
+        information.add(I18n.format(TranslationKeys.Gui.FirePit.InfoLine3));
 
-        registerNewLedger(new InformationLedger(getID() + ".Ledgers.Information", this, LedgerConnectionSide.LEFT, I18n.translateToLocal(TranslationKeys.Gui.InformationTitel), new MinecraftColor(MinecraftColor.YELLOW), information));
-        registerNewLedger(new TemperatureLedger(getID() + ".Ledgers.Temperature", this, LedgerConnectionSide.RIGHT, Textures.Gui.FirePit.THERMOMETERICON, I18n.translateToLocal(TranslationKeys.Gui.FirePit.TempTitel), new MinecraftColor(MinecraftColor.RED)));
+        registerNewLedger(new InformationLedger(getID() + ".Ledgers.Information", this, LedgerConnectionSide.LEFT, I18n.format(TranslationKeys.Gui.InformationTitel), new MinecraftColor(MinecraftColor.YELLOW), information));
+        registerNewLedger(new TemperatureLedger(getID() + ".Ledgers.Temperature", this, LedgerConnectionSide.RIGHT, Textures.Gui.FirePit.THERMOMETERICON, I18n.format(TranslationKeys.Gui.FirePit.TempTitel), new MinecraftColor(MinecraftColor.RED)));
     }
 
     public class TemperatureLedger extends CoreLedger {
@@ -106,9 +106,9 @@ public class GuiFirePit extends GuiContainerSmithsCore {
         public void registerComponents (IGUIBasedComponentHost host) {
             super.registerComponents(host);
 
-            currentTemperatureLabel = I18n.translateToLocal(TranslationKeys.Gui.FirePit.TempCurrent) + ": 10000C";
-            maxTemperatureLabel = I18n.translateToLocal(TranslationKeys.Gui.FirePit.TempMax) + ": 10000C";
-            lastAddedLabel = I18n.translateToLocal(TranslationKeys.Gui.FirePit.LastAdded) + ": 10000C";
+            currentTemperatureLabel = I18n.format(TranslationKeys.Gui.FirePit.TempCurrent) + ": 10000C";
+            maxTemperatureLabel = I18n.format(TranslationKeys.Gui.FirePit.TempMax) + ": 10000C";
+            lastAddedLabel = I18n.format(TranslationKeys.Gui.FirePit.LastAdded) + ": 10000C";
 
             registerNewComponent(new ComponentLabel(getID() + ".CurrentTemperature", host, new CoreComponentState(), new Coordinate2D(10, 26), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, currentTemperatureLabel) {
                 /**
@@ -120,7 +120,7 @@ public class GuiFirePit extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update (int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = I18n.translateToLocal(TranslationKeys.Gui.FirePit.TempCurrent) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = I18n.format(TranslationKeys.Gui.FirePit.TempCurrent) + ": " + getManager().getLabelContents(this);
                 }
             });
 
@@ -134,7 +134,7 @@ public class GuiFirePit extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update (int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = I18n.translateToLocal(TranslationKeys.Gui.FirePit.TempMax) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = I18n.format(TranslationKeys.Gui.FirePit.TempMax) + ": " + getManager().getLabelContents(this);
                 }
             });
 
@@ -148,7 +148,7 @@ public class GuiFirePit extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update (int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = I18n.translateToLocal(TranslationKeys.Gui.FirePit.LastAdded) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = I18n.format(TranslationKeys.Gui.FirePit.LastAdded) + ": " + getManager().getLabelContents(this);
                 }
             });
 

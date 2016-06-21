@@ -17,6 +17,7 @@ import com.smithsmodding.armory.common.material.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +26,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -155,13 +155,13 @@ public class ArmorMedieval extends MultiLayeredArmor {
     @Override
     public String getItemStackDisplayName(ItemStack pStack) {
         if (!pStack.hasTagCompound())
-            return I18n.translateToLocal(this.getUnlocalizedName() + ".name");
+            return I18n.format(this.getUnlocalizedName() + ".name");
 
         if (pStack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
             return pStack.getTagCompound().getString(References.NBTTagCompoundData.CustomName);
 
         IArmorMaterial tMaterial = MaterialRegistry.getInstance().getMaterial(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.MaterialID));
 
-        return tMaterial.getNameColor() + I18n.translateToLocal(tMaterial.getTranslationKey()) + " " + TextFormatting.RESET + I18n.translateToLocal(this.getUnlocalizedName() + ".name");
+        return tMaterial.getNameColor() + I18n.format(tMaterial.getTranslationKey()) + " " + TextFormatting.RESET + I18n.format(this.getUnlocalizedName() + ".name");
     }
 }

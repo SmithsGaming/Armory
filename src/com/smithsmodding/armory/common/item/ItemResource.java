@@ -9,10 +9,10 @@ package com.smithsmodding.armory.common.item;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
 import com.smithsmodding.armory.util.References;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 
 public abstract class ItemResource extends Item {
 
@@ -36,7 +36,7 @@ public abstract class ItemResource extends Item {
 
         IArmorMaterial tMaterial = MaterialRegistry.getInstance().getMaterial(tMaterialID);
 
-        return tMaterial.getNameColor() + I18n.translateToLocal(tMaterial.getTranslationKey()) + " " + TextFormatting.RESET + I18n.translateToLocal(this.getUnlocalizedName() + ".name");
+        return tMaterial.getNameColor() + I18n.format(tMaterial.getTranslationKey()) + " " + TextFormatting.RESET + I18n.format(this.getUnlocalizedName() + ".name");
     }
 
 }

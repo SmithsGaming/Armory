@@ -7,7 +7,7 @@ import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentProgressBar;
 import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIManager;
 import com.smithsmodding.smithscore.util.client.TranslationKeys;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.text.DecimalFormat;
@@ -121,12 +121,12 @@ public class FirePitGuiManager extends TileStorageBasedGUIManager {
             Float mixingprogress = (Float) state.getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.MIXINGPROGRESS);
 
             if (mixingprogress <= 0F)
-                return I18n.translateToLocal(TranslationKeys.GUI.PROGRESS) + ": 0 %";
+                return I18n.format(TranslationKeys.GUI.PROGRESS) + ": 0 %";
 
             if (mixingprogress >= 4F)
-                return I18n.translateToLocal(TranslationKeys.GUI.PROGRESS) + ": 100 %";
+                return I18n.format(TranslationKeys.GUI.PROGRESS) + ": 100 %";
 
-            return I18n.translateToLocal(TranslationKeys.GUI.PROGRESS) + ": " + Math.round(mixingprogress / 4F) + " %";
+            return I18n.format(TranslationKeys.GUI.PROGRESS) + ": " + Math.round(mixingprogress / 4F) + " %";
         }
 
         return "";
