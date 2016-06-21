@@ -68,7 +68,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
 
     public BlockFirePit () {
-        super(References.InternalNames.Blocks.FirePit, Material.iron);
+        super(References.InternalNames.Blocks.FirePit, Material.IRON);
         setCreativeTab(GeneralRegistry.CreativeTabs.generalTab);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BURNING, false).withProperty(ISMASTER, false));
     }

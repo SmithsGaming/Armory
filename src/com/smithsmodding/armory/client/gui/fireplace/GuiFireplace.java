@@ -45,8 +45,8 @@ public class GuiFireplace extends GuiContainerSmithsCore {
      */
     @Override
     public void registerTabs(IGUIBasedTabHost host) {
-        registerNewTab(new TabFireplaceMeltingMetal(getID() + ".Tabs.Inventory", host, new ItemStack(Items.iron_ingot), Colors.DEFAULT, "Melting ingots"));
-        registerNewTab(new TabFireplaceFood(getID() + ".Tabs.MoltenMetal", host, new ItemStack(Items.cooked_beef), Colors.DEFAULT, "Molten metals."));
+        registerNewTab(new TabFireplaceMeltingMetal(getID() + ".Tabs.Inventory", host, new ItemStack(Items.IRON_INGOT), Colors.DEFAULT, "Melting ingots"));
+        registerNewTab(new TabFireplaceFood(getID() + ".Tabs.MoltenMetal", host, new ItemStack(Items.COOKED_BEEF), Colors.DEFAULT, "Molten metals."));
     }
 
     /**

@@ -7,6 +7,7 @@ import com.smithsmodding.armory.api.item.ISingleMaterialItem;
 import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.util.References;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -56,6 +57,9 @@ public class ItemArmorComponent extends Item implements ISingleMaterialItem, ISi
 
     @Override
     public String getItemStackDisplayName(ItemStack pStack) {
+        if (!pStack.hasTagCompound())
+            return I18n.format(this.getUnlocalizedName() + ".name");
+
         if (pStack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
             return pStack.getTagCompound().getString(References.NBTTagCompoundData.CustomName);
 

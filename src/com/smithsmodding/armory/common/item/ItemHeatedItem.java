@@ -91,6 +91,9 @@ public class ItemHeatedItem extends Item {
 
     @Override
     public String getItemStackDisplayName (ItemStack pStack) {
+        if (!pStack.hasTagCompound())
+            return I18n.translateToLocal(this.getUnlocalizedName() + ".name");
+
         ItemStack tOriginalItemStack = ItemStack.loadItemStackFromNBT(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.HeatedIngot.ORIGINALITEM));
         return tOriginalItemStack.getItem().getItemStackDisplayName(tOriginalItemStack);
     }

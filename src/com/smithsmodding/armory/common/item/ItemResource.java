@@ -21,6 +21,9 @@ public abstract class ItemResource extends Item {
         String tMaterialID = "";
 
         if (pStack.getTagCompound() == null) {
+            if (pStack.getItemDamage() == 0)
+                pStack.setItemDamage(1);
+
             for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
                 if (tMaterial.getItemDamageMaterialIndex() == pStack.getItemDamage()) {
                     tMaterialID = tMaterial.getUniqueID();

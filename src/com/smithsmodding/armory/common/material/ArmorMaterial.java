@@ -65,7 +65,7 @@ public class ArmorMaterial implements IArmorMaterial {
             HeatableItemRegistry.getInstance().addBaseStack(this, baseStack);
         }
 
-        materialIndex = LASTUSEDID;
+        materialIndex = new Integer(LASTUSEDID).intValue();
         LASTUSEDID++;
 
         Armory.getLogger().info("Initialized material: " + this.uniqueIdentifier);

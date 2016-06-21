@@ -45,8 +45,8 @@ public class GuiFirePit extends GuiContainerSmithsCore {
      */
     @Override
     public void registerTabs (IGUIBasedTabHost host) {
-        registerNewTab(new TabFirePitMeltingMetal(getID() + ".Tabs.Inventory", host, new ItemStack(Items.iron_ingot), Colors.DEFAULT, "Melting ingots"));
-        registerNewTab(new TabFirePitMoltenMetal(getID() + ".Tabs.MoltenMetal", host, new ItemStack(Items.lava_bucket), Colors.DEFAULT, "Molten metals."));
+        registerNewTab(new TabFirePitMeltingMetal(getID() + ".Tabs.Inventory", host, new ItemStack(Items.IRON_INGOT), Colors.DEFAULT, "Melting ingots"));
+        registerNewTab(new TabFirePitMoltenMetal(getID() + ".Tabs.MoltenMetal", host, new ItemStack(Items.LAVA_BUCKET), Colors.DEFAULT, "Molten metals."));
     }
 
     /**

@@ -178,7 +178,7 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
             if (iRightInputStack != null) {
                 if (!checkForge(iLeftInputStack, iRightInputStack, ((BlackSmithsAnvilState) iEntity.getState()).getItemName(), tBaseLevelExperienceCost))
                     return;
-                tFlagIsEnchantableByBook = iRightInputStack.getItem() == Items.enchanted_book && Items.enchanted_book.getEnchantments(iRightInputStack).tagCount() > 0;
+                tFlagIsEnchantableByBook = iRightInputStack.getItem() == Items.ENCHANTED_BOOK && Items.ENCHANTED_BOOK.getEnchantments(iRightInputStack).tagCount() > 0;
 
                 if (tEventStack.isItemStackDamageable() && tEventStack.getItem().getIsRepairable(iLeftInputStack, iRightInputStack)) {
                     tRepairAmount = Math.min(tEventStack.getItem().getDamage(tEventStack), tEventStack.getMaxDamage() / 4);
@@ -230,7 +230,7 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
                             j3 = i3 == j3 ? j3 + 1 : Math.max(j3, i3);
                             boolean flag1 = enchantment1.canApply(tEventStack);
 
-                            if (tWatchersAreCreative || tEventStack.getItem() == Items.enchanted_book) {
+                            if (tWatchersAreCreative || tEventStack.getItem() == Items.ENCHANTED_BOOK) {
                                 flag1 = true;
                             }
 
@@ -250,7 +250,7 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
                                 tEnchantmentsMap.put(enchantment1, Integer.valueOf(j3));
                                 int k3 = 0;
 
-                                switch (enchantment1.getWeight()) {
+                                switch (enchantment1.getRarity()) {
                                     case COMMON:
                                         k3 = 1;
                                         break;

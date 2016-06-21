@@ -24,7 +24,7 @@ import java.util.Properties;
 public class GeneralRegistry {
     public static boolean isInDevEnvironment = false;
     protected static GeneralRegistry INSTANCE;
-    private static ItemArmor.ArmorMaterial armorMaterial = EnumHelper.addArmorMaterial("armory-Dummy", "missingno", 100, new int[]{0, 0, 0, 0}, 0, SoundEvent.soundEventRegistry.getObject(new ResourceLocation("item.armor.equip_chain")));
+    private static ItemArmor.ArmorMaterial armorMaterial = EnumHelper.addArmorMaterial("armory-Dummy", "missingno", 100, new int[]{0, 0, 0, 0}, 0, SoundEvent.REGISTRY.getObject(new ResourceLocation("item.armor.equip_chain")), 0f);
 
     public GeneralRegistry() {
         Properties tSysProp = System.getProperties();

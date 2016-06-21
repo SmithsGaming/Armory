@@ -47,7 +47,7 @@ public class HeatedItemItemModel extends ItemLayerModel {
 
         BakedTemperatureBarModel unrotatedModel = gaugeDisplay.generateBackedComponentModel(state, format, bakedTextureGetter);
 
-        IBakedModel bakedBlockModel = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(new ItemStack(Item.getItemFromBlock(Blocks.stone)));
+        IBakedModel bakedBlockModel = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(new ItemStack(Item.getItemFromBlock(Blocks.STONE)));
         TRSRTransformation invertedBlockTRSR = new TRSRTransformation(bakedBlockModel.getItemCameraTransforms().gui).inverse();
         invertedBlockTRSR = new TRSRTransformation(new Vector3f(2.14f, 0.44f, 0), invertedBlockTRSR.getLeftRot(), invertedBlockTRSR.getScale(), invertedBlockTRSR.getRightRot());
 

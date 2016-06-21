@@ -52,13 +52,15 @@ public abstract class TileEntityArmory extends TileEntitySmithsCore implements I
     }
 
     @Override
-    public void writeToNBT (NBTTagCompound compound) {
-        super.writeToNBT(compound);
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound = super.writeToNBT(compound);
         compound.setByte(References.NBTTagCompoundData.TE.Basic.DIRECTION, (byte) direction.ordinal());
 
         if (this.hasCustomName()) {
             compound.setString(References.NBTTagCompoundData.TE.Basic.NAME, name);
         }
+
+        return compound;
     }
 
 

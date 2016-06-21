@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 public class BlockFirePlace extends BlockArmoryInventory {
 
     public BlockFirePlace() {
-        super(References.InternalNames.Blocks.Fireplace, Material.rock);
+        super(References.InternalNames.Blocks.Fireplace, Material.ROCK);
         setCreativeTab(GeneralRegistry.CreativeTabs.generalTab);
         this.setDefaultState(this.blockState.getBaseState());
     }

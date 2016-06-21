@@ -154,6 +154,9 @@ public class ArmorMedieval extends MultiLayeredArmor {
 
     @Override
     public String getItemStackDisplayName(ItemStack pStack) {
+        if (!pStack.hasTagCompound())
+            return I18n.translateToLocal(this.getUnlocalizedName() + ".name");
+
         if (pStack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
             return pStack.getTagCompound().getString(References.NBTTagCompoundData.CustomName);
 
