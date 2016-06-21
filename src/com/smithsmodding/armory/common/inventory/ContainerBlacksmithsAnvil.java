@@ -55,7 +55,7 @@ public class ContainerBlacksmithsAnvil extends ContainerSmithsCore {
         }
 
         for (int actionBarSlotIndex = 0; actionBarSlotIndex < PLAYER_INVENTORY_COLUMNS; ++actionBarSlotIndex) {
-            this.addSlotToContainer(new Slot(player.inventory, actionBarSlotIndex, 28 + actionBarSlotIndex * 18, 238));
+            this.addSlotToContainer(new Slot(player.inventory, actionBarSlotIndex, 28 + actionBarSlotIndex * 18, 239));
         }
     }
 }

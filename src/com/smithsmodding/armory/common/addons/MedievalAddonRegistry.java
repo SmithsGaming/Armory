@@ -78,4 +78,9 @@ public class MedievalAddonRegistry implements IArmorPartRegistry, IMLAAddonRegis
 
         return upgradeStates.get(material).get(addon);
     }
+
+    @Override
+    public boolean getPartStateForMaterial(IArmorMaterial material, String materialIndependantId) {
+        return getPartStateForMaterial(material, getUpgrade(materialIndependantId + "-" + material.getUniqueID()));
+    }
 }

@@ -158,9 +158,9 @@ public class Textures {
         }
 
         public static class Compatibility {
-            public static class NEI {
+            public static class JEI {
                 public static class ArmorsAnvil {
-                    public static CustomResource GUI = new CustomResource("Gui.Compatibility.NEI.Anvil.gui", GUITEXTUREPATH + "NEI/ArmorsAnvil.png");
+                    public static CustomResource GUI = new CustomResource("Gui.Compatibility.NEI.Anvil.gui", GUITEXTUREPATH + "JEI/anvil.png", 0, 0, 162, 133);
                 }
             }
         }

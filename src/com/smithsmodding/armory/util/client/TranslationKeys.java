@@ -27,47 +27,7 @@ public class TranslationKeys {
 
     }
 
-    public static final class Knowledge {
-        public static final class AnvilRecipeKnowledge {
-            public static final String Tier1 = "Armory.Kownledge.AnvilRecipeKnowledge.Tier1";
-            public static final String Tier2 = "Armory.Kownledge.AnvilRecipeKnowledge.Tier2";
-            public static final String Tier3 = "Armory.Kownledge.AnvilRecipeKnowledge.Tier3";
-            public static final String Tier4 = "Armory.Kownledge.AnvilRecipeKnowledge.Tier4";
-            public static final String Tier5 = "Armory.Kownledge.AnvilRecipeKnowledge.Tier4";
-            public static final String CreativeTier = "Armory.Kownledge.AnvilRecipeKnowledge.Creative";
-        }
-    }
-
     public class Items {
-        public final class Label {
-            public static final String LabelName = "Armory.Items.Label.GroupName";
-            public static final String Logo = "Armory.Items.Label.Logo";
-        }
-
-        public final class Blueprint {
-            public static final String Quality = "Armory.Items.BluePrint.Quality";
-            public static final String Produces = "Armory.Items.BluePrint.Produces";
-            public static final String Material1 = "Armory.Items.Blueprint.material.1";
-            public static final String Material2 = "Armory.Items.Blueprint.material.2";
-            public static final String MedievalUpgrade1 = "Armory.Items.Blueprint.MedievalUpgrade.1";
-            public static final String MedievalUpgrade2 = "Armory.Items.Blueprint.MedievalUpgrade.2";
-
-            public static final String Upgrade1 = "Armory.Items.BluePrint.Produces.Upgrade.1";
-            public static final String Upgrade2 = "Armory.Items.BluePrint.Produces.Upgrade.2";
-
-            public static final String Tier1 = "Armory.Items.Blueprint.Tier1";
-            public static final String Tier2 = "Armory.Items.Blueprint.Tier2";
-            public static final String Tier3 = "Armory.Items.Blueprint.Tier3";
-            public static final String Tier4 = "Armory.Items.Blueprint.Tier4";
-            public static final String Tier5 = "Armory.Items.Blueprint.Tier4";
-            public static final String CreativeTier = "Armory.Items.Blueprint.Creative";
-        }
-
-        public final class SmithingsGuide {
-            public static final String Tooltip1 = "Armory.Items.SmithingsGuide.Tooltip1";
-            public static final String Tooltip2 = "Armory.Items.SmithingsGuide.Tooltip2";
-        }
-
         public class HeatedIngot {
             public static final String TemperatureTag = "Armory.Items.HeatedIngot.Tooltip.Temperature";
         }
@@ -119,10 +79,6 @@ public class TranslationKeys {
         }
     }
 
-    public class Blocks {
-
-    }
-
     public class Fluids {
         public static final String MOLTEN = "Armory.Fluids.Molten";
     }
@@ -152,33 +108,12 @@ public class TranslationKeys {
             public static final String CookingMultiplier = "Armory.GUI.Fireplace.Ledger.CookingMultiplier";
         }
 
-        public class Heater {
-            public static final String InfoLine1 = "Armory.GUI.Heater.Ledger.InfoLine1";
-            public static final String InfoLine2 = "Armory.GUI.Heater.Ledger.InfoLine2";
-        }
-
         public class Anvil {
             public static final String InfoLine1 = "Armory.GUI.Anvil.Ledger.InfoLine1";
             public static final String InfoLine2 = "Armory.GUI.Anvil.Ledger.InfoLine2";
         }
 
-        public class BookBinder {
-            public static final String ToolTipTabBookBinder = "Armory.GUI.BookBinder.Tabs.BookBinder.ToolTip";
-            public static final String ToolTipTabResearchStation = "Armory.GUI.BookBinder.Tabs.ResearchStation.ToolTip";
-
-            public class Research {
-                public static final String ResearchComplete = "Armory.GUI.Research.Complete";
-                public static final String ResearchFailed = "Armory.GUI.Research.Failed";
-                public static final String ResearchChangeTargetStackStart = "Armory.GUI.Research.Start.BeforeItemStackName";
-                public static final String ResearchChangeTargetStackEnd = "Armory.GUI.Research.Start.AfterItemStackName";
-                public static final String ResearchHeatTargetStack = "Armory.GUI.Research.HeatApplied";
-                public static final String ResearchHammerTargetStack = "Armory.GUI.Research.Hammer";
-                public static final String ResearchTongTargetStack = "Armory.GUI.Research.Tongs";
-                public static final String ResearchAnalyseTargetStack = "Armory.GUI.Research.Analyze";
-            }
-        }
-
-        public class NEI {
+        public class JEI {
             public static final String AnvilRecipeName = "Armory.NEI.Compatibility.ArmorsAnvilRecipe";
         }
 

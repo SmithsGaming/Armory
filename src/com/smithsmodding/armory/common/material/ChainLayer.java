@@ -19,6 +19,6 @@ public class ChainLayer extends MaterialDependentMLAAddon {
 
     @Override
     public boolean validateCrafting (String pAddonIDToCheckAgainst, boolean pInstalled) {
-        return pAddonIDToCheckAgainst.contains("base");
+        return !pAddonIDToCheckAgainst.contains("base");
     }
 }

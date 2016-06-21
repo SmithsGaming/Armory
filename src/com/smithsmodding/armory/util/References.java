@@ -274,87 +274,7 @@ public class References {
                 public static final String LOGO = "Gui.Anvil.Logo";
                 public static final String TEXTBOXBORDER = "Gui,Anvil.Name.Border";
                 public static final String TEXTBOX = "Gui.Anvil.Name.Textbox";
-                public static final String CRAFTINGPROGRESS = "CraftingProgress";
-                public static final String SMITHINGSGUIDEBORDER = "Gui,Anvil.Guide.Border";
-                public static final String SMITHINGSGUIDESLOT = "Gui.Anvil.Guide.Slot";
             }
-
-            public static final class BookBinder {
-                public static final String TabBookBinder = "Gui.BookBinder.Tab.BookBinder";
-                public static final String TabResearchStation = "Gui.BookBinder.Tab.ReasearchStation";
-
-                public static final class TabBook {
-                    public static final String BACKGROUND = "Gui.BookBinder.TabBookBinder.Background";
-
-                    public static final String BORDERBOOKSLOT = "Gui.BookBinder.TabBookBinder.Border.BookSlot";
-                    public static final String BORDERBLUEPRINTS = "Gui.BookBinder.TabBookBinder.Border.Blueprints";
-
-                    public static final String PROGRESSARROW = "Gui.BookBinder.TabBookBinder.ProgressArrow";
-
-                    public static final String BOOKSLOT = "Gui.BookBinder.TabBookBinder.BookSlot";
-                    public static final String BLUEPRINTBACKGROUND = "Gui.BookBinder.TabBookBinder.BluePrintBackground";
-                    public static final String BLUEPRINTSLOT = "Gui.BookBinder.TabBookBinder.BlueprintSlot";
-
-                    public static final String PLAYERINVENTORY = "Gui.BookBinder.TabBookBinder.PlayerInventory";
-                }
-
-                public static final class TabResearch {
-                    public static final String BACKGROUND = "Gui.BookBinder.TabResearchStation.Background";
-
-                    public static final String RESEARCHBACKGROUND = "Gui.BookBinder.TabResearchStation.Borders.Research";
-
-                    public static final String BUTTONAPPLYHEAT = "Gui.BookBinder.TabResearchStation.Button.PerformResearch.ApplyHeat";
-                    public static final String BUTTONCUTSTACK = "Gui.BookBinder.TabResearchStation.Button.CutStack";
-                    public static final String BUTTONHITSTACK = "Gui.BookBinder.TabResearchStation.Button.HitStack";
-                    public static final String BUTTONANALYZESTACK = "Gui.BookBinder.TabResearchStation.Button.AnalyzeStack";
-
-                    public static final String SLOTTARGETSTACK = "Gui.BookBinder.TabResearchStation.Slot.TargetStack";
-
-                    public static final String SLOTPAPER = "Gui.BookBinder.TabResearchStation.Slot.Paper";
-                    public static final String SLOTBLUEPRINT = "Gui.BookBinder.TabResearchStation.Slot.Output";
-                    public static final String IMAGEARROW = "Gui.BookBinder.TabResearchStation.Image.Arrow";
-
-                    public static final String RESEARCHHISTORYBACKGROUND = "Gui.BookBinder.TabResearchStation.Borders.ResearchHistory";
-
-                    public static final String RESEARCHHISTORY = "Gui.BookBinder.TabReseachStation.Research.History";
-
-                    public static final String PLAYERINVENTORY = "Gui.BookBinder.TabResearch.PlayerInventory";
-                }
-            }
-        }
-
-        public static final class InputHandlers {
-            public static final class Components {
-                public static final String BUTTONCLICK = "ButtonClick";
-                public static final String SCROLL = "Scrolling";
-                public static final String SLOTFILLED = "SlotFilled";
-                public static final String SLOTEMPTIED = "SlotEmptied";
-                public static final String SLOTCHANGED = "SlotChanged";
-                public static final String TABCHANGED = "TabChanged";
-            }
-
-            public static final class Anvil {
-                public static final String ITEMNAME = "Input.Anvil.ItemName";
-                public static final String PLAYEROPENGUI = "Input.Anvil.OpenGUI";
-                public static final String PLAYERCLOSEGUI = "Input.Anvil.CloseGUI";
-            }
-
-            public static final class BookBinder {
-                public static final String INPUTSWITCH = "Input.Inventory.Research.Stack.TargetSwitch";
-                public static final String HEAT = "Input.Research.Heat";
-                public static final String HAMMER = "Input.Research.Hammer";
-                public static final String TONGS = "Input.Research.Tongs";
-                public static final String ANALYZE = "Input.Research.Analyze";
-                public static final String COMPLETE = "Input.Research.Complete";
-            }
-
-
-        }
-
-        public static final class ExtendedEntityProperties {
-            public static final String KNOWLEDGE = "Armory.Crafting.Knowledge";
-            public static final String ANVILRECIPEEXPERIENCE = "Armory.Crafting.Knowledge.AnvilRecipeExperience";
-
         }
 
         public static final class Commands {
@@ -421,18 +341,6 @@ public class References {
         }
     }
 
-    public class Models {
-        public class ModelLocations {
-            protected final static String iModelLocation = "models/";
-
-            public final static String FirePit = iModelLocation + "FirePit.obj";
-            public final static String Heater = iModelLocation + "Heater.obj";
-            public final static String Anvil = iModelLocation + "ArmorsAnvil.obj";
-            public final static String SmithingsGuide = iModelLocation + "Book - Single Sided.obj";
-            public final static String BookBinder = iModelLocation + "Binder.obj";
-        }
-    }
-
     public class NBTTagCompoundData {
         //Stack addon naming
         public static final String InstalledAddons = "InstalledAddons";
@@ -469,19 +377,6 @@ public class References {
             public static final String IsBroken = "IsBroken";
         }
 
-        //Used when setting the Rendering compound values.
-        public class Rendering {
-            public static final String MaxRenderPasses = "RenderPasses";
-            public static final String ResourceIDs = "ResourceIDs";
-            public static final String OpenState = "ItemOpen";
-            public static final String TicksSinceOpen = "SinceOpen";
-            public static final String TicksSinceClose = "SinceClose";
-        }
-
-        public class KnowledgeCrafting {
-            public static final String ExperienceCompound = "CraftingExperience";
-        }
-
         public class Item {
             public class ItemComponent {
                 public static final String MATERIAL = "Material";
@@ -506,22 +401,6 @@ public class References {
             public class Basic {
                 public static final String DIRECTION = "Direction";
                 public static final String NAME = "Name";
-                public static final String SLOT = "Slot";
-                public static final String STRUCTUREDATA = "Structures";
-                public static final String INVENTORY = "Inventory";
-
-                public class Structures {
-                    public static final String COORDINATES = "Coordinates";
-                    public static final String ISSLAVE = "IsSlave";
-                    public static final String MASTERTE = "MasterTE";
-                    public static final String DATA = "StructureData";
-                }
-
-                public class Coordinate {
-                    public static final String XCOORD = "XCoord";
-                    public static final String YCOORD = "YCoord";
-                    public static final String ZCOORD = "ZCoord";
-                }
             }
 
             public class FirePit {
@@ -530,8 +409,6 @@ public class References {
                 public static final String CURRENTLYBURNING = "IsBurning";
                 public static final String LASTADDEDHEAT = "LastAddedHeat";
                 public static final String LASTTEMPERATURE = "LastTemperature";
-                public static final String INGOTITEMSTACKS = "Ingots";
-                public static final String FUELITEMSTACKS = "FuelStacks";
                 public static final String FUELSTACKBURNINGTIME = "FuelStackBurningTime";
                 public static final String FUELSTACKFUELAMOUNT = "FuelStackFuelAmount";
                 public static final String MIXINGPROGRESS = "MixingProgress";
@@ -541,19 +418,12 @@ public class References {
             public class Fireplace {
                 public static final String MAXTEMPERATURE = "MaxTemperature";
                 public static final String CURRENTTEMPERATURE = "CurrentTemperature";
-                public static final String CURRENTLYBURNING = "IsBurning";
                 public static final String LASTADDEDHEAT = "LastAddedHeat";
                 public static final String LASTTEMPERATURE = "LastTemperature";
-                public static final String INGOTITEMSTACKS = "Ingots";
-                public static final String FUELITEMSTACKS = "FuelStacks";
                 public static final String FUELSTACKBURNINGTIME = "FuelStackBurningTime";
                 public static final String FUELSTACKFUELAMOUNT = "FuelStackFuelAmount";
                 public static final String COOKINGPROGRESS = "CookingProgress";
                 public static final String COOKINGSPEED = "CookingSpeed";
-            }
-
-            public class Heater {
-                public static final String TICKSINSLOT = "STACKTIMEINSLOT";
             }
 
             public class Anvil {
@@ -561,13 +431,17 @@ public class References {
                 public static final String MATERIAL = "Material";
                 public static final String ITEMNAME = "ItemName";
                 public static final String PROCESSING = "Processing";
-                public static final String RECIPE = "Recipe";
-            }
-
-            public class BookBinder {
-                public static final String MODE = "BlockMode";
             }
         }
+    }
+
+    public class Compatibility {
+        public class JEI {
+            public class RecipeTypes {
+                public static final String ANVIL = "Armory.Compat.JEI.RecipesTypes.Anvil";
+            }
+        }
+
     }
 
 }
