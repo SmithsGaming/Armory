@@ -44,7 +44,8 @@ public class ItemMetalRing extends ItemResource implements IHeatableItem {
             tStackCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getUniqueID());
             tRingStack.setTagCompound(tStackCompound);
 
-            HeatableItemRegistry.getInstance().addBaseStack(tMaterial, tRingStack);
+            if (!HeatableItemRegistry.getInstance().isHeatable(tRingStack))
+                HeatableItemRegistry.getInstance().addBaseStack(tMaterial, tRingStack);
 
             pItemStacks.add(tRingStack);
         }

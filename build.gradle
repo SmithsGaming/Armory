@@ -18,8 +18,21 @@ buildscript {
 }
 
 repositories {
+    mavenLocal()
     maven {
-        name = "smithscore"
+        name 'ForgeFS'
+        url 'http://files.minecraftforge.net/maven'
+    }
+    maven {
+        name 'CB Maven FS'
+        url "http://chickenbones.net/maven/"
+    }
+    maven {
+        name 'DVS1 Maven FS'
+        url 'http://dvs1.progwml6.com/files/maven'
+    }
+    maven {
+        name = "SmithsCore"
         url = "http://mavenrepo.smithscore.orionminecraft.com/"
     }
 }
@@ -76,6 +89,8 @@ minecraft {
 
     mappings = "snapshot_20160518"
 
+    useDepAts = true
+
     //Replacing stuff inside the code:
     replace "@VERSION@", project.version
     replace "@MCVERSION@", config.minecraft_version
@@ -85,6 +100,7 @@ minecraft {
 dependencies {
     //Mod dependencies
     compile group: 'com.smithsmodding.smithscore', name: 'smithscore', version: config.smithscore_version, classifier: 'dev'
+    deobfCompile "mezz.jei:jei_" + config.minecraft_version + ":" + config.jei_version
 
     //Maven uploader
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.8'

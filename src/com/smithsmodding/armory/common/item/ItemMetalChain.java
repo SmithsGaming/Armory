@@ -42,7 +42,8 @@ public class ItemMetalChain extends ItemResource implements IHeatableItem {
             tStackCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getUniqueID());
             tChainStack.setTagCompound(tStackCompound);
 
-            HeatableItemRegistry.getInstance().addBaseStack(tMaterial, tChainStack);
+            if (!HeatableItemRegistry.getInstance().isHeatable(tChainStack))
+                HeatableItemRegistry.getInstance().addBaseStack(tMaterial, tChainStack);
 
             pItemStacks.add(tChainStack);
         }

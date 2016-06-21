@@ -43,7 +43,7 @@ public class HeatedAnvilRecipeComponent implements IAnvilRecipeComponent {
         }
 
         iMaterialName = HeatableItemRegistry.getInstance().getMaterialFromStack(pNewTargetStack).getUniqueID();
-        iInternalType = HeatableItemRegistry.getInstance().getInternalTypeFromItemStack(pNewTargetStack);
+        iInternalType = HeatableItemRegistry.getInstance().getInternalTypeFromItemStack(pNewTargetStack).get(0);
 
         return this;
     }
@@ -67,6 +67,6 @@ public class HeatedAnvilRecipeComponent implements IAnvilRecipeComponent {
             return false;
         }
 
-        return ((iInternalType.equals(HeatableItemRegistry.getInstance().getInternalTypeFromItemStack(pComparedItemStack))) && (iMaterialName.equals(HeatableItemRegistry.getInstance().getMaterialFromStack(pComparedItemStack).getUniqueID())) && ((iMinTemp <= HeatableItemRegistry.getInstance().getItemTemperature(pComparedItemStack))) && (iMaxTemp >= HeatableItemRegistry.getInstance().getItemTemperature(pComparedItemStack)));
+        return ((iInternalType.equals(HeatableItemRegistry.getInstance().getInternalTypeFromItemStack(pComparedItemStack).get(0))) && (iMaterialName.equals(HeatableItemRegistry.getInstance().getMaterialFromStack(pComparedItemStack).getUniqueID())) && ((iMinTemp <= HeatableItemRegistry.getInstance().getItemTemperature(pComparedItemStack))) && (iMaxTemp >= HeatableItemRegistry.getInstance().getItemTemperature(pComparedItemStack)));
     }
 }

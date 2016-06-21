@@ -46,7 +46,8 @@ public class ItemNugget extends ItemResource implements IHeatableItem {
             tStackCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getUniqueID());
             tNuggetStack.setTagCompound(tStackCompound);
 
-            HeatableItemRegistry.getInstance().addBaseStack(tMaterial, tNuggetStack);
+            if (!HeatableItemRegistry.getInstance().isHeatable(tNuggetStack))
+                HeatableItemRegistry.getInstance().addBaseStack(tMaterial, tNuggetStack);
 
             pItemStacks.add(tNuggetStack);
         }

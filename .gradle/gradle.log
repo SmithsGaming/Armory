@@ -8,13 +8,15 @@
          R4wk, ZeuX, IngisKahn, bspkrs           
 #################################################
 Found AccessTransformer: Armory_at.cfg
+:extractMcpMappings SKIPPED
+:deobfCompileDeobfDepTask0 SKIPPED
+:deobfCompileRemapDepSourcesTask1 SKIPPED
 :deobfCompileDummyTask
 :deobfProvidedDummyTask
 :getVersionJson
-:extractUserdev
-:extractDependencyATs SKIPPED
+:extractUserdev UP-TO-DATE
+:extractDependencyATs
 :extractMcpData SKIPPED
-:extractMcpMappings SKIPPED
 :genSrgs SKIPPED
 :downloadClient SKIPPED
 :downloadServer SKIPPED
@@ -40,4 +42,4 @@ Applying Exceptor...
 
 BUILD SUCCESSFUL
 
-Total time: 2 mins 25.326 secs
+Total time: 2 mins 17.425 secs
