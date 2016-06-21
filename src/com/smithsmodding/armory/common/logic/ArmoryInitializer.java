@@ -581,8 +581,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -602,8 +601,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -621,8 +619,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -644,8 +641,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -664,8 +660,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -684,8 +679,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -706,8 +700,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -728,8 +721,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -750,8 +742,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -776,8 +767,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -797,8 +787,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -818,8 +807,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -840,8 +828,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -866,8 +853,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -887,8 +873,7 @@ public class ArmoryInitializer {
                     ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES).getUniqueID());
-                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getUniqueID());
+                    pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, tUpgrade.getMaterialIndependentID());
 
                     tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -922,8 +907,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALHELMET);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Helmet.TOP + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Helmet.TOP);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -940,8 +924,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALHELMET);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.Upgrades.Helmet.LEFT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.Upgrades.Helmet.LEFT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -958,8 +941,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALHELMET);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.Upgrades.Helmet.RIGHT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.Upgrades.Helmet.RIGHT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -985,8 +967,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALCHESTPLATE);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.SHOULDERLEFT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.SHOULDERLEFT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1003,8 +984,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALCHESTPLATE);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.SHOULDERRIGHT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.SHOULDERRIGHT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1021,8 +1001,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALCHESTPLATE);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.BACKRIGHT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.BACKRIGHT );
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1039,8 +1018,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALCHESTPLATE);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.BACKLEFT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.BACKLEFT );
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1057,8 +1035,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALCHESTPLATE);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.FRONTRIGHT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.FRONTRIGHT );
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1075,8 +1052,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALCHESTPLATE);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.FRONTLEFT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.FRONTLEFT );
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1102,8 +1078,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALLEGGINGS);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.BACKRIGHT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.BACKRIGHT );
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1120,8 +1095,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALLEGGINGS);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.BACKLEFT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.BACKLEFT );
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1138,8 +1112,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALLEGGINGS);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.FRONTRIGHT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.FRONTRIGHT );
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1156,8 +1129,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALLEGGINGS);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.FRONTLEFT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.FRONTLEFT );
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1183,8 +1155,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALSHOES);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Shoes.LEFT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Shoes.LEFT );
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1201,8 +1172,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(GeneralRegistry.Items.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Armor.ArmorID, References.InternalNames.Armor.MEDIEVALSHOES);
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Shoes.RIGHT + "-" + tUpgradeMaterial.getUniqueID());
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Shoes.RIGHT );
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 

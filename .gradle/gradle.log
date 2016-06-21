@@ -8,20 +8,22 @@
          R4wk, ZeuX, IngisKahn, bspkrs           
 #################################################
 Found AccessTransformer: Armory_at.cfg
-:extractMcpMappings SKIPPED
-:deobfCompileDeobfDepTask0 SKIPPED
-:deobfCompileRemapDepSourcesTask1 SKIPPED
+:clean
+:cleanCache
+:extractMcpMappings
+:deobfCompileDeobfDepTask0
+:deobfCompileRemapDepSourcesTask1
 :deobfCompileDummyTask
 :deobfProvidedDummyTask
 :getVersionJson
-:extractUserdev UP-TO-DATE
+:extractUserdev
 :extractDependencyATs
-:extractMcpData SKIPPED
-:genSrgs SKIPPED
-:downloadClient SKIPPED
-:downloadServer SKIPPED
-:splitServerJar SKIPPED
-:mergeJars SKIPPED
+:extractMcpData
+:genSrgs
+:downloadClient
+:downloadServer
+:splitServerJar
+:mergeJars
 :deobfMcSRG
 Applying SpecialSource...
 Applying Exceptor...
@@ -30,9 +32,83 @@ Applying Exceptor...
 :applySourcePatches
 :remapMcSources
 :recompileMc
-:extractNatives SKIPPED
-:getAssetIndex UP-TO-DATE
+:extractNatives
+:getAssetIndex
 :getAssets
+Current status: 52/1049   4%
+Current status: 90/1049   8%
+Current status: 112/1049   10%
+Current status: 141/1049   13%
+Current status: 154/1049   14%
+Current status: 166/1049   15%
+Current status: 175/1049   16%
+Current status: 187/1049   17%
+Current status: 198/1049   18%
+Current status: 217/1049   20%
+Current status: 222/1049   21%
+Current status: 225/1049   21%
+Current status: 234/1049   22%
+Current status: 253/1049   24%
+Current status: 260/1049   24%
+Current status: 273/1049   26%
+Current status: 292/1049   27%
+Current status: 316/1049   30%
+Current status: 328/1049   31%
+Current status: 337/1049   32%
+Current status: 349/1049   33%
+Current status: 360/1049   34%
+Current status: 375/1049   35%
+Current status: 401/1049   38%
+Current status: 431/1049   41%
+Current status: 448/1049   42%
+Current status: 472/1049   44%
+Current status: 484/1049   46%
+Current status: 504/1049   48%
+Current status: 527/1049   50%
+Current status: 544/1049   51%
+Current status: 559/1049   53%
+Current status: 572/1049   54%
+Current status: 581/1049   55%
+Current status: 588/1049   56%
+Current status: 596/1049   56%
+Current status: 606/1049   57%
+Current status: 626/1049   59%
+Current status: 642/1049   61%
+Current status: 656/1049   62%
+Current status: 675/1049   64%
+Current status: 687/1049   65%
+Current status: 705/1049   67%
+Current status: 721/1049   68%
+Current status: 739/1049   70%
+Current status: 759/1049   72%
+Current status: 765/1049   72%
+Current status: 781/1049   74%
+Current status: 798/1049   76%
+Current status: 807/1049   76%
+Current status: 816/1049   77%
+Current status: 821/1049   78%
+Current status: 830/1049   79%
+Current status: 838/1049   79%
+Current status: 844/1049   80%
+Current status: 847/1049   80%
+Current status: 852/1049   81%
+Current status: 858/1049   81%
+Current status: 867/1049   82%
+Current status: 880/1049   83%
+Current status: 904/1049   86%
+Current status: 914/1049   87%
+Current status: 921/1049   87%
+Current status: 922/1049   87%
+Current status: 924/1049   88%
+Current status: 941/1049   89%
+Current status: 948/1049   90%
+Current status: 965/1049   91%
+Current status: 997/1049   95%
+Current status: 1024/1049   97%
+Current status: 1042/1049   99%
+Current status: 1047/1049   99%
+Current status: 1047/1049   99%
+Current status: 1048/1049   99%
 :makeStart
 :setupDecompWorkspace
 :ideaModule
@@ -42,4 +118,4 @@ Applying Exceptor...
 
 BUILD SUCCESSFUL
 
-Total time: 2 mins 17.425 secs
+Total time: 6 mins 54.805 secs
