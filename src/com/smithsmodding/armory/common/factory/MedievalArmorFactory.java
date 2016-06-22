@@ -5,9 +5,9 @@ package com.smithsmodding.armory.common.factory;
 /  Created on : 04/07/2014
 */
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -75,6 +75,7 @@ public class MedievalArmorFactory implements IMLAFactory {
 
         NBTTagCompound tNewStackCompound = new NBTTagCompound();
         tNewStackCompound.setTag(References.NBTTagCompoundData.InstalledAddons, ArmorNBTHelper.createAddonListCompound(completeList));
+        tNewStackCompound.setBoolean(References.NBTTagCompoundData.Armor.IsBroken, false);
 
         NBTTagCompound tNewDataCompound = new NBTTagCompound();
         tNewDataCompound.setInteger(References.NBTTagCompoundData.Armor.TotalDurability, pTotalDurability);

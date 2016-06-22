@@ -1,11 +1,11 @@
 package com.smithsmodding.armory.common.item;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.item.IHeatableItem;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
-import com.smithsmodding.armory.util.References;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -1,9 +1,9 @@
 package com.smithsmodding.armory.client.model.item.baked;
 
 import com.google.common.collect.ImmutableMap;
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;

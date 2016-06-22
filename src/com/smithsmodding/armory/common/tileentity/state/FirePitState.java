@@ -1,13 +1,15 @@
 package com.smithsmodding.armory.common.tileentity.state;
 
-import com.smithsmodding.armory.common.tileentity.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.smithscore.common.structures.*;
-import com.smithsmodding.smithscore.common.tileentity.*;
-import com.smithsmodding.smithscore.common.tileentity.state.*;
-import net.minecraft.nbt.*;
+import com.smithsmodding.armory.api.References;
+import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
+import com.smithsmodding.smithscore.common.structures.IStructureComponent;
+import com.smithsmodding.smithscore.common.structures.IStructureData;
+import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
+import com.smithsmodding.smithscore.common.tileentity.state.ITileEntityState;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Created by Marc on 20.12.2015.
@@ -20,7 +22,7 @@ public class FirePitState implements ITileEntityState, IStructureData {
     private float totalBurningTicks = 0F;
 
     private boolean isBurning = false;
-    private float maxTemperature = 1500;
+    private float maxTemperature = 2750;
     private float currentTemperature = 20;
     private float lastTemperature = 20;
     private float lastAddedHeat = 0;
@@ -38,7 +40,7 @@ public class FirePitState implements ITileEntityState, IStructureData {
         totalBurningTicks = pTotalBurningTicks;
 
         for (int i = 0; i < TileEntityFirePit.INGOTSTACKS_AMOUNT; i++) {
-            meltingProgress.add(-1F);
+            meltingProgress.add(0F);
         }
     }
 

@@ -1,12 +1,12 @@
 package com.smithsmodding.armory.common.item;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.armor.ISingleComponentItem;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MaterialDependentMLAAddon;
 import com.smithsmodding.armory.api.item.ISingleMaterialItem;
 import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
-import com.smithsmodding.armory.util.References;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -63,7 +63,7 @@ public class ItemArmorComponent extends Item implements ISingleMaterialItem, ISi
         if (pStack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
             return pStack.getTagCompound().getString(References.NBTTagCompoundData.CustomName);
 
-        MLAAddon addon = MedievalAddonRegistry.getInstance().getAddonForMaterialIndependantName(getComponentTypeFromItemStack(pStack));
+        MLAAddon addon = MedievalAddonRegistry.getInstance().getUpgrade(getComponentTypeFromItemStack(pStack) + "-" + getMaterialInternalName(pStack));
 
         return addon.getDisplayName();
     }

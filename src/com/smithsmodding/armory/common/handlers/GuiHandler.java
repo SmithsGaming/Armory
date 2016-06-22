@@ -6,6 +6,7 @@ package com.smithsmodding.armory.common.handlers;
  */
 
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.client.gui.blacksmithsanvil.GuiBlacksmithsAnvil;
 import com.smithsmodding.armory.client.gui.firepit.GuiFirePit;
 import com.smithsmodding.armory.client.gui.fireplace.GuiFireplace;
@@ -15,7 +16,6 @@ import com.smithsmodding.armory.common.inventory.ContainerFireplace;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
-import com.smithsmodding.armory.util.References;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.util.client;
 
-import com.smithsmodding.armory.util.References;
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.smithscore.client.textures.HolographicTexture;
 import com.smithsmodding.smithscore.client.textures.TextureCreator;
 import com.smithsmodding.smithscore.util.client.CustomResource;
@@ -109,7 +109,7 @@ public class Textures {
             }
 
             public static class Components {
-                private static final String RANDOMTEXTUREFILE = GUITEXTUREPATH + "Components/RandomElements.png";
+                protected static final String RANDOMTEXTUREFILE = GUITEXTUREPATH + "Components/RandomElements.png";
 
                 public static final CustomResource HORIZONTALTAILLEFTTORIGHTEMPTY = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Tail.LTR.Empty", RANDOMTEXTUREFILE, 32, 3, 50, 4);
                 public static final CustomResource HORIZONTALTAILLEFTTORIGHTFULL = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Tail.LTR.Full", RANDOMTEXTUREFILE, 32, 0, 50, 3);
@@ -146,6 +146,8 @@ public class Textures {
 
         public static class FirePit {
             public static CustomResource THERMOMETERICON = new CustomResource("Gui.FirePit.Thermometer", "armory:gui/Images/16x ThermoALT", Colors.DEFAULT, 0, 0, 16, 16);
+            public static CustomResource DROPEMPTY = new CustomResource("Gui.Anvil.ProgressBars.Drop.Empty", Basic.Components.RANDOMTEXTUREFILE, Colors.DEFAULT, 16, 32, 8, 12);
+            public static CustomResource DROPFULL = new CustomResource("Gui.Anvil.ProgressBars.Drop.Empty", Basic.Components.RANDOMTEXTUREFILE, Colors.DEFAULT, 24, 32, 8, 12);
         }
 
         public static class Anvil {

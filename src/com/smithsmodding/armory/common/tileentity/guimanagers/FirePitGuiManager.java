@@ -1,8 +1,8 @@
 package com.smithsmodding.armory.common.tileentity.guimanagers;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
 import com.smithsmodding.armory.common.tileentity.state.FirePitState;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentProgressBar;
 import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIManager;
@@ -48,6 +48,12 @@ public class FirePitGuiManager extends TileStorageBasedGUIManager {
 
 
             return burningTime / (Float) state.getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT);
+        }
+
+        if (component.getID().contains(References.InternalNames.GUIComponents.FirePit.MELT)) {
+            int id = Integer.parseInt(component.getID().substring(component.getID().length() - 1));
+
+            return state.getMeltingProgess(id);
         }
 
         if (component.getID().toLowerCase().contains("mixingprogress"))

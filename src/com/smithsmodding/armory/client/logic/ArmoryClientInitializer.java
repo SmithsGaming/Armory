@@ -7,6 +7,7 @@ package com.smithsmodding.armory.client.logic;
  */
 
 import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.api.materials.MaterialRenderControllers;
 import com.smithsmodding.armory.client.ArmoryClientProxy;
@@ -14,7 +15,6 @@ import com.smithsmodding.armory.common.logic.ArmoryInitializer;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.TranslationKeys;
 import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
@@ -42,7 +42,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
         MedievalClientInitialization.registerPlateResources();
         MedievalInitialization.prepareGame();
         GlobalClientInitialization.RegisterAnvilMaterialRenderInfo();
-        ArmoryInitializer.SystemInit.initializeOreDic();
+        ArmoryInitializer.SystemInit.initializeOreDict();
     }
 
     public static class MedievalClientInitialization {

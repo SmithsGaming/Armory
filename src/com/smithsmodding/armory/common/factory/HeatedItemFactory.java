@@ -5,15 +5,16 @@ package com.smithsmodding.armory.common.factory;
 /  Created on : 03/10/2014
 */
 
-import com.smithsmodding.armory.api.item.*;
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.*;
-import com.smithsmodding.armory.common.item.*;
-import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.smithscore.util.common.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
+import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.References;
+import com.smithsmodding.armory.api.item.IHeatableItem;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.common.item.ItemHeatedItem;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
+import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
+import com.smithsmodding.smithscore.util.common.ItemStackHelper;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class HeatedItemFactory {
     private static HeatedItemFactory INSTANCE = null;

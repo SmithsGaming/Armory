@@ -4,7 +4,7 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.armory.util;
+package com.smithsmodding.armory.api;
 /*
 *   References
 *   Created by: Orion
@@ -19,7 +19,7 @@ public class References {
     }
 
     public static final class General {
-        public static final String MOD_ID = "armory";
+        public static final String MOD_ID = "Armory";
         public static final String VERSION = "@VERSION@";
         public static final String MC_VERSION = "@MCVERSION@";
         public static final String API_VERSION = "@APIVERSION@";
@@ -228,11 +228,14 @@ public class References {
                 public static final String BACKGROUND = "Gui.FirePit.Background";
                 public static final String INVENTORY = "Gui.FirePit.inventory.Player";
                 public static final String SLOT = "Gui.FirePit.inventory.slots.";
+
                 public static final String FLAMEONE = "Gui.FirePit.inventory.Flame1";
                 public static final String FLAMETWO = "Gui.FirePit.inventory.Flame2";
                 public static final String FLAMETHREE = "Gui.FirePit.inventory.Flame3";
                 public static final String FLAMEFOUR = "Gui.FirePit.inventory.Flame4";
                 public static final String FLAMEFIVE = "Gui.FirePit.inventory.Flame5";
+
+                public static final String MELT = "Gui.FirePit.inventory.Melt";
 
                 public static final String MOLTENMETALSLEFT = "Gui.FirePit.MoltenMetals.liquids.left";
                 public static final String MOLTENMETALSRIGHT = "Gui.FirePit.MoltenMetals.liquids.right";

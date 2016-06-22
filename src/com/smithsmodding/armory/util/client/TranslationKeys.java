@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.util.client;
 
-import com.smithsmodding.armory.util.References;
+import com.smithsmodding.armory.api.References;
 
 /**
  * Created by Orion

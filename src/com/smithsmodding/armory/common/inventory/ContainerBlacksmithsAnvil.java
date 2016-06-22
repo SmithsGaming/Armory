@@ -1,9 +1,9 @@
 package com.smithsmodding.armory.common.inventory;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.item.ItemHammer;
 import com.smithsmodding.armory.common.item.ItemTongs;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
 import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.api.crafting.blacksmiths.recipe;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
 import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeComponent;
@@ -11,7 +12,6 @@ import com.smithsmodding.armory.common.item.armor.tiermedieval.ArmorMedieval;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.item.ItemStack;
 
@@ -185,7 +185,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
         HashMap<MLAAddon, Integer> tNewAddons = new HashMap<MLAAddon, Integer>();
         for (Integer tIndex : iUpgradeComponents) {
             ItemStack tUpgradeStack = pCraftingSlotContents[tIndex];
-            MLAAddon tAddon = MedievalAddonRegistry.getInstance().getUpgrade(tUpgradeStack.getTagCompound().getString(References.NBTTagCompoundData.Addons.AddonID));
+            MLAAddon tAddon = MedievalAddonRegistry.getInstance().getUpgrade(tUpgradeStack.getTagCompound().getString(References.NBTTagCompoundData.Addons.AddonID) + "-" + tUpgradeStack.getTagCompound().getString(References.NBTTagCompoundData.Material));
             if (tAddon == null)
                 return null;
 

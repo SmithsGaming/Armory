@@ -11,7 +11,7 @@ package com.smithsmodding.armory.common.tileentity;
  *   Created on: 13-1-2015
  */
 
-import com.smithsmodding.armory.util.References;
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.smithscore.client.gui.management.IGUIManager;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import com.smithsmodding.smithscore.common.tileentity.state.ITileEntityState;

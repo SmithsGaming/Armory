@@ -32,7 +32,7 @@ import java.util.ArrayList;
  */
 public class GuiFirePit extends GuiContainerSmithsCore {
 
-    public static Plane GUI = new Plane(0, 0, ComponentPlayerInventory.WIDTH, 245);
+    public static Plane GUI = new Plane(0, 0, ComponentPlayerInventory.WIDTH, 200);
 
     public GuiFirePit (ContainerSmithsCore container) {
         super(container);

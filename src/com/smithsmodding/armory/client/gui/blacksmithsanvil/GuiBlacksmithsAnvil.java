@@ -1,9 +1,9 @@
 package com.smithsmodding.armory.client.gui.blacksmithsanvil;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.client.gui.components.ComponentBlackSmithsAnvilCraftingGrid;
 import com.smithsmodding.armory.client.gui.components.ComponentExperienceLabel;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.Textures;
 import com.smithsmodding.armory.util.client.TranslationKeys;
 import com.smithsmodding.smithscore.client.gui.GuiContainerSmithsCore;

@@ -12,10 +12,10 @@ package com.smithsmodding.armory.common.block;
 */
 
 import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
 import com.smithsmodding.armory.common.tileentity.state.FirePitState;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;
 import com.smithsmodding.smithscore.common.structures.StructureManager;

@@ -6,6 +6,7 @@ package com.smithsmodding.armory.common.logic;
  */
 
 import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.armor.ArmorAddonPosition;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
@@ -40,7 +41,6 @@ import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.Textures;
 import com.smithsmodding.armory.util.client.TranslationKeys;
 import com.smithsmodding.smithscore.SmithsCore;
@@ -74,7 +74,7 @@ public class ArmoryInitializer {
         SystemInit.RegisterTileEntities();
         SystemInit.loadMaterialConfig();
         MedievalInitialization.prepareGame();
-        SystemInit.initializeOreDic();
+        SystemInit.initializeOreDict();
     }
 
     public static void postInitializeServer() {
@@ -1279,7 +1279,7 @@ public class ArmoryInitializer {
             }
         }
 
-        public static void initializeOreDic() {
+        public static void initializeOreDict() {
 
         }
     }

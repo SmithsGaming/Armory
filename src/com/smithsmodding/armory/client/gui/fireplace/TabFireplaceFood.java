@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.client.gui.fireplace;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.client.gui.components.core.ComponentConnectionType;
 import com.smithsmodding.smithscore.client.gui.components.core.ComponentOrientation;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentBorder;

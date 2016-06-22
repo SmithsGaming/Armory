@@ -1,9 +1,9 @@
 package com.smithsmodding.armory.compatibility.recipes.anvil;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.armory.compatibility.JEICompatMod;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.Textures;
 import com.smithsmodding.armory.util.client.TranslationKeys;
 import com.smithsmodding.smithscore.util.client.CustomResource;

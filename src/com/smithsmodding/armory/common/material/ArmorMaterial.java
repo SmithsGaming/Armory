@@ -6,12 +6,12 @@ package com.smithsmodding.armory.common.material;
 */
 
 import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.api.materials.MaterialRenderControllers;
 import com.smithsmodding.armory.api.registries.IArmorPartRegistry;
 import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.client.textures.ITextureController;
 import com.smithsmodding.smithscore.util.client.color.ColorSampler;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
@@ -65,7 +65,7 @@ public class ArmorMaterial implements IArmorMaterial {
             HeatableItemRegistry.getInstance().addBaseStack(this, baseStack);
         }
 
-        materialIndex = new Integer(LASTUSEDID).intValue();
+        materialIndex = LASTUSEDID;
         LASTUSEDID++;
 
         Armory.getLogger().info("Initialized material: " + this.uniqueIdentifier);

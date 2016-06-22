@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.common.tileentity.state;
 
-import com.smithsmodding.armory.util.References;
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import com.smithsmodding.smithscore.common.tileentity.state.ITileEntityState;
 import net.minecraft.nbt.NBTBase;
@@ -14,7 +14,7 @@ public class FireplaceState implements ITileEntityState {
     private float totalBurningTicksLeft = 0F;
     private float totalBurningTicks = 0F;
 
-    private float maxTemperature = 1250;
+    private float maxTemperature = 1850;
     private float currentTemperature = 20;
     private float lastTemperature = 20;
     private float lastAddedHeat = 0;

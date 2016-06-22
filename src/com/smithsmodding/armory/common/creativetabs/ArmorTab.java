@@ -1,10 +1,10 @@
 package com.smithsmodding.armory.common.creativetabs;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.TranslationKeys;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;

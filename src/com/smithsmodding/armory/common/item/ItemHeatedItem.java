@@ -6,11 +6,12 @@ package com.smithsmodding.armory.common.item;
 */
 
 import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.References;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.common.factory.HeatedItemFactory;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.armory.util.client.TranslationKeys;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
@@ -83,6 +84,12 @@ public class ItemHeatedItem extends Item {
 
             if (tHeatedStack != null) {
                 pItemStacks.add(tHeatedStack);
+
+                ItemStack highTempStack = tHeatedStack.copy();
+                IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromHeatedStack(highTempStack);
+                HeatableItemRegistry.getInstance().setItemTemperature(highTempStack, material.getMeltingPoint() - 10);
+
+                pItemStacks.add(highTempStack);
             } else {
                 Armory.getLogger().info("Tried to create a HeatedIngot from: " + HeatableItemRegistry.getInstance().getMaterialFromCooledStack(tCooledStack).getUniqueID() + " and failed!");
             }

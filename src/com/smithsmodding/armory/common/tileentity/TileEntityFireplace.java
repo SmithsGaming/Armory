@@ -1,12 +1,12 @@
 package com.smithsmodding.armory.common.tileentity;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.common.factory.HeatedItemFactory;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.common.tileentity.guimanagers.FireplaceGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.FireplaceState;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -34,8 +34,8 @@ public class TileEntityFireplace extends TileEntityArmory implements IItemStorag
     public static final float MULTIPLIERPERDEGREE = (MAXMULTIPLIER - BASEMULTIPLIER) / (MAXCOOKINGTEMP - STARTCOOKINGTEMP);
     private static final int FOODBOOSTSTACKSIZE = 2;
     public static final int FOODCOOKOUTPUTCOUNT = FOODCOOKINPUTCOUNT * FOODBOOSTSTACKSIZE;
-    public static float POSITIVEHEAT = 0.725F;
-    public static float NEGATIVEHEAT = -0.5F;
+    public static float POSITIVEHEAT = 0.925F;
+    public static float NEGATIVEHEAT = -0.15F;
     private boolean cookingShouldUpdateHeat = false;
 
     private ItemStack[] ingotStacks = new ItemStack[INGOTSLOTCOUNT];
@@ -338,8 +338,8 @@ public class TileEntityFireplace extends TileEntityArmory implements IItemStorag
             float tCurrentStackTemp = getItemTemperature(stack);
             float tCurrentStackCoefficient = material.getHeatCoefficient();
 
-            float tSourceDifference = NEGATIVEHEAT - tCurrentStackCoefficient;
-            float tTargetDifference = -1 * tSourceDifference + NEGATIVEHEAT;
+            float tSourceDifference = (NEGATIVEHEAT / 4) - tCurrentStackCoefficient;
+            float tTargetDifference = tCurrentStackCoefficient;
 
 
             if (tCurrentStackTemp < 20F) {

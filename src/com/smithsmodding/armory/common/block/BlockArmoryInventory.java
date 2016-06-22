@@ -6,7 +6,7 @@
 
 package com.smithsmodding.armory.common.block;
 
-import com.smithsmodding.armory.util.References;
+import com.smithsmodding.armory.api.References;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

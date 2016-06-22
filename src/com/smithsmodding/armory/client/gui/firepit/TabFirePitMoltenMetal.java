@@ -1,18 +1,21 @@
 package com.smithsmodding.armory.client.gui.firepit;
 
-import com.smithsmodding.armory.common.tileentity.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.armory.util.client.*;
-import com.smithsmodding.smithscore.client.gui.components.core.*;
+import com.smithsmodding.armory.api.References;
+import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
+import com.smithsmodding.armory.util.client.Textures;
+import com.smithsmodding.smithscore.client.gui.components.core.ComponentConnectionType;
+import com.smithsmodding.smithscore.client.gui.components.core.ComponentOrientation;
 import com.smithsmodding.smithscore.client.gui.components.implementations.*;
-import com.smithsmodding.smithscore.client.gui.hosts.*;
-import com.smithsmodding.smithscore.client.gui.state.*;
-import com.smithsmodding.smithscore.client.gui.tabs.implementations.*;
-import com.smithsmodding.smithscore.common.inventory.*;
-import com.smithsmodding.smithscore.util.client.color.*;
-import com.smithsmodding.smithscore.util.common.positioning.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
+import com.smithsmodding.smithscore.client.gui.hosts.IGUIBasedComponentHost;
+import com.smithsmodding.smithscore.client.gui.hosts.IGUIBasedTabHost;
+import com.smithsmodding.smithscore.client.gui.state.CoreComponentState;
+import com.smithsmodding.smithscore.client.gui.state.SlotComponentState;
+import com.smithsmodding.smithscore.client.gui.tabs.implementations.CoreTab;
+import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
+import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
+import com.smithsmodding.smithscore.util.common.positioning.Coordinate2D;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 /**
  * Created by Marc on 25.01.2016.

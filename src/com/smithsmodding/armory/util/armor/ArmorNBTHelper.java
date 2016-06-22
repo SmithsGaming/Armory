@@ -5,16 +5,21 @@ package com.smithsmodding.armory.util.armor;
  *   Created on: 14-9-2014
  */
 
-import com.smithsmodding.armory.api.armor.*;
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.common.addons.*;
-import com.smithsmodding.armory.common.material.*;
-import com.smithsmodding.armory.util.*;
-import com.smithsmodding.smithscore.util.common.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
+import com.smithsmodding.armory.api.References;
+import com.smithsmodding.armory.api.armor.ArmorAddonPosition;
+import com.smithsmodding.armory.api.armor.MLAAddon;
+import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
+import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
+import com.smithsmodding.armory.common.material.MaterialRegistry;
+import com.smithsmodding.smithscore.util.common.NBTHelper;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class ArmorNBTHelper {
     public static HashMap<MLAAddon, Integer> getAddonMap(ItemStack pItemStack) {

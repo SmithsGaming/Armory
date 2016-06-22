@@ -5,14 +5,18 @@ import com.smithsmodding.armory.common.registry.AnvilRecipeRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
- * Created by marcf on 6/21/2016.
+ * Author Orion (Created on: 21.06.2016)
  */
 public class BlackSmithsAnvilRecipeMaker {
 
     public static List<BlackSmithsAnvilRecipeWrapper> getRecipes() {
-        return AnvilRecipeRegistry.getInstance().getRecipes().values().stream().map(BlackSmithsAnvilRecipeWrapper::new).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<BlackSmithsAnvilRecipeWrapper> wrapperArrayList = new ArrayList<>();
+
+        for (AnvilRecipe recipe : AnvilRecipeRegistry.getInstance().getRecipes().values())
+            wrapperArrayList.add(new BlackSmithsAnvilRecipeWrapper(recipe));
+
+        return wrapperArrayList;
     }
 }

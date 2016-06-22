@@ -11,6 +11,7 @@ package com.smithsmodding.armory.common.tileentity;
 /  Created on : 02/10/2014
 */
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.common.block.BlockFirePit;
 import com.smithsmodding.armory.common.factory.HeatedItemFactory;
@@ -18,7 +19,6 @@ import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.common.tileentity.guimanagers.FirePitGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.FirePitState;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.pathfinding.IPathComponent;
@@ -48,8 +48,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
     public static int FUELSTACK_AMOUNT = 5;
     public static int INFUSIONSTACK_AMOUNT = 3;
     public static float POSITIVEHEAT = 2.625F;
-    public static float NEGATIVEHEAT = 0.75F;
-    public static int STRUCTURECOMPONENTADDITION = 1425;
+    public static float NEGATIVEHEAT = 0.60F;
+    public static int STRUCTURECOMPONENTADDITION = 1750;
 
     private float positiveHeatTerm = 0.625F;
     private float negativeHeatTerm = -0.25F;
@@ -261,7 +261,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
     private void calculateHeatTerms () {
         FirePitState state = (FirePitState) getState();
 
-        state.setMaxTemperature(1500);
+        state.setMaxTemperature(2750);
         positiveHeatTerm = POSITIVEHEAT;
         negativeHeatTerm = -NEGATIVEHEAT;
 
@@ -305,8 +305,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
             float tCurrentStackTemp = getItemTemperature(stack);
             float tCurrentStackCoefficient = material.getHeatCoefficient();
 
-            float tSourceDifference = negativeHeatTerm - tCurrentStackCoefficient;
-            float tTargetDifference = -1 * tSourceDifference + negativeHeatTerm;
+            float tSourceDifference = (negativeHeatTerm / 4) - tCurrentStackCoefficient;
+            float tTargetDifference = tCurrentStackCoefficient;
 
 
             if (tCurrentStackTemp < 20F) {
@@ -363,13 +363,14 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
             IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromHeatedStack(stack);
             float stackTemp = HeatableItemRegistry.getInstance().getItemTemperature(stack);
 
-            if (state.getCurrentTemperature() < stackTemp * 0.95 && state.getMeltingProgess(i) > -1) {
+            if (state.getCurrentTemperature() < stackTemp * 0.95 && state.getMeltingProgess(i) > 0) {
+                state.setMeltingProgress(i, 0);
                 ingotStacks[i] = null;
                 continue;
             }
 
             if (stackTemp >= material.getMeltingPoint()) {
-                if (material.getMeltingTime() < 0 || material.getMeltingPoint() < 0) {
+                if (material.getMeltingTime() <= 0 || material.getMeltingPoint() <= 0) {
                     ingotStacks[i] = null;
                     continue;
                 }
@@ -382,7 +383,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
                 if (state.getMeltingProgess(i) < 0)
                     state.setMeltingProgress(i, 0f);
 
-                state.setMeltingProgress(i, ( state.getMeltingProgess(i) * material.getMeltingTime() ) + 1F / material.getMeltingTime());
+                state.setMeltingProgress(i, (state.getMeltingProgess(i) + 1F / material.getMeltingTime()));
 
                 setItemTemperature(stack, material.getMeltingPoint());
             }

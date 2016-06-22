@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.common.item;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;

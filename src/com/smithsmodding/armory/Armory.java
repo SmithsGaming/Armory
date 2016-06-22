@@ -1,15 +1,17 @@
 package com.smithsmodding.armory;
 
-import com.google.common.base.*;
-import com.smithsmodding.armory.common.*;
-import com.smithsmodding.armory.common.logic.*;
-import com.smithsmodding.armory.util.*;
-import net.minecraftforge.fml.common.*;
+import com.google.common.base.Stopwatch;
+import com.smithsmodding.armory.api.References;
+import com.smithsmodding.armory.common.ArmoryCommonProxy;
+import com.smithsmodding.armory.common.logic.ArmoryInitializer;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.relauncher.*;
-import org.apache.logging.log4j.*;
+import net.minecraftforge.fml.relauncher.Side;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.concurrent.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Base class for armory
@@ -70,5 +72,15 @@ public class Armory {
 
         getLogger().info("Finished post init after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();
+    }
+
+    @Mod.EventHandler
+    public void onIMCMessage(FMLInterModComms.IMCEvent event) {
+        //API Register
+    }
+
+    @Mod.EventHandler
+    public void onLoadCompleted(FMLLoadCompleteEvent event) {
+        //API Load
     }
 }

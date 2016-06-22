@@ -1,13 +1,15 @@
 package com.smithsmodding.armory.compatibility.recipes.anvil;
 
-import com.google.common.collect.ImmutableList;
 import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeComponent;
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
+import com.smithsmodding.armory.api.item.IHeatableItem;
+import com.smithsmodding.armory.common.factory.HeatedItemFactory;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class BlackSmithsAnvilRecipeWrapper extends BlankRecipeWrapper {
     int tongUsage = -1;
     private ItemStack[] inputs;
     private ItemStack[] additionalStacks;
-    private ItemStack output;
+    private ArrayList<ItemStack> output;
 
     public BlackSmithsAnvilRecipeWrapper(AnvilRecipe recipe) {
         inputs = new ItemStack[TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS];
@@ -41,9 +43,18 @@ public class BlackSmithsAnvilRecipeWrapper extends BlankRecipeWrapper {
             additionalStacks[i] = component.getComponentTargetStack();
         }
 
-        output = recipe.getResult(inputs, additionalStacks);
+        output = new ArrayList<>();
+        ItemStack recipeResult = recipe.getResult(inputs, additionalStacks);
+        if (recipeResult != null) {
+            output.add(recipeResult);
 
-        if (output == null)
+            if (recipeResult.getItem() instanceof IHeatableItem) {
+                ItemStack heatedVariant = HeatedItemFactory.getInstance().convertToHeatedIngot(recipeResult);
+                output.add(heatedVariant);
+            }
+        }
+
+        if (output.size() == 0)
             throw new IllegalArgumentException("Given recipe has no output!");
 
         if (recipe.getUsesHammer())
@@ -62,7 +73,7 @@ public class BlackSmithsAnvilRecipeWrapper extends BlankRecipeWrapper {
     @Nonnull
     @Override
     public List<ItemStack> getOutputs() {
-        return ImmutableList.of(output);
+        return output;
     }
 
     public List<ItemStack> getAdditionalStacks() {

@@ -7,5 +7,4 @@
  */
 @API(owner = "armory", apiVersion = References.General.API_VERSION, provides = "armory-api|core") package com.smithsmodding.armory.api;
 
-import com.smithsmodding.armory.util.*;
-import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.API;

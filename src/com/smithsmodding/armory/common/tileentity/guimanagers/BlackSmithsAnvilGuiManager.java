@@ -1,9 +1,9 @@
 package com.smithsmodding.armory.common.tileentity.guimanagers;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.VanillaAnvilRecipe;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.armory.common.tileentity.state.BlackSmithsAnvilState;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.client.events.gui.GuiInputEvent;
 import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIManager;

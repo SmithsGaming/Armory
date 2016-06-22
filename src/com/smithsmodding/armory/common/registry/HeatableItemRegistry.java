@@ -1,13 +1,13 @@
 package com.smithsmodding.armory.common.registry;
 
 import com.google.common.collect.ImmutableList;
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.events.common.HeatableItemRegisteredEvent;
 import com.smithsmodding.armory.api.item.IHeatableItem;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.api.registries.IHeatableItemRegistry;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.util.common.FluidStackHelper;
 import com.smithsmodding.smithscore.util.common.ItemStackHelper;
 import com.smithsmodding.smithscore.util.common.NBTHelper;
@@ -355,7 +355,7 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
             if (object.tag != null)
                 hash ^= object.tag.hashCode();
 
-            return hash + object.amount;
+            return hash;
         }
 
         public boolean equals (FluidStack o1, FluidStack o2) {

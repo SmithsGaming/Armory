@@ -1,8 +1,8 @@
 package com.smithsmodding.armory.common.tileentity.guimanagers;
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import com.smithsmodding.armory.common.tileentity.state.FireplaceState;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentProgressBar;
 import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIManager;

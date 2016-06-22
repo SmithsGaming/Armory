@@ -6,10 +6,10 @@ package com.smithsmodding.armory.common.inventory;
  */
 
 
+import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.inventory.slots.SlotFuelInput;
 import com.smithsmodding.armory.common.inventory.slots.SlotInventoryCheck;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
-import com.smithsmodding.armory.util.References;
 import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;

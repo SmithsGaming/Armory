@@ -99,7 +99,7 @@ minecraft {
 
 dependencies {
     //Mod dependencies
-    compile group: 'com.smithsmodding.smithscore', name: 'smithscore', version: config.smithscore_version, classifier: 'dev'
+    deobfCompile group: 'com.smithsmodding.smithscore', name: 'smithscore', version: config.smithscore_version, classifier: 'dev'
     deobfCompile "mezz.jei:jei_" + config.minecraft_version + ":" + config.jei_version
 
     //Maven uploader
