@@ -4,7 +4,7 @@ import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.client.gui.blacksmithsanvil.GuiBlacksmithsAnvil;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.compatibility.recipes.anvil.BlackSmithsAnvilRecipeHandler;
-import com.smithsmodding.armory.compatibility.recipes.anvil.BlackSmithsAnvilRecipeMakerTemp;
+import com.smithsmodding.armory.compatibility.recipes.anvil.BlackSmithsAnvilRecipeMaker;
 import com.smithsmodding.armory.compatibility.recipes.anvil.BlacksmithsAnvilRecipeCategory;
 import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IJeiHelpers;
@@ -35,7 +35,7 @@ public class JEICompatMod extends BlankModPlugin {
 
         registry.addRecipeCategories(new BlacksmithsAnvilRecipeCategory());
         registry.addRecipeHandlers(new BlackSmithsAnvilRecipeHandler());
-        registry.addRecipes(BlackSmithsAnvilRecipeMakerTemp.getRecipes());
+        registry.addRecipes(BlackSmithsAnvilRecipeMaker.getRecipes());
         registry.addRecipeClickArea(GuiBlacksmithsAnvil.class, 17, 7, 30, 30, References.Compatibility.JEI.RecipeTypes.ANVIL);
 
         List<ItemStack> anvils = new ArrayList<>();
