@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Author Orion (Created on: 21.06.2016)
  */
-public class BlackSmithsAnvilRecipeMaker {
+public class BlackSmithsAnvilRecipeMakerTemp {
 
     public static List<BlackSmithsAnvilRecipeWrapper> getRecipes() {
         ArrayList<BlackSmithsAnvilRecipeWrapper> wrapperArrayList = new ArrayList<>();
