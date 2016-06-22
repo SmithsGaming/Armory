@@ -13,6 +13,6 @@ public class ItemSmithingsGuide extends Item {
         this.setMaxStackSize(1);
         this.setCreativeTab(GeneralRegistry.CreativeTabs.componentsTab);
         this.setUnlocalizedName(References.InternalNames.Items.ItemSmithingsGuide);
-        this.setRegistryName(References.General.MOD_ID, References.InternalNames.Items.ItemSmithingsGuide);
+        this.setRegistryName(References.General.MOD_ID.toLowerCase(), References.InternalNames.Items.ItemSmithingsGuide);
     }
 }

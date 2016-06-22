@@ -21,7 +21,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IWorldNameable;
 
-public abstract class TileEntityArmory extends TileEntitySmithsCore implements IWorldNameable {
+public abstract class TileEntityArmory<S extends ITileEntityState, G extends IGUIManager> extends TileEntitySmithsCore<S, G> implements IWorldNameable {
     private String name = "";
     private EnumFacing direction = EnumFacing.NORTH;
 
@@ -33,7 +33,7 @@ public abstract class TileEntityArmory extends TileEntitySmithsCore implements I
      * @param initialState The TE state that gets set on default when a new Instance is created.
      * @param manager      The GUIManager that handles interactins with events comming from UI's
      */
-    protected TileEntityArmory (ITileEntityState initialState, IGUIManager manager) {
+    protected TileEntityArmory(S initialState, G manager) {
         super(initialState, manager);
     }
 

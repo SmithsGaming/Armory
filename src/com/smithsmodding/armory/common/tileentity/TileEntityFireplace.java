@@ -18,7 +18,7 @@ import net.minecraft.util.ITickable;
 /**
  * Created by Marc on 27.02.2016.
  */
-public class TileEntityFireplace extends TileEntityArmory implements IItemStorage, ITickable {
+public class TileEntityFireplace extends TileEntityArmory<FireplaceState, FireplaceGuiManager> implements IItemStorage, ITickable {
 
     public static final int INGOTSLOTCOUNT = 3;
     public static final int FOODCOOKINPUTCOUNT = 1;
@@ -34,7 +34,7 @@ public class TileEntityFireplace extends TileEntityArmory implements IItemStorag
     public static final float MULTIPLIERPERDEGREE = (MAXMULTIPLIER - BASEMULTIPLIER) / (MAXCOOKINGTEMP - STARTCOOKINGTEMP);
     private static final int FOODBOOSTSTACKSIZE = 2;
     public static final int FOODCOOKOUTPUTCOUNT = FOODCOOKINPUTCOUNT * FOODBOOSTSTACKSIZE;
-    public static float POSITIVEHEAT = 0.925F;
+    public static float POSITIVEHEAT = 1.11F;
     public static float NEGATIVEHEAT = -0.15F;
     private boolean cookingShouldUpdateHeat = false;
 
@@ -159,7 +159,7 @@ public class TileEntityFireplace extends TileEntityArmory implements IItemStorag
             foodInputStacks[index] = stack;
 
             if (stack == null)
-                ((FireplaceState) getState()).setCookingProgress(0);
+                (getState()).setCookingProgress(0);
 
             return;
         }
@@ -243,7 +243,7 @@ public class TileEntityFireplace extends TileEntityArmory implements IItemStorag
      */
     @Override
     public void update() {
-        FireplaceState state = (FireplaceState) getState();
+        FireplaceState state = getState();
 
         state.setLastTemperature(state.getCurrentTemperature());
 
@@ -265,7 +265,7 @@ public class TileEntityFireplace extends TileEntityArmory implements IItemStorag
 
     public void heatFurnace() {
 
-        FireplaceState tileState = (FireplaceState) getState();
+        FireplaceState tileState = getState();
 
         tileState.setLastAddedHeat(0F);
 
@@ -311,7 +311,7 @@ public class TileEntityFireplace extends TileEntityArmory implements IItemStorag
                 return false;
         }
 
-        FireplaceState state = (FireplaceState) getState();
+        FireplaceState state = getState();
 
         if ((state.getLastAddedHeat() == 0F) && (state.getCurrentTemperature() <= 20F) && (getIngotAmount() == 0)) {
             return true;
@@ -338,7 +338,7 @@ public class TileEntityFireplace extends TileEntityArmory implements IItemStorag
             float tCurrentStackTemp = getItemTemperature(stack);
             float tCurrentStackCoefficient = material.getHeatCoefficient();
 
-            float tSourceDifference = (NEGATIVEHEAT / 4) - tCurrentStackCoefficient;
+            float tSourceDifference = (NEGATIVEHEAT / 10) - tCurrentStackCoefficient;
             float tTargetDifference = tCurrentStackCoefficient;
 
 
@@ -358,7 +358,7 @@ public class TileEntityFireplace extends TileEntityArmory implements IItemStorag
     }
 
     public boolean cookFood() {
-        FireplaceState state = (FireplaceState) getState();
+        FireplaceState state = getState();
 
         if ((state.getLastAddedHeat() == 0F) && (state.getCurrentTemperature() <= 20F) && (getFoodAmount() == 0)) {
             return false;

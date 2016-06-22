@@ -28,7 +28,7 @@ public class ItemTongs extends Item {
         setMaxDamage(150);
         setCreativeTab(GeneralRegistry.CreativeTabs.generalTab);
         setUnlocalizedName(References.InternalNames.Items.ItemTongs);
-        setRegistryName(References.InternalNames.Items.ItemTongs);
+        setRegistryName(References.InternalNames.Items.ItemTongs.toLowerCase());
         addPropertyOverride(CoreReferences.IItemProperties.MODELTYPE, new IItemPropertyGetter() {
             @Override
             public float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn) {

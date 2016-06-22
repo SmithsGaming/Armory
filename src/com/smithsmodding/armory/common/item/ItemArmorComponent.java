@@ -24,7 +24,7 @@ public class ItemArmorComponent extends Item implements ISingleMaterialItem, ISi
         this.setMaxStackSize(1);
         this.setCreativeTab(GeneralRegistry.CreativeTabs.componentsTab);
         this.setUnlocalizedName(References.InternalNames.Items.ItemArmorComponent);
-        this.setRegistryName(References.General.MOD_ID, References.InternalNames.Items.ItemArmorComponent);
+        this.setRegistryName(References.General.MOD_ID.toLowerCase(), References.InternalNames.Items.ItemArmorComponent);
     }
 
     @Override

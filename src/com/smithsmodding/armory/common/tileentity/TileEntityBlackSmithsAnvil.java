@@ -21,7 +21,7 @@ import java.util.*;
 /**
  * Created by Marc on 14.02.2016.
  */
-public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IItemStorage, ITickable {
+public class TileEntityBlackSmithsAnvil extends TileEntityArmory<BlackSmithsAnvilState, BlackSmithsAnvilGuiManager> implements IItemStorage, ITickable {
     public static int MAX_CRAFTINGSLOTS = 25;
     public static int MAX_OUTPUTSLOTS = 1;
     public static int MAX_HAMMERSLOTS = 1;
@@ -124,7 +124,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IIte
 
         if (pSlotID < MAX_CRAFTINGSLOTS) {
             craftingStacks[pSlotID] = pNewItemStack;
-            ((BlackSmithsAnvilState) getState()).setCraftingprogress(0);
+            (getState()).setCraftingprogress(0);
             findValidRecipe();
             return;
         }
@@ -141,7 +141,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IIte
 
         if (pSlotID < MAX_HAMMERSLOTS) {
             hammerStacks[pSlotID] = pNewItemStack;
-            ((BlackSmithsAnvilState) getState()).setCraftingprogress(0);
+            (getState()).setCraftingprogress(0);
             findValidRecipe();
             return;
         }
@@ -150,7 +150,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IIte
 
         if (pSlotID < MAX_TONGSLOTS) {
             tongStacks[pSlotID] = pNewItemStack;
-            ((BlackSmithsAnvilState) getState()).setCraftingprogress(0);
+            (getState()).setCraftingprogress(0);
             findValidRecipe();
             return;
         }
@@ -159,7 +159,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IIte
 
         if (pSlotID < MAX_ADDITIONALSLOTS) {
             additionalCraftingStacks[pSlotID] = pNewItemStack;
-            ((BlackSmithsAnvilState) getState()).setCraftingprogress(0);
+            (getState()).setCraftingprogress(0);
             findValidRecipe();
             return;
         }
@@ -168,7 +168,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IIte
 
         if (pSlotID < MAX_COOLSLOTS) {
             coolingStacks[pSlotID] = pNewItemStack;
-            ((BlackSmithsAnvilState) getState()).setCraftingprogress(0);
+            (getState()).setCraftingprogress(0);
             return;
         }
 
@@ -226,21 +226,21 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IIte
         boolean tUpdated = false;
 
         if (getCurrentRecipe() != null) {
-            ((BlackSmithsAnvilState) getState()).setCraftingprogress(((BlackSmithsAnvilState) getState()).getCraftingprogress() + (1f / 20f));
+            (getState()).setCraftingprogress((getState()).getCraftingprogress() + (1f / 20f));
 
-            if ((((BlackSmithsAnvilState) getState()).getCraftingprogress() >= getCurrentRecipe().getMinimumProgress()) && !worldObj.isRemote) {
+            if (((getState()).getCraftingprogress() >= getCurrentRecipe().getMinimumProgress()) && !worldObj.isRemote) {
                 if (outputStacks[0] != null) {
                     outputStacks[0].stackSize += getCurrentRecipe().getResult(craftingStacks, additionalCraftingStacks).stackSize;
                 } else {
                     outputStacks[0] = getCurrentRecipe().getResult(craftingStacks, additionalCraftingStacks);
-                    if (!((BlackSmithsAnvilState) getState()).getItemName().equals("")) {
-                        outputStacks[0].getTagCompound().setString(References.NBTTagCompoundData.CustomName, ((BlackSmithsAnvilState) getState()).getItemName());
+                    if (!(getState()).getItemName().equals("")) {
+                        outputStacks[0].getTagCompound().setString(References.NBTTagCompoundData.CustomName, (getState()).getItemName());
                     }
                 }
 
                 ProcessPerformedCrafting();
                 setCurrentRecipe(null);
-                ((BlackSmithsAnvilState) getState()).setCraftingprogress(0);
+                (getState()).setCraftingprogress(0);
 
                 tUpdated = true;
 
@@ -254,7 +254,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IIte
 
 
     public void findValidRecipe() {
-        if (((BlackSmithsAnvilState) getState()).isProcessingCraftingResult())
+        if ((getState()).isProcessingCraftingResult())
             return;
 
         setCurrentRecipe(null);
@@ -325,11 +325,11 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IIte
     }
 
     public AnvilRecipe getCurrentRecipe() {
-        return ((BlackSmithsAnvilState) getState()).getRecipe();
+        return (getState()).getRecipe();
     }
 
     public void setCurrentRecipe(AnvilRecipe recipe) {
-        ((BlackSmithsAnvilState) getState()).setRecipe(recipe);
+        (getState()).setRecipe(recipe);
     }
 
     public void ProcessPerformedCrafting() {
@@ -337,12 +337,12 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IIte
             return;
         }
 
-        ((BlackSmithsAnvilState) getState()).setProcessingCraftingResult(true);
+        (getState()).setProcessingCraftingResult(true);
 
         if (getCurrentRecipe() instanceof VanillaAnvilRecipe) {
             ((VanillaAnvilRecipe) getCurrentRecipe()).ProcessPerformedCrafting();
         } else if (getCurrentRecipe().isShapeless()) {
-            ArrayList<IAnvilRecipeComponent> tComponentList = new ArrayList<IAnvilRecipeComponent>(Arrays.asList(getCurrentRecipe().getComponents().clone()));
+            ArrayList<IAnvilRecipeComponent> tComponentList = new ArrayList<>(Arrays.asList(getCurrentRecipe().getComponents().clone()));
             for (int tSlotIndex = 0; tSlotIndex < MAX_CRAFTINGSLOTS; tSlotIndex++) {
                 if (craftingStacks[tSlotIndex] != null) {
                     boolean tProcessedStack = false;
@@ -412,7 +412,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IIte
 
         getCurrentRecipe().onRecipeUsed(this);
 
-        ((BlackSmithsAnvilState) getState()).setProcessingCraftingResult(false);
+        (getState()).setProcessingCraftingResult(false);
     }
 
     public AnvilType getCurrentAnvilType() {
@@ -490,7 +490,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory implements IIte
 
     //TODO: FIX ME!
     public Collection<UUID> getWatchingPlayers() {
-        return ((BlackSmithsAnvilGuiManager) getManager()).getWatchingPlayers();
+        return (getManager()).getWatchingPlayers();
     }
 
     //TODO: FIX ME!

@@ -24,7 +24,7 @@ public class ItemMetalChain extends ItemResource implements IHeatableItem {
         this.setMaxStackSize(16);
         this.setCreativeTab(GeneralRegistry.CreativeTabs.componentsTab);
         this.setUnlocalizedName(References.InternalNames.Items.ItemMetalChain);
-        this.setRegistryName(References.InternalNames.Items.ItemMetalChain);
+        this.setRegistryName(References.InternalNames.Items.ItemMetalChain.toLowerCase());
     }
 
     @Override

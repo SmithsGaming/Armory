@@ -42,7 +42,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
         this.setMaxStackSize(1);
         this.uniqueID = pInternalName;
         this.setCreativeTab(GeneralRegistry.CreativeTabs.armorTab);
-        this.setRegistryName(References.General.MOD_ID, pInternalName);
+        this.setRegistryName(References.General.MOD_ID.toLowerCase(), pInternalName);
     }
 
     //Functions for ISpecialArmor. TODO: Needs to be implemented.

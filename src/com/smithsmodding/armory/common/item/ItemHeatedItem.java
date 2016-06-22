@@ -30,7 +30,7 @@ public class ItemHeatedItem extends Item {
         setMaxStackSize(1);
         setCreativeTab(GeneralRegistry.CreativeTabs.heatedItemTab);
         setUnlocalizedName(References.InternalNames.Items.ItemHeatedIngot);
-        this.setRegistryName(References.General.MOD_ID, References.InternalNames.Items.ItemHeatedIngot);
+        this.setRegistryName(References.General.MOD_ID.toLowerCase(), References.InternalNames.Items.ItemHeatedIngot);
     }
 
     public boolean areStacksEqualExceptTemp (ItemStack pFirstStack, ItemStack pSecondStack) {

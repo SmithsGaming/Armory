@@ -27,7 +27,7 @@ public class ItemHammer extends Item {
         setMaxDamage(150);
         setCreativeTab(GeneralRegistry.CreativeTabs.generalTab);
         setUnlocalizedName(References.InternalNames.Items.ItemHammer);
-        setRegistryName(References.InternalNames.Items.ItemHammer);
+        setRegistryName(References.InternalNames.Items.ItemHammer.toLowerCase());
         addPropertyOverride(CoreReferences.IItemProperties.MODELTYPE, new IItemPropertyGetter() {
             @Override
             public float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn) {

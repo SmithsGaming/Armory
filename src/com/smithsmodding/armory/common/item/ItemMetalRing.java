@@ -24,7 +24,7 @@ public class ItemMetalRing extends ItemResource implements IHeatableItem {
         this.setMaxStackSize(64);
         this.setCreativeTab(GeneralRegistry.CreativeTabs.componentsTab);
         this.setUnlocalizedName(References.InternalNames.Items.ItemMetalRing);
-        this.setRegistryName(References.InternalNames.Items.ItemMetalRing);
+        this.setRegistryName(References.InternalNames.Items.ItemMetalRing.toLowerCase());
     }
 
     @Override

@@ -26,7 +26,7 @@ public class ItemNugget extends ItemResource implements IHeatableItem {
         this.setMaxStackSize(64);
         this.setCreativeTab(GeneralRegistry.CreativeTabs.componentsTab);
         this.setUnlocalizedName(References.InternalNames.Items.ItemMetalNugget);
-        this.setRegistryName(References.InternalNames.Items.ItemMetalNugget);
+        this.setRegistryName(References.InternalNames.Items.ItemMetalNugget.toLowerCase());
     }
 
     @Override

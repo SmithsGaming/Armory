@@ -26,7 +26,7 @@ public class ItemPlate extends ItemResource implements IHeatableItem {
         this.setMaxStackSize(64);
         this.setCreativeTab(GeneralRegistry.CreativeTabs.componentsTab);
         this.setUnlocalizedName(References.InternalNames.Items.ItemMetalPlate);
-        this.setRegistryName(References.InternalNames.Items.ItemMetalPlate);
+        this.setRegistryName(References.InternalNames.Items.ItemMetalPlate.toLowerCase());
     }
 
     @Override

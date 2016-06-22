@@ -23,7 +23,6 @@ import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.pathfinding.IPathComponent;
 import com.smithsmodding.smithscore.common.structures.IStructureComponent;
-import com.smithsmodding.smithscore.common.structures.IStructureData;
 import com.smithsmodding.smithscore.common.tileentity.IBlockModelUpdatingTileEntity;
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;
 import com.smithsmodding.smithscore.util.common.positioning.Cube;
@@ -42,7 +41,7 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class TileEntityFirePit extends TileEntityArmory implements IItemStorage, ITickable, IFirePitComponent, IStructureComponent, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
+public class TileEntityFirePit extends TileEntityArmory<FirePitState, FirePitGuiManager> implements IItemStorage, ITickable, IFirePitComponent, IStructureComponent<FirePitState>, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
 
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
@@ -172,8 +171,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
         if (masterCoordinate == null)
             initiateAsMasterEntity();
 
-        FirePitState structureData = (FirePitState) getStructureData();
-        FirePitState state = (FirePitState) getState();
+        FirePitState structureData = getStructureData();
+        FirePitState state = getState();
 
         if (structureData == null)
             return;
@@ -217,8 +216,8 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
     public void heatFurnace () {
         calculateHeatTerms();
 
-        FirePitState structureState = (FirePitState) getStructureData();
-        FirePitState tileState = (FirePitState) getState();
+        FirePitState structureState = getStructureData();
+        FirePitState tileState = getState();
 
         tileState.setLastAddedHeat(0F);
 
@@ -259,7 +258,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
     }
 
     private void calculateHeatTerms () {
-        FirePitState state = (FirePitState) getState();
+        FirePitState state = getState();
 
         state.setMaxTemperature(2750);
         positiveHeatTerm = POSITIVEHEAT;
@@ -278,7 +277,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
     }
 
     public void heatIngots () {
-        FirePitState state = (FirePitState) getState();
+        FirePitState state = getState();
 
         if (( state.getLastAddedHeat() == 0F ) && ( state.getCurrentTemperature() <= 20F ) && ( getIngotAmount() == 0 )) {
             return;
@@ -349,7 +348,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
 
 
     public void meltIngots () {
-        FirePitState state = (FirePitState) getState();
+        FirePitState state = getState();
 
         for (int i = 0; i < INGOTSTACKS_AMOUNT; i++) {
             ItemStack stack = ingotStacks[i];
@@ -554,7 +553,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
         if (!( blockState.getBlock() instanceof BlockFirePit ))
             return false;
 
-        return blockState.getValue(BlockFirePit.BURNING) != ( (FirePitState) getStructureData() ).isBurning();
+        return blockState.getValue(BlockFirePit.BURNING) != (getStructureData()).isBurning();
     }
 
     @Override
@@ -563,7 +562,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
             return;
         }
 
-        BlockFirePit.setBurningState(( (FirePitState) getStructureData() ).isBurning(), getWorld(), getPos());
+        BlockFirePit.setBurningState((getStructureData()).isBurning(), getWorld(), getPos());
     }
 
     @Override
@@ -585,20 +584,20 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
     }
 
     @Override
-    public IStructureData getStructureData () {
+    public FirePitState getStructureData() {
         if (!isSlaved())
-            return (IStructureData) getState();
+            return getState();
 
         if (getWorld().getTileEntity(masterCoordinate.toBlockPos()) == null)
             return null;
 
-        return ( (IStructureComponent) getWorld().getTileEntity(masterCoordinate.toBlockPos()) ).getStructureData();
+        return ((IStructureComponent<FirePitState>) getWorld().getTileEntity(masterCoordinate.toBlockPos())).getStructureData();
     }
 
     @Override
     public void initiateAsMasterEntity () {
         masterCoordinate = getLocation();
-        slaveCoordinates = new ArrayList<Coordinate3D>();
+        slaveCoordinates = new ArrayList<>();
         structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
 
         BlockFirePit.setMasterState(true, getWorld(), getPos());
@@ -609,7 +608,7 @@ public class TileEntityFirePit extends TileEntityArmory implements IItemStorage,
     @Override
     public void initiateAsSlaveEntity (Coordinate3D masterLocation) {
         masterCoordinate = masterLocation;
-        slaveCoordinates = new ArrayList<Coordinate3D>();
+        slaveCoordinates = new ArrayList<>();
         structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
 
         BlockFirePit.setMasterState(false, getWorld(), getPos());
