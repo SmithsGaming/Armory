@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "armory:firepit/BlockModel.obj",
+    "model": "armory:forge/BlockModel.obj",
     "custom": {
       "flip-v": true,
       "gui3d": false
@@ -14,7 +14,7 @@
     ],
     "inventory": [
       {
-        "model": "armory:firepit/BlockModel.obj",
+        "model": "armory:forge/BlockModel.obj",
         "custom": {
           "flip-v": true,
           "gui3d": false

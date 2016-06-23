@@ -3,7 +3,6 @@ package com.smithsmodding.armory.common.tileentity.guimanagers;
 import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.VanillaAnvilRecipe;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
-import com.smithsmodding.armory.common.tileentity.state.BlackSmithsAnvilState;
 import com.smithsmodding.smithscore.client.events.gui.GuiInputEvent;
 import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIManager;
@@ -11,12 +10,12 @@ import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIMan
 /**
  * Created by Marc on 14.02.2016.
  */
-public class BlackSmithsAnvilGuiManager extends TileStorageBasedGUIManager
+public class TileEntityBlackSmithsAnvilGuiManager extends TileStorageBasedGUIManager
 {
 
     TileEntityBlackSmithsAnvil anvil;
 
-    public BlackSmithsAnvilGuiManager(TileEntityBlackSmithsAnvil anvil)
+    public TileEntityBlackSmithsAnvilGuiManager(TileEntityBlackSmithsAnvil anvil)
     {
         this.anvil = anvil;
     }
@@ -25,13 +24,13 @@ public class BlackSmithsAnvilGuiManager extends TileStorageBasedGUIManager
     public void onInput(GuiInputEvent.InputTypes types, String componentId, String input) {
         if (types != GuiInputEvent.InputTypes.TEXTCHANGED) return;
 
-        ((BlackSmithsAnvilState) anvil.getState()).setItemName(input);
+        (anvil.getState()).setItemName(input);
     }
 
     @Override
     public String getLabelContents(IGUIComponent component) {
         if (component.getID().equals(References.InternalNames.GUIComponents.Anvil.TEXTBOX))
-            return ((BlackSmithsAnvilState) anvil.getState()).getItemName();
+            return (anvil.getState()).getItemName();
 
         if (component.getID().equals(References.InternalNames.GUIComponents.Anvil.EXPERIENCELABEL)) {
             if (anvil.getCurrentRecipe() == null) return "";
@@ -50,7 +49,7 @@ public class BlackSmithsAnvilGuiManager extends TileStorageBasedGUIManager
                 return 0F;
             }
 
-            return (((BlackSmithsAnvilState) anvil.getState()).getCraftingprogress() / (float) anvil.getCurrentRecipe().getMinimumProgress());
+            return ((anvil.getState()).getCraftingprogress() / (float) anvil.getCurrentRecipe().getMinimumProgress());
         }
 
         return 0f;

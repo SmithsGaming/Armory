@@ -6,7 +6,7 @@
 
 package com.smithsmodding.armory.common.block;
 /*
-/  BlockFirePit
+/  BlockForge
 /  Created by : Orion
 /  Created on : 02/10/2014
 */
@@ -14,8 +14,7 @@ package com.smithsmodding.armory.common.block;
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
-import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
-import com.smithsmodding.armory.common.tileentity.state.FirePitState;
+import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;
 import com.smithsmodding.smithscore.common.structures.StructureManager;
@@ -51,7 +50,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugInformationBlock {
+public class BlockForge extends BlockArmoryInventory implements ICustomDebugInformationBlock {
 
     public static final PropertyBool BURNING = PropertyBool.create("burning");
     public static final PropertyBool ISMASTER = PropertyBool.create("master");
@@ -67,8 +66,8 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
 
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
 
-    public BlockFirePit () {
-        super(References.InternalNames.Blocks.FirePit, Material.IRON);
+    public BlockForge() {
+        super(References.InternalNames.Blocks.Forge, Material.IRON);
         setCreativeTab(GeneralRegistry.CreativeTabs.generalTab);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BURNING, false).withProperty(ISMASTER, false));
     }
@@ -77,7 +76,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
         IBlockState original = worldIn.getBlockState(pos);
 
         if (original == null)
-            original = GeneralRegistry.Blocks.blockFirePit.getDefaultState();
+            original = GeneralRegistry.Blocks.blockForge.getDefaultState();
 
         original = original.withProperty(BURNING, burning);
 
@@ -88,7 +87,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
         IBlockState original = worldIn.getBlockState(pos);
 
         if (original == null)
-            original = GeneralRegistry.Blocks.blockFirePit.getDefaultState();
+            original = GeneralRegistry.Blocks.blockForge.getDefaultState();
 
         original = original.withProperty(ISMASTER, isMaster);
 
@@ -102,11 +101,11 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
     
     @Override
     public void breakBlock (World worldIn, BlockPos pos, IBlockState state) {
-        TileEntityFirePit tTEFirePit = (TileEntityFirePit) worldIn.getTileEntity(pos);
+        TileEntityForge forge = (TileEntityForge) worldIn.getTileEntity(pos);
 
         if (!worldIn.isRemote) {
-            if (worldIn.getTileEntity(pos) instanceof TileEntityFirePit) {
-                StructureManager.destroyStructureComponent(tTEFirePit);
+            if (worldIn.getTileEntity(pos) instanceof TileEntityForge) {
+                StructureManager.destroyStructureComponent(forge);
             }
         }
 
@@ -115,16 +114,16 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
 
     @Override
     public void onBlockPlacedBy (World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        TileEntityFirePit tTE = (TileEntityFirePit) worldIn.getTileEntity(pos);
+        TileEntityForge forge = (TileEntityForge) worldIn.getTileEntity(pos);
 
         if (stack.hasDisplayName()) {
-            tTE.setDisplayName(stack.getDisplayName());
+            forge.setDisplayName(stack.getDisplayName());
         }
 
         if (!worldIn.isRemote) {
-            if (tTE instanceof TileEntityFirePit) {
-                StructureManager.createStructureComponent(tTE);
-                worldIn.markChunkDirty(pos, tTE);
+            if (forge instanceof TileEntityForge) {
+                StructureManager.createStructureComponent(forge);
+                worldIn.markChunkDirty(pos, forge);
             }
         }
     }
@@ -181,7 +180,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
 
             if (data.length != 3)
             {
-                Armory.getLogger().error("Could not map a ModelPart to the FirePit Structure. Skipping.");
+                Armory.getLogger().error("Could not map a ModelPart to the Forge Structure. Skipping.");
                 continue;
             }
 
@@ -207,12 +206,12 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
             }
 
             if (name.toLowerCase().equals("Fuel".toLowerCase())) {
-                TileEntityFirePit tileEntityFirePit = (TileEntityFirePit) world.getTileEntity(pos);
+                TileEntityForge forge = (TileEntityForge) world.getTileEntity(pos);
 
-                if (tileEntityFirePit == null)
+                if (forge == null)
                     continue;
 
-                if (tileEntityFirePit.getStructureData() == null || !( (FirePitState) tileEntityFirePit.getStructureData() ).isBurning()) {
+                if (forge.getStructureData() == null || !(forge.getStructureData().isBurning())) {
                     continue;
                 }
             }
@@ -269,7 +268,7 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
 
     @Override
     public TileEntity createNewTileEntity (World worldIn, int meta) {
-        return new TileEntityFirePit();
+        return new TileEntityForge();
     }
 
     @Override
@@ -278,8 +277,8 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
             return false;
         } else {
             if (!worldIn.isRemote) {
-                if (worldIn.getTileEntity(pos) instanceof TileEntityFirePit) {
-                    playerIn.openGui(Armory.instance, References.GuiIDs.FIREPITID, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                if (worldIn.getTileEntity(pos) instanceof TileEntityForge) {
+                    playerIn.openGui(Armory.instance, References.GuiIDs.FORGEID, worldIn, pos.getX(), pos.getY(), pos.getZ());
                 }
             }
             return true;
@@ -330,72 +329,38 @@ public class BlockFirePit extends BlockArmoryInventory implements ICustomDebugIn
         if (!SmithsCore.isInDevenvironment() && !Minecraft.getMinecraft().gameSettings.showDebugInfo)
             return;
 
-        TileEntityFirePit tileEntityFirePit = (TileEntityFirePit) worldIn.getTileEntity(pos);
+        TileEntityForge forge = (TileEntityForge) worldIn.getTileEntity(pos);
 
-        if (tileEntityFirePit.getStructureData() == null)
+        if (forge.getStructureData() == null)
             return;
-
-        Float burningTicks = (Float) tileEntityFirePit.getStructureData().getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME);
-        Float totalBurningTicks = (Float) tileEntityFirePit.getStructureData().getData(tileEntityFirePit, References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT);
-
-        Float currentTemp = ( (FirePitState) tileEntityFirePit.getState() ).getCurrentTemperature();
-        Float maxTemp = ( (FirePitState) tileEntityFirePit.getState() ).getMaxTemperature();
-
-        float burningFormattingType = burningTicks / ( totalBurningTicks / 3 );
-        float tempFormattingType = currentTemp / ( maxTemp / 3 );
-
-        TextFormatting burningTime;
-        TextFormatting temp;
-
-        if (burningFormattingType < 1F && burningFormattingType > 0F)
-            burningTime = TextFormatting.RED;
-        else if (burningFormattingType < 2F && burningFormattingType > 0F)
-            burningTime = TextFormatting.GOLD;
-        else if (burningFormattingType <= 3f && burningFormattingType > 0F)
-            burningTime = TextFormatting.DARK_BLUE;
-        else
-            burningTime = TextFormatting.RESET;
-
-        if (tempFormattingType < 1F && tempFormattingType > 0F)
-            temp = TextFormatting.DARK_BLUE;
-        else if (tempFormattingType < 2F && tempFormattingType > 0F)
-            temp = TextFormatting.GOLD;
-        else if (tempFormattingType <= 3f && tempFormattingType > 0F)
-            temp = TextFormatting.RED;
-        else
-            temp = TextFormatting.RESET;
-
-        event.getRight().add("burning tick left:" + burningTime + burningTicks + TextFormatting.RESET);
-        event.getRight().add("temp:" + temp + currentTemp + TextFormatting.RESET);
-        event.getRight().add("molten metal count:" + tileEntityFirePit.getAllFluids().size());
 
         TextFormatting slaveCount;
         int count;
-        if (tileEntityFirePit.isSlaved()) {
+        if (forge.isSlaved()) {
             slaveCount = TextFormatting.STRIKETHROUGH;
             count = -2;
-        } else if (tileEntityFirePit.getSlaveCoordinates() == null) {
+        } else if (forge.getSlaveCoordinates() == null) {
             slaveCount = TextFormatting.UNDERLINE;
             count = -1;
-        } else if (tileEntityFirePit.getSlaveCoordinates().size() == 0) {
+        } else if (forge.getSlaveCoordinates().size() == 0) {
             slaveCount = TextFormatting.RED;
             count = 0;
         } else {
             slaveCount = TextFormatting.GREEN;
-            count = tileEntityFirePit.getSlaveCoordinates().size();
+            count = forge.getSlaveCoordinates().size();
         }
 
         TextFormatting masterTeLocation;
         String location;
-        if (!tileEntityFirePit.isSlaved()) {
+        if (!forge.isSlaved()) {
             masterTeLocation = TextFormatting.STRIKETHROUGH;
             location = "current";
-        } else if (tileEntityFirePit.getMasterLocation() == null) {
+        } else if (forge.getMasterLocation() == null) {
             masterTeLocation = TextFormatting.RED;
             location = "unknown";
         } else {
             masterTeLocation = TextFormatting.GREEN;
-            location = tileEntityFirePit.getMasterLocation().toString();
+            location = forge.getMasterLocation().toString();
         }
 
         event.getRight().add("slave count:" + slaveCount + count + TextFormatting.RESET);

@@ -13,7 +13,7 @@ package com.smithsmodding.armory.api;
 
 public class References {
     public static final class GuiIDs {
-        public static int FIREPITID = 0;
+        public static int FORGEID = 0;
         public static int FIREPLACEID = 1;
         public static int ANVILID = 2;
     }
@@ -198,18 +198,18 @@ public class References {
         }
 
         public static final class Blocks {
-            public static final String FirePit = "Armory.Blocks.FirePit";
+            public static final String Forge = "Armory.Blocks.Forge";
             public static final String Fireplace = "Armory.Blocks.Fireplace";
             public static final String ArmorsAnvil = "Armory.Blocks.Anvil";
         }
 
         public static final class TileEntities {
-            public static final String FirePitContainer = "Container.Armory.FirePit";
+            public static final String ForgeContainer = "Container.Armory.Forge";
             public static final String FireplaceContainer = "Container.Armory.Fireplace";
             public static final String ArmorsAnvil = "Container.Armory.Anvil";
 
             public static final class Structures {
-                public static final String FirePit = "Structures.Armory.FirePit";
+                public static final String Forge = "Structures.Armory.Forge";
             }
         }
 
@@ -225,34 +225,34 @@ public class References {
             public static final String TAB = "Armory.gui.Base.Tab.";
 
             public static final class FirePit {
-                public static final String BACKGROUND = "Gui.FirePit.Background";
-                public static final String INVENTORY = "Gui.FirePit.inventory.Player";
-                public static final String SLOT = "Gui.FirePit.inventory.slots.";
+                public static final String BACKGROUND = "Gui.Forge.Background";
+                public static final String INVENTORY = "Gui.Forge.inventory.Player";
+                public static final String SLOT = "Gui.Forge.inventory.slots.";
 
-                public static final String FLAMEONE = "Gui.FirePit.inventory.Flame1";
-                public static final String FLAMETWO = "Gui.FirePit.inventory.Flame2";
-                public static final String FLAMETHREE = "Gui.FirePit.inventory.Flame3";
-                public static final String FLAMEFOUR = "Gui.FirePit.inventory.Flame4";
-                public static final String FLAMEFIVE = "Gui.FirePit.inventory.Flame5";
+                public static final String FLAMEONE = "Gui.Forge.inventory.Flame1";
+                public static final String FLAMETWO = "Gui.Forge.inventory.Flame2";
+                public static final String FLAMETHREE = "Gui.Forge.inventory.Flame3";
+                public static final String FLAMEFOUR = "Gui.Forge.inventory.Flame4";
+                public static final String FLAMEFIVE = "Gui.Forge.inventory.Flame5";
 
-                public static final String MELT = "Gui.FirePit.inventory.Melt";
+                public static final String MELT = "Gui.Forge.inventory.Melt";
 
-                public static final String MOLTENMETALSLEFT = "Gui.FirePit.MoltenMetals.liquids.left";
-                public static final String MOLTENMETALSRIGHT = "Gui.FirePit.MoltenMetals.liquids.right";
+                public static final String MOLTENMETALSLEFT = "Gui.Forge.MoltenMetals.liquids.left";
+                public static final String MOLTENMETALSRIGHT = "Gui.Forge.MoltenMetals.liquids.right";
 
-                public static final String INFUSIONSTACKSBACKGROUND = "Gui.FirePit.MoltenMetals.InfusionStacks.Background";
+                public static final String INFUSIONSTACKSBACKGROUND = "Gui.Forge.MoltenMetals.InfusionStacks.Background";
 
-                public static final String PROGRESSMIXINGINLEFTHORIZONTAL = "Gui.FirePit.MoltenMetals.MixingProgress.In.Left.Horizontal";
-                public static final String PROGRESSMIXINGINRIGHTHORIZONTAL = "Gui.FirePit.MoltenMetals.MixingProgress.In.Right.Horizontal";
-                public static final String PROGRESSMIXINGINLEFTVERTICAL = "Gui.FirePit.MoltenMetals.MixingProgress.In.Left.Vertical";
-                public static final String PROGRESSMIXINGINRIGHTVERTICAL = "Gui.FirePit.MoltenMetals.MixingProgress.In.Right.Vertical";
+                public static final String PROGRESSMIXINGINLEFTHORIZONTAL = "Gui.Forge.MoltenMetals.MixingProgress.In.Left.Horizontal";
+                public static final String PROGRESSMIXINGINRIGHTHORIZONTAL = "Gui.Forge.MoltenMetals.MixingProgress.In.Right.Horizontal";
+                public static final String PROGRESSMIXINGINLEFTVERTICAL = "Gui.Forge.MoltenMetals.MixingProgress.In.Left.Vertical";
+                public static final String PROGRESSMIXINGINRIGHTVERTICAL = "Gui.Forge.MoltenMetals.MixingProgress.In.Right.Vertical";
 
-                public static final String PROGRESSMIXINGOUTLEFTHORIZONTAL = "Gui.FirePit.MoltenMetals.MixingProgress.Out.Left.Horizontal";
-                public static final String PROGRESSMIXINGOUTRIGHTHORIZONTAL = "Gui.FirePit.MoltenMetals.MixingProgress.Out.Right.Horizontal";
-                public static final String PROGRESSMIXINGOUTLEFTVERTICAL = "Gui.FirePit.MoltenMetals.MixingProgress.Out.Left.Vertical";
-                public static final String PROGRESSMIXINGOUTRIGHTVERTICAL = "Gui.FirePit.MoltenMetals.MixingProgress.Out.Right.Vertical";
+                public static final String PROGRESSMIXINGOUTLEFTHORIZONTAL = "Gui.Forge.MoltenMetals.MixingProgress.Out.Left.Horizontal";
+                public static final String PROGRESSMIXINGOUTRIGHTHORIZONTAL = "Gui.Forge.MoltenMetals.MixingProgress.Out.Right.Horizontal";
+                public static final String PROGRESSMIXINGOUTLEFTVERTICAL = "Gui.Forge.MoltenMetals.MixingProgress.Out.Left.Vertical";
+                public static final String PROGRESSMIXINGOUTRIGHTVERTICAL = "Gui.Forge.MoltenMetals.MixingProgress.Out.Right.Vertical";
 
-                public static final String PROGRESSSOLIDIFYING = "Gui.FirePit.MoltenMetals.SolidifyingProgress";
+                public static final String PROGRESSSOLIDIFYING = "Gui.Forge.MoltenMetals.SolidifyingProgress";
             }
 
             public static final class Fireplace {
@@ -406,7 +406,7 @@ public class References {
                 public static final String NAME = "Name";
             }
 
-            public class FirePit {
+            public class ForgeBase {
                 public static final String MAXTEMPERATURE = "MaxTemperature";
                 public static final String CURRENTTEMPERATURE = "CurrentTemperature";
                 public static final String CURRENTLYBURNING = "IsBurning";
@@ -414,6 +414,11 @@ public class References {
                 public static final String LASTTEMPERATURE = "LastTemperature";
                 public static final String FUELSTACKBURNINGTIME = "FuelStackBurningTime";
                 public static final String FUELSTACKFUELAMOUNT = "FuelStackFuelAmount";
+                public static final String LASTPOSITIVEINFLUENCE = "PositiveInfluence";
+                public static final String LASTNEGATIVEINFLUENCE = "NegativeInfluence";
+            }
+
+            public class Forge {
                 public static final String MIXINGPROGRESS = "MixingProgress";
                 public static final String MELTINGPROGRESS = "MeltingProgress";
             }

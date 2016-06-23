@@ -6,7 +6,7 @@
 
 package com.smithsmodding.armory.common.tileentity;
 
-import com.smithsmodding.smithscore.util.common.positioning.*;
+import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;
 
 public interface IFirePitComponent {
 
@@ -16,5 +16,5 @@ public interface IFirePitComponent {
 
     int getMaxTempInfluence ();
 
-    boolean canInfluenceTE (Coordinate3D tTECoordinate);
+    boolean canInfluenceTE(Coordinate3D coordinate);
 }

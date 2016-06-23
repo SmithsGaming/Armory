@@ -145,7 +145,7 @@ public class Textures {
         }
 
         public static class FirePit {
-            public static CustomResource THERMOMETERICON = new CustomResource("Gui.FirePit.Thermometer", "armory:gui/Images/16x ThermoALT", Colors.DEFAULT, 0, 0, 16, 16);
+            public static CustomResource THERMOMETERICON = new CustomResource("Gui.Forge.Thermometer", "armory:gui/Images/16x ThermoALT", Colors.DEFAULT, 0, 0, 16, 16);
             public static CustomResource DROPEMPTY = new CustomResource("Gui.Anvil.ProgressBars.Drop.Empty", Basic.Components.RANDOMTEXTUREFILE, Colors.DEFAULT, 16, 32, 8, 12);
             public static CustomResource DROPFULL = new CustomResource("Gui.Anvil.ProgressBars.Drop.Empty", Basic.Components.RANDOMTEXTUREFILE, Colors.DEFAULT, 24, 32, 8, 12);
         }

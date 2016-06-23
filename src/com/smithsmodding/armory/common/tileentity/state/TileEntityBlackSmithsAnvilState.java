@@ -13,7 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 /**
  * Created by Marc on 14.02.2016.
  */
-public class BlackSmithsAnvilState implements ITileEntityState {
+public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
 
     private float craftingprogress;
     private IAnvilMaterial material;

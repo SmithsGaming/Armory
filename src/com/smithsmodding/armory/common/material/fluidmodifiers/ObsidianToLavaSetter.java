@@ -2,8 +2,6 @@ package com.smithsmodding.armory.common.material.fluidmodifiers;
 
 import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.events.common.HeatableItemRegisteredEvent;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
@@ -18,7 +16,7 @@ public class ObsidianToLavaSetter
         if (!event.getMaterial().getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN))
             return;
 
-        event.setMoltenStack(new FluidStack(FluidRegistry.LAVA, event.getMoltenStack().amount));
+        //event.setMoltenStack(new FluidStack(FluidRegistry.LAVA, event.getMoltenStack().amount));
     }
 
 }

@@ -87,14 +87,14 @@ public class TranslationKeys {
 
         public static final String InformationTitel = "Armory.GUI.InfoTitel";
 
-        public class FirePit {
-            public static final String InfoLine1 = "Armory.GUI.FirePit.Ledger.InfoLine1";
-            public static final String InfoLine2 = "Armory.GUI.FirePit.Ledger.InfoLine2";
-            public static final String InfoLine3 = "Armory.GUI.FirePit.Ledger.InfoLine3";
-            public static final String TempTitel = "Armory.GUI.FirePit.Ledger.TempTitel";
-            public static final String TempMax = "Armory.GUI.FirePit.Ledger.TempMax";
-            public static final String TempCurrent = "Armory.GUI.FirePit.Ledger.TempCurrent";
-            public static final String LastAdded = "Armory.GUI.FirePit.Ledger.LastAdded";
+        public class Forge {
+            public static final String InfoLine1 = "Armory.GUI.Forge.Ledger.InfoLine1";
+            public static final String InfoLine2 = "Armory.GUI.Forge.Ledger.InfoLine2";
+            public static final String InfoLine3 = "Armory.GUI.Forge.Ledger.InfoLine3";
+            public static final String TempTitel = "Armory.GUI.Forge.Ledger.TempTitel";
+            public static final String TempMax = "Armory.GUI.Forge.Ledger.TempMax";
+            public static final String TempCurrent = "Armory.GUI.Forge.Ledger.TempCurrent";
+            public static final String LastAdded = "Armory.GUI.Forge.Ledger.LastAdded";
         }
 
         public class Fireplace {

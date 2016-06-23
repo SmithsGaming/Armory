@@ -77,12 +77,12 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
             mappedStacks.put(material, new HashMap<String, ItemStack>());
 
         if (mappedStacks.get(material).containsKey(internalType))
-            return mappedStacks.get(material).get(internalType);
+            return mappedStacks.get(material).get(internalType).copy();
 
         if (!mappedOreDictionaryStacks.containsKey(material))
             mappedOreDictionaryStacks.put(material, new HashMap<String, ItemStack>());
 
-        return mappedOreDictionaryStacks.get(material).get(internalType);
+        return mappedOreDictionaryStacks.get(material).get(internalType).copy();
     }
 
     @Override
@@ -91,12 +91,12 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
             mappedMoltenStacks.put(material, new HashMap<String, FluidStack>());
 
         if (mappedMoltenStacks.get(material).containsKey(internalType))
-            return mappedMoltenStacks.get(material).get(internalType);
+            return mappedMoltenStacks.get(material).get(internalType).copy();
 
         if (!mappedOreDictionaryMoltenStacks.containsKey(material))
             mappedOreDictionaryMoltenStacks.put(material, new HashMap<String, FluidStack>());
 
-        return mappedOreDictionaryMoltenStacks.get(material).get(internalType);
+        return mappedOreDictionaryMoltenStacks.get(material).get(internalType).copy();
     }
 
     @Override
@@ -128,9 +128,9 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
         fluidCompound.setString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL, material.getUniqueID());
 
         if (stack.getItem() instanceof IHeatableItem)
-            this.addBaseStack(material, stack, ( (IHeatableItem) stack.getItem() ).getInternalType(), new FluidStack(GeneralRegistry.Fluids.moltenMetal, ( (IHeatableItem) stack.getItem() ).getMoltenMilibucket(), fluidCompound));
+            this.addBaseStack(material, stack.copy(), ((IHeatableItem) stack.getItem()).getInternalType(), new FluidStack(GeneralRegistry.Fluids.moltenMetal, ((IHeatableItem) stack.getItem()).getMoltenMilibucket(), fluidCompound));
         else
-            this.addBaseStack(material, stack, References.InternalNames.HeatedItemTypes.INGOT, new FluidStack(GeneralRegistry.Fluids.moltenMetal, References.General.FLUID_INGOT, fluidCompound));
+            this.addBaseStack(material, stack.copy(), References.InternalNames.HeatedItemTypes.INGOT, new FluidStack(GeneralRegistry.Fluids.moltenMetal, References.General.FLUID_INGOT, fluidCompound));
     }
 
     @Override

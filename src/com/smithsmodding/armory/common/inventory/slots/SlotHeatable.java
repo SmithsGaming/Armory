@@ -7,8 +7,7 @@ package com.smithsmodding.armory.common.inventory.slots;
 
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
-import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
-import com.smithsmodding.armory.common.tileentity.state.FirePitState;
+import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,17 +33,21 @@ public class SlotHeatable extends SlotSmithsCore {
 
     @Override
     public boolean canTakeStack(EntityPlayer playerIn) {
-        if (!(((IItemStorage.IInventoryWrapper) inventory).getStorage() instanceof TileEntityFirePit))
+        if (!(((IItemStorage.IInventoryWrapper) inventory).getStorage() instanceof TileEntityForge))
             return true;
 
-        TileEntityFirePit firePit = ((TileEntityFirePit) ((IItemStorage.IInventoryWrapper) inventory).getStorage());
-        FirePitState state = (FirePitState) firePit.getState();
+        TileEntityForge forge = ((TileEntityForge) ((IItemStorage.IInventoryWrapper) inventory).getStorage());
 
-        return state.getMeltingProgess(meltingProgressIndex) == 0f;
+        return forge.getState().getMeltingProgess(meltingProgressIndex) == 0f;
     }
 
     @Override
     public int getSlotStackLimit () {
         return 1;
+    }
+
+    @Override
+    public void onSlotChanged() {
+        return;
     }
 }

@@ -9,25 +9,25 @@ package com.smithsmodding.armory.common.inventory;
 import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.inventory.slots.SlotFuelInput;
 import com.smithsmodding.armory.common.inventory.slots.SlotHeatable;
-import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
+import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
 import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
 
-public class ContainerFirepit extends ContainerSmithsCore {
-    private TileEntityFirePit tileEntityFirePit;
+public class ContainerForge extends ContainerSmithsCore {
+    private TileEntityForge tileEntityForge;
 
-    public ContainerFirepit (EntityPlayer playerMP, TileEntityFirePit pTEFirePit) {
-        super(References.InternalNames.TileEntities.FirePitContainer, pTEFirePit, pTEFirePit, playerMP);
+    public ContainerForge(EntityPlayer playerMP, TileEntityForge tileEntityForge) {
+        super(References.InternalNames.TileEntities.ForgeContainer, tileEntityForge, tileEntityForge, playerMP);
 
-        this.tileEntityFirePit = pTEFirePit;
+        this.tileEntityForge = tileEntityForge;
 
         generateStandardInventory();
     }
 
-    public TileEntityFirePit GetTileEntity () {
-        return tileEntityFirePit;
+    public TileEntityForge getTileEntity() {
+        return tileEntityForge;
     }
 
     @Override
@@ -54,14 +54,14 @@ public class ContainerFirepit extends ContainerSmithsCore {
 
     private void generateStandardInventory()
     {
-        this.addSlotToContainer(new SlotHeatable(tileEntityFirePit, 0, 23, 51, 0));
-        this.addSlotToContainer(new SlotHeatable(tileEntityFirePit, 1, 51, 37, 1));
-        this.addSlotToContainer(new SlotHeatable(tileEntityFirePit, 2, 80, 33, 2));
-        this.addSlotToContainer(new SlotHeatable(tileEntityFirePit, 3, 109, 37, 3));
-        this.addSlotToContainer(new SlotHeatable(tileEntityFirePit, 4, 138, 51, 4));
+        this.addSlotToContainer(new SlotHeatable(tileEntityForge, 0, 23, 51, 0));
+        this.addSlotToContainer(new SlotHeatable(tileEntityForge, 1, 51, 37, 1));
+        this.addSlotToContainer(new SlotHeatable(tileEntityForge, 2, 80, 33, 2));
+        this.addSlotToContainer(new SlotHeatable(tileEntityForge, 3, 109, 37, 3));
+        this.addSlotToContainer(new SlotHeatable(tileEntityForge, 4, 138, 51, 4));
 
-        for (int fuelStackIndex = 0; fuelStackIndex < TileEntityFirePit.FUELSTACK_AMOUNT; fuelStackIndex++) {
-            this.addSlotToContainer(new SlotFuelInput(tileEntityFirePit, fuelStackIndex + 5, 44 + fuelStackIndex * 18, 87));
+        for (int fuelStackIndex = 0; fuelStackIndex < TileEntityForge.FUELSTACK_AMOUNT; fuelStackIndex++) {
+            this.addSlotToContainer(new SlotFuelInput(tileEntityForge, fuelStackIndex + 5, 44 + fuelStackIndex * 18, 87));
         }
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < PLAYER_INVENTORY_ROWS; ++inventoryRowIndex) {
@@ -77,8 +77,8 @@ public class ContainerFirepit extends ContainerSmithsCore {
 
     private void generateMoltenInventory()
     {
-        for (int infusionStackIndex = 0; infusionStackIndex < TileEntityFirePit.INFUSIONSTACK_AMOUNT; infusionStackIndex++) {
-            this.addSlotToContainer(new SlotSmithsCore(tileEntityFirePit, infusionStackIndex + TileEntityFirePit.INGOTSTACKS_AMOUNT + TileEntityFirePit.FUELSTACK_AMOUNT, 59 + infusionStackIndex * 21, 63));
+        for (int infusionStackIndex = 0; infusionStackIndex < TileEntityForge.INFUSIONSTACK_AMOUNT; infusionStackIndex++) {
+            this.addSlotToContainer(new SlotSmithsCore(tileEntityForge, infusionStackIndex + TileEntityForge.INGOTSTACKS_AMOUNT + TileEntityForge.FUELSTACK_AMOUNT, 59 + infusionStackIndex * 21, 63));
         }
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < PLAYER_INVENTORY_ROWS; ++inventoryRowIndex) {

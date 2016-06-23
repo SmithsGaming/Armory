@@ -24,8 +24,8 @@ import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
 import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.anvil.AnvilMaterial;
 import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
-import com.smithsmodding.armory.common.block.BlockFirePit;
 import com.smithsmodding.armory.common.block.BlockFirePlace;
+import com.smithsmodding.armory.common.block.BlockForge;
 import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
 import com.smithsmodding.armory.common.fluid.FluidMoltenMetal;
 import com.smithsmodding.armory.common.item.*;
@@ -39,8 +39,8 @@ import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.registry.AnvilRecipeRegistry;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
-import com.smithsmodding.armory.common.tileentity.TileEntityFirePit;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
+import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.armory.util.client.Textures;
 import com.smithsmodding.armory.util.client.TranslationKeys;
 import com.smithsmodding.smithscore.SmithsCore;
@@ -433,7 +433,7 @@ public class ArmoryInitializer {
                 pRingCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getUniqueID());
                 tRingStack.setTagCompound(pRingCompound);
 
-                AnvilRecipe tRingRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.NUGGET, MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.85F, MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.95F)))
+                AnvilRecipe tRingRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.NUGGET, MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.65F, MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.75F)))
                         .setProgress(9).setResult(tRingStack).setHammerUsage(4).setTongUsage(0).setShapeLess();
 
                 AnvilRecipeRegistry.getInstance().addRecipe(References.InternalNames.Recipes.Anvil.RING + tMaterial.getOreDicName(), tRingRecipe);
@@ -443,7 +443,7 @@ public class ArmoryInitializer {
                 pPlateCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getUniqueID());
                 tPlateStack.setTagCompound(pPlateCompound);
 
-                AnvilRecipe tPlateRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.85F, MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.95F)))
+                AnvilRecipe tPlateRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.65F, MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.75F)))
                         .setProgress(15).setResult(tPlateStack).setHammerUsage(15).setTongUsage(2).setShapeLess();
 
                 AnvilRecipeRegistry.getInstance().addRecipe(References.InternalNames.Recipes.Anvil.PLATE + tMaterial.getOreDicName(), tPlateRecipe);
@@ -453,7 +453,7 @@ public class ArmoryInitializer {
                 pNuggetCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getUniqueID());
                 tNuggetStack.setTagCompound(pNuggetCompound);
 
-                AnvilRecipe tNuggetRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.INGOT, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.5F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.5F) * 0.95F)))
+                AnvilRecipe tNuggetRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.INGOT, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.5F) * 0.65F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.5F) * 0.75F)))
                         .setProgress(6).setResult(tNuggetStack).setHammerUsage(4).setTongUsage(0).setShapeLess();
 
                 AnvilRecipeRegistry.getInstance().addRecipe(References.InternalNames.Recipes.Anvil.NUGGET + tMaterial.getOreDicName(), tNuggetRecipe);
@@ -463,15 +463,15 @@ public class ArmoryInitializer {
                 tChainCompound.setString(References.NBTTagCompoundData.Material, tMaterial.getUniqueID());
                 tChainStack.setTagCompound(tChainCompound);
 
-                AnvilRecipe tChainRecipe = new AnvilRecipe().setCraftingSlotContent(2, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
-                        .setCraftingSlotContent(6, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
-                        .setCraftingSlotContent(8, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
-                        .setCraftingSlotContent(10, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
-                        .setCraftingSlotContent(12, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
-                        .setCraftingSlotContent(14, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
-                        .setCraftingSlotContent(16, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
-                        .setCraftingSlotContent(18, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
-                        .setCraftingSlotContent(22, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
+                AnvilRecipe tChainRecipe = new AnvilRecipe().setCraftingSlotContent(2, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.65F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.75F)))
+                        .setCraftingSlotContent(6, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.65F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.75F)))
+                        .setCraftingSlotContent(8, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.65F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.75F)))
+                        .setCraftingSlotContent(10, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.65F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.75F)))
+                        .setCraftingSlotContent(12, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.65F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.75F)))
+                        .setCraftingSlotContent(14, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.65F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.75F)))
+                        .setCraftingSlotContent(16, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.65F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.75F)))
+                        .setCraftingSlotContent(18, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.65F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.75F)))
+                        .setCraftingSlotContent(22, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.65F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.75F)))
                         .setProgress(10).setResult(tChainStack).setHammerUsage(16).setTongUsage(16);
 
                 AnvilRecipeRegistry.getInstance().addRecipe(References.InternalNames.Recipes.Anvil.CHAIN + tMaterial.getOreDicName(), tChainRecipe);
@@ -1200,12 +1200,12 @@ public class ArmoryInitializer {
 
     public static class SystemInit {
         public static void RegisterBlocks() {
-            GeneralRegistry.Blocks.blockFirePit = new BlockFirePit();
+            GeneralRegistry.Blocks.blockForge = new BlockForge();
             GeneralRegistry.Blocks.blockBlackSmithsAnvil = new BlockBlackSmithsAnvil();
             GeneralRegistry.Blocks.blockFirePlace = new BlockFirePlace();
 
-            GameRegistry.register(GeneralRegistry.Blocks.blockFirePit);
-            GameRegistry.register(new ItemBlock(GeneralRegistry.Blocks.blockFirePit).setRegistryName(GeneralRegistry.Blocks.blockFirePit.getRegistryName()));
+            GameRegistry.register(GeneralRegistry.Blocks.blockForge);
+            GameRegistry.register(new ItemBlock(GeneralRegistry.Blocks.blockForge).setRegistryName(GeneralRegistry.Blocks.blockForge.getRegistryName()));
             GameRegistry.register(GeneralRegistry.Blocks.blockBlackSmithsAnvil);
             GameRegistry.register(new ItemBlockBlackSmithsAnvil(GeneralRegistry.Blocks.blockBlackSmithsAnvil));
             GameRegistry.register(GeneralRegistry.Blocks.blockFirePlace);
@@ -1246,7 +1246,7 @@ public class ArmoryInitializer {
         }
 
         public static void RegisterTileEntities() {
-            GameRegistry.registerTileEntity(TileEntityFirePit.class, References.InternalNames.TileEntities.FirePitContainer);
+            GameRegistry.registerTileEntity(TileEntityForge.class, References.InternalNames.TileEntities.ForgeContainer);
             GameRegistry.registerTileEntity(TileEntityFireplace.class, References.InternalNames.TileEntities.FireplaceContainer);
             GameRegistry.registerTileEntity(TileEntityBlackSmithsAnvil.class, References.InternalNames.TileEntities.ArmorsAnvil);
         }

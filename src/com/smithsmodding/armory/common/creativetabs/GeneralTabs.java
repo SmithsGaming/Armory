@@ -21,6 +21,6 @@ public class GeneralTabs extends CreativeTabs {
 
     @Override
     public Item getTabIconItem() {
-        return Item.getItemFromBlock(GeneralRegistry.Blocks.blockFirePit);
+        return Item.getItemFromBlock(GeneralRegistry.Blocks.blockForge);
     }
 }

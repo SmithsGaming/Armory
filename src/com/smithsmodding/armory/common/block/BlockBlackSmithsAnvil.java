@@ -8,7 +8,6 @@ import com.smithsmodding.armory.common.block.properties.PropertyAnvilMaterial;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
-import com.smithsmodding.armory.common.tileentity.state.BlackSmithsAnvilState;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -112,7 +111,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
     public void onBlockPlacedBy (World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         String materialID = stack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL);
 
-        ((BlackSmithsAnvilState) ((TileEntityBlackSmithsAnvil) worldIn.getTileEntity(pos)).getState()).setMaterial(AnvilMaterialRegistry.getInstance().getAnvilMaterial(materialID));
+        ((TileEntityBlackSmithsAnvil) worldIn.getTileEntity(pos)).getState().setMaterial(AnvilMaterialRegistry.getInstance().getAnvilMaterial(materialID));
 
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
 
@@ -171,7 +170,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
 
         OBJModel.OBJState objState = new OBJModel.OBJState(Lists.newArrayList(OBJModel.Group.ALL), true, transformation);
 
-        IAnvilMaterial material = ((BlackSmithsAnvilState) ((TileEntityBlackSmithsAnvil) world.getTileEntity(pos)).getState()).getMaterial();
+        IAnvilMaterial material = ((TileEntityBlackSmithsAnvil) world.getTileEntity(pos)).getState().getMaterial();
         if (material == null)
             material = AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.IRON);
 

@@ -7,7 +7,6 @@
 package com.smithsmodding.armory.api.crafting.blacksmiths.recipe;
 
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
-import com.smithsmodding.armory.common.tileentity.state.BlackSmithsAnvilState;
 import com.smithsmodding.smithscore.common.player.management.PlayerManager;
 import com.smithsmodding.smithscore.util.common.XPUtil;
 import net.minecraft.enchantment.Enchantment;
@@ -131,7 +130,7 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
         }
 
         iEntity.setInventorySlotContents(13, iRightInputStack);
-        ((BlackSmithsAnvilState) iEntity.getState()).setItemName("");
+        iEntity.getState().setItemName("");
     }
 
     public int getRequiredLevelsPerPlayer() {
@@ -176,7 +175,7 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
             int k1;
 
             if (iRightInputStack != null) {
-                if (!checkForge(iLeftInputStack, iRightInputStack, ((BlackSmithsAnvilState) iEntity.getState()).getItemName(), tBaseLevelExperienceCost))
+                if (!checkForge(iLeftInputStack, iRightInputStack, iEntity.getState().getItemName(), tBaseLevelExperienceCost))
                     return;
                 tFlagIsEnchantableByBook = iRightInputStack.getItem() == Items.ENCHANTED_BOOK && Items.ENCHANTED_BOOK.getEnchantments(iRightInputStack).tagCount() > 0;
 
@@ -278,16 +277,16 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
             if (tFlagIsEnchantableByBook && !tEventStack.getItem().isBookEnchantable(tEventStack, iRightInputStack))
                 tEventStack = null;
 
-            if (StringUtils.isBlank(((BlackSmithsAnvilState) iEntity.getState()).getItemName())) {
+            if (StringUtils.isBlank(iEntity.getState().getItemName())) {
                 if (iLeftInputStack.hasDisplayName()) {
                     j = 1;
                     i += j;
                     tEventStack.clearCustomName();
                 }
-            } else if (!((BlackSmithsAnvilState) iEntity.getState()).getItemName().equals(iLeftInputStack.getDisplayName())) {
+            } else if (!iEntity.getState().getItemName().equals(iLeftInputStack.getDisplayName())) {
                 j = 1;
                 i += j;
-                tEventStack.setStackDisplayName(((BlackSmithsAnvilState) iEntity.getState()).getItemName());
+                tEventStack.setStackDisplayName(iEntity.getState().getItemName());
             }
 
             this.iMaximumCost = j + i;

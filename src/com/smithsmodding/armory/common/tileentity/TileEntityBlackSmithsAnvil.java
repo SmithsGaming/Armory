@@ -5,11 +5,13 @@ import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeComponent;
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.VanillaAnvilRecipe;
+import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
 import com.smithsmodding.armory.common.registry.AnvilRecipeRegistry;
-import com.smithsmodding.armory.common.tileentity.guimanagers.BlackSmithsAnvilGuiManager;
-import com.smithsmodding.armory.common.tileentity.state.BlackSmithsAnvilState;
+import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityBlackSmithsAnvilGuiManager;
+import com.smithsmodding.armory.common.tileentity.state.TileEntityBlackSmithsAnvilState;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.common.inventory.IItemStorage;
+import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import com.smithsmodding.smithscore.util.common.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -21,7 +23,7 @@ import java.util.*;
 /**
  * Created by Marc on 14.02.2016.
  */
-public class TileEntityBlackSmithsAnvil extends TileEntityArmory<BlackSmithsAnvilState, BlackSmithsAnvilGuiManager> implements IItemStorage, ITickable {
+public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityBlackSmithsAnvilState, TileEntityBlackSmithsAnvilGuiManager> implements IItemStorage, ITickable {
     public static int MAX_CRAFTINGSLOTS = 25;
     public static int MAX_OUTPUTSLOTS = 1;
     public static int MAX_HAMMERSLOTS = 1;
@@ -39,8 +41,16 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory<BlackSmithsAnvi
     private ItemStack[] coolingStacks = new ItemStack[MAX_COOLSLOTS];
 
     public TileEntityBlackSmithsAnvil() {
-        super(new BlackSmithsAnvilState(), null);
-        setManager(new BlackSmithsAnvilGuiManager(this));
+    }
+
+    @Override
+    protected TileEntityBlackSmithsAnvilGuiManager getInitialGuiManager() {
+        return new TileEntityBlackSmithsAnvilGuiManager(this);
+    }
+
+    @Override
+    protected TileEntityBlackSmithsAnvilState getInitialState() {
+        return new TileEntityBlackSmithsAnvilState();
     }
 
     @Override
@@ -422,7 +432,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntityArmory<BlackSmithsAnvi
 
         boolean tFoundCoolingBasin = false;
         boolean tFoundHelperRack = false;
-        if (getDirection() == EnumFacing.NORTH || getDirection() == EnumFacing.SOUTH) {
+        if (getWorld().getBlockState(getPos()).getValue(BlockBlackSmithsAnvil.FACING) == EnumFacing.NORTH || getWorld().getBlockState(getPos()).getValue(BlockBlackSmithsAnvil.FACING) == EnumFacing.SOUTH) {
             TileEntity tLeftTE = worldObj.getTileEntity(getPos().offset(EnumFacing.EAST));
             TileEntity tRightTE = worldObj.getTileEntity(getPos().offset(EnumFacing.WEST));
 

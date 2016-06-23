@@ -122,7 +122,7 @@ public class GuiFireplace extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update(int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = I18n.format(TranslationKeys.Gui.FirePit.TempCurrent) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = I18n.format(TranslationKeys.Gui.Forge.TempCurrent) + ": " + getManager().getLabelContents(this);
                 }
             });
 
@@ -136,7 +136,7 @@ public class GuiFireplace extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update(int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = I18n.format(TranslationKeys.Gui.FirePit.TempMax) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = I18n.format(TranslationKeys.Gui.Forge.TempMax) + ": " + getManager().getLabelContents(this);
                 }
             });
 
@@ -150,7 +150,7 @@ public class GuiFireplace extends GuiContainerSmithsCore {
                  */
                 @Override
                 public void update(int mouseX, int mouseY, float partialTickTime) {
-                    this.displayedText = I18n.format(TranslationKeys.Gui.FirePit.LastAdded) + ": " + getManager().getLabelContents(this);
+                    this.displayedText = I18n.format(TranslationKeys.Gui.Forge.LastAdded) + ": " + getManager().getLabelContents(this);
                 }
             });
 

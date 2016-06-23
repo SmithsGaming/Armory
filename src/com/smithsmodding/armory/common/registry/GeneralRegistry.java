@@ -6,8 +6,8 @@ package com.smithsmodding.armory.common.registry;
  */
 
 import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
-import com.smithsmodding.armory.common.block.BlockFirePit;
 import com.smithsmodding.armory.common.block.BlockFirePlace;
+import com.smithsmodding.armory.common.block.BlockForge;
 import com.smithsmodding.armory.common.creativetabs.ArmorTab;
 import com.smithsmodding.armory.common.creativetabs.ComponentsTab;
 import com.smithsmodding.armory.common.creativetabs.GeneralTabs;
@@ -53,7 +53,7 @@ public class GeneralRegistry {
     }
 
     public static class Blocks {
-        public static BlockFirePit blockFirePit;
+        public static BlockForge blockForge;
         public static BlockBlackSmithsAnvil blockBlackSmithsAnvil;
         public static BlockFirePlace blockFirePlace;
     }

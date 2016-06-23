@@ -1,24 +1,19 @@
 package com.smithsmodding.armory.common.tileentity;
 
 import com.smithsmodding.armory.api.References;
-import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.common.factory.HeatedItemFactory;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
-import com.smithsmodding.armory.common.tileentity.guimanagers.FireplaceGuiManager;
-import com.smithsmodding.armory.common.tileentity.state.FireplaceState;
-import com.smithsmodding.smithscore.common.inventory.IItemStorage;
+import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityFireplaceGuiManager;
+import com.smithsmodding.armory.common.tileentity.state.TileEntityFireplaceState;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.ITickable;
 
 /**
  * Created by Marc on 27.02.2016.
  */
-public class TileEntityFireplace extends TileEntityArmory<FireplaceState, FireplaceGuiManager> implements IItemStorage, ITickable {
+public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplaceState, TileEntityFireplaceGuiManager> {
 
     public static final int INGOTSLOTCOUNT = 3;
     public static final int FOODCOOKINPUTCOUNT = 1;
@@ -46,8 +41,16 @@ public class TileEntityFireplace extends TileEntityArmory<FireplaceState, Firepl
     private float heatedProcentage;
 
     public TileEntityFireplace() {
-        super(new FireplaceState(), null);
-        this.setManager(new FireplaceGuiManager(this));
+    }
+
+    @Override
+    protected TileEntityFireplaceGuiManager getInitialGuiManager() {
+        return null;
+    }
+
+    @Override
+    protected TileEntityFireplaceState getInitialState() {
+        return null;
     }
 
     /**
@@ -102,34 +105,6 @@ public class TileEntityFireplace extends TileEntityArmory<FireplaceState, Firepl
         //index -= FUELSLOTCOUNT;
 
         return null;
-    }
-
-    /**
-     * Removes up to a specified number of items from an inventory slot and returns them in a new stack.
-     *
-     * @param index
-     * @param count
-     */
-    @Override
-    public ItemStack decrStackSize(int index, int count) {
-        ItemStack tItemStack = getStackInSlot(index);
-        if (tItemStack == null) {
-            return tItemStack;
-        }
-
-        if (tItemStack.stackSize < count) {
-            setInventorySlotContents(index, null);
-        } else {
-            ItemStack returnStack = tItemStack.splitStack(count);
-
-            if (tItemStack.stackSize == 0) {
-                setInventorySlotContents(index, null);
-            }
-
-            return returnStack;
-        }
-
-        return tItemStack;
     }
 
     @Override
@@ -243,147 +218,100 @@ public class TileEntityFireplace extends TileEntityArmory<FireplaceState, Firepl
      */
     @Override
     public void update() {
-        FireplaceState state = getState();
+        TileEntityFireplaceState localData = getState();
 
-        state.setLastTemperature(state.getCurrentTemperature());
+        localData.setLastTemp(localData.getCurrentTemp());
+        localData.setBurning(false);
 
-        heatFurnace();
+        heatFurnace(localData, localData);
 
-        if (!heatIngots())
+        localData.setBurning(localData.getBurningTicksLeftOnCurrentFuel() >= 1F);
+
+        if (!heatIngots(localData, localData))
             cookingShouldUpdateHeat = true;
 
         cookFood();
 
         cookingShouldUpdateHeat = false;
 
-        state.setLastAddedHeat(state.getCurrentTemperature() - state.getLastTemperature());
+        localData.setLastChange(localData.getCurrentTemp() - localData.getLastTemp());
 
         if (!worldObj.isRemote) {
             this.markDirty();
         }
     }
 
-    public void heatFurnace() {
-
-        FireplaceState tileState = getState();
-
-        tileState.setLastAddedHeat(0F);
-
-        if ((Float) tileState.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) < 1F) {
-            for (int tFuelStackIndex = 0; tFuelStackIndex < FUELSLOTCOUNT; tFuelStackIndex++) {
-
-                if (fuelStacks[tFuelStackIndex] == null) {
-                    continue;
-                }
-
-                ItemStack tTargetedFuelStack = fuelStacks[tFuelStackIndex];
-
-                //Check if the stack is a valid Fuel in the Furnace
-                if ((tTargetedFuelStack != null) && (TileEntityFurnace.isItemFuel(tTargetedFuelStack))) {
-                    --tTargetedFuelStack.stackSize;
-
-                    tileState.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, (Float) tileState.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) + TileEntityFurnace.getItemBurnTime(tTargetedFuelStack));
-
-                    if (tTargetedFuelStack.stackSize == 0) {
-                        fuelStacks[tFuelStackIndex] = tTargetedFuelStack.getItem().getContainerItem(tTargetedFuelStack);
-                    }
-
-                }
-
-            }
-
-            tileState.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKFUELAMOUNT, tileState.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME));
-        }
-
-        if ((Float) tileState.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) >= 1F) {
-
-            tileState.setData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME, (Float) tileState.getData(this, References.NBTTagCompoundData.TE.FirePit.FUELSTACKBURNINGTIME) - 1F);
-            tileState.setLastAddedHeat(tileState.getLastAddedHeat() + POSITIVEHEAT);
-        }
-
-        heatedProcentage = Math.round((tileState.getCurrentTemperature() / tileState.getMaxTemperature()) * 100) / 100F;
-        tileState.setLastAddedHeat(tileState.getLastAddedHeat() * (1 - heatedProcentage));
+    @Override
+    protected TileEntityFireplaceState getHeatData() {
+        return getState();
     }
 
-    public boolean heatIngots() {
-        for (int i = 0; i < FOODCOOKINPUTCOUNT; i++) {
-            if (getStackInSlot(i + INGOTSLOTCOUNT) != null)
-                return false;
-        }
+    @Override
+    protected void calculateHeatTerms(TileEntityFireplaceState localData) {
+        localData.setLastNegativeTerm(NEGATIVEHEAT);
+        localData.setLastPositiveTerm(POSITIVEHEAT);
+    }
 
-        FireplaceState state = getState();
+    @Override
+    protected int getFuelStackAmount() {
+        return FUELSLOTCOUNT;
+    }
 
-        if ((state.getLastAddedHeat() == 0F) && (state.getCurrentTemperature() <= 20F) && (getIngotAmount() == 0)) {
-            return true;
-        }
+    @Override
+    protected ItemStack getFuelStack(int fuelStackIndex) {
+        return fuelStacks[fuelStackIndex];
+    }
 
-        state.setCurrentTemperature(state.getCurrentTemperature() + state.getLastAddedHeat());
+    @Override
+    protected void setFuelStack(int fuelStackIndex, ItemStack fuelStack) {
+        fuelStacks[fuelStackIndex] = fuelStack;
+    }
 
-        if (state.getCurrentTemperature() > 20F) {
-            state.setCurrentTemperature(state.getCurrentTemperature() + (NEGATIVEHEAT * heatedProcentage));
-        }
+    @Override
+    protected int getTotalPossibleIngotAmount() {
+        return INGOTSLOTCOUNT;
+    }
 
-        for (int tIngotStackCount = 0; tIngotStackCount < INGOTSLOTCOUNT; tIngotStackCount++) {
-            if (ingotStacks[tIngotStackCount] == null) {
-                continue;
-            }
+    @Override
+    protected ItemStack getIngotStack(int ingotStackIndex) {
+        return ingotStacks[ingotStackIndex];
+    }
 
-            if ((state.getCurrentTemperature() > 20F) && !(ingotStacks[tIngotStackCount].getItem() instanceof ItemHeatedItem) && HeatableItemRegistry.getInstance().isHeatable(ingotStacks[tIngotStackCount])) {
-                ingotStacks[tIngotStackCount] = HeatedItemFactory.getInstance().convertToHeatedIngot(ingotStacks[tIngotStackCount]);
-            }
+    @Override
+    protected void setIngotStack(int ingotStackIndex, ItemStack ingotStack) {
+        ingotStacks[ingotStackIndex] = ingotStack;
+    }
 
-            ItemStack stack = ingotStacks[tIngotStackCount];
-            IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromHeatedStack(stack);
-
-            float tCurrentStackTemp = getItemTemperature(stack);
-            float tCurrentStackCoefficient = material.getHeatCoefficient();
-
-            float tSourceDifference = (NEGATIVEHEAT / 10) - tCurrentStackCoefficient;
-            float tTargetDifference = tCurrentStackCoefficient;
-
-
-            if (tCurrentStackTemp < 20F) {
-                ingotStacks[tIngotStackCount] = HeatedItemFactory.getInstance().convertToCooledIngot(ingotStacks[tIngotStackCount]);
-            } else if (tCurrentStackTemp <= state.getCurrentTemperature()) {
-                state.setCurrentTemperature(state.getCurrentTemperature() + tSourceDifference);
-                setItemTemperature(stack, getItemTemperature(stack) + tTargetDifference);
-            } else if (getItemTemperature(stack) > state.getCurrentTemperature()) {
-                state.setCurrentTemperature(state.getCurrentTemperature() + tTargetDifference);
-                setItemTemperature(stack, getItemTemperature(stack) + tSourceDifference);
-            }
-
-        }
-
-        return true;
+    @Override
+    protected float getSourceEfficiencyIndex() {
+        return 10;
     }
 
     public boolean cookFood() {
-        FireplaceState state = getState();
-
-        if ((state.getLastAddedHeat() == 0F) && (state.getCurrentTemperature() <= 20F) && (getFoodAmount() == 0)) {
+        if ((getState().getLastChange() == 0F) && (getState().getCurrentTemp() <= 20F) && (getFoodAmount() == 0)) {
             return false;
         }
 
         if (cookingShouldUpdateHeat) {
-            state.setCurrentTemperature(state.getCurrentTemperature() + state.getLastAddedHeat());
+            getState().addLastChangeToCurrentTemp();
 
-            if (state.getCurrentTemperature() > 20F) {
-                state.setCurrentTemperature(state.getCurrentTemperature() + (NEGATIVEHEAT * heatedProcentage));
+            if (getState().getCurrentTemp() > 20F) {
+                getState().setCurrentTemp(getState().getCurrentTemp() + (getState().getLastNegativeTerm() * getState().getHeatedPercentage()));
             }
         }
 
-        if (state.getCurrentTemperature() < STARTCOOKINGTEMP) {
-            state.setCookingSpeedMultiplier(0);
+        if (getState().getCurrentTemp() < STARTCOOKINGTEMP) {
+            getState().setCookingSpeedMultiplier(0);
             return false;
         }
 
-        state.setCookingSpeedMultiplier((state.getCurrentTemperature() - STARTCOOKINGTEMP) * MULTIPLIERPERDEGREE + 1);
+        getState().setCookingSpeedMultiplier((getState().getCurrentTemp() - STARTCOOKINGTEMP) * MULTIPLIERPERDEGREE + 1);
 
-        if (state.getCookingSpeedMultiplier() < BASEMULTIPLIER)
+        if (getState().getCookingSpeedMultiplier() < BASEMULTIPLIER)
             return false;
 
-        if (state.getCookingSpeedMultiplier() > MAXMULTIPLIER)
-            state.setCookingSpeedMultiplier(MAXMULTIPLIER);
+        if (getState().getCookingSpeedMultiplier() > MAXMULTIPLIER)
+            getState().setCookingSpeedMultiplier(MAXMULTIPLIER);
 
 
         for (int i = 0; i < INGOTSLOTCOUNT; i++) {
@@ -396,13 +324,13 @@ public class TileEntityFireplace extends TileEntityArmory<FireplaceState, Firepl
             return true;
         }
 
-        state.setCookingProgress(state.getCookingProgress() + (1f / 200f) * state.getCookingSpeedMultiplier());
+        getState().setCookingProgress(getState().getCookingProgress() + (1f / 200f) * getState().getCookingSpeedMultiplier());
 
-        if (state.getCurrentTemperature() > 20F) {
-            state.setCurrentTemperature(state.getCurrentTemperature() + (NEGATIVEHEAT * heatedProcentage));
+        if (getState().getCurrentTemp() > 20F) {
+            getState().setCurrentTemp(getState().getCurrentTemp() + (getState().getLastNegativeTerm() * getState().getHeatedPercentage()));
         }
 
-        if (state.getCookingProgress() < 1f)
+        if (getState().getCookingProgress() < 1f)
             return true;
 
         //Add the items twice.
@@ -427,7 +355,7 @@ public class TileEntityFireplace extends TileEntityArmory<FireplaceState, Firepl
             this.foodInputStacks[0] = null;
         }
 
-        state.setCookingProgress(0);
+        getState().setCookingProgress(0);
 
         return false;
     }
@@ -466,20 +394,6 @@ public class TileEntityFireplace extends TileEntityArmory<FireplaceState, Firepl
         }
     }
 
-    public int getIngotAmount() {
-        int tIngotAmount = 0;
-
-        for (int tIngotStackIndex = 0; tIngotStackIndex < INGOTSLOTCOUNT; tIngotStackIndex++) {
-            if (ingotStacks[tIngotStackIndex] == null) {
-                continue;
-            }
-
-            tIngotAmount++;
-        }
-
-        return tIngotAmount;
-    }
-
     public int getFoodAmount() {
         int foodAmount = 0;
 
@@ -493,30 +407,4 @@ public class TileEntityFireplace extends TileEntityArmory<FireplaceState, Firepl
 
         return foodAmount;
     }
-
-    public float getItemTemperature(ItemStack pItemStack) {
-        if (pItemStack.getItem() instanceof ItemHeatedItem) {
-
-            NBTTagCompound stackCompound = pItemStack.getTagCompound();
-
-            return stackCompound.getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE);
-        }
-
-        return 20F;
-    }
-
-    public void setItemTemperature(ItemStack pItemStack, float pNewTemp) {
-        if (pItemStack.getItem() instanceof ItemHeatedItem) {
-            if (pNewTemp < 20F)
-                pNewTemp = 20F;
-
-            NBTTagCompound stackCompound = pItemStack.getTagCompound();
-
-            stackCompound.setFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE, pNewTemp);
-
-            pItemStack.setTagCompound(stackCompound);
-        }
-
-    }
-
 }

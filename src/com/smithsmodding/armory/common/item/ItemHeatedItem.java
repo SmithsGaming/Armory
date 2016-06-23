@@ -15,9 +15,11 @@ import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.util.client.TranslationKeys;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -105,38 +107,35 @@ public class ItemHeatedItem extends Item {
         return tOriginalItemStack.getItem().getItemStackDisplayName(tOriginalItemStack);
     }
 
+    @Override
+    public void onUpdate(ItemStack pStack, World pWorldObj, Entity pEntity, int pSlotIndex, boolean pSelected) {
 
-    /**
-     @Override public void onUpdate(ItemStack pStack, World pWorldObj, entity pEntity, int pSlotIndex, boolean pSelected) {
+        if (!(pEntity instanceof EntityPlayer))
+            return;
 
-     if (!(pEntity instanceof EntityPlayer))
-     return;
+        //if (!ArmoryConfig.enableTemperatureDecay)
+        //return;
 
-     if (!ArmoryConfig.enableTemperatureDecay)
-     return;
+        EntityPlayer tPlayer = (EntityPlayer) pEntity;
 
-     EntityPlayer tPlayer = (EntityPlayer) pEntity;
+        float tCurrentTemp = HeatableItemRegistry.getInstance().getItemTemperature(pStack);
+        float tNewTemp = tCurrentTemp - 0.2F;
 
-     float tCurrentTemp = getItemTemperature(pStack);
-     float tNewTemp = tCurrentTemp - 0.2F;
+        HeatableItemRegistry.getInstance().setItemTemperature(pStack, tNewTemp);
 
-     setItemTemperature(pStack, tNewTemp);
+        if (tNewTemp < 20F) {
+            tPlayer.inventory.mainInventory[pSlotIndex] = HeatedItemFactory.getInstance().convertToCooledIngot(pStack);
+        } else {
+            for (ItemStack tStack : tPlayer.inventory.mainInventory) {
+                if (tStack == null)
+                    continue;
 
-     if (tNewTemp < 20F) {
-     tPlayer.inventory.mainInventory[pSlotIndex] = HeatedItemFactory.getInstance().convertToCooledIngot(pStack);
-     } else {
-     for (ItemStack tStack : tPlayer.inventory.mainInventory) {
-     if (tStack == null)
-     continue;
+                if (tStack.getItem() instanceof ItemTongs)
+                    return;
+            }
 
-     if (tStack.getItem() instanceof ItemTongs)
-     return;
+            tPlayer.setFire(1);
+        }
      }
-
-     tPlayer.setFire(1);
-     }
-     }
-
-     */
 }
 
