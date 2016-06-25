@@ -211,7 +211,10 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
                 if (forge == null)
                     continue;
 
-                if (forge.getStructureData() == null || !(forge.getStructureData().isBurning())) {
+                if (forge.getStructureData() == null)
+                    continue;
+
+                if (!(forge.getStructureData().isBurning())) {
                     continue;
                 }
             }

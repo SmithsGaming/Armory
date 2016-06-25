@@ -24,6 +24,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 
 /**
  * Author Orion (Created on: 23.06.2016)
@@ -42,13 +43,16 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     private ItemStack[] fuelStacks = new ItemStack[FUELSTACK_AMOUNT];
 
     private Coordinate3D masterCoordinate;
-    private ArrayList<Coordinate3D> slaveCoordinates;
+    private LinkedHashSet<Coordinate3D> slaveCoordinates;
     private Cube structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
 
     @Override
     public void update() {
         if (masterCoordinate == null)
             initiateAsMasterEntity();
+
+        if (isRemote())
+            return;
 
         super.update();
 
@@ -367,7 +371,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     @Override
     public void initiateAsMasterEntity() {
         masterCoordinate = getLocation();
-        slaveCoordinates = new ArrayList<>();
+        slaveCoordinates = new LinkedHashSet<>();
         structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
 
         BlockForge.setMasterState(true, getWorld(), getPos());
@@ -378,14 +382,18 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     @Override
     public void initiateAsSlaveEntity(Coordinate3D masterLocation) {
         masterCoordinate = masterLocation;
-        slaveCoordinates = new ArrayList<>();
+        slaveCoordinates = new LinkedHashSet<>();
         structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
+
+        if (getWorld() != null)
+            if (getWorld().getTileEntity(masterLocation.toBlockPos()) != null)
+                ((IStructureComponent) getWorld().getTileEntity(masterLocation.toBlockPos())).registerNewSlave(getLocation());
 
         BlockForge.setMasterState(false, getWorld(), getPos());
     }
 
     @Override
-    public ArrayList<Coordinate3D> getSlaveCoordinates() {
+    public LinkedHashSet<Coordinate3D> getSlaveCoordinates() {
         if (isSlaved())
             return ((IStructureComponent) getWorld().getTileEntity(getMasterLocation().toBlockPos())).getSlaveCoordinates();
 
@@ -393,7 +401,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
-    public void setSlaveCoordinates(ArrayList<Coordinate3D> newSlaveCoordinates) {
+    public void setSlaveCoordinates(LinkedHashSet<Coordinate3D> newSlaveCoordinates) {
         if (isSlaved()) {
             return;
         }
@@ -432,6 +440,11 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         if (masterCoordinate == null || getLocation() == null)
             return false;
 
+        if (getWorld() != null && getWorld().getTileEntity(getMasterLocation().toBlockPos()) == null) {
+            initiateAsMasterEntity();
+            return false;
+        }
+
         return !masterCoordinate.equals(getLocation());
     }
 
@@ -459,7 +472,30 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
     @Override
     public ArrayList<IPathComponent> getValidPathableNeighborComponents() {
-        return null;
+        ArrayList<IPathComponent> pathComponentArrayList = new ArrayList<>();
+
+        for (EnumFacing facing : EnumFacing.values()) {
+            if ((facing == EnumFacing.UP) || (facing == EnumFacing.DOWN))
+                continue;
+
+            TileEntity tNeighborEntity = getWorld().getTileEntity(getLocation().moveCoordinate(facing, 1).toBlockPos());
+            if (tNeighborEntity == null)
+                continue;
+
+            if (!(tNeighborEntity instanceof IStructureComponent))
+                continue;
+
+            if (!((IStructureComponent) tNeighborEntity).getStructureTypeUniqueID().equals(getStructureTypeUniqueID()))
+                continue;
+
+            if (!((IStructureComponent) tNeighborEntity).countsAsConnectingComponent())
+                continue;
+
+            pathComponentArrayList.add((IPathComponent) tNeighborEntity);
+        }
+
+        return pathComponentArrayList;
+
     }
 
     @Override
