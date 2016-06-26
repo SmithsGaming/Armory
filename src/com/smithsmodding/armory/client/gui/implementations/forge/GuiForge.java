@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.client.gui.forgegui;
+package com.smithsmodding.armory.client.gui.implementations.forge;
 
 import com.smithsmodding.armory.util.client.Textures;
 import com.smithsmodding.armory.util.client.TranslationKeys;

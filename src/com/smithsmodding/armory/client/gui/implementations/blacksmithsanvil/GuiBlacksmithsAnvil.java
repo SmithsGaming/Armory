@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.client.gui.blacksmithsanvil;
+package com.smithsmodding.armory.client.gui.implementations.blacksmithsanvil;
 
 import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.client.gui.components.ComponentBlackSmithsAnvilCraftingGrid;

@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.client.gui.forgegui;
+package com.smithsmodding.armory.client.gui.implementations.forge;
 
 import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;

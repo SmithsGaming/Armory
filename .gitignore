@@ -23,7 +23,6 @@ local.properties
 *.launch
 
 #Forge
-Forge
 build
 out
 run
@@ -31,3 +30,4 @@ run
 *.iws
 *.iml
 *.db
+.gradle/minecraft/

@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.client.gui.fireplace;
+package com.smithsmodding.armory.client.gui.implementations.fireplace;
 
 import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
