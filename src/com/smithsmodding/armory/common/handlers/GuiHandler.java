@@ -9,7 +9,7 @@ package com.smithsmodding.armory.common.handlers;
 import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.client.gui.blacksmithsanvil.GuiBlacksmithsAnvil;
 import com.smithsmodding.armory.client.gui.fireplace.GuiFireplace;
-import com.smithsmodding.armory.client.gui.forge.GuiForge;
+import com.smithsmodding.armory.client.gui.forgegui.GuiForge;
 import com.smithsmodding.armory.common.inventory.ContainerBlacksmithsAnvil;
 import com.smithsmodding.armory.common.inventory.ContainerFireplace;
 import com.smithsmodding.armory.common.inventory.ContainerForge;
