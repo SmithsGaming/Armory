@@ -47,6 +47,7 @@ public class Armory {
 
         proxy.preInitializeArmory();
         proxy.registerEventHandlers();
+        proxy.initializeStructures();
 
         getLogger().info("Finished pre init after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();

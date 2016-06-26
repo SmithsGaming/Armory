@@ -242,7 +242,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
     }
 
     @Override
-    protected TileEntityFireplaceState getHeatData() {
+    public TileEntityFireplaceState getFuelData() {
         return getState();
     }
 

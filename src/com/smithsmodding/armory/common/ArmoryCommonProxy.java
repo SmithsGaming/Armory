@@ -4,6 +4,8 @@ package com.smithsmodding.armory.common;
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.common.handlers.GuiHandler;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
+import com.smithsmodding.armory.common.structure.forge.StructureFactoryForge;
+import com.smithsmodding.smithscore.common.structures.StructureRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -22,6 +24,10 @@ public class ArmoryCommonProxy {
     }
 
     public void initializeArmory() {
+    }
+
+    public void initializeStructures() {
+        StructureRegistry.getInstance().registerStructureFactory(new StructureFactoryForge());
     }
 
     public void registerEventHandlers() {

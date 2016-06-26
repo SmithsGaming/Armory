@@ -19,9 +19,6 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
     float maxTemp;
     float lastNegativeTerm;
     float lastPositiveTerm;
-    boolean isBurning;
-    int totalBurningTicksOnCurrentFuel;
-    int burningTicksLeftOnCurrentFuel;
     private I tileEntity;
 
     @Override
@@ -49,10 +46,6 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
         try {
             NBTTagCompound compound = (NBTTagCompound) stateData;
 
-            totalBurningTicksOnCurrentFuel = compound.getInteger(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKBURNINGTIME);
-            burningTicksLeftOnCurrentFuel = compound.getInteger(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKFUELAMOUNT);
-
-            isBurning = compound.getBoolean(References.NBTTagCompoundData.TE.ForgeBase.CURRENTLYBURNING);
             currentTemp = compound.getFloat(References.NBTTagCompoundData.TE.ForgeBase.CURRENTTEMPERATURE);
             maxTemp = compound.getFloat(References.NBTTagCompoundData.TE.ForgeBase.MAXTEMPERATURE);
             lastChange = compound.getFloat(References.NBTTagCompoundData.TE.ForgeBase.LASTADDEDHEAT);
@@ -63,10 +56,6 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
         } catch (Exception ex) {
             Armory.getLogger().error(new Exception("Failed to load NBT Data for Forge.", ex));
 
-            totalBurningTicksOnCurrentFuel = 0;
-            burningTicksLeftOnCurrentFuel = 0;
-
-            isBurning = false;
             currentTemp = 20f;
             maxTemp = 2750f;
             lastChange = 0f;
@@ -81,10 +70,6 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
     public NBTBase writeToNBTTagCompound() {
         NBTTagCompound compound = new NBTTagCompound();
 
-        compound.setFloat(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKBURNINGTIME, totalBurningTicksOnCurrentFuel);
-        compound.setFloat(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKFUELAMOUNT, burningTicksLeftOnCurrentFuel);
-
-        compound.setBoolean(References.NBTTagCompoundData.TE.ForgeBase.CURRENTLYBURNING, isBurning);
         compound.setFloat(References.NBTTagCompoundData.TE.ForgeBase.CURRENTTEMPERATURE, currentTemp);
         compound.setFloat(References.NBTTagCompoundData.TE.ForgeBase.MAXTEMPERATURE, maxTemp);
         compound.setFloat(References.NBTTagCompoundData.TE.ForgeBase.LASTADDEDHEAT, lastChange);
@@ -195,41 +180,5 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
 
     public void changeLastPositiveTerm(float change) {
         this.lastPositiveTerm += change;
-    }
-
-    public boolean isBurning() {
-        return isBurning;
-    }
-
-    public void setBurning(boolean burning) {
-        isBurning = burning;
-    }
-
-    public int getTotalBurningTicksOnCurrentFuel() {
-        return totalBurningTicksOnCurrentFuel;
-    }
-
-    public void setTotalBurningTicksOnCurrentFuel(int totalBurningTicksOnCurrentFuel) {
-        this.totalBurningTicksOnCurrentFuel = totalBurningTicksOnCurrentFuel;
-    }
-
-    public void changeTotalBurningTicksOnCurrentFuel(int change) {
-        this.totalBurningTicksOnCurrentFuel += change;
-    }
-
-    public int getBurningTicksLeftOnCurrentFuel() {
-        return burningTicksLeftOnCurrentFuel;
-    }
-
-    public void setBurningTicksLeftOnCurrentFuel(int burningTicksLeftOnCurrentFuel) {
-        this.burningTicksLeftOnCurrentFuel = burningTicksLeftOnCurrentFuel;
-    }
-
-    public void changeBurningTicksLeftOnCurrentFuel(int change) {
-        this.burningTicksLeftOnCurrentFuel += change;
-    }
-
-    public void resetBurningTicksLeftOnCurrentFuel() {
-        setBurningTicksLeftOnCurrentFuel(getTotalBurningTicksOnCurrentFuel());
     }
 }

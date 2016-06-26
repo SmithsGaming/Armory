@@ -421,6 +421,11 @@ public class References {
             public class Forge {
                 public static final String MIXINGPROGRESS = "MixingProgress";
                 public static final String MELTINGPROGRESS = "MeltingProgress";
+
+                public class Structure {
+                    public static final String DATA = "Data";
+                    public static final String PARTS = "Parts";
+                }
             }
 
             public class Fireplace {

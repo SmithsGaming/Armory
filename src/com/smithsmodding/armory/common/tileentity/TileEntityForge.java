@@ -5,15 +5,17 @@ import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.common.block.BlockForge;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
+import com.smithsmodding.armory.common.structure.forge.StructureForge;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityForgeGuiManager;
+import com.smithsmodding.armory.common.tileentity.state.IForgeFuelDataContainer;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityForgeState;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.pathfinding.IPathComponent;
-import com.smithsmodding.smithscore.common.structures.IStructureComponent;
+import com.smithsmodding.smithscore.common.structures.IStructurePart;
+import com.smithsmodding.smithscore.common.structures.StructureRegistry;
 import com.smithsmodding.smithscore.common.tileentity.IBlockModelUpdatingTileEntity;
 import com.smithsmodding.smithscore.util.common.FluidStackHelper;
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;
-import com.smithsmodding.smithscore.util.common.positioning.Cube;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,12 +26,11 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 
 /**
  * Author Orion (Created on: 23.06.2016)
  */
-public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, TileEntityForgeGuiManager> implements IFirePitComponent, IStructureComponent<TileEntityForgeState>, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
+public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, TileEntityForgeGuiManager> implements IFirePitComponent, IStructurePart<StructureForge>, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
 
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
@@ -42,21 +43,18 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     private ItemStack[] ingotStacks = new ItemStack[INGOTSTACKS_AMOUNT];
     private ItemStack[] fuelStacks = new ItemStack[FUELSTACK_AMOUNT];
 
-    private Coordinate3D masterCoordinate;
-    private LinkedHashSet<Coordinate3D> slaveCoordinates;
-    private Cube structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
+    private Coordinate3D masterCoordinate = new Coordinate3D(0, 0, 0);
 
     @Override
     public void update() {
-        if (masterCoordinate == null)
-            initiateAsMasterEntity();
-
         if (isRemote())
             return;
 
         super.update();
 
         meltIngots();
+
+        markDirty();
     }
 
     public void meltIngots() {
@@ -103,7 +101,10 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
             }
         }
 
-        Iterator<FluidStack> iterator = getStructureData().getMoltenMetals().iterator();
+        if (getStructure() == null)
+            return;
+
+        Iterator<FluidStack> iterator = getStructure().getData().getMoltenMetals().iterator();
 
         while (iterator.hasNext()) {
             FluidStack fluidStack = iterator.next();
@@ -148,8 +149,11 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
-    protected TileEntityForgeState getHeatData() {
-        return getStructureData();
+    public IForgeFuelDataContainer getFuelData() {
+        if (getStructure() == null)
+            return null;
+
+        return getStructure().getData();
     }
 
     @Override
@@ -208,22 +212,35 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
     @Override
     public ArrayList<FluidStack> getAllFluids() {
-        return getStructureData().getMoltenMetals();
+        if (getStructure() == null)
+            return new ArrayList<>();
+
+
+        return getStructure().getData().getMoltenMetals();
     }
 
     @Override
     public void setAllFluids(ArrayList<FluidStack> stacks) {
-        getStructureData().setMoltenMetals(stacks);
+        if (getStructure() == null)
+            return;
+
+        getStructure().getData().setMoltenMetals(stacks);
     }
 
     @Override
     public FluidStack removeFirstFluid() {
-        return getStructureData().getMoltenMetals().remove(0);
+        if (getStructure() == null)
+            return null;
+
+        return getStructure().getData().getMoltenMetals().remove(0);
     }
 
     @Override
     public FluidStack removeLastFluid() {
-        return getStructureData().getMoltenMetals().remove(getStructureData().getMoltenMetals().size() - 1);
+        if (getStructure() == null)
+            return null;
+
+        return getStructure().getData().getMoltenMetals().remove(getStructure().getData().getMoltenMetals().size() - 1);
     }
 
     @Override
@@ -232,7 +249,10 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         if (amount + stack.amount > getTankSize())
             stack.amount = getTankSize() - amount;
 
-        getStructureData().getMoltenMetals().add(stack);
+        if (getStructure() == null)
+            return;
+
+        getStructure().getData().getMoltenMetals().add(stack);
     }
 
     @Override
@@ -241,7 +261,10 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         if (amount + stack.amount > getTankSize())
             stack.amount = getTankSize() - amount;
 
-        getStructureData().getMoltenMetals().add(0, stack);
+        if (getStructure() == null)
+            return;
+
+        getStructure().getData().getMoltenMetals().add(0, stack);
     }
 
     @Override
@@ -250,7 +273,10 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         if (amount + stack.amount > getTankSize())
             stack.amount = getTankSize() - amount;
 
-        for (FluidStack fluidStack : getStructureData().getMoltenMetals()) {
+        if (getStructure() == null)
+            return;
+
+        for (FluidStack fluidStack : getStructure().getData().getMoltenMetals()) {
             if (FluidStackHelper.equalsIgnoreStackSize(stack, fluidStack)) {
                 fluidStack.amount += stack.amount;
                 return;
@@ -262,7 +288,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
     @Override
     public int getTankSize() {
-        return (getSlaveCoordinates().size() + 1) * (References.General.FLUID_INGOT * TANKINGOTCAPACITY);
+        return (getStructure().getPartLocations().size() + 1) * (References.General.FLUID_INGOT * TANKINGOTCAPACITY);
     }
 
     @Override
@@ -343,134 +369,6 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
-    public String getStructureTypeUniqueID() {
-        return References.InternalNames.TileEntities.Structures.Forge;
-    }
-
-    @Override
-    public Cube getStructureBoundingBox() {
-        if (isSlaved())
-            return ((IStructureComponent) getWorld().getTileEntity(getMasterLocation().toBlockPos())).getStructureBoundingBox();
-
-        return structureBounds;
-    }
-
-    @Override
-    public boolean countsAsConnectingComponent() {
-        return true;
-    }
-
-    @Override
-    public TileEntityForgeState getStructureData() {
-        if (isSlaved())
-            return ((IStructureComponent<TileEntityForgeState>) getWorld().getTileEntity(getMasterLocation().toBlockPos())).getStructureData();
-
-        return getState();
-    }
-
-    @Override
-    public void initiateAsMasterEntity() {
-        masterCoordinate = getLocation();
-        slaveCoordinates = new LinkedHashSet<>();
-        structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
-
-        BlockForge.setMasterState(true, getWorld(), getPos());
-
-        queBlockModelUpdateOnClients();
-    }
-
-    @Override
-    public void initiateAsSlaveEntity(Coordinate3D masterLocation) {
-        masterCoordinate = masterLocation;
-        slaveCoordinates = new LinkedHashSet<>();
-        structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
-
-        if (getWorld() != null)
-            if (getWorld().getTileEntity(masterLocation.toBlockPos()) != null)
-                ((IStructureComponent) getWorld().getTileEntity(masterLocation.toBlockPos())).registerNewSlave(getLocation());
-
-        BlockForge.setMasterState(false, getWorld(), getPos());
-    }
-
-    @Override
-    public LinkedHashSet<Coordinate3D> getSlaveCoordinates() {
-        if (isSlaved())
-            return ((IStructureComponent) getWorld().getTileEntity(getMasterLocation().toBlockPos())).getSlaveCoordinates();
-
-        return slaveCoordinates;
-    }
-
-    @Override
-    public void setSlaveCoordinates(LinkedHashSet<Coordinate3D> newSlaveCoordinates) {
-        if (isSlaved()) {
-            return;
-        }
-
-        slaveCoordinates = newSlaveCoordinates;
-        rebuildBoundingBox();
-    }
-
-    @Override
-    public void registerNewSlave(Coordinate3D newSlaveLocation) {
-        if (isSlaved()) {
-            ((IStructureComponent) getWorld().getTileEntity(getMasterLocation().toBlockPos())).registerNewSlave(newSlaveLocation);
-        }
-
-        slaveCoordinates.add(newSlaveLocation);
-
-        getStructureBoundingBox().IncludeCoordinate(newSlaveLocation);
-
-        queBlockModelUpdateOnClients();
-    }
-
-    @Override
-    public void removeSlave(Coordinate3D slaveLocation) {
-        if (isSlaved()) {
-            ((IStructureComponent) getWorld().getTileEntity(getMasterLocation().toBlockPos())).removeSlave(slaveLocation);
-        }
-
-        slaveCoordinates.remove(slaveLocation);
-        rebuildBoundingBox();
-
-        queBlockModelUpdateOnClients();
-    }
-
-    @Override
-    public boolean isSlaved() {
-        if (masterCoordinate == null || getLocation() == null)
-            return false;
-
-        if (getWorld() != null && getWorld().getTileEntity(getMasterLocation().toBlockPos()) == null) {
-            initiateAsMasterEntity();
-            return false;
-        }
-
-        return !masterCoordinate.equals(getLocation());
-    }
-
-    @Override
-    public float getDistanceToMasterEntity() {
-        return getLocation().getDistanceTo(getMasterLocation());
-    }
-
-    @Override
-    public Coordinate3D getMasterLocation() {
-        return masterCoordinate;
-    }
-
-    @Override
-    public void setMasterLocation(Coordinate3D newMasterLocation) {
-        masterCoordinate = newMasterLocation;
-    }
-
-    private void rebuildBoundingBox() {
-        structureBounds = new Cube(getPos().getX(), getPos().getY(), getPos().getZ(), 0, 0, 0);
-
-        for (Coordinate3D coordinate3D : slaveCoordinates)
-            structureBounds.IncludeCoordinate(coordinate3D);
-    }
-
-    @Override
     public ArrayList<IPathComponent> getValidPathableNeighborComponents() {
         ArrayList<IPathComponent> pathComponentArrayList = new ArrayList<>();
 
@@ -482,13 +380,13 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
             if (tNeighborEntity == null)
                 continue;
 
-            if (!(tNeighborEntity instanceof IStructureComponent))
+            if (!(tNeighborEntity instanceof IStructurePart))
                 continue;
 
-            if (!((IStructureComponent) tNeighborEntity).getStructureTypeUniqueID().equals(getStructureTypeUniqueID()))
+            if (((IStructurePart) tNeighborEntity).getStructure() == null)
                 continue;
 
-            if (!((IStructureComponent) tNeighborEntity).countsAsConnectingComponent())
+            if (!((IStructurePart) tNeighborEntity).getStructure().getMasterLocation().equals(getStructure().getMasterLocation()))
                 continue;
 
             pathComponentArrayList.add((IPathComponent) tNeighborEntity);
@@ -500,15 +398,14 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
     @Override
     public void queBlockModelUpdateOnClients() {
-        if (isSlaved())
+        if (!getStructure().getMasterLocation().equals(getLocation()))
             return;
-
 
         if (this.shouldUpdateBlock()) {
             this.onUpdateBlock();
         }
 
-        for (Coordinate3D slaveLocation : slaveCoordinates) {
+        for (Coordinate3D slaveLocation : getStructure().getPartLocations()) {
             IBlockModelUpdatingTileEntity tileEntity = (IBlockModelUpdatingTileEntity) getWorld().getTileEntity(slaveLocation.toBlockPos());
 
             if (tileEntity.shouldUpdateBlock()) {
@@ -524,7 +421,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         if (!(blockState.getBlock() instanceof BlockForge))
             return false;
 
-        return blockState.getValue(BlockForge.BURNING) != (getStructureData()).isBurning();
+        return blockState.getValue(BlockForge.BURNING) != (getStructure().getData()).isBurning();
     }
 
     @Override
@@ -533,7 +430,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
             return;
         }
 
-        BlockForge.setBurningState((getStructureData()).isBurning(), getWorld(), getPos());
+        BlockForge.setBurningState((getStructure().getData()).isBurning(), getWorld(), getPos());
     }
 
     @Override
@@ -544,5 +441,20 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     @Override
     protected TileEntityForgeState getInitialState() {
         return new TileEntityForgeState();
+    }
+
+    @Override
+    public Class<StructureForge> getStructureType() {
+        return StructureForge.class;
+    }
+
+    @Override
+    public StructureForge getStructure() {
+        return (StructureForge) StructureRegistry.getInstance().getStructure(getWorld().provider.getDimension(), masterCoordinate);
+    }
+
+    @Override
+    public void setStructure(StructureForge structure) {
+        this.masterCoordinate = structure.getMasterLocation();
     }
 }

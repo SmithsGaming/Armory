@@ -2,23 +2,18 @@ package com.smithsmodding.armory.common.tileentity.state;
 
 import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
-import com.smithsmodding.smithscore.common.structures.IStructureComponent;
-import com.smithsmodding.smithscore.common.structures.IStructureData;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
-import com.smithsmodding.smithscore.util.common.FluidStackHelper;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 
 /**
  * Author Orion (Created on: 23.06.2016)
  */
-public class TileEntityForgeState extends TileEntityForgeBaseState<TileEntityForge> implements IStructureData<TileEntityForge> {
+public class TileEntityForgeState extends TileEntityForgeBaseState<TileEntityForge> {
 
     private float mixingProgress = 0;
-    private ArrayList<FluidStack> moltenMetals = new ArrayList<FluidStack>();
     private ArrayList<Float> meltingProgress = new ArrayList<Float>();
 
     @Override
@@ -29,65 +24,6 @@ public class TileEntityForgeState extends TileEntityForgeBaseState<TileEntityFor
         for (int i = 0; i < TileEntityForge.INGOTSTACKS_AMOUNT; i++) {
             meltingProgress.add(0f);
         }
-    }
-
-    @Override
-    public Object getData(IStructureComponent requestingComponent, String propertyRequested) {
-        if (propertyRequested.equals(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKBURNINGTIME) && getTileEntity().isSlaved() && getTileEntity().getStructureData() != null)
-            return getTileEntity().getStructureData().getData(requestingComponent, propertyRequested);
-
-        if (propertyRequested.equals(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKFUELAMOUNT) && getTileEntity().isSlaved() && getTileEntity().getStructureData() != null)
-            return getTileEntity().getStructureData().getData(requestingComponent, propertyRequested);
-
-        if (propertyRequested.equals(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKBURNINGTIME))
-            return getTotalBurningTicksOnCurrentFuel();
-
-        if (propertyRequested.equals(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKFUELAMOUNT))
-            return getBurningTicksLeftOnCurrentFuel();
-
-        return 0F;
-    }
-
-    @Override
-    public void setData(IStructureComponent sendingComponent, String propertySend, Object data) {
-        if (propertySend.equals(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKBURNINGTIME) && getTileEntity().isSlaved())
-            getTileEntity().getStructureData().setData(sendingComponent, propertySend, data);
-
-        if (propertySend.equals(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKFUELAMOUNT) && getTileEntity().isSlaved())
-            getTileEntity().getStructureData().setData(sendingComponent, propertySend, data);
-
-        if (propertySend.equals(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKBURNINGTIME))
-            setTotalBurningTicksOnCurrentFuel((Integer) data);
-        else if (propertySend.equals(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKFUELAMOUNT))
-            setBurningTicksLeftOnCurrentFuel((Integer) data);
-        else
-            return;
-    }
-
-    @Override
-    public void onDataMergeInto(IStructureData<TileEntityForge> data) {
-        TileEntityForgeState state = (TileEntityForgeState) data;
-
-        changeTotalBurningTicksOnCurrentFuel(state.getTotalBurningTicksOnCurrentFuel());
-        changeBurningTicksLeftOnCurrentFuel(state.getBurningTicksLeftOnCurrentFuel());
-
-        if (!this.isBurning())
-            this.setBurning(state.isBurning());
-
-        this.mixingProgress = 0f;
-
-        state.getMoltenMetals().forEach(this::addLiquidToContainer);
-    }
-
-    private void addLiquidToContainer(FluidStack stack) {
-        for (FluidStack containingStack : moltenMetals) {
-            if (FluidStackHelper.equalsIgnoreStackSize(stack, containingStack)) {
-                containingStack.amount += stack.amount;
-                return;
-            }
-        }
-
-        moltenMetals.add(stack);
     }
 
     @Override
@@ -140,13 +76,5 @@ public class TileEntityForgeState extends TileEntityForgeBaseState<TileEntityFor
             return;
 
         meltingProgress.set(slotIndex, progress);
-    }
-
-    public ArrayList<FluidStack> getMoltenMetals() {
-        return moltenMetals;
-    }
-
-    public void setMoltenMetals(ArrayList<FluidStack> moltenMetals) {
-        this.moltenMetals = moltenMetals;
     }
 }

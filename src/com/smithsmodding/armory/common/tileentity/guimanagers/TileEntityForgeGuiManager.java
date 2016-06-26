@@ -26,7 +26,7 @@ public class TileEntityForgeGuiManager extends TileEntityForgeBaseGuiManager<Til
             return 0F;
 
         if (component.getID().toLowerCase().contains("flame")) {
-            return getTileEntity().getStructureData().getBurningTicksLeftOnCurrentFuel() / (float) getTileEntity().getStructureData().getTotalBurningTicksOnCurrentFuel();
+            return getTileEntity().getFuelData().getBurningTicksLeftOnCurrentFuel() / (float) getTileEntity().getFuelData().getTotalBurningTicksOnCurrentFuel();
         }
 
         if (component.getID().contains(References.InternalNames.GUIComponents.FirePit.MELT)) {

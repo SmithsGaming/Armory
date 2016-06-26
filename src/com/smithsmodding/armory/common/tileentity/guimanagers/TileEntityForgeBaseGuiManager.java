@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.common.tileentity.guimanagers;
 
 import com.smithsmodding.armory.common.tileentity.TileEntityForgeBase;
-import com.smithsmodding.armory.common.tileentity.state.TileEntityForgeBaseState;
+import com.smithsmodding.armory.common.tileentity.state.IForgeFuelDataContainer;
 import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentProgressBar;
 import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIManager;
@@ -30,7 +30,7 @@ public class TileEntityForgeBaseGuiManager<T extends TileEntityForgeBase> extend
         if (!(component instanceof ComponentProgressBar))
             return 0F;
 
-        TileEntityForgeBaseState state = (TileEntityForgeBaseState) getTileEntity().getState();
+        IForgeFuelDataContainer state = getTileEntity().getFuelData();
 
         if (component.getID().toLowerCase().contains("flame")) {
             return state.getBurningTicksLeftOnCurrentFuel() / (float) state.getTotalBurningTicksOnCurrentFuel();

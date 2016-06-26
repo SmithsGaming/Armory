@@ -8,7 +8,12 @@ import net.minecraft.nbt.NBTTagCompound;
 /**
  * Author Orion (Created on: 23.06.2016)
  */
-public class TileEntityFireplaceState extends TileEntityForgeBaseState<TileEntityFireplace> {
+public class TileEntityFireplaceState extends TileEntityForgeBaseState<TileEntityFireplace> implements IForgeFuelDataContainer {
+
+    boolean isBurning;
+
+    int totalBurningTicksOnCurrentFuel;
+    int burningTicksLeftOnCurrentFuel;
 
     private float cookingProgress = 0f;
     private float cookingSpeedMultiplier = 1f;
@@ -47,5 +52,50 @@ public class TileEntityFireplaceState extends TileEntityForgeBaseState<TileEntit
 
     public void setCookingSpeedMultiplier(float cookingSpeedMultiplier) {
         this.cookingSpeedMultiplier = cookingSpeedMultiplier;
+    }
+
+    @Override
+    public boolean isBurning() {
+        return isBurning;
+    }
+
+    @Override
+    public void setBurning(boolean burning) {
+        this.isBurning = burning;
+    }
+
+    @Override
+    public int getTotalBurningTicksOnCurrentFuel() {
+        return totalBurningTicksOnCurrentFuel;
+    }
+
+    @Override
+    public void setTotalBurningTicksOnCurrentFuel(int totalBurningTicksOnCurrentFuel) {
+        this.totalBurningTicksOnCurrentFuel = totalBurningTicksOnCurrentFuel;
+    }
+
+    @Override
+    public void changeTotalBurningTicksOnCurrentFuel(int change) {
+        totalBurningTicksOnCurrentFuel += change;
+    }
+
+    @Override
+    public int getBurningTicksLeftOnCurrentFuel() {
+        return burningTicksLeftOnCurrentFuel;
+    }
+
+    @Override
+    public void setBurningTicksLeftOnCurrentFuel(int burningTicksLeftOnCurrentFuel) {
+        this.burningTicksLeftOnCurrentFuel = burningTicksLeftOnCurrentFuel;
+    }
+
+    @Override
+    public void changeBurningTicksLeftOnCurrentFuel(int change) {
+        burningTicksLeftOnCurrentFuel += change;
+    }
+
+    @Override
+    public void resetBurningTicksLeftOnCurrentFuel() {
+        setBurningTicksLeftOnCurrentFuel(getTotalBurningTicksOnCurrentFuel());
     }
 }

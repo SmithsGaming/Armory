@@ -17,7 +17,7 @@ import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;
-import com.smithsmodding.smithscore.common.structures.StructureManager;
+import com.smithsmodding.smithscore.common.structures.StructureRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
 import net.minecraft.block.material.Material;
@@ -105,7 +105,9 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
 
         if (!worldIn.isRemote) {
             if (worldIn.getTileEntity(pos) instanceof TileEntityForge) {
-                StructureManager.destroyStructureComponent(forge);
+                TileEntityForge tileEntityForge = (TileEntityForge) worldIn.getTileEntity(pos);
+
+                tileEntityForge.getStructure().getController().onPartDestroyed(tileEntityForge);
             }
         }
 
@@ -122,7 +124,8 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
 
         if (!worldIn.isRemote) {
             if (forge instanceof TileEntityForge) {
-                StructureManager.createStructureComponent(forge);
+                StructureRegistry.getInstance().onStructurePartPlaced(forge);
+
                 worldIn.markChunkDirty(pos, forge);
             }
         }
@@ -211,10 +214,10 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
                 if (forge == null)
                     continue;
 
-                if (forge.getStructureData() == null)
+                if (forge.getStructure() == null)
                     continue;
 
-                if (!(forge.getStructureData().isBurning())) {
+                if (!(forge.getStructure().getData().isBurning())) {
                     continue;
                 }
             }
@@ -334,36 +337,36 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
 
         TileEntityForge forge = (TileEntityForge) worldIn.getTileEntity(pos);
 
-        if (forge.getStructureData() == null)
+        if (forge.getStructure() == null)
             return;
 
         TextFormatting slaveCount;
         int count;
-        if (forge.isSlaved()) {
+        if (!forge.getStructure().getMasterLocation().equals(forge.getLocation())) {
             slaveCount = TextFormatting.STRIKETHROUGH;
             count = -2;
-        } else if (forge.getSlaveCoordinates() == null) {
+        } else if (forge.getStructure().getPartLocations() == null) {
             slaveCount = TextFormatting.UNDERLINE;
             count = -1;
-        } else if (forge.getSlaveCoordinates().size() == 0) {
+        } else if (forge.getStructure().getPartLocations().size() == 1) {
             slaveCount = TextFormatting.RED;
             count = 0;
         } else {
             slaveCount = TextFormatting.GREEN;
-            count = forge.getSlaveCoordinates().size();
+            count = forge.getStructure().getPartLocations().size() - 1;
         }
 
         TextFormatting masterTeLocation;
         String location;
-        if (!forge.isSlaved()) {
+        if (forge.getStructure().getMasterLocation().equals(forge.getLocation())) {
             masterTeLocation = TextFormatting.STRIKETHROUGH;
             location = "current";
-        } else if (forge.getMasterLocation() == null) {
+        } else if (forge.getStructure().getMasterLocation() == null) {
             masterTeLocation = TextFormatting.RED;
             location = "unknown";
         } else {
             masterTeLocation = TextFormatting.GREEN;
-            location = forge.getMasterLocation().toString();
+            location = forge.getStructure().getMasterLocation().toString();
         }
 
         event.getRight().add("slave count:" + slaveCount + count + TextFormatting.RESET);

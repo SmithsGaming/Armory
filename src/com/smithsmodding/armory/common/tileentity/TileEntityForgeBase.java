@@ -5,6 +5,7 @@ import com.smithsmodding.armory.common.factory.HeatedItemFactory;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityForgeBaseGuiManager;
+import com.smithsmodding.armory.common.tileentity.state.IForgeFuelDataContainer;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityForgeBaseState;
 import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
@@ -22,7 +23,7 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
         if (isRemote())
             return;
 
-        S fuelData = getHeatData();
+        IForgeFuelDataContainer fuelData = getFuelData();
         S localData = getState();
 
         if (fuelData == null)
@@ -44,9 +45,9 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
         }
     }
 
-    protected abstract S getHeatData();
+    public abstract IForgeFuelDataContainer getFuelData();
 
-    public void heatFurnace(S fuelData, S localData) {
+    public void heatFurnace(IForgeFuelDataContainer fuelData, S localData) {
         calculateHeatTerms(localData);
 
         localData.setLastChange(0F);
@@ -85,7 +86,7 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
         localData.setLastChange(localData.getLastChange() * (1 - localData.getHeatedPercentage()));
     }
 
-    public boolean heatIngots(S fuelData, S localData) {
+    public boolean heatIngots(IForgeFuelDataContainer fuelData, S localData) {
 
         if ((localData.getLastChange() == 0F) && (localData.getCurrentTemp() <= 20F) && (getInsertedIngotAmount() == 0)) {
             return true;
