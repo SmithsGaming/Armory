@@ -386,9 +386,6 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
             if (((IStructurePart) tNeighborEntity).getStructure() == null)
                 continue;
 
-            if (!((IStructurePart) tNeighborEntity).getStructure().getMasterLocation().equals(getStructure().getMasterLocation()))
-                continue;
-
             pathComponentArrayList.add((IPathComponent) tNeighborEntity);
         }
 
