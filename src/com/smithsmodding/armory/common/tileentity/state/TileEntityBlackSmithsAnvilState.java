@@ -70,10 +70,20 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
     @Override
     public void readFromNBTTagCompound (NBTBase stateData) {
         try{
+            boolean updateModel = false;
+            if (material == null) {
+                updateModel = true;
+            } else if (!((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL).equals(material.getID())) {
+                updateModel = true;
+            }
+
             this.material = AnvilMaterialRegistry.getInstance().getAnvilMaterial(((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL));
             this.craftingprogress = ((NBTTagCompound) stateData).getFloat(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS);
             this.itemName = ((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.ITEMNAME);
             this.processingCraftingResult = ((NBTTagCompound) stateData).getBoolean(References.NBTTagCompoundData.TE.Anvil.PROCESSING);
+
+            if (updateModel)
+                anvil.getWorld().markChunkDirty(anvil.getPos(), anvil);
         }
         catch (Exception ex)
         {

@@ -255,10 +255,10 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
                 tUpdated = true;
 
             }
+        }
 
-            if (!worldObj.isRemote && tUpdated) {
-                markDirty();
-            }
+        if (!worldObj.isRemote) {
+            markDirty();
         }
     }
 
