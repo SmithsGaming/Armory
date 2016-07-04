@@ -4,6 +4,8 @@ import com.smithsmodding.armory.api.References;
 import com.smithsmodding.smithscore.common.structures.IStructureData;
 import com.smithsmodding.smithscore.util.common.FluidStackHelper;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
@@ -28,6 +30,13 @@ public class StructureDataForge implements IStructureData<StructureForge>, com.s
         compound.setInteger(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKFUELAMOUNT, totalBurningTicksOnCurrentFuel);
         compound.setInteger(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKBURNINGTIME, burningTicksLeftOnCurrentFuel);
 
+        NBTTagList fluidCompound = new NBTTagList();
+        for (FluidStack fluidStack : moltenMetals) {
+            fluidCompound.appendTag(fluidStack.writeToNBT(new NBTTagCompound()));
+        }
+
+        compound.setTag(References.NBTTagCompoundData.TE.Forge.Structure.FLUIDS, fluidCompound);
+
         return compound;
     }
 
@@ -36,11 +45,29 @@ public class StructureDataForge implements IStructureData<StructureForge>, com.s
         setBurning(compound.getBoolean(References.NBTTagCompoundData.TE.ForgeBase.CURRENTLYBURNING));
         setTotalBurningTicksOnCurrentFuel(compound.getInteger(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKFUELAMOUNT));
         setBurningTicksLeftOnCurrentFuel(compound.getInteger(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKBURNINGTIME));
+
+        moltenMetals.clear();
+        NBTTagList fluidCompound = compound.getTagList(References.NBTTagCompoundData.TE.Forge.Structure.FLUIDS, Constants.NBT.TAG_COMPOUND);
+        for (int i = 0; i < fluidCompound.tagCount(); i++) {
+            moltenMetals.add(FluidStack.loadFluidStackFromNBT(fluidCompound.getCompoundTagAt(i)));
+        }
     }
 
     @Override
     public void onDataMergeInto(IStructureData<StructureForge> otherData) {
+        if (!(otherData instanceof StructureDataForge))
+            return;
 
+        StructureDataForge dataForge = (StructureDataForge) otherData;
+        if (!isBurning())
+            setBurning(dataForge.isBurning());
+
+        changeTotalBurningTicksOnCurrentFuel(dataForge.getTotalBurningTicksOnCurrentFuel());
+        changeBurningTicksLeftOnCurrentFuel(dataForge.getBurningTicksLeftOnCurrentFuel());
+
+        for (FluidStack fluidStack : dataForge.getMoltenMetals()) {
+            addLiquidToContainer(fluidStack);
+        }
     }
 
     private void addLiquidToContainer(FluidStack stack) {

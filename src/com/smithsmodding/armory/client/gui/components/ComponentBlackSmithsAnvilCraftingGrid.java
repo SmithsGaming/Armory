@@ -1,7 +1,6 @@
 package com.smithsmodding.armory.client.gui.components;
 
 import com.smithsmodding.smithscore.client.gui.components.core.ComponentOrientation;
-import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentBorder;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentProgressBar;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentSlot;
@@ -16,8 +15,6 @@ import com.smithsmodding.smithscore.util.common.positioning.Coordinate2D;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.inventory.Slot;
 
-import java.util.LinkedHashMap;
-
 /**
  * @Author Marc (Created on: 16.06.2016)
  */
@@ -28,7 +25,7 @@ public class ComponentBlackSmithsAnvilCraftingGrid extends Component5X5CraftingG
 
     @Override
     public void registerComponents(IGUIBasedComponentHost host) {
-        registerNewComponent(new ComponentBorder(getID() + ".Border", host, new Coordinate2D(0,0), 162, 104, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts));
+        registerNewComponent(new ComponentBorder(getID() + ".Border", host, new Coordinate2D(0, 0), 162, 104, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
 
         for (int slotIndex = startSlotIndexCraftingGrid; slotIndex < endSlotIndexCraftingGrid; slotIndex++) {
             TextureAtlasSprite holoSprite = null;

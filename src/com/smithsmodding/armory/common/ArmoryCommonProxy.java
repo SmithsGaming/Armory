@@ -27,7 +27,7 @@ public class ArmoryCommonProxy {
     }
 
     public void initializeStructures() {
-        StructureRegistry.getInstance().registerStructureFactory(new StructureFactoryForge());
+        StructureRegistry.getServerInstance().registerStructureFactory(new StructureFactoryForge());
     }
 
     public void registerEventHandlers() {

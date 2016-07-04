@@ -17,7 +17,6 @@ import com.smithsmodding.smithscore.util.client.Textures;
 import com.smithsmodding.smithscore.util.client.color.Colors;
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate2D;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
 import java.util.LinkedHashMap;
@@ -61,7 +60,7 @@ public class Component5X5CraftingGrid extends CoreComponent implements IGUIBased
 
     @Override
     public void registerComponents(IGUIBasedComponentHost host) {
-        registerNewComponent(new ComponentBorder(getID() + ".Border", host, new Coordinate2D(0,0), 162, 104, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts));
+        registerNewComponent(new ComponentBorder(getID() + ".Border", host, new Coordinate2D(0, 0), 162, 104, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
 
         for (int slotIndex = startSlotIndexCraftingGrid; slotIndex < endSlotIndexCraftingGrid; slotIndex++) {
             TextureAtlasSprite holoSprite = null;

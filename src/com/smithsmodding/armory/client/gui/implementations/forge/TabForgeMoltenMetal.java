@@ -38,13 +38,13 @@ public class TabForgeMoltenMetal extends CoreTab {
      */
     @Override
     public void registerComponents(IGUIBasedComponentHost host) {
-        host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.FirePit.BACKGROUND, host, new Coordinate2D(0, 0), GuiForge.GUI.getWidth(), 111, com.smithsmodding.armory.util.client.Colors.DEFAULT, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts));
+        host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.FirePit.BACKGROUND, host, new Coordinate2D(0, 0), GuiForge.GUI.getWidth(), 111, com.smithsmodding.armory.util.client.Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
         host.registerNewComponent(new ComponentPlayerInventory(References.InternalNames.GUIComponents.FirePit.INVENTORY, host, new Coordinate2D(0, 107), com.smithsmodding.armory.util.client.Colors.DEFAULT, ((ContainerSmithsCore) firePit.inventorySlots).getPlayerInventory(), ComponentConnectionType.BELOWDIRECTCONNECT));
 
         host.registerNewComponent(new ComponentFluidTank(References.InternalNames.GUIComponents.FirePit.MOLTENMETALSLEFT, host, new CoreComponentState(), new Coordinate2D(7, 7), 20, 80, ComponentOrientation.VERTICALBOTTOMTOTOP));
         host.registerNewComponent(new ComponentFluidTank(References.InternalNames.GUIComponents.FirePit.MOLTENMETALSRIGHT, host, new CoreComponentState(), new Coordinate2D(GuiForge.GUI.getWidth() - 7 - 20, 7), 20, 80, ComponentOrientation.VERTICALBOTTOMTOTOP));
 
-        host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.FirePit.INFUSIONSTACKSBACKGROUND, host, new Coordinate2D(53, 33), 10 + 3 * 18 + 6, 18 + 10, new MinecraftColor(MinecraftColor.WHITE), ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts, ComponentBorder.CornerTypes.Inwarts));
+        host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.FirePit.INFUSIONSTACKSBACKGROUND, host, new Coordinate2D(53, 33), 10 + 3 * 18 + 6, 18 + 10, new MinecraftColor(MinecraftColor.WHITE), ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
 
         for (int tSlotIndex = 0; tSlotIndex < (TileEntityForge.INFUSIONSTACK_AMOUNT); tSlotIndex++) {
             Slot slot = firePit.inventorySlots.inventorySlots.get(tSlotIndex);

@@ -425,6 +425,7 @@ public class References {
                 public class Structure {
                     public static final String DATA = "Data";
                     public static final String PARTS = "Parts";
+                    public static final String FLUIDS = "Fluids";
                 }
             }
 

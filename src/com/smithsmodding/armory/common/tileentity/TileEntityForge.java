@@ -9,6 +9,7 @@ import com.smithsmodding.armory.common.structure.forge.StructureForge;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityForgeGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.IForgeFuelDataContainer;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityForgeState;
+import com.smithsmodding.smithscore.common.events.structure.StructureEvent;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.pathfinding.IPathComponent;
 import com.smithsmodding.smithscore.common.structures.IStructurePart;
@@ -18,6 +19,7 @@ import com.smithsmodding.smithscore.util.common.FluidStackHelper;
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
@@ -55,6 +57,16 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         meltIngots();
 
         markDirty();
+    }
+
+    @Override
+    public void markDirty() {
+        if (isRemote())
+            return;
+
+        super.markDirty();
+
+        new StructureEvent.Updated(getStructure(), getWorld().provider.getDimension()).PostCommon();
     }
 
     public void meltIngots() {
@@ -299,6 +311,16 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         }
 
         return amount;
+    }
+
+    @Override
+    protected NBTBase writeFluidsToCompound() {
+        return new NBTTagCompound();
+    }
+
+    @Override
+    protected void readFluidsFromCompound(NBTBase inventoryCompound) {
+        return;
     }
 
     @Override

@@ -8,6 +8,8 @@ import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.ArmoryCommonProxy;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
+import com.smithsmodding.armory.common.structure.forge.StructureFactoryForge;
+import com.smithsmodding.smithscore.common.structures.StructureRegistry;
 import com.smithsmodding.smithscore.util.client.ResourceHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -166,6 +168,12 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
     @Override
     public void initializeArmory() {
 
+    }
+
+    @Override
+    public void initializeStructures() {
+        super.initializeStructures();
+        StructureRegistry.getClientInstance().registerStructureFactory(new StructureFactoryForge());
     }
 
     @Override

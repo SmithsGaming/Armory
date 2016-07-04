@@ -45,12 +45,12 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
 
     @Override
     protected TileEntityFireplaceGuiManager getInitialGuiManager() {
-        return null;
+        return new TileEntityFireplaceGuiManager(this);
     }
 
     @Override
     protected TileEntityFireplaceState getInitialState() {
-        return null;
+        return new TileEntityFireplaceState();
     }
 
     /**
@@ -248,6 +248,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
 
     @Override
     protected void calculateHeatTerms(TileEntityFireplaceState localData) {
+        localData.setMaxTemp(2150f);
         localData.setLastNegativeTerm(NEGATIVEHEAT);
         localData.setLastPositiveTerm(POSITIVEHEAT);
     }
