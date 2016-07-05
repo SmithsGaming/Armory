@@ -30,4 +30,5 @@ run
 *.iws
 *.iml
 *.db
-.gradle/minecraft/
+/.gradle/*
+
