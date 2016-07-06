@@ -108,6 +108,9 @@ dependencies {
 
 sourceSets {
     main {
+        java {
+            srcDir 'src'
+        }
         resources {
             srcDir 'resources'
         }
@@ -137,3 +140,142 @@ jar {
         attributes 'FMLAT': 'Armory_at.cfg'
     }
 }
+
+
+task makeChangelog(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
+    filePath = "changelog.html"
+    untaggedName = "Current release ${project.version}"
+    templateContent = """
+Alpha version, still buggy. Do not create a world you care about with this version, it can and will break things severely.<br/>
+Please help the project by trying it out and <a href="https://github.com/SmithsModding/SmithsCore/issues">reporting issues here.</a><br/>
+{{#tags}}
+  <h3>{{name}}</h3>
+  <ul>
+    {{#commits}}
+    <li>{{{message}}} - {{authorName}}</li>
+    {{/commits}}
+  </ul>
+{{/tags}}
+"""
+}
+
+curseforge {
+    if (System.getenv().CURSEAPIKEY != null) {
+        if (!build_mode.toString().trim().equals("SYNC")) {
+            if ((build_mode.toString().trim().equals("DEBUG") && System.getenv().TRAVIS_BRANCH.toString().contains("Development")) || ((build_mode.toString().trim().equals("RELEASE") && !System.getenv().TRAVIS_BRANCH.toString().contains("Development")))) {
+                apiKey = System.getenv().CURSEAPIKEY
+
+                project {
+                    id = '246525'
+                    changelog = file('changelog.html')
+                    changelogType = 'html'
+
+                    if (System.getenv().TRAVIS_BRANCH.toString().contains("Development")) {
+                        releaseType = "alpha"
+                    } else {
+                        releaseType = "beta"
+                    }
+
+                    addArtifact devJar
+                    addArtifact javadocJar
+                }
+            } else {
+                logger.lifecycle("Cannot run the CurseUpload sequence. Curse upload is only done on the Development-Branch when in Debug mode, or on any other branch in Release mode. Current Branch: " + System.getenv().TRAVIS_BRANCH.toString() + " - Current build mode: " + build_mode.toString())
+            }
+        } else {
+            logger.lifecycle("Cannot run CurseUpload sequence. We are currently synchronising to Computers.")
+        }
+    } else {
+        logger.lifecycle("Cannot run the CurseUpload sequence. No API-Key was available.")
+    }
+}
+
+//Function to upload completed project to the maven repo.
+uploadArchives {
+    repositories.mavenDeployer {
+        configuration = configurations.deployerJars
+        if (System.getenv().TRAVIS_BRANCH.toString().contains("Development")) {
+            snapshotRepository(url: "ftp://mavenrepo.smithscore.orionminecraft.com") {
+                authentication(userName: "mavenrepo.smithscore.orionminecraft.com|" + System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
+            }
+        } else {
+            repository(url: "ftp://mavenrepo.smithscore.orionminecraft.com") {
+                authentication(userName: "mavenrepo.smithscore.orionminecraft.com|" + System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
+            }
+        }
+
+        pom {
+            groupId = project.group
+            version = project.version
+            artifactId = project.archivesBaseName
+        }
+
+        pom.project {
+            name project.archivesBaseName
+            packaging 'jar'
+            description 'smithscore'
+            url 'https://github.com/smithsmodding/smithscore'
+
+            scm {
+                url 'https://github.com/smithsmodding/smithscore'
+                connection 'scm:git:git://github.com/smithsmodding/smithscore.git'
+                developerConnection 'scm:git:git@github.com/smithsmodding/smithscore.git'
+            }
+
+            issueManagement {
+                system 'github'
+                url 'https://github.com/smithsmodding/smithscore/issues'
+            }
+
+            developers {
+                developer {
+                    id 'OrionDevelopment'
+                    name 'Orion'
+                    roles {
+                        role 'developer'
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+//Task to synchronise two github branches.
+task('createGithubBranches') << {
+
+    if ((System.getenv().TRAVIS_BRANCH.toString().contains("Development")) && (build_mode.toString().trim().equals("RELEASE"))) {
+        logger.lifecycle("Uploading code to the corresponding Minecraft version branch. Creating branch if needed.")
+        logger.lifecycle("Creating local branch.")
+        //Creates/Or checks out the new local branch.
+        def createLocalBranchCMD = "git checkout -b Minecraft-" + config.minecraft_version.toString()
+        def createLocalProg = createLocalBranchCMD.execute();
+        createLocalProg.waitFor()
+
+        //Adds a tag to the minecraft version specific branch for the version number.
+        logger.lifecycle("Adding version tag.")
+        def addTagCMD = "git -a Version[" + version + "] -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'"
+        def addTagProg = addTagCMD.execute()
+        addTagProg.waitFor()
+
+        logger.lifecycle("Uploading force push to repo.")
+        def setUrlCMD = "git config remote.origin.url https://" + System.getenv().GitUsername.toString() + ":" + System.getenv().GitPassword.toString() + "@github.com/smithsmodding/smithscore"
+        def setURLProg = setUrlCMD.execute()
+        setURLProg.waitFor()
+
+        def cmd = "git push --tags"
+        def prog = cmd.execute()
+        prog.waitFor()
+
+        logger.lifecycle("Mirrored the code the corresponding minecraft version branch. Current MC Version: " + config.minecraft_version.toString() + ". Branch name: Minecraft-" + config.minecraft_version.toString() + ".")
+    } else {
+        logger.lifecycle("The sync of the branches is not being executed, because we are not releasing a new version.")
+    }
+
+}
+
+//The external task that executes the uploadAtchives function.
+task('uploadJars', dependsOn: uploadArchives) {
+    description = "uploads JARs"
+}
+
