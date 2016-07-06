@@ -202,12 +202,12 @@ uploadArchives {
     repositories.mavenDeployer {
         configuration = configurations.deployerJars
         if (System.getenv().TRAVIS_BRANCH.toString().contains("Development")) {
-            snapshotRepository(url: "ftp://mavenrepo.smithscore.orionminecraft.com") {
-                authentication(userName: "mavenrepo.smithscore.orionminecraft.com|" + System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
+            snapshotRepository(url: "ftp://mavenrepo.armory.orionminecraft.com") {
+                authentication(userName: "mavenrepo.armory.orionminecraft.com|" + System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
             }
         } else {
-            repository(url: "ftp://mavenrepo.smithscore.orionminecraft.com") {
-                authentication(userName: "mavenrepo.smithscore.orionminecraft.com|" + System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
+            repository(url: "ftp://mavenrepo.armory.orionminecraft.com") {
+                authentication(userName: "mavenrepo.armory.orionminecraft.com|" + System.getenv().FTPUserName.toString(), password: System.getenv().FTPPassword.toString())
             }
         }
 
@@ -270,10 +270,17 @@ task('createGithubBranches') << {
         def setURLProg = setUrlCMD.execute()
         setURLProg.waitFor()
 
+        logger.lifecycle("Listing all Tags")
+        def showTagsListCMD = "git tag"
+        def showTagsListProg = showTagsListCMD.execute()
+        showTagsListProg.waitFor()
+
+        logger.lifecycle("Updating Branch")
         def syncCmd = "git push origin -f Minecraft-" + config.minecraft_version.toString()
         def syncProg = syncCmd.execute()
         syncProg.waitFor()
 
+        logger.lifecycle("Uploading tags.")
         def tagCmd = "git push --tags"
         def tagProg = tagCmd.execute()
         tagProg.waitFor()
