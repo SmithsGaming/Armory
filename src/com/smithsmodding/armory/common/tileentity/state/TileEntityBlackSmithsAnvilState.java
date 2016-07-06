@@ -82,7 +82,7 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
             this.itemName = ((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.ITEMNAME);
             this.processingCraftingResult = ((NBTTagCompound) stateData).getBoolean(References.NBTTagCompoundData.TE.Anvil.PROCESSING);
 
-            if (updateModel)
+            if (updateModel && anvil.getWorld() != null)
                 anvil.getWorld().markChunkDirty(anvil.getPos(), anvil);
         }
         catch (Exception ex)

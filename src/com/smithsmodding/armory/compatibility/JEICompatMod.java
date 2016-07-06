@@ -6,6 +6,7 @@ import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.compatibility.recipes.anvil.BlackSmithsAnvilRecipeHandler;
 import com.smithsmodding.armory.compatibility.recipes.anvil.BlackSmithsAnvilRecipeMaker;
 import com.smithsmodding.armory.compatibility.recipes.anvil.BlacksmithsAnvilRecipeCategory;
+import com.smithsmodding.smithscore.util.CoreReferences;
 import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
@@ -45,5 +46,6 @@ public class JEICompatMod extends BlankModPlugin {
 
         getJeiHelpers().getNbtIgnoreList().ignoreNbtTagNames(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE);
         getJeiHelpers().getNbtIgnoreList().ignoreNbtTagNames(References.NBTTagCompoundData.HeatedIngot.ORIGINALITEM);
+        getJeiHelpers().getNbtIgnoreList().ignoreNbtTagNames(CoreReferences.NBT.IItemProperties.TARGET);
     }
 }

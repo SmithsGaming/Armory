@@ -8,13 +8,14 @@ Armory.Tabs.HeatedItem=Armory - Heatable items
 Armory.GUI.InfoTitel=Information
 #
 #Firepit specific information
-Armory.GUI.FirePit.Ledger.InfoLine1=The Firepit can heat ingots up to its own maximum temperature.
-Armory.GUI.FirePit.Ledger.InfoLine2=To raise its maximum temperature add Heaters.
-Armory.GUI.FirePit.Ledger.InfoLine3=Keep your eye on it though as it can meld ingots that get to hot.
-Armory.GUI.FirePit.Ledger.TempTitel=Firepit - Temperature
-Armory.GUI.FirePit.Ledger.TempMax=Maximum
-Armory.GUI.FirePit.Ledger.TempCurrent=Current
-Armory.GUI.FirePit.Ledger.LastAdded=Last added
+Armory.GUI.Fireplace.Ledger.InfoLine1=The Fireplace is both your first heat source and an efficient furnace.
+Armory.GUI.Fireplace.Ledger.InfoLine2=It will slowly heat up most of your metals, yet it can not heat up all of them to their melting point.
+Armory.GUI.Fireplace.Ledger.InfoLine3=Keep your eye on it though as it can meld ingots that get to hot.
+Armory.GUI.Fireplace.Ledger.TempTitel=Fireplace - Temperature
+Armory.GUI.Fireplace.Ledger.TempMax=Maximum
+Armory.GUI.Fireplace.Ledger.TempCurrent=Current
+Armory.GUI.Fireplace.Ledger.LastAdded=Last added
+Armory.GUI.Fireplace.Ledger.CookingMultiplier=Speed multiplier
 #
 #Forge specific information
 Armory.GUI.Forge.Ledger.InfoLine1=The Forge is your basic heat source.

@@ -219,6 +219,7 @@ public class References {
             public static final String CHAIN = "Chain";
             public static final String NUGGET = "Nugget";
             public static final String PLATE = "Plate";
+            public static final String BLOCK = "Block";
         }
 
         public static final class GUIComponents {
@@ -288,10 +289,13 @@ public class References {
 
         public static final class Recipes {
             public static final class Anvil {
+                public static final String ANVIL = "Recipes.Anvil.Anvil";
+
+                public static final String FORGE = "Recipes.Anvil.Forge";
+                public static final String FIREPLACE = "Recipes.Anvil.Fireplace";
+
                 public static final String TONGS = "Recipes.Anvil.Tongs";
                 public static final String HAMMER = "Recipes.Anvil.Hammer";
-                public static final String HEATER = "Recipes.Anvil.Heater";
-                public static final String FAN = "Recipes.Anvil.Fan";
 
                 public static final String RING = "Recipes.Anvil.Armor.Ring.";
                 public static final String CHAIN = "Recipes.Anvil.Armor.Chain.";

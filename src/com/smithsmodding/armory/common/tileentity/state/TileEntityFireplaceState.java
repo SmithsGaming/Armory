@@ -18,6 +18,11 @@ public class TileEntityFireplaceState extends TileEntityForgeBaseState<TileEntit
     private float cookingProgress = 0f;
     private float cookingSpeedMultiplier = 1f;
 
+    public TileEntityFireplaceState() {
+        this.currentTemp = 20f;
+        this.lastChange = 0f;
+    }
+
     @Override
     public void readFromNBTTagCompound(NBTBase stateData) {
         super.readFromNBTTagCompound(stateData);

@@ -19,6 +19,7 @@ import com.smithsmodding.armory.api.events.common.ModifyMaterialEvent;
 import com.smithsmodding.armory.api.events.common.RegisterArmorEvent;
 import com.smithsmodding.armory.api.events.common.RegisterMaterialsEvent;
 import com.smithsmodding.armory.api.events.common.RegisterUpgradesEvent;
+import com.smithsmodding.armory.api.materials.IAnvilMaterial;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
 import com.smithsmodding.armory.common.addons.MedievalAddonRegistry;
@@ -38,6 +39,7 @@ import com.smithsmodding.armory.common.material.fluidmodifiers.ObsidianToLavaSet
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.registry.AnvilRecipeRegistry;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
+import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
@@ -90,7 +92,6 @@ public class ArmoryInitializer {
             modifyMaterials();
         }
 
-
         private static void registerArmorPieces() {
             MaterialRegistry.getInstance().registerNewArmor(new ArmorMedieval(References.InternalNames.Armor.MEDIEVALHELMET, EntityEquipmentSlot.HEAD));
             MaterialRegistry.getInstance().registerNewArmor(new ArmorMedieval(References.InternalNames.Armor.MEDIEVALCHESTPLATE, EntityEquipmentSlot.CHEST));
@@ -107,6 +108,8 @@ public class ArmoryInitializer {
             MaterialRegistry.getInstance().registerMaterial(tIron);
             MaterialRegistry.getInstance().registerMaterial(tObsidian);
 
+            HeatableItemRegistry.getInstance().addBaseStack(tObsidian, new ItemStack(Blocks.OBSIDIAN), References.InternalNames.HeatedItemTypes.BLOCK, 9 * References.General.FLUID_INGOT);
+            HeatableItemRegistry.getInstance().addBaseStack(tIron, new ItemStack(Blocks.IRON_BLOCK), References.InternalNames.HeatedItemTypes.BLOCK, 9 * References.General.FLUID_INGOT);
             MinecraftForge.EVENT_BUS.post(new RegisterMaterialsEvent());
         }
 
@@ -387,12 +390,60 @@ public class ArmoryInitializer {
             }
         }
 
-
         public static void prepareGame() {
             initializeAnvilRecipes();
+
+            GameRegistry.addShapedRecipe(new ItemStack(GeneralRegistry.Items.hammer, 1, 150), "  B", " S ", "S  ", 'B', new ItemStack(Blocks.IRON_BLOCK), 'S', new ItemStack(Items.STICK));
         }
 
         public static void initializeAnvilRecipes() {
+            ItemStack fireplaceStack = new ItemStack(GeneralRegistry.Blocks.blockFirePlace);
+            AnvilRecipe fireplaceRecipe = new AnvilRecipe()
+                    .setCraftingSlotContent(0, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(1, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(2, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(3, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(4, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(5, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(6, new OreDicAnvilRecipeComponent(new ItemStack(Items.STICK)))
+                    .setCraftingSlotContent(8, new OreDicAnvilRecipeComponent(new ItemStack(Items.STICK)))
+                    .setCraftingSlotContent(9, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(10, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(12, new OreDicAnvilRecipeComponent(new ItemStack(Items.STICK)))
+                    .setCraftingSlotContent(14, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(15, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(16, new OreDicAnvilRecipeComponent(new ItemStack(Items.STICK)))
+                    .setCraftingSlotContent(18, new OreDicAnvilRecipeComponent(new ItemStack(Items.STICK)))
+                    .setCraftingSlotContent(19, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(20, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(21, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(22, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(23, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setCraftingSlotContent(24, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
+                    .setHammerUsage(0).setTongUsage(0).setResult(fireplaceStack).setProgress(10);
+            AnvilRecipeRegistry.getInstance().addRecipe(References.InternalNames.Recipes.Anvil.FIREPLACE, fireplaceRecipe);
+
+            ItemStack forgeStack = new ItemStack(GeneralRegistry.Blocks.blockForge);
+            AnvilRecipe forgeRecipe = new AnvilRecipe()
+                    .setCraftingSlotContent(0, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(4, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(5, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.75F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.75F * 0.95F))
+                    .setCraftingSlotContent(6, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.PLATE, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.PLATE, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(8, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.PLATE, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(9, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.75F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.75F * 0.95F))
+                    .setCraftingSlotContent(10, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(14, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(15, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(19, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(20, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(21, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(22, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(23, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setCraftingSlotContent(24, new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.65F * 0.95F))
+                    .setHammerUsage(15).setTongUsage(25).setResult(forgeStack).setProgress(60);
+            AnvilRecipeRegistry.getInstance().addRecipe(References.InternalNames.Recipes.Anvil.FORGE, forgeRecipe);
+
             ItemStack tHammerStack = new ItemStack(GeneralRegistry.Items.hammer, 1);
             tHammerStack.setItemDamage(150);
             AnvilRecipe tHammerRecipe = new AnvilRecipe().setCraftingSlotContent(3, (new HeatedAnvilRecipeComponent(References.InternalNames.Materials.Vanilla.IRON, References.InternalNames.HeatedItemTypes.INGOT, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.5F * 0.85F, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getMeltingPoint() * 0.5F * 0.95F)))
@@ -421,9 +472,21 @@ public class ArmoryInitializer {
                     .setProgress(4).setResult(tTongStack).setHammerUsage(4).setTongUsage(0);
             AnvilRecipeRegistry.getInstance().addRecipe(References.InternalNames.Recipes.Anvil.TONGS, tTongRecipe);
 
+            initializeAnvilCreationAnvilRecipes();
             initializeMedievalArmorAnvilRecipes();
             initializeMedievalUpgradeAnvilRecipes();
             initializeUpgradeRecipeSystem();
+        }
+
+        public static void initializeAnvilCreationAnvilRecipes() {
+            for (IAnvilMaterial material : AnvilMaterialRegistry.getInstance().getAllRegisteredAnvilMaterials().values()) {
+                AnvilRecipe recipe = material.getRecipeForAnvil();
+
+                if (recipe == null)
+                    continue;
+
+                AnvilRecipeRegistry.getInstance().addRecipe(References.InternalNames.Recipes.Anvil.ANVIL + "-" + material.getID(), recipe);
+            }
         }
 
         public static void initializeMedievalArmorAnvilRecipes() {

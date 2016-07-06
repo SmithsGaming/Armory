@@ -8,11 +8,14 @@ import com.smithsmodding.armory.common.block.properties.PropertyAnvilMaterial;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
+import com.smithsmodding.smithscore.SmithsCore;
+import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,6 +31,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.ExtendedBlockState;
@@ -39,7 +43,7 @@ import java.util.List;
 /**
  * Created by Marc on 14.02.2016.
  */
-public class BlockBlackSmithsAnvil extends BlockArmoryInventory
+public class BlockBlackSmithsAnvil extends BlockArmoryInventory implements ICustomDebugInformationBlock
 {
 
     public static final PropertyAnvilMaterial PROPERTY_ANVIL_MATERIAL = new PropertyAnvilMaterial("Material");
@@ -222,5 +226,22 @@ public class BlockBlackSmithsAnvil extends BlockArmoryInventory
     protected BlockStateContainer createBlockState()
     {
         return new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE, PROPERTY_ANVIL_MATERIAL});
+    }
+
+    @Override
+    public void handleDebugInformation(RenderGameOverlayEvent.Text event, World worldIn, BlockPos pos) {
+        if (!SmithsCore.isInDevenvironment() && !Minecraft.getMinecraft().gameSettings.showDebugInfo)
+            return;
+
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if (!(tileEntity instanceof TileEntityBlackSmithsAnvil))
+            return;
+
+        TileEntityBlackSmithsAnvil blackSmithsAnvil = (TileEntityBlackSmithsAnvil) tileEntity;
+        if (blackSmithsAnvil.getState().getMaterial() == null) {
+            event.getRight().add("Material: UNKNOWN");
+        } else {
+            event.getRight().add("Material: " + blackSmithsAnvil.getState().getMaterial().getID());
+        }
     }
 }

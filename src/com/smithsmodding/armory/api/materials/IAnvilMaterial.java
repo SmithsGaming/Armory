@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.api.materials;
 
+import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.smithsmodding.smithscore.client.textures.ITextureController;
 import net.minecraft.util.text.TextFormatting;
 
@@ -19,4 +20,6 @@ public interface IAnvilMaterial
     ITextureController getRenderInfo();
 
     void setRenderInfo(ITextureController info);
+
+    AnvilRecipe getRecipeForAnvil();
 }

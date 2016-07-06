@@ -1,10 +1,10 @@
 package com.smithsmodding.armory.api.registries;
 
-import com.smithsmodding.armory.api.materials.*;
-import net.minecraft.item.*;
-import net.minecraftforge.fluids.*;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Created by Marc on 19.12.2015.
@@ -19,6 +19,8 @@ public interface IHeatableItemRegistry {
 
 
     void addBaseStack (IArmorMaterial material, ItemStack stack);
+
+    void addBaseStack(IArmorMaterial material, ItemStack stack, String internalType, int fluidSize);
 
     void addBaseStack (IArmorMaterial material, ItemStack stack, String internalType, FluidStack moltenStack);
 

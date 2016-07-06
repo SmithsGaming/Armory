@@ -8,7 +8,6 @@ import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.api.registries.IHeatableItemRegistry;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.material.MaterialRegistry;
-import com.smithsmodding.smithscore.util.common.FluidStackHelper;
 import com.smithsmodding.smithscore.util.common.ItemStackHelper;
 import com.smithsmodding.smithscore.util.common.NBTHelper;
 import com.smithsmodding.smithscore.util.common.Pair;
@@ -129,8 +128,25 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
 
         if (stack.getItem() instanceof IHeatableItem)
             this.addBaseStack(material, stack.copy(), ((IHeatableItem) stack.getItem()).getInternalType(), new FluidStack(GeneralRegistry.Fluids.moltenMetal, ((IHeatableItem) stack.getItem()).getMoltenMilibucket(), fluidCompound));
-        else
+        else {
+            int[] oreIds = OreDictionary.getOreIDs(stack);
+            for (int oreId : oreIds) {
+                if (OreDictionary.getOreName(oreId).contains("block")) {
+                    this.addBaseStack(material, stack.copy(), References.InternalNames.HeatedItemTypes.BLOCK, new FluidStack(GeneralRegistry.Fluids.moltenMetal, References.General.FLUID_INGOT * 9, fluidCompound));
+                    return;
+                }
+            }
+
             this.addBaseStack(material, stack.copy(), References.InternalNames.HeatedItemTypes.INGOT, new FluidStack(GeneralRegistry.Fluids.moltenMetal, References.General.FLUID_INGOT, fluidCompound));
+        }
+    }
+
+    @Override
+    public void addBaseStack(IArmorMaterial material, ItemStack stack, String internalType, int fluidSize) {
+        NBTTagCompound fluidCompound = new NBTTagCompound();
+        fluidCompound.setString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL, material.getUniqueID());
+
+        this.addBaseStack(material, stack.copy(), internalType, new FluidStack(GeneralRegistry.Fluids.moltenMetal, fluidSize, fluidCompound));
     }
 
     @Override
@@ -350,7 +366,7 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
     private class FluidStackHashingStrategy implements HashingStrategy<FluidStack> {
         @Override
         public int computeHashCode (FluidStack object) {
-            int hash = object.getFluid().hashCode();
+            int hash = object.getFluid().hashCode() + object.amount;
 
             if (object.tag != null)
                 hash ^= object.tag.hashCode();
@@ -359,7 +375,7 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
         }
 
         public boolean equals (FluidStack o1, FluidStack o2) {
-            return FluidStackHelper.equalsIgnoreStackSize(o1, o2);
+            return o1.isFluidEqual(o2) && o1.amount == o2.amount;
         }
     }
 
