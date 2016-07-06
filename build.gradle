@@ -17,6 +17,11 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.matthewprenger.cursegradle" version "1.0.7"
+    id "se.bjurr.gitchangelog.git-changelog-gradle-plugin" version "1.34"
+}
+
 repositories {
     mavenLocal()
     maven {
@@ -37,8 +42,12 @@ repositories {
     }
 }
 
+apply plugin: 'java'
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 //Buildscript: armory
 // Load the properties of this project.
@@ -73,11 +82,6 @@ if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
 {
     version = version + "-SNAPSHOT"
     apiversion = apiversion + "-SNAPSHOT"
-}
-if(System.getenv().TRAVIS_BRANCH.toString().toLowerCase().contains("master") && config.build_mode.toString().trim().equals("RELEASE"))
-{
-	version = version + "-RC"
-    apiversion = apiversion + "-RC"
 }
 
 group = "com.smithsmodding.armory"
@@ -147,7 +151,7 @@ task makeChangelog(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
     untaggedName = "Current release ${project.version}"
     templateContent = """
 Alpha version, still buggy. Do not create a world you care about with this version, it can and will break things severely.<br/>
-Please help the project by trying it out and <a href="https://github.com/SmithsModding/SmithsCore/issues">reporting issues here.</a><br/>
+Please help the project by trying it out and <a href="https://github.com/SmithsModding/Armory/issues">reporting issues here.</a><br/>
 {{#tags}}
   <h3>{{name}}</h3>
   <ul>
@@ -166,7 +170,7 @@ curseforge {
                 apiKey = System.getenv().CURSEAPIKEY
 
                 project {
-                    id = '246525'
+                    id = '231229'
                     changelog = file('changelog.html')
                     changelogType = 'html'
 
@@ -176,8 +180,11 @@ curseforge {
                         releaseType = "beta"
                     }
 
-                    addArtifact devJar
-                    addArtifact javadocJar
+                    relations {
+                        requiredLibrary 'smithscore' // SmithScore is required
+                    }
+
+                    //TOTO: When API ready add here, as well as DevJar and JavaDocJar.
                 }
             } else {
                 logger.lifecycle("Cannot run the CurseUpload sequence. Curse upload is only done on the Development-Branch when in Debug mode, or on any other branch in Release mode. Current Branch: " + System.getenv().TRAVIS_BRANCH.toString() + " - Current build mode: " + build_mode.toString())
@@ -213,18 +220,18 @@ uploadArchives {
         pom.project {
             name project.archivesBaseName
             packaging 'jar'
-            description 'smithscore'
-            url 'https://github.com/smithsmodding/smithscore'
+            description 'Armory'
+            url 'https://github.com/smithsmodding/armory'
 
             scm {
                 url 'https://github.com/smithsmodding/smithscore'
-                connection 'scm:git:git://github.com/smithsmodding/smithscore.git'
-                developerConnection 'scm:git:git@github.com/smithsmodding/smithscore.git'
+                connection 'scm:git:git://github.com/smithsmodding/armory.git'
+                developerConnection 'scm:git:git@github.com/smithsmodding/armory.git'
             }
 
             issueManagement {
                 system 'github'
-                url 'https://github.com/smithsmodding/smithscore/issues'
+                url 'https://github.com/smithsmodding/armory/issues'
             }
 
             developers {
