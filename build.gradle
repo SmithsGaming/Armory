@@ -272,7 +272,7 @@ task('createGithubBranches') << {
 
         def syncCmd = "git push origin -f Minecraft-" + config.minecraft_version.toString()
         def syncProg = syncCmd.execute()
-        syncProc.waitFor()
+        syncProg.waitFor()
 
         def tagCmd = "git push --tags"
         def tagProg = tagCmd.execute()
