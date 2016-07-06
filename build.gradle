@@ -270,9 +270,13 @@ task('createGithubBranches') << {
         def setURLProg = setUrlCMD.execute()
         setURLProg.waitFor()
 
-        def cmd = "git push --tags"
-        def prog = cmd.execute()
-        prog.waitFor()
+        def syncCmd = "git push origin -f Minecraft-" + config.minecraft_version.toString()
+        def syncProg = syncCmd.execute()
+        syncProc.waitFor()
+
+        def tagCmd = "git push --tags"
+        def tagProg = tagCmd.execute()
+        tagProg.waitFor()
 
         logger.lifecycle("Mirrored the code the corresponding minecraft version branch. Current MC Version: " + config.minecraft_version.toString() + ". Branch name: Minecraft-" + config.minecraft_version.toString() + ".")
     } else {
