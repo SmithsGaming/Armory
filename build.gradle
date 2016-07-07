@@ -113,13 +113,21 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDir 'src'
+            srcDir 'src/main'
         }
         resources {
-            srcDir 'resources'
+            srcDir 'src/resources'
+        }
+    }
+    api {
+        java {
+            srcDir 'src/api'
         }
     }
 }
+
+// Add API dir to the IDEA module
+idea.module.sourceDirs += sourceSets.api.java.srcDirs
 
 //This will process all the resources used during build, and needed for running the project
 processResources
@@ -145,6 +153,25 @@ jar {
     }
 }
 
+javadoc {
+    source += sourceSets.api.allSource
+}
+
+// add a javadoc jar
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+task apiJar(type: Jar) {
+    from sourceSets.api.output
+    classifier = 'api'
+}
+
+artifacts {
+    archives javadocJar
+    archives apiJar
+}
 
 task makeChangelog(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
     filePath = "changelog.html"
@@ -275,7 +302,7 @@ task('createGithubBranches') << {
         syncProg.waitFor()
 
         //Adds a tag to the minecraft version specific branch for the version number.
-        logger.lifecycle("Adding version tag: " + "git tag -a Version - " + version + " -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'")
+        logger.lifecycle("Adding version tag: " + "git tag -a " + version + " -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'")
         def addTagCMD = "git tag -a " + version + " -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'"
         def addTagProg = addTagCMD.execute()
         addTagProg.waitFor()
