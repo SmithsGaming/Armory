@@ -2,515 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2094f80-431d-41be-b6e3-47b3a42a7699" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/IArmoryAPI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/ArmorAddonPosition.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/MultiLayeredArmor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/component/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/recipe/AnvilRecipe.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/recipe/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/client/model/block/BlackSmithsAnvilModelTextureLoadEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/client/model/block/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/client/model/item/MultiLayeredArmorModelTextureLoadEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/client/model/item/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/client/model/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/client/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/common/config/ConfigSyncCompletedEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/common/config/MaterialPropertyValueEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/common/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/AnvilBottomTextureDeserializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/AnvilModelDeserializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/AnvilTopTextureDeserializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/MaterializedItemModelDeserializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/MultiLayeredArmorModelDeserializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/definition/AnvilModelDefinition.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/definition/MaterializedItemModelDefinition.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/definition/MultiLayeredArmorModelDefinition.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/definition/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/references/ModArmorMaterials.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/references/ModBlocks.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/references/ModCreativeTabs.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/references/ModFluids.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/references/ModInventories.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/references/ModItems.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/references/ModLogger.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/references/References.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/references/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IAnvilRecipeRegistry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IArmorPartRegistry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IHeatableItemRegistry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/AnimatedColoredTexture.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/package-info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/ArmoryClientProxy.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/blacksmithsanvil/GuiBlacksmithsAnvil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/fireplace/TabFireplaceFood.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/fireplace/TabFireplaceMeltingMetal.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/forge/TabForgeMeltingMetal.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/forge/TabForgeMoltenMetal.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/logic/ArmoryClientInitializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/block/baked/BlackSmithsAnvilBakedModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/entity/ModelExtendedBiped.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/BakedMaterializedModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/components/BakedSubComponentModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/MaterializedItemModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/MultiLayeredArmorItemModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/components/ArmorSubComponentModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/AnvilModelLoader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/ArmorComponentModelLoader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/HeatedItemModelLoader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MaterializedItemModelLoader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/textures/MaterializedTextureCreator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/addons/ArmorUpgradeMedieval.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/anvil/AnvilMaterial.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockArmoryInventory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockBlackSmithsAnvil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockFirePlace.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockForge.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/config/ArmorDataConfigHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/config/ArmorDataSynchronizer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/component/HeatedAnvilRecipeComponent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/component/OreDicAnvilRecipeComponent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/recipe/ArmorUpgradeAnvilRecipe.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/recipe/VanillaAnvilRecipe.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/ArmorTab.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/ComponentsTab.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/GeneralTabs.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/HeatedItemTab.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/factory/HeatedItemFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/factory/MedievalArmorFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/fluid/FluidMoltenMetal.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/GuiHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/config/ArmoryDataSyncerEventHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/config/ConfigSyncCompletedEventHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/config/MaterialPropertyValueEventHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/ContainerBlacksmithsAnvil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/ContainerFireplace.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/ContainerForge.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemArmorComponent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHammer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHeatedItem.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemMetalChain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemMetalRing.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemNugget.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemPlate.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemResource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemSmithingsGuide.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemTongs.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/armor/tiermedieval/ArmorMedieval.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/block/ItemBlockBlackSmithsAnvil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/ArmoryInitializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/ArmorMaterial.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/fluidmodifiers/ObsidianToLavaSetter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/AnvilMaterialRegistry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/AnvilRecipeRegistry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/GeneralRegistry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/HeatableItemRegistry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/MaterialRegistry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/MedievalAddonRegistry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureDataForge.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureFactoryForge.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityBlackSmithsAnvil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityFireplace.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityForge.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityBlackSmithsAnvilGuiManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityForgeGuiManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityBlackSmithsAnvilState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityFireplaceState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityForgeBaseState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityForgeState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/JEICompatMod.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeWrapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlacksmithsAnvilRecipeCategory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/armor/ArmorNBTHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/client/Textures.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/client/TranslationKeys.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/base/Thumbs.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Temp-Base armor/Thumbs.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Thumbs.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/Armory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/IArmoryAPI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/References.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/armor/ArmorAddonPosition.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/armor/MultiLayeredArmor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/armor/package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/crafting/blacksmiths/component/HeatedAnvilRecipeComponent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/crafting/blacksmiths/component/OreDicAnvilRecipeComponent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/crafting/blacksmiths/component/package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/crafting/blacksmiths/package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/crafting/blacksmiths/recipe/AnvilRecipe.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/crafting/blacksmiths/recipe/ArmorUpgradeAnvilRecipe.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/crafting/blacksmiths/recipe/VanillaAnvilRecipe.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/crafting/blacksmiths/recipe/package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/crafting/package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/events/client/package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/events/common/package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/events/package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/materials/package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/registries/IArmorPartRegistry.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/registries/IHeatableItemRegistry.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/registries/ILiquidMeterialRegistry.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/registries/package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/textures/AnimatedColoredTexture.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/ArmoryClientProxy.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/gui/implementations/blacksmithsanvil/GuiBlacksmithsAnvil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/gui/implementations/fireplace/TabFireplaceFood.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/gui/implementations/fireplace/TabFireplaceMeltingMetal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/gui/implementations/forge/TabForgeMeltingMetal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/gui/implementations/forge/TabForgeMoltenMetal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/logic/ArmoryClientInitializer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/block/baked/BlackSmithsAnvilBakedModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/block/events/BlackSmithsAnvilModelTextureLoadEvent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/deserializers/MaterializedItemModelDeserializer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/deserializers/MultiLayeredArmorModelDeserializer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/deserializers/definition/MaterializedItemModelDefinition.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/deserializers/definition/MultiLayeredArmorModelDefinition.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/entity/ModelExtendedBiped.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/baked/BakedMaterializedModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/baked/components/BakedSubComponentModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/events/MultiLayeredArmorModelTextureLoadEvent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/unbaked/MaterializedItemModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/unbaked/MultiLayeredArmorItemModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/unbaked/components/ArmorSubComponentModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/loaders/AnvilModelLoader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/loaders/ArmorComponentModelLoader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/loaders/HeatedItemModelLoader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/loaders/MaterializedItemModelLoader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/textures/MaterializedTextureCreator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/addons/ArmorUpgradeMedieval.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/addons/MedievalAddonRegistry.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/anvil/AnvilMaterial.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/block/BlockArmoryInventory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/block/BlockBlackSmithsAnvil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/block/BlockFirePlace.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/block/BlockForge.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/config/ArmorDataConfigHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/config/ArmorDataSynchronizer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/creativetabs/ArmorTab.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/creativetabs/ComponentsTab.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/creativetabs/GeneralTabs.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/creativetabs/HeatedItemTab.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/event/config/ConfigSyncCompletedEvent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/event/config/MaterialPropertyValueEvent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/factory/HeatedItemFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/factory/MedievalArmorFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/fluid/FluidMoltenMetal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/handlers/GuiHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/handlers/config/ArmoryDataSyncerEventHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/handlers/config/ConfigSyncCompletedEventHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/handlers/config/MaterialPropertyValueEventHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/inventory/ContainerBlacksmithsAnvil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/inventory/ContainerFireplace.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/inventory/ContainerForge.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/item/ItemArmorComponent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/item/ItemHammer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/item/ItemHeatedItem.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/item/ItemMetalChain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/item/ItemMetalRing.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/item/ItemNugget.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/item/ItemPlate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/item/ItemResource.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/item/ItemSmithingsGuide.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/item/ItemTongs.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/item/armor/tiermedieval/ArmorMedieval.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/item/block/ItemBlockBlackSmithsAnvil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/logic/ArmoryInitializer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/material/ArmorMaterial.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/material/MaterialRegistry.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/material/fluidmodifiers/ObsidianToLavaSetter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/registry/AnvilMaterialRegistry.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/registry/AnvilRecipeRegistry.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/registry/GeneralRegistry.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/registry/HeatableItemRegistry.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/structure/forge/StructureDataForge.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/structure/forge/StructureFactoryForge.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/TileEntityBlackSmithsAnvil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/TileEntityFireplace.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/TileEntityForge.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityBlackSmithsAnvilGuiManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityForgeGuiManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/state/TileEntityBlackSmithsAnvilState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/state/TileEntityFireplaceState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/state/TileEntityForgeBaseState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/state/TileEntityForgeState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/compatibility/JEICompatMod.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeWrapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/compatibility/recipes/anvil/BlacksmithsAnvilRecipeCategory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/util/armor/ArmorNBTHelper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/util/client/Textures.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/util/client/TranslationKeys.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/gradle.log" afterPath="$PROJECT_DIR$/.gradle/gradle.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.properties" afterPath="$PROJECT_DIR$/build.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/META-INF/Armory_at.cfg" afterPath="$PROJECT_DIR$/src/resources/META-INF/Armory_at.cfg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/blockstates/Armory.Blocks.Anvil.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Anvil.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/blockstates/Armory.Blocks.Fireplace.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Fireplace.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/blockstates/Armory.Blocks.Forge.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Forge.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/blockstates/Armory.Items.SmithingsGuide.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Items.SmithingsGuide.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/lang/en_US.lang" afterPath="$PROJECT_DIR$/src/resources/assets/armory/lang/en_US.lang" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/ArmorsAnvil.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/ArmorsAnvil.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/Binder.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/Binder.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/Book - Single Sided.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/Book - Single Sided.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/FirePit.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/FirePit.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/FirePit.old.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/FirePit.old.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/Heater.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/Heater.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/Heater.old.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/Heater.old.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/block/anvil/BlockModel.Anvil-armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.Anvil-armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/block/anvil/BlockModel.mtl" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.mtl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/block/anvil/BlockModel.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/block/fireplace/BlockModel.mtl" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/fireplace/BlockModel.mtl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/block/fireplace/BlockModel.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/fireplace/BlockModel.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/block/forge/BlockModel.mtl" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/forge/BlockModel.mtl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/block/forge/BlockModel.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/forge/BlockModel.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/Armor/Armory.Chestplate.Medieval.MLA-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Armor/Armory.Chestplate.Medieval.MLA-Armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/Armor/Armory.Helmet.Medieval.MLA-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Armor/Armory.Helmet.Medieval.MLA-Armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/Armor/Armory.Leggings.Medieval.MLA-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Armor/Armory.Leggings.Medieval.MLA-Armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/Armor/Armory.Shoes.Medieval.MLA-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Armor/Armory.Shoes.Medieval.MLA-Armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/Armor/MLA.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Armor/MLA.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/Armory.Resources.MCM-smithscore.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Armory.Resources.MCM-smithscore.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/Guide/Guide.mtl" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Guide/Guide.mtl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/Guide/Guide.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Guide/Guide.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/HeatedItem/Armory.Items.Components.HeatedIngots.HI-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/HeatedItem/Armory.Items.Components.HeatedIngots.HI-Armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/component/Armory.Items.ArmorComponent.AC-armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/component/Armory.Items.ArmorComponent.AC-armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalChain.MIM-armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalChain.MIM-armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalNugget.MIM-armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalNugget.MIM-armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalPlate.MIM-armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalPlate.MIM-armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalRing.MIM-armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalRing.MIM-armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/Anvil/AnvilTextured.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/Anvil/AnvilTextured.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/BookBinder/BookBinder.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/BookBinder/BookBinder.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/BookBinder/InkPotEmpty.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/BookBinder/InkPotEmpty.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/BookBinder/InkPotFull.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/BookBinder/InkPotFull.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/BookBinder/Paper.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/BookBinder/Paper.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/FirePit/CoalField.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/CoalField.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/FirePit/DarkSheet.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/DarkSheet.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/FirePit/DestroyedMetalBasin.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/DestroyedMetalBasin.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/FirePit/DestroyedMetalWall.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/DestroyedMetalWall.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/FirePit/FuelBasinBottom.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/FuelBasinBottom.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/FirePit/FuelBasinWall.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/FuelBasinWall.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/FirePit/IngotHolderRim.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/IngotHolderRim.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/FirePit/LightSheet.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/LightSheet.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/Fireplace/Feuer_tex.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/Fireplace/Feuer_tex.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/LiquidMetal/flow.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/LiquidMetal/flow.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/LiquidMetal/flow.png.mcmeta" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/LiquidMetal/flow.png.mcmeta" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/LiquidMetal/still.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/LiquidMetal/still.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/blocks/LiquidMetal/still.png.mcmeta" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/LiquidMetal/still.png.mcmeta" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/gui/Components/RandomElements.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/Components/RandomElements.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/gui/Images/16x ThermoALT.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/Images/16x ThermoALT.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/gui/Images/AnvilHammer.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/Images/AnvilHammer.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/gui/JEI/anvil.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/JEI/anvil.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/16x Chain.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/16x Chain.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/16x Fan.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/16x Fan.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/16x Link.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/16x Link.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/16x Magnifier.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/16x Magnifier.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/Gui-Icons/16x Info icon.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/Gui-Icons/16x Info icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/Gui-Icons/16x Infobook.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/Gui-Icons/16x Infobook.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/Gui-Icons/16x Thermo.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/Gui-Icons/16x Thermo.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/Gui-Icons/HammerBackground.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/Gui-Icons/HammerBackground.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/Gui-Icons/TongsBackground.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/Gui-Icons/TongsBackground.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/GuideLeft.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/GuideLeft.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/GuideRight.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/GuideRight.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_high_1.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_high_1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_high_2.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_high_2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_high_3.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_high_3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_high_4.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_high_4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_low_1.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_low_1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_low_2.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_low_2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_low_3.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_low_3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_low_4.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_low_4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_1.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_2.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_3.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_4.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_5.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_5.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/basic/16x Chain.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/basic/16x Chain.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/basic/16x Nugget.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/basic/16x Nugget.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/basic/16x Plate.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/basic/16x Plate.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/basic/16x Ring.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/basic/16x Ring.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/basic/16x Tongs.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/basic/16x Tongs.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/basic/16x Work Hammer.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/basic/16x Work Hammer.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/basic/32x Blueprint.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/basic/32x Blueprint.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/basic/32x Glue.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/basic/32x Glue.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/basic/32x Label.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/basic/32x Label.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/basic/32x Magnifier.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/basic/32x Magnifier.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/blankItem.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/blankItem.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/base/armory.Chestplate_Base.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/base/armory.Chestplate_Base.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/base/armory.Helmet_Base.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/base/armory.Helmet_Base.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/base/armory.Leggins_Base.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/base/armory.Leggins_Base.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/base/armory.Shoes_Base.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/base/armory.Shoes_Base.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Auto_Repair.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Auto_Repair.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Electric.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Electric.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Flying.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Flying.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Haste.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Haste.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Reinforced.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Reinforced.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Strength.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Strength.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Thorns.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Chest_Thorns.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Helmet_Aqua_Affinity.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Helmet_Aqua_Affinity.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Helmet_Aqua_Breathing.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Helmet_Aqua_Breathing.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Helmet_Auto_Repair.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Helmet_Auto_Repair.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Helmet_Electric.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Helmet_Electric.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Helmet_Reinforced.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Helmet_Reinforced.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Helmet_Thorns.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Helmet_Thorns.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_Auto_Repair.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_Auto_Repair.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_Electric.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_Electric.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_Jump_Assist.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_Jump_Assist.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_Reinforced.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_Reinforced.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_Speed.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_Speed.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_Thorns.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_Thorns.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_UpHill_Assist.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Leggins_UpHill_Assist.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Shoe_Auto_Repair.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Shoe_Auto_Repair.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Shoe_Electric.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Shoe_Electric.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Shoe_Fall_Assist.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Shoe_Fall_Assist.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Shoe_Reinforced.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Shoe_Reinforced.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Shoe_Swim_Assist.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Shoe_Swim_Assist.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Temp-Base armor/armory.Bronze_armory.Chestplate_base.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Temp-Base armor/armory.Bronze_armory.Chestplate_base.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Temp-Base armor/armory.Bronze_armory.Helmet_base.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Temp-Base armor/armory.Bronze_armory.Helmet_base.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Temp-Base armor/armory.Bronze_armory.Leggins_base.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Temp-Base armor/armory.Bronze_armory.Leggins_base.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/modifiers/Temp-Base armor/armory.Bronze_armory.Shoes_base.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/modifiers/Temp-Base armor/armory.Bronze_armory.Shoes_base.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Chestplate_Protection_Front_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Chestplate_Protection_Front_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Chestplate_Protection_Front_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Chestplate_Protection_Front_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Helmet_TopHead.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Helmet_TopHead.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Leggins_Protection_Back_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Leggins_Protection_Back_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Leggins_Protection_Back_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Leggins_Protection_Back_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Leggins_Protection_Front_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Leggins_Protection_Front_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Leggins_Protection_Front_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Leggins_Protection_Front_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Shoes_Protection_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Shoes_Protection_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Shoes_Protection_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/multiarmor/upgrades/armory.Shoes_Protection_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/AExtendedPlayerModel.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/AExtendedPlayerModel.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/base/Base.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/base/Base.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Auto_Repair.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Auto_Repair.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Electric.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Electric.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Flying.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Flying.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Haste.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Haste.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Reinforced.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Reinforced.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Strength.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Strength.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Thorns.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Chest_Thorns.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Helmet_Aqua-Affinity.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Helmet_Aqua-Affinity.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Helmet_Aqua_Breathing.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Helmet_Aqua_Breathing.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Helmet_Auto_Repair.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Helmet_Auto_Repair.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Helmet_Electric.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Helmet_Electric.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Helmet_Reinforced.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Helmet_Reinforced.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Helmet_Thorns.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Helmet_Thorns.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_Auto_Repair.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_Auto_Repair.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_Electric.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_Electric.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_Jump_Assist.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_Jump_Assist.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_Reinforced.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_Reinforced.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_Speed.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_Speed.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_Thorns.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_Thorns.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_UpHill_Assist.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Leggins_UpHill_Assist.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Shoe_Auto_Repair.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Shoe_Auto_Repair.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Shoe_Electric.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Shoe_Electric.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Shoe_Fall_Assist.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Shoe_Fall_Assist.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Shoe_Reinforced.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Shoe_Reinforced.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/modifiers/Shoe_Swim_Assist.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/modifiers/Shoe_Swim_Assist.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Helmet_TopHead.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Helmet_TopHead.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Shoes_Protection_Left.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Shoes_Protection_Left.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Shoes_Protection_Right.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/models/multiarmor/upgrades/armory.Shoes_Protection_Right.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/mcmod.info" afterPath="$PROJECT_DIR$/src/resources/mcmod.info" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/armor/ILayeredArmorLayer.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/ILayeredArmorLayer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/armor/ISingleComponentItem.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/ISingleComponentItem.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/armor/MLAAddon.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/MLAAddon.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/armor/MaterialDependentMLAAddon.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/MaterialDependentMLAAddon.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/crafting/blacksmiths/component/IAnvilRecipeComponent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/component/IAnvilRecipeComponent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/crafting/blacksmiths/component/StandardAnvilRecipeComponent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/component/StandardAnvilRecipeComponent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/events/common/HeatableItemRegisteredEvent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/common/HeatableItemRegisteredEvent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/events/common/ModifyMaterialEvent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/common/ModifyMaterialEvent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/events/common/RegisterArmorEvent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/common/RegisterArmorEvent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/events/common/RegisterMaterialsEvent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/common/RegisterMaterialsEvent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/events/common/RegisterModifiersEvent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/common/RegisterModifiersEvent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/events/common/RegisterUpgradesEvent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/common/RegisterUpgradesEvent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/item/IHeatableItem.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/item/IHeatableItem.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/item/ISingleMaterialItem.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/item/ISingleMaterialItem.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/materials/IAnvilMaterial.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/IAnvilMaterial.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/materials/IArmorConfigurator.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/IArmorConfigurator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/materials/IArmorMaterial.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/IArmorMaterial.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/materials/MaterialRenderControllers.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/MaterialRenderControllers.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/registries/IAnvilMaterialRegistry.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IAnvilMaterialRegistry.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/registries/IMLAAddonRegistry.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IMLAAddonRegistry.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/registries/IMaterialRegistry.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IMaterialRegistry.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/textures/ExtraUtilityTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/ExtraUtilityTexture.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/textures/GuiOutlineTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/GuiOutlineTexture.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/textures/InverseColoredTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/InverseColoredTexture.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/textures/MetalColoredTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/MetalColoredTexture.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/textures/MetalTextureTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/MetalTextureTexture.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/textures/SimpleColoredTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/SimpleColoredTexture.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/api/textures/TextureColoredTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/TextureColoredTexture.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/gui/components/Component5X5CraftingGrid.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/components/Component5X5CraftingGrid.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/gui/components/ComponentBlackSmithsAnvilCraftingGrid.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/components/ComponentBlackSmithsAnvilCraftingGrid.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/gui/components/ComponentExperienceLabel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/components/ComponentExperienceLabel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/gui/implementations/fireplace/GuiFireplace.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/fireplace/GuiFireplace.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/gui/implementations/forge/GuiForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/forge/GuiForge.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/handler/ClientDisconnectedFromServerEventHandler.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/handler/ClientDisconnectedFromServerEventHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/block/unbaked/BlackSmithsAnvilModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/block/unbaked/BlackSmithsAnvilModel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/baked/BakedArmorComponentModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/BakedArmorComponentModel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/baked/BakedMultiLayeredArmorItemModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/BakedMultiLayeredArmorItemModel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/baked/components/BakedTemperatureBarModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/components/BakedTemperatureBarModel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/baked/heateditem/BakedHeatedItemModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/heateditem/BakedHeatedItemModel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/baked/heateditem/PerspectiveDependentBakedHeatedItemItemModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/heateditem/PerspectiveDependentBakedHeatedItemItemModel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/baked/heateditem/PerspectiveUnawareBakedHeatedItemItemModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/heateditem/PerspectiveUnawareBakedHeatedItemItemModel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/unbaked/ArmorComponentModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/ArmorComponentModel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/unbaked/HeatedItemItemModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/HeatedItemItemModel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/client/model/item/unbaked/components/TemperatureBarComponentModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/components/TemperatureBarComponentModel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/ArmoryCommonProxy.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/ArmoryCommonProxy.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/block/properties/PropertyAnvilMaterial.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/properties/PropertyAnvilMaterial.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/config/ArmoryConfig.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/config/ArmoryConfig.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/factory/IMLAFactory.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/factory/IMLAFactory.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/inventory/slots/SlotFuelInput.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/slots/SlotFuelInput.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/inventory/slots/SlotHeatable.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/slots/SlotHeatable.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/inventory/slots/SlotInventoryCheck.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/slots/SlotInventoryCheck.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/material/ChainLayer.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/ChainLayer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/structure/forge/StructureControllerForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureControllerForge.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/structure/forge/StructureForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureForge.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/IFirePitComponent.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/IFirePitComponent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/TileEntityForgeBase.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityForgeBase.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityFireplaceGuiManager.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityFireplaceGuiManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityForgeBaseGuiManager.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityForgeBaseGuiManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/common/tileentity/state/IForgeFuelDataContainer.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/IForgeFuelDataContainer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeMaker.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeMaker.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/smithsmodding/armory/util/client/Colors.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/client/Colors.java" />
     </list>
     <ignored path="Armory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -545,7 +44,50 @@
           </activation>
         </task>
         <projects_view>
-          <tree_state />
+          <tree_state>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Armory" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Armory" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Tasks" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Armory" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Tasks" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="forgegradle" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode$1" />
+              </PATH_ELEMENT>
+            </PATH>
+          </tree_state>
         </projects_view>
       </state>
     </system>
@@ -555,7 +97,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="build.properties" pinned="false" current-in-tab="false">
+      <file leaf-file-name="build.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
@@ -605,7 +147,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ISingleComponentItem.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ISingleComponentItem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/ISingleComponentItem.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
@@ -1096,7 +638,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="1467905181603" />
+        <entry key="$PROJECT_DIR$" value="1467913177476" />
         <entry key="$PROJECT_DIR$/../IronChests" value="1466980803762" />
         <entry key="$PROJECT_DIR$/../Tiny-Storage" value="1467325010968" />
       </map>
@@ -1111,6 +653,51 @@
                   <entry key="$PROJECT_DIR$">
                     <value>
                       <ExternalModuleBuildClasspathPojo>
+                        <option name="entries">
+                          <list>
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minecraftforge.gradle/ForgeGradle/2.2-SNAPSHOT/c080376b2bdc472260821acac35e0be63a26ccf8/ForgeGradle-2.2-SNAPSHOT.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/gradle.plugin.com.matthewprenger/CurseGradle/1.0.7/331e3b32bc5069a68c3aebdbbdc45e59313d251a/CurseGradle-1.0.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/gradle.plugin.se.bjurr.gitchangelog/git-changelog-gradle-plugin/1.34/62a0e2181454a8b4c014e8147149ba826aca9598/git-changelog-gradle-plugin-1.34.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jponge/lzma-java/1.3/c0f18880fb29c7bfc088a6e114c66fe30a5e8df2/lzma-java-1.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jponge/lzma-java/1.3/a25db9d4d385ccda4825ae1b47a7a61d86e595af/lzma-java-1.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.5.1/7e3cecc566df91338c6c67883b89ddd05a17db43/httpclient-4.5.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.5.1/96823b9421ebb9f490dec837d9f96134e864e3a7/httpmime-4.5.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.abrarsyed.jastyle/jAstyle/1.3/42431e5834cfb184d60be4142e2806cf2d806ea/jAstyle-1.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.trove4j/trove4j/3.0.3/109c5be93362e6e651e417c51d1863477a22969c/trove4j-3.0.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.trove4j/trove4j/3.0.3/42ccaf4761f0dfdfa805c9e340d99a755907e2dd/trove4j-3.0.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nothome/javaxdelta/2.0.1/d4f5d077f1b15c6f67595015d69572303ad3f66d/javaxdelta-2.0.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.1/b9d63507329a7178e026fc334f87587ee5070ac5/gson-2.6.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/19.0/6ce200f6b23222af3d8abb6b6459e6c44f4bb0e9/guava-19.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.opencsv/opencsv/2.3/c23708cdb9e80a144db433e23344a788a1fd6599/opencsv-2.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.3/f0f24f6666c1a15c7e202e91610476bd4ce59368/asm-debug-all-5.0.3-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.3/f9e364ae2a66ce2a543012a4668856e84e5dab74/asm-debug-all-5.0.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minecraftforge/fernflower/2.0-SNAPSHOT/67d785bbdf22477c158cbacb8116e29c9bced797/fernflower-2.0-SNAPSHOT.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.tony19/named-regexp/0.2.3/370846bf3837952d981deb8f91e81da8c65b09e1/named-regexp-0.2.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cloudbees/diff4j/1.1/645329c0d4ebbea5f73758929c6e63bab9e77204/diff4j-1.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/se.bjurr.gitchangelog/git-changelog-lib/1.50/efe677c85675340591616067b66a68b846fa5dc8/git-changelog-lib-1.50.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.3/e876a79d561e5c6207b78d347e198c8c4531a5e5/httpcore-4.4.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/3f15fff45d57656685abfee9e8302bf14580044c/commons-codec-1.9-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/9ce04e34240f674bc72680f8b843b1457383161a/commons-codec-1.9.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/trove/trove/1.0.2/112b40581ab9a4d3de4636d49985a7f686d181c8/trove-1.0.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jvnet.localizer/localizer/1.12/6d456886a035b2c3f758059da1f91a823eaa4a62/localizer-1.12.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/1.4/a8762d07e76cfde2395257a5da47ba7c1dbd3dce/commons-io-1.4.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.0.0/49eb3ad545e7701234e4dd83db8dc1344b577f23/converter-gson-2.0.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.7.5/7a15a7db50f86c4b64aa3367424a60e3a325b8f1/okhttp-2.7.5.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.spullara.mustache.java/compiler/0.8.18/afc3d67ddefe7f3b0956d8aca08c8aac298862c3/compiler-0.8.18.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jayway.jsonpath/json-path/2.1.0/397bd8076ff9581ad2ebad787da45ba76ee39112/json-path-2.1.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.0.0/5c06d197fb7fa875ad452f562e3310dd9949d066/retrofit-2.0.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jgit/org.eclipse.jgit/3.6.2.201501210735-r/47d59dffb5f02470ccfb6c1a5a31b6040a1636e5/org.eclipse.jgit-3.6.2.201501210735-r.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.13/7fcf30c25b8f4a9379b9dad0d3f487b25272c026/slf4j-api-1.7.13.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minidev/json-smart/2.2/53200a9d80fff3106dc435de1350cdd20b757819/json-smart-2.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.50/fae4a0b1f2a96cb8f58f38da2650814c991cea01/jsch-0.1.50.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.javaewah/JavaEWAH/0.7.9/eceaf316a8faf0e794296ebe158ae110c7d72a5a/JavaEWAH-0.7.9.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minidev/accessors-smart/1.1/a527213f2fea112a04c9bdf0ec0264e34104cd08/accessors-smart-1.1.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.3/dcc2193db20e19e1feca8b1240dbbc4e190824fa/asm-5.0.3.jar" />
+                          </list>
+                        </option>
                         <option name="path" value="$PROJECT_DIR$" />
                       </ExternalModuleBuildClasspathPojo>
                     </value>
@@ -1259,12 +846,12 @@
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/ArmoryInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/logic/ArmoryClientInitializer.java" />
         <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/references/ModCreativeTabs.java" />
-        <option value="$PROJECT_DIR$/build.properties" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeHandler.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/textures/MaterializedTextureCreator.java" />
         <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/ArmorAddonPosition.java" />
         <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/ISingleComponentItem.java" />
+        <option value="$PROJECT_DIR$/build.properties" />
       </list>
     </option>
   </component>
@@ -1364,32 +951,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1896,16 +1457,24 @@
       <option name="presentableId" value="Default" />
       <updated>1467905374161</updated>
       <workItem from="1467905376500" duration="1770000" />
-      <workItem from="1467909139101" duration="4952000" />
+      <workItem from="1467909139101" duration="5960000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial API Release.">
+      <created>1467915344205</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1467915344206</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6722000" />
+    <option name="totallyTimeSpent" value="7730000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1914,10 +1483,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33645833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33645833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2247,22 +1816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="168" column="1" selection-start-line="168" selection-start-column="1" selection-end-line="168" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/ArmoryClientProxy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -2291,6 +1844,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="168" column="1" selection-start-line="168" selection-start-column="1" selection-end-line="168" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
