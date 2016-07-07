@@ -266,7 +266,7 @@ task('createGithubBranches') << {
         addTagProg.waitFor()
 
         logger.lifecycle("Uploading force push to repo.")
-        def setUrlCMD = "git config remote.origin.url https://" + System.getenv().GitUsername.toString() + ":" + System.getenv().GitPassword.toString() + "@github.com/smithsmodding/smithscore"
+        def setUrlCMD = "git config remote.origin.url https://" + System.getenv().GitUsername.toString() + ":" + System.getenv().GitPassword.toString() + "@github.com/smithsmodding/armory"
         def setURLProg = setUrlCMD.execute()
         setURLProg.waitFor()
 
