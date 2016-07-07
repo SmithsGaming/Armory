@@ -3,6 +3,7 @@ package com.smithsmodding.armory;
 import com.google.common.base.Stopwatch;
 import com.smithsmodding.armory.api.References;
 import com.smithsmodding.armory.common.ArmoryCommonProxy;
+import com.smithsmodding.armory.common.config.ArmoryConfig;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -44,6 +45,8 @@ public class Armory {
         getLogger().info("Starting pre init");
 
         side = event.getSide();
+
+        ArmoryConfig.ConfigHandler.init(event.getSuggestedConfigurationFile());
 
         proxy.preInitializeArmory();
         proxy.registerEventHandlers();

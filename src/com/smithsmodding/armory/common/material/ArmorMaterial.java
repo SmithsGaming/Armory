@@ -83,6 +83,11 @@ public class ArmorMaterial implements IArmorMaterial {
     }
 
     @Override
+    public void setItemDamageMaterialIndex(Integer materialIndex) {
+        this.materialIndex = materialIndex;
+    }
+
+    @Override
     public ItemStack getBaseItemStack () {
         return baseStack;
     }
@@ -156,10 +161,19 @@ public class ArmorMaterial implements IArmorMaterial {
     }
 
     @Override
+    public void setIsBaseArmorMaterial(boolean value) {
+        this.isBaseMaterial = value;
+    }
+
+    @Override
     public float getMeltingPoint () {
         return meltingPoint;
     }
 
+    @Override
+    public void setMeltingPoint(float meltingPoint) {
+        this.meltingPoint = meltingPoint;
+    }
 
     @Override
     public float getHeatCoefficient () {
@@ -167,10 +181,19 @@ public class ArmorMaterial implements IArmorMaterial {
     }
 
     @Override
+    public void setHeatCoefficient(float heatCoefficient) {
+        this.heatCoefficient = heatCoefficient;
+    }
+
+    @Override
     public IArmorPartRegistry getPartRegistry () {
         return MedievalAddonRegistry.getInstance();
     }
 
+    @Override
+    public void modifyPartState(String partId, boolean activeState) {
+        getPartRegistry().setPartStateForMaterial(this, partId, activeState);
+    }
 
     @Override
     public ITextureController getRenderInfo() {

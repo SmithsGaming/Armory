@@ -27,6 +27,8 @@ import com.smithsmodding.armory.common.anvil.AnvilMaterial;
 import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
 import com.smithsmodding.armory.common.block.BlockFirePlace;
 import com.smithsmodding.armory.common.block.BlockForge;
+import com.smithsmodding.armory.common.config.ArmorDataConfigHandler;
+import com.smithsmodding.armory.common.config.ArmoryConfig;
 import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
 import com.smithsmodding.armory.common.fluid.FluidMoltenMetal;
 import com.smithsmodding.armory.common.item.*;
@@ -54,6 +56,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -63,8 +66,10 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public class ArmoryInitializer {
     public static void InitializeServer() {
@@ -81,6 +86,7 @@ public class ArmoryInitializer {
 
     public static void postInitializeServer() {
         SystemInit.removeRecipes();
+        HeatableItemRegistry.getInstance().reloadOreDictionary();
     }
 
     public static class MedievalInitialization {
@@ -1315,26 +1321,48 @@ public class ArmoryInitializer {
         }
 
         public static void loadMaterialConfig() {
+            Armory.getLogger().info("Started loading custom ArmorMaterial Values from Config.");
+            ArmorDataConfigHandler configHandler = new ArmorDataConfigHandler();
 
+            configHandler.loadIDs();
+            configHandler.loadIsBaseArmorMaterial();
+            configHandler.loadTemperatureCoefficient();
+            configHandler.loadMeltingPoint();
+            configHandler.loadActiveParts();
+            configHandler.loadBaseDamageAbsorptions();
+            configHandler.loadPartModifiers();
+            configHandler.loadBaseDurability();
+
+            Armory.getLogger().info("Loading of the custom ArmorMaterial Values has succesfully been performed!");
         }
 
         public static void removeRecipes() {
+            if (!ArmoryConfig.enableHardModeNuggetRemoval)
+                return;
 
+            ListIterator<IRecipe> iterator = CraftingManager.getInstance().getRecipeList().listIterator();
+            while (iterator.hasNext()) {
+                IRecipe recipe = iterator.next();
+                tryRemoveRecipeFromGame(recipe, iterator);
+            }
         }
 
-        private static void tryRemoveRecipeFromGame(IRecipe pRecipe, Iterator pIterator) {
-            int[] tOreID = OreDictionary.getOreIDs(pRecipe.getRecipeOutput());
+        private static void tryRemoveRecipeFromGame(IRecipe recipe, Iterator iterator) {
+            if (recipe.getRecipeOutput() == null)
+                return;
 
-            for (int tID : tOreID) {
-                String pOreDicID = OreDictionary.getOreName(tID);
-                if (pOreDicID.contains("nugget")) {
-                    for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                        if (pOreDicID.toLowerCase().contains(tMaterial.getOreDicName().toLowerCase())) {
+            int[] oreIds = OreDictionary.getOreIDs(recipe.getRecipeOutput());
+
+            for (int Id : oreIds) {
+                String oreName = OreDictionary.getOreName(Id);
+                if (oreName.contains("nugget")) {
+                    for (IArmorMaterial material : MaterialRegistry.getInstance().getArmorMaterials().values()) {
+                        if (oreName.toLowerCase().contains(material.getOreDicName().toLowerCase())) {
                             try {
-                                pIterator.remove();
+                                iterator.remove();
                                 return;
                             } catch (IllegalStateException ex) {
-                                Armory.getLogger().info("Could not remove recipe of: " + ItemStackHelper.toString(pRecipe.getRecipeOutput()));
+                                Armory.getLogger().info("Could not remove recipe of: " + ItemStackHelper.toString(recipe.getRecipeOutput()));
                             }
                         }
                     }
@@ -1343,7 +1371,35 @@ public class ArmoryInitializer {
         }
 
         public static void initializeOreDict() {
+            ArrayList<ItemStack> chains = new ArrayList<ItemStack>();
+            ArrayList<ItemStack> rings = new ArrayList<ItemStack>();
+            ArrayList<ItemStack> plates = new ArrayList<ItemStack>();
+            ArrayList<ItemStack> nuggets = new ArrayList<ItemStack>();
 
+            GeneralRegistry.Items.metalChain.getSubItems(null, null, chains);
+            GeneralRegistry.Items.metalRing.getSubItems(null, null, rings);
+            GeneralRegistry.Items.metalPlate.getSubItems(null, null, plates);
+            GeneralRegistry.Items.metalNugget.getSubItems(null, null, nuggets);
+
+            for (ItemStack chain : chains) {
+                String material = chain.getTagCompound().getString(References.NBTTagCompoundData.Material);
+                OreDictionary.registerOre("chain" + MaterialRegistry.getInstance().getMaterial(material).getOreDicName(), chain);
+            }
+
+            for (ItemStack ring : rings) {
+                String material = ring.getTagCompound().getString(References.NBTTagCompoundData.Material);
+                OreDictionary.registerOre("ring" + MaterialRegistry.getInstance().getMaterial(material).getOreDicName(), ring);
+            }
+
+            for (ItemStack plate : plates) {
+                String material = plate.getTagCompound().getString(References.NBTTagCompoundData.Material);
+                OreDictionary.registerOre("plate" + MaterialRegistry.getInstance().getMaterial(material).getOreDicName(), plate);
+            }
+
+            for (ItemStack nugget : nuggets) {
+                String material = nugget.getTagCompound().getString(References.NBTTagCompoundData.Material);
+                OreDictionary.registerOre("nugget" + MaterialRegistry.getInstance().getMaterial(material).getOreDicName(), nugget);
+            }
         }
     }
 

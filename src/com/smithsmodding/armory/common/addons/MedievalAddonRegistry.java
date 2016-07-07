@@ -61,11 +61,24 @@ public class MedievalAddonRegistry implements IArmorPartRegistry, IMLAAddonRegis
     }
 
     @Override
+    public HashMap<MLAAddon, Boolean> getPartStatesForMaterial(IArmorMaterial material) {
+        if (!upgradeStates.containsKey(material))
+            return new HashMap<>();
+
+        return upgradeStates.get(material);
+    }
+
+    @Override
     public void setPartStateForMaterial (IArmorMaterial material, MLAAddon addon, boolean state) {
         if (!upgradeStates.containsKey(material))
             upgradeStates.put(material, new HashMap<MLAAddon, Boolean>());
 
         upgradeStates.get(material).put(addon, state);
+    }
+
+    @Override
+    public void setPartStateForMaterial(IArmorMaterial material, String addonId, boolean state) {
+        setPartStateForMaterial(material, getUpgrade(addonId), state);
     }
 
     @Override

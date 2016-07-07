@@ -34,6 +34,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
         ArmoryInitializer.SystemInit.RegisterTileEntities();
         SystemInit.registerIIR();
         SystemInit.registerTESR();
+        ArmoryInitializer.SystemInit.loadMaterialConfig();
         MedievalClientInitialization.registerMaterialResources();
         MedievalClientInitialization.registerUpgradeResources();
         MedievalClientInitialization.registerRingResources();

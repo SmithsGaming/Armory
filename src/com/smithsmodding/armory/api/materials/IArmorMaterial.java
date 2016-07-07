@@ -21,6 +21,8 @@ public interface IArmorMaterial {
 
     int getItemDamageMaterialIndex ();
 
+    void setItemDamageMaterialIndex(Integer materialIndex);
+
     ItemStack getBaseItemStack ();
 
     String getType ();
@@ -54,11 +56,20 @@ public interface IArmorMaterial {
 
     boolean getIsBaseArmorMaterial ();
 
+    void setIsBaseArmorMaterial(boolean value);
+
     float getMeltingPoint ();
+
+    void setMeltingPoint(float meltingPoint);
 
     float getHeatCoefficient ();
 
+    void setHeatCoefficient(float heatCoefficient);
+
+
     IArmorPartRegistry getPartRegistry ();
+
+    void modifyPartState(String partId, boolean activeState);
 
 
     ITextureController getRenderInfo();

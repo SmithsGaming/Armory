@@ -275,7 +275,7 @@ task('createGithubBranches') << {
         syncProg.waitFor()
 
         //Adds a tag to the minecraft version specific branch for the version number.
-        logger.lifecycle("Adding version tag.")
+        logger.lifecycle("Adding version tag: " + "git tag -a Version - " + version + " -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'")
         def addTagCMD = "git tag -a Version - " + version + " -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'"
         def addTagProg = addTagCMD.execute()
         addTagProg.waitFor()

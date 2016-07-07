@@ -23,6 +23,4 @@ public interface IArmorConfigurator {
     void loadTemperatureCoefficient();
 
     void loadMeltingPoint();
-
-    void loadColorSettings();
 }

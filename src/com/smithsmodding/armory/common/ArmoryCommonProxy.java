@@ -3,8 +3,11 @@ package com.smithsmodding.armory.common;
 
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.common.handlers.GuiHandler;
+import com.smithsmodding.armory.common.handlers.config.ConfigSyncCompletedEventHandler;
+import com.smithsmodding.armory.common.handlers.config.MaterialPropertyValueEventHandler;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
 import com.smithsmodding.armory.common.structure.forge.StructureFactoryForge;
+import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.common.structures.StructureRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -33,6 +36,9 @@ public class ArmoryCommonProxy {
     public void registerEventHandlers() {
         NetworkRegistry.INSTANCE.registerGuiHandler(Armory.instance, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(Armory.instance);
+
+        SmithsCore.getRegistry().getNetworkBus().register(new ConfigSyncCompletedEventHandler());
+        SmithsCore.getRegistry().getNetworkBus().register(new MaterialPropertyValueEventHandler());
     }
 
     public EntityPlayer getPlayer(MessageContext pContext) {
