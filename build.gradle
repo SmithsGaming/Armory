@@ -75,7 +75,7 @@ configurations {
 }
 
 //Initializing the mod environment
-version = config.mod_version.toString() + "-" + System.getenv().TRAVIS_BUILD_NUMBER.toString()
+version = config.minecraft_version + "-" + config.mod_version.toString() + "-" + System.getenv().TRAVIS_BUILD_NUMBER.toString()
 def apiversion = config.api_version.toString() + "-" + System.getenv().TRAVIS_BUILD_NUMBER.toString()
 
 if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
@@ -276,7 +276,7 @@ task('createGithubBranches') << {
 
         //Adds a tag to the minecraft version specific branch for the version number.
         logger.lifecycle("Adding version tag: " + "git tag -a Version - " + version + " -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'")
-        def addTagCMD = "git tag -a Version - " + version + " -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'"
+        def addTagCMD = "git tag -a " + version + " -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'"
         def addTagProg = addTagCMD.execute()
         addTagProg.waitFor()
 
