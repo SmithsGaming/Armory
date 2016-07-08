@@ -6,11 +6,9 @@ package com.smithsmodding.armory.common.registry;
  */
 
 import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.helpers.IArmoryHelpers;
 import com.smithsmodding.armory.api.registries.*;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraftforge.common.util.EnumHelper;
+import com.smithsmodding.armory.common.helpers.ArmoryHelpers;
 
 import java.util.Properties;
 
@@ -50,5 +48,15 @@ public class GeneralRegistry implements IArmoryAPI {
     @Override
     public IMaterialRegistry getArmorMaterialRegistry() {
         return MaterialRegistry.getInstance();
+    }
+
+    @Override
+    public IArmorRegistry getArmorRegistry() {
+        return ArmorRegistry.getInstance();
+    }
+
+    @Override
+    public IArmoryHelpers getHelpers() {
+        return ArmoryHelpers.getInstance();
     }
 }

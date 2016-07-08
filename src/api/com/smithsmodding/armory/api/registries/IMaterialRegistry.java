@@ -1,9 +1,9 @@
 package com.smithsmodding.armory.api.registries;
 
-import com.smithsmodding.armory.api.armor.*;
-import com.smithsmodding.armory.api.materials.*;
+import com.smithsmodding.armory.api.logic.IMaterialInitializer;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
 
-import java.util.*;
+import java.util.HashMap;
 
 /**
  * Created by Orion
@@ -13,27 +13,6 @@ import java.util.*;
  * Copyrighted according to Project specific license
  */
 public interface IMaterialRegistry {
-    /**
-     * Function to retrieve all of the types registered to this registry
-     *
-     * @return A HashMap with as Key the uniqueID of the armor and as Value a instance of a MultiLayeredArmor
-     */
-    HashMap<String, MultiLayeredArmor> getAllRegisteredArmors();
-
-    /**
-     * Function to register a new Instance of MultiLayeredArmor
-     *
-     * @param pArmor The armor you want to register.
-     */
-    void registerNewArmor(MultiLayeredArmor pArmor);
-
-    /**
-     * Returns the armor for a given uniqueID or null if not registered
-     *
-     * @param pInternalName The uniqueID of the requested armor.
-     * @return The instance of MultiLayeredArmor registered to this IMaterialRegistry with the given uniqueID, if present or null if none is registerd with that name.
-     */
-    MultiLayeredArmor getArmor(String pInternalName);
 
     /**
      * Function to get all the materials registered to this IMaterialRegistry
@@ -43,24 +22,32 @@ public interface IMaterialRegistry {
     HashMap<String, IArmorMaterial> getArmorMaterials();
 
     /**
-     * Sets all the materials at once.
+     * Function to get all the material initializers registered to this IMaterialRegistry
      *
-     * @param pNewMaterials A new HashMap with material Definitions.
+     * @return A HashMap with as Key the material and as Value the a instance of IMaterialInitializer
      */
-    void setAllArmorMaterials(HashMap<String, IArmorMaterial> pNewMaterials);
+    HashMap<IArmorMaterial, IMaterialInitializer> getInitializers();
 
     /**
      * Function to register a new material to this registry
      *
-     * @param pMaterial The new material you want to register
+     * @param material The new material you want to register
      */
-    void registerMaterial(IArmorMaterial pMaterial);
+    void registerMaterial(IArmorMaterial material, IMaterialInitializer initializer);
 
     /**
      * Function to get a material from its uniqueID if registered.
      *
-     * @param pInternalName The uniqueID of the material you try to retrieve from the registry
+     * @param uniqueId The uniqueID of the material you try to retrieve from the registry
      * @return A instance of IArmorMaterial that is represented by the given uniqueID or null if no material with that name is registered.
      */
-    IArmorMaterial getMaterial(String pInternalName);
+    IArmorMaterial getMaterial(String uniqueId);
+
+    /**
+     * Getter for a materials initializer.
+     *
+     * @param material Hte material in question.
+     * @return The initializer for a given material.
+     */
+    IMaterialInitializer getInitializer(IArmorMaterial material);
 }

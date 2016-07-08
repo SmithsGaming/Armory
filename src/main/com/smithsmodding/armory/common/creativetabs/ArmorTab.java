@@ -1,10 +1,11 @@
 package com.smithsmodding.armory.common.creativetabs;
 
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.armor.MLAAddon;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
+import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
+import com.smithsmodding.armory.common.registry.ArmorRegistry;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.armory.util.client.TranslationKeys;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
@@ -34,12 +35,12 @@ public class ArmorTab extends CreativeTabs {
         tHelmetAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.RIGHT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
         tHelmetAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.LEFT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
 
-        ItemStack stack = MedievalArmorFactory.getInstance().buildNewMLAArmor(MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET), tHelmetAddons, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(References.InternalNames.Armor.MEDIEVALHELMET), References.InternalNames.Materials.Vanilla.IRON);
+        ItemStack stack = MedievalArmorFactory.getInstance().buildNewMLAArmor(ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET), tHelmetAddons, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(References.InternalNames.Armor.MEDIEVALHELMET), References.InternalNames.Materials.Vanilla.IRON);
         return stack;
     }
 
     @Override
     public Item getTabIconItem() {
-        return MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET);
+        return ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET);
     }
 }

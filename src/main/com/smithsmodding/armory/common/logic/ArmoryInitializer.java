@@ -5,55 +5,45 @@ package com.smithsmodding.armory.common.logic;
  *   Created on: 17-9-2014
  */
 
-import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.references.*;
 import com.smithsmodding.armory.api.armor.ArmorAddonPosition;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
-import com.smithsmodding.armory.common.crafting.blacksmiths.component.HeatedAnvilRecipeComponent;
-import com.smithsmodding.armory.common.crafting.blacksmiths.component.OreDicAnvilRecipeComponent;
 import com.smithsmodding.armory.api.crafting.blacksmiths.component.StandardAnvilRecipeComponent;
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
-import com.smithsmodding.armory.common.crafting.blacksmiths.recipe.ArmorUpgradeAnvilRecipe;
-import com.smithsmodding.armory.api.events.common.ModifyMaterialEvent;
-import com.smithsmodding.armory.api.events.common.RegisterArmorEvent;
-import com.smithsmodding.armory.api.events.common.RegisterMaterialsEvent;
-import com.smithsmodding.armory.api.events.common.RegisterUpgradesEvent;
 import com.smithsmodding.armory.api.materials.IAnvilMaterial;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.references.*;
 import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
-import com.smithsmodding.armory.common.creativetabs.ArmorTab;
-import com.smithsmodding.armory.common.creativetabs.ComponentsTab;
-import com.smithsmodding.armory.common.creativetabs.GeneralTabs;
-import com.smithsmodding.armory.common.creativetabs.HeatedItemTab;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.anvil.AnvilMaterial;
 import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
 import com.smithsmodding.armory.common.block.BlockFirePlace;
 import com.smithsmodding.armory.common.block.BlockForge;
 import com.smithsmodding.armory.common.config.ArmorDataConfigHandler;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
+import com.smithsmodding.armory.common.crafting.blacksmiths.component.HeatedAnvilRecipeComponent;
+import com.smithsmodding.armory.common.crafting.blacksmiths.component.OreDicAnvilRecipeComponent;
+import com.smithsmodding.armory.common.crafting.blacksmiths.recipe.ArmorUpgradeAnvilRecipe;
+import com.smithsmodding.armory.common.creativetabs.ArmorTab;
+import com.smithsmodding.armory.common.creativetabs.ComponentsTab;
+import com.smithsmodding.armory.common.creativetabs.GeneralTabs;
+import com.smithsmodding.armory.common.creativetabs.HeatedItemTab;
 import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
 import com.smithsmodding.armory.common.fluid.FluidMoltenMetal;
 import com.smithsmodding.armory.common.item.*;
 import com.smithsmodding.armory.common.item.armor.tiermedieval.ArmorMedieval;
 import com.smithsmodding.armory.common.item.block.ItemBlockBlackSmithsAnvil;
+import com.smithsmodding.armory.common.logic.material.IronMaterialInitializer;
+import com.smithsmodding.armory.common.logic.material.ObsidianMaterialInitializer;
 import com.smithsmodding.armory.common.material.ArmorMaterial;
-import com.smithsmodding.armory.common.material.ChainLayer;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.material.fluidmodifiers.ObsidianToLavaSetter;
-import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
-import com.smithsmodding.armory.common.registry.AnvilRecipeRegistry;
-import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
+import com.smithsmodding.armory.common.registry.*;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
-import com.smithsmodding.armory.util.client.Textures;
 import com.smithsmodding.armory.util.client.TranslationKeys;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.util.common.ItemStackHelper;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -63,9 +53,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -77,13 +64,13 @@ import java.util.ListIterator;
 
 public class ArmoryInitializer {
     public static void InitializeServer() {
-        SystemInit.RegisterCreativeTabs();
-        SystemInit.RegisterFluids();
-        MedievalInitialization.Initialize();
-        GlobalInitialization.RegisterAnvilMaterials();
-        SystemInit.RegisterBlocks();
-        SystemInit.RegisterItems();
-        SystemInit.RegisterTileEntities();
+        SystemInit.registerCreativeTabs();
+        SystemInit.registerFluids();
+        MedievalInitialization.preInitialize();
+        GlobalInitialization.registerAnvilMaterials();
+        SystemInit.registerBlocks();
+        SystemInit.registerItems();
+        SystemInit.registerTileEntities();
         SystemInit.loadMaterialConfig();
         MedievalInitialization.prepareGame();
         SystemInit.initializeOreDict();
@@ -95,310 +82,86 @@ public class ArmoryInitializer {
     }
 
     public static class MedievalInitialization {
-        public static void Initialize() {
+        public static void preInitialize() {
             registerArmorPieces();
-            registerMaterials();
             registerAddonPositions();
-            registerUpgrades();
-            modifyMaterials();
+            registerMaterials();
         }
 
-        private static void registerArmorPieces() {
-            MaterialRegistry.getInstance().registerNewArmor(new ArmorMedieval(References.InternalNames.Armor.MEDIEVALHELMET, EntityEquipmentSlot.HEAD));
-            MaterialRegistry.getInstance().registerNewArmor(new ArmorMedieval(References.InternalNames.Armor.MEDIEVALCHESTPLATE, EntityEquipmentSlot.CHEST));
-            MaterialRegistry.getInstance().registerNewArmor(new ArmorMedieval(References.InternalNames.Armor.MEDIEVALLEGGINGS, EntityEquipmentSlot.LEGS));
-            MaterialRegistry.getInstance().registerNewArmor(new ArmorMedieval(References.InternalNames.Armor.MEDIEVALSHOES, EntityEquipmentSlot.FEET));
-
-            MinecraftForge.EVENT_BUS.register(new RegisterArmorEvent());
+        public static void registerArmorPieces() {
+            ArmorRegistry.getInstance().registerNewArmor(new ArmorMedieval(References.InternalNames.Armor.MEDIEVALHELMET, References.InternalNames.AddonPositions.Helmet.BASE, EntityEquipmentSlot.HEAD));
+            ArmorRegistry.getInstance().registerNewArmor(new ArmorMedieval(References.InternalNames.Armor.MEDIEVALCHESTPLATE, References.InternalNames.AddonPositions.Chestplate.BASE, EntityEquipmentSlot.CHEST));
+            ArmorRegistry.getInstance().registerNewArmor(new ArmorMedieval(References.InternalNames.Armor.MEDIEVALLEGGINGS, References.InternalNames.AddonPositions.Leggings.BASE, EntityEquipmentSlot.LEGS));
+            ArmorRegistry.getInstance().registerNewArmor(new ArmorMedieval(References.InternalNames.Armor.MEDIEVALSHOES, References.InternalNames.AddonPositions.Shoes.BASE, EntityEquipmentSlot.FEET));
         }
 
-        private static void registerMaterials() {
+        public static void registerAddonPositions() {
+            //Registering the positions to the helmet
+            MultiLayeredArmor helmet = ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET);
+            helmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.BASE, References.InternalNames.Armor.MEDIEVALHELMET, 1));
+            helmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.TOP, References.InternalNames.Armor.MEDIEVALHELMET, 1));
+            helmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.LEFT, References.InternalNames.Armor.MEDIEVALHELMET, 1));
+            helmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.RIGHT, References.InternalNames.Armor.MEDIEVALHELMET, 1));
+            helmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.AQUABREATHING, References.InternalNames.Armor.MEDIEVALHELMET, 1));
+            helmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.NIGHTSIGHT, References.InternalNames.Armor.MEDIEVALHELMET, 1));
+            helmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.THORNS, References.InternalNames.Armor.MEDIEVALHELMET, 1));
+            helmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.REINFORCED, References.InternalNames.Armor.MEDIEVALHELMET, 1));
+            helmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.AUTOREPAIR, References.InternalNames.Armor.MEDIEVALHELMET, 1));
+            helmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.ELECTRIC, References.InternalNames.Armor.MEDIEVALHELMET, 1));
+
+            //Registering the positions to the chestplate
+            MultiLayeredArmor chestplate = ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE);
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.BASE, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.SHOULDERLEFT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.SHOULDERRIGHT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.FRONTLEFT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.FRONTRIGHT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.BACKLEFT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.BACKRIGHT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.STRENGTH, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.HASTE, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.FLYING, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.THORNS, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.REINFORCED, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.AUTOREPAIR, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+            chestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.ELECTRIC, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
+
+            //Registering the positions to the leggins
+            MultiLayeredArmor leggings = ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS);
+            leggings.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.BASE, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
+            leggings.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.FRONTLEFT, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
+            leggings.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.FRONTRIGHT, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
+            leggings.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.BACKLEFT, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
+            leggings.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.BACKRIGHT, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
+            leggings.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.SPEED, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
+            leggings.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.JUMPASSIST, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
+            leggings.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.UPHILLASSIST, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
+            leggings.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.THORNS, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
+            leggings.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.REINFORCED, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
+            leggings.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.AUTOREPAIR, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
+            leggings.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.ELECTRIC, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
+
+            //Registering the positions to the shoes
+            MultiLayeredArmor shoes = ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES);
+            shoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.BASE, References.InternalNames.Armor.MEDIEVALSHOES, 1));
+            shoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.LEFT, References.InternalNames.Armor.MEDIEVALSHOES, 1));
+            shoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.RIGHT, References.InternalNames.Armor.MEDIEVALSHOES, 1));
+            shoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.FALLASSIST, References.InternalNames.Armor.MEDIEVALSHOES, 1));
+            shoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.SWIMASSIST, References.InternalNames.Armor.MEDIEVALSHOES, 1));
+            shoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.REINFORCED, References.InternalNames.Armor.MEDIEVALSHOES, 1));
+            shoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.AUTOREPAIR, References.InternalNames.Armor.MEDIEVALSHOES, 1));
+            shoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.ELECTRIC, References.InternalNames.Armor.MEDIEVALSHOES, 1));
+        }
+
+        public static void registerMaterials() {
             ArmorMaterial tIron = new ArmorMaterial(References.InternalNames.Materials.Vanilla.IRON, "Iron", true, 1865, 500, 0.225F, new ItemStack(Items.IRON_INGOT));
             ArmorMaterial tObsidian = new ArmorMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN, "Obsidian", true, 1404, 3000, 0.345F, new ItemStack(Item.getItemFromBlock(Blocks.OBSIDIAN)));
 
-            MaterialRegistry.getInstance().registerMaterial(tIron);
-            MaterialRegistry.getInstance().registerMaterial(tObsidian);
+            MaterialRegistry.getInstance().registerMaterial(tIron, new IronMaterialInitializer());
+            MaterialRegistry.getInstance().registerMaterial(tObsidian, new ObsidianMaterialInitializer());
 
             HeatableItemRegistry.getInstance().addBaseStack(tObsidian, new ItemStack(Blocks.OBSIDIAN), References.InternalNames.HeatedItemTypes.BLOCK, 9 * References.General.FLUID_INGOT);
             HeatableItemRegistry.getInstance().addBaseStack(tIron, new ItemStack(Blocks.IRON_BLOCK), References.InternalNames.HeatedItemTypes.BLOCK, 9 * References.General.FLUID_INGOT);
-            MinecraftForge.EVENT_BUS.post(new RegisterMaterialsEvent());
-        }
-
-        private static void registerAddonPositions() {
-            //Registering the positions to the helmet
-            MultiLayeredArmor tHelmet = MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET);
-            tHelmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.BASE, References.InternalNames.Armor.MEDIEVALHELMET, 1));
-            tHelmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.TOP, References.InternalNames.Armor.MEDIEVALHELMET, 1));
-            tHelmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.LEFT, References.InternalNames.Armor.MEDIEVALHELMET, 1));
-            tHelmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.RIGHT, References.InternalNames.Armor.MEDIEVALHELMET, 1));
-            tHelmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.AQUABREATHING, References.InternalNames.Armor.MEDIEVALHELMET, 1));
-            tHelmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.NIGHTSIGHT, References.InternalNames.Armor.MEDIEVALHELMET, 1));
-            tHelmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.THORNS, References.InternalNames.Armor.MEDIEVALHELMET, 1));
-            tHelmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.REINFORCED, References.InternalNames.Armor.MEDIEVALHELMET, 1));
-            tHelmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.AUTOREPAIR, References.InternalNames.Armor.MEDIEVALHELMET, 1));
-            tHelmet.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Helmet.ELECTRIC, References.InternalNames.Armor.MEDIEVALHELMET, 1));
-
-            //Registering the positions to the chestplate
-            MultiLayeredArmor tChestplate = MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE);
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.BASE, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.SHOULDERLEFT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.SHOULDERRIGHT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.FRONTLEFT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.FRONTRIGHT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.BACKLEFT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.BACKRIGHT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.STRENGTH, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.HASTE, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.FLYING, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.THORNS, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.REINFORCED, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.AUTOREPAIR, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-            tChestplate.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Chestplate.ELECTRIC, References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1));
-
-            //Registering the positions to the leggins
-            MultiLayeredArmor tLeggins = MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS);
-            tLeggins.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.BASE, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
-            tLeggins.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.FRONTLEFT, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
-            tLeggins.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.FRONTRIGHT, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
-            tLeggins.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.BACKLEFT, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
-            tLeggins.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.BACKRIGHT, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
-            tLeggins.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.SPEED, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
-            tLeggins.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.JUMPASSIST, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
-            tLeggins.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.UPHILLASSIST, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
-            tLeggins.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.THORNS, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
-            tLeggins.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.REINFORCED, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
-            tLeggins.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.AUTOREPAIR, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
-            tLeggins.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Leggings.ELECTRIC, References.InternalNames.Armor.MEDIEVALLEGGINGS, 1));
-
-            //Registering the positions to the shoes
-            MultiLayeredArmor tShoes = MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES);
-            tShoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.BASE, References.InternalNames.Armor.MEDIEVALSHOES, 1));
-            tShoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.LEFT, References.InternalNames.Armor.MEDIEVALSHOES, 1));
-            tShoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.RIGHT, References.InternalNames.Armor.MEDIEVALSHOES, 1));
-            tShoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.FALLASSIST, References.InternalNames.Armor.MEDIEVALSHOES, 1));
-            tShoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.SWIMASSIST, References.InternalNames.Armor.MEDIEVALSHOES, 1));
-            tShoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.REINFORCED, References.InternalNames.Armor.MEDIEVALSHOES, 1));
-            tShoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.AUTOREPAIR, References.InternalNames.Armor.MEDIEVALSHOES, 1));
-            tShoes.registerAddonPosition(new ArmorAddonPosition(References.InternalNames.AddonPositions.Shoes.ELECTRIC, References.InternalNames.Armor.MEDIEVALSHOES, 1));
-        }
-
-        private static void registerUpgrades() {
-            registerBaseLayers();
-            registerTopHead();
-            registerEarProtection();
-            registerShoulderPads();
-            registerFrontProtection();
-            registerBackProtection();
-            registerFrontLegProtection();
-            registerBackLegProtection();
-            registerShoeProtection();
-
-            MinecraftForge.EVENT_BUS.post(new RegisterUpgradesEvent());
-        }
-
-        private static void registerBaseLayers () {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                ChainLayer tBaseHelmet = new ChainLayer(References.InternalNames.AddonPositions.Helmet.BASE, References.InternalNames.Armor.MEDIEVALHELMET, References.InternalNames.AddonPositions.Helmet.BASE, tMaterial.getUniqueID(), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tHelmetResource.getPrimaryLocation()), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tHelmetResource.getSecondaryLocation()));
-                MedievalAddonRegistry.getInstance().registerUpgrade(tBaseHelmet);
-                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBaseHelmet, true);
-
-                ChainLayer tBaseChestplate = new ChainLayer(References.InternalNames.AddonPositions.Chestplate.BASE, References.InternalNames.Armor.MEDIEVALCHESTPLATE, References.InternalNames.AddonPositions.Chestplate.BASE, tMaterial.getUniqueID(), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tChestplateResource.getPrimaryLocation()), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tChestplateResource.getSecondaryLocation()));
-                MedievalAddonRegistry.getInstance().registerUpgrade(tBaseChestplate);
-                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBaseChestplate, true);
-
-                ChainLayer tBaseLeggings = new ChainLayer(References.InternalNames.AddonPositions.Leggings.BASE, References.InternalNames.Armor.MEDIEVALLEGGINGS, References.InternalNames.AddonPositions.Leggings.BASE, tMaterial.getUniqueID(), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tLegginsResource.getPrimaryLocation()), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tLegginsResource.getSecondaryLocation()));
-                MedievalAddonRegistry.getInstance().registerUpgrade(tBaseLeggings);
-                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBaseLeggings, true);
-
-                ChainLayer tBaseShoes = new ChainLayer(References.InternalNames.AddonPositions.Shoes.BASE, References.InternalNames.Armor.MEDIEVALSHOES, References.InternalNames.AddonPositions.Shoes.BASE, tMaterial.getUniqueID(), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tShoesResource.getPrimaryLocation()), new ResourceLocation(Textures.MultiArmor.Materials.Iron.tShoesResource.getSecondaryLocation()));
-                MedievalAddonRegistry.getInstance().registerUpgrade(tBaseShoes);
-                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBaseShoes, true);
-            }
-        }
-        
-        private static void registerTopHead() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tTopHead = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Helmet.TOP, References.InternalNames.Armor.MEDIEVALHELMET, References.InternalNames.AddonPositions.Helmet.TOP, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Helmet.TopHead, TextFormatting.RESET, 2.5F, 60, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Helmet_TopHead"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Helmet_TopHead.png"));
-                MedievalAddonRegistry.getInstance().registerUpgrade(tTopHead);
-
-                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tTopHead, true);
-            }
-        }
-
-        private static void registerEarProtection() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tEarProtectionLeft = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Helmet.LEFT, References.InternalNames.Armor.MEDIEVALHELMET, References.InternalNames.AddonPositions.Helmet.LEFT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Helmet.LeftEar, TextFormatting.RESET, 0.5F, 20, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left.png"));
-                ArmorUpgradeMedieval tEarProtectionRight = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Helmet.RIGHT, References.InternalNames.Armor.MEDIEVALHELMET, References.InternalNames.AddonPositions.Helmet.RIGHT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Helmet.RightEar, TextFormatting.RESET, 0.5F, 20, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right.png"));
-                MedievalAddonRegistry.getInstance().registerUpgrade(tEarProtectionLeft);
-                MedievalAddonRegistry.getInstance().registerUpgrade(tEarProtectionRight);
-
-                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tEarProtectionLeft, true);
-                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tEarProtectionRight, true);
-            }
-        }
-
-        private static void registerShoulderPads() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tShoulderPadLeft = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Chestplate.SHOULDERLEFT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, References.InternalNames.AddonPositions.Chestplate.SHOULDERLEFT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Chestplate.ShoulderLeft, TextFormatting.RESET, 1F, 50, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left.png"));
-                ArmorUpgradeMedieval tShoulderPadRight = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Chestplate.SHOULDERRIGHT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, References.InternalNames.AddonPositions.Chestplate.SHOULDERRIGHT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Chestplate.ShoulderRight, TextFormatting.RESET, 1F, 50, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right.png"));
-                MedievalAddonRegistry.getInstance().registerUpgrade(tShoulderPadLeft);
-                MedievalAddonRegistry.getInstance().registerUpgrade(tShoulderPadRight);
-
-                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tShoulderPadLeft, true);
-                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tShoulderPadRight, true);
-            }
-        }
-
-        private static void registerFrontProtection() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tFrontChestProtectionLeft = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Chestplate.FRONTLEFT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, References.InternalNames.AddonPositions.Chestplate.FRONTLEFT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Chestplate.FrontLeft, TextFormatting.RESET, 2F, 150, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Chestplate_Protection_Front_Left"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Left.png"));
-                ArmorUpgradeMedieval tFrontChestProtectionRight = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Chestplate.FRONTRIGHT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, References.InternalNames.AddonPositions.Chestplate.FRONTRIGHT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Chestplate.FrontRight, TextFormatting.RESET, 2F, 150, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Chestplate_Protection_Front_Right"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Front_Right.png"));
-                MedievalAddonRegistry.getInstance().registerUpgrade(tFrontChestProtectionLeft);
-                MedievalAddonRegistry.getInstance().registerUpgrade(tFrontChestProtectionRight);
-
-                if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN)) {
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontChestProtectionLeft, false);
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontChestProtectionRight, false);
-                } else {
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontChestProtectionLeft, true);
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontChestProtectionRight, true);
-                }
-            }
-        }
-
-        private static void registerBackProtection() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tBackChestProtectionLeft = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Chestplate.BACKLEFT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, References.InternalNames.AddonPositions.Chestplate.BACKLEFT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Chestplate.BackLeft, TextFormatting.RESET, 2F, 150, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left.png"));
-                ArmorUpgradeMedieval tBackChestProtectionRight = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Chestplate.BACKRIGHT, References.InternalNames.Armor.MEDIEVALCHESTPLATE, References.InternalNames.AddonPositions.Chestplate.BACKRIGHT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Chestplate.BackRight, TextFormatting.RESET, 2F, 150, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right.png"));
-                MedievalAddonRegistry.getInstance().registerUpgrade(tBackChestProtectionLeft);
-                MedievalAddonRegistry.getInstance().registerUpgrade(tBackChestProtectionRight);
-
-                if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN)) {
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackChestProtectionLeft, false);
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackChestProtectionRight, false);
-                } else {
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackChestProtectionLeft, true);
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackChestProtectionRight, true);
-                }
-            }
-        }
-
-        private static void registerFrontLegProtection() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tFrontLeggingsProtectionLeft = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Leggings.FRONTLEFT, References.InternalNames.Armor.MEDIEVALLEGGINGS, References.InternalNames.AddonPositions.Leggings.FRONTLEFT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Leggings.FrontLeft, TextFormatting.RESET, 1.5F, 125, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Leggins_Protection_Front_Left"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Left.png"));
-                ArmorUpgradeMedieval tFrontLeggingsProtectionRight = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Leggings.FRONTRIGHT, References.InternalNames.Armor.MEDIEVALLEGGINGS, References.InternalNames.AddonPositions.Leggings.FRONTRIGHT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Leggings.FrontRight, TextFormatting.RESET, 1.5F, 125, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Leggins_Protection_Front_Right"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Front_Right.png"));
-                MedievalAddonRegistry.getInstance().registerUpgrade(tFrontLeggingsProtectionLeft);
-                MedievalAddonRegistry.getInstance().registerUpgrade(tFrontLeggingsProtectionRight);
-
-                if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN)) {
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontLeggingsProtectionLeft, false);
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontLeggingsProtectionRight, false);
-                } else {
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontLeggingsProtectionLeft, true);
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tFrontLeggingsProtectionRight, true);
-                }
-            }
-        }
-
-        private static void registerBackLegProtection() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tBackLeggingsProtectionLeft = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Leggings.BACKLEFT, References.InternalNames.Armor.MEDIEVALLEGGINGS, References.InternalNames.AddonPositions.Leggings.BACKLEFT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Leggings.BackLeft, TextFormatting.RESET, 2F, 150, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Leggins_Protection_Back_Left"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Left.png"));
-                ArmorUpgradeMedieval tBackLeggingsProtectionRight = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Leggings.BACKRIGHT, References.InternalNames.Armor.MEDIEVALLEGGINGS, References.InternalNames.AddonPositions.Leggings.BACKRIGHT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Leggings.BackRight, TextFormatting.RESET, 2F, 150, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Leggins_Protection_Back_Right"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Leggins_Protection_Back_Right.png"));
-                MedievalAddonRegistry.getInstance().registerUpgrade(tBackLeggingsProtectionLeft);
-                MedievalAddonRegistry.getInstance().registerUpgrade(tBackLeggingsProtectionRight);
-
-                if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN)) {
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackLeggingsProtectionLeft, false);
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackLeggingsProtectionRight, false);
-                } else {
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackLeggingsProtectionLeft, true);
-                    MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tBackLeggingsProtectionRight, true);
-                }
-            }
-        }
-
-        private static void registerShoeProtection() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                ArmorUpgradeMedieval tShoeProtectionLeft = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Shoes.LEFT, References.InternalNames.Armor.MEDIEVALSHOES, References.InternalNames.AddonPositions.Shoes.LEFT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Shoes.Left, TextFormatting.RESET, 1F, 50, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Shoes_Protection_Left"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Shoes_Protection_Left.png"));
-                ArmorUpgradeMedieval tShoeProtectionRight = new ArmorUpgradeMedieval(References.InternalNames.Upgrades.Shoes.RIGHT, References.InternalNames.Armor.MEDIEVALSHOES, References.InternalNames.AddonPositions.Shoes.RIGHT, tMaterial.getUniqueID(), TranslationKeys.Items.MultiArmor.Upgrades.Shoes.Right, TextFormatting.RESET, 1F, 50, 1, new ResourceLocation("armory:items/multiarmor/upgrades/armory.Shoes_Protection_Right"), new ResourceLocation("armory:textures/models/multiarmor/upgrades/armory.Shoes_Protection_Right.png"));
-                MedievalAddonRegistry.getInstance().registerUpgrade(tShoeProtectionLeft);
-                MedievalAddonRegistry.getInstance().registerUpgrade(tShoeProtectionRight);
-
-                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tShoeProtectionLeft, true);
-                MedievalAddonRegistry.getInstance().setPartStateForMaterial(tMaterial, tShoeProtectionRight, true);
-            }
-        }
-
-        private static void modifyMaterials() {
-            modifyHelmet();
-            modifyChestplate();
-            modifyLeggings();
-            modifyShoes();
-        }
-
-        private static void modifyHelmet() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.IRON)) {
-                    tMaterial.setBaseDamageAbsorption(References.InternalNames.Armor.MEDIEVALHELMET, 1.5F);
-                    tMaterial.setBaseDurability(References.InternalNames.Armor.MEDIEVALHELMET, 50);
-                    tMaterial.setMaxModifiersOnPart(References.InternalNames.Armor.MEDIEVALHELMET, 1);
-                } else if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN)) {
-                    tMaterial.setBaseDamageAbsorption(References.InternalNames.Armor.MEDIEVALHELMET, 3F);
-                    tMaterial.setBaseDurability(References.InternalNames.Armor.MEDIEVALHELMET, 200);
-                    tMaterial.setMaxModifiersOnPart(References.InternalNames.Armor.MEDIEVALHELMET, 2);
-                } else {
-                    MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(tMaterial, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET)));
-                }
-            }
-
-        }
-
-        private static void modifyChestplate() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.IRON)) {
-                    tMaterial.setBaseDamageAbsorption(References.InternalNames.Armor.MEDIEVALCHESTPLATE, 2.0F);
-                    tMaterial.setBaseDurability(References.InternalNames.Armor.MEDIEVALCHESTPLATE, 50);
-                    tMaterial.setMaxModifiersOnPart(References.InternalNames.Armor.MEDIEVALCHESTPLATE, 1);
-                } else if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN)) {
-                    tMaterial.setBaseDamageAbsorption(References.InternalNames.Armor.MEDIEVALCHESTPLATE, 3.5F);
-                    tMaterial.setBaseDurability(References.InternalNames.Armor.MEDIEVALCHESTPLATE, 200);
-                    tMaterial.setMaxModifiersOnPart(References.InternalNames.Armor.MEDIEVALCHESTPLATE, 2);
-                } else {
-                    MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(tMaterial, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE)));
-                }
-            }
-        }
-
-        private static void modifyLeggings() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.IRON)) {
-                    tMaterial.setBaseDamageAbsorption(References.InternalNames.Armor.MEDIEVALLEGGINGS, 1.5F);
-                    tMaterial.setBaseDurability(References.InternalNames.Armor.MEDIEVALLEGGINGS, 50);
-                    tMaterial.setMaxModifiersOnPart(References.InternalNames.Armor.MEDIEVALLEGGINGS, 1);
-                } else if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN)) {
-                    tMaterial.setBaseDamageAbsorption(References.InternalNames.Armor.MEDIEVALLEGGINGS, 3F);
-                    tMaterial.setBaseDurability(References.InternalNames.Armor.MEDIEVALLEGGINGS, 200);
-                    tMaterial.setMaxModifiersOnPart(References.InternalNames.Armor.MEDIEVALLEGGINGS, 2);
-                } else {
-                    MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(tMaterial, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS)));
-                }
-            }
-        }
-
-        private static void modifyShoes() {
-            for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-                if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.IRON)) {
-                    tMaterial.setBaseDamageAbsorption(References.InternalNames.Armor.MEDIEVALSHOES, 1.0F);
-                    tMaterial.setBaseDurability(References.InternalNames.Armor.MEDIEVALSHOES, 50);
-                    tMaterial.setMaxModifiersOnPart(References.InternalNames.Armor.MEDIEVALSHOES, 1);
-                } else if (tMaterial.getUniqueID().equals(References.InternalNames.Materials.Vanilla.OBSIDIAN)) {
-                    tMaterial.setBaseDamageAbsorption(References.InternalNames.Armor.MEDIEVALSHOES, 2.5F);
-                    tMaterial.setBaseDurability(References.InternalNames.Armor.MEDIEVALSHOES, 200);
-                    tMaterial.setMaxModifiersOnPart(References.InternalNames.Armor.MEDIEVALSHOES, 2);
-                } else {
-                    MinecraftForge.EVENT_BUS.post(new ModifyMaterialEvent(tMaterial, MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES)));
-                }
-            }
         }
 
         public static void prepareGame() {
@@ -553,7 +316,7 @@ public class ArmoryInitializer {
                 if (!tMaterial.getIsBaseArmorMaterial())
                     continue;
 
-                ItemStack tChestplateStack = MedievalArmorFactory.getInstance().buildNewMLAArmor(MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE), new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(References.InternalNames.Armor.MEDIEVALCHESTPLATE), tMaterial.getUniqueID());
+                ItemStack tChestplateStack = MedievalArmorFactory.getInstance().buildNewMLAArmor(ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE), new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(References.InternalNames.Armor.MEDIEVALCHESTPLATE), tMaterial.getUniqueID());
                 AnvilRecipe tChestplateRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.CHAIN, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(4, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.CHAIN, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(5, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.CHAIN, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
@@ -578,7 +341,7 @@ public class ArmoryInitializer {
                         .setProgress(20).setResult(tChestplateStack).setHammerUsage(38).setTongUsage(24);
                 AnvilRecipeRegistry.getInstance().addRecipe(References.InternalNames.Recipes.Anvil.CHESTPLATE + tMaterial.getOreDicName(), tChestplateRecipe);
 
-                ItemStack tHelmetStack = MedievalArmorFactory.getInstance().buildNewMLAArmor(MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET), new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(References.InternalNames.Armor.MEDIEVALHELMET), tMaterial.getUniqueID());
+                ItemStack tHelmetStack = MedievalArmorFactory.getInstance().buildNewMLAArmor(ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET), new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(References.InternalNames.Armor.MEDIEVALHELMET), tMaterial.getUniqueID());
                 AnvilRecipe tHelmetRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.CHAIN, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(1, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.CHAIN, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(2, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.CHAIN, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
@@ -595,7 +358,7 @@ public class ArmoryInitializer {
                         .setProgress(20).setResult(tHelmetStack).setHammerUsage(28).setTongUsage(16);
                 AnvilRecipeRegistry.getInstance().addRecipe(References.InternalNames.Recipes.Anvil.HELMET + tMaterial.getOreDicName(), tHelmetRecipe);
 
-                ItemStack tPantsStack = MedievalArmorFactory.getInstance().buildNewMLAArmor(MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS), new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(References.InternalNames.Armor.MEDIEVALLEGGINGS), tMaterial.getUniqueID());
+                ItemStack tPantsStack = MedievalArmorFactory.getInstance().buildNewMLAArmor(ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS), new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(References.InternalNames.Armor.MEDIEVALLEGGINGS), tMaterial.getUniqueID());
                 AnvilRecipe tPantsRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.CHAIN, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(1, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.CHAIN, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(2, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.CHAIN, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
@@ -625,7 +388,7 @@ public class ArmoryInitializer {
                         .setProgress(20).setResult(tPantsStack).setHammerUsage(28).setTongUsage(16);
                 AnvilRecipeRegistry.getInstance().addRecipe(References.InternalNames.Recipes.Anvil.LEGGINGS + tMaterial.getOreDicName(), tPantsRecipe);
 
-                ItemStack tShoeStack = MedievalArmorFactory.getInstance().buildNewMLAArmor(MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES), new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(References.InternalNames.Armor.MEDIEVALSHOES), tMaterial.getUniqueID());
+                ItemStack tShoeStack = MedievalArmorFactory.getInstance().buildNewMLAArmor(ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES), new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(References.InternalNames.Armor.MEDIEVALSHOES), tMaterial.getUniqueID());
                 AnvilRecipe tShoeRecipe = new AnvilRecipe().setCraftingSlotContent(6, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.CHAIN, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(8, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.CHAIN, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
                         .setCraftingSlotContent(10, (new HeatedAnvilRecipeComponent(tMaterial.getUniqueID(), References.InternalNames.HeatedItemTypes.RING, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.85F, (MaterialRegistry.getInstance().getMaterial(tMaterial.getUniqueID()).getMeltingPoint() * 0.35F) * 0.95F)))
@@ -651,7 +414,7 @@ public class ArmoryInitializer {
         public static void initializeMedievalHelmetUpgradeAnvilRecipes() {
             for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Helmet.TOP)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET).getAddon(References.InternalNames.Upgrades.Helmet.TOP + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET).getAddon(References.InternalNames.Upgrades.Helmet.TOP + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -671,7 +434,7 @@ public class ArmoryInitializer {
                 }
 
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Helmet.LEFT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET).getAddon(References.InternalNames.Upgrades.Helmet.LEFT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET).getAddon(References.InternalNames.Upgrades.Helmet.LEFT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -689,7 +452,7 @@ public class ArmoryInitializer {
                 }
 
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Helmet.RIGHT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET).getAddon(References.InternalNames.Upgrades.Helmet.RIGHT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET).getAddon(References.InternalNames.Upgrades.Helmet.RIGHT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -711,7 +474,7 @@ public class ArmoryInitializer {
         public static void initializeMedievalChestPlateUpgradeAnvilRecipes() {
             for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Chestplate.SHOULDERLEFT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getAddon(References.InternalNames.Upgrades.Chestplate.SHOULDERLEFT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getAddon(References.InternalNames.Upgrades.Chestplate.SHOULDERLEFT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -730,7 +493,7 @@ public class ArmoryInitializer {
                 }
 
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Chestplate.SHOULDERRIGHT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getAddon(References.InternalNames.Upgrades.Chestplate.SHOULDERRIGHT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getAddon(References.InternalNames.Upgrades.Chestplate.SHOULDERRIGHT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -749,7 +512,7 @@ public class ArmoryInitializer {
                 }
 
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Chestplate.BACKRIGHT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getAddon(References.InternalNames.Upgrades.Chestplate.BACKRIGHT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getAddon(References.InternalNames.Upgrades.Chestplate.BACKRIGHT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -770,7 +533,7 @@ public class ArmoryInitializer {
                 }
 
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Chestplate.BACKLEFT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getAddon(References.InternalNames.Upgrades.Chestplate.BACKLEFT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getAddon(References.InternalNames.Upgrades.Chestplate.BACKLEFT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -791,7 +554,7 @@ public class ArmoryInitializer {
                 }
 
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Chestplate.FRONTRIGHT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getAddon(References.InternalNames.Upgrades.Chestplate.FRONTRIGHT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getAddon(References.InternalNames.Upgrades.Chestplate.FRONTRIGHT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -812,7 +575,7 @@ public class ArmoryInitializer {
                 }
 
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Chestplate.FRONTLEFT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getAddon(References.InternalNames.Upgrades.Chestplate.FRONTLEFT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALCHESTPLATE).getAddon(References.InternalNames.Upgrades.Chestplate.FRONTLEFT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -837,7 +600,7 @@ public class ArmoryInitializer {
         public static void initializeMedievalLeggingsUpgradeAnvilRecipes() {
             for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Leggings.BACKRIGHT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS).getAddon(References.InternalNames.Upgrades.Leggings.BACKRIGHT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS).getAddon(References.InternalNames.Upgrades.Leggings.BACKRIGHT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -857,7 +620,7 @@ public class ArmoryInitializer {
                 }
 
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Leggings.BACKLEFT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS).getAddon(References.InternalNames.Upgrades.Leggings.BACKLEFT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS).getAddon(References.InternalNames.Upgrades.Leggings.BACKLEFT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -877,7 +640,7 @@ public class ArmoryInitializer {
                 }
 
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Leggings.FRONTRIGHT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS).getAddon(References.InternalNames.Upgrades.Leggings.FRONTRIGHT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS).getAddon(References.InternalNames.Upgrades.Leggings.FRONTRIGHT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -898,7 +661,7 @@ public class ArmoryInitializer {
                 }
 
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Leggings.FRONTLEFT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS).getAddon(References.InternalNames.Upgrades.Leggings.FRONTLEFT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALLEGGINGS).getAddon(References.InternalNames.Upgrades.Leggings.FRONTLEFT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -923,7 +686,7 @@ public class ArmoryInitializer {
         public static void initializeMedievalShoesUpgradeAnvilRecipes() {
             for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Shoes.LEFT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES).getAddon(References.InternalNames.Upgrades.Shoes.LEFT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES).getAddon(References.InternalNames.Upgrades.Shoes.LEFT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -943,7 +706,7 @@ public class ArmoryInitializer {
                 }
 
                 if (MedievalAddonRegistry.getInstance().getPartStateForMaterial(tMaterial, References.InternalNames.Upgrades.Shoes.RIGHT)) {
-                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) MaterialRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES).getAddon(References.InternalNames.Upgrades.Shoes.RIGHT + "-" + tMaterial.getUniqueID());
+                    ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALSHOES).getAddon(References.InternalNames.Upgrades.Shoes.RIGHT + "-" + tMaterial.getUniqueID());
                     ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                     NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                     pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgrade.getUniqueMaterialID());
@@ -1264,7 +1027,7 @@ public class ArmoryInitializer {
     }
 
     public static class GlobalInitialization {
-        public static void RegisterAnvilMaterials()
+        public static void registerAnvilMaterials()
         {
             AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.STONE, 250, I18n.format(TranslationKeys.Materials.Anvil.Stone)));
             AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.IRON, 1500, I18n.format(TranslationKeys.Materials.Anvil.Iron)));
@@ -1273,7 +1036,7 @@ public class ArmoryInitializer {
     }
 
     public static class SystemInit {
-        public static void RegisterBlocks() {
+        public static void registerBlocks() {
             ModBlocks.blockForge = new BlockForge();
             ModBlocks.blockBlackSmithsAnvil = new BlockBlackSmithsAnvil();
             ModBlocks.blockFirePlace = new BlockFirePlace();
@@ -1286,7 +1049,7 @@ public class ArmoryInitializer {
             GameRegistry.register(new ItemBlock(ModBlocks.blockFirePlace).setRegistryName(ModBlocks.blockFirePlace.getRegistryName()));
         }
 
-        public static void RegisterItems() {
+        public static void registerItems() {
             ModItems.heatedItem = new ItemHeatedItem();
             ModItems.guide = new ItemSmithingsGuide();
             ModItems.armorComponent = new ItemArmorComponent();
@@ -1297,7 +1060,7 @@ public class ArmoryInitializer {
             ModItems.metalNugget = new ItemNugget();
             ModItems.metalPlate = new ItemPlate();
 
-            MaterialRegistry.getInstance().getAllRegisteredArmors().values().forEach(GameRegistry::register);
+            ArmorRegistry.getInstance().getAllRegisteredArmors().values().forEach(GameRegistry::register);
 
             GameRegistry.register(ModItems.heatedItem);
             GameRegistry.register(ModItems.guide);
@@ -1310,7 +1073,7 @@ public class ArmoryInitializer {
             GameRegistry.register(ModItems.metalPlate);
         }
 
-        public static void RegisterFluids () {
+        public static void registerFluids() {
             ModFluids.moltenMetal = new FluidMoltenMetal();
 
             FluidRegistry.registerFluid(ModFluids.moltenMetal);
@@ -1319,13 +1082,13 @@ public class ArmoryInitializer {
             SmithsCore.getRegistry().getCommonBus().register(new ObsidianToLavaSetter());
         }
 
-        public static void RegisterTileEntities() {
+        public static void registerTileEntities() {
             GameRegistry.registerTileEntity(TileEntityForge.class, References.InternalNames.TileEntities.ForgeContainer);
             GameRegistry.registerTileEntity(TileEntityFireplace.class, References.InternalNames.TileEntities.FireplaceContainer);
             GameRegistry.registerTileEntity(TileEntityBlackSmithsAnvil.class, References.InternalNames.TileEntities.ArmorsAnvil);
         }
 
-        public static void RegisterCreativeTabs() {
+        public static void registerCreativeTabs() {
             ModCreativeTabs.generalTab = new GeneralTabs();
             ModCreativeTabs.componentsTab = new ComponentsTab();
             ModCreativeTabs.heatedItemTab = new HeatedItemTab();
@@ -1359,7 +1122,7 @@ public class ArmoryInitializer {
             }
         }
 
-        private static void tryRemoveRecipeFromGame(IRecipe recipe, Iterator iterator) {
+        public static void tryRemoveRecipeFromGame(IRecipe recipe, Iterator iterator) {
             if (recipe.getRecipeOutput() == null)
                 return;
 

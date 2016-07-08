@@ -6,17 +6,17 @@ package com.smithsmodding.armory.common.item.armor.tiermedieval;
  *   Created on: 24-9-2014
  */
 
-import com.smithsmodding.armory.client.model.entity.ModelExtendedBiped;
-import com.smithsmodding.armory.api.references.ModCreativeTabs;
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.references.ModCreativeTabs;
+import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.client.model.entity.ModelExtendedBiped;
 import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
 import com.smithsmodding.armory.common.material.ChainLayer;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.resources.I18n;
@@ -38,8 +38,8 @@ import java.util.List;
 
 public class ArmorMedieval extends MultiLayeredArmor {
 
-    public ArmorMedieval(String pInternalName, EntityEquipmentSlot slotPart) {
-        super(pInternalName, 1, slotPart);
+    public ArmorMedieval(String pInternalName, String baseLayerAddonPositionId, EntityEquipmentSlot slotPart) {
+        super(pInternalName, baseLayerAddonPositionId, 1, slotPart);
         this.setUnlocalizedName(pInternalName);
         this.setMaxStackSize(1);
         this.uniqueID = pInternalName;

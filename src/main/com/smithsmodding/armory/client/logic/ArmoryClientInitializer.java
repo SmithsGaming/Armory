@@ -7,17 +7,18 @@ package com.smithsmodding.armory.client.logic;
  */
 
 import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.materials.MaterialRenderControllers;
 import com.smithsmodding.armory.api.references.ModBlocks;
 import com.smithsmodding.armory.api.references.ModItems;
 import com.smithsmodding.armory.api.references.References;
-import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.api.materials.MaterialRenderControllers;
 import com.smithsmodding.armory.client.ArmoryClientProxy;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
+import com.smithsmodding.armory.common.registry.ArmorRegistry;
+import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.util.client.TranslationKeys;
 import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
@@ -29,13 +30,13 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 
 public class ArmoryClientInitializer extends ArmoryInitializer {
     public static void InitializeClient() {
-        ArmoryInitializer.SystemInit.RegisterCreativeTabs();
-        ArmoryInitializer.SystemInit.RegisterFluids();
-        MedievalInitialization.Initialize();
-        GlobalInitialization.RegisterAnvilMaterials();
-        ArmoryInitializer.SystemInit.RegisterBlocks();
-        ArmoryInitializer.SystemInit.RegisterItems();
-        ArmoryInitializer.SystemInit.RegisterTileEntities();
+        ArmoryInitializer.SystemInit.registerCreativeTabs();
+        ArmoryInitializer.SystemInit.registerFluids();
+        MedievalInitialization.preInitialize();
+        GlobalInitialization.registerAnvilMaterials();
+        ArmoryInitializer.SystemInit.registerBlocks();
+        ArmoryInitializer.SystemInit.registerItems();
+        ArmoryInitializer.SystemInit.registerTileEntities();
         SystemInit.registerIIR();
         SystemInit.registerTESR();
         ArmoryInitializer.SystemInit.loadMaterialConfig();
@@ -103,7 +104,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
         public static void registerIIR() {
             ArmoryClientProxy proxy = (ArmoryClientProxy) Armory.proxy;
 
-            MaterialRegistry.getInstance().getAllRegisteredArmors().values().forEach(ArmoryClientProxy::registerArmorItemModel);
+            ArmorRegistry.getInstance().getAllRegisteredArmors().values().forEach(ArmoryClientProxy::registerArmorItemModel);
 
             ArmoryClientProxy.registerHeatedItemItemModel((ItemHeatedItem) ModItems.heatedItem);
             ArmoryClientProxy.registerComponentItemModel((ItemArmorComponent) ModItems.armorComponent);

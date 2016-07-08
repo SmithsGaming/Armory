@@ -3,14 +3,14 @@ package com.smithsmodding.armory.client.model.loaders;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
+import com.smithsmodding.armory.api.events.client.model.item.MultiLayeredArmorModelTextureLoadEvent;
 import com.smithsmodding.armory.api.model.deserializers.MultiLayeredArmorModelDeserializer;
 import com.smithsmodding.armory.api.model.deserializers.definition.MultiLayeredArmorModelDefinition;
-import com.smithsmodding.armory.api.events.client.model.item.MultiLayeredArmorModelTextureLoadEvent;
 import com.smithsmodding.armory.api.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.unbaked.MultiLayeredArmorItemModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorSubComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.armory.common.registry.ArmorRegistry;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.resources.IResourceManager;
@@ -48,7 +48,7 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
             //Retrieve the Name of the armor.
             //The file name without the extension has to be equal to the Name used in Armories registry.
             String armorInternalName = FilenameUtils.getBaseName(modelLocation.getResourcePath());
-            MultiLayeredArmor armor = MaterialRegistry.getInstance().getArmor(armorInternalName);
+            MultiLayeredArmor armor = ArmorRegistry.getInstance().getArmor(armorInternalName);
 
             //If none is registered return missing model and print out an error.
             if (armor == null) {
@@ -150,7 +150,7 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
             }
 
             //Construct the new unbaked model from the collected data.
-            IModel output = new MultiLayeredArmorItemModel(MaterialRegistry.getInstance().getArmor(armorInternalName), builder.build(), base, parts, brokenParts, ImmutableMap.copyOf(definition.getTransforms()));
+            IModel output = new MultiLayeredArmorItemModel(ArmorRegistry.getInstance().getArmor(armorInternalName), builder.build(), base, parts, brokenParts, ImmutableMap.copyOf(definition.getTransforms()));
 
             // Load all textures we need in to the creator.
             MaterializedTextureCreator.registerBaseTexture(builder.build());

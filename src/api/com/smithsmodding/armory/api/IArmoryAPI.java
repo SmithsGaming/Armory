@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.api;
 
+import com.smithsmodding.armory.api.helpers.IArmoryHelpers;
 import com.smithsmodding.armory.api.registries.*;
 
 /**
@@ -16,4 +17,8 @@ public interface IArmoryAPI
     IArmorPartRegistry getMedievalArmorPartRegistry();
 
     IMaterialRegistry getArmorMaterialRegistry();
+
+    IArmorRegistry getArmorRegistry();
+
+    IArmoryHelpers getHelpers();
 }
