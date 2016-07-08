@@ -1,8 +1,18 @@
 Cannot run the CurseUpload sequence. No API-Key was available.Cannot run the CurseUpload sequence. No API-Key was available.
 
-Found AccessTransformer: jei_at.cfg_jei_1.9.4-3.4.4.208_at.cfg
+#################################################
+         ForgeGradle 2.2-SNAPSHOT-0447b4e        
+  https://github.com/MinecraftForge/ForgeGradle  
+#################################################
+               Powered by MCP unknown               
+             http://modcoderpack.com             
+         by: Searge, ProfMobius, Fesh0r,         
+         R4wk, ZeuX, IngisKahn, bspkrs           
+#################################################
+Found AccessTransformer: jei_at.cfg_jei_1.9.4-3.6.8.225_at.cfg
 Found AccessTransformer: Armory_at.cfg
+:genIntellijRuns
 
 BUILD SUCCESSFUL
 
-Total time: 1.261 secs
+Total time: 36.716 secs
