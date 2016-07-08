@@ -6,12 +6,11 @@ import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.common.ArmoryCommonProxy;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.relauncher.Side;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.TimeUnit;
 
@@ -75,11 +74,20 @@ public class Armory {
 
     @Mod.EventHandler
     public void onIMCMessage(FMLInterModComms.IMCEvent event) {
-        //API Register
+        for (FMLInterModComms.IMCMessage message : event.getMessages()) {
+            if (!message.isStringMessage())
+                continue;
+
+            if (message.key.equalsIgnoreCase("registerapi")) {
+                ModLogger.getInstance().info(String.format("Receiving registration request from [ %s ] for method %s", message.getSender(), message.getStringValue()));
+                GeneralRegistry.getInstance().registerAPICallback(message.getStringValue(), message.getSender());
+            }
+        }
     }
 
     @Mod.EventHandler
     public void onLoadCompleted(FMLLoadCompleteEvent event) {
-        //API Load
+        proxy.callAPIRequests();
+        proxy.onLoadComplete();
     }
 }

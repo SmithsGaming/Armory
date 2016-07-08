@@ -39,16 +39,13 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
         ArmoryInitializer.SystemInit.registerTileEntities();
         SystemInit.registerIIR();
         SystemInit.registerTESR();
-        ArmoryInitializer.SystemInit.loadMaterialConfig();
         MedievalClientInitialization.registerMaterialResources();
         MedievalClientInitialization.registerUpgradeResources();
         MedievalClientInitialization.registerRingResources();
         MedievalClientInitialization.registerChainResources();
         MedievalClientInitialization.registerNuggetResources();
         MedievalClientInitialization.registerPlateResources();
-        MedievalInitialization.prepareGame();
         GlobalClientInitialization.RegisterAnvilMaterialRenderInfo();
-        ArmoryInitializer.SystemInit.initializeOreDict();
     }
 
     public static class MedievalClientInitialization {

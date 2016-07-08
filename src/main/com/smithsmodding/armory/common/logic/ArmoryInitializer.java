@@ -71,14 +71,18 @@ public class ArmoryInitializer {
         SystemInit.registerBlocks();
         SystemInit.registerItems();
         SystemInit.registerTileEntities();
-        SystemInit.loadMaterialConfig();
-        MedievalInitialization.prepareGame();
-        SystemInit.initializeOreDict();
     }
 
     public static void postInitializeServer() {
+
+    }
+
+    public static void onLoadCompleted() {
+        SystemInit.loadMaterialConfig();
+        MedievalInitialization.prepareGame();
         SystemInit.removeRecipes();
         HeatableItemRegistry.getInstance().reloadOreDictionary();
+        SystemInit.initializeOreDict();
     }
 
     public static class MedievalInitialization {

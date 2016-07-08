@@ -10,11 +10,14 @@ import com.smithsmodding.armory.api.helpers.IArmoryHelpers;
 import com.smithsmodding.armory.api.registries.*;
 import com.smithsmodding.armory.common.helpers.ArmoryHelpers;
 
+import java.util.HashMap;
 import java.util.Properties;
 
 public class GeneralRegistry implements IArmoryAPI {
     public static boolean isInDevEnvironment = false;
     private static GeneralRegistry instance = new GeneralRegistry();
+
+    private HashMap<String, String> requestedAPICallbacks = new HashMap<>();
 
     private GeneralRegistry() {
         Properties tSysProp = System.getProperties();
@@ -23,6 +26,14 @@ public class GeneralRegistry implements IArmoryAPI {
 
     public static GeneralRegistry getInstance() {
         return instance;
+    }
+
+    public HashMap<String, String> getRequestedAPICallbacks() {
+        return requestedAPICallbacks;
+    }
+
+    public void registerAPICallback(String method, String modId) {
+        this.requestedAPICallbacks.put(method, modId);
     }
 
     @Override
