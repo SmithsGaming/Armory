@@ -1,18 +1,19 @@
 package com.smithsmodding.armory.common.crafting.blacksmiths.recipe;
 
-import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
-import com.smithsmodding.armory.api.references.ModInventories;
-import com.smithsmodding.armory.api.references.ModItems;
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
 import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeComponent;
 import com.smithsmodding.armory.api.crafting.blacksmiths.component.StandardAnvilRecipeComponent;
+import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
+import com.smithsmodding.armory.api.references.ModInventories;
+import com.smithsmodding.armory.api.references.ModItems;
+import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
 import com.smithsmodding.armory.common.item.armor.tiermedieval.ArmorMedieval;
+import com.smithsmodding.armory.common.registry.ArmorRegistry;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.item.ItemStack;
 
@@ -136,7 +137,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
             return new StandardAnvilRecipeComponent(new ItemStack(ModItems.metalRing)) {
                 @Override
                 public ItemStack getComponentTargetStack() {
-                    return MedievalArmorFactory.getInstance().buildNewMLAArmor(MaterialRegistry.getInstance().getArmor(iArmorType), new HashMap<MLAAddon, Integer>(), MaterialRegistry.getInstance().getMaterial(iArmorMaterial).getBaseDurability(iArmorType), iArmorMaterial);
+                    return MedievalArmorFactory.getInstance().buildNewMLAArmor(ArmorRegistry.getInstance().getArmor(iArmorType), new HashMap<MLAAddon, Integer>(), MaterialRegistry.getInstance().getMaterial(iArmorMaterial).getBaseDurability(iArmorType), iArmorMaterial);
                 }
 
                 @Override

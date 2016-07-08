@@ -5,19 +5,20 @@ package com.smithsmodding.armory.common.registry;
  *   Created on: 24-9-2014
  */
 
-import com.smithsmodding.armory.api.armor.*;
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.api.registries.*;
+import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
+import com.smithsmodding.armory.api.logic.IMaterialInitializer;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.registries.IMaterialRegistry;
 
-import java.util.*;
+import java.util.HashMap;
 
 public class MaterialRegistry implements IMaterialRegistry {
     private static MaterialRegistry instance;
 
     //Hashmap for storing all the materials
-    protected HashMap<String, IArmorMaterial> iArmorMaterials = new HashMap<String, IArmorMaterial>();
-    //Hashmap for storing all the basic armor mappings
-    protected HashMap<String, MultiLayeredArmor> iArmorMappings = new HashMap<String, MultiLayeredArmor>();
+    protected HashMap<String, IArmorMaterial> materials = new HashMap<String, IArmorMaterial>();
+
+    protected HashMap<IArmorMaterial, IMaterialInitializer> initializers = new HashMap<>();
 
     public static MaterialRegistry getInstance() {
         if (instance == null) {
@@ -27,34 +28,33 @@ public class MaterialRegistry implements IMaterialRegistry {
         return instance;
     }
 
-    //ArmorMappings
-    public HashMap<String, MultiLayeredArmor> getAllRegisteredArmors() {
-        return iArmorMappings;
-    }
-
-    public void registerNewArmor(MultiLayeredArmor pArmor) {
-        iArmorMappings.put(pArmor.getUniqueID(), pArmor);
-    }
-
-    public MultiLayeredArmor getArmor(String pInternalName) {
-        return iArmorMappings.get(pInternalName);
-    }
-
     //ArmorMaterials
     public HashMap<String, IArmorMaterial> getArmorMaterials() {
-        return iArmorMaterials;
+        return materials;
     }
 
     @Override
-    public void setAllArmorMaterials(HashMap<String, IArmorMaterial> pNewMaterials) {
-        iArmorMaterials = pNewMaterials;
+    public HashMap<IArmorMaterial, IMaterialInitializer> getInitializers() {
+        return initializers;
     }
 
-    public void registerMaterial(IArmorMaterial pMaterial) {
-        iArmorMaterials.put(pMaterial.getUniqueID(), pMaterial);
+    @Override
+    public void registerMaterial(IArmorMaterial material, IMaterialInitializer initializer) {
+        materials.put(material.getUniqueID(), material);
+        initializers.put(material, initializer);
+
+        for (MultiLayeredArmor armor : ArmorRegistry.getInstance().getAllRegisteredArmors().values())
+            initializer.registerUpgradesForArmor(material, armor);
+
+        initializer.modifyMaterialForArmor(material);
     }
 
-    public IArmorMaterial getMaterial(String pInternalName) {
-        return iArmorMaterials.get(pInternalName);
+    public IArmorMaterial getMaterial(String uniqueId) {
+        return materials.get(uniqueId);
+    }
+
+    @Override
+    public IMaterialInitializer getInitializer(IArmorMaterial material) {
+        return initializers.get(material);
     }
 }

@@ -21,14 +21,16 @@ import java.util.HashMap;
 public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArmor {
     //Data for the registering of MultiLayeredArmor
     protected String uniqueID = "";
+    protected String baseLayerAddonPositionId = "";
     protected HashMap<String, ArmorAddonPosition> possibleAddonPositions = new HashMap<String, ArmorAddonPosition>();
     protected HashMap<String, MLAAddon> possibleAddons = new HashMap<String, MLAAddon>();
 
     ///#############################################Constructors########################################################
     //Standard constructor to created an ItemArmor. Sets the InternalName and stores the ArmorPart separately
-    public MultiLayeredArmor(String uniqueID, int vanillaRenderType, EntityEquipmentSlot slot) {
+    public MultiLayeredArmor(String uniqueID, String baseLayerAddonPositionId, int vanillaRenderType, EntityEquipmentSlot slot) {
         super(ModArmorMaterials.getVanillaArmorDefitinition(), vanillaRenderType, slot);
         this.uniqueID = uniqueID;
+        this.baseLayerAddonPositionId = baseLayerAddonPositionId;
     }
 
     ///#############################################Functions for grabbing data#########################################
@@ -36,6 +38,11 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
     //MultiLayeredArmor (MLA).
     public String getUniqueID () {
         return uniqueID;
+    }
+
+    //Location of the BaseLayer on the Armor in the form of an Addon.
+    public String getBaseLayerAddonPositionId() {
+        return baseLayerAddonPositionId;
     }
 
     //Registers the Addon to this armor as its parent.

@@ -53,7 +53,7 @@ public class MedievalAddonRegistry implements IArmorPartRegistry, IMLAAddonRegis
     public void registerUpgrade(MLAAddon pUpgrade) {
         addonHashMap.put(pUpgrade.getUniqueID(), pUpgrade);
 
-        MaterialRegistry.getInstance().getArmor(pUpgrade.getUniqueArmorID()).registerAddon(pUpgrade);
+        ArmorRegistry.getInstance().getArmor(pUpgrade.getUniqueArmorID()).registerAddon(pUpgrade);
     }
 
     public MLAAddon getUpgrade (String pUpgradeInternalName) {
