@@ -5,15 +5,14 @@ package com.smithsmodding.armory.common.item;
 /  Created on : 03/10/2014
 */
 
-import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.references.ModCreativeTabs;
-import com.smithsmodding.armory.api.references.ModLogger;
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.util.client.TranslationKeys;
+import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
+import com.smithsmodding.armory.api.util.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.factory.HeatedItemFactory;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
-import com.smithsmodding.armory.util.client.TranslationKeys;
+import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;

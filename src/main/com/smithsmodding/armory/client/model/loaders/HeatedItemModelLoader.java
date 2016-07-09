@@ -2,8 +2,7 @@ package com.smithsmodding.armory.client.model.loaders;
 
 
 import com.google.common.collect.ImmutableList;
-import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.unbaked.HeatedItemItemModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.TemperatureBarComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;

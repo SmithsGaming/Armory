@@ -1,11 +1,11 @@
 package com.smithsmodding.armory.compatibility.recipes.anvil;
 
-import com.smithsmodding.armory.api.references.ModInventories;
-import com.smithsmodding.armory.api.references.ModItems;
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.client.Textures;
+import com.smithsmodding.armory.api.util.client.TranslationKeys;
+import com.smithsmodding.armory.api.util.references.ModInventories;
+import com.smithsmodding.armory.api.util.references.ModItems;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.compatibility.JEICompatMod;
-import com.smithsmodding.armory.util.client.Textures;
-import com.smithsmodding.armory.util.client.TranslationKeys;
 import com.smithsmodding.smithscore.util.client.CustomResource;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IRecipeLayout;

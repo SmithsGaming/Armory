@@ -2,7 +2,7 @@ package com.smithsmodding.armory.client.model.loaders;
 
 import com.smithsmodding.armory.api.model.deserializers.MaterializedItemModelDeserializer;
 import com.smithsmodding.armory.api.model.deserializers.definition.MaterializedItemModelDefinition;
-import com.smithsmodding.armory.api.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.unbaked.MaterializedItemModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;

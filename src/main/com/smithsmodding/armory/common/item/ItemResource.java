@@ -6,8 +6,8 @@
 
 package com.smithsmodding.armory.common.item;
 
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;

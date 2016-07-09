@@ -1,10 +1,10 @@
 package com.smithsmodding.armory.common.anvil;
 
-import com.smithsmodding.armory.api.references.ModBlocks;
-import com.smithsmodding.armory.api.references.References;
-import com.smithsmodding.armory.common.crafting.blacksmiths.component.HeatedAnvilRecipeComponent;
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.smithsmodding.armory.api.materials.IAnvilMaterial;
+import com.smithsmodding.armory.api.util.references.ModBlocks;
+import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.armory.common.crafting.blacksmiths.component.HeatedAnvilRecipeComponent;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.smithscore.client.textures.ITextureController;
 import com.smithsmodding.smithscore.util.client.color.ColorSampler;

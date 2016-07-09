@@ -6,7 +6,7 @@ package com.smithsmodding.armory.common.handlers;
  */
 
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.client.gui.implementations.blacksmithsanvil.GuiBlacksmithsAnvil;
 import com.smithsmodding.armory.client.gui.implementations.fireplace.GuiFireplace;
 import com.smithsmodding.armory.client.gui.implementations.forge.GuiForge;

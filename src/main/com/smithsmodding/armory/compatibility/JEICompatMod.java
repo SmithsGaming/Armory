@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.compatibility;
 
-import com.smithsmodding.armory.api.references.ModBlocks;
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.ModBlocks;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.client.gui.implementations.blacksmithsanvil.GuiBlacksmithsAnvil;
 import com.smithsmodding.armory.compatibility.recipes.anvil.BlackSmithsAnvilRecipeHandler;
 import com.smithsmodding.armory.compatibility.recipes.anvil.BlackSmithsAnvilRecipeMaker;

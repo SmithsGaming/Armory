@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.common.creativetabs;
 
-import com.smithsmodding.armory.api.references.ModBlocks;
-import com.smithsmodding.armory.util.client.TranslationKeys;
+import com.smithsmodding.armory.api.util.client.TranslationKeys;
+import com.smithsmodding.armory.api.util.references.ModBlocks;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.common.structure.forge;
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.common.structures.IStructureFactory;
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;

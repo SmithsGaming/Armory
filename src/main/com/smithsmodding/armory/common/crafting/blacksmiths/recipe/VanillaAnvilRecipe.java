@@ -7,7 +7,7 @@
 package com.smithsmodding.armory.common.crafting.blacksmiths.recipe;
 
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
-import com.smithsmodding.armory.api.references.ModInventories;
+import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.smithscore.common.player.management.PlayerManager;
 import com.smithsmodding.smithscore.common.tileentity.IWatchableTileEntity;

@@ -6,18 +6,20 @@ package com.smithsmodding.armory.api.textures;
   of Wrapper classes instead of direct access.
  */
 
-import com.google.common.collect.*;
-import com.smithsmodding.armory.*;
-import com.smithsmodding.armory.api.references.ModLogger;
-import net.minecraft.client.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.client.resources.*;
-import net.minecraft.client.resources.data.*;
-import net.minecraft.util.*;
+import com.google.common.collect.Lists;
+import com.smithsmodding.armory.api.util.references.ModLogger;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.IResource;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.client.resources.data.AnimationFrame;
+import net.minecraft.client.resources.data.AnimationMetadataSection;
+import net.minecraft.util.ResourceLocation;
 
-import java.io.*;
-import java.lang.reflect.*;
-import java.util.*;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * ONLY USE THIS IF YOU KNOW WHAT YOU'RE DOING!

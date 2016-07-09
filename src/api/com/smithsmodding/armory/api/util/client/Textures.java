@@ -1,6 +1,6 @@
-package com.smithsmodding.armory.util.client;
+package com.smithsmodding.armory.api.util.client;
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.smithscore.client.textures.HolographicTexture;
 import com.smithsmodding.smithscore.client.textures.TextureCreator;
 import com.smithsmodding.smithscore.util.client.CustomResource;

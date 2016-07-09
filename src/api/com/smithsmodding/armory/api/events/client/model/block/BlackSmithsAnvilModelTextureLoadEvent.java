@@ -1,12 +1,13 @@
 package com.smithsmodding.armory.api.events.client.model.block;
 
 import com.smithsmodding.armory.api.model.deserializers.definition.AnvilModelDefinition;
-import com.smithsmodding.armory.api.references.ModBlocks;
-import com.smithsmodding.armory.api.references.ModLogger;
-import com.smithsmodding.smithscore.common.events.*;
-import net.minecraft.util.*;
+import com.smithsmodding.armory.api.util.references.ModBlocks;
+import com.smithsmodding.armory.api.util.references.ModLogger;
+import com.smithsmodding.smithscore.common.events.SmithsCoreEvent;
+import net.minecraft.util.ResourceLocation;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Marc on 22.02.2016.

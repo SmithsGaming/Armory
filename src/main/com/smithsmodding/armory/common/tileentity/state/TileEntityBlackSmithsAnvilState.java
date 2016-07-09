@@ -1,8 +1,8 @@
 package com.smithsmodding.armory.common.tileentity.state;
 
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.smithsmodding.armory.api.materials.IAnvilMaterial;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.smithscore.common.tileentity.IWatchableTileEntity;

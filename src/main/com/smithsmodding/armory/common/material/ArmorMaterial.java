@@ -6,13 +6,13 @@ package com.smithsmodding.armory.common.material;
 */
 
 import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.references.ModLogger;
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.api.materials.MaterialRenderControllers;
 import com.smithsmodding.armory.api.registries.IArmorPartRegistry;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
+import com.smithsmodding.armory.api.util.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
+import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.smithscore.client.textures.ITextureController;
 import com.smithsmodding.smithscore.util.client.color.ColorSampler;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;

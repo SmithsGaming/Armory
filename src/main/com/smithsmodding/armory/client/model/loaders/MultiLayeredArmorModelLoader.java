@@ -6,7 +6,7 @@ import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
 import com.smithsmodding.armory.api.events.client.model.item.MultiLayeredArmorModelTextureLoadEvent;
 import com.smithsmodding.armory.api.model.deserializers.MultiLayeredArmorModelDeserializer;
 import com.smithsmodding.armory.api.model.deserializers.definition.MultiLayeredArmorModelDefinition;
-import com.smithsmodding.armory.api.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.unbaked.MultiLayeredArmorItemModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorSubComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;

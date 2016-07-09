@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.common.material.fluidmodifiers;
 
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.events.common.HeatableItemRegisteredEvent;
+import com.smithsmodding.armory.api.util.references.References;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**

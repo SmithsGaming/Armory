@@ -2,9 +2,9 @@ package com.smithsmodding.armory.common.block;
 
 import com.google.common.collect.Lists;
 import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.references.ModCreativeTabs;
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.materials.IAnvilMaterial;
+import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.properties.PropertyAnvilMaterial;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;

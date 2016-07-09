@@ -5,7 +5,7 @@ package com.smithsmodding.armory.api.armor;
 *   Created on: 28-6-2014
 */
 
-import com.smithsmodding.armory.api.references.ModArmorMaterials;
+import com.smithsmodding.armory.api.util.references.ModArmorMaterials;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

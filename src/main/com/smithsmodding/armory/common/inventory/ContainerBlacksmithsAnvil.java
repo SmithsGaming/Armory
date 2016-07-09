@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.common.inventory;
 
-import com.smithsmodding.armory.api.references.ModInventories;
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.ModInventories;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.item.ItemHammer;
 import com.smithsmodding.armory.common.item.ItemTongs;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;

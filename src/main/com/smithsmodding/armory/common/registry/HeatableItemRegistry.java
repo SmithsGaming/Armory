@@ -1,12 +1,12 @@
 package com.smithsmodding.armory.common.registry;
 
 import com.google.common.collect.ImmutableList;
-import com.smithsmodding.armory.api.references.ModFluids;
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.events.common.HeatableItemRegisteredEvent;
 import com.smithsmodding.armory.api.item.IHeatableItem;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.api.registries.IHeatableItemRegistry;
+import com.smithsmodding.armory.api.util.references.ModFluids;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.smithscore.util.common.ItemStackHelper;
 import com.smithsmodding.smithscore.util.common.NBTHelper;

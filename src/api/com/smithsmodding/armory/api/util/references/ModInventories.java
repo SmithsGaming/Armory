@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.api.references;
+package com.smithsmodding.armory.api.util.references;
 
 /**
  * Author Orion (Created on: 07.07.2016)

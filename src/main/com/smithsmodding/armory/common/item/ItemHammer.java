@@ -1,8 +1,8 @@
 package com.smithsmodding.armory.common.item;
 
-import com.smithsmodding.armory.api.references.ModBlocks;
-import com.smithsmodding.armory.api.references.ModCreativeTabs;
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.ModBlocks;
+import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.smithscore.util.CoreReferences;

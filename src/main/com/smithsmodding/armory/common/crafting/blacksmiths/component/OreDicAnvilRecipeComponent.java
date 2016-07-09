@@ -1,9 +1,8 @@
 package com.smithsmodding.armory.common.crafting.blacksmiths.component;
 
 
-import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeComponent;
-import com.smithsmodding.armory.api.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.smithscore.util.common.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;

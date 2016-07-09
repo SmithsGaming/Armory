@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.client.gui.implementations.fireplace;
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import com.smithsmodding.smithscore.client.gui.components.core.ComponentConnectionType;
 import com.smithsmodding.smithscore.client.gui.components.core.ComponentOrientation;
@@ -40,8 +40,8 @@ public class TabFireplaceMeltingMetal extends CoreTab {
      */
     @Override
     public void registerComponents(IGUIBasedComponentHost host) {
-        host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.Fireplace.BACKGROUND, host, new Coordinate2D(0, 0), GuiFireplace.GUI.getWidth(), GuiFireplace.GUI.getHeigth() - (ComponentPlayerInventory.HEIGHT - 3), com.smithsmodding.armory.util.client.Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
-        host.registerNewComponent(new ComponentPlayerInventory(References.InternalNames.GUIComponents.Fireplace.INVENTORY, host, new Coordinate2D(0, 76), com.smithsmodding.armory.util.client.Colors.DEFAULT, ((ContainerSmithsCore) firePit.inventorySlots).getPlayerInventory(), ComponentConnectionType.BELOWDIRECTCONNECT));
+        host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.Fireplace.BACKGROUND, host, new Coordinate2D(0, 0), GuiFireplace.GUI.getWidth(), GuiFireplace.GUI.getHeigth() - (ComponentPlayerInventory.HEIGHT - 3), com.smithsmodding.armory.api.util.client.Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
+        host.registerNewComponent(new ComponentPlayerInventory(References.InternalNames.GUIComponents.Fireplace.INVENTORY, host, new Coordinate2D(0, 76), com.smithsmodding.armory.api.util.client.Colors.DEFAULT, ((ContainerSmithsCore) firePit.inventorySlots).getPlayerInventory(), ComponentConnectionType.BELOWDIRECTCONNECT));
 
         host.registerNewComponent(new ComponentProgressBar(References.InternalNames.GUIComponents.Fireplace.FLAMEONE, host, new CoreComponentState(null), new Coordinate2D(62, 40), ComponentOrientation.VERTICALBOTTOMTOTOP, com.smithsmodding.smithscore.util.client.Textures.Gui.Basic.Components.FLAMEEMPTY, com.smithsmodding.smithscore.util.client.Textures.Gui.Basic.Components.FLAMEFULL));
         host.registerNewComponent(new ComponentProgressBar(References.InternalNames.GUIComponents.Fireplace.FLAMETWO, host, new CoreComponentState(null), new Coordinate2D(80, 40), ComponentOrientation.VERTICALBOTTOMTOTOP, com.smithsmodding.smithscore.util.client.Textures.Gui.Basic.Components.FLAMEEMPTY, com.smithsmodding.smithscore.util.client.Textures.Gui.Basic.Components.FLAMEFULL));
@@ -50,13 +50,13 @@ public class TabFireplaceMeltingMetal extends CoreTab {
         for (int tSlotIndex = 0; tSlotIndex < (TileEntityFireplace.INGOTSLOTCOUNT); tSlotIndex++) {
             Slot slot = firePit.inventorySlots.inventorySlots.get(tSlotIndex);
 
-            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Fireplace.SLOT + tSlotIndex, new SlotComponentState(null, tSlotIndex, ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, slot, com.smithsmodding.armory.util.client.Colors.DEFAULT));
+            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Fireplace.SLOT + tSlotIndex, new SlotComponentState(null, tSlotIndex, ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, slot, com.smithsmodding.armory.api.util.client.Colors.DEFAULT));
         }
 
         for (int tSlotIndex = 0; tSlotIndex < (TileEntityFireplace.FUELSLOTCOUNT); tSlotIndex++) {
             Slot slot = firePit.inventorySlots.inventorySlots.get(tSlotIndex + TileEntityFireplace.INGOTSLOTCOUNT);
 
-            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Fireplace.SLOT + slot.getSlotIndex(), new SlotComponentState(null, slot.getSlotIndex(), ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, slot, com.smithsmodding.armory.util.client.Colors.DEFAULT));
+            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Fireplace.SLOT + slot.getSlotIndex(), new SlotComponentState(null, slot.getSlotIndex(), ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, slot, com.smithsmodding.armory.api.util.client.Colors.DEFAULT));
         }
     }
 }

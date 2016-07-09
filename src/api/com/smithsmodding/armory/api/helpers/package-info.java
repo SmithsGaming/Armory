@@ -4,5 +4,5 @@
 @API(owner = "armory", apiVersion = References.General.API_VERSION, provides = "armory-api|helpers")
 package com.smithsmodding.armory.api.helpers;
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import net.minecraftforge.fml.common.API;

@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.client.gui.implementations.fireplace;
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import com.smithsmodding.smithscore.client.gui.components.core.ComponentConnectionType;
 import com.smithsmodding.smithscore.client.gui.components.core.ComponentOrientation;
@@ -41,8 +41,8 @@ public class TabFireplaceFood extends CoreTab {
      */
     @Override
     public void registerComponents(IGUIBasedComponentHost host) {
-        host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.Forge.BACKGROUND, host, new Coordinate2D(0, 0), GuiFireplace.GUI.getWidth(), 80, com.smithsmodding.armory.util.client.Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
-        host.registerNewComponent(new ComponentPlayerInventory(References.InternalNames.GUIComponents.Forge.INVENTORY, host, new Coordinate2D(0, 76), com.smithsmodding.armory.util.client.Colors.DEFAULT, ((ContainerSmithsCore) firePit.inventorySlots).getPlayerInventory(), ComponentConnectionType.BELOWDIRECTCONNECT));
+        host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.Forge.BACKGROUND, host, new Coordinate2D(0, 0), GuiFireplace.GUI.getWidth(), 80, com.smithsmodding.armory.api.util.client.Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
+        host.registerNewComponent(new ComponentPlayerInventory(References.InternalNames.GUIComponents.Forge.INVENTORY, host, new Coordinate2D(0, 76), com.smithsmodding.armory.api.util.client.Colors.DEFAULT, ((ContainerSmithsCore) firePit.inventorySlots).getPlayerInventory(), ComponentConnectionType.BELOWDIRECTCONNECT));
 
         host.registerNewComponent(new ComponentProgressBar(References.InternalNames.GUIComponents.Fireplace.FLAMEONE, host, new CoreComponentState(null), new Coordinate2D(44, 40), ComponentOrientation.VERTICALBOTTOMTOTOP, com.smithsmodding.smithscore.util.client.Textures.Gui.Basic.Components.FLAMEEMPTY, com.smithsmodding.smithscore.util.client.Textures.Gui.Basic.Components.FLAMEFULL));
         host.registerNewComponent(new ComponentProgressBar(References.InternalNames.GUIComponents.Fireplace.COOKINGPROGRESS, host, new CoreComponentState(null), new Coordinate2D(68, 40), ComponentOrientation.HORIZONTALLEFTTORIGHT, Textures.Gui.Basic.Components.ARROWEMPTY, Textures.Gui.Basic.Components.ARROWFULL));
@@ -50,20 +50,20 @@ public class TabFireplaceFood extends CoreTab {
         for (int tSlotIndex = 0; tSlotIndex < (TileEntityFireplace.FOODCOOKINPUTCOUNT); tSlotIndex++) {
             Slot slot = firePit.inventorySlots.inventorySlots.get(tSlotIndex);
 
-            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Fireplace.SLOT + slot.getSlotIndex(), new SlotComponentState(null, slot, ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, slot, com.smithsmodding.armory.util.client.Colors.DEFAULT));
+            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Fireplace.SLOT + slot.getSlotIndex(), new SlotComponentState(null, slot, ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, slot, com.smithsmodding.armory.api.util.client.Colors.DEFAULT));
         }
 
 
         for (int tSlotIndex = 0; tSlotIndex < (TileEntityFireplace.FOODCOOKOUTPUTCOUNT); tSlotIndex++) {
             Slot slot = firePit.inventorySlots.inventorySlots.get(tSlotIndex + TileEntityFireplace.FOODCOOKINPUTCOUNT);
 
-            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Fireplace.SLOT + slot.getSlotIndex(), new SlotComponentState(null, slot, ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, slot, com.smithsmodding.armory.util.client.Colors.DEFAULT));
+            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Fireplace.SLOT + slot.getSlotIndex(), new SlotComponentState(null, slot, ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, slot, com.smithsmodding.armory.api.util.client.Colors.DEFAULT));
         }
 
         for (int tSlotIndex = 0; tSlotIndex < (TileEntityFireplace.FUELSLOTCOUNT); tSlotIndex++) {
             Slot slot = firePit.inventorySlots.inventorySlots.get(tSlotIndex + TileEntityFireplace.FOODCOOKINPUTCOUNT + TileEntityFireplace.FOODCOOKOUTPUTCOUNT);
 
-            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Fireplace.SLOT + slot.getSlotIndex(), new SlotComponentState(null, slot, ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, slot, com.smithsmodding.armory.util.client.Colors.DEFAULT));
+            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Fireplace.SLOT + slot.getSlotIndex(), new SlotComponentState(null, slot, ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, slot, com.smithsmodding.armory.api.util.client.Colors.DEFAULT));
         }
 
     }

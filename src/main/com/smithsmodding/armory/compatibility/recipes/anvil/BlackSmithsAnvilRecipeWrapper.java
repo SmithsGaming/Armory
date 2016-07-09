@@ -3,7 +3,7 @@ package com.smithsmodding.armory.compatibility.recipes.anvil;
 import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeComponent;
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.smithsmodding.armory.api.item.IHeatableItem;
-import com.smithsmodding.armory.api.references.ModInventories;
+import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.armory.common.factory.HeatedItemFactory;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.item.ItemStack;

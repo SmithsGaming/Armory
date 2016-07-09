@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.common.tileentity.state;
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;

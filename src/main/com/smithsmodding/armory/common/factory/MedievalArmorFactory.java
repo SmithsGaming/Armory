@@ -5,9 +5,9 @@ package com.smithsmodding.armory.common.factory;
 /  Created on : 04/07/2014
 */
 
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

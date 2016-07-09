@@ -1,8 +1,8 @@
 package com.smithsmodding.armory;
 
 import com.google.common.base.Stopwatch;
-import com.smithsmodding.armory.api.references.ModLogger;
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.ArmoryCommonProxy;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;

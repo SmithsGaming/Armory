@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.api.crafting.blacksmiths.recipe;
 
 import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeComponent;
-import com.smithsmodding.armory.api.references.ModInventories;
+import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.smithscore.common.tileentity.IWatchableTileEntity;
 import net.minecraft.item.ItemStack;
 

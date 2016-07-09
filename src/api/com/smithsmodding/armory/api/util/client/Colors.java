@@ -1,6 +1,6 @@
-package com.smithsmodding.armory.util.client;
+package com.smithsmodding.armory.api.util.client;
 
-import com.smithsmodding.smithscore.util.client.color.*;
+import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 
 import java.awt.*;
 

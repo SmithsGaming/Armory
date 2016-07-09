@@ -5,14 +5,14 @@ package com.smithsmodding.armory.util.armor;
  *   Created on: 14-9-2014
  */
 
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.armor.ArmorAddonPosition;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.smithscore.util.common.NBTHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

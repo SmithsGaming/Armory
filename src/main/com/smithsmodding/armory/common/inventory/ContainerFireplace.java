@@ -6,7 +6,7 @@ package com.smithsmodding.armory.common.inventory;
  */
 
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.inventory.slots.SlotFuelInput;
 import com.smithsmodding.armory.common.inventory.slots.SlotInventoryCheck;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;

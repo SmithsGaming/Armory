@@ -1,8 +1,7 @@
 package com.smithsmodding.armory.common.tileentity.state;
 
-import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.references.ModLogger;
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityForgeBase;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import com.smithsmodding.smithscore.common.tileentity.state.ITileEntityState;

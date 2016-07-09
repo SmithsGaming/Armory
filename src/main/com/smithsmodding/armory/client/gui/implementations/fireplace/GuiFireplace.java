@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.client.gui.implementations.fireplace;
 
-import com.smithsmodding.armory.util.client.Textures;
-import com.smithsmodding.armory.util.client.TranslationKeys;
+import com.smithsmodding.armory.api.util.client.Textures;
+import com.smithsmodding.armory.api.util.client.TranslationKeys;
 import com.smithsmodding.smithscore.client.gui.GuiContainerSmithsCore;
 import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentLabel;

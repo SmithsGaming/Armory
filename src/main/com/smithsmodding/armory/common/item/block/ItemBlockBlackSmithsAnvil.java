@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.common.item.block;
 
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.materials.IAnvilMaterial;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;

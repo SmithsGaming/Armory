@@ -1,9 +1,8 @@
 package com.smithsmodding.armory.common.handlers.config;
 
-import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.references.ModLogger;
-import com.smithsmodding.armory.common.config.ArmorDataSynchronizer;
 import com.smithsmodding.armory.api.events.common.config.ConfigSyncCompletedEvent;
+import com.smithsmodding.armory.api.util.references.ModLogger;
+import com.smithsmodding.armory.common.config.ArmorDataSynchronizer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;

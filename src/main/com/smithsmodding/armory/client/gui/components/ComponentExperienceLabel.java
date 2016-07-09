@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.client.gui.components;
 
-import com.smithsmodding.armory.util.client.Textures;
+import com.smithsmodding.armory.api.util.client.Textures;
 import com.smithsmodding.smithscore.client.gui.components.implementations.CoreComponent;
 import com.smithsmodding.smithscore.client.gui.hosts.IGUIBasedComponentHost;
 import com.smithsmodding.smithscore.client.gui.management.StandardRenderManager;

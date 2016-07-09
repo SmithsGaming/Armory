@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.common.structure.forge;
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.smithscore.common.structures.IStructureData;
 import com.smithsmodding.smithscore.util.common.FluidStackHelper;
 import net.minecraft.nbt.NBTTagCompound;

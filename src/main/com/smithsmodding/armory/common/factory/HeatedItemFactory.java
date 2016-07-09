@@ -5,12 +5,11 @@ package com.smithsmodding.armory.common.factory;
 /  Created on : 03/10/2014
 */
 
-import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.references.ModItems;
-import com.smithsmodding.armory.api.references.ModLogger;
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.item.IHeatableItem;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.util.references.ModItems;
+import com.smithsmodding.armory.api.util.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.smithscore.util.common.ItemStackHelper;

@@ -1,8 +1,8 @@
 package com.smithsmodding.armory.common.block;
 
 import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.references.ModCreativeTabs;
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;

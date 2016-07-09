@@ -3,7 +3,7 @@ package com.smithsmodding.armory.common;
 
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.common.handlers.GuiHandler;
 import com.smithsmodding.armory.common.handlers.config.ArmoryDataSyncerEventHandler;
 import com.smithsmodding.armory.common.handlers.config.ConfigSyncCompletedEventHandler;

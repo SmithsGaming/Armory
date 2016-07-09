@@ -8,5 +8,5 @@
 @API(owner = "Armory", apiVersion = References.General.API_VERSION, provides = "Armory-API|Crafting|SmithingsAnvil|Components")
 package com.smithsmodding.armory.api.crafting.blacksmiths.component;
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import net.minecraftforge.fml.common.API;

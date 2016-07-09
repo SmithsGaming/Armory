@@ -12,10 +12,10 @@ package com.smithsmodding.armory.common.block;
 */
 
 import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.references.ModBlocks;
-import com.smithsmodding.armory.api.references.ModCreativeTabs;
-import com.smithsmodding.armory.api.references.ModLogger;
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.ModBlocks;
+import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
+import com.smithsmodding.armory.api.util.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;

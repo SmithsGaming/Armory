@@ -1,8 +1,7 @@
 package com.smithsmodding.armory.client;
 
-import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
-import com.smithsmodding.armory.api.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.handler.ClientDisconnectedFromServerEventHandler;
 import com.smithsmodding.armory.client.logic.ArmoryClientInitializer;
 import com.smithsmodding.armory.client.model.loaders.*;
@@ -185,7 +184,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         MinecraftForge.EVENT_BUS.register(materializedTextureCreator);
         ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(materializedTextureCreator);
 
-        MinecraftForge.EVENT_BUS.register(new com.smithsmodding.armory.util.client.Textures());
+        MinecraftForge.EVENT_BUS.register(new com.smithsmodding.armory.api.util.client.Textures());
         MinecraftForge.EVENT_BUS.register(new ClientDisconnectedFromServerEventHandler());
 
     }

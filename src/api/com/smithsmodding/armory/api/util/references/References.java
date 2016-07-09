@@ -4,7 +4,7 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.armory.api.references;
+package com.smithsmodding.armory.api.util.references;
 /*
 *   References
 *   Created by: Orion

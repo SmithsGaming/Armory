@@ -1,11 +1,11 @@
 package com.smithsmodding.armory.common.creativetabs;
 
-import com.smithsmodding.armory.api.references.ModItems;
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.client.TranslationKeys;
+import com.smithsmodding.armory.api.util.references.ModItems;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.factory.HeatedItemFactory;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
-import com.smithsmodding.armory.util.client.TranslationKeys;
+import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

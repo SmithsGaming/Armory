@@ -1,11 +1,11 @@
 package com.smithsmodding.armory.common.item;
 
-import com.smithsmodding.armory.api.references.ModCreativeTabs;
-import com.smithsmodding.armory.api.references.References;
 import com.smithsmodding.armory.api.armor.ISingleComponentItem;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.armor.MaterialDependentMLAAddon;
 import com.smithsmodding.armory.api.item.ISingleMaterialItem;
+import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;

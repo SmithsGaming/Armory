@@ -3,7 +3,7 @@ package com.smithsmodding.armory.api.events.client.model.item;
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
 import com.smithsmodding.armory.api.model.deserializers.MultiLayeredArmorModelDeserializer;
 import com.smithsmodding.armory.api.model.deserializers.definition.MultiLayeredArmorModelDefinition;
-import com.smithsmodding.armory.api.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.smithscore.common.events.SmithsCoreEvent;
 import net.minecraft.util.ResourceLocation;
 

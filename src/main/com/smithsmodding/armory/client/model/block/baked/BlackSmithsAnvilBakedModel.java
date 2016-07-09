@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.client.model.block.baked;
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
 import net.minecraft.block.state.IBlockState;

@@ -31,10 +31,10 @@ public class ComponentBlackSmithsAnvilCraftingGrid extends Component5X5CraftingG
             TextureAtlasSprite holoSprite = null;
 
             if (slotIndex - startSlotIndexCraftingGrid == 11) {
-                holoSprite = com.smithsmodding.armory.util.client.Textures.Gui.Anvil.HOLOWPICKAXE.getIcon();
+                holoSprite = com.smithsmodding.armory.api.util.client.Textures.Gui.Anvil.HOLOWPICKAXE.getIcon();
             }
             else if (slotIndex - startSlotIndexCraftingGrid == 13) {
-                holoSprite = com.smithsmodding.armory.util.client.Textures.Gui.Anvil.HOLOWBOOK.getIcon();
+                holoSprite = com.smithsmodding.armory.api.util.client.Textures.Gui.Anvil.HOLOWBOOK.getIcon();
             }
 
             Slot slot = crafter.getSlot(slotIndex);

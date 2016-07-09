@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.common.tileentity;
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityFireplaceGuiManager;

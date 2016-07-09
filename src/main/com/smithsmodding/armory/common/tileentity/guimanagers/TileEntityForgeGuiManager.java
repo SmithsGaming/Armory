@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.common.tileentity.guimanagers;
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentProgressBar;

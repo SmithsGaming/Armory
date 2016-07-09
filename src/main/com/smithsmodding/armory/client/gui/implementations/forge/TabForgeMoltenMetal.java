@@ -1,8 +1,8 @@
 package com.smithsmodding.armory.client.gui.implementations.forge;
 
-import com.smithsmodding.armory.api.references.References;
+import com.smithsmodding.armory.api.util.client.Textures;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
-import com.smithsmodding.armory.util.client.Textures;
 import com.smithsmodding.smithscore.client.gui.components.core.ComponentConnectionType;
 import com.smithsmodding.smithscore.client.gui.components.core.ComponentOrientation;
 import com.smithsmodding.smithscore.client.gui.components.implementations.*;
@@ -38,8 +38,8 @@ public class TabForgeMoltenMetal extends CoreTab {
      */
     @Override
     public void registerComponents(IGUIBasedComponentHost host) {
-        host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.Forge.BACKGROUND, host, new Coordinate2D(0, 0), GuiForge.GUI.getWidth(), 111, com.smithsmodding.armory.util.client.Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
-        host.registerNewComponent(new ComponentPlayerInventory(References.InternalNames.GUIComponents.Forge.INVENTORY, host, new Coordinate2D(0, 107), com.smithsmodding.armory.util.client.Colors.DEFAULT, ((ContainerSmithsCore) firePit.inventorySlots).getPlayerInventory(), ComponentConnectionType.BELOWDIRECTCONNECT));
+        host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.Forge.BACKGROUND, host, new Coordinate2D(0, 0), GuiForge.GUI.getWidth(), 111, com.smithsmodding.armory.api.util.client.Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
+        host.registerNewComponent(new ComponentPlayerInventory(References.InternalNames.GUIComponents.Forge.INVENTORY, host, new Coordinate2D(0, 107), com.smithsmodding.armory.api.util.client.Colors.DEFAULT, ((ContainerSmithsCore) firePit.inventorySlots).getPlayerInventory(), ComponentConnectionType.BELOWDIRECTCONNECT));
 
         host.registerNewComponent(new ComponentFluidTank(References.InternalNames.GUIComponents.Forge.MOLTENMETALSLEFT, host, new CoreComponentState(), new Coordinate2D(7, 7), 20, 80, ComponentOrientation.VERTICALBOTTOMTOTOP));
         host.registerNewComponent(new ComponentFluidTank(References.InternalNames.GUIComponents.Forge.MOLTENMETALSRIGHT, host, new CoreComponentState(), new Coordinate2D(GuiForge.GUI.getWidth() - 7 - 20, 7), 20, 80, ComponentOrientation.VERTICALBOTTOMTOTOP));
@@ -49,7 +49,7 @@ public class TabForgeMoltenMetal extends CoreTab {
         for (int tSlotIndex = 0; tSlotIndex < (TileEntityForge.INFUSIONSTACK_AMOUNT); tSlotIndex++) {
             Slot slot = firePit.inventorySlots.inventorySlots.get(tSlotIndex);
 
-            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Forge.SLOT + tSlotIndex, new SlotComponentState(null, tSlotIndex, ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, new Coordinate2D(slot.xDisplayPosition - 1, slot.yDisplayPosition - getTabManager().getDisplayAreaVerticalOffset() - 1), com.smithsmodding.armory.util.client.Colors.DEFAULT));
+            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Forge.SLOT + tSlotIndex, new SlotComponentState(null, tSlotIndex, ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, new Coordinate2D(slot.xDisplayPosition - 1, slot.yDisplayPosition - getTabManager().getDisplayAreaVerticalOffset() - 1), com.smithsmodding.armory.api.util.client.Colors.DEFAULT));
         }
 
         host.registerNewComponent(new ComponentProgressBar(References.InternalNames.GUIComponents.Forge.PROGRESSMIXINGINLEFTHORIZONTAL, host, new CoreComponentState(), new Coordinate2D(29, 7), ComponentOrientation.HORIZONTALLEFTTORIGHT, Textures.Gui.Basic.Components.HORIZONTALTAILLEFTTORIGHTEMPTY, Textures.Gui.Basic.Components.HORIZONTALTAILLEFTTORIGHTFULL));

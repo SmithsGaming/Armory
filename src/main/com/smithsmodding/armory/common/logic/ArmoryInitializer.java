@@ -12,7 +12,8 @@ import com.smithsmodding.armory.api.crafting.blacksmiths.component.StandardAnvil
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.smithsmodding.armory.api.materials.IAnvilMaterial;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.api.references.*;
+import com.smithsmodding.armory.api.util.client.TranslationKeys;
+import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
 import com.smithsmodding.armory.common.anvil.AnvilMaterial;
 import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
@@ -40,7 +41,6 @@ import com.smithsmodding.armory.common.registry.*;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
-import com.smithsmodding.armory.util.client.TranslationKeys;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.util.common.ItemStackHelper;
 import net.minecraft.client.resources.I18n;

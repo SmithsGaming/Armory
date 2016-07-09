@@ -1,10 +1,10 @@
 package com.smithsmodding.armory.client.model.loaders;
 
 import com.google.common.collect.ImmutableMap;
-import com.smithsmodding.armory.api.materials.IAnvilMaterial;
 import com.smithsmodding.armory.api.events.client.model.block.BlackSmithsAnvilModelTextureLoadEvent;
+import com.smithsmodding.armory.api.materials.IAnvilMaterial;
 import com.smithsmodding.armory.api.model.deserializers.definition.AnvilModelDefinition;
-import com.smithsmodding.armory.api.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.block.unbaked.BlackSmithsAnvilModel;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;

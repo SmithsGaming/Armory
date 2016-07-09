@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.api.references;
+package com.smithsmodding.armory.api.util.references;
 
 import net.minecraft.block.Block;
 

@@ -1,11 +1,10 @@
 package com.smithsmodding.armory.client.textures;
 
 import com.google.common.collect.Maps;
-import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.api.materials.MaterialRenderControllers;
-import com.smithsmodding.armory.api.references.ModLogger;
 import com.smithsmodding.armory.api.textures.GuiOutlineTexture;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.common.material.ArmorMaterial;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
