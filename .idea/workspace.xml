@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2094f80-431d-41be-b6e3-47b3a42a7699" name="Default" comment="Fix texture addressing and additional spam.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalChain.MIM-Armorytemp.json" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalChain.MIM-armory.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_SmithsModding_Armory_Armory_1_9_4_1_1_0_1_289_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_SmithsModding_Armory_Armory_api_1_9_4_1_1_0_1_289_SNAPSHOT.xml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalNugget.MIM-Armory.json" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalNugget.MIM-armorytemp.json" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.mtl" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.mtl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/block/fireplace/BlockModel.mtl" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/fireplace/BlockModel.mtl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/block/forge/BlockModel.mtl" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/forge/BlockModel.mtl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Weaponry/.gitignore" afterPath="$PROJECT_DIR$/../Weaponry/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Weaponry/build.properties" afterPath="$PROJECT_DIR$/../Weaponry/build.properties" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/component/Armory.Items.ArmorComponent.AC-armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/component/Armory.Items.ArmorComponent.AC-ArmoryTemp.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalNugget.MIM-armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalNugget.MIM-armorytemp.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalPlate.MIM-armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalPlate.MIM-ArmoryTemp.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalRing.MIM-armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalRing.MIM-ArmoryTemp.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/component/Armory.Items.ArmorComponent.AC-ArmoryTemp.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/component/Armory.Items.ArmorComponent.AC-Armory.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalChain.MIM-Armorytemp.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalChain.MIM-Armory.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalPlate.MIM-ArmoryTemp.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalPlate.MIM-Armory.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalRing.MIM-ArmoryTemp.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalRing.MIM-Armory.json" />
     </list>
     <ignored path="Armory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -155,8 +148,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Armory.Items.ArmorComponent.AC-ArmoryTemp.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/models/item/component/Armory.Items.ArmorComponent.AC-ArmoryTemp.json">
+      <file leaf-file-name="Armory.Items.ArmorComponent.AC-Armory.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/models/item/component/Armory.Items.ArmorComponent.AC-Armory.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1053,6 +1046,112 @@
               <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="item" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="item" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="materialized" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="item" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="heateditem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="item" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1716,7 +1815,7 @@
       <workItem from="1468148599554" duration="590000" />
       <workItem from="1468149236573" duration="37000" />
       <workItem from="1468149507513" duration="1798000" />
-      <workItem from="1468176642222" duration="4812000" />
+      <workItem from="1468176642222" duration="4848000" />
     </task>
     <task id="LOCAL-00001" summary="Initial API Release.">
       <created>1467915344205</created>
@@ -1774,15 +1873,22 @@
       <option name="project" value="LOCAL" />
       <updated>1468184084611</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="in">
+      <created>1468187723360</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1468187723360</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37672000" />
+    <option name="totallyTimeSpent" value="37708000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1794,7 +1900,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281412" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26705757" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26705757" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1835,9 +1941,9 @@
     <MESSAGE value="API: Added parts of the UTIL package." />
     <MESSAGE value="Working on directory capitalization of the resources directory - Phase 1 added temp tag." />
     <MESSAGE value="Working on directory capitalization of the resources directory - Phase 2 removed tags." />
-    <MESSAGE value="Fix texture addressing and additional spam." />
     <MESSAGE value="Fixes extensions of model Loaders not work properly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes extensions of model Loaders not work properly." />
+    <MESSAGE value="Fix texture addressing and additional spam." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix texture addressing and additional spam." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -2143,7 +2249,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalChain.MIM-Armorytemp.json">
+    <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/models/item/materialized/Armory.Items.Components.MetalChain.MIM-Armory.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -2231,7 +2337,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/models/item/component/Armory.Items.ArmorComponent.AC-ArmoryTemp.json">
+    <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/models/item/component/Armory.Items.ArmorComponent.AC-Armory.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
