@@ -11,8 +11,41 @@ Cannot run the CurseUpload sequence. No API-Key was available.Cannot run the Cur
 #################################################
 Found AccessTransformer: jei_at.cfg_jei_1.9.4-3.6.8.225_at.cfg
 Found AccessTransformer: Armory_at.cfg
-:genIntellijRuns
+:extractMcpMappings SKIPPED
+:deobfCompileDeobfDepTask0 SKIPPED
+:deobfCompileDeobfDepTask1 SKIPPED
+:deobfCompileRemapDepSourcesTask2 SKIPPED
+:deobfCompileRemapDepSourcesTask3 SKIPPED
+:deobfCompileDummyTask
+:deobfProvidedDummyTask
+:getVersionJson
+:extractUserdev UP-TO-DATE
+:extractDependencyATs UP-TO-DATE
+:extractMcpData SKIPPED
+:genSrgs SKIPPED
+:downloadClient SKIPPED
+:downloadServer SKIPPED
+:splitServerJar SKIPPED
+:mergeJars SKIPPED
+:deobfMcSRG SKIPPED
+:decompileMc SKIPPED
+:fixMcSources
+:applySourcePatches
+:remapMcSources
+:recompileMc
+:extractNatives SKIPPED
+:getAssetIndex UP-TO-DATE
+:getAssets
+Current status: 264/1049   25%
+Current status: 585/1049   55%
+Current status: 887/1049   84%
+:makeStart
+:setupDecompWorkspace
+:ideaModule
+:ideaProject
+:ideaWorkspace
+:idea
 
 BUILD SUCCESSFUL
 
-Total time: 36.716 secs
+Total time: 2 mins 19.651 secs

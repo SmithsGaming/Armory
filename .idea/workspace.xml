@@ -1,20 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b2094f80-431d-41be-b6e3-47b3a42a7699" name="Default" comment="API implementation is completed, callback registration is not how ever.">
+    <list default="true" id="b2094f80-431d-41be-b6e3-47b3a42a7699" name="Default" comment="API: Added parts of the UTIL package.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_17_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_ibm_icu_icu4j_core_mojang_51_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mojang_authlib_1_5_22.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mojang_netty_1_6.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mojang_realms_1_8_19.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_paulscode_codecjorbis_20101023.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_paulscode_codecwav_20101023.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_paulscode_libraryjavasound_20101123.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_paulscode_librarylwjglopenal_20100824.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_paulscode_soundsystem_20120107.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_typesafe_akka_akka_actor_2_11_2_3_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_typesafe_config_1_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_9.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_commons_logging_1_1_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__deobf_mezz_jei_jei_1_9_4_3_6_8_225.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_all_4_0_23_Final.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__it_unimi_dsi_fastutil_7_0_12_mojang.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__java3d_vecmath_1_5_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jline_jline_2_13.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__lzma_lzma_0_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_minecraft_launchwrapper_1_12.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sf_jopt_simple_jopt_simple_4_6.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sf_trove4j_trove4j_3_0_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_commons_commons_compress_1_8_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_commons_commons_lang3_3_3_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_3_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_3_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_api_2_0_beta9.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_core_2_0_beta9.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_fusesource_jansi_jansi_1_11.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_lwjgl_lwjgl_lwjgl_2_9_4_nightly_20150209.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_lwjgl_lwjgl_lwjgl_platform_natives_linux_2_9_4_nightly_20150209.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_lwjgl_lwjgl_lwjgl_platform_natives_osx_2_9_4_nightly_20150209.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_lwjgl_lwjgl_lwjgl_platform_natives_windows_2_9_4_nightly_20150209.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_lwjgl_lwjgl_lwjgl_util_2_9_4_nightly_20150209.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_ow2_asm_asm_debug_all_5_0_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_scala_lang_modules_scala_parser_combinators_2_11_1_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_scala_lang_modules_scala_swing_2_11_1_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_scala_lang_modules_scala_xml_2_11_1_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_scala_lang_plugins_scala_continuations_library_2_11_1_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_scala_lang_plugins_scala_continuations_plugin_2_11_1_1_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_scala_lang_scala_actors_2_11_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_scala_lang_scala_actors_migration_2_11_1_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_scala_lang_scala_compiler_2_11_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_scala_lang_scala_library_2_11_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_scala_lang_scala_reflect_2_11_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__oshi_project_oshi_core_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/copyright/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/gradle.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_SmithsModding_armory_armory_1_9_4_1_1_0_1_287.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_SmithsModding_armory_armory_api_1_9_4_1_1_0_1_287.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_google_code_gson_gson_2_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_google_guava_guava_17_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_ibm_icu_icu4j_core_mojang_51_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_mojang_authlib_1_5_22.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_mojang_netty_1_6.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_mojang_realms_1_8_19.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_paulscode_codecjorbis_20101023.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_paulscode_codecwav_20101023.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_paulscode_libraryjavasound_20101123.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_paulscode_librarylwjglopenal_20100824.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_paulscode_soundsystem_20120107.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_typesafe_akka_akka_actor_2_11_2_3_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_typesafe_config_1_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__commons_codec_commons_codec_1_9.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__commons_io_commons_io_2_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__commons_logging_commons_logging_1_1_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__deobf_com_smithsmodding_smithscore_smithscore_1_9_4_1_1_0_1_186.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__deobf_mezz_jei_jei_1_9_4_3_4_2_206.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__deobf_slimeknights_TConstruct_1_9_4_2_3_1_jenkins229.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__deobf_slimeknights_mantle_Mantle_1_9_4_0_10_1_jenkins142.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__io_netty_netty_all_4_0_23_Final.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__it_unimi_dsi_fastutil_7_0_12_mojang.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__java3d_vecmath_1_5_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__jline_jline_2_13.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__lzma_lzma_0_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__net_java_dev_jna_jna_3_4_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__net_java_dev_jna_platform_3_4_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__net_java_jinput_jinput_2_0_5.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__net_java_jinput_jinput_platform_natives_linux_2_0_5.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__net_java_jinput_jinput_platform_natives_osx_2_0_5.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__net_java_jinput_jinput_platform_natives_windows_2_0_5.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__net_java_jutils_jutils_1_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__net_minecraft_launchwrapper_1_12.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__net_sf_jopt_simple_jopt_simple_4_6.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__net_sf_trove4j_trove4j_3_0_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_apache_commons_commons_compress_1_8_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_apache_commons_commons_lang3_3_3_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_3_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_3_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_api_2_0_beta9.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_core_2_0_beta9.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_fusesource_jansi_jansi_1_11.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_lwjgl_lwjgl_lwjgl_2_9_4_nightly_20150209.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_lwjgl_lwjgl_lwjgl_platform_natives_linux_2_9_4_nightly_20150209.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_lwjgl_lwjgl_lwjgl_platform_natives_osx_2_9_4_nightly_20150209.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_lwjgl_lwjgl_lwjgl_platform_natives_windows_2_9_4_nightly_20150209.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_lwjgl_lwjgl_lwjgl_util_2_9_4_nightly_20150209.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_ow2_asm_asm_debug_all_5_0_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_scala_lang_modules_scala_parser_combinators_2_11_1_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_scala_lang_modules_scala_swing_2_11_1_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_scala_lang_modules_scala_xml_2_11_1_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_scala_lang_plugins_scala_continuations_library_2_11_1_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_scala_lang_plugins_scala_continuations_plugin_2_11_1_1_0_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_scala_lang_scala_actors_2_11_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_scala_lang_scala_actors_migration_2_11_1_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_scala_lang_scala_compiler_2_11_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_scala_lang_scala_library_2_11_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__org_scala_lang_scala_reflect_2_11_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__oshi_project_oshi_core_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Common/Compatibility/ArmoryMaterialInitializer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Common/Compatibility/ArmoryMedieval.old.text" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Common/Compatibility/initializers/ArditeInitializer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Common/Compatibility/initializers/AutoGeneratedMaterialInitializer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Common/Compatibility/initializers/CobaltInitializer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Common/Compatibility/initializers/ManyullunInitializer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Util/Client/TranslationKeys.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Util/ModLogger.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/Orion/Armory/Weaponry/Client/Compatibility/ClientArmoryCompatEventHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/Orion/Armory/Weaponry/Util/Client/Textures.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Client/ClientProxy.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Common/Compatibility/ArmoryMedieval.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Common/Config/ConfigurationHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Event/ArmoryCompatEventHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Util/Client/Colors.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Util/Client/IconPlaceHolder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Util/Client/PlaceHolderRegistrar.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/Orion/Armory/Weaponry/Common/CommonProxy.java" afterPath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Common/CommonProxy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/Orion/Armory/Weaponry/Common/Config/WeaponryConfigs.java" afterPath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Common/Config/WeaponryConfigs.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/Orion/Armory/Weaponry/Util/References.java" afterPath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Util/References.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/Orion/Armory/Weaponry/Weaponry.java" afterPath="$PROJECT_DIR$/../Weaponry/src/Armory/Weaponry/com/smithsmodding/Armory/Weaponry/Weaponry.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/gradle.log" afterPath="$PROJECT_DIR$/.gradle/gradle.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/logic/ArmoryClientInitializer.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/logic/ArmoryClientInitializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/ArmoryCommonProxy.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/ArmoryCommonProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/ArmoryInitializer.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/ArmoryInitializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/GeneralRegistry.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/GeneralRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/client/Textures.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/client/Textures.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.properties" afterPath="$PROJECT_DIR$/build.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Weaponry/build.gradle" afterPath="$PROJECT_DIR$/../Weaponry/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Weaponry/build.properties" afterPath="$PROJECT_DIR$/../Weaponry/build.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Weaponry/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/../Weaponry/gradle/wrapper/gradle-wrapper.properties" />
     </list>
     <ignored path="Armory.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path=".idea/dataSources.local.xml" />
+    <ignored path="$PROJECT_DIR$/../Weaponry/.gradle/" />
+    <ignored path="$PROJECT_DIR$/../Weaponry/build/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +175,9 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/../Weaponry">
       <ProjectState />
     </projectState>
   </component>
@@ -53,78 +202,448 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ArmoryInitializer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/ArmoryInitializer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="72" column="42" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArmoryCommonProxy.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/ArmoryCommonProxy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
-              <folding>
-                <element signature="e#1480#1481#0" expanded="true" />
-                <element signature="e#1531#1532#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArmoryClientInitializer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/logic/ArmoryClientInitializer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Armory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="715">
-              <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+            <state relative-caret-position="310">
+              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build.properties">
+      <file leaf-file-name="ArmorMaterial.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/ArmorMaterial.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="61">
+              <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Textures.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/client/Textures.java">
+      <file leaf-file-name="Minecraft.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/client/Minecraft.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1500">
-              <caret line="69" column="12" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
+            <state relative-caret-position="70525">
+              <caret line="3194" column="0" selection-start-line="3194" selection-start-column="0" selection-end-line="3194" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="false" />
+                <element signature="e#14353#14368#0" expanded="false" />
+                <element signature="e#14987#15004#0" expanded="false" />
+                <element signature="e#23367#23929#0" expanded="false" />
+                <element signature="e#23928#23929#0" expanded="false" />
+                <element signature="e#31458#31459#0" expanded="false" />
+                <element signature="e#31499#31500#0" expanded="false" />
+                <element signature="e#31537#31538#0" expanded="false" />
+                <element signature="e#31580#31581#0" expanded="false" />
+                <element signature="e#31622#31623#0" expanded="false" />
+                <element signature="e#31661#31662#0" expanded="false" />
+                <element signature="e#34664#34694#0" expanded="false" />
+                <element signature="e#35750#35763#0" expanded="false" />
+                <element signature="e#41607#41608#0" expanded="false" />
+                <element signature="e#41645#41646#0" expanded="false" />
+                <element signature="e#58707#58708#0" expanded="false" />
+                <element signature="e#58743#58744#0" expanded="false" />
+                <element signature="e#69310#69311#0" expanded="false" />
+                <element signature="e#69351#69352#0" expanded="false" />
+                <element signature="e#71408#71669#0" expanded="false" />
+                <element signature="e#71668#71669#0" expanded="false" />
+                <element signature="e#72256#72541#0" expanded="false" />
+                <element signature="e#72540#72541#0" expanded="false" />
+                <element signature="e#94809#94810#0" expanded="false" />
+                <element signature="e#94858#94859#0" expanded="false" />
+                <element signature="e#100650#100651#0" expanded="false" />
+                <element signature="e#100684#100685#0" expanded="false" />
+                <element signature="e#100739#100740#0" expanded="false" />
+                <element signature="e#100819#100820#0" expanded="false" />
+                <element signature="e#103151#103336#0" expanded="false" />
+                <element signature="e#103335#103336#0" expanded="false" />
+                <element signature="e#103389#103543#0" expanded="false" />
+                <element signature="e#103542#103543#0" expanded="false" />
+                <element signature="e#103597#103861#0" expanded="false" />
+                <element signature="e#103860#103861#0" expanded="false" />
+                <element signature="e#103916#104079#0" expanded="false" />
+                <element signature="e#104078#104079#0" expanded="false" />
+                <element signature="e#104137#104324#0" expanded="false" />
+                <element signature="e#104323#104324#0" expanded="false" />
+                <element signature="e#104381#104833#0" expanded="false" />
+                <element signature="e#104832#104833#0" expanded="false" />
+                <element signature="e#104885#105065#0" expanded="false" />
+                <element signature="e#105064#105065#0" expanded="false" />
+                <element signature="e#105127#105881#0" expanded="false" />
+                <element signature="e#105880#105881#0" expanded="false" />
+                <element signature="e#105945#106164#0" expanded="false" />
+                <element signature="e#106163#106164#0" expanded="false" />
+                <element signature="e#106229#106496#0" expanded="false" />
+                <element signature="e#106495#106496#0" expanded="false" />
+                <element signature="e#106553#106702#0" expanded="false" />
+                <element signature="e#106701#106702#0" expanded="false" />
+                <element signature="e#107213#107356#0" expanded="false" />
+                <element signature="e#107355#107356#0" expanded="false" />
+                <element signature="e#123876#123877#0" expanded="false" />
+                <element signature="e#123931#123932#0" expanded="false" />
+                <element signature="e#124053#124054#0" expanded="false" />
+                <element signature="e#124106#124107#0" expanded="false" />
+                <element signature="e#124158#124159#0" expanded="false" />
+                <element signature="e#124203#124204#0" expanded="false" />
+                <element signature="e#124257#124258#0" expanded="false" />
+                <element signature="e#124310#124311#0" expanded="false" />
+                <element signature="e#124472#124473#0" expanded="false" />
+                <element signature="e#124561#124562#0" expanded="false" />
+                <element signature="e#124689#124690#0" expanded="false" />
+                <element signature="e#124736#124737#0" expanded="false" />
+                <element signature="e#125165#125166#0" expanded="false" />
+                <element signature="e#125205#125206#0" expanded="false" />
+                <element signature="e#125312#125313#0" expanded="false" />
+                <element signature="e#125383#125384#0" expanded="false" />
+                <element signature="e#125492#125493#0" expanded="false" />
+                <element signature="e#125530#125531#0" expanded="false" />
+                <element signature="e#125569#125570#0" expanded="false" />
+                <element signature="e#125604#125605#0" expanded="false" />
+                <element signature="e#126062#126063#0" expanded="false" />
+                <element signature="e#126095#126096#0" expanded="false" />
+                <element signature="e#126148#126149#0" expanded="false" />
+                <element signature="e#126188#126189#0" expanded="false" />
+                <element signature="e#126244#126245#0" expanded="false" />
+                <element signature="e#126289#126290#0" expanded="false" />
+                <element signature="e#126358#126359#0" expanded="false" />
+                <element signature="e#126410#126411#0" expanded="false" />
+                <element signature="e#126465#126466#0" expanded="false" />
+                <element signature="e#126510#126511#0" expanded="false" />
+                <element signature="e#126561#126562#0" expanded="false" />
+                <element signature="e#126605#126606#0" expanded="false" />
+                <element signature="e#126645#126646#0" expanded="false" />
+                <element signature="e#126681#126682#0" expanded="false" />
+                <element signature="e#126722#126723#0" expanded="false" />
+                <element signature="e#126762#126763#0" expanded="false" />
+                <element signature="e#126811#126812#0" expanded="false" />
+                <element signature="e#126853#126854#0" expanded="false" />
+                <element signature="e#128561#128562#0" expanded="false" />
+                <element signature="e#128603#128604#0" expanded="false" />
+                <element signature="e#128650#128651#0" expanded="false" />
+                <element signature="e#128689#128690#0" expanded="false" />
+                <element signature="e#128736#128737#0" expanded="false" />
+                <element signature="e#128780#128781#0" expanded="false" />
+                <element signature="e#129920#129928#0" expanded="false" />
+                <element signature="e#130047#130048#0" expanded="false" />
+                <element signature="e#130109#130110#0" expanded="false" />
+                <element signature="e#130180#130181#0" expanded="false" />
+                <element signature="e#130229#130230#0" expanded="false" />
+                <element signature="e#130280#130281#0" expanded="false" />
+                <element signature="e#130321#130322#0" expanded="false" />
+                <element signature="e#130453#130454#0" expanded="false" />
+                <element signature="e#130493#130494#0" expanded="false" />
+                <element signature="e#130847#130848#0" expanded="false" />
+                <element signature="e#130885#130886#0" expanded="false" />
+                <element signature="e#130988#131004#0" expanded="false" />
+                <element signature="e#131384#131385#0" expanded="false" />
+                <element signature="e#131429#131430#0" expanded="false" />
+                <element signature="e#131567#131568#0" expanded="false" />
+                <element signature="e#131619#131620#0" expanded="false" />
+                <element signature="e#131662#131663#0" expanded="false" />
+                <element signature="e#131699#131700#0" expanded="false" />
+                <element signature="e#131747#131748#0" expanded="false" />
+                <element signature="e#131799#131800#0" expanded="false" />
+                <element signature="e#131846#131847#0" expanded="false" />
+                <element signature="e#131885#131886#0" expanded="false" />
+                <element signature="e#131943#131944#0" expanded="false" />
+                <element signature="e#131981#131982#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MultiLayeredArmorItemModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/MultiLayeredArmorItemModel.java">
+      <file leaf-file-name="RenderItem.java" pinned="false" current-in-tab="true">
+        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/RenderItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1300">
-              <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+            <state relative-caret-position="160">
+              <caret line="252" column="0" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemModelMesher.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/ItemModelMesher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="650">
+              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="false" />
+                <element signature="e#721#753#0" expanded="false" />
+                <element signature="e#836#858#0" expanded="false" />
+                <element signature="e#935#961#0" expanded="false" />
+                <element signature="e#1079#1080#0" expanded="false" />
+                <element signature="e#1127#1128#0" expanded="false" />
+                <element signature="e#1191#1192#0" expanded="false" />
+                <element signature="e#1243#1244#0" expanded="false" />
+                <element signature="e#2558#2559#0" expanded="false" />
+                <element signature="e#2618#2619#0" expanded="false" />
+                <element signature="e#2986#2987#0" expanded="false" />
+                <element signature="e#3036#3037#0" expanded="false" />
+                <element signature="e#3085#3086#0" expanded="false" />
+                <element signature="e#3125#3126#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemModelMesherForge.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/ItemModelMesherForge.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="750">
+              <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemStack.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/item/ItemStack.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5300">
+              <caret line="282" column="0" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2879#2880#0" expanded="false" />
+                <element signature="e#2918#2919#0" expanded="false" />
+                <element signature="e#2973#2974#0" expanded="false" />
+                <element signature="e#3020#3021#0" expanded="false" />
+                <element signature="e#3085#3086#0" expanded="false" />
+                <element signature="e#3151#3152#0" expanded="false" />
+                <element signature="e#3192#3193#0" expanded="false" />
+                <element signature="e#3229#3230#0" expanded="false" />
+                <element signature="e#3282#3283#0" expanded="false" />
+                <element signature="e#3327#3328#0" expanded="false" />
+                <element signature="e#5950#5951#0" expanded="false" />
+                <element signature="e#6016#6017#0" expanded="false" />
+                <element signature="e#8087#8088#0" expanded="false" />
+                <element signature="e#8148#8149#0" expanded="false" />
+                <element signature="e#8712#8713#0" expanded="false" />
+                <element signature="e#8761#8762#0" expanded="false" />
+                <element signature="e#8873#8874#0" expanded="false" />
+                <element signature="e#8953#8954#0" expanded="false" />
+                <element signature="e#9336#9337#0" expanded="false" />
+                <element signature="e#9383#9384#0" expanded="false" />
+                <element signature="e#16428#16429#0" expanded="false" />
+                <element signature="e#16485#16486#0" expanded="false" />
+                <element signature="e#16643#16644#0" expanded="false" />
+                <element signature="e#16701#16702#0" expanded="false" />
+                <element signature="e#16737#16738#0" expanded="false" />
+                <element signature="e#16837#16838#0" expanded="false" />
+                <element signature="e#17594#17595#0" expanded="false" />
+                <element signature="e#17659#17660#0" expanded="false" />
+                <element signature="e#17707#17708#0" expanded="false" />
+                <element signature="e#17767#17768#0" expanded="false" />
+                <element signature="e#18194#18195#0" expanded="false" />
+                <element signature="e#18246#18247#0" expanded="false" />
+                <element signature="e#18378#18379#0" expanded="false" />
+                <element signature="e#18422#18423#0" expanded="false" />
+                <element signature="e#19343#19344#0" expanded="false" />
+                <element signature="e#19386#19387#0" expanded="false" />
+                <element signature="e#21559#21567#0" expanded="false" />
+                <element signature="e#30304#30305#0" expanded="false" />
+                <element signature="e#30357#30358#0" expanded="false" />
+                <element signature="e#30398#30399#0" expanded="false" />
+                <element signature="e#30451#30452#0" expanded="false" />
+                <element signature="e#30579#30580#0" expanded="false" />
+                <element signature="e#30668#30669#0" expanded="false" />
+                <element signature="e#31893#31894#0" expanded="false" />
+                <element signature="e#31950#31951#0" expanded="false" />
+                <element signature="e#32062#32063#0" expanded="false" />
+                <element signature="e#32107#32108#0" expanded="false" />
+                <element signature="e#32226#32227#0" expanded="false" />
+                <element signature="e#32264#32265#0" expanded="false" />
+                <element signature="e#32428#32429#0" expanded="false" />
+                <element signature="e#32465#32466#0" expanded="false" />
+                <element signature="e#33326#33353#0" expanded="false" />
+                <element signature="e#39474#39475#0" expanded="false" />
+                <element signature="e#39511#39512#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/item/Item.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17650">
+              <caret line="916" column="0" selection-start-line="916" selection-start-column="0" selection-end-line="916" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2791#3041#0" expanded="false" />
+                <element signature="e#3040#3041#0" expanded="false" />
+                <element signature="e#3104#3413#0" expanded="false" />
+                <element signature="e#3412#3413#0" expanded="false" />
+                <element signature="e#3480#3776#0" expanded="false" />
+                <element signature="e#3775#3776#0" expanded="false" />
+                <element signature="e#3841#4178#0" expanded="false" />
+                <element signature="e#4177#4178#0" expanded="false" />
+                <element signature="e#5213#5214#0" expanded="false" />
+                <element signature="e#5288#5289#0" expanded="false" />
+                <element signature="e#5338#5339#0" expanded="false" />
+                <element signature="e#5393#5394#0" expanded="false" />
+                <element signature="e#5469#5470#0" expanded="false" />
+                <element signature="e#5524#5525#0" expanded="false" />
+                <element signature="e#6719#6720#0" expanded="false" />
+                <element signature="e#6747#6748#0" expanded="false" />
+                <element signature="e#6822#6823#0" expanded="false" />
+                <element signature="e#6881#6882#0" expanded="false" />
+                <element signature="e#7589#7590#0" expanded="false" />
+                <element signature="e#7616#7617#0" expanded="false" />
+                <element signature="e#8129#8130#0" expanded="false" />
+                <element signature="e#8157#8158#0" expanded="false" />
+                <element signature="e#8375#8376#0" expanded="false" />
+                <element signature="e#8415#8416#0" expanded="false" />
+                <element signature="e#8648#8649#0" expanded="false" />
+                <element signature="e#8672#8673#0" expanded="false" />
+                <element signature="e#8715#8716#0" expanded="false" />
+                <element signature="e#8754#8755#0" expanded="false" />
+                <element signature="e#9453#9454#0" expanded="false" />
+                <element signature="e#9543#9544#0" expanded="false" />
+                <element signature="e#9816#9817#0" expanded="false" />
+                <element signature="e#9844#9845#0" expanded="false" />
+                <element signature="e#10271#10272#0" expanded="false" />
+                <element signature="e#10299#10300#0" expanded="false" />
+                <element signature="e#10865#10866#0" expanded="false" />
+                <element signature="e#10900#10901#0" expanded="false" />
+                <element signature="e#11132#11133#0" expanded="false" />
+                <element signature="e#11160#11161#0" expanded="false" />
+                <element signature="e#11899#11900#0" expanded="false" />
+                <element signature="e#11952#11953#0" expanded="false" />
+                <element signature="e#12195#12196#0" expanded="false" />
+                <element signature="e#12248#12249#0" expanded="false" />
+                <element signature="e#12553#12554#0" expanded="false" />
+                <element signature="e#12580#12581#0" expanded="false" />
+                <element signature="e#12622#12623#0" expanded="false" />
+                <element signature="e#12663#12664#0" expanded="false" />
+                <element signature="e#12853#12854#0" expanded="false" />
+                <element signature="e#12902#12903#0" expanded="false" />
+                <element signature="e#13475#13476#0" expanded="false" />
+                <element signature="e#13503#13504#0" expanded="false" />
+                <element signature="e#13675#13676#0" expanded="false" />
+                <element signature="e#13713#13714#0" expanded="false" />
+                <element signature="e#13841#13842#0" expanded="false" />
+                <element signature="e#13865#13866#0" expanded="false" />
+                <element signature="e#14608#14609#0" expanded="false" />
+                <element signature="e#14654#14655#0" expanded="false" />
+                <element signature="e#14979#14980#0" expanded="false" />
+                <element signature="e#15059#15060#0" expanded="false" />
+                <element signature="e#16313#16314#0" expanded="false" />
+                <element signature="e#16337#16338#0" expanded="false" />
+                <element signature="e#16918#16919#0" expanded="false" />
+                <element signature="e#16960#16961#0" expanded="false" />
+                <element signature="e#17171#17172#0" expanded="false" />
+                <element signature="e#17199#17200#0" expanded="false" />
+                <element signature="e#17354#17355#0" expanded="false" />
+                <element signature="e#17382#17383#0" expanded="false" />
+                <element signature="e#17585#17612#0" expanded="false" />
+                <element signature="e#18405#18406#0" expanded="false" />
+                <element signature="e#18432#18433#0" expanded="false" />
+                <element signature="e#18893#18894#0" expanded="false" />
+                <element signature="e#18927#18928#0" expanded="false" />
+                <element signature="e#19793#19794#0" expanded="false" />
+                <element signature="e#19843#19844#0" expanded="false" />
+                <element signature="e#20538#20539#0" expanded="false" />
+                <element signature="e#20566#20567#0" expanded="false" />
+                <element signature="e#21408#21409#0" expanded="false" />
+                <element signature="e#21436#21437#0" expanded="false" />
+                <element signature="e#22628#22629#0" expanded="false" />
+                <element signature="e#22655#22656#0" expanded="false" />
+                <element signature="e#23166#23167#0" expanded="false" />
+                <element signature="e#23194#23195#0" expanded="false" />
+                <element signature="e#23757#23758#0" expanded="false" />
+                <element signature="e#23784#23785#0" expanded="false" />
+                <element signature="e#24178#24179#0" expanded="false" />
+                <element signature="e#24206#24207#0" expanded="false" />
+                <element signature="e#24545#24546#0" expanded="false" />
+                <element signature="e#24606#24607#0" expanded="false" />
+                <element signature="e#25048#25049#0" expanded="false" />
+                <element signature="e#25111#25112#0" expanded="false" />
+                <element signature="e#26550#26551#0" expanded="false" />
+                <element signature="e#26577#26578#0" expanded="false" />
+                <element signature="e#27668#27669#0" expanded="false" />
+                <element signature="e#27695#27696#0" expanded="false" />
+                <element signature="e#28691#28692#0" expanded="false" />
+                <element signature="e#28719#28720#0" expanded="false" />
+                <element signature="e#29704#29705#0" expanded="false" />
+                <element signature="e#29743#29744#0" expanded="false" />
+                <element signature="e#30389#30390#0" expanded="false" />
+                <element signature="e#30433#30434#0" expanded="false" />
+                <element signature="e#31428#31429#0" expanded="false" />
+                <element signature="e#31471#31472#0" expanded="false" />
+                <element signature="e#32644#32645#0" expanded="false" />
+                <element signature="e#32691#32692#0" expanded="false" />
+                <element signature="e#32772#32789#0" expanded="false" />
+                <element signature="e#33331#33332#0" expanded="false" />
+                <element signature="e#33374#33375#0" expanded="false" />
+                <element signature="e#36731#36961#0" expanded="false" />
+                <element signature="e#36960#36961#0" expanded="false" />
+                <element signature="e#37249#37518#0" expanded="false" />
+                <element signature="e#37517#37518#0" expanded="false" />
+                <element signature="e#37717#37985#0" expanded="false" />
+                <element signature="e#37984#37985#0" expanded="false" />
+                <element signature="e#38157#38427#0" expanded="false" />
+                <element signature="e#38426#38427#0" expanded="false" />
+                <element signature="e#38555#38825#0" expanded="false" />
+                <element signature="e#38824#38825#0" expanded="false" />
+                <element signature="e#38990#39258#0" expanded="false" />
+                <element signature="e#39257#39258#0" expanded="false" />
+                <element signature="e#39548#39818#0" expanded="false" />
+                <element signature="e#39817#39818#0" expanded="false" />
+                <element signature="e#39936#40210#0" expanded="false" />
+                <element signature="e#40209#40210#0" expanded="false" />
+                <element signature="e#40544#40787#0" expanded="false" />
+                <element signature="e#40786#40787#0" expanded="false" />
+                <element signature="e#41101#41374#0" expanded="false" />
+                <element signature="e#41373#41374#0" expanded="false" />
+                <element signature="e#42152#42461#0" expanded="false" />
+                <element signature="e#42460#42461#0" expanded="false" />
+                <element signature="e#42600#42906#0" expanded="false" />
+                <element signature="e#42905#42906#0" expanded="false" />
+                <element signature="e#45748#46022#0" expanded="false" />
+                <element signature="e#46021#46022#0" expanded="false" />
+                <element signature="e#46170#46444#0" expanded="false" />
+                <element signature="e#46443#46444#0" expanded="false" />
+                <element signature="e#48567#48835#0" expanded="false" />
+                <element signature="e#48834#48835#0" expanded="false" />
+                <element signature="e#50569#50849#0" expanded="false" />
+                <element signature="e#50848#50849#0" expanded="false" />
+                <element signature="e#51253#51527#0" expanded="false" />
+                <element signature="e#51526#51527#0" expanded="false" />
+                <element signature="e#51726#52002#0" expanded="false" />
+                <element signature="e#52001#52002#0" expanded="false" />
+                <element signature="e#77448#77449#0" expanded="false" />
+                <element signature="e#77514#77515#0" expanded="false" />
+                <element signature="e#79794#79795#0" expanded="false" />
+                <element signature="e#79837#79838#0" expanded="false" />
+                <element signature="e#80017#80018#0" expanded="false" />
+                <element signature="e#80079#80080#0" expanded="false" />
+                <element signature="e#80209#80210#0" expanded="false" />
+                <element signature="e#80259#80260#0" expanded="false" />
+                <element signature="e#80436#80437#0" expanded="false" />
+                <element signature="e#80484#80485#0" expanded="false" />
+                <element signature="e#80627#80628#0" expanded="false" />
+                <element signature="e#80677#80678#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegistryDelegate.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/fml/common/registry/RegistryDelegate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1325">
+              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1782#1783#0" expanded="false" />
+                <element signature="e#1822#1823#0" expanded="false" />
+                <element signature="e#1875#1876#0" expanded="false" />
+                <element signature="e#1924#1925#0" expanded="false" />
+                <element signature="e#2337#2338#0" expanded="false" />
+                <element signature="e#2390#2391#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -613,7 +1132,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="1467913177476" />
+        <entry key="$PROJECT_DIR$" value="1467971194326" />
         <entry key="$PROJECT_DIR$/../IronChests" value="1466980803762" />
         <entry key="$PROJECT_DIR$/../Tiny-Storage" value="1467325010968" />
       </map>
@@ -630,7 +1149,7 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minecraftforge.gradle/ForgeGradle/2.2-SNAPSHOT/c080376b2bdc472260821acac35e0be63a26ccf8/ForgeGradle-2.2-SNAPSHOT.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minecraftforge.gradle/ForgeGradle/2.2-SNAPSHOT/10ce04ed4bd70a0efbcf0a083c0e43022e26e4bb/ForgeGradle-2.2-SNAPSHOT.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/gradle.plugin.com.matthewprenger/CurseGradle/1.0.7/331e3b32bc5069a68c3aebdbbdc45e59313d251a/CurseGradle-1.0.7.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/gradle.plugin.se.bjurr.gitchangelog/git-changelog-gradle-plugin/1.34/62a0e2181454a8b4c014e8147149ba826aca9598/git-changelog-gradle-plugin-1.34.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jponge/lzma-java/1.3/c0f18880fb29c7bfc088a6e114c66fe30a5e8df2/lzma-java-1.3-sources.jar" />
@@ -811,14 +1330,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/api/model/deserializers/definition/AnvilModelDefinition.java" />
-        <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/AnvilBottomTextureDeserializer.java" />
-        <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/AnvilModelDeserializer.java" />
-        <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/AnvilTopTextureDeserializer.java" />
-        <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/definition/AnvilModelDefinition.java" />
-        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/AnvilModelLoader.java" />
-        <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/client/model/block/BlackSmithsAnvilModelTextureLoadEvent.java" />
-        <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/references/ModCreativeTabs.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeHandler.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/textures/MaterializedTextureCreator.java" />
@@ -857,6 +1368,19 @@
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/ArmoryCommonProxy.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/logic/ArmoryClientInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java" />
+        <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/client/TranslationKeys.java" />
+        <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/references/ModLogger.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/armor/ArmorNBTHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeWrapper.java" />
+        <option value="$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/fml/common/event/FMLInterModComms.java" />
+        <option value="$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/client/Minecraft.java" />
+        <option value="$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/RenderItem.java" />
+        <option value="$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/ItemModelMesher.java" />
+        <option value="$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/model/ItemLayerModel.java" />
+        <option value="$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/item/ItemStack.java" />
+        <option value="$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/fml/common/registry/RegistryDelegate.java" />
+        <option value="$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/item/Item.java" />
+        <option value="$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/ItemModelMesherForge.java" />
       </list>
     </option>
   </component>
@@ -926,7 +1450,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -934,15 +1457,9 @@
               <option name="myItemId" value="Armory" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -952,121 +1469,18 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registry" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="D:/Program Files (x86)/VisualVM/bin/visualvm.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Weaponry/build.gradle" />
     <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -1075,7 +1489,7 @@
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="SearchEverywhereHistoryKey" value="IArmorMa&#9;PSI&#9;JAVA://com.smithsmodding.armory.api.materials.IArmorMaterial&#10;ArmorUp&#9;PSI&#9;JAVA://com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval&#10;ChainL&#9;FILE&#9;file://D:/Development/Minecraft/Armory/src/main/com/smithsmodding/armory/common/material/ChainLayer.java&#10;ChainLa&#9;PSI&#9;JAVA://com.smithsmodding.armory.common.material.ChainLayer&#10;ServerCus&#9;PSI&#9;JAVA://net.minecraftforge.fml.common.network.FMLNetworkEvent.ServerCustomPacketEvent&#10;PlayerLog&#9;PSI&#9;JAVA://net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent&#10;WorldEve&#9;PSI&#9;JAVA://net.minecraftforge.event.world.WorldEvent" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
@@ -1107,6 +1521,43 @@
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
       <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -1555,7 +2006,17 @@
       <workItem from="1467925714965" duration="4809000" />
       <workItem from="1467973681992" duration="54000" />
       <workItem from="1467974044271" duration="1057000" />
-      <workItem from="1467977268054" duration="1120000" />
+      <workItem from="1467977268054" duration="1840000" />
+      <workItem from="1467980442009" duration="18000" />
+      <workItem from="1467999271744" duration="727000" />
+      <workItem from="1468070689133" duration="3145000" />
+      <workItem from="1468081482241" duration="1632000" />
+      <workItem from="1468083390407" duration="2231000" />
+      <workItem from="1468145672893" duration="1471000" />
+      <workItem from="1468147216380" duration="61000" />
+      <workItem from="1468148599554" duration="590000" />
+      <workItem from="1468149236573" duration="37000" />
+      <workItem from="1468149507513" duration="1798000" />
     </task>
     <task id="LOCAL-00001" summary="Initial API Release.">
       <created>1467915344205</created>
@@ -1571,46 +2032,68 @@
       <option name="project" value="LOCAL" />
       <updated>1467917836539</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="API implementation is complete and Callback registration is publicly available.&#10;To get the Armory API:&#10;Send an IMC to Armory with the method path for a callback that takes, an IArmoryAPI instance and as key registerApi.">
+      <created>1467978509042</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1467978509042</updated>
+    </task>
+    <task id="LOCAL-00004" summary="API: Added parts of the UTIL package.">
+      <created>1468073949092</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1468073949092</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20430000" />
+    <option name="totallyTimeSpent" value="32860000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900944" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900944" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24406047" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24298055" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32775378" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5312869" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3293979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -1619,7 +2102,10 @@
     <MESSAGE value="Initial API Release." />
     <MESSAGE value="Updated to the latest SmithsCore Version as well as some bug fixes." />
     <MESSAGE value="API implementation is completed, callback registration is not how ever." />
-    <option name="LAST_COMMIT_MESSAGE" value="API implementation is completed, callback registration is not how ever." />
+    <MESSAGE value="API implementation is complete and Callback registration is publicly available.&#10;To get the Armory API:&#10;Send an IMC to Armory with the method path for a callback that takes, an IArmoryAPI instance and as key registerApi." />
+    <MESSAGE value="API: Added the complete UTIL package." />
+    <MESSAGE value="API: Added parts of the UTIL package." />
+    <option name="LAST_COMMIT_MESSAGE" value="API: Added parts of the UTIL package." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1634,151 +2120,36 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/MultiLayeredArmorItemModel.java</url>
-          <line>73</line>
+          <line>72</line>
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java</url>
+          <line>159</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java</url>
+          <line>89</line>
+          <properties />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="12" />
+      <option name="time" value="21" />
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="addon.getItemWholeTextureLocation()" language="JAVA" custom="" />
-        <watch expression="baseLayer.getTexture()" language="JAVA" custom="" />
-      </configuration>
-    </watches-manager>
+    <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/fml/common/gameevent/PlayerEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="44" column="47" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/fml/common/network/FMLNetworkEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1131">
-          <caret line="206" column="43" selection-start-line="206" selection-start-column="42" selection-end-line="206" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-183-SNAPSHOT/smithscore-1.9.4-1.1.0.1-183-SNAPSHOT-sources.jar!/com/smithsmodding/smithscore/common/structures/StructureRegistry.java" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-183-SNAPSHOT/smithscore-1.9.4-1.1.0.1-183-SNAPSHOT-sources.jar!/com/smithsmodding/smithscore/common/proxy/CoreCommonProxy.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/fml/common/eventhandler/EventBus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-184-SNAPSHOT/smithscore-1.9.4-1.1.0.1-184-SNAPSHOT-sources.jar!/com/smithsmodding/smithscore/common/proxy/CoreCommonProxy.java" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/mezz/jei/jei_1.9.4/3.6.8.225/jei_1.9.4-3.6.8.225-sources.jar!/mezz/jei/api/recipe/IRecipeHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/fml/common/LoadController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="227" column="0" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/ArmoryClientProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="160" column="42" selection-start-line="160" selection-start-column="42" selection-end-line="160" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/textures/MaterializedTextureCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="29" column="2" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/ArmorAddonPosition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/ISingleComponentItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="168" column="1" selection-start-line="168" selection-start-column="1" selection-end-line="168" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/config/ConfigSyncCompletedEventHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/config/ArmoryDataSyncerEventHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/package-info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="98" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/logic/package-info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/helpers/package-info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="98" selection-start-line="3" selection-start-column="98" selection-end-line="3" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/addons/ArmorUpgradeMedieval.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/MedievalUpgradeConstructionHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" column="67" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
         </state>
       </provider>
     </entry>
@@ -1803,13 +2174,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/ArmorMaterial.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="46" column="186" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="186" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/helpers/IMaterialConstructionHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1824,13 +2188,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/MaterialConstructionHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/logic/IMaterialInitializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1842,13 +2199,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="34" column="53" selection-start-line="34" selection-start-column="53" selection-end-line="34" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/IArmorMaterial.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1898,7 +2248,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3025">
           <caret line="139" column="92" selection-start-line="139" selection-start-column="92" selection-end-line="139" selection-end-column="92" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1906,23 +2255,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1100">
           <caret line="53" column="59" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1094#1095#0" expanded="false" />
-            <element signature="e#1125#1126#0" expanded="false" />
-            <element signature="e#2258#2259#0" expanded="false" />
-            <element signature="e#2324#2325#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/material/IronMaterialInitializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1930,27 +2262,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="925">
           <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1011#1012#0" expanded="false" />
-            <element signature="e#1043#1044#0" expanded="false" />
-            <element signature="e#1135#1136#0" expanded="false" />
-            <element signature="e#1170#1171#0" expanded="false" />
-            <element signature="e#1674#1675#0" expanded="false" />
-            <element signature="e#1720#1721#0" expanded="false" />
-            <element signature="e#1809#1810#0" expanded="false" />
-            <element signature="e#1858#1859#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3200">
-          <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1958,19 +2269,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1300">
           <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/client/Textures.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1500">
-          <caret line="69" column="12" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1978,55 +2277,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="22" column="63" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/ArmoryInitializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
+        <state relative-caret-position="425">
           <caret line="72" column="42" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/GeneralRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="35" column="54" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
-          <folding>
-            <element signature="e#994#995#0" expanded="true" />
-            <element signature="e#1038#1039#0" expanded="true" />
-            <element signature="e#1106#1107#0" expanded="true" />
-            <element signature="e#1167#1168#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/ArmoryCommonProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
-          <folding>
-            <element signature="e#1480#1481#0" expanded="true" />
-            <element signature="e#1531#1532#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/logic/ArmoryClientInitializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="715">
-          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2034,6 +2291,583 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/MedievalUpgradeConstructionHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/MaterialConstructionHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/IArmorMaterial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="80" column="19" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/material/IronMaterialInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="173" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/logic/ArmoryClientInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="58" column="113" selection-start-line="58" selection-start-column="113" selection-end-line="58" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/references/ModLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/armor/ArmorNBTHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-600">
+          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="925">
+          <caret line="93" column="34" selection-start-line="93" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/client/Colors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3350">
+          <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/fml/common/event/FMLInterModComms.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1075">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/7ca0efbeb87ca845b5d7a0ac9c21a4b7b95f7b28/guava-17.0-sources.jar!/com/google/common/collect/SingletonImmutableList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_73/src.zip!/java/lang/reflect/Method.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="482" column="18" selection-start-line="482" selection-start-column="18" selection-end-line="482" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/client/Textures.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="69" column="12" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/client/TranslationKeys.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/GeneralRegistry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/ArmoryCommonProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1365">
+          <caret line="82" column="9" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/model/ItemLayerModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-480">
+          <caret line="151" column="56" selection-start-line="151" selection-start-column="56" selection-end-line="151" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-186/smithscore-1.9.4-1.1.0.1-186-sources.jar!/com/smithsmodding/smithscore/util/client/color/ColorSampler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/client/Minecraft.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70525">
+          <caret line="3194" column="0" selection-start-line="3194" selection-start-column="0" selection-end-line="3194" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#14353#14368#0" expanded="false" />
+            <element signature="e#14987#15004#0" expanded="false" />
+            <element signature="e#23367#23929#0" expanded="false" />
+            <element signature="e#23928#23929#0" expanded="false" />
+            <element signature="e#31458#31459#0" expanded="false" />
+            <element signature="e#31499#31500#0" expanded="false" />
+            <element signature="e#31537#31538#0" expanded="false" />
+            <element signature="e#31580#31581#0" expanded="false" />
+            <element signature="e#31622#31623#0" expanded="false" />
+            <element signature="e#31661#31662#0" expanded="false" />
+            <element signature="e#34664#34694#0" expanded="false" />
+            <element signature="e#35750#35763#0" expanded="false" />
+            <element signature="e#41607#41608#0" expanded="false" />
+            <element signature="e#41645#41646#0" expanded="false" />
+            <element signature="e#58707#58708#0" expanded="false" />
+            <element signature="e#58743#58744#0" expanded="false" />
+            <element signature="e#69310#69311#0" expanded="false" />
+            <element signature="e#69351#69352#0" expanded="false" />
+            <element signature="e#71408#71669#0" expanded="false" />
+            <element signature="e#71668#71669#0" expanded="false" />
+            <element signature="e#72256#72541#0" expanded="false" />
+            <element signature="e#72540#72541#0" expanded="false" />
+            <element signature="e#94809#94810#0" expanded="false" />
+            <element signature="e#94858#94859#0" expanded="false" />
+            <element signature="e#100650#100651#0" expanded="false" />
+            <element signature="e#100684#100685#0" expanded="false" />
+            <element signature="e#100739#100740#0" expanded="false" />
+            <element signature="e#100819#100820#0" expanded="false" />
+            <element signature="e#103151#103336#0" expanded="false" />
+            <element signature="e#103335#103336#0" expanded="false" />
+            <element signature="e#103389#103543#0" expanded="false" />
+            <element signature="e#103542#103543#0" expanded="false" />
+            <element signature="e#103597#103861#0" expanded="false" />
+            <element signature="e#103860#103861#0" expanded="false" />
+            <element signature="e#103916#104079#0" expanded="false" />
+            <element signature="e#104078#104079#0" expanded="false" />
+            <element signature="e#104137#104324#0" expanded="false" />
+            <element signature="e#104323#104324#0" expanded="false" />
+            <element signature="e#104381#104833#0" expanded="false" />
+            <element signature="e#104832#104833#0" expanded="false" />
+            <element signature="e#104885#105065#0" expanded="false" />
+            <element signature="e#105064#105065#0" expanded="false" />
+            <element signature="e#105127#105881#0" expanded="false" />
+            <element signature="e#105880#105881#0" expanded="false" />
+            <element signature="e#105945#106164#0" expanded="false" />
+            <element signature="e#106163#106164#0" expanded="false" />
+            <element signature="e#106229#106496#0" expanded="false" />
+            <element signature="e#106495#106496#0" expanded="false" />
+            <element signature="e#106553#106702#0" expanded="false" />
+            <element signature="e#106701#106702#0" expanded="false" />
+            <element signature="e#107213#107356#0" expanded="false" />
+            <element signature="e#107355#107356#0" expanded="false" />
+            <element signature="e#123876#123877#0" expanded="false" />
+            <element signature="e#123931#123932#0" expanded="false" />
+            <element signature="e#124053#124054#0" expanded="false" />
+            <element signature="e#124106#124107#0" expanded="false" />
+            <element signature="e#124158#124159#0" expanded="false" />
+            <element signature="e#124203#124204#0" expanded="false" />
+            <element signature="e#124257#124258#0" expanded="false" />
+            <element signature="e#124310#124311#0" expanded="false" />
+            <element signature="e#124472#124473#0" expanded="false" />
+            <element signature="e#124561#124562#0" expanded="false" />
+            <element signature="e#124689#124690#0" expanded="false" />
+            <element signature="e#124736#124737#0" expanded="false" />
+            <element signature="e#125165#125166#0" expanded="false" />
+            <element signature="e#125205#125206#0" expanded="false" />
+            <element signature="e#125312#125313#0" expanded="false" />
+            <element signature="e#125383#125384#0" expanded="false" />
+            <element signature="e#125492#125493#0" expanded="false" />
+            <element signature="e#125530#125531#0" expanded="false" />
+            <element signature="e#125569#125570#0" expanded="false" />
+            <element signature="e#125604#125605#0" expanded="false" />
+            <element signature="e#126062#126063#0" expanded="false" />
+            <element signature="e#126095#126096#0" expanded="false" />
+            <element signature="e#126148#126149#0" expanded="false" />
+            <element signature="e#126188#126189#0" expanded="false" />
+            <element signature="e#126244#126245#0" expanded="false" />
+            <element signature="e#126289#126290#0" expanded="false" />
+            <element signature="e#126358#126359#0" expanded="false" />
+            <element signature="e#126410#126411#0" expanded="false" />
+            <element signature="e#126465#126466#0" expanded="false" />
+            <element signature="e#126510#126511#0" expanded="false" />
+            <element signature="e#126561#126562#0" expanded="false" />
+            <element signature="e#126605#126606#0" expanded="false" />
+            <element signature="e#126645#126646#0" expanded="false" />
+            <element signature="e#126681#126682#0" expanded="false" />
+            <element signature="e#126722#126723#0" expanded="false" />
+            <element signature="e#126762#126763#0" expanded="false" />
+            <element signature="e#126811#126812#0" expanded="false" />
+            <element signature="e#126853#126854#0" expanded="false" />
+            <element signature="e#128561#128562#0" expanded="false" />
+            <element signature="e#128603#128604#0" expanded="false" />
+            <element signature="e#128650#128651#0" expanded="false" />
+            <element signature="e#128689#128690#0" expanded="false" />
+            <element signature="e#128736#128737#0" expanded="false" />
+            <element signature="e#128780#128781#0" expanded="false" />
+            <element signature="e#129920#129928#0" expanded="false" />
+            <element signature="e#130047#130048#0" expanded="false" />
+            <element signature="e#130109#130110#0" expanded="false" />
+            <element signature="e#130180#130181#0" expanded="false" />
+            <element signature="e#130229#130230#0" expanded="false" />
+            <element signature="e#130280#130281#0" expanded="false" />
+            <element signature="e#130321#130322#0" expanded="false" />
+            <element signature="e#130453#130454#0" expanded="false" />
+            <element signature="e#130493#130494#0" expanded="false" />
+            <element signature="e#130847#130848#0" expanded="false" />
+            <element signature="e#130885#130886#0" expanded="false" />
+            <element signature="e#130988#131004#0" expanded="false" />
+            <element signature="e#131384#131385#0" expanded="false" />
+            <element signature="e#131429#131430#0" expanded="false" />
+            <element signature="e#131567#131568#0" expanded="false" />
+            <element signature="e#131619#131620#0" expanded="false" />
+            <element signature="e#131662#131663#0" expanded="false" />
+            <element signature="e#131699#131700#0" expanded="false" />
+            <element signature="e#131747#131748#0" expanded="false" />
+            <element signature="e#131799#131800#0" expanded="false" />
+            <element signature="e#131846#131847#0" expanded="false" />
+            <element signature="e#131885#131886#0" expanded="false" />
+            <element signature="e#131943#131944#0" expanded="false" />
+            <element signature="e#131981#131982#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/fml/common/registry/RegistryDelegate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1325">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1782#1783#0" expanded="false" />
+            <element signature="e#1822#1823#0" expanded="false" />
+            <element signature="e#1875#1876#0" expanded="false" />
+            <element signature="e#1924#1925#0" expanded="false" />
+            <element signature="e#2337#2338#0" expanded="false" />
+            <element signature="e#2390#2391#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/item/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17650">
+          <caret line="916" column="0" selection-start-line="916" selection-start-column="0" selection-end-line="916" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2791#3041#0" expanded="false" />
+            <element signature="e#3040#3041#0" expanded="false" />
+            <element signature="e#3104#3413#0" expanded="false" />
+            <element signature="e#3412#3413#0" expanded="false" />
+            <element signature="e#3480#3776#0" expanded="false" />
+            <element signature="e#3775#3776#0" expanded="false" />
+            <element signature="e#3841#4178#0" expanded="false" />
+            <element signature="e#4177#4178#0" expanded="false" />
+            <element signature="e#5213#5214#0" expanded="false" />
+            <element signature="e#5288#5289#0" expanded="false" />
+            <element signature="e#5338#5339#0" expanded="false" />
+            <element signature="e#5393#5394#0" expanded="false" />
+            <element signature="e#5469#5470#0" expanded="false" />
+            <element signature="e#5524#5525#0" expanded="false" />
+            <element signature="e#6719#6720#0" expanded="false" />
+            <element signature="e#6747#6748#0" expanded="false" />
+            <element signature="e#6822#6823#0" expanded="false" />
+            <element signature="e#6881#6882#0" expanded="false" />
+            <element signature="e#7589#7590#0" expanded="false" />
+            <element signature="e#7616#7617#0" expanded="false" />
+            <element signature="e#8129#8130#0" expanded="false" />
+            <element signature="e#8157#8158#0" expanded="false" />
+            <element signature="e#8375#8376#0" expanded="false" />
+            <element signature="e#8415#8416#0" expanded="false" />
+            <element signature="e#8648#8649#0" expanded="false" />
+            <element signature="e#8672#8673#0" expanded="false" />
+            <element signature="e#8715#8716#0" expanded="false" />
+            <element signature="e#8754#8755#0" expanded="false" />
+            <element signature="e#9453#9454#0" expanded="false" />
+            <element signature="e#9543#9544#0" expanded="false" />
+            <element signature="e#9816#9817#0" expanded="false" />
+            <element signature="e#9844#9845#0" expanded="false" />
+            <element signature="e#10271#10272#0" expanded="false" />
+            <element signature="e#10299#10300#0" expanded="false" />
+            <element signature="e#10865#10866#0" expanded="false" />
+            <element signature="e#10900#10901#0" expanded="false" />
+            <element signature="e#11132#11133#0" expanded="false" />
+            <element signature="e#11160#11161#0" expanded="false" />
+            <element signature="e#11899#11900#0" expanded="false" />
+            <element signature="e#11952#11953#0" expanded="false" />
+            <element signature="e#12195#12196#0" expanded="false" />
+            <element signature="e#12248#12249#0" expanded="false" />
+            <element signature="e#12553#12554#0" expanded="false" />
+            <element signature="e#12580#12581#0" expanded="false" />
+            <element signature="e#12622#12623#0" expanded="false" />
+            <element signature="e#12663#12664#0" expanded="false" />
+            <element signature="e#12853#12854#0" expanded="false" />
+            <element signature="e#12902#12903#0" expanded="false" />
+            <element signature="e#13475#13476#0" expanded="false" />
+            <element signature="e#13503#13504#0" expanded="false" />
+            <element signature="e#13675#13676#0" expanded="false" />
+            <element signature="e#13713#13714#0" expanded="false" />
+            <element signature="e#13841#13842#0" expanded="false" />
+            <element signature="e#13865#13866#0" expanded="false" />
+            <element signature="e#14608#14609#0" expanded="false" />
+            <element signature="e#14654#14655#0" expanded="false" />
+            <element signature="e#14979#14980#0" expanded="false" />
+            <element signature="e#15059#15060#0" expanded="false" />
+            <element signature="e#16313#16314#0" expanded="false" />
+            <element signature="e#16337#16338#0" expanded="false" />
+            <element signature="e#16918#16919#0" expanded="false" />
+            <element signature="e#16960#16961#0" expanded="false" />
+            <element signature="e#17171#17172#0" expanded="false" />
+            <element signature="e#17199#17200#0" expanded="false" />
+            <element signature="e#17354#17355#0" expanded="false" />
+            <element signature="e#17382#17383#0" expanded="false" />
+            <element signature="e#17585#17612#0" expanded="false" />
+            <element signature="e#18405#18406#0" expanded="false" />
+            <element signature="e#18432#18433#0" expanded="false" />
+            <element signature="e#18893#18894#0" expanded="false" />
+            <element signature="e#18927#18928#0" expanded="false" />
+            <element signature="e#19793#19794#0" expanded="false" />
+            <element signature="e#19843#19844#0" expanded="false" />
+            <element signature="e#20538#20539#0" expanded="false" />
+            <element signature="e#20566#20567#0" expanded="false" />
+            <element signature="e#21408#21409#0" expanded="false" />
+            <element signature="e#21436#21437#0" expanded="false" />
+            <element signature="e#22628#22629#0" expanded="false" />
+            <element signature="e#22655#22656#0" expanded="false" />
+            <element signature="e#23166#23167#0" expanded="false" />
+            <element signature="e#23194#23195#0" expanded="false" />
+            <element signature="e#23757#23758#0" expanded="false" />
+            <element signature="e#23784#23785#0" expanded="false" />
+            <element signature="e#24178#24179#0" expanded="false" />
+            <element signature="e#24206#24207#0" expanded="false" />
+            <element signature="e#24545#24546#0" expanded="false" />
+            <element signature="e#24606#24607#0" expanded="false" />
+            <element signature="e#25048#25049#0" expanded="false" />
+            <element signature="e#25111#25112#0" expanded="false" />
+            <element signature="e#26550#26551#0" expanded="false" />
+            <element signature="e#26577#26578#0" expanded="false" />
+            <element signature="e#27668#27669#0" expanded="false" />
+            <element signature="e#27695#27696#0" expanded="false" />
+            <element signature="e#28691#28692#0" expanded="false" />
+            <element signature="e#28719#28720#0" expanded="false" />
+            <element signature="e#29704#29705#0" expanded="false" />
+            <element signature="e#29743#29744#0" expanded="false" />
+            <element signature="e#30389#30390#0" expanded="false" />
+            <element signature="e#30433#30434#0" expanded="false" />
+            <element signature="e#31428#31429#0" expanded="false" />
+            <element signature="e#31471#31472#0" expanded="false" />
+            <element signature="e#32644#32645#0" expanded="false" />
+            <element signature="e#32691#32692#0" expanded="false" />
+            <element signature="e#32772#32789#0" expanded="false" />
+            <element signature="e#33331#33332#0" expanded="false" />
+            <element signature="e#33374#33375#0" expanded="false" />
+            <element signature="e#36731#36961#0" expanded="false" />
+            <element signature="e#36960#36961#0" expanded="false" />
+            <element signature="e#37249#37518#0" expanded="false" />
+            <element signature="e#37517#37518#0" expanded="false" />
+            <element signature="e#37717#37985#0" expanded="false" />
+            <element signature="e#37984#37985#0" expanded="false" />
+            <element signature="e#38157#38427#0" expanded="false" />
+            <element signature="e#38426#38427#0" expanded="false" />
+            <element signature="e#38555#38825#0" expanded="false" />
+            <element signature="e#38824#38825#0" expanded="false" />
+            <element signature="e#38990#39258#0" expanded="false" />
+            <element signature="e#39257#39258#0" expanded="false" />
+            <element signature="e#39548#39818#0" expanded="false" />
+            <element signature="e#39817#39818#0" expanded="false" />
+            <element signature="e#39936#40210#0" expanded="false" />
+            <element signature="e#40209#40210#0" expanded="false" />
+            <element signature="e#40544#40787#0" expanded="false" />
+            <element signature="e#40786#40787#0" expanded="false" />
+            <element signature="e#41101#41374#0" expanded="false" />
+            <element signature="e#41373#41374#0" expanded="false" />
+            <element signature="e#42152#42461#0" expanded="false" />
+            <element signature="e#42460#42461#0" expanded="false" />
+            <element signature="e#42600#42906#0" expanded="false" />
+            <element signature="e#42905#42906#0" expanded="false" />
+            <element signature="e#45748#46022#0" expanded="false" />
+            <element signature="e#46021#46022#0" expanded="false" />
+            <element signature="e#46170#46444#0" expanded="false" />
+            <element signature="e#46443#46444#0" expanded="false" />
+            <element signature="e#48567#48835#0" expanded="false" />
+            <element signature="e#48834#48835#0" expanded="false" />
+            <element signature="e#50569#50849#0" expanded="false" />
+            <element signature="e#50848#50849#0" expanded="false" />
+            <element signature="e#51253#51527#0" expanded="false" />
+            <element signature="e#51526#51527#0" expanded="false" />
+            <element signature="e#51726#52002#0" expanded="false" />
+            <element signature="e#52001#52002#0" expanded="false" />
+            <element signature="e#77448#77449#0" expanded="false" />
+            <element signature="e#77514#77515#0" expanded="false" />
+            <element signature="e#79794#79795#0" expanded="false" />
+            <element signature="e#79837#79838#0" expanded="false" />
+            <element signature="e#80017#80018#0" expanded="false" />
+            <element signature="e#80079#80080#0" expanded="false" />
+            <element signature="e#80209#80210#0" expanded="false" />
+            <element signature="e#80259#80260#0" expanded="false" />
+            <element signature="e#80436#80437#0" expanded="false" />
+            <element signature="e#80484#80485#0" expanded="false" />
+            <element signature="e#80627#80628#0" expanded="false" />
+            <element signature="e#80677#80678#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/item/ItemStack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5300">
+          <caret line="282" column="0" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2879#2880#0" expanded="false" />
+            <element signature="e#2918#2919#0" expanded="false" />
+            <element signature="e#2973#2974#0" expanded="false" />
+            <element signature="e#3020#3021#0" expanded="false" />
+            <element signature="e#3085#3086#0" expanded="false" />
+            <element signature="e#3151#3152#0" expanded="false" />
+            <element signature="e#3192#3193#0" expanded="false" />
+            <element signature="e#3229#3230#0" expanded="false" />
+            <element signature="e#3282#3283#0" expanded="false" />
+            <element signature="e#3327#3328#0" expanded="false" />
+            <element signature="e#5950#5951#0" expanded="false" />
+            <element signature="e#6016#6017#0" expanded="false" />
+            <element signature="e#8087#8088#0" expanded="false" />
+            <element signature="e#8148#8149#0" expanded="false" />
+            <element signature="e#8712#8713#0" expanded="false" />
+            <element signature="e#8761#8762#0" expanded="false" />
+            <element signature="e#8873#8874#0" expanded="false" />
+            <element signature="e#8953#8954#0" expanded="false" />
+            <element signature="e#9336#9337#0" expanded="false" />
+            <element signature="e#9383#9384#0" expanded="false" />
+            <element signature="e#16428#16429#0" expanded="false" />
+            <element signature="e#16485#16486#0" expanded="false" />
+            <element signature="e#16643#16644#0" expanded="false" />
+            <element signature="e#16701#16702#0" expanded="false" />
+            <element signature="e#16737#16738#0" expanded="false" />
+            <element signature="e#16837#16838#0" expanded="false" />
+            <element signature="e#17594#17595#0" expanded="false" />
+            <element signature="e#17659#17660#0" expanded="false" />
+            <element signature="e#17707#17708#0" expanded="false" />
+            <element signature="e#17767#17768#0" expanded="false" />
+            <element signature="e#18194#18195#0" expanded="false" />
+            <element signature="e#18246#18247#0" expanded="false" />
+            <element signature="e#18378#18379#0" expanded="false" />
+            <element signature="e#18422#18423#0" expanded="false" />
+            <element signature="e#19343#19344#0" expanded="false" />
+            <element signature="e#19386#19387#0" expanded="false" />
+            <element signature="e#21559#21567#0" expanded="false" />
+            <element signature="e#30304#30305#0" expanded="false" />
+            <element signature="e#30357#30358#0" expanded="false" />
+            <element signature="e#30398#30399#0" expanded="false" />
+            <element signature="e#30451#30452#0" expanded="false" />
+            <element signature="e#30579#30580#0" expanded="false" />
+            <element signature="e#30668#30669#0" expanded="false" />
+            <element signature="e#31893#31894#0" expanded="false" />
+            <element signature="e#31950#31951#0" expanded="false" />
+            <element signature="e#32062#32063#0" expanded="false" />
+            <element signature="e#32107#32108#0" expanded="false" />
+            <element signature="e#32226#32227#0" expanded="false" />
+            <element signature="e#32264#32265#0" expanded="false" />
+            <element signature="e#32428#32429#0" expanded="false" />
+            <element signature="e#32465#32466#0" expanded="false" />
+            <element signature="e#33326#33353#0" expanded="false" />
+            <element signature="e#39474#39475#0" expanded="false" />
+            <element signature="e#39511#39512#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/ItemModelMesher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#721#753#0" expanded="false" />
+            <element signature="e#836#858#0" expanded="false" />
+            <element signature="e#935#961#0" expanded="false" />
+            <element signature="e#1079#1080#0" expanded="false" />
+            <element signature="e#1127#1128#0" expanded="false" />
+            <element signature="e#1191#1192#0" expanded="false" />
+            <element signature="e#1243#1244#0" expanded="false" />
+            <element signature="e#2558#2559#0" expanded="false" />
+            <element signature="e#2618#2619#0" expanded="false" />
+            <element signature="e#2986#2987#0" expanded="false" />
+            <element signature="e#3036#3037#0" expanded="false" />
+            <element signature="e#3085#3086#0" expanded="false" />
+            <element signature="e#3125#3126#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/ItemModelMesherForge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-188/smithscore-1.9.4-1.1.0.1-188-sources.jar!/com/smithsmodding/smithscore/util/client/color/ColorSampler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/ArmorMaterial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/RenderItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="252" column="0" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2090,7 +2924,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Armory_main|Armory</last-edited>
+          <last-edited>Armory_test|Armory</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
