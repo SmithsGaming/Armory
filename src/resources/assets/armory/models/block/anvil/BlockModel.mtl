@@ -2,8 +2,8 @@
 # Material Count: 1
 
 newmtl Anvil
-map_Kd armory:blocks\anvil\AnvilTextured
+map_Kd armory:blocks/anvil/AnvilTextured
 
 newmtl Bottom
 Kd 0.65 0.65 0.65
-map_Kd armory:blocks\anvil\AnvilTextured
+map_Kd armory:blocks/anvil/AnvilTextured

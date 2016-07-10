@@ -3,32 +3,32 @@
 
 newmtl CoalField
 Kd 0.409600 0.409600 0.409600
-map_Kd armory:blocks\forge\CoalField
+map_Kd armory:blocks/forge/CoalField
 
 newmtl Dark-Metal
 Kd 0.409600 0.409600 0.409600
-map_Kd armory:blocks\forge\DarkSheet
+map_Kd armory:blocks/forge/DarkSheet
 
 newmtl Darkened-Glass
 Kd 0.512000 0.512000 0.512000
-map_Kd armory:blocks\forge\DestroyedMetalWall
+map_Kd armory:blocks/forge/DestroyedMetalWall
 
 newmtl DestroyedMetalBasin
 Kd 0.409600 0.409600 0.409600
-map_Kd armory:blocks\forge\DestroyedMetalBasin
+map_Kd armory:blocks/forge/DestroyedMetalBasin
 
 newmtl FuelHolder-Bottom
 Kd 0.409600 0.409600 0.409600
-map_Kd armory:blocks\forge\FuelBasinBottom
+map_Kd armory:blocks/forge/FuelBasinBottom
 
 newmtl FuelHolder-Wall
 Kd 0.409600 0.409600 0.409600
-map_Kd armory:blocks\forge\FuelBasinWall
+map_Kd armory:blocks/forge/FuelBasinWall
 
 newmtl IngotHolder-Rim
 Kd 0.409600 0.409600 0.409600
-map_Kd armory:blocks\forge\IngotHolderRim
+map_Kd armory:blocks/forge/IngotHolderRim
 
 newmtl Light-Metal
 Kd 0.409600 0.409600 0.409600
-map_Kd armory:blocks\forge\LightSheet
+map_Kd armory:blocks/forge/LightSheet
