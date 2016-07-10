@@ -9,26 +9,29 @@ Cannot run the CurseUpload sequence. No API-Key was available.Cannot run the Cur
          by: Searge, ProfMobius, Fesh0r,         
          R4wk, ZeuX, IngisKahn, bspkrs           
 #################################################
-Found AccessTransformer: jei_at.cfg_jei_1.9.4-3.6.8.225_at.cfg
 Found AccessTransformer: Armory_at.cfg
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-188/smithscore-1.9.4-1.1.0.1-188-dev.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-188/smithscore-1.9.4-1.1.0.1-188-sources.jar
 :extractMcpMappings SKIPPED
-:deobfCompileDeobfDepTask0 SKIPPED
+:deobfCompileDeobfDepTask0
 :deobfCompileDeobfDepTask1 SKIPPED
 :deobfCompileRemapDepSourcesTask2 SKIPPED
-:deobfCompileRemapDepSourcesTask3 SKIPPED
+:deobfCompileRemapDepSourcesTask3
 :deobfCompileDummyTask
 :deobfProvidedDummyTask
 :getVersionJson
 :extractUserdev UP-TO-DATE
-:extractDependencyATs UP-TO-DATE
+:extractDependencyATs
 :extractMcpData SKIPPED
 :genSrgs SKIPPED
 :downloadClient SKIPPED
 :downloadServer SKIPPED
 :splitServerJar SKIPPED
 :mergeJars SKIPPED
-:deobfMcSRG SKIPPED
-:decompileMc SKIPPED
+:deobfMcSRG
+Applying SpecialSource...
+Applying Exceptor...
+:decompileMc
 :fixMcSources
 :applySourcePatches
 :remapMcSources
@@ -36,9 +39,7 @@ Found AccessTransformer: Armory_at.cfg
 :extractNatives SKIPPED
 :getAssetIndex UP-TO-DATE
 :getAssets
-Current status: 264/1049   25%
-Current status: 585/1049   55%
-Current status: 887/1049   84%
+Current status: 888/1049   84%
 :makeStart
 :setupDecompWorkspace
 :ideaModule
@@ -48,4 +49,4 @@ Current status: 887/1049   84%
 
 BUILD SUCCESSFUL
 
-Total time: 2 mins 19.651 secs
+Total time: 2 mins 44.133 secs
