@@ -1,0 +1,10 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl Bottom
+Kd 0.640000 0.640000 0.640000
+map_Kd armory:items/GuideRight
+
+newmtl Top
+Kd 0.640000 0.640000 0.640000
+map_Kd armory:items/GuideLeft

@@ -2,80 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2094f80-431d-41be-b6e3-47b3a42a7699" name="Default" comment="Working on directory capitalization of the resources directory - Phase 1 added temp tag.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/anviltemp/AnvilTextured.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/jeitemp/anvil.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/heateditemtemp/Armory.Items.Components.HeatedIngots.HI-Armory.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_SmithsModding_Armory_Armory_1_9_4_1_1_0_1_289_SNAPSHOT.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_SmithsModding_Armory_Armory_api_1_9_4_1_1_0_1_289_SNAPSHOT.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__deobf_com_smithsmodding_smithscore_smithscore_1_9_4_1_1_0_1_186.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__deobf_mezz_jei_jei_1_9_4_3_4_2_206.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__deobf_slimeknights_TConstruct_1_9_4_2_3_1_jenkins229.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__deobf_slimeknights_mantle_Mantle_1_9_4_0_10_1_jenkins142.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/ArmorsAnvil.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/Binder.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/Book - Single Sided.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/FirePit.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/FirePit.old.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/Heater.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/Heater.old.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/HeatedItem/Armory.Items.Components.HeatedIngots.HI-Armory.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/Anvil/AnvilTextured.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/BookBinder/BookBinder.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/BookBinder/InkPotEmpty.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/BookBinder/InkPotFull.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/BookBinder/Paper.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/JEI/anvil.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/Gui-Icons/16x Info icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/Gui-Icons/16x Infobook.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/Gui-Icons/16x Thermo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/Gui-Icons/HammerBackground.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/Gui-Icons/TongsBackground.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/.idea/.name" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/client/Textures.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/client/Textures.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Items.SmithingsGuide.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Items.SmithingsGuide.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.mtl" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.mtl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/block/fireplace/BlockModel.mtl" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/fireplace/BlockModel.mtl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/block/forge/BlockModel.mtl" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/forge/BlockModel.mtl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Weaponry/build.gradle" afterPath="$PROJECT_DIR$/../Weaponry/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Weaponry/build.properties" afterPath="$PROJECT_DIR$/../Weaponry/build.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Weaponry/src/main/com/smithsmodding/armory/weaponry/common/compatibility/ArmoryMaterialInitializer.java" afterPath="$PROJECT_DIR$/../Weaponry/src/main/com/smithsmodding/armory/weaponry/common/compatibility/ArmoryMaterialInitializer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Armor/Armory.Chestplate.Medieval.MLA-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armortemp/Armory.Chestplate.Medieval.MLA-Armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Armor/Armory.Helmet.Medieval.MLA-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armortemp/Armory.Helmet.Medieval.MLA-Armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Armor/Armory.Leggings.Medieval.MLA-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armortemp/Armory.Leggings.Medieval.MLA-Armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Armor/Armory.Shoes.Medieval.MLA-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armortemp/Armory.Shoes.Medieval.MLA-Armory.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Armor/MLA.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armortemp/MLA.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Guide/Guide.mtl" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/guidetemp/Guide.mtl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/Guide/Guide.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/guidetemp/Guide.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/CoalField.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/forge/CoalField.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/DarkSheet.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/forge/DarkSheet.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/DestroyedMetalBasin.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/forge/DestroyedMetalBasin.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/DestroyedMetalWall.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/forge/DestroyedMetalWall.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/FuelBasinBottom.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/forge/FuelBasinBottom.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/FuelBasinWall.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/forge/FuelBasinWall.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/IngotHolderRim.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/forge/IngotHolderRim.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/FirePit/LightSheet.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/forge/LightSheet.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/Fireplace/Feuer_tex.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/fireplacetemp/Feuer_tex.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/LiquidMetal/flow.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/liquidmetaltemp/flow.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/LiquidMetal/flow.png.mcmeta" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/liquidmetaltemp/flow.png.mcmeta" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/LiquidMetal/still.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/liquidmetaltemp/still.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/LiquidMetal/still.png.mcmeta" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/liquidmetaltemp/still.png.mcmeta" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/Components/RandomElements.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/componentstemp/RandomElements.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/Images/16x ThermoALT.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/imagestemp/16x ThermoALT.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/Images/AnvilHammer.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/imagestemp/AnvilHammer.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_high_1.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_high_1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_high_2.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_high_2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_high_3.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_high_3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_high_4.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_high_4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_low_1.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_low_1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_low_2.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_low_2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_low_3.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_low_3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_low_4.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_low_4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_1.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_medium_1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_2.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_medium_2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_3.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_medium_3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_4.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_medium_4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/HeatedItems/temp_bar_medium_5.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_medium_5.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armortemp/Armory.Chestplate.Medieval.MLA-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armor/Armory.Chestplate.Medieval.MLA-Armory.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armortemp/Armory.Helmet.Medieval.MLA-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armor/Armory.Helmet.Medieval.MLA-Armory.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armortemp/Armory.Leggings.Medieval.MLA-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armor/Armory.Leggings.Medieval.MLA-Armory.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armortemp/Armory.Shoes.Medieval.MLA-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armor/Armory.Shoes.Medieval.MLA-Armory.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armortemp/MLA.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/armor/MLA.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/guidetemp/Guide.mtl" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/guide/Guide.mtl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/guidetemp/Guide.obj" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/guide/Guide.obj" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/item/heateditemtemp/Armory.Items.Components.HeatedIngots.HI-Armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/item/heateditem/Armory.Items.Components.HeatedIngots.HI-Armory.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/componentstemp/RandomElements.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/components/RandomElements.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/imagestemp/16x ThermoALT.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/images/16x ThermoALT.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/imagestemp/AnvilHammer.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/images/AnvilHammer.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/jeitemp/anvil.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/gui/jei/anvil.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_high_1.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_high_1.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_high_2.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_high_2.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_high_3.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_high_3.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_high_4.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_high_4.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_low_1.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_low_1.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_low_2.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_low_2.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_low_3.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_low_3.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_low_4.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_low_4.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_medium_1.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_medium_1.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_medium_2.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_medium_2.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_medium_3.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_medium_3.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_medium_4.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_medium_4.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditemstemp/temp_bar_medium_5.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/items/heateditems/temp_bar_medium_5.png" />
     </list>
     <ignored path="Armory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -135,11 +87,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.properties" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
               <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Guide.mtl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/models/item/guide/Guide.mtl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -826,7 +788,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/logic/package-info.java" />
         <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/helpers/package-info.java" />
         <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/helpers/IMedievalUpgradeConstructionHelper.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/Helpers.java" />
@@ -877,6 +838,7 @@
         <option value="$PROJECT_DIR$/src/resources/assets/armory/models/block/fireplace/BlockModel.mtl" />
         <option value="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Items.SmithingsGuide.json" />
         <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/client/Textures.java" />
+        <option value="$PROJECT_DIR$/src/resources/assets/armory/models/item/guide/Guide.mtl" />
       </list>
     </option>
   </component>
@@ -1007,6 +969,148 @@
               <option name="myItemId" value="armory" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="textures" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="textures" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="items" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="textures" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="block" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="armory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1038,66 +1142,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="api" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -1624,7 +1668,7 @@
       <workItem from="1468148599554" duration="590000" />
       <workItem from="1468149236573" duration="37000" />
       <workItem from="1468149507513" duration="1798000" />
-      <workItem from="1468176642222" duration="1319000" />
+      <workItem from="1468176642222" duration="1545000" />
     </task>
     <task id="LOCAL-00001" summary="Initial API Release.">
       <created>1467915344205</created>
@@ -1654,15 +1698,22 @@
       <option name="project" value="LOCAL" />
       <updated>1468073949092</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Working on directory capitalization of the resources directory - Phase 1 added temp tag.">
+      <created>1468178872497</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1468178872497</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34179000" />
+    <option name="totallyTimeSpent" value="34405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1672,7 +1723,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17910448" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17910448" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917964" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32775378" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1713,7 +1764,8 @@
     <MESSAGE value="API implementation is complete and Callback registration is publicly available.&#10;To get the Armory API:&#10;Send an IMC to Armory with the method path for a callback that takes, an IArmoryAPI instance and as key registerApi." />
     <MESSAGE value="API: Added the complete UTIL package." />
     <MESSAGE value="API: Added parts of the UTIL package." />
-    <option name="LAST_COMMIT_MESSAGE" value="API: Added parts of the UTIL package." />
+    <MESSAGE value="Working on directory capitalization of the resources directory - Phase 1 added temp tag." />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on directory capitalization of the resources directory - Phase 1 added temp tag." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1754,13 +1806,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/IArmoryAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/helpers/IArmoryHelpers.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -2069,7 +2114,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/models/item/heateditemtemp/Armory.Items.Components.HeatedIngots.HI-Armory.json">
+    <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/models/item/heateditem/Armory.Items.Components.HeatedIngots.HI-Armory.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
@@ -2129,6 +2174,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/models/item/guide/Guide.mtl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
