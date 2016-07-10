@@ -23,7 +23,7 @@ import java.util.Map;
  * Created by Marc on 06.12.2015.
  */
 public class HeatedItemModelLoader implements ICustomModelLoader {
-    public static final String EXTENSION = ".HI-armory";
+    public static final String EXTENSION = ".HI-Armory";
 
     @Override
     public boolean accepts (ResourceLocation modelLocation) {

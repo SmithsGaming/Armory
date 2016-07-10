@@ -26,7 +26,7 @@ import java.io.IOException;
  */
 public class AnvilModelLoader implements ICustomModelLoader {
 
-    public static final String EXTENSION = ".Anvil-armory";
+    public static final String EXTENSION = ".Anvil-Armory";
 
     @Override
     public boolean accepts (ResourceLocation modelLocation) {

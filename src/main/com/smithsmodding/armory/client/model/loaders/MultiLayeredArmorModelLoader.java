@@ -31,7 +31,7 @@ import java.util.Map;
  * Created by Marc on 06.12.2015.
  */
 public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
-    public static final String EXTENSION = ".MLA-armory";
+    public static final String EXTENSION = ".MLA-Armory";
 
     @Override
     public boolean accepts (ResourceLocation modelLocation) {

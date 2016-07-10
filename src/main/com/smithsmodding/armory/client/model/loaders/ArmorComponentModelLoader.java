@@ -25,7 +25,7 @@ import java.util.Map;
  * Author Marc (Created on: 12.06.2016)
  */
 public class ArmorComponentModelLoader implements ICustomModelLoader {
-    public static final String EXTENSION = ".AC-armory";
+    public static final String EXTENSION = ".AC-Armory";
 
     @Override
     public boolean accepts(ResourceLocation modelLocation) {

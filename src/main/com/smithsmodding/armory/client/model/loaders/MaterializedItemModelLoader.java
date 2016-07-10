@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.LoaderState;
  */
 public class MaterializedItemModelLoader implements ICustomModelLoader {
 
-    public static final String EXTENSION = ".MIM-armory";
+    public static final String EXTENSION = ".MIM-Armory";
 
     @Override
     public boolean accepts(ResourceLocation modelLocation) {

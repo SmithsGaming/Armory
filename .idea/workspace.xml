@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b2094f80-431d-41be-b6e3-47b3a42a7699" name="Default" comment="Working on directory capitalization of the resources directory - Phase 2 removed tags.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/gradle.log" afterPath="$PROJECT_DIR$/.gradle/gradle.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
+    <list default="true" id="b2094f80-431d-41be-b6e3-47b3a42a7699" name="Default" comment="Fix texture addressing and additional spam.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_SmithsModding_Armory_Armory_1_9_4_1_1_0_1_293.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_SmithsModding_Armory_Armory_api_1_9_4_1_1_0_1_293.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_SmithsModding_Armory_Armory_1_9_4_1_1_0_1_289_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Weaponry/.idea/libraries/Gradle__com_SmithsModding_Armory_Armory_api_1_9_4_1_1_0_1_289_SNAPSHOT.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.properties" afterPath="$PROJECT_DIR$/build.properties" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/anviltemp/AnvilTextured.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/anvil/AnvilTextured.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/fireplacetemp/Feuer_tex.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/fireplace/Feuer_tex.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/liquidmetaltemp/flow.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/liquidmetal/flow.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/liquidmetaltemp/flow.png.mcmeta" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/liquidmetal/flow.png.mcmeta" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/liquidmetaltemp/still.png" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/liquidmetal/still.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/liquidmetaltemp/still.png.mcmeta" afterPath="$PROJECT_DIR$/src/resources/assets/armory/textures/blocks/liquidmetal/still.png.mcmeta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/AnvilModelLoader.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/AnvilModelLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/ArmorComponentModelLoader.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/ArmorComponentModelLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/HeatedItemModelLoader.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/HeatedItemModelLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MaterializedItemModelLoader.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MaterializedItemModelLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Weaponry/build.properties" afterPath="$PROJECT_DIR$/../Weaponry/build.properties" />
     </list>
     <ignored path="Armory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -86,11 +82,71 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.properties" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
               <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnvilModelLoader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/AnvilModelLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="28" column="52" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArmorComponentModelLoader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/ArmorComponentModelLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HeatedItemModelLoader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/HeatedItemModelLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MaterializedItemModelLoader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MaterializedItemModelLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MultiLayeredArmorModelLoader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Armory.Items.SmithingsGuide.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Items.SmithingsGuide.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -787,10 +843,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/helpers/IMedievalUpgradeConstructionHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/Helpers.java" />
-        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/MedievalUpgradeConstructionHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/armor/tiermedieval/ArmorMedieval.java" />
         <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/MultiLayeredArmor.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/material/IronMedievalMaterialInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/material/ObsidianMedievalMaterialInitializer.java" />
@@ -807,7 +859,6 @@
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/ArmoryHelpers.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/ArmorTab.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/recipe/ArmorUpgradeAnvilRecipe.java" />
-        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/MedievalAddonRegistry.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/material/ObsidianMaterialInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/material/IronMaterialInitializer.java" />
@@ -838,6 +889,11 @@
         <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/client/Textures.java" />
         <option value="$PROJECT_DIR$/src/resources/assets/armory/models/item/guide/Guide.mtl" />
         <option value="$PROJECT_DIR$/build.properties" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/AnvilModelLoader.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/ArmorComponentModelLoader.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/HeatedItemModelLoader.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MaterializedItemModelLoader.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java" />
       </list>
     </option>
   </component>
@@ -968,10 +1024,6 @@
               <option name="myItemId" value="armory" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="textures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -995,123 +1047,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="textures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="block" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="block" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="anvil" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="armory" />
+              <option name="myItemId" value="blockstates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1653,7 +1589,7 @@
       <workItem from="1468148599554" duration="590000" />
       <workItem from="1468149236573" duration="37000" />
       <workItem from="1468149507513" duration="1798000" />
-      <workItem from="1468176642222" duration="2357000" />
+      <workItem from="1468176642222" duration="3786000" />
     </task>
     <task id="LOCAL-00001" summary="Initial API Release.">
       <created>1467915344205</created>
@@ -1697,11 +1633,18 @@
       <option name="project" value="LOCAL" />
       <updated>1468178991410</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fix texture addressing and additional spam.">
+      <created>1468180005157</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1468180005157</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35217000" />
+    <option name="totallyTimeSpent" value="36646000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -1758,7 +1701,8 @@
     <MESSAGE value="API: Added parts of the UTIL package." />
     <MESSAGE value="Working on directory capitalization of the resources directory - Phase 1 added temp tag." />
     <MESSAGE value="Working on directory capitalization of the resources directory - Phase 2 removed tags." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on directory capitalization of the resources directory - Phase 2 removed tags." />
+    <MESSAGE value="Fix texture addressing and additional spam." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix texture addressing and additional spam." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1799,34 +1743,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/helpers/IArmoryHelpers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/ArmoryHelpers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IMaterialRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="43" column="46" selection-start-line="43" selection-start-column="46" selection-end-line="43" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/ArmorTab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="43" column="42" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/recipe/ArmorUpgradeAnvilRecipe.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3025">
@@ -1937,14 +1853,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="50">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3350">
-          <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2131,14 +2039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Items.SmithingsGuide.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/models/item/guide/Guide.mtl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -2175,6 +2075,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/AnvilModelLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="28" column="52" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/ArmorComponentModelLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/HeatedItemModelLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MaterializedItemModelLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Items.SmithingsGuide.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
