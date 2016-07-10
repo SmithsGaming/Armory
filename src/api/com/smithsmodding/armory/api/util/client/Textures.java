@@ -95,7 +95,7 @@ public class Textures {
 
     public static class Gui {
         private static String GUITEXTUREPATH = "armory:textures/gui/";
-        private static String COMPONENTTEXTUREPATH = GUITEXTUREPATH + "Components/";
+        private static String COMPONENTTEXTUREPATH = GUITEXTUREPATH + "components/";
 
         public static class Basic {
             private static String BASICTEXTUREPATH = GUITEXTUREPATH + "Basic/";
@@ -109,7 +109,7 @@ public class Textures {
             }
 
             public static class Components {
-                protected static final String RANDOMTEXTUREFILE = GUITEXTUREPATH + "Components/RandomElements.png";
+                protected static final String RANDOMTEXTUREFILE = GUITEXTUREPATH + "components/RandomElements.png";
 
                 public static final CustomResource HORIZONTALTAILLEFTTORIGHTEMPTY = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Tail.LTR.Empty", RANDOMTEXTUREFILE, 32, 3, 50, 4);
                 public static final CustomResource HORIZONTALTAILLEFTTORIGHTFULL = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Tail.LTR.Full", RANDOMTEXTUREFILE, 32, 0, 50, 3);
@@ -138,21 +138,21 @@ public class Textures {
 
 
             public static class Images {
-                private static String IMAGETEXTUREPATH = GUITEXTUREPATH + "Images/";
+                private static String IMAGETEXTUREPATH = GUITEXTUREPATH + "images/";
 
                 public static CustomResource HAMMER = new CustomResource("Gui.Anvil.Image.Hammer", Basic.Images.IMAGETEXTUREPATH + "AnvilHammer", Colors.DEFAULT, 0, 0, 30, 30);
             }
         }
 
         public static class FirePit {
-            public static CustomResource THERMOMETERICON = new CustomResource("Gui.Forge.Thermometer", "armory:gui/Images/16x ThermoALT", Colors.DEFAULT, 0, 0, 16, 16);
+            public static CustomResource THERMOMETERICON = new CustomResource("Gui.Forge.Thermometer", "armory:gui/images/16x ThermoALT", Colors.DEFAULT, 0, 0, 16, 16);
             public static CustomResource DROPEMPTY = new CustomResource("Gui.Anvil.ProgressBars.Drop.Empty", Basic.Components.RANDOMTEXTUREFILE, Colors.DEFAULT, 16, 32, 8, 12);
             public static CustomResource DROPFULL = new CustomResource("Gui.Anvil.ProgressBars.Drop.Empty", Basic.Components.RANDOMTEXTUREFILE, Colors.DEFAULT, 24, 32, 8, 12);
         }
 
         public static class Anvil {
-            public static CustomResource LOGO = new CustomResource("Gui.Anvil.Image.Logo", "armory:gui/Images/AnvilHammer", Colors.DEFAULT, 0, 0, 15, 15);
-            public static CustomResource EXPERIENCEORB = new CustomResource("Gui.Anvil.Image.ExperienceOrb", GUITEXTUREPATH + "Components/RandomElements.png", Colors.DEFAULT, 16, 0, 16, 16);
+            public static CustomResource LOGO = new CustomResource("Gui.Anvil.Image.Logo", "armory:gui/images/AnvilHammer", Colors.DEFAULT, 0, 0, 15, 15);
+            public static CustomResource EXPERIENCEORB = new CustomResource("Gui.Anvil.Image.ExperienceOrb", GUITEXTUREPATH + "components/RandomElements.png", Colors.DEFAULT, 16, 0, 16, 16);
             public static CustomResource HOLOWPICKAXE = new CustomResource("Gui.Anvil.SlotHolo.Pickaxe", "minecraft:items/iron_pickaxe", Colors.DEFAULT, 0, 0, 16, 16);
             public static CustomResource HOLOWBOOK = new CustomResource("Gui.Anvil.SlotHolo.Book", "minecraft:items/book_normal", Colors.DEFAULT, 0,0, 16, 16);
             public static CustomResource HOLOWHAMMER = new CustomResource("Gui.Anvil.SlotHolo.Hammer", "armory:items/basic/16x Work Hammer", Colors.DEFAULT, 0,0,16,16);
@@ -162,15 +162,15 @@ public class Textures {
         public static class Compatibility {
             public static class JEI {
                 public static class ArmorsAnvil {
-                    public static CustomResource GUI = new CustomResource("Gui.Compatibility.NEI.Anvil.gui", GUITEXTUREPATH + "JEI/anvil.png", 0, 0, 162, 133);
+                    public static CustomResource GUI = new CustomResource("Gui.Compatibility.NEI.Anvil.gui", GUITEXTUREPATH + "jei/anvil.png", 0, 0, 162, 133);
                 }
             }
         }
     }
 
     public static class Blocks {
-        public static final CustomResource LiquidMetalFlow = new CustomResource("Armory.General.LiquidMetal.Flow", "armory:blocks/LiquidMetal/flow");
-        public static final CustomResource LiquidMetalStill = new CustomResource("Armory.General.LiquidMetal.Still", "armory:blocks/LiquidMetal/still");
+        public static final CustomResource LiquidMetalFlow = new CustomResource("Armory.General.LiquidMetal.Flow", "armory:blocks/liquidmetal/flow");
+        public static final CustomResource LiquidMetalStill = new CustomResource("Armory.General.LiquidMetal.Still", "armory:blocks/liquidmetal/still");
     }
 
 }

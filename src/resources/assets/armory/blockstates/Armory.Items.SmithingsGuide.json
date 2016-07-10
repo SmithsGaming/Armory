@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "armory:Guide/Guide.obj",
+    "model": "armory:guide/Guide.obj",
     "custom": {
       "flip-v": true,
       "gui3d": false
@@ -13,61 +13,7 @@
       {}
     ],
     "inventory": [
-      {
-        "transform": {
-          "thirdperson": {
-            "translation": [
-              -0.035,
-              -0.1,
-              -0.2
-            ],
-            "rotation": [
-              {
-                "y": 180
-              },
-              {
-                "x": 180
-              }
-            ],
-            "scale": 0.625
-          },
-          "firstperson": {
-            "translation": [
-              0,
-              0.5,
-              0.35
-            ],
-            "rotation": [
-              {
-                "y": -85
-              },
-              {
-                "x": 75
-              },
-              {
-                "z": 15
-              }
-            ],
-            "scale": 1.6
-          },
-          "gui": {
-            "translation": [
-              0,
-              0.5,
-              -0.30
-            ],
-            "rotation": [
-              {
-                "y": 135
-              },
-              {
-                "x": 25
-              }
-            ],
-            "scale": 1.6
-          }
-        }
-      }
+      {}
     ]
   }
 }

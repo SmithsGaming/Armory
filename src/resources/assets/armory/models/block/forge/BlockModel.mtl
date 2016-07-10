@@ -2,81 +2,33 @@
 # Material Count: 8
 
 newmtl CoalField
-Ns 90.196078
-Ka 0.000000 0.000000 0.000000
 Kd 0.409600 0.409600 0.409600
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd armory:blocks\FirePit\CoalField
+map_Kd armory:blocks\forge\CoalField
 
 newmtl Dark-Metal
-Ns 90.196078
-Ka 0.000000 0.000000 0.000000
 Kd 0.409600 0.409600 0.409600
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd armory:blocks\FirePit\DarkSheet
+map_Kd armory:blocks\forge\DarkSheet
 
 newmtl Darkened-Glass
-Ns 90.196078
-Ka 0.000000 0.000000 0.000000
 Kd 0.512000 0.512000 0.512000
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd armory:blocks\FirePit\DestroyedMetalWall
+map_Kd armory:blocks\forge\DestroyedMetalWall
 
 newmtl DestroyedMetalBasin
-Ns 90.196078
-Ka 0.000000 0.000000 0.000000
 Kd 0.409600 0.409600 0.409600
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd armory:blocks\FirePit\DestroyedMetalBasin
+map_Kd armory:blocks\forge\DestroyedMetalBasin
 
 newmtl FuelHolder-Bottom
-Ns 90.196078
-Ka 0.000000 0.000000 0.000000
 Kd 0.409600 0.409600 0.409600
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd armory:blocks\FirePit\FuelBasinBottom
+map_Kd armory:blocks\forge\FuelBasinBottom
 
 newmtl FuelHolder-Wall
-Ns 90.196078
-Ka 0.000000 0.000000 0.000000
 Kd 0.409600 0.409600 0.409600
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd armory:blocks\FirePit\FuelBasinWall
+map_Kd armory:blocks\forge\FuelBasinWall
 
 newmtl IngotHolder-Rim
-Ns 90.196078
-Ka 0.000000 0.000000 0.000000
 Kd 0.409600 0.409600 0.409600
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd armory:blocks\FirePit\IngotHolderRim
+map_Kd armory:blocks\forge\IngotHolderRim
 
 newmtl Light-Metal
-Ns 90.196078
-Ka 0.000000 0.000000 0.000000
 Kd 0.409600 0.409600 0.409600
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd armory:blocks\FirePit\LightSheet
+map_Kd armory:blocks\forge\LightSheet
