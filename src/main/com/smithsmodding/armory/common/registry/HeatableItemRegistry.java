@@ -312,6 +312,9 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
 
         for (int oreID : oreIDs) {
             for (ItemStack stack : OreDictionary.getOres(OreDictionary.getOreName(oreID))) {
+                if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE)
+                    continue;
+
                 String type = References.InternalNames.HeatedItemTypes.INGOT;
                 int fluidAmount = References.General.FLUID_INGOT;
 
