@@ -312,6 +312,9 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
 
         for (int oreID : oreIDs) {
             for (ItemStack stack : OreDictionary.getOres(OreDictionary.getOreName(oreID))) {
+                if (ItemStackHelper.equalsIgnoreStackSize(stack, originalStack))
+                    continue;
+
                 if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE)
                     continue;
 
