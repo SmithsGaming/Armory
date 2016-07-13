@@ -2,6 +2,7 @@ package com.smithsmodding.armory.api.materials;
 
 import com.smithsmodding.armory.api.textures.*;
 import com.smithsmodding.smithscore.client.textures.ITextureController;
+import com.smithsmodding.smithscore.util.client.color.ColorSampler;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -140,6 +141,11 @@ public class MaterialRenderControllers {
         }
 
         @Override
+        public MinecraftColor getVertexColor () {
+            return new MinecraftColor(mid);
+        }
+
+        @Override
         public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {
             return new InverseColoredTexture(low, mid, high, baseTexture, location);
         }
@@ -163,6 +169,11 @@ public class MaterialRenderControllers {
         }
 
         @Override
+        public MinecraftColor getVertexColor () {
+            return new MinecraftColor(color);
+        }
+
+        @Override
         public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {
             return new MetalColoredTexture(baseTexture, location, color, shinyness, brightness, hueshift);
         }
@@ -175,6 +186,7 @@ public class MaterialRenderControllers {
 
         protected String texturePath;
         protected Block block;
+        protected MinecraftColor color;
 
         public BlockTexture (String texturePath) {
             this.texturePath = texturePath;
@@ -188,9 +200,16 @@ public class MaterialRenderControllers {
                 blockTexture = Minecraft.getMinecraft().getTextureMapBlocks().getMissingSprite();
             }
 
+            color = ColorSampler.calculateAverageMinecraftColor(blockTexture.getFrameTextureData(0));
+
             TextureColoredTexture sprite = new TextureColoredTexture(blockTexture, baseTexture, location);
             sprite.stencil = false;
             return sprite;
+        }
+
+        @Override
+        public MinecraftColor getVertexColor() {
+            return color;
         }
     }
 
@@ -202,6 +221,7 @@ public class MaterialRenderControllers {
     public static class AnimatedTexture extends AbstractMaterialTextureController {
 
         protected String texturePath;
+        protected MinecraftColor color;
 
         public AnimatedTexture (String texturePath) {
             this.texturePath = texturePath;
@@ -215,8 +235,16 @@ public class MaterialRenderControllers {
                 blockTexture = Minecraft.getMinecraft().getTextureMapBlocks().getMissingSprite();
             }
 
+            color = ColorSampler.calculateAverageMinecraftColor(blockTexture.getFrameTextureData(0));
+
             TextureColoredTexture sprite = new AnimatedColoredTexture(blockTexture, baseTexture, location);
             return sprite;
+        }
+
+
+        @Override
+        public MinecraftColor getVertexColor() {
+            return color;
         }
     }
 
