@@ -15,7 +15,7 @@ public interface IAnvilMaterial
 
     String translatedDisplayName();
 
-    TextFormatting translatedDisplayNameColor();
+    String translatedDisplayNameColor();
 
     ITextureController getRenderInfo();
 

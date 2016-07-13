@@ -34,10 +34,12 @@ public class FluidMoltenMetal extends Fluid {
         return (int) material.getMeltingPoint();
     }
 
+
+
     @Override
     public String getLocalizedName (FluidStack stack) {
         IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL));
 
-        return I18n.format(TranslationKeys.Fluids.MOLTEN) + " " + material.getNameColor() + I18n.format(material.getTranslationKey()) + TextFormatting.RESET;
+        return I18n.format(TranslationKeys.Fluids.MOLTEN) + " " + I18n.format(material.getTranslationKey());
     }
 }

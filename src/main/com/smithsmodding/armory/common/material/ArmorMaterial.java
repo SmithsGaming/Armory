@@ -219,7 +219,7 @@ public class ArmorMaterial implements IArmorMaterial {
     }
 
     @Override
-    public TextFormatting getNameColor() {
-        return ColorSampler.getChatMinecraftColorSample(renderInfo.getVertexColor());
+    public String getNameColor() {
+        return renderInfo.getVertexColor().encodeColor();
     }
 }

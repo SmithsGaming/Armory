@@ -4,6 +4,7 @@ import com.smithsmodding.armory.api.materials.IAnvilMaterial;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -18,6 +19,11 @@ public class ItemBlockBlackSmithsAnvil extends ItemBlock
     public ItemBlockBlackSmithsAnvil (Block block) {
         super(block);
         this.setRegistryName(block.getRegistryName());
+    }
+
+    @Override
+    public FontRenderer getFontRenderer(ItemStack stack) {
+        return super.getFontRenderer(stack);
     }
 
     @Override

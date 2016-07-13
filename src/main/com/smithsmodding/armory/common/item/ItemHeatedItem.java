@@ -13,6 +13,8 @@ import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.factory.HeatedItemFactory;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -59,6 +61,15 @@ public class ItemHeatedItem extends Item {
     @Override
     public double getDurabilityForDisplay (ItemStack pStack) {
         return ( pStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE) ) / ( MaterialRegistry.getInstance().getMaterial(pStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID)).getMeltingPoint() );
+    }
+
+    @Override
+    public FontRenderer getFontRenderer(ItemStack stack) {
+        if (!stack.hasTagCompound())
+            return CoreClientProxy.getMultiColoredFontRenderer();
+
+        ItemStack tOriginalItemStack = ItemStack.loadItemStackFromNBT(stack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.HeatedIngot.ORIGINALITEM));
+        return tOriginalItemStack.getItem().getFontRenderer(tOriginalItemStack);
     }
 
     @SideOnly(Side.CLIENT)

@@ -8,6 +8,7 @@ import com.smithsmodding.armory.common.crafting.blacksmiths.component.HeatedAnvi
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.smithscore.client.textures.ITextureController;
 import com.smithsmodding.smithscore.util.client.color.ColorSampler;
+import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,7 +22,7 @@ public class AnvilMaterial implements IAnvilMaterial {
     String id;
     int durability;
     String translatedDisplayName;
-    TextFormatting translatedDisplayNameColor;
+    String translatedDisplayNameColor;
     ITextureController info;
 
     public AnvilMaterial (String id, int durability, String translatedDisplayName) {
@@ -47,9 +48,9 @@ public class AnvilMaterial implements IAnvilMaterial {
     }
 
     @Override
-    public TextFormatting translatedDisplayNameColor() {
+    public String translatedDisplayNameColor() {
         if (translatedDisplayNameColor == null)
-            translatedDisplayNameColor = ColorSampler.getChatMinecraftColorSample(info.getVertexColor());
+            translatedDisplayNameColor = getRenderInfo().getVertexColor().encodeColor();
 
         return translatedDisplayNameColor;
     }

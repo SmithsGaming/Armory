@@ -9,12 +9,19 @@ package com.smithsmodding.armory.common.item;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
 public abstract class ItemResource extends Item {
+
+    @Override
+    public FontRenderer getFontRenderer(ItemStack stack) {
+        return CoreClientProxy.getMultiColoredFontRenderer();
+    }
 
     @Override
     public String getItemStackDisplayName(ItemStack pStack) {

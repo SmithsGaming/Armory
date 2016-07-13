@@ -7,6 +7,8 @@ import com.smithsmodding.armory.api.item.ISingleMaterialItem;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
+import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -53,6 +55,11 @@ public class ItemArmorComponent extends Item implements ISingleMaterialItem, ISi
             return "";
 
         return stack.getTagCompound().getString(References.NBTTagCompoundData.Item.ItemComponent.TYPE);
+    }
+
+    @Override
+    public FontRenderer getFontRenderer(ItemStack stack) {
+        return CoreClientProxy.getMultiColoredFontRenderer();
     }
 
     @Override

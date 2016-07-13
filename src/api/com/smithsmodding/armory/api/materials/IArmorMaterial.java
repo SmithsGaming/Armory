@@ -80,5 +80,5 @@ public interface IArmorMaterial {
 
     IArmorMaterial setTranslationKey (String key);
 
-    TextFormatting getNameColor();
+    String getNameColor();
 }

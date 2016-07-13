@@ -6,6 +6,8 @@ package com.smithsmodding.armory.api.armor;
 */
 
 import com.smithsmodding.armory.api.util.references.ModArmorMaterials;
+import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -71,6 +73,11 @@ public abstract class MultiLayeredArmor extends ItemArmor implements ISpecialArm
     //Function to retrieve the complete AddonPosition list
     public ArrayList<ArmorAddonPosition> getAllowedAddonPositions () {
         return new ArrayList<ArmorAddonPosition>(possibleAddonPositions.values());
+    }
+
+    @Override
+    public FontRenderer getFontRenderer(ItemStack stack) {
+        return CoreClientProxy.getMultiColoredFontRenderer();
     }
 
     ///############################################Functions for handeling the ISpecialArmorRequirements################
