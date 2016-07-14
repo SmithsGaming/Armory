@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "armory:anvil/BlockModel.Anvil-armory",
+    "model": "armory:anvil/BlockModel.Anvil-Armory",
     "custom": {
       "flip-v": true,
       "gui3d": false
