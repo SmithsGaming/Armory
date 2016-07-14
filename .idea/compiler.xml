@@ -22,9 +22,6 @@
       <module name="Armory_api" target="1.8" />
       <module name="Armory_main" target="1.8" />
       <module name="Armory_test" target="1.8" />
-      <module name="Weaponry_api" target="1.8" />
-      <module name="Weaponry_main" target="1.8" />
-      <module name="Weaponry_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

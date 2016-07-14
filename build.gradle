@@ -78,9 +78,6 @@ configurations {
 version = config.minecraft_version + "-" + config.mod_version.toString() + "-" + System.getenv().TRAVIS_BUILD_NUMBER.toString()
 def apiversion = config.api_version.toString() + "-" + System.getenv().TRAVIS_BUILD_NUMBER.toString()
 
-logger.lifecycle("Username: " + System.getenv().GitUsername.toString())
-logger.lifecycle("Password: " + System.getenv().GitPassword.toString())
-
 if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
 {
     version = version + "-SNAPSHOT"
