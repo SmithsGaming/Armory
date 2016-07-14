@@ -278,52 +278,49 @@ uploadArchives {
     }
 }
 
-//Task to synchronise two github branches.
-task('createGithubBranches') << {
+task checkOutLocalMinecraftBranch(type: Exec) {
+    commandLine "git", "checkout", "-b", "Minecraft-" + config.minecraft_version.toString()
+}
 
+task gitSetEmail(type: Exec) {
+    commandLine "git", "config", "user.email", "smithsmodding-travis@outlook.com"
+}
+
+task gitSetName(type: Exec) {
+    commandLine "git", "config", "user.name", "Travic CI For Smithsmodding"
+}
+
+task configRemoteGit(type: Exec) {
+    commandLine "git", "config", "remote.origin.url", "https://" + System.getenv().GitUsername.toString() + ":" + System.getenv().GitPassword.toString() + "@github.com/SmithsGaming/Armory"
+}
+
+task createVersionTag(type: Exec) {
+    commandLine "git", "tag", "-a", version, "-m", "'Autobuild by Travis CI. Build on: " + getDate() + ".'"
+}
+
+task pushGitChanges(type: Exec) {
+    commandLine "git", "push", "origin", "-f", "Minecraft-" + config.minecraft_version.toString(), "--quiet"
+}
+
+task pushGitTags(type: Exec) {
+    commandLine "git", "push", "--tags", "--quiet"
+}
+
+gitSetEmail.mustRunAfter checkOutLocalMinecraftBranch
+gitSetName.mustRunAfter gitSetEmail
+configRemoteGit.mustRunAfter gitSetName
+createVersionTag.mustRunAfter configRemoteGit
+pushGitChanges.mustRunAfter createVersionTag
+pushGitTags.mustRunAfter pushGitChanges
+
+task createGithubBranches() {
     if ((System.getenv().TRAVIS_BRANCH.toString().contains("Development")) && (build_mode.toString().trim().equals("RELEASE"))) {
-        logger.lifecycle("Uploading code to the corresponding Minecraft version branch. Creating branch if needed.")
-        logger.lifecycle("Creating local branch.")
-        //Creates/Or checks out the new local branch.
-        def createLocalBranchCMD = "git checkout -b Minecraft-" + config.minecraft_version.toString()
-        def createLocalProg = createLocalBranchCMD.execute();
-        createLocalProg.waitFor()
-
-        logger.lifecycle("Uploading force push to repo.")
-        def setUrlCMD = "git config remote.origin.url https://" + System.getenv().GitUsername.toString() + ":" + System.getenv().GitPassword.toString() + "@github.com/smithsmodding/armory"
-        def setURLProg = setUrlCMD.execute()
-        setURLProg.waitFor()
-
-        logger.lifecycle("Listing all Tags")
-        def showTagsListCMD = "git tag"
-        def showTagsListProg = showTagsListCMD.execute()
-        showTagsListProg.waitFor()
-
-        logger.lifecycle("Updating Branch")
-        def syncCmd = "git push origin -f Minecraft-" + config.minecraft_version.toString()
-        def syncProg = syncCmd.execute()
-        syncProg.waitFor()
-
-        //Adds a tag to the minecraft version specific branch for the version number.
-        logger.lifecycle("Adding version tag: " + "git tag -a " + version + " -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'")
-        def addTagCMD = "git tag -a " + version + " -m 'Autobuild by Travis CI. Build on: " + getDate() + ".'"
-        def addTagProg = addTagCMD.execute()
-        addTagProg.waitFor()
-
-        logger.lifecycle("Uploading tags.")
-        def tagCmd = "git push --tags"
-        def tagProg = tagCmd.execute()
-        tagProg.waitFor()
-
-        logger.lifecycle("Mirrored the code the corresponding minecraft version branch. Current MC Version: " + config.minecraft_version.toString() + ". Branch name: Minecraft-" + config.minecraft_version.toString() + ".")
+        logger.lifecycle("Configuring upload to git.")
+        dependsOn checkOutLocalMinecraftBranch, gitSetName, gitSetEmail, configRemoteGit, createVersionTag, pushGitChanges, pushGitTags
+        logger.lifecycle("Configuration complete. Current MC Version: " + config.minecraft_version.toString() + ". Branch name: Minecraft-" + config.minecraft_version.toString() + ".")
     } else {
         logger.lifecycle("The sync of the branches is not being executed, because we are not releasing a new version.")
     }
-
 }
 
-//The external task that executes the uploadAtchives function.
-task('uploadJars', dependsOn: uploadArchives) {
-    description = "uploads JARs"
-}
 
