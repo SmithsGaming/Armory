@@ -1,8 +1,12 @@
+This mapping 'snapshot_20160518' was designed for MC 1.9.4! Use at your own peril.This mapping 'snapshot_20160518' was designed for MC 1.9.4! Use at your own peril.
+
 Cannot run the CurseUpload sequence. No API-Key was available.Cannot run the CurseUpload sequence. No API-Key was available.
+
+The sync of the branches is not being executed, because we are not releasing a new version.The sync of the branches is not being executed, because we are not releasing a new version.
 
 Found AccessTransformer: jei_at.cfg_jei_1.9.4-3.6.8.225_at.cfg
 Found AccessTransformer: Armory_at.cfg
 
 BUILD SUCCESSFUL
 
-Total time: 2.424 secs
+Total time: 4.667 secs
