@@ -323,4 +323,7 @@ task createGithubBranches() {
     }
 }
 
-
+//The external task that executes the uploadAtchives function.
+task('uploadJars', dependsOn: uploadArchives) {
+    description = "uploads JARs"
+}
