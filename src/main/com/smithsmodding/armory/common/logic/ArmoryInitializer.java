@@ -1130,6 +1130,9 @@ public class ArmoryInitializer {
             if (recipe.getRecipeOutput() == null)
                 return;
 
+            if (recipe.getRecipeOutput().getItem() == null)
+                return;
+
             int[] oreIds = OreDictionary.getOreIDs(recipe.getRecipeOutput());
 
             for (int Id : oreIds) {
