@@ -8,6 +8,7 @@ import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
@@ -68,7 +69,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
      */
     public BakedTemperatureBarModel generateBackedComponentModel (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         // Get ourselfs a normal model to use.
-        IBakedModel base = super.bake(state, format, bakedTextureGetter);
+        IBakedModel base = super.bake(state, DefaultVertexFormats.ITEM, bakedTextureGetter);
 
         // Use it as our base for the BakedComponentModel.
         BakedTemperatureBarModel bakedTemperatureBar = new BakedTemperatureBarModel(base);
@@ -81,7 +82,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
             IModel model2 = ItemLayerModel.INSTANCE.retexture(ImmutableMap.of("layer0", sprite.getIconName()));
 
             //We bake the new model to get a ready to use textured and ready to be colored baked model.
-            IBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
+            IBakedModel bakedModel2 = model2.bake(state, DefaultVertexFormats.ITEM, bakedTextureGetter);
 
             //Set normals to ignore lighting.
             ModelHelper.setNormalsToIgnoreLightingOnItemModel(bakedModel2);
