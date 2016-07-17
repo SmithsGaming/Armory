@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="74002fd1-8a4c-40a4-8318-25b111c6ed5d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockForge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Forge.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Forge.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.Anvil-armory.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.Anvil-Armory.temp.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.Anvil-Armory.temp.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.Anvil-Armory.json" />
     </list>
     <ignored path="Armory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,8 +61,10 @@
         <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockForge.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="59" column="76" selection-start-line="59" selection-start-column="76" selection-end-line="59" selection-end-column="76" />
-              <folding />
+              <caret line="58" column="76" selection-start-line="58" selection-start-column="76" selection-end-line="58" selection-end-column="76" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1649,7 +1649,7 @@
       <workItem from="1468656715775" duration="1494000" />
       <workItem from="1468687908839" duration="2020000" />
       <workItem from="1468751223222" duration="1774000" />
-      <workItem from="1468753415721" duration="3437000" />
+      <workItem from="1468753415721" duration="3456000" />
     </task>
     <task id="LOCAL-00001" summary="Added some safe guards to the HeatableItemRegistry.">
       <created>1468433846021</created>
@@ -1728,11 +1728,18 @@
       <option name="project" value="LOCAL" />
       <updated>1468657628814</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Working on some fixes">
+      <created>1468785199391</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1468785199391</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26757000" />
+    <option name="totallyTimeSpent" value="26776000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -1785,7 +1792,8 @@
     <MESSAGE value="Added Uploading to the Maven Repo Again." />
     <MESSAGE value="Fixed Recipes with an Null-Item in the resultstack being attempted to remove from the game.&#10;&#10;Closes #30" />
     <MESSAGE value="Hopefully fixing a problem when creating heated items. The Temperature bar should be baked with DefaultVertexFormat.Item, instead it was baked with what the actual original Item was requiring. This was causing issues with some items.&#10;&#10;Hopefully fixes https://github.com/SmithsGaming/SmithsCore/issues/8" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hopefully fixing a problem when creating heated items. The Temperature bar should be baked with DefaultVertexFormat.Item, instead it was baked with what the actual original Item was requiring. This was causing issues with some items.&#10;&#10;Hopefully fixes https://github.com/SmithsGaming/SmithsCore/issues/8" />
+    <MESSAGE value="Working on some fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on some fixes" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -2259,8 +2267,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockForge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="59" column="76" selection-start-line="59" selection-start-column="76" selection-end-line="59" selection-end-column="76" />
-          <folding />
+          <caret line="58" column="76" selection-start-line="58" selection-start-column="76" selection-end-line="58" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
