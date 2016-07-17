@@ -22,11 +22,11 @@
         "transform": "forge:default-block"
       }
     ],
-    "burning": {
+    "armory.burning": {
       "true": {},
       "false": {}
     },
-    "master": {
+    "armory.master": {
       "true": {},
       "false": {}
     }

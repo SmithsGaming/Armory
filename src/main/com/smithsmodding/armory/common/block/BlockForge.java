@@ -21,7 +21,6 @@ import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;
 import com.smithsmodding.smithscore.common.structures.StructureRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockAir;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -30,6 +29,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -46,6 +46,7 @@ import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
+import net.minecraftforge.common.property.Properties;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,8 +55,8 @@ import java.util.Map;
 
 public class BlockForge extends BlockArmoryInventory implements ICustomDebugInformationBlock {
 
-    public static final PropertyBool BURNING = PropertyBool.create("burning");
-    public static final PropertyBool ISMASTER = PropertyBool.create("master");
+    public static final PropertyBool BURNING = PropertyBool.create("armory.burning");
+    public static final PropertyBool ISMASTER = PropertyBool.create("armory.master");
 
     protected static Map<String, EnumFacing> directionsMapping = new HashMap<String, EnumFacing>();
 
@@ -66,7 +67,7 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
         directionsMapping.put("PosY", EnumFacing.NORTH);
     }
 
-    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE});
+    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE, Properties.AnimationProperty});
 
     public BlockForge() {
         super(References.InternalNames.Blocks.Forge, Material.IRON);
@@ -202,7 +203,7 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
             int requiredSides = 0;
             int foundSides = 0;
 
-            Class targetComparison = this.getClass();
+            Block targetBlock = this;
 
             for (String sideName : directionsMapping.keySet())
             {
@@ -230,11 +231,11 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
             }
             else if (connectionType.toLowerCase().contains("air"))
             {
-                targetComparison = BlockAir.class;
+                targetBlock = Blocks.AIR;
             }
             else if (connectionType.toLowerCase().contains("connected"))
             {
-                targetComparison = this.getClass();
+                targetBlock = this;
             }
 
             if (renderCase.toLowerCase().contains("all"))
@@ -256,7 +257,7 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
                     {
                         Block comparisonBlock = world.getBlockState(pos.add(directionsMapping.get(sideName).getDirectionVec())).getBlock();
 
-                        if (targetComparison.isAssignableFrom(comparisonBlock.getClass()))
+                        if (targetBlock == comparisonBlock)
                         {
                             foundSides ++;
                         }
@@ -271,7 +272,7 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
         }
 
         OBJModel.OBJState retState = new OBJModel.OBJState(visibleParts, true);
-        return ((IExtendedBlockState) this.state.getBaseState()).withProperty(OBJModel.OBJProperty.INSTANCE, retState);
+        return ((IExtendedBlockState) this.state.getBaseState()).withProperty(Properties.AnimationProperty, retState);
     }
 
     @Override
