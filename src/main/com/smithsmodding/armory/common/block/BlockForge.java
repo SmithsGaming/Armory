@@ -118,6 +118,9 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
 
     @Override
     public void onBlockPlacedBy (World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        if (worldIn == null)
+            return;
+
         TileEntityForge forge = (TileEntityForge) worldIn.getTileEntity(pos);
 
         if (stack.hasDisplayName()) {
@@ -126,6 +129,7 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
 
         if (!worldIn.isRemote) {
             if (forge instanceof TileEntityForge) {
+                forge.setWorldObj(worldIn);
                 StructureRegistry.getInstance().onStructurePartPlaced(forge);
 
                 worldIn.markChunkDirty(pos, forge);
