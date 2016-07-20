@@ -21,12 +21,12 @@ import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.registry.ArmorRegistry;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
+import com.smithsmodding.smithscore.client.model.loader.SmithsCoreOBJLoader;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.obj.OBJLoader;
 
 public class ArmoryClientInitializer extends ArmoryInitializer {
     public static void InitializeClient() {
@@ -110,12 +110,12 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
             ArmoryClientProxy.registerMaterializedItemModel(ModItems.metalRing);
             ArmoryClientProxy.registerMaterializedItemModel(ModItems.metalNugget);
 
-            OBJLoader.INSTANCE.addDomain(References.General.MOD_ID.toLowerCase());
+            SmithsCoreOBJLoader.INSTANCE.addDomain(References.General.MOD_ID.toLowerCase());
             ModelLoader.setCustomModelResourceLocation(ModItems.guide, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + "armory.Items.SmithingsGuide", "inventory"));
 
             MultiComponentModelLoader.instance.registerDomain(References.General.MOD_ID);
-            CoreClientProxy.registerMultiComponentItemModel(ModItems.tongs, new ResourceLocation("armory", "Armory.Resources." + MultiComponentModelLoader.EXTENSION));
-            CoreClientProxy.registerMultiComponentItemModel(ModItems.hammer, new ResourceLocation("armory", "Armory.Resources." + MultiComponentModelLoader.EXTENSION));
+            CoreClientProxy.registerMultiComponentItemModel(ModItems.tongs, new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Resources." + MultiComponentModelLoader.EXTENSION));
+            CoreClientProxy.registerMultiComponentItemModel(ModItems.hammer, new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Resources." + MultiComponentModelLoader.EXTENSION));
         }
 
 

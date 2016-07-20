@@ -19,7 +19,12 @@ import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;
+import com.smithsmodding.smithscore.client.model.baked.BakedSmithsCoreOBJModel;
+import com.smithsmodding.smithscore.client.model.data.SmithsCoreOBJGroup;
+import com.smithsmodding.smithscore.client.model.states.SmithsCoreOBJState;
+import com.smithsmodding.smithscore.client.model.unbaked.SmithsCoreOBJModel;
 import com.smithsmodding.smithscore.common.structures.StructureRegistry;
+import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -42,11 +47,9 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
-import net.minecraftforge.common.property.Properties;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,8 +58,8 @@ import java.util.Map;
 
 public class BlockForge extends BlockArmoryInventory implements ICustomDebugInformationBlock {
 
-    public static final PropertyBool BURNING = PropertyBool.create("armory.burning");
-    public static final PropertyBool ISMASTER = PropertyBool.create("armory.master");
+    public static final PropertyBool BURNING = PropertyBool.create("armoryburning");
+    public static final PropertyBool ISMASTER = PropertyBool.create("armorymaster");
 
     protected static Map<String, EnumFacing> directionsMapping = new HashMap<String, EnumFacing>();
 
@@ -67,7 +70,7 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
         directionsMapping.put("PosY", EnumFacing.NORTH);
     }
 
-    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE, Properties.AnimationProperty});
+    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{CoreReferences.BlockStateProperties.Unlisted.OBJSTATE});
 
     public BlockForge() {
         super(References.InternalNames.Blocks.Forge, Material.IRON);
@@ -172,8 +175,8 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
     public IBlockState getExtendedState (IBlockState state, IBlockAccess world, BlockPos pos) {
         ItemStack blockStack = new ItemStack(Item.getItemFromBlock(this));
 
-        OBJModel model = ((OBJModel.OBJBakedModel) Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(blockStack)).getModel();
-        Map<String, OBJModel.Group> groups = model.getMatLib().getGroups();
+        SmithsCoreOBJModel model = ((BakedSmithsCoreOBJModel) Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(blockStack)).getModel();
+        Map<String, SmithsCoreOBJGroup> groups = model.getMatLib().getGroups();
 
         List<String> visibleParts = new ArrayList<String>();
 
@@ -275,8 +278,8 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
             }
         }
 
-        OBJModel.OBJState retState = new OBJModel.OBJState(visibleParts, true);
-        return ((IExtendedBlockState) this.state.getBaseState()).withProperty(Properties.AnimationProperty, retState);
+        SmithsCoreOBJState retState = new SmithsCoreOBJState(visibleParts, true);
+        return ((IExtendedBlockState) this.state.getBaseState()).withProperty(CoreReferences.BlockStateProperties.Unlisted.OBJSTATE, retState);
     }
 
     @Override
