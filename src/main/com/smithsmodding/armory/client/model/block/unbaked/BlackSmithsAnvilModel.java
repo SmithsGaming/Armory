@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.common.model.IModelState;
 
 import java.util.ArrayList;
@@ -56,7 +55,7 @@ public class BlackSmithsAnvilModel implements IModel {
 
         for(Map.Entry<String, IModel> modelEntry : unbakedOBJModels.entrySet())
         {
-            OBJModel.OBJBakedModel bakedCustomModel = (OBJModel.OBJBakedModel) modelEntry.getValue().bake(state, format, bakedTextureGetter);
+            IBakedModel bakedCustomModel = modelEntry.getValue().bake(state, format, bakedTextureGetter);
             bakedModel.registerBakedModel(bakedCustomModel, modelEntry.getKey());
         }
 

@@ -9,6 +9,7 @@ import com.smithsmodding.armory.common.structure.forge.StructureForge;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityForgeGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.IForgeFuelDataContainer;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityForgeState;
+import com.smithsmodding.smithscore.client.events.models.block.BlockModelUpdateEvent;
 import com.smithsmodding.smithscore.common.events.structure.StructureEvent;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.pathfinding.IPathComponent;
@@ -48,6 +49,8 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
     private Coordinate3D masterCoordinate = new Coordinate3D(0, 0, 0);
 
+    private boolean shouldTriggerUpdate = true;
+
     @Override
     public void update() {
         if (isRemote())
@@ -68,6 +71,12 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         super.markDirty();
 
         new StructureEvent.Updated(getStructure(), getWorld().provider.getDimension()).PostCommon();
+
+        if (getStructure().getData().getTotalBurningTicksOnCurrentFuel() > 0)
+            onFuelFound();
+
+        if (getStructure().getData().getTotalBurningTicksOnCurrentFuel() == 0)
+            onFuelLost();
     }
 
     public void meltIngots() {
@@ -224,6 +233,36 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
+    protected void onFuelFound() {
+        if (!getStructure().getMasterLocation().equals(getLocation())) {
+            TileEntityForge masterForge = (TileEntityForge) getWorld().getTileEntity(getStructure().getMasterLocation().toBlockPos());
+            masterForge.onFuelFound();
+
+            return;
+        }
+
+        if (shouldTriggerUpdate && getStructure().getMasterLocation().equals(getLocation()))
+            queBlockModelUpdateOnClients();
+
+        shouldTriggerUpdate = false;
+    }
+
+    @Override
+    protected void onFuelLost() {
+        if (!getStructure().getMasterLocation().equals(getLocation())) {
+            TileEntityForge masterForge = (TileEntityForge) getWorld().getTileEntity(getStructure().getMasterLocation().toBlockPos());
+            masterForge.onFuelLost();
+
+            return;
+        }
+
+        if (!shouldTriggerUpdate && getStructure().getMasterLocation().equals(getLocation()))
+            queBlockModelUpdateOnClients();
+
+        shouldTriggerUpdate = true;
+    }
+
+    @Override
     public ArrayList<FluidStack> getAllFluids() {
         if (getStructure() == null)
             return new ArrayList<>();
@@ -377,6 +416,11 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
+    public void markInventoryDirty() {
+        this.markDirty();
+    }
+
+    @Override
     public boolean isItemValidForSlot(int slotIndex, ItemStack stack) {
         if (slotIndex < INGOTSTACKS_AMOUNT) {
             if (stack.getItem() instanceof ItemHeatedItem) {
@@ -421,9 +465,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         if (!getStructure().getMasterLocation().equals(getLocation()))
             return;
 
-        if (this.shouldUpdateBlock()) {
-            this.onUpdateBlock();
-        }
+        this.onUpdateBlock();
 
         for (Coordinate3D slaveLocation : getStructure().getPartLocations()) {
             IBlockModelUpdatingTileEntity tileEntity = (IBlockModelUpdatingTileEntity) getWorld().getTileEntity(slaveLocation.toBlockPos());
@@ -446,11 +488,11 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
     @Override
     public void onUpdateBlock() {
-        if (!worldObj.isRemote) {
+        if (worldObj.isRemote) {
             return;
         }
 
-        BlockForge.setBurningState((getStructure().getData()).isBurning(), getWorld(), getPos());
+        new BlockModelUpdateEvent(this).PostCommon();
     }
 
     @Override

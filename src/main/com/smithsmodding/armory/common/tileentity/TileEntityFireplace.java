@@ -164,6 +164,11 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
         return 64;
     }
 
+    @Override
+    public void markInventoryDirty() {
+        this.markDirty();
+    }
+
     /**
      * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
      *

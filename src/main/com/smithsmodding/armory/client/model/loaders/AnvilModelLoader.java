@@ -8,6 +8,7 @@ import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.block.unbaked.BlackSmithsAnvilModel;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
+import com.smithsmodding.smithscore.client.model.unbaked.SmithsCoreOBJModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
@@ -65,7 +66,7 @@ public class AnvilModelLoader implements ICustomModelLoader {
                         builder.put("#Bottom", modelDefinition.getTextureBottomPaths().get(material.getID()));
 
 
-                    model.registerNewMaterializedModel(((OBJModel) objModel).retexture(builder.build()), material.getID());
+                    model.registerNewMaterializedModel(((SmithsCoreOBJModel) objModel).retexture(builder.build()), material.getID());
                 }
                 else
                 {

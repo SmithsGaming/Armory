@@ -184,6 +184,11 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
     }
 
     @Override
+    public void markInventoryDirty() {
+        this.markDirty();
+    }
+
+    @Override
     public boolean isItemValidForSlot(int pSlotID, ItemStack pTargetStack) {
         if (pSlotID < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS)
             return true;

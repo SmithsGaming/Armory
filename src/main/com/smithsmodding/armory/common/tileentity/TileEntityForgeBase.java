@@ -52,7 +52,14 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
 
         localData.setLastChange(0F);
 
+        if (fuelData.getBurningTicksLeftOnCurrentFuel() >= 1F) {
+            fuelData.changeBurningTicksLeftOnCurrentFuel(-1);
+            localData.addLastPositiveHeatTermToChange();
+        }
+
         if (fuelData.getBurningTicksLeftOnCurrentFuel() < 1F) {
+            fuelData.setTotalBurningTicksOnCurrentFuel(0);
+
             for (int fuelStackIndex = 0; fuelStackIndex < getFuelStackAmount(); fuelStackIndex++) {
 
                 if (getFuelStack(fuelStackIndex) == null) {
@@ -76,11 +83,6 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
             }
 
             fuelData.resetBurningTicksLeftOnCurrentFuel();
-        }
-
-        if (fuelData.getBurningTicksLeftOnCurrentFuel() >= 1F) {
-            fuelData.changeBurningTicksLeftOnCurrentFuel(-1);
-            localData.addLastPositiveHeatTermToChange();
         }
 
         localData.setLastChange(localData.getLastChange() * (1 - localData.getHeatedPercentage()));
@@ -161,6 +163,12 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
     protected abstract void setIngotStack(int ingotStackIndex, ItemStack ingotStack);
 
     protected abstract float getSourceEfficiencyIndex();
+
+    protected void onFuelFound() {
+    }
+
+    protected void onFuelLost() {
+    }
 
     @Override
     public ItemStack decrStackSize(int index, int amount) {
