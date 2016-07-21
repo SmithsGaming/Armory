@@ -222,6 +222,8 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
     
     @Override
     public IArmorMaterial getMaterialFromMoltenStack(FluidStack stack) {
+
+
         if (reverseFluidStackToMaterialMap.containsKey(stack))
             return reverseFluidStackToMaterialMap.get(stack).getKey();
 
@@ -391,7 +393,7 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
     private class FluidStackHashingStrategy implements HashingStrategy<FluidStack> {
         
         public int computeHashCode (FluidStack object) {
-            int hash = object.getFluid().hashCode() + object.amount;
+            int hash = object.getFluid().hashCode();
 
             if (object.tag != null)
                 hash ^= object.tag.hashCode();
@@ -400,7 +402,7 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
         }
 
         public boolean equals (FluidStack o1, FluidStack o2) {
-            return o1.isFluidEqual(o2) && o1.amount == o2.amount;
+            return o1.isFluidEqual(o2);
         }
     }
 
