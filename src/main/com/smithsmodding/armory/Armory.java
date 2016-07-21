@@ -4,6 +4,7 @@ import com.google.common.base.Stopwatch;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.ArmoryCommonProxy;
+import com.smithsmodding.armory.common.command.CommandArmory;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
@@ -89,5 +90,11 @@ public class Armory {
     public void onLoadCompleted(FMLLoadCompleteEvent event) {
         proxy.callAPIRequests();
         proxy.onLoadComplete();
+    }
+
+
+    @Mod.EventHandler
+    public void onServerStarting(FMLServerStartingEvent event) {
+        event.registerServerCommand(new CommandArmory());
     }
 }

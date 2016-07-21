@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74002fd1-8a4c-40a4-8318-25b111c6ed5d" name="Default" comment="">
+    <list default="true" id="74002fd1-8a4c-40a4-8318-25b111c6ed5d" name="Default" comment="Added a bunch of helper commands for testing and i added">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandArmory.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandEnableTempDecay.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandGiveHeated.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__deobf_com_smithsmodding_smithscore_smithscore_1_10_2_1_2_0_0_200.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/gradle.log" afterPath="$PROJECT_DIR$/.gradle/gradle.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.Anvil-Armory.temp.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/anvil/BlockModel.Anvil-Armory.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.properties" afterPath="$PROJECT_DIR$/build.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IHeatableItemRegistry.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IHeatableItemRegistry.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHeatedItem.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHeatedItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/HeatableItemRegistry.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/HeatableItemRegistry.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityBlackSmithsAnvil.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityBlackSmithsAnvil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__deobf_mezz_jei_jei_1_10_2_3_7_6_232.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__deobf_mezz_jei_jei_1_10_2_3_7_8_234.xml" />
     </list>
     <ignored path="Armory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +54,18 @@
           </activation>
         </task>
         <projects_view>
-          <tree_state />
+          <tree_state>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Armory" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+            </PATH>
+          </tree_state>
         </projects_view>
       </state>
     </system>
@@ -47,157 +75,109 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HeatedItemItemModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/HeatedItemItemModel.java">
+      <file leaf-file-name="TileEntityBlackSmithsAnvilGuiManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityBlackSmithsAnvilGuiManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
+            <state relative-caret-position="340">
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlockForge.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockForge.java">
+      <file leaf-file-name="ArmoryInitializer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/ArmoryInitializer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="332">
+              <caret line="277" column="108" selection-start-line="277" selection-start-column="96" selection-end-line="277" selection-end-column="108" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TileEntityBlackSmithsAnvilState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityBlackSmithsAnvilState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+              <folding>
+                <element signature="e#5785#5786#0" expanded="true" />
+                <element signature="e#5824#5825#0" expanded="true" />
+                <element signature="e#5888#5889#0" expanded="true" />
+                <element signature="e#5944#5945#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TileEntityBlackSmithsAnvil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityBlackSmithsAnvil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandEnableTempDecay.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandEnableTempDecay.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="58" column="76" selection-start-line="58" selection-start-column="76" selection-end-line="58" selection-end-column="76" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Armory.Blocks.Anvil.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Anvil.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Armory.Blocks.Forge.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Forge.json">
+      <file leaf-file-name="ItemHeatedItem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHeatedItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
+            <state relative-caret-position="238">
+              <caret line="127" column="20" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TemperatureBarComponentModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/components/TemperatureBarComponentModel.java">
+      <file leaf-file-name="CommandGiveHeated.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandGiveHeated.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+            <state relative-caret-position="757">
+              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="docComment;class#TemperatureBarComponentModel#0" expanded="false" />
-                <element signature="docComment;method#TemperatureBarComponentModel#0;class#TemperatureBarComponentModel#0" expanded="false" />
-                <element signature="e#1299#1300#0" expanded="false" />
-                <element signature="e#1330#1331#0" expanded="false" />
-                <element signature="docComment;method#bake#0;class#TemperatureBarComponentModel#0" expanded="false" />
-                <element signature="docComment;method#getTexture#0;class#TemperatureBarComponentModel#0" expanded="false" />
-                <element signature="docComment;method#generateBackedComponentModel#0;class#TemperatureBarComponentModel#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelHelper.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-200/smithscore-1.10.2-1.2.0.0-200-sources.jar!/com/smithsmodding/smithscore/util/client/ModelHelper.java">
+      <file leaf-file-name="CommandHandler.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/command/CommandHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="55" column="56" selection-start-line="55" selection-start-column="56" selection-end-line="55" selection-end-column="56" />
+            <state relative-caret-position="206">
+              <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OBJModel.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/model/obj/OBJModel.java">
+      <file leaf-file-name="build.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1173">
-              <caret line="286" column="141" selection-start-line="286" selection-start-column="141" selection-end-line="286" selection-end-column="141" />
+            <state relative-caret-position="51">
+              <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnpackedBakedQuad.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/model/pipeline/UnpackedBakedQuad.java">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3043">
-              <caret line="218" column="29" selection-start-line="218" selection-start-column="29" selection-end-line="218" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#7845#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#3969#3970#0" expanded="false" />
-                <element signature="e#4006#4007#0" expanded="false" />
-                <element signature="e#4067#4068#0" expanded="false" />
-                <element signature="e#4115#4116#0" expanded="false" />
-                <element signature="e#4167#4168#0" expanded="false" />
-                <element signature="e#4207#4208#0" expanded="false" />
-                <element signature="e#4281#4282#0" expanded="false" />
-                <element signature="e#4335#4336#0" expanded="false" />
-                <element signature="e#4405#4406#0" expanded="false" />
-                <element signature="e#4451#4452#0" expanded="false" />
-                <element signature="e#4523#4524#0" expanded="false" />
-                <element signature="e#4582#4583#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DefaultVertexFormats.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/vertex/DefaultVertexFormats.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VertexFormat.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/vertex/VertexFormat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="docComment;field#nextOffset#0;class#VertexFormat#0" expanded="false" />
-                <element signature="e#2571#2572#0" expanded="false" />
-                <element signature="e#2623#2624#0" expanded="false" />
-                <element signature="e#2663#2664#0" expanded="false" />
-                <element signature="e#2710#2711#0" expanded="false" />
-                <element signature="e#2747#2748#0" expanded="false" />
-                <element signature="e#2798#2799#0" expanded="false" />
-                <element signature="e#2837#2838#0" expanded="false" />
-                <element signature="e#2883#2884#0" expanded="false" />
-                <element signature="e#2929#2930#0" expanded="false" />
-                <element signature="e#2987#2988#0" expanded="false" />
-                <element signature="e#3033#3034#0" expanded="false" />
-                <element signature="e#3104#3105#0" expanded="false" />
-                <element signature="e#3908#3909#0" expanded="false" />
-                <element signature="e#3955#3956#0" expanded="false" />
-                <element signature="e#3993#3994#0" expanded="false" />
-                <element signature="e#4031#4032#0" expanded="false" />
-                <element signature="e#4089#4090#0" expanded="false" />
-                <element signature="e#4125#4126#0" expanded="false" />
-                <element signature="e#4165#4166#0" expanded="false" />
-                <element signature="e#4208#4209#0" expanded="false" />
-                <element signature="e#4268#4269#0" expanded="false" />
-                <element signature="e#4336#4337#0" expanded="false" />
-                <element signature="e#4379#4380#0" expanded="false" />
-                <element signature="e#4447#4448#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="5542">
+              <caret line="326" column="47" selection-start-line="326" selection-start-column="47" selection-end-line="326" selection-end-column="47" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -306,6 +286,11 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="extractRangemapReplacedTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="uploads JARs" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="uploadJars" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -704,7 +689,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="1468529692057" />
+        <entry key="$PROJECT_DIR$" value="1469130277195" />
         <entry key="$PROJECT_DIR$/../IronChests" value="1466980803762" />
         <entry key="$PROJECT_DIR$/../Tiny-Storage" value="1467325010968" />
         <entry key="$PROJECT_DIR$/../Weaponry" value="1468168469502" />
@@ -913,17 +898,32 @@
         <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/IAnvilMaterial.java" />
         <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/MaterialRenderControllers.java" />
         <option value="$PROJECT_DIR$/src/resources/META-INF/Armory_at.cfg" />
-        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHeatedItem.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/anvil/AnvilMaterial.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/ArmorMaterial.java" />
         <option value="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Anvil.json" />
         <option value="$PROJECT_DIR$/.travis.yml" />
-        <option value="$PROJECT_DIR$/build.properties" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/ArmoryInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/components/TemperatureBarComponentModel.java" />
-        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockForge.java" />
         <option value="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Forge.json" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/logic/ArmoryClientInitializer.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/AnvilModelLoader.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/block/unbaked/BlackSmithsAnvilModel.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityForgeBaseGuiManager.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityForgeGuiManager.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityForgeBase.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityFireplace.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockForge.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityForge.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandArmory.java" />
+        <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IHeatableItemRegistry.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandGiveHeated.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/HeatableItemRegistry.java" />
+        <option value="$PROJECT_DIR$/build.properties" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityBlackSmithsAnvil.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandEnableTempDecay.java" />
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHeatedItem.java" />
       </list>
     </option>
   </component>
@@ -971,6 +971,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1002,10 +1005,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1021,7 +1020,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1043,7 +1042,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1051,7 +1050,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1069,7 +1068,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1077,11 +1076,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="block" />
+              <option name="myItemId" value="logic" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1099,7 +1098,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1107,15 +1106,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="block" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="anvil" />
+              <option name="myItemId" value="item" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1133,7 +1128,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1141,29 +1136,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="blockstates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="command" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1173,11 +1155,16 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="OBJBa&#9;PSI&#9;JAVA://net.minecraftforge.client.model.obj.OBJModel.OBJBakedModel&#10;ModelHel&#9;PSI&#9;JAVA://com.smithsmodding.smithscore.util.client.ModelHelper&#10;MultiCo&#9;FILE&#9;jar://C:/Users/Marc/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-191/smithscore-1.9.4-1.1.0.1-191-sources.jar!/com/smithsmodding/smithscore/client/font/MultiColoredFontRenderer.java&#10;MultiC&#9;FILE&#9;jar://C:/Users/Marc/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-191/smithscore-1.9.4-1.1.0.1-191-sources.jar!/com/smithsmodding/smithscore/client/font/MultiColoredFontRenderer.java&#10;ColorSam&#9;PSI&#9;JAVA://com.smithsmodding.smithscore.util.client.color.ColorSampler" />
+    <property name="SearchEverywhereHistoryKey" value="BlockRedstone&#9;PSI&#9;JAVA://net.minecraft.block.BlockRedstoneWire&#10;BlockReds&#9;PSI&#9;JAVA://net.minecraft.block.BlockRedstoneOre&#10;BlockRedstoneL&#9;PSI&#9;JAVA://net.minecraft.block.BlockRedstoneLight&#10;IItemS&#9;PSI&#9;JAVA://com.smithsmodding.smithscore.common.inventory.IItemStorage&#10;BlockModelUpdate&#9;PSI&#9;JAVA://com.smithsmodding.smithscore.client.handlers.gui.BlockModelUpdateEventHandler&#10;BlockModelUpdateE&#9;PSI&#9;JAVA://com.smithsmodding.smithscore.client.handlers.gui.BlockModelUpdateEventHandler&#10;BlockUp&#9;FILE&#9;jar://C:/Users/Marc/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-211/smithscore-1.10.2-1.2.0.0-211-sources.jar!/com/smithsmodding/smithscore/client/events/models/block/BlockModelUpdateEvent.java&#10;Block&#9;FILE&#9;file://D:/Development/Minecraft/Armory/src/main/com/smithsmodding/armory/common/block/BlockForge.java&#10;SmithsCoreO&#9;PSI&#9;JAVA://com.smithsmodding.smithscore.client.model.baked.BakedSmithsCoreOBJModel&#10;CoreClien&#9;PSI&#9;JAVA://com.smithsmodding.smithscore.client.proxy.CoreClientProxy&#10;OBJBa&#9;PSI&#9;JAVA://net.minecraftforge.client.model.obj.OBJModel.OBJBakedModel&#10;ModelHel&#9;PSI&#9;JAVA://com.smithsmodding.smithscore.util.client.ModelHelper&#10;MultiCo&#9;FILE&#9;jar://C:/Users/Marc/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-191/smithscore-1.9.4-1.1.0.1-191-sources.jar!/com/smithsmodding/smithscore/client/font/MultiColoredFontRenderer.java&#10;MultiC&#9;FILE&#9;jar://C:/Users/Marc/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-191/smithscore-1.9.4-1.1.0.1-191-sources.jar!/com/smithsmodding/smithscore/client/font/MultiColoredFontRenderer.java&#10;ColorSam&#9;PSI&#9;JAVA://com.smithsmodding.smithscore.util.client.color.ColorSampler" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Development\Minecraft\Armory\src\main\com\smithsmodding\armory\common\command" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Minecraft Client">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -1649,7 +1636,11 @@
       <workItem from="1468656715775" duration="1494000" />
       <workItem from="1468687908839" duration="2020000" />
       <workItem from="1468751223222" duration="1774000" />
-      <workItem from="1468753415721" duration="3456000" />
+      <workItem from="1468753415721" duration="4181000" />
+      <workItem from="1469028219214" duration="17258000" />
+      <workItem from="1469048844084" duration="4358000" />
+      <workItem from="1469082887508" duration="1745000" />
+      <workItem from="1469125108761" duration="4696000" />
     </task>
     <task id="LOCAL-00001" summary="Added some safe guards to the HeatableItemRegistry.">
       <created>1468433846021</created>
@@ -1735,38 +1726,73 @@
       <option name="project" value="LOCAL" />
       <updated>1468785199391</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Working on some fixes - 2">
+      <created>1468785213443</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1468785213443</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Updated to the new SmithsCore version.">
+      <created>1469032365935</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1469032365935</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Improved models on Forge and Fixes and Such.">
+      <created>1469053495022</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1469053495022</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added a catch to a fluid that does not seem to have a material. It is outputted on the log and then removed.">
+      <created>1469083175404</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1469083175404</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Also fixing the HeatableItemRegistery to a point: Fluids were amount sensitive, causing fluids with an unknown amount to crash the game if the material would be retrieved.">
+      <created>1469083467676</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1469083467676</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26776000" />
+    <option name="totallyTimeSpent" value="55558000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917964" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917964" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917964" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20628998" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20628998" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917964" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15170941" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15138593" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3281412" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917964" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1793,499 +1819,553 @@
     <MESSAGE value="Fixed Recipes with an Null-Item in the resultstack being attempted to remove from the game.&#10;&#10;Closes #30" />
     <MESSAGE value="Hopefully fixing a problem when creating heated items. The Temperature bar should be baked with DefaultVertexFormat.Item, instead it was baked with what the actual original Item was requiring. This was causing issues with some items.&#10;&#10;Hopefully fixes https://github.com/SmithsGaming/SmithsCore/issues/8" />
     <MESSAGE value="Working on some fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on some fixes" />
+    <MESSAGE value="Working on some fixes - 2" />
+    <MESSAGE value="Updated to the new SmithsCore version." />
+    <MESSAGE value="Improved models on Forge and Fixes and Such." />
+    <MESSAGE value="Added a catch to a fluid that does not seem to have a material. It is outputted on the log and then removed." />
+    <MESSAGE value="Also fixing the HeatableItemRegistery to a point: Fluids were amount sensitive, causing fluids with an unknown amount to crash the game if the material would be retrieved." />
+    <option name="LAST_COMMIT_MESSAGE" value="Also fixing the HeatableItemRegistery to a point: Fluids were amount sensitive, causing fluids with an unknown amount to crash the game if the material would be retrieved." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="24" />
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityForge.java</url>
+          <line>484</line>
+          <properties />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityForge.java</url>
+          <line>485</line>
+          <properties />
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityBlackSmithsAnvilState.java</url>
+          <line>90</line>
+          <properties />
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="79" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="anvil.getState().getCraftingprogress()" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/MaterialRenderControllers.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-211/smithscore-1.10.2-1.2.0.0-211-sources.jar!/com/smithsmodding/smithscore/common/tileentity/IBlockModelUpdatingTileEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="231" column="9" selection-start-line="231" selection-start-column="9" selection-end-line="231" selection-end-column="9" />
+        <state relative-caret-position="68">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-191/smithscore-1.9.4-1.1.0.1-191.jar!/com/smithsmodding/smithscore/client/font/MultiColoredFontRenderer.class" />
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.9.4-12.17.0.1968-PROJECT(Armory)-sources.jar!/net/minecraft/client/gui/FontRenderer.java" />
-    <entry file="file://$PROJECT_DIR$/src/resources/META-INF/Armory_at.cfg">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-211/smithscore-1.10.2-1.2.0.0-211-sources.jar!/com/smithsmodding/smithscore/common/structures/StructureRegistry.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="197">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-191/smithscore-1.9.4-1.1.0.1-191-sources.jar!/com/smithsmodding/smithscore/client/font/MultiColoredFontRenderer.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHeatedItem.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureForge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="68" column="64" selection-start-line="68" selection-start-column="64" selection-end-line="68" selection-end-column="64" />
+        <state relative-caret-position="476">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/block/ItemBlockBlackSmithsAnvil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureDataForge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        <state relative-caret-position="206">
+          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/anvil/AnvilMaterial.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-211/smithscore-1.10.2-1.2.0.0-211-sources.jar!/com/smithsmodding/smithscore/client/events/models/block/BlockModelUpdateEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="52" column="88" selection-start-line="52" selection-start-column="88" selection-end-line="52" selection-end-column="88" />
+        <state relative-caret-position="170">
+          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-193/smithscore-1.9.4-1.1.0.1-193.jar!/META-INF/MANIFEST.MF" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.9.4-1.1.0.1-193/smithscore-1.9.4-1.1.0.1-193.jar!/mcmod.info" />
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/ArmorMaterial.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-215/smithscore-1.10.2-1.2.0.0-215-sources.jar!/com/smithsmodding/smithscore/common/structures/StructureRegistry.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2516">
-          <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+        <state relative-caret-position="324">
+          <caret line="224" column="0" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/AnvilModelLoader.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityForgeGuiManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        <state relative-caret-position="-594">
+          <caret line="40" column="73" selection-start-line="40" selection-start-column="73" selection-end-line="40" selection-end-column="73" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/block/baked/BlackSmithsAnvilBakedModel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityForgeBaseGuiManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="39" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/client/Minecraft.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        <state relative-caret-position="206">
+          <caret line="1107" column="0" selection-start-line="1107" selection-start-column="0" selection-end-line="1107" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityForgeBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5525">
-          <caret line="325" column="62" selection-start-line="325" selection-start-column="62" selection-end-line="325" selection-end-column="62" />
+        <state relative-caret-position="306">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/oredict/OreDictionary.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-211/smithscore-1.10.2-1.2.0.0-211-sources.jar!/com/smithsmodding/smithscore/client/handlers/gui/BlockModelUpdateEventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6103">
-          <caret line="429" column="24" selection-start-line="429" selection-start-column="24" selection-end-line="429" selection-end-column="24" />
+        <state relative-caret-position="238">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/ArmoryInitializer.java">
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/util/math/Vec3i.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18360">
-          <caret line="1135" column="46" selection-start-line="1135" selection-start-column="46" selection-end-line="1135" selection-end-column="46" />
+        <state relative-caret-position="206">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.properties">
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/world/World.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="197">
+          <caret line="3337" column="0" selection-start-line="3337" selection-start-column="0" selection-end-line="3337" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/block/model/IBakedModel.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-215/smithscore-1.10.2-1.2.0.0-215-sources.jar!/com/smithsmodding/smithscore/common/tileentity/IBlockModelUpdatingTileEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state relative-caret-position="170">
+          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/block/model/BakedQuad.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-215/smithscore-1.10.2-1.2.0.0-215-sources.jar!/com/smithsmodding/smithscore/client/handlers/gui/BlockModelUpdateEventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="153">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-215/smithscore-1.10.2-1.2.0.0-215-sources.jar!/com/smithsmodding/smithscore/common/inventory/IItemStorage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/inventory/IInventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/tileentity/TileEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="174" column="16" selection-start-line="174" selection-start-column="16" selection-end-line="174" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-215/smithscore-1.10.2-1.2.0.0-215-sources.jar!/com/smithsmodding/smithscore/common/tileentity/TileEntitySmithsCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="133" column="16" selection-start-line="133" selection-start-column="16" selection-end-line="133" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/block/state/BlockStateContainer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
-          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+          <caret line="306" column="34" selection-start-line="306" selection-start-column="34" selection-end-line="306" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/common/property/ExtendedBlockState.java">
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/block/state/IBlockState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+        <state relative-caret-position="68">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/util/math/BlockPos.java">
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/block/BlockRedstoneLight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="376" column="0" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
+        <state relative-caret-position="68">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/model/MultiModelState.java">
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/block/BlockRedstoneOre.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="81" column="25" selection-start-line="81" selection-start-column="25" selection-end-line="81" selection-end-column="25" />
+        <state relative-caret-position="714">
+          <caret line="65" column="17" selection-start-line="65" selection-start-column="17" selection-end-line="65" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/common/model/IModelState.java">
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/block/BlockRedstoneWire.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/common/property/Properties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="35" column="55" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/BlockRendererDispatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/util/math/MathHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="446" column="0" selection-start-line="446" selection-start-column="0" selection-end-line="446" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/BlockModelRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/model/pipeline/ForgeBlockModelRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/7ca0efbeb87ca845b5d7a0ac9c21a4b7b95f7b28/guava-17.0-sources.jar!/com/google/common/collect/ImmutableCollection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/7ca0efbeb87ca845b5d7a0ac9c21a4b7b95f7b28/guava-17.0-sources.jar!/com/google/common/collect/SingletonImmutableList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/7ca0efbeb87ca845b5d7a0ac9c21a4b7b95f7b28/guava-17.0-sources.jar!/com/google/common/collect/ImmutableList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/common/model/HiddenModelPart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/common/model/Models.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/7ca0efbeb87ca845b5d7a0ac9c21a4b7b95f7b28/guava-17.0-sources.jar!/com/google/common/base/Preconditions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="214" column="0" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
+        <state relative-caret-position="68">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/7ca0efbeb87ca845b5d7a0ac9c21a4b7b95f7b28/guava-17.0-sources.jar!/com/google/common/base/Present.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityFireplace.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/7ca0efbeb87ca845b5d7a0ac9c21a4b7b95f7b28/guava-17.0-sources.jar!/com/google/common/base/Optional.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding>
-            <element signature="e#3246#3247#0" expanded="false" />
-            <element signature="e#3392#3393#0" expanded="false" />
-            <element signature="e#3448#3449#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/model/ModelStateComposition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-200/smithscore-1.10.2-1.2.0.0-200-sources.jar!/com/smithsmodding/smithscore/client/model/unbaked/ItemLayerModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        <state relative-caret-position="2210">
+          <caret line="168" column="25" selection-start-line="168" selection-start-column="25" selection-end-line="168" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="docComment;class#ItemLayerModel#0" expanded="false" />
-            <element signature="e#1553#1554#0" expanded="false" />
-            <element signature="e#1606#1607#0" expanded="false" />
-            <element signature="e#1828#1829#0" expanded="false" />
-            <element signature="e#1893#1894#0" expanded="false" />
-            <element signature="e#11678#11679#0" expanded="false" />
-            <element signature="e#11719#11720#0" expanded="false" />
-            <element signature="e#11776#11777#0" expanded="false" />
-            <element signature="e#11807#11808#0" expanded="false" />
-            <element signature="e#11851#11852#0" expanded="false" />
-            <element signature="e#11903#11904#0" expanded="false" />
-            <element signature="e#14725#14726#0" expanded="false" />
-            <element signature="e#14760#14761#0" expanded="false" />
-            <element signature="e#14796#14797#0" expanded="false" />
-            <element signature="e#14832#14833#0" expanded="false" />
-            <element signature="e#14878#14879#0" expanded="false" />
-            <element signature="e#14914#14915#0" expanded="false" />
-            <element signature="e#14972#14973#0" expanded="false" />
-            <element signature="e#15011#15012#0" expanded="false" />
-            <element signature="e#15076#15077#0" expanded="false" />
-            <element signature="e#15135#15136#0" expanded="false" />
-            <element signature="e#15185#15186#0" expanded="false" />
-            <element signature="e#15225#15226#0" expanded="false" />
+            <element signature="docComment;class#TileEntityFireplace#0" expanded="false" />
+            <element signature="e#2260#2261#0" expanded="false" />
+            <element signature="e#2322#2323#0" expanded="false" />
+            <element signature="e#2396#2397#0" expanded="false" />
+            <element signature="e#2449#2450#0" expanded="false" />
+            <element signature="docComment;method#getContainerID#0;class#TileEntityFireplace#0" expanded="false" />
+            <element signature="docComment;method#getSizeInventory#0;class#TileEntityFireplace#0" expanded="false" />
+            <element signature="e#3086#3087#0" expanded="false" />
+            <element signature="e#3182#3183#0" expanded="false" />
+            <element signature="docComment;method#getStackInSlot#0;class#TileEntityFireplace#0" expanded="false" />
+            <element signature="docComment;method#setInventorySlotContents#0;class#TileEntityFireplace#0" expanded="false" />
+            <element signature="docComment;method#getInventoryStackLimit#0;class#TileEntityFireplace#0" expanded="false" />
+            <element signature="e#5287#5288#0" expanded="false" />
+            <element signature="e#5312#5313#0" expanded="false" />
+            <element signature="e#5366#5367#0" expanded="false" />
+            <element signature="e#5398#5399#0" expanded="false" />
+            <element signature="docComment;method#isItemValidForSlot#0;class#TileEntityFireplace#0" expanded="false" />
+            <element signature="docComment;method#update#0;class#TileEntityFireplace#0" expanded="false" />
+            <element signature="e#7507#7508#0" expanded="false" />
+            <element signature="e#7540#7541#0" expanded="false" />
+            <element signature="e#7836#7837#0" expanded="false" />
+            <element signature="e#7872#7873#0" expanded="false" />
+            <element signature="e#7946#7947#0" expanded="false" />
+            <element signature="e#7995#7996#0" expanded="false" />
+            <element signature="e#8085#8086#0" expanded="false" />
+            <element signature="e#8139#8140#0" expanded="false" />
+            <element signature="e#8204#8205#0" expanded="false" />
+            <element signature="e#8241#8242#0" expanded="false" />
+            <element signature="e#8317#8318#0" expanded="false" />
+            <element signature="e#8368#8369#0" expanded="false" />
+            <element signature="e#8582#8583#0" expanded="false" />
+            <element signature="e#8607#8608#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/model/ModelLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#51492#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#5974#5975#0" expanded="false" />
-            <element signature="e#6006#6007#0" expanded="false" />
-            <element signature="e#9068#9069#0" expanded="false" />
-            <element signature="e#9138#9139#0" expanded="false" />
-            <element signature="e#11678#11679#0" expanded="false" />
-            <element signature="e#11747#11748#0" expanded="false" />
-            <element signature="docComment;method#getInventoryVariant#0;class#ModelLoader#0" expanded="false" />
-            <element signature="e#25939#25940#0" expanded="false" />
-            <element signature="e#25995#25996#0" expanded="false" />
-            <element signature="e#29029#29030#0" expanded="false" />
-            <element signature="e#29079#29080#0" expanded="false" />
-            <element signature="e#33056#33057#0" expanded="false" />
-            <element signature="e#33118#33119#0" expanded="false" />
-            <element signature="e#33187#33188#0" expanded="false" />
-            <element signature="e#33247#33248#0" expanded="false" />
-            <element signature="e#34338#34339#0" expanded="false" />
-            <element signature="e#34381#34382#0" expanded="false" />
-            <element signature="e#35065#35066#0" expanded="false" />
-            <element signature="e#35109#35110#0" expanded="false" />
-            <element signature="e#35152#35153#0" expanded="false" />
-            <element signature="e#35189#35190#0" expanded="false" />
-            <element signature="e#35380#35381#0" expanded="false" />
-            <element signature="e#35415#35416#0" expanded="false" />
-            <element signature="e#36587#36588#0" expanded="false" />
-            <element signature="e#36642#36643#0" expanded="false" />
-            <element signature="docComment;class#White#0;class#ModelLoader#0" expanded="false" />
-            <element signature="e#36946#36947#0" expanded="false" />
-            <element signature="e#36996#36997#0" expanded="false" />
-            <element signature="e#37117#37118#0" expanded="false" />
-            <element signature="e#37152#37153#0" expanded="false" />
-            <element signature="e#37956#37957#0" expanded="false" />
-            <element signature="e#38042#38043#0" expanded="false" />
-            <element signature="docComment;method#onPostBakeEvent#0;class#ModelLoader#0" expanded="false" />
-            <element signature="docComment;method#setCustomStateMapper#0;class#ModelLoader#0" expanded="false" />
-            <element signature="docComment;method#onRegisterAllBlocks#0;class#ModelLoader#0" expanded="false" />
-            <element signature="docComment;method#setCustomModelResourceLocation#0;class#ModelLoader#0" expanded="false" />
-            <element signature="docComment;method#setCustomMeshDefinition#0;class#ModelLoader#0" expanded="false" />
-            <element signature="docComment;method#setBucketModelDefinition#0;class#ModelLoader#0" expanded="false" />
-            <element signature="e#46900#46901#0" expanded="false" />
-            <element signature="e#46962#46963#0" expanded="false" />
-            <element signature="docComment;method#onRegisterItems#0;class#ModelLoader#0" expanded="false" />
-            <element signature="docComment;method#defaultTextureGetter#0;class#ModelLoader#0" expanded="false" />
-            <element signature="e#48327#48328#0" expanded="false" />
-            <element signature="e#48371#48372#0" expanded="false" />
-            <element signature="e#49562#49563#0" expanded="false" />
-            <element signature="e#49617#49618#0" expanded="false" />
-            <element signature="e#50504#50505#0" expanded="false" />
-            <element signature="e#50552#50553#0" expanded="false" />
-            <element signature="e#50639#50640#0" expanded="false" />
-            <element signature="e#50687#50688#0" expanded="false" />
-            <element signature="e#51423#51424#0" expanded="false" />
-            <element signature="e#51483#51484#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/vertex/DefaultVertexFormats.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/client/renderer/vertex/VertexFormat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;field#nextOffset#0;class#VertexFormat#0" expanded="false" />
-            <element signature="e#2571#2572#0" expanded="false" />
-            <element signature="e#2623#2624#0" expanded="false" />
-            <element signature="e#2663#2664#0" expanded="false" />
-            <element signature="e#2710#2711#0" expanded="false" />
-            <element signature="e#2747#2748#0" expanded="false" />
-            <element signature="e#2798#2799#0" expanded="false" />
-            <element signature="e#2837#2838#0" expanded="false" />
-            <element signature="e#2883#2884#0" expanded="false" />
-            <element signature="e#2929#2930#0" expanded="false" />
-            <element signature="e#2987#2988#0" expanded="false" />
-            <element signature="e#3033#3034#0" expanded="false" />
-            <element signature="e#3104#3105#0" expanded="false" />
-            <element signature="e#3908#3909#0" expanded="false" />
-            <element signature="e#3955#3956#0" expanded="false" />
-            <element signature="e#3993#3994#0" expanded="false" />
-            <element signature="e#4031#4032#0" expanded="false" />
-            <element signature="e#4089#4090#0" expanded="false" />
-            <element signature="e#4125#4126#0" expanded="false" />
-            <element signature="e#4165#4166#0" expanded="false" />
-            <element signature="e#4208#4209#0" expanded="false" />
-            <element signature="e#4268#4269#0" expanded="false" />
-            <element signature="e#4336#4337#0" expanded="false" />
-            <element signature="e#4379#4380#0" expanded="false" />
-            <element signature="e#4447#4448#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/components/TemperatureBarComponentModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;class#TemperatureBarComponentModel#0" expanded="false" />
-            <element signature="docComment;method#TemperatureBarComponentModel#0;class#TemperatureBarComponentModel#0" expanded="false" />
-            <element signature="e#1299#1300#0" expanded="false" />
-            <element signature="e#1330#1331#0" expanded="false" />
-            <element signature="docComment;method#bake#0;class#TemperatureBarComponentModel#0" expanded="false" />
-            <element signature="docComment;method#getTexture#0;class#TemperatureBarComponentModel#0" expanded="false" />
-            <element signature="docComment;method#generateBackedComponentModel#0;class#TemperatureBarComponentModel#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/model/pipeline/UnpackedBakedQuad.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3043">
-          <caret line="218" column="29" selection-start-line="218" selection-start-column="29" selection-end-line="218" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#7845#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#3969#3970#0" expanded="false" />
-            <element signature="e#4006#4007#0" expanded="false" />
-            <element signature="e#4067#4068#0" expanded="false" />
-            <element signature="e#4115#4116#0" expanded="false" />
-            <element signature="e#4167#4168#0" expanded="false" />
-            <element signature="e#4207#4208#0" expanded="false" />
-            <element signature="e#4281#4282#0" expanded="false" />
-            <element signature="e#4335#4336#0" expanded="false" />
-            <element signature="e#4405#4406#0" expanded="false" />
-            <element signature="e#4451#4452#0" expanded="false" />
-            <element signature="e#4523#4524#0" expanded="false" />
-            <element signature="e#4582#4583#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-200/smithscore-1.10.2-1.2.0.0-200-sources.jar!/com/smithsmodding/smithscore/util/client/ModelHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="55" column="56" selection-start-line="55" selection-start-column="56" selection-end-line="55" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/client/model/obj/OBJModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1173">
-          <caret line="286" column="141" selection-start-line="286" selection-start-column="141" selection-end-line="286" selection-end-column="141" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/HeatedItemItemModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockForge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="58" column="76" selection-start-line="58" selection-start-column="76" selection-end-line="58" selection-end-column="76" />
+        <state relative-caret-position="680">
+          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding>
+            <element signature="e#0#13890#0" expanded="false" />
             <element signature="imports" expanded="false" />
+            <element signature="e#4230#4231#0" expanded="false" />
+            <element signature="e#4301#4302#0" expanded="false" />
+            <element signature="e#5602#5603#0" expanded="false" />
+            <element signature="e#5650#5651#0" expanded="false" />
+            <element signature="e#5870#5871#0" expanded="false" />
+            <element signature="e#5897#5898#0" expanded="false" />
+            <element signature="e#5965#5966#0" expanded="false" />
+            <element signature="e#5993#5994#0" expanded="false" />
+            <element signature="e#6059#6060#0" expanded="false" />
+            <element signature="e#6087#6088#0" expanded="false" />
+            <element signature="e#6143#6144#0" expanded="false" />
+            <element signature="e#6171#6172#0" expanded="false" />
+            <element signature="e#10091#10092#0" expanded="false" />
+            <element signature="e#10135#10136#0" expanded="false" />
+            <element signature="docComment;method#getStateFromMeta#0;class#BlockForge#0" expanded="false" />
+            <element signature="docComment;method#getMetaFromState#0;class#BlockForge#0" expanded="false" />
+            <element signature="docComment;method#onBlockPlaced#0;class#BlockForge#0" expanded="false" />
+            <element signature="docComment;method#handleDebugInformation#0;class#BlockForge#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Anvil.json">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+        <state relative-caret-position="425">
+          <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#25830#0" expanded="false" />
+            <element signature="docComment;class#Object#0" expanded="false" />
+            <element signature="docComment;method#getClass#0;class#Object#0" expanded="false" />
+            <element signature="docComment;method#hashCode#0;class#Object#0" expanded="false" />
+            <element signature="docComment;method#equals#0;class#Object#0" expanded="false" />
+            <element signature="e#5748#5749#0" expanded="false" />
+            <element signature="e#5784#5785#0" expanded="false" />
+            <element signature="docComment;method#clone#0;class#Object#0" expanded="false" />
+            <element signature="docComment;method#toString#0;class#Object#0" expanded="false" />
+            <element signature="docComment;method#notify#0;class#Object#0" expanded="false" />
+            <element signature="docComment;method#notifyAll#0;class#Object#0" expanded="false" />
+            <element signature="docComment;method#wait#0;class#Object#0" expanded="false" />
+            <element signature="docComment;method#wait#1;class#Object#0" expanded="false" />
+            <element signature="docComment;method#wait#2;class#Object#0" expanded="false" />
+            <element signature="docComment;method#finalize#0;class#Object#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/nbt/NBTTagCompound.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="465" column="22" selection-start-line="465" selection-start-column="18" selection-end-line="465" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Forge.json">
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraftforge/fluids/FluidStack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
+        <state relative-caret-position="187">
+          <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#6580#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="docComment;class#FluidStack#0" expanded="false" />
+            <element signature="e#2344#2345#0" expanded="false" />
+            <element signature="e#2401#2402#0" expanded="false" />
+            <element signature="docComment;method#loadFluidStackFromNBT#0;class#FluidStack#0" expanded="false" />
+            <element signature="e#3436#3437#0" expanded="false" />
+            <element signature="e#3478#3479#0" expanded="false" />
+            <element signature="e#3522#3523#0" expanded="false" />
+            <element signature="e#3583#3584#0" expanded="false" />
+            <element signature="e#3629#3630#0" expanded="false" />
+            <element signature="e#3692#3693#0" expanded="false" />
+            <element signature="docComment;method#copy#0;class#FluidStack#0" expanded="false" />
+            <element signature="e#3785#3786#0" expanded="false" />
+            <element signature="e#3847#3848#0" expanded="false" />
+            <element signature="docComment;method#isFluidEqual#0;class#FluidStack#0" expanded="false" />
+            <element signature="docComment;method#areFluidStackTagsEqual#0;class#FluidStack#0" expanded="false" />
+            <element signature="docComment;method#containsFluid#0;class#FluidStack#0" expanded="false" />
+            <element signature="e#5030#5031#0" expanded="false" />
+            <element signature="e#5098#5099#0" expanded="false" />
+            <element signature="docComment;method#isFluidStackIdentical#0;class#FluidStack#0" expanded="false" />
+            <element signature="e#5393#5394#0" expanded="false" />
+            <element signature="e#5461#5462#0" expanded="false" />
+            <element signature="docComment;method#isFluidEqual#1;class#FluidStack#0" expanded="false" />
+            <element signature="docComment;method#equals#0;class#FluidStack#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityForge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="149" column="44" selection-start-line="149" selection-start-column="44" selection-end-line="149" selection-end-column="44" />
+          <folding>
+            <element signature="docComment;class#TileEntityForge#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/server/MinecraftServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="88" column="22" selection-start-line="88" selection-start-column="22" selection-end-line="88" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandArmory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="52" column="9" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1244#1245#0" expanded="true" />
+            <element signature="e#1310#1311#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/command/CommandBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="210" column="26" selection-start-line="210" selection-start-column="26" selection-end-line="210" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.553/ArmoryInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-510">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.249/ArmoryCommonProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="29" column="87" selection-start-line="29" selection-start-column="87" selection-end-line="29" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.609/Armory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="90" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="97" column="47" selection-start-line="97" selection-start-column="47" selection-end-line="97" selection-end-column="47" />
+          <folding>
+            <element signature="e#3650#3651#0" expanded="false" />
+            <element signature="e#3714#3715#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/util/Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IHeatableItemRegistry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/HeatableItemRegistry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="292" column="30" selection-start-line="292" selection-start-column="30" selection-end-line="292" selection-end-column="30" />
+          <folding>
+            <element signature="e#11621#11622#0" expanded="true" />
+            <element signature="e#11659#11660#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.0.0-219/smithscore-1.10.2-1.2.0.0-219-sources.jar!/com/smithsmodding/smithscore/common/tileentity/TileEntitySmithsCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="251" column="0" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
+          <folding>
+            <element signature="e#6474#6475#0" expanded="true" />
+            <element signature="e#6502#6503#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5542">
+          <caret line="326" column="47" selection-start-line="326" selection-start-column="47" selection-end-line="326" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityBlackSmithsAnvilGuiManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/ArmoryInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="277" column="108" selection-start-line="277" selection-start-column="96" selection-end-line="277" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityBlackSmithsAnvilState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding>
+            <element signature="e#5785#5786#0" expanded="true" />
+            <element signature="e#5824#5825#0" expanded="true" />
+            <element signature="e#5888#5889#0" expanded="true" />
+            <element signature="e#5944#5945#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityBlackSmithsAnvil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.1.2014-PROJECT(Armory)-sources.jar!/net/minecraft/command/CommandHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHeatedItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="127" column="20" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandGiveHeated.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="757">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandEnableTempDecay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>

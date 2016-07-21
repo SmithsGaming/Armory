@@ -312,7 +312,11 @@ pushGitTags.mustRunAfter pushGitChanges
 task createGithubBranches() {
     if ((System.getenv().TRAVIS_BRANCH.toString().contains("Development")) && (build_mode.toString().trim().equals("RELEASE"))) {
         logger.lifecycle("Configuring upload to git.")
-        dependsOn checkOutLocalMinecraftBranch, gitSetName, gitSetEmail, configRemoteGit, createVersionTag, pushGitChanges, pushGitTags
+        dependsOn checkOutLocalMinecraftBranch, gitSetName, gitSetEmail, configRemoteGit, pushGitChanges
+        logger.lifecycle("Configuration complete. Current MC Version: " + config.minecraft_version.toString() + ". Branch name: Minecraft-" + config.minecraft_version.toString() + ".")
+    } else if ((System.getenv().TRAVIS_BRANCH.toString().contains("Minecraft")) && (build_mode.toString().trim().equals("RELEASE"))) {
+        logger.lifecycle("Configuring version marking on git.")
+        dependsOn gitSetName, gitSetEmail, configRemoteGit, createVersionTag, pushGitTags
         logger.lifecycle("Configuration complete. Current MC Version: " + config.minecraft_version.toString() + ". Branch name: Minecraft-" + config.minecraft_version.toString() + ".")
     } else {
         logger.lifecycle("The sync of the branches is not being executed, because we are not releasing a new version.")

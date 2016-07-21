@@ -10,6 +10,7 @@ import com.smithsmodding.armory.api.util.client.TranslationKeys;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.armory.common.config.ArmoryConfig;
 import com.smithsmodding.armory.common.factory.HeatedItemFactory;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
@@ -124,8 +125,8 @@ public class ItemHeatedItem extends Item {
         if (!(pEntity instanceof EntityPlayer))
             return;
 
-        //if (!ArmoryConfig.enableTemperatureDecay)
-        //return;
+        if (!ArmoryConfig.enableTemperatureDecay)
+            return;
 
         EntityPlayer tPlayer = (EntityPlayer) pEntity;
 

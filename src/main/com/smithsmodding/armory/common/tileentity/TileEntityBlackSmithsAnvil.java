@@ -127,6 +127,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
 
         if (pSlotID < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
             craftingStacks[pSlotID] = pNewItemStack;
+            if (isLoadingFromNBT())
+                return;
+
             (getState()).setCraftingprogress(0);
             findValidRecipe();
             return;
@@ -144,6 +147,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
 
         if (pSlotID < ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS) {
             hammerStacks[pSlotID] = pNewItemStack;
+            if (isLoadingFromNBT())
+                return;
+
             (getState()).setCraftingprogress(0);
             findValidRecipe();
             return;
@@ -153,6 +159,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
 
         if (pSlotID < ModInventories.TileEntityBlackSmithsAnvil.MAX_TONGSLOTS) {
             tongStacks[pSlotID] = pNewItemStack;
+            if (isLoadingFromNBT())
+                return;
+
             (getState()).setCraftingprogress(0);
             findValidRecipe();
             return;
@@ -162,6 +171,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
 
         if (pSlotID < ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS) {
             additionalCraftingStacks[pSlotID] = pNewItemStack;
+            if (isLoadingFromNBT())
+                return;
+
             (getState()).setCraftingprogress(0);
             findValidRecipe();
             return;
@@ -171,6 +183,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
 
         if (pSlotID < ModInventories.TileEntityBlackSmithsAnvil.MAX_COOLSLOTS) {
             coolingStacks[pSlotID] = pNewItemStack;
+            if (isLoadingFromNBT())
+                return;
+
             (getState()).setCraftingprogress(0);
             return;
         }

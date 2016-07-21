@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -44,6 +45,8 @@ public interface IHeatableItemRegistry {
     List<String> getInternalTypeFromCooledStack(ItemStack stack);
 
     ArrayList<ItemStack> getAllMappedItems();
+
+    HashSet<String> getAllHeatableItemTypes();
 
     void reloadOreDictionary();
 

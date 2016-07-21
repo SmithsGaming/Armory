@@ -20,6 +20,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -28,6 +29,8 @@ import java.util.List;
 public class HeatableItemRegistry implements IHeatableItemRegistry {
 
     private static IHeatableItemRegistry instance = new HeatableItemRegistry();
+
+    HashSet<String> registeredTypes = new HashSet<>();
 
     HashMap<IArmorMaterial, HashMap<String, ItemStack>> mappedStacks = new HashMap<IArmorMaterial, HashMap<String, ItemStack>>();
     HashMap<IArmorMaterial, HashMap<String, ItemStack>> mappedOreDictionaryStacks = new HashMap<IArmorMaterial, HashMap<String, ItemStack>>();
@@ -286,6 +289,11 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
     }
 
     @Override
+    public HashSet<String> getAllHeatableItemTypes() {
+        return registeredTypes;
+    }
+
+    @Override
     public void reloadOreDictionary() {
         for (HashMap<String, ItemStack> oldTypeMappings : mappedOreDictionaryStacks.values())
             oldTypeMappings.clear();
@@ -353,6 +361,7 @@ public class HeatableItemRegistry implements IHeatableItemRegistry {
             materialStack.put(material, new HashMap<>());
 
         materialStack.get(material).put(internalType, stack);
+        registeredTypes.add(internalType);
 
         if (!reverseMaterialStack.containsKey(stack)) {
             reverseMaterialStack.put(stack, new Pair<>(material, new ArrayList<>()));
