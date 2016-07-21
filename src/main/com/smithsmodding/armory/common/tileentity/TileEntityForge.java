@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.common.tileentity;
 
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.BlockForge;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
@@ -132,6 +133,14 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
             FluidStack fluidStack = iterator.next();
 
             IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromMoltenStack(fluidStack);
+
+            if (material == null) {
+                ModLogger.getInstance().error("FAILED TO RETRIEVE MATERIAL OF FLUIDSTACK: " + fluidStack.getFluid().getUnlocalizedName(fluidStack) + " - " + fluidStack.amount + " - " + fluidStack.tag.toString());
+                ModLogger.getInstance().error("Could not check the temperature for the given stack and this is a bug?");
+                ModLogger.getInstance().error("Removing!");
+                iterator.remove();
+                continue;
+            }
 
             if (getState().getCurrentTemp() < material.getMeltingPoint() * 0.95F)
                 iterator.remove();
