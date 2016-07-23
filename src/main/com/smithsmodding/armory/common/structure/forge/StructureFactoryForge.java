@@ -22,7 +22,6 @@ public class StructureFactoryForge implements IStructureFactory<StructureForge, 
     @Override
     public StructureForge loadStructureFromNBT(NBTTagCompound compound) {
         StructureDataForge dataForge = new StructureDataForge();
-        dataForge.readFromNBT(compound.getCompoundTag(References.NBTTagCompoundData.TE.Forge.Structure.DATA));
 
         LinkedHashSet<Coordinate3D> parts = new LinkedHashSet<>();
         NBTTagList coordinates = compound.getTagList(References.NBTTagCompoundData.TE.Forge.Structure.PARTS, Constants.NBT.TAG_COMPOUND);
@@ -31,7 +30,10 @@ public class StructureFactoryForge implements IStructureFactory<StructureForge, 
             parts.add(location);
         }
 
-        return new StructureForge(dataForge, parts);
+        StructureForge forge = new StructureForge(dataForge, parts);
+        dataForge.readFromNBT(compound.getCompoundTag(References.NBTTagCompoundData.TE.Forge.Structure.DATA));
+
+        return forge;
     }
 
     @Override

@@ -14,12 +14,14 @@ import com.smithsmodding.armory.api.util.references.ModBlocks;
 import com.smithsmodding.armory.api.util.references.ModItems;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.client.ArmoryClientProxy;
+import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererForge;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.registry.ArmorRegistry;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
 import com.smithsmodding.smithscore.client.model.loader.SmithsCoreOBJLoader;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
@@ -27,6 +29,7 @@ import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 public class ArmoryClientInitializer extends ArmoryInitializer {
     public static void InitializeClient() {
@@ -123,6 +126,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
             ArmoryClientProxy.registerBlockModel(ModBlocks.blockForge);
             ArmoryClientProxy.registerBlockModel(ModBlocks.blockBlackSmithsAnvil);
             ArmoryClientProxy.registerBlockModel(ModBlocks.blockFirePlace);
+            ClientRegistry.bindTileEntitySpecialRenderer(TileEntityForge.class, new TileEntityRendererForge());
         }
     }
 

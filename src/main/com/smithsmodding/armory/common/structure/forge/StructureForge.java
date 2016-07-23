@@ -21,11 +21,15 @@ public class StructureForge implements IStructure<StructureDataForge, StructureC
         masterLocation = master.getLocation();
         dataForge = new StructureDataForge();
         parts = new LinkedHashSet<>();
+
+        this.dataForge.onAssignToForge(this);
     }
 
     protected StructureForge(StructureDataForge dataForge, LinkedHashSet<Coordinate3D> parts) {
         this.dataForge = dataForge;
         this.parts = parts;
+
+        this.dataForge.onAssignToForge(this);
     }
 
     @Override
@@ -51,11 +55,13 @@ public class StructureForge implements IStructure<StructureDataForge, StructureC
     @Override
     public void registerPart(TileEntityForge part) {
         parts.add(part.getLocation());
+        getData().updateTank();
     }
 
     @Override
     public void removePart(TileEntityForge part) {
         parts.remove(part.getLocation());
+        getData().updateTank();
     }
 
     @Override

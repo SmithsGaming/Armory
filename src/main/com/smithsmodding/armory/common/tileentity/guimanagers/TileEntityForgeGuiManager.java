@@ -4,6 +4,7 @@ import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentProgressBar;
+import com.smithsmodding.smithscore.common.fluid.MultiFluidTank;
 import com.smithsmodding.smithscore.util.client.TranslationKeys;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fluids.FluidStack;
@@ -104,7 +105,7 @@ public class TileEntityForgeGuiManager extends TileEntityForgeBaseGuiManager<Til
 
     @Override
     public int getTotalTankContents(IGUIComponent component) {
-        return getTileEntity().getTankSize();
+        return getTileEntity().getTotalTankSizeOnSide(null);
     }
 
     @Override
@@ -123,6 +124,6 @@ public class TileEntityForgeGuiManager extends TileEntityForgeBaseGuiManager<Til
 
     @Override
     public ArrayList<FluidStack> getTankContents(IGUIComponent component) {
-        return getTileEntity().getAllFluids();
+        return new ArrayList<FluidStack>(((MultiFluidTank) getTileEntity().getTankForSide(null)).getFluidStacks());
     }
 }

@@ -171,6 +171,7 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
         return false;
     }
 
+    //NEEDS TO BE REDONE!
     @Override
     public IBlockState getExtendedState (IBlockState state, IBlockAccess world, BlockPos pos) {
         ItemStack blockStack = new ItemStack(Item.getItemFromBlock(this));
@@ -264,9 +265,11 @@ public class BlockForge extends BlockArmoryInventory implements ICustomDebugInfo
                     {
                         Block comparisonBlock = world.getBlockState(pos.add(directionsMapping.get(sideName).getDirectionVec())).getBlock();
 
-                        if (targetBlock == comparisonBlock)
+                        if (targetBlock == comparisonBlock && targetBlock != Blocks.AIR)
                         {
                             foundSides ++;
+                        } else if (targetBlock == Blocks.AIR && comparisonBlock != this) {
+                            foundSides++;
                         }
                     }
                 }

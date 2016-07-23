@@ -17,7 +17,6 @@ import com.smithsmodding.smithscore.common.pathfinding.IPathComponent;
 import com.smithsmodding.smithscore.common.structures.IStructurePart;
 import com.smithsmodding.smithscore.common.structures.StructureRegistry;
 import com.smithsmodding.smithscore.common.tileentity.IBlockModelUpdatingTileEntity;
-import com.smithsmodding.smithscore.util.common.FluidStackHelper;
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -28,7 +27,9 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidTank;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -127,7 +128,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         if (getStructure() == null)
             return;
 
-        Iterator<FluidStack> iterator = getStructure().getData().getMoltenMetals().iterator();
+        Iterator<FluidStack> iterator = getStructure().getData().getMoltenMetals().getFluidStacks().iterator();
 
         while (iterator.hasNext()) {
             FluidStack fluidStack = iterator.next();
@@ -156,7 +157,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         NBTTagCompound fluidCompound = new NBTTagCompound();
         fluidCompound.setString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL, material.getUniqueID());
 
-        addFluid(HeatableItemRegistry.getInstance().getMoltenStack(stack));
+        getTankForSide(null).fill(HeatableItemRegistry.getInstance().getMoltenStack(stack), true);
     }
 
     @Override
@@ -271,96 +272,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         shouldTriggerUpdate = true;
     }
 
-    @Override
-    public ArrayList<FluidStack> getAllFluids() {
-        if (getStructure() == null)
-            return new ArrayList<>();
 
-
-        return getStructure().getData().getMoltenMetals();
-    }
-
-    @Override
-    public void setAllFluids(ArrayList<FluidStack> stacks) {
-        if (getStructure() == null)
-            return;
-
-        getStructure().getData().setMoltenMetals(stacks);
-    }
-
-    @Override
-    public FluidStack removeFirstFluid() {
-        if (getStructure() == null)
-            return null;
-
-        return getStructure().getData().getMoltenMetals().remove(0);
-    }
-
-    @Override
-    public FluidStack removeLastFluid() {
-        if (getStructure() == null)
-            return null;
-
-        return getStructure().getData().getMoltenMetals().remove(getStructure().getData().getMoltenMetals().size() - 1);
-    }
-
-    @Override
-    public void addFluidToTheBottom(FluidStack stack) {
-        int amount = getTankContentsVolume();
-        if (amount + stack.amount > getTankSize())
-            stack.amount = getTankSize() - amount;
-
-        if (getStructure() == null)
-            return;
-
-        getStructure().getData().getMoltenMetals().add(stack);
-    }
-
-    @Override
-    public void addFluidToTheTop(FluidStack stack) {
-        int amount = getTankContentsVolume();
-        if (amount + stack.amount > getTankSize())
-            stack.amount = getTankSize() - amount;
-
-        if (getStructure() == null)
-            return;
-
-        getStructure().getData().getMoltenMetals().add(0, stack);
-    }
-
-    @Override
-    public void addFluid(FluidStack stack) {
-        int amount = getTankContentsVolume();
-        if (amount + stack.amount > getTankSize())
-            stack.amount = getTankSize() - amount;
-
-        if (getStructure() == null)
-            return;
-
-        for (FluidStack fluidStack : getStructure().getData().getMoltenMetals()) {
-            if (FluidStackHelper.equalsIgnoreStackSize(stack, fluidStack)) {
-                fluidStack.amount += stack.amount;
-                return;
-            }
-        }
-
-        addFluidToTheTop(stack);
-    }
-
-    @Override
-    public int getTankSize() {
-        return (getStructure().getPartLocations().size() + 1) * (References.General.FLUID_INGOT * TANKINGOTCAPACITY);
-    }
-
-    @Override
-    public int getTankContentsVolume() {
-        int amount = 0;
-        for (FluidStack stack : getAllFluids()) {
-            amount += stack.amount;
-        }
-
-        return amount;
-    }
 
     @Override
     protected NBTBase writeFluidsToCompound() {
@@ -532,5 +444,20 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     @Override
     public World getEnvironment() {
         return worldObj;
+    }
+
+    @Override
+    public IFluidTank getTankForSide(@Nullable EnumFacing side) {
+        return getStructure().getData().getMoltenMetals();
+    }
+
+    @Override
+    public int getTotalTankSizeOnSide(@Nullable EnumFacing side) {
+        return getStructure().getData().getMoltenMetals().getCapacity();
+    }
+
+    @Override
+    public int getTankContentsVolumeOnSide(@Nullable EnumFacing side) {
+        return getStructure().getData().getMoltenMetals().getFluidAmount();
     }
 }
