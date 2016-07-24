@@ -1,12 +1,15 @@
 package com.smithsmodding.armory.client;
 
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
+import com.smithsmodding.armory.api.util.references.ModBlocks;
 import com.smithsmodding.armory.api.util.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.client.handler.ClientDisconnectedFromServerEventHandler;
 import com.smithsmodding.armory.client.logic.ArmoryClientInitializer;
 import com.smithsmodding.armory.client.model.loaders.*;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.ArmoryCommonProxy;
+import com.smithsmodding.armory.common.block.BlockConduit;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.structure.forge.StructureFactoryForge;
@@ -17,6 +20,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -38,9 +42,9 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
     private static AnvilModelLoader anvilBlockModelLoader = new AnvilModelLoader();
     private static MaterializedItemModelLoader materializedItemModelLoader = new MaterializedItemModelLoader();
 
-    public static void registerBlockModel(Block block) {
+    public static void registerBlockModel(Block block, String name) {
         Item blockItem = Item.getItemFromBlock(block);
-        ModelLoader.setCustomModelResourceLocation(blockItem, 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(blockItem, 0, new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), name), "inventory"));
     }
 
     public static ResourceLocation registerMaterializedItemModel(Item item) {
@@ -162,7 +166,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
 
     @Override
     public void initializeArmory() {
-
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getModelManager().getBlockModelShapes().registerBlockWithStateMapper(ModBlocks.blockConduit, new StateMap.Builder().withName(BlockConduit.TYPE).withSuffix("_conduit").build());
     }
 
     @Override

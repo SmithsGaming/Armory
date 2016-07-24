@@ -1,0 +1,6 @@
+# Blender MTL File: 'ConduitVertical.blend'
+# Material Count: 2
+
+newmtl Dark-Metal
+Kd 0.409600 0.409600 0.409600
+map_Kd armory:blocks/forge/LightSheet

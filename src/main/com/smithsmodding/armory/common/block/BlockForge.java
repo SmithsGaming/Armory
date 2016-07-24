@@ -56,7 +56,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BlockForge extends BlockArmoryInventory implements ICustomDebugInformationBlock {
+public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInformationBlock {
 
     public static final PropertyBool BURNING = PropertyBool.create("armoryburning");
     public static final PropertyBool ISMASTER = PropertyBool.create("armorymaster");

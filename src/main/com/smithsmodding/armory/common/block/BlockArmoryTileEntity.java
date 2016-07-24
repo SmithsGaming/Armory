@@ -6,8 +6,7 @@
 
 package com.smithsmodding.armory.common.block;
 
-import com.smithsmodding.armory.api.util.references.References;
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -15,15 +14,11 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public abstract class BlockArmoryInventory extends BlockContainer {
+public abstract class BlockArmoryTileEntity extends BlockArmory implements ITileEntityProvider {
     Random iRand = new Random();
 
-    public BlockArmoryInventory (String pBlockName, Material pBlockMaterial) {
-        super(pBlockMaterial);
-        setUnlocalizedName(pBlockName);
-        setHardness(5F);
-        setResistance(10F);
-        setRegistryName(References.General.MOD_ID.toLowerCase(), pBlockName);
+    public BlockArmoryTileEntity(String pBlockName, Material pBlockMaterial) {
+        super(pBlockName, pBlockMaterial);
     }
 
     @Override

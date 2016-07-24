@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 /**
  * Created by Marc on 27.02.2016.
  */
-public class BlockFirePlace extends BlockArmoryInventory {
+public class BlockFirePlace extends BlockArmoryTileEntity {
 
     public BlockFirePlace() {
         super(References.InternalNames.Blocks.Fireplace, Material.ROCK);

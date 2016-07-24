@@ -201,6 +201,9 @@ public class References {
             public static final String Forge = "Armory.Blocks.Forge";
             public static final String Fireplace = "Armory.Blocks.Fireplace";
             public static final String ArmorsAnvil = "Armory.Blocks.Anvil";
+            public static final String Conduit = "Armory.Blocks.Conduit";
+            public static final String ConduitPump = "Armory.Blocks.Pump";
+            public static final String RedstonePumpGenerator = "Armory.Blocks.RedstoneGenerator";
         }
 
         public static final class TileEntities {

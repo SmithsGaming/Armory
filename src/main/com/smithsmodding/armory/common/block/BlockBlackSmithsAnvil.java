@@ -43,7 +43,7 @@ import java.util.List;
 /**
  * Created by Marc on 14.02.2016.
  */
-public class BlockBlackSmithsAnvil extends BlockArmoryInventory implements ICustomDebugInformationBlock
+public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICustomDebugInformationBlock
 {
 
     public static final PropertyAnvilMaterial PROPERTY_ANVIL_MATERIAL = new PropertyAnvilMaterial("Material");

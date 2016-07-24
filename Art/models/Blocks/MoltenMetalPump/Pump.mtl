@@ -1,0 +1,142 @@
+# Blender MTL File: 'Pump.blend'
+# Material Count: 14
+
+newmtl Dark-Metal
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\LightSheet.png
+
+newmtl Dark-Metal.002
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\LightSheet.png
+
+newmtl Dark-Metal.002_NONE
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\\Development\\Minecraft\\Armory\\resources\\assets\\armory\\textures\\blocks\\FirePit\\LightSheet.png
+
+newmtl Dark-Metal.003
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\LightSheet.png
+
+newmtl Dark-Metal.003_NONE
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\\Development\\Minecraft\\Armory\\resources\\assets\\armory\\textures\\blocks\\FirePit\\LightSheet.png
+
+newmtl Dark-Metal_LightSheet.png
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\LightSheet.png
+
+newmtl Dark-Metal_LightSheet.png.002
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\LightSheet.png
+
+newmtl Dark-Metal_LightSheet.png.003
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\LightSheet.png
+
+newmtl Dark-Metal_LightSheet.png.006
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\LightSheet.png
+
+newmtl Dark-Metal_NONE
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\\Development\\Minecraft\\Armory\\resources\\assets\\armory\\textures\\blocks\\FirePit\\LightSheet.png
+
+newmtl FloorPlate
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\\Development\\Minecraft\\Armory\\resources\\assets\\armory\\textures\\blocks\\FirePit\\LightSheet.png
+
+newmtl Gold
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\\Development\\Minecraft\\Assets\\1.8\\minecraft\\textures\\blocks\\gold_block.png
+
+newmtl Light-Metal
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\\Development\\Minecraft\\Armory\\src\\resources\\assets\\armory\\textures\\blocks\\forge\\LightSheet.png
+
+newmtl Light-Metal_LightSheet.png.010
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\Development\Minecraft\Armory\src\resources\assets\armory\textures\blocks\forge\LightSheet.png

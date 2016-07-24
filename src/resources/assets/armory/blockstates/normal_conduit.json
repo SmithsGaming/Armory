@@ -1,0 +1,130 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "armory:metalconduit/normal/Conduit.obj",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "north": {
+      "true": {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/Connected.obj"
+          }
+        }
+      },
+      "false": {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/Closer.obj"
+          }
+        }
+      }
+    },
+    "south": {
+      "true": {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/Connected.obj",
+            "y": 180
+          }
+        }
+      },
+      "false": {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/Closer.obj",
+            "y": 180
+          }
+        }
+      }
+    },
+    "west": {
+      "true": {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/Connected.obj",
+            "y": 270
+          }
+        }
+      },
+      "false": {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/Closer.obj",
+            "y": 270
+          }
+        }
+      }
+    },
+    "east": {
+      "true": {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/Connected.obj",
+            "y": 90
+          }
+        }
+      },
+      "false": {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/Closer.obj",
+            "y": 90
+          }
+        }
+      }
+    },
+    "up": {
+      "true": {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/ConnectorTop.obj"
+          }
+        }
+      },
+      "false": {
+      }
+    },
+    "down": {
+      "true": {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/ConnectorBottom.obj"
+          }
+        }
+      },
+      "false": {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/CloserVertical.obj"
+          }
+        }
+      }
+    },
+    "inventory": [
+      {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/Connected.obj"
+          },
+          "south": {
+            "model": "armory:metalconduit/normal/Connected.obj",
+            "y": 180
+          },
+          "west": {
+            "model": "armory:metalconduit/normal/Closer.obj",
+            "y": 270
+          },
+          "east": {
+            "model": "armory:metalconduit/normal/Closer.obj",
+            "y": 90
+          },
+          "down": {
+            "model": "armory:metalconduit/normal/CloserVertical.obj"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -123,9 +123,11 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
 
 
         public static void registerTESR() {
-            ArmoryClientProxy.registerBlockModel(ModBlocks.blockForge);
-            ArmoryClientProxy.registerBlockModel(ModBlocks.blockBlackSmithsAnvil);
-            ArmoryClientProxy.registerBlockModel(ModBlocks.blockFirePlace);
+            ArmoryClientProxy.registerBlockModel(ModBlocks.blockForge, "forge");
+            ArmoryClientProxy.registerBlockModel(ModBlocks.blockBlackSmithsAnvil, "anvil");
+            ArmoryClientProxy.registerBlockModel(ModBlocks.blockFirePlace, "fireplace");
+            ArmoryClientProxy.registerBlockModel(ModBlocks.blockConduit, "conduit");
+
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityForge.class, new TileEntityRendererForge());
         }
     }

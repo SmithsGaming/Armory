@@ -17,6 +17,7 @@ import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
 import com.smithsmodding.armory.common.anvil.AnvilMaterial;
 import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
+import com.smithsmodding.armory.common.block.BlockConduit;
 import com.smithsmodding.armory.common.block.BlockFirePlace;
 import com.smithsmodding.armory.common.block.BlockForge;
 import com.smithsmodding.armory.common.config.ArmorDataConfigHandler;
@@ -1044,6 +1045,7 @@ public class ArmoryInitializer {
             ModBlocks.blockForge = new BlockForge();
             ModBlocks.blockBlackSmithsAnvil = new BlockBlackSmithsAnvil();
             ModBlocks.blockFirePlace = new BlockFirePlace();
+            ModBlocks.blockConduit = new BlockConduit();
 
             GameRegistry.register(ModBlocks.blockForge);
             GameRegistry.register(new ItemBlock(ModBlocks.blockForge).setRegistryName(ModBlocks.blockForge.getRegistryName()));
@@ -1051,6 +1053,8 @@ public class ArmoryInitializer {
             GameRegistry.register(new ItemBlockBlackSmithsAnvil(ModBlocks.blockBlackSmithsAnvil));
             GameRegistry.register(ModBlocks.blockFirePlace);
             GameRegistry.register(new ItemBlock(ModBlocks.blockFirePlace).setRegistryName(ModBlocks.blockFirePlace.getRegistryName()));
+            GameRegistry.register(ModBlocks.blockConduit);
+            GameRegistry.register(new ItemBlock(ModBlocks.blockConduit).setRegistryName(ModBlocks.blockConduit.getRegistryName()));
         }
 
         public static void registerItems() {

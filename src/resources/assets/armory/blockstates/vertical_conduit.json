@@ -1,0 +1,69 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "armory:metalconduit/normal/ConduitVertical.obj",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "north": {
+      "true": {
+      },
+      "false": {
+      }
+    },
+    "south": {
+      "true": {
+      },
+      "false": {
+      }
+    },
+    "west": {
+      "true": {
+      },
+      "false": {
+      }
+    },
+    "east": {
+      "true": {
+      },
+      "false": {
+      }
+    },
+    "up": {
+      "true": {
+      },
+      "false": {
+      }
+    },
+    "down": {
+      "true": {
+      },
+      "false": {
+      }
+    },
+    "inventory": [
+      {
+        "submodel": {
+          "north": {
+            "model": "armory:metalconduit/normal/Connected.obj"
+          },
+          "south": {
+            "model": "armory:metalconduit/normal/Connected.obj",
+            "y": 180
+          },
+          "west": {
+            "model": "armory:metalconduit/normal/Closer.obj",
+            "y": 270
+          },
+          "east": {
+            "model": "armory:metalconduit/normal/Closer.obj",
+            "y": 90
+          },
+          "down": {
+            "model": "armory:metalconduit/normal/CloserVertical.obj"
+          }
+        }
+      }
+    ]
+  }
+}

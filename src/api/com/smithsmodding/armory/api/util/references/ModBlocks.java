@@ -9,4 +9,5 @@ public class ModBlocks {
     public static Block blockForge;
     public static Block blockBlackSmithsAnvil;
     public static Block blockFirePlace;
+    public static Block blockConduit;
 }
