@@ -1,0 +1,10 @@
+# Blender MTL File: 'Tank.blend'
+# Material Count: 3
+
+newmtl DarkenedGlass
+Kd 0.640000 0.640000 0.640000
+map_Kd minecraft:blocks/glass_black
+
+newmtl Holder
+Kd 0.640000 0.640000 0.640000 
+map_Kd armory:blocks/forge/LightSheet

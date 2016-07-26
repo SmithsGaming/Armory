@@ -25,10 +25,10 @@ local.properties
 #Forge
 build
 out
-run
 *.ipr
 *.iws
 *.iml
 *.db
-/.gradle/*
-
+.gradle/
+classes/
+.idea/

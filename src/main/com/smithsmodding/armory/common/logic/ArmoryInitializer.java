@@ -16,10 +16,7 @@ import com.smithsmodding.armory.api.util.client.TranslationKeys;
 import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
 import com.smithsmodding.armory.common.anvil.AnvilMaterial;
-import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
-import com.smithsmodding.armory.common.block.BlockConduit;
-import com.smithsmodding.armory.common.block.BlockFirePlace;
-import com.smithsmodding.armory.common.block.BlockForge;
+import com.smithsmodding.armory.common.block.*;
 import com.smithsmodding.armory.common.config.ArmorDataConfigHandler;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
 import com.smithsmodding.armory.common.crafting.blacksmiths.component.HeatedAnvilRecipeComponent;
@@ -39,10 +36,7 @@ import com.smithsmodding.armory.common.logic.material.ObsidianMaterialInitialize
 import com.smithsmodding.armory.common.material.ArmorMaterial;
 import com.smithsmodding.armory.common.material.fluidmodifiers.ObsidianToLavaSetter;
 import com.smithsmodding.armory.common.registry.*;
-import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
-import com.smithsmodding.armory.common.tileentity.TileEntityConduit;
-import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
-import com.smithsmodding.armory.common.tileentity.TileEntityForge;
+import com.smithsmodding.armory.common.tileentity.*;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.util.common.ItemStackHelper;
 import net.minecraft.client.resources.I18n;
@@ -1047,6 +1041,7 @@ public class ArmoryInitializer {
             ModBlocks.blockBlackSmithsAnvil = new BlockBlackSmithsAnvil();
             ModBlocks.blockFirePlace = new BlockFirePlace();
             ModBlocks.blockConduit = new BlockConduit();
+            ModBlocks.blockMoltenMetalTank = new BlockMoltenMetalTank();
 
             GameRegistry.register(ModBlocks.blockForge);
             GameRegistry.register(new ItemBlock(ModBlocks.blockForge).setRegistryName(ModBlocks.blockForge.getRegistryName()));
@@ -1056,6 +1051,8 @@ public class ArmoryInitializer {
             GameRegistry.register(new ItemBlock(ModBlocks.blockFirePlace).setRegistryName(ModBlocks.blockFirePlace.getRegistryName()));
             GameRegistry.register(ModBlocks.blockConduit);
             GameRegistry.register(new ItemBlock(ModBlocks.blockConduit).setRegistryName(ModBlocks.blockConduit.getRegistryName()));
+            GameRegistry.register(ModBlocks.blockMoltenMetalTank);
+            GameRegistry.register(new ItemBlock(ModBlocks.blockMoltenMetalTank).setRegistryName(ModBlocks.blockMoltenMetalTank.getRegistryName()));
         }
 
         public static void registerItems() {
@@ -1096,6 +1093,7 @@ public class ArmoryInitializer {
             GameRegistry.registerTileEntity(TileEntityFireplace.class, References.InternalNames.TileEntities.FireplaceContainer);
             GameRegistry.registerTileEntity(TileEntityBlackSmithsAnvil.class, References.InternalNames.TileEntities.ArmorsAnvil);
             GameRegistry.registerTileEntity(TileEntityConduit.class, References.InternalNames.TileEntities.Conduit);
+            GameRegistry.registerTileEntity(TileEntityMoltenMetalTank.class, References.InternalNames.TileEntities.Tank);
         }
 
         public static void registerCreativeTabs() {

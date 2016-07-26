@@ -40,7 +40,7 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
 
     @Override
     public String getContainerID() {
-        return References.InternalNames.TileEntities.Conduit;
+        return References.InternalNames.TileEntities.Conduit + "-" + getLocation().toString();
     }
 
     @Override
@@ -84,7 +84,7 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
     }
 
     public void pushOutputForSide(TileEntity entity, ConduitFluidTank sourceTank, EnumFacing facing) {
-        if (entity == null || sourceTank == null)
+        if (entity == null || sourceTank == null || entity instanceof TileEntityConduit)
             return;
 
         if (entity.hasCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite())) {

@@ -1,0 +1,6 @@
+# Blender MTL File: 'Connector.blend'
+# Material Count: 1
+
+newmtl Connector
+Kd 0.409600 0.409600 0.409600
+map_Kd armory:blocks/forge/DarkSheet

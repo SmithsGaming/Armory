@@ -1,0 +1,60 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "armory:moltenmetaltank/normal/Tank.obj",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "north": {
+      "true": {
+        "submodel": {
+          "north": {
+            "model": "armory:moltenmetaltank/normal/Connector.obj"
+          }
+        }
+      },
+      "false": {
+      }
+    },
+    "south": {
+      "true": {
+        "submodel": {
+          "south": {
+            "model": "armory:moltenmetaltank/normal/Connector.obj",
+            "y": 180
+          }
+        }
+      },
+      "false": {
+      }
+    },
+    "west": {
+      "true": {
+        "submodel": {
+          "west": {
+            "model": "armory:moltenmetaltank/normal/Connector.obj",
+            "y": 270
+          }
+        }
+      },
+      "false": {
+      }
+    },
+    "east": {
+      "true": {
+        "submodel": {
+          "east": {
+            "model": "armory:moltenmetaltank/normal/Connector.obj",
+            "y": 90
+          }
+        }
+      },
+      "false": {
+      }
+    },
+    "inventory": [
+      {
+      }
+    ]
+  }
+}

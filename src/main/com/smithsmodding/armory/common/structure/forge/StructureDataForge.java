@@ -2,7 +2,7 @@ package com.smithsmodding.armory.common.structure.forge;
 
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
-import com.smithsmodding.armory.common.tileentity.forge.MoltenMetalTank;
+import com.smithsmodding.armory.common.tileentity.moltenmetal.MoltenMetalTank;
 import com.smithsmodding.smithscore.common.structures.IStructureData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
@@ -18,11 +18,11 @@ public class StructureDataForge implements IStructureData<StructureForge>, com.s
     int totalBurningTicksOnCurrentFuel;
     int burningTicksLeftOnCurrentFuel;
     private StructureForge structureForge;
-    private MoltenMetalTank moltenMetals = new MoltenMetalTank(0);
+    private MoltenMetalTank moltenMetals = new MoltenMetalTank(0, Integer.MAX_VALUE);
 
     public void onAssignToForge(StructureForge forge) {
         this.structureForge = forge;
-        this.moltenMetals = new MoltenMetalTank(forge.getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY);
+        this.moltenMetals = new MoltenMetalTank(forge.getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY, Integer.MAX_VALUE);
     }
 
     public StructureForge getStructureForge() {
@@ -67,7 +67,7 @@ public class StructureDataForge implements IStructureData<StructureForge>, com.s
 
         ArrayList<FluidStack> stacks = new ArrayList<>(moltenMetals.getFluidStacks());
         stacks.addAll(((StructureDataForge) otherData).moltenMetals.getFluidStacks());
-        moltenMetals = new MoltenMetalTank(moltenMetals.getCapacity() + ((StructureDataForge) otherData).getStructureForge().getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY, stacks);
+        moltenMetals = new MoltenMetalTank(moltenMetals.getCapacity() + ((StructureDataForge) otherData).getStructureForge().getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY, Integer.MAX_VALUE, stacks);
     }
 
     @Override
@@ -121,6 +121,6 @@ public class StructureDataForge implements IStructureData<StructureForge>, com.s
 
     public void updateTank() {
         ArrayList<FluidStack> stacks = new ArrayList<>(moltenMetals.getFluidStacks());
-        moltenMetals = new MoltenMetalTank(structureForge.getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY, stacks);
+        moltenMetals = new MoltenMetalTank(structureForge.getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY, Integer.MAX_VALUE, stacks);
     }
 }

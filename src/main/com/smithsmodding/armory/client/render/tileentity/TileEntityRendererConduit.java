@@ -70,22 +70,22 @@ public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEnt
     }
 
     private void renderCenter(FluidStack fluidStack, BlockPos pos, double x, double y, double z, double height) {
-        RenderHelper.renderFluidCuboid(fluidStack, pos, x, y, z, 0.60625, 0.53755, 0.60625, 0.39375, 0.53755 + height, 0.39375);
+        RenderHelper.renderFluidCuboid(fluidStack, pos, x, y, z, 0.60620, 0.53755, 0.60620, 0.39380, 0.53755 + height, 0.39380);
     }
 
     private void renderNorth(FluidStack fluidStack, BlockPos pos, double x, double y, double z, double height) {
-        RenderHelper.renderFluidCuboid(fluidStack, pos, x, y, z, 0.60625, 0.53755, 0.39375, 0.39375, 0.53755 + height, 0);
+        RenderHelper.renderFluidCuboid(fluidStack, pos, x, y, z, 0.60620, 0.53755, 0.39380, 0.39380, 0.53755 + height, 0);
     }
 
     private void renderSouth(FluidStack fluidStack, BlockPos pos, double x, double y, double z, double height) {
-        RenderHelper.renderFluidCuboid(fluidStack, pos, x, y, z, 0.39375, 0.53755, 0.60625, 0.60625, 0.53755 + height, 1);
+        RenderHelper.renderFluidCuboid(fluidStack, pos, x, y, z, 0.39380, 0.53755, 0.60620, 0.60620, 0.53755 + height, 1);
     }
 
     private void renderWest(FluidStack fluidStack, BlockPos pos, double x, double y, double z, double height) {
-        RenderHelper.renderFluidCuboid(fluidStack, pos, x, y, z, 0.39375, 0.53755, 0.39375, 0, 0.53755 + height, 0.60625);
+        RenderHelper.renderFluidCuboid(fluidStack, pos, x, y, z, 0.39380, 0.53755, 0.39380, 0, 0.53755 + height, 0.60620);
     }
 
     private void renderEast(FluidStack fluidStack, BlockPos pos, double x, double y, double z, double height) {
-        RenderHelper.renderFluidCuboid(fluidStack, pos, x, y, z, 0.60625, 0.53755, 0.39375, 1, 0.53755 + height, 0.60625);
+        RenderHelper.renderFluidCuboid(fluidStack, pos, x, y, z, 0.60620, 0.53755, 0.39380, 1, 0.53755 + height, 0.60620);
     }
 }

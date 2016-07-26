@@ -202,6 +202,7 @@ public class References {
             public static final String Fireplace = "Armory.Blocks.Fireplace";
             public static final String ArmorsAnvil = "Armory.Blocks.Anvil";
             public static final String Conduit = "Armory.Blocks.Conduit";
+            public static final String Tank = "Armory.Blocks.Tank";
             public static final String ConduitPump = "Armory.Blocks.Pump";
             public static final String RedstonePumpGenerator = "Armory.Blocks.RedstoneGenerator";
         }
@@ -211,6 +212,7 @@ public class References {
             public static final String FireplaceContainer = "Container.Armory.Fireplace";
             public static final String ArmorsAnvil = "Container.Armory.Anvil";
             public static final String Conduit = "Container.Armory.Conduit";
+            public static final String Tank = "Container.Armory.Tank";
 
             public static final class Structures {
                 public static final String Forge = "Structures.Armory.Forge";
@@ -460,6 +462,10 @@ public class References {
                 public static final String INPUT = "Input";
                 public static final String OUTPUT = "Output";
                 public static final String CONTENTS = "Contents";
+            }
+
+            public class MoltenMetalTank {
+                public static final String TYPE = "Type";
             }
         }
     }
