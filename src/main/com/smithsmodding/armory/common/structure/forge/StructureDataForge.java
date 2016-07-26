@@ -2,7 +2,7 @@ package com.smithsmodding.armory.common.structure.forge;
 
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
-import com.smithsmodding.smithscore.common.fluid.MultiFluidTank;
+import com.smithsmodding.armory.common.tileentity.forge.MoltenMetalTank;
 import com.smithsmodding.smithscore.common.structures.IStructureData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
@@ -18,11 +18,11 @@ public class StructureDataForge implements IStructureData<StructureForge>, com.s
     int totalBurningTicksOnCurrentFuel;
     int burningTicksLeftOnCurrentFuel;
     private StructureForge structureForge;
-    private MultiFluidTank moltenMetals = new MultiFluidTank(0);
+    private MoltenMetalTank moltenMetals = new MoltenMetalTank(0);
 
     public void onAssignToForge(StructureForge forge) {
         this.structureForge = forge;
-        this.moltenMetals = new MultiFluidTank(forge.getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY);
+        this.moltenMetals = new MoltenMetalTank(forge.getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY);
     }
 
     public StructureForge getStructureForge() {
@@ -67,7 +67,7 @@ public class StructureDataForge implements IStructureData<StructureForge>, com.s
 
         ArrayList<FluidStack> stacks = new ArrayList<>(moltenMetals.getFluidStacks());
         stacks.addAll(((StructureDataForge) otherData).moltenMetals.getFluidStacks());
-        moltenMetals = new MultiFluidTank(moltenMetals.getCapacity() + ((StructureDataForge) otherData).getStructureForge().getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY, stacks);
+        moltenMetals = new MoltenMetalTank(moltenMetals.getCapacity() + ((StructureDataForge) otherData).getStructureForge().getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY, stacks);
     }
 
     @Override
@@ -115,12 +115,12 @@ public class StructureDataForge implements IStructureData<StructureForge>, com.s
         setBurningTicksLeftOnCurrentFuel(getTotalBurningTicksOnCurrentFuel());
     }
 
-    public MultiFluidTank getMoltenMetals() {
+    public MoltenMetalTank getMoltenMetals() {
         return moltenMetals;
     }
 
     public void updateTank() {
         ArrayList<FluidStack> stacks = new ArrayList<>(moltenMetals.getFluidStacks());
-        moltenMetals = new MultiFluidTank(structureForge.getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY, stacks);
+        moltenMetals = new MoltenMetalTank(structureForge.getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY, stacks);
     }
 }

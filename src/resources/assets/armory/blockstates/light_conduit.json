@@ -24,7 +24,7 @@
     "south": {
       "true": {
         "submodel": {
-          "north": {
+          "south": {
             "model": "armory:metalconduit/light/Connected.obj",
             "y": 180
           }
@@ -32,7 +32,7 @@
       },
       "false": {
         "submodel": {
-          "north": {
+          "south": {
             "model": "armory:metalconduit/light/Closer.obj",
             "y": 180
           }
@@ -42,7 +42,7 @@
     "west": {
       "true": {
         "submodel": {
-          "north": {
+          "west": {
             "model": "armory:metalconduit/light/Connected.obj",
             "y": 270
           }
@@ -50,7 +50,7 @@
       },
       "false": {
         "submodel": {
-          "north": {
+          "west": {
             "model": "armory:metalconduit/light/Closer.obj",
             "y": 270
           }
@@ -60,7 +60,7 @@
     "east": {
       "true": {
         "submodel": {
-          "north": {
+          "east": {
             "model": "armory:metalconduit/light/Connected.obj",
             "y": 90
           }
@@ -68,7 +68,7 @@
       },
       "false": {
         "submodel": {
-          "north": {
+          "east": {
             "model": "armory:metalconduit/light/Closer.obj",
             "y": 90
           }
@@ -78,7 +78,7 @@
     "up": {
       "true": {
         "submodel": {
-          "north": {
+          "up": {
             "model": "armory:metalconduit/light/ConnectorTop.obj"
           }
         }
@@ -89,14 +89,14 @@
     "down": {
       "true": {
         "submodel": {
-          "north": {
+          "down": {
             "model": "armory:metalconduit/light/ConnectorBottom.obj"
           }
         }
       },
       "false": {
         "submodel": {
-          "north": {
+          "down": {
             "model": "armory:metalconduit/light/CloserVertical.obj"
           }
         }

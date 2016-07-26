@@ -14,19 +14,27 @@ import com.smithsmodding.armory.api.util.references.ModBlocks;
 import com.smithsmodding.armory.api.util.references.ModItems;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.client.ArmoryClientProxy;
+import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererConduit;
 import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererForge;
+import com.smithsmodding.armory.common.block.BlockConduit;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
 import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.registry.ArmorRegistry;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.armory.common.tileentity.TileEntityConduit;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
 import com.smithsmodding.smithscore.client.model.loader.SmithsCoreOBJLoader;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -119,16 +127,38 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
             MultiComponentModelLoader.instance.registerDomain(References.General.MOD_ID);
             CoreClientProxy.registerMultiComponentItemModel(ModItems.tongs, new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Resources." + MultiComponentModelLoader.EXTENSION));
             CoreClientProxy.registerMultiComponentItemModel(ModItems.hammer, new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Resources." + MultiComponentModelLoader.EXTENSION));
+
+            ///ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.blockConduit), 0, new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "normal_conduit"), "inventory"));
+            ///ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.blockConduit), 1, new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "light_conduit"), "inventory"));
+
+            ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.blockConduit), new ItemMeshDefinition() {
+                @Override
+                public ModelResourceLocation getModelLocation(ItemStack stack) {
+                    if (stack.getMetadata() == 1)
+                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "normal_conduit"), "inventory");
+
+                    if (stack.getMetadata() == 2)
+                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "light_conduit"), "inventory");
+
+                    return null;
+                }
+            });
+
+            ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.blockConduit), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "normal_conduit"), "inventory"),
+                    new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "light_conduit"), "inventory"));
         }
 
 
         public static void registerTESR() {
-            ArmoryClientProxy.registerBlockModel(ModBlocks.blockForge, "forge");
-            ArmoryClientProxy.registerBlockModel(ModBlocks.blockBlackSmithsAnvil, "anvil");
-            ArmoryClientProxy.registerBlockModel(ModBlocks.blockFirePlace, "fireplace");
-            ArmoryClientProxy.registerBlockModel(ModBlocks.blockConduit, "conduit");
+            ArmoryClientProxy.registerBlockModel(ModBlocks.blockForge);
+            ArmoryClientProxy.registerBlockModel(ModBlocks.blockBlackSmithsAnvil);
+            ArmoryClientProxy.registerBlockModel(ModBlocks.blockFirePlace);
+            ArmoryClientProxy.registerBlockModel(ModBlocks.blockConduit);
+
+            ModelLoader.setCustomStateMapper(ModBlocks.blockConduit, new StateMap.Builder().withName(BlockConduit.TYPE).withSuffix("_conduit").build());
 
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityForge.class, new TileEntityRendererForge());
+            ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConduit.class, new TileEntityRendererConduit());
         }
     }
 

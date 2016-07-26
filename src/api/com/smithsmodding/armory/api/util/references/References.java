@@ -210,6 +210,7 @@ public class References {
             public static final String ForgeContainer = "Container.Armory.Forge";
             public static final String FireplaceContainer = "Container.Armory.Fireplace";
             public static final String ArmorsAnvil = "Container.Armory.Anvil";
+            public static final String Conduit = "Container.Armory.Conduit";
 
             public static final class Structures {
                 public static final String Forge = "Structures.Armory.Forge";
@@ -452,6 +453,13 @@ public class References {
                 public static final String MATERIAL = "Material";
                 public static final String ITEMNAME = "ItemName";
                 public static final String PROCESSING = "Processing";
+            }
+
+            public class Conduit {
+                public static final String TANKS = "Tanks";
+                public static final String INPUT = "Input";
+                public static final String OUTPUT = "Output";
+                public static final String CONTENTS = "Contents";
             }
         }
     }

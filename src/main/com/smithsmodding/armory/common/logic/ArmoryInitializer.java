@@ -40,6 +40,7 @@ import com.smithsmodding.armory.common.material.ArmorMaterial;
 import com.smithsmodding.armory.common.material.fluidmodifiers.ObsidianToLavaSetter;
 import com.smithsmodding.armory.common.registry.*;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
+import com.smithsmodding.armory.common.tileentity.TileEntityConduit;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.SmithsCore;
@@ -1094,6 +1095,7 @@ public class ArmoryInitializer {
             GameRegistry.registerTileEntity(TileEntityForge.class, References.InternalNames.TileEntities.ForgeContainer);
             GameRegistry.registerTileEntity(TileEntityFireplace.class, References.InternalNames.TileEntities.FireplaceContainer);
             GameRegistry.registerTileEntity(TileEntityBlackSmithsAnvil.class, References.InternalNames.TileEntities.ArmorsAnvil);
+            GameRegistry.registerTileEntity(TileEntityConduit.class, References.InternalNames.TileEntities.Conduit);
         }
 
         public static void registerCreativeTabs() {

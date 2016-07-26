@@ -3,4 +3,4 @@
 
 newmtl Dark-Metal
 Kd 0.409600 0.409600 0.409600
-map_Kd armory:blocks/forge/LightSheet
+map_Kd minecraft:blocks/iron_block

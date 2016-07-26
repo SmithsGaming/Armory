@@ -1,6 +1,8 @@
 package com.smithsmodding.armory.common.tileentity;
 
+import com.smithsmodding.armory.api.fluid.IMoltenMetalRequester;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.BlockForge;
@@ -26,6 +28,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
@@ -61,6 +64,8 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         super.update();
 
         meltIngots();
+
+        outputLiquids();
 
         markDirty();
     }
@@ -158,6 +163,28 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         fluidCompound.setString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL, material.getUniqueID());
 
         getTankForSide(null).fill(HeatableItemRegistry.getInstance().getMoltenStack(stack), true);
+    }
+
+    private void outputLiquids() {
+        if (getStructure().getData().getMoltenMetals().getFluidStacks().size() == 0)
+            return;
+
+        for (EnumFacing facing : EnumFacing.HORIZONTALS) {
+            TileEntity entity = getWorld().getTileEntity(pos.offset(facing));
+
+            if (entity == null)
+                continue;
+
+            if (entity.hasCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite())) {
+                IMoltenMetalRequester requester = entity.getCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite());
+
+                FluidStack outputStack = getStructure().getData().getMoltenMetals().getFluidStacks().get(0);
+                outputStack.amount -= requester.fillNext(outputStack, true);
+
+                if (outputStack.amount <= 0)
+                    getStructure().getData().getMoltenMetals().getFluidStacks().remove(0);
+            }
+        }
     }
 
     @Override
@@ -357,6 +384,24 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        if (capability == ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY && getStructure() != null) {
+            return true;
+        }
+
+        return super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY && getStructure() != null) {
+            return (T) getStructure().getData().getMoltenMetals();
+        }
+
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
     public ArrayList<IPathComponent> getValidPathableNeighborComponents() {
         ArrayList<IPathComponent> pathComponentArrayList = new ArrayList<>();
 
@@ -448,16 +493,25 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
     @Override
     public IFluidTank getTankForSide(@Nullable EnumFacing side) {
+        if (getStructure() == null)
+            return null;
+
         return getStructure().getData().getMoltenMetals();
     }
 
     @Override
     public int getTotalTankSizeOnSide(@Nullable EnumFacing side) {
+        if (getStructure() == null)
+            return 0;
+
         return getStructure().getData().getMoltenMetals().getCapacity();
     }
 
     @Override
     public int getTankContentsVolumeOnSide(@Nullable EnumFacing side) {
+        if (getStructure() == null)
+            return 0;
+
         return getStructure().getData().getMoltenMetals().getFluidAmount();
     }
 }
