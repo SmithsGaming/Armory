@@ -16,6 +16,7 @@ import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.client.ArmoryClientProxy;
 import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererConduit;
 import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererForge;
+import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererMoltenMetalTank;
 import com.smithsmodding.armory.common.block.BlockConduit;
 import com.smithsmodding.armory.common.block.BlockMoltenMetalTank;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
@@ -26,6 +27,7 @@ import com.smithsmodding.armory.common.registry.ArmorRegistry;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityConduit;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
+import com.smithsmodding.armory.common.tileentity.TileEntityMoltenMetalTank;
 import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
 import com.smithsmodding.smithscore.client.model.loader.SmithsCoreOBJLoader;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
@@ -149,6 +151,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
 
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityForge.class, new TileEntityRendererForge());
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConduit.class, new TileEntityRendererConduit());
+            ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMoltenMetalTank.class, new TileEntityRendererMoltenMetalTank());
         }
     }
 

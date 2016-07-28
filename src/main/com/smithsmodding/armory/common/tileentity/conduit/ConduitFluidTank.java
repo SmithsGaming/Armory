@@ -4,12 +4,14 @@ import com.smithsmodding.armory.api.fluid.IMoltenMetalProvider;
 import com.smithsmodding.armory.api.fluid.IMoltenMetalRequester;
 import com.smithsmodding.armory.api.util.references.References;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -17,6 +19,7 @@ import javax.annotation.Nullable;
  */
 public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalRequester, IFluidTank, ITickable, INBTSerializable<NBTTagCompound> {
 
+    private final IConduitTankProvider provider;
     private final int maxContents;
     private final int maxBufferTransferRate;
 
@@ -24,13 +27,17 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
     FluidStack contents;
     FluidStack outputBuffer;
 
-    public ConduitFluidTank(int maxContents, int maxBufferTransferRate) {
+    public ConduitFluidTank(IConduitTankProvider provider, int maxContents, int maxBufferTransferRate) {
+        this.provider = provider;
         this.maxContents = maxContents;
         this.maxBufferTransferRate = maxBufferTransferRate;
     }
 
     @Override
-    public boolean canFill(FluidStack fluidStack) {
+    public boolean canFill(FluidStack fluidStack, @Nonnull EnumFacing insertionDirection) {
+        if (!provider.canInsertFrom(insertionDirection))
+            return false;
+
         if (inputBuffer == null && contents == null && outputBuffer == null)
             return true;
 
@@ -91,8 +98,8 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
     }
 
     @Override
-    public int fillNext(FluidStack source, boolean doFill) {
-        if (!canFill(source))
+    public int fillNext(FluidStack source, boolean doFill, @Nonnull EnumFacing insertionDirection) {
+        if (!canFill(source, insertionDirection))
             return 0;
 
         if (inputBuffer == null && doFill) {
@@ -103,9 +110,10 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
 
         int usage = Math.min(source.amount, maxBufferTransferRate);
 
-        if (doFill)
+        if (doFill) {
             inputBuffer.amount = usage;
-
+            provider.onInsertionFrom(insertionDirection);
+        }
         return usage;
     }
 
@@ -132,13 +140,13 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
     }
 
     @Override
-    public boolean canDrain() {
-        return (outputBuffer != null && outputBuffer.amount > 0);
+    public boolean canDrain(@Nonnull EnumFacing direction) {
+        return (outputBuffer != null && outputBuffer.amount > 0 && provider.canExtractFrom(direction));
     }
 
     @Override
-    public FluidStack drainNext(int maxAmount, boolean doDrain) {
-        if (outputBuffer == null)
+    public FluidStack drainNext(int maxAmount, boolean doDrain, @Nonnull EnumFacing extractionDirection) {
+        if (outputBuffer == null || !canDrain(extractionDirection))
             return null;
 
         int usage = Math.min(outputBuffer.amount, maxAmount);
@@ -147,6 +155,7 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
         if (doDrain) {
             outputBuffer.amount -= usage;
 
+            provider.onExtractionFrom(extractionDirection);
             if (getTotalContents().amount <= 0) {
                 inputBuffer = null;
                 contents = null;

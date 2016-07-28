@@ -4,6 +4,7 @@ import com.smithsmodding.armory.api.fluid.IMoltenMetalRequester;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.conduit.ConduitFluidTank;
+import com.smithsmodding.armory.common.tileentity.conduit.IConduitTankProvider;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityConduitGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityConduitState;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
@@ -20,12 +21,13 @@ import javax.annotation.Nullable;
 /**
  * Author Orion (Created on: 24.07.2016)
  */
-public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitState, TileEntityConduitGuiManager> implements ITickable, IFluidContainingEntity {
+public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitState, TileEntityConduitGuiManager> implements ITickable, IFluidContainingEntity, IConduitTankProvider {
 
     ConduitFluidTank conduit;
+    boolean shouldUpdateState = true;
 
     public TileEntityConduit() {
-        conduit = new ConduitFluidTank(300, 150);
+        conduit = new ConduitFluidTank(this, 300, 150);
     }
 
     @Override
@@ -43,24 +45,20 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
         return References.InternalNames.TileEntities.Conduit + "-" + getLocation().toString();
     }
 
-    @Override
-    public IFluidTank getTankForSide(@Nullable EnumFacing side) {
+    public ConduitFluidTank getConduit() {
         return conduit;
     }
 
     @Override
-    public int getTotalTankSizeOnSide(@Nullable EnumFacing side) {
-        return conduit.getCapacity();
-    }
-
-    @Override
-    public int getTankContentsVolumeOnSide(@Nullable EnumFacing side) {
-        return conduit.getFluidAmount();
-    }
-
-    @Override
     public void update() {
+        if (isRemote())
+            return;
+
         conduit.update();
+
+        shouldUpdateState = !shouldUpdateState;
+        if (shouldUpdateState)
+            getState().onStateUpdated();
 
         handleInternals();
 
@@ -84,7 +82,7 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
     }
 
     public void pushOutputForSide(TileEntity entity, ConduitFluidTank sourceTank, EnumFacing facing) {
-        if (entity == null || sourceTank == null || entity instanceof TileEntityConduit)
+        if (entity == null || sourceTank == null)
             return;
 
         if (entity.hasCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite())) {
@@ -92,19 +90,19 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
             if (requester == null)
                 return;
 
-            FluidStack simmedDrain = sourceTank.drainNext(Integer.MAX_VALUE, false);
+            FluidStack simmedDrain = sourceTank.drainNext(Integer.MAX_VALUE, false, facing.getOpposite());
             if (simmedDrain == null)
                 return;
 
-            int simmedFill = requester.fillNext(simmedDrain, false);
+            int simmedFill = requester.fillNext(simmedDrain, false, facing.getOpposite());
 
             if (simmedDrain.amount < simmedFill)
                 simmedFill = simmedDrain.amount;
             if (simmedFill < simmedDrain.amount)
                 simmedDrain.amount = simmedFill;
 
-            requester.fillNext(simmedDrain, true);
-            sourceTank.drainNext(simmedFill, true);
+            requester.fillNext(simmedDrain, true, facing.getOpposite());
+            sourceTank.drainNext(simmedFill, true, facing.getOpposite());
         }
     }
 
@@ -123,5 +121,40 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
         }
 
         return super.getCapability(capability, facing);
+    }
+
+    @Override
+    public boolean canExtractFrom(EnumFacing direction) {
+        return getState().canExtractFromDirection(direction);
+    }
+
+    @Override
+    public boolean canInsertFrom(EnumFacing direction) {
+        return getState().canInsertFromDirection(direction);
+    }
+
+    @Override
+    public void onExtractionFrom(EnumFacing direction) {
+        getState().onExtraction(direction);
+    }
+
+    @Override
+    public void onInsertionFrom(EnumFacing direction) {
+        getState().onInsertion(direction);
+    }
+
+    @Override
+    public IFluidTank getTankForSide(@Nullable EnumFacing side) {
+        return conduit;
+    }
+
+    @Override
+    public int getTotalTankSizeOnSide(@Nullable EnumFacing side) {
+        return conduit.getCapacity();
+    }
+
+    @Override
+    public int getTankContentsVolumeOnSide(@Nullable EnumFacing side) {
+        return conduit.getFluidAmount();
     }
 }

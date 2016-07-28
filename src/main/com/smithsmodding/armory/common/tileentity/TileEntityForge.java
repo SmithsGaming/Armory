@@ -179,7 +179,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
                 IMoltenMetalRequester requester = entity.getCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite());
 
                 FluidStack outputStack = getStructure().getData().getMoltenMetals().getFluidStacks().get(0);
-                outputStack.amount -= requester.fillNext(outputStack, true);
+                outputStack.amount -= requester.fillNext(outputStack, true, facing.getOpposite());
 
                 if (outputStack.amount <= 0)
                     getStructure().getData().getMoltenMetals().getFluidStacks().remove(0);

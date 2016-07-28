@@ -8,6 +8,7 @@ import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityMoltenMe
 import com.smithsmodding.armory.common.tileentity.moltenmetal.MoltenMetalTank;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityMoltenMetalTankState;
 import com.smithsmodding.smithscore.client.gui.management.IGUIManager;
+import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import com.smithsmodding.smithscore.common.tileentity.state.ITileEntityState;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,11 +17,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidTank;
+
+import javax.annotation.Nullable;
 
 /**
  * Author Orion (Created on: 26.07.2016)
  */
-public class TileEntityMoltenMetalTank extends TileEntitySmithsCore implements ITickable {
+public class TileEntityMoltenMetalTank extends TileEntitySmithsCore implements ITickable, IFluidContainingEntity {
 
     private MoltenMetalTank tank;
     private EnumTankType type;
@@ -94,11 +98,26 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore implements I
                     return;
 
                 FluidStack outputStack = tank.getFluidStacks().get(0);
-                outputStack.amount -= requester.fillNext(outputStack, true);
+                outputStack.amount -= requester.fillNext(outputStack, true, facing.getOpposite());
 
                 if (outputStack.amount <= 0)
                     tank.getFluidStacks().remove(0);
             }
         }
+    }
+
+    @Override
+    public IFluidTank getTankForSide(@Nullable EnumFacing side) {
+        return tank;
+    }
+
+    @Override
+    public int getTotalTankSizeOnSide(@Nullable EnumFacing side) {
+        return tank.getCapacity();
+    }
+
+    @Override
+    public int getTankContentsVolumeOnSide(@Nullable EnumFacing side) {
+        return tank.getFluidAmount();
     }
 }

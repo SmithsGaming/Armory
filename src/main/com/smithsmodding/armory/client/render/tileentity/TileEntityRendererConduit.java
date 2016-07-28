@@ -8,7 +8,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidTank;
 
 /**
  * Author Orion (Created on: 25.07.2016)
@@ -20,6 +19,8 @@ public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEnt
         if (te == null)
             return;
 
+        double height = te.getConduit().getFluidAmount() / ((double) te.getConduit().getCapacity()) * 0.04995;
+
         for (EnumFacing facing : EnumFacing.values()) {
             if (facing == EnumFacing.UP || facing == EnumFacing.DOWN)
                 continue;
@@ -29,13 +30,7 @@ public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEnt
             if (!(neighbor instanceof IFluidContainingEntity) && !(neighbor instanceof TileEntityConduit))
                 continue;
 
-            double height = te.getTankContentsVolumeOnSide(facing) / ((double) te.getTotalTankSizeOnSide(facing)) * 0.04995;
-
-            IFluidTank tank = te.getTankForSide(facing);
-            if (tank == null)
-                return;
-
-            FluidStack stackToRender = tank.getFluid();
+            FluidStack stackToRender = te.getConduit().getFluid();
             if (stackToRender == null)
                 continue;
 
@@ -60,13 +55,11 @@ public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEnt
             }
         }
 
-        double centerHeight = te.getTankContentsVolumeOnSide(null) / ((double) te.getTotalTankSizeOnSide(null)) * 0.04995;
-
-        FluidStack stackToRender = te.getTankForSide(null).getFluid();
+        FluidStack stackToRender = te.getConduit().getFluid();
         if (stackToRender == null)
             return;
 
-        renderCenter(stackToRender, te.getPos(), x, y, z, centerHeight);
+        renderCenter(stackToRender, te.getPos(), x, y, z, height);
     }
 
     private void renderCenter(FluidStack fluidStack, BlockPos pos, double x, double y, double z, double height) {

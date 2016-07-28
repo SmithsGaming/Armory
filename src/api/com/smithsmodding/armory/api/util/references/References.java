@@ -462,6 +462,9 @@ public class References {
                 public static final String INPUT = "Input";
                 public static final String OUTPUT = "Output";
                 public static final String CONTENTS = "Contents";
+                public static final String FLOWX = "FlowX";
+                public static final String FLOWY = "FlowY";
+                public static final String FLOWZ = "FlowZ";
             }
 
             public class MoltenMetalTank {

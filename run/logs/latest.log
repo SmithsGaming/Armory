@@ -1,34 +1,549 @@
-[16:22:02] [Client thread/INFO]: Setting user: Player789
-[16:22:13] [Client thread/INFO]: LWJGL Version: 2.9.4
-[16:22:28] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
-[16:22:43] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[16:22:44] [Thread-7/INFO]: Initializing LWJGL OpenAL
-[16:22:44] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[16:22:44] [Thread-7/INFO]: OpenAL initialized.
-[16:22:44] [Sound Library Loader/INFO]: Sound engine started
-[16:23:01] [Client thread/INFO]: Created: 16x16 textures-atlas
-[16:23:06] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
-[16:23:16] [Client thread/INFO]: SoundSystem shutting down...
-[16:23:16] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[16:23:16] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[16:23:17] [Thread-9/INFO]: Initializing LWJGL OpenAL
-[16:23:17] [Thread-9/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[16:23:17] [Thread-9/INFO]: OpenAL initialized.
-[16:23:17] [Sound Library Loader/INFO]: Sound engine started
-[16:23:42] [Client thread/INFO]: Created: 2048x2048 textures-atlas
-[16:23:49] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
-[16:24:05] [Server thread/INFO]: Starting integrated minecraft server version 1.10.2
-[16:24:05] [Server thread/INFO]: Generating keypair
-[16:24:08] [Server thread/INFO]: Preparing start region for level 0
-[16:24:10] [Server thread/INFO]: Changing view distance to 12, from 10
-[16:24:15] [Server thread/INFO]: Player789[local:E:4ae5b7b1] logged in with entity id 0 at (-1268.5, 4.0, 237.5)
-[16:24:15] [Server thread/INFO]: Player789 joined the game
-[16:24:17] [Server thread/INFO]: Saving and pausing game...
-[16:24:17] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[16:24:19] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[16:24:20] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[16:24:20] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 4873ms behind, skipping 97 tick(s)
-[16:24:22] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@6b941deb[id=81ef6cf6-107d-35d0-bf6b-c2f04f3d07c4,name=Player789,properties={},legacy=false]
+[17:50:32] [main/INFO]: Extra: []
+[17:50:32] [main/INFO]: Running with arguments: [--userProperties, {}, --assetsDir, C:/Users/marcf/.gradle/caches/minecraft/assets, --assetIndex, 1.10, --accessToken{REDACTED}, --version, 1.10.2, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, net.minecraftforge.gradle.tweakers.CoremodTweaker]
+[17:50:32] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[17:50:32] [main/INFO]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[17:50:32] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.CoremodTweaker
+[17:50:32] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[17:50:32] [main/INFO]: Forge Mod Loader version 12.18.1.2014 for Minecraft 1.10.2 loading
+[17:50:32] [main/INFO]: Java is Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_73, running on Windows 10:amd64:10.0, installed at C:\Program Files\Java\jdk1.8.0_73\jre
+[17:50:32] [main/INFO]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
+[17:50:32] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.CoremodTweaker
+[17:50:32] [main/INFO]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
+[17:50:32] [main/INFO]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
+[17:50:32] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[17:50:32] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[17:50:32] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[17:50:32] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[17:50:32] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[17:50:32] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[17:50:32] [main/ERROR]: The binary patch set is missing. Either you are in a development environment, or things are not going to work!
+[17:50:36] [main/ERROR]: FML appears to be missing any signature data. This is not a good thing
+[17:50:36] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[17:50:36] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[17:50:38] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[17:50:40] [main/INFO]: Remapping AccessTransformer rules...
+[17:50:40] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[17:50:40] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[17:50:40] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[17:50:43] [Client thread/INFO]: Setting user: Player502
+[17:50:53] [Client thread/WARN]: Skipping bad option: lastServer:
+[17:50:53] [Client thread/INFO]: LWJGL Version: 2.9.4
+[17:50:54] [Client thread/INFO]: [net.minecraftforge.fml.client.SplashProgress:start:221]: ---- Minecraft Crash Report ----
+// Oh - I know what I did wrong!
+
+Time: 7/28/16 5:50 PM
+Description: Loading screen debug info
+
+This is just a prompt for computer specs to be printed. THIS IS NOT A ERROR
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- System Details --
+Details:
+	Minecraft Version: 1.10.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_73, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 198125728 bytes (188 MB) / 443547648 bytes (423 MB) up to 928514048 bytes (885 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: 
+	Loaded coremods (and transformers): 
+	GL info: ' Vendor: 'Intel' Version: '4.0.0 - Build 10.18.10.4252' Renderer: 'Intel(R) HD Graphics 4000'
+[17:50:55] [Client thread/INFO]: MinecraftForge v12.18.1.2014 Initialized
+[17:50:55] [Client thread/INFO]: Replaced 233 ore recipes
+[17:50:56] [Client thread/INFO]: Found 0 mods from the command line. Injecting into mod discoverer
+[17:50:56] [Client thread/INFO]: Searching C:\Users\marcf\Documents\Development\Minecraft\Armory\run\mods for mods
+[17:51:05] [Client thread/INFO]: Forge Mod Loader has identified 6 mods to load
+[17:51:05] [Client thread/INFO]: Attempting connection with missing mods [mcp, FML, Forge, Armory, SmithsCore, JEI] at CLIENT
+[17:51:05] [Client thread/INFO]: Attempting connection with missing mods [mcp, FML, Forge, Armory, SmithsCore, JEI] at SERVER
+[17:51:08] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
+[17:51:08] [Client thread/INFO]: Processing ObjectHolder annotations
+[17:51:08] [Client thread/INFO]: Found 423 ObjectHolder annotations
+[17:51:08] [Client thread/INFO]: Identifying ItemStackHolder annotations
+[17:51:08] [Client thread/INFO]: Found 0 ItemStackHolder annotations
+[17:51:08] [Client thread/INFO]: Configured a dormant chunk cache size of 0
+[17:51:09] [Client thread/INFO]: SmithsCore starting in Normal mode.
+[17:51:09] [Client thread/INFO]: Initializing event handlers.
+[17:51:09] [Forge Version Check/INFO]: [Forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
+[17:51:09] [Forge Version Check/INFO]: [Forge] Found status: OUTDATED Target: 12.18.1.2027
+[17:51:09] [Client thread/INFO]: SmithsCore Pre-Init completed after: 810 mS.
+[17:51:09] [Client thread/INFO]: Starting pre init
+[17:51:10] [Client thread/INFO]: Initialized material: Vanilla.Iron
+[17:51:10] [Client thread/INFO]: Initialized material: Vanilla.Obsidian
+[17:51:10] [Client thread/INFO]: Added model definition for: item.Armory.Leggings.Medieval add: armor/Armory.Leggings.Medieval.MLA-Armory in the Domain: armory
+[17:51:10] [Client thread/INFO]: Added model definition for: item.Armory.Shoes.Medieval add: armor/Armory.Shoes.Medieval.MLA-Armory in the Domain: armory
+[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Chestplate.Medieval add: armor/Armory.Chestplate.Medieval.MLA-Armory in the Domain: armory
+[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Helmet.Medieval add: armor/Armory.Helmet.Medieval.MLA-Armory in the Domain: armory
+[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.HeatedIngots add: heateditem/Armory.Items.Components.HeatedIngots.HI-Armory in the Domain: armory
+[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.ArmorComponent add: component/Armory.Items.ArmorComponent.AC-Armory in the Domain: armory
+[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.MetalChain add: materialized/Armory.Items.Components.MetalChain.MIM-Armory in the Domain: armory
+[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.MetalPlate add: materialized/Armory.Items.Components.MetalPlate.MIM-Armory in the Domain: armory
+[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.MetalRing add: materialized/Armory.Items.Components.MetalRing.MIM-Armory in the Domain: armory
+[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.MetalNugget add: materialized/Armory.Items.Components.MetalNugget.MIM-Armory in the Domain: armory
+[17:51:11] [Client thread/INFO]: Added: armory to the SmitshCore OBJ Loader.
+[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Tongs add: Armory.Resources.MCM-smithscore in the Domain: armory
+[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.ItemHammer add: Armory.Resources.MCM-smithscore in the Domain: armory
+[17:51:11] [Client thread/INFO]: Initialized material: _internal_gui
+[17:51:11] [Client thread/INFO]: Finished pre init after: 1594 ms!
+[17:51:11] [Client thread/INFO]: Applying holder lookups
+[17:51:11] [Client thread/INFO]: Holder lookups applied
+[17:51:11] [Client thread/INFO]: Injecting itemstacks
+[17:51:11] [Client thread/INFO]: Itemstack injection complete
+[17:51:20] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[17:51:20] [Thread-8/INFO]: Initializing LWJGL OpenAL
+[17:51:20] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[17:51:20] [Thread-8/INFO]: OpenAL initialized.
+[17:51:21] [Sound Library Loader/INFO]: Sound engine started
+[17:51:21] [Client thread/INFO]: OBJLoader.Parser: command '%s' (model: '%s') is not currently supported, skipping. Line: %d '%s'
+[17:51:21] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
+[17:51:21] [Client thread/INFO]: OBJLoader.Parser: command '%s' (model: '%s') is not currently supported, skipping. Line: %d '%s'
+[17:51:21] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
+[17:51:32] [Client thread/INFO]: Max texture size: 8192
+[17:51:32] [Client thread/INFO]: Created: 16x16 textures-atlas
+[17:51:35] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Tank#inventory for item "armory:Armory.Blocks.Tank", normal location exception: 
+net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:item/Armory.Blocks.Tank with loader VanillaLoader.INSTANCE, skipping
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:317) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadVariantItemModels(ModelBakery.java:170) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:147) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) [ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.registerReloadListener(SimpleReloadableResourceManager.java:122) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:540) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:386) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+Caused by: java.io.FileNotFoundException: armory:models/item/Armory.Blocks.Tank.json
+	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:68) ~[FallbackResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:65) ~[SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadModel(ModelBakery.java:311) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.access$1100(ModelLoader.java:118) ~[ModelLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoader$VanillaLoader.loadModel(ModelLoader.java:868) ~[ModelLoader$VanillaLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
+	... 20 more
+[17:51:35] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Tank#inventory for item "armory:Armory.Blocks.Tank", blockstate location exception: 
+net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:Armory.Blocks.Tank#inventory with loader VariantLoader.INSTANCE, skipping
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:325) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadVariantItemModels(ModelBakery.java:170) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:147) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) [ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.registerReloadListener(SimpleReloadableResourceManager.java:122) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:540) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:386) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+Caused by: net.minecraft.client.renderer.block.model.ModelBlockDefinition$MissingVariantException
+	at net.minecraft.client.renderer.block.model.ModelBlockDefinition.getVariant(ModelBlockDefinition.java:78) ~[ModelBlockDefinition.class:?]
+	at net.minecraftforge.client.model.ModelLoader$VariantLoader.loadModel(ModelLoader.java:1183) ~[ModelLoader$VariantLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
+	... 20 more
+[17:51:35] [Client thread/ERROR]: Exception loading model for variant armory:armory.Items.SmithingsGuide#inventory for item "armory:Armory.Items.SmithingsGuide", normal location exception: 
+net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:item/armory.Items.SmithingsGuide with loader VanillaLoader.INSTANCE, skipping
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:317) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadVariantItemModels(ModelBakery.java:170) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:147) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) [ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.registerReloadListener(SimpleReloadableResourceManager.java:122) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:540) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:386) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+Caused by: java.io.FileNotFoundException: armory:models/item/armory.Items.SmithingsGuide.json
+	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:68) ~[FallbackResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:65) ~[SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadModel(ModelBakery.java:311) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.access$1100(ModelLoader.java:118) ~[ModelLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoader$VanillaLoader.loadModel(ModelLoader.java:868) ~[ModelLoader$VanillaLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
+	... 20 more
+[17:51:35] [Client thread/ERROR]: Exception loading model for variant armory:armory.Items.SmithingsGuide#inventory for item "armory:Armory.Items.SmithingsGuide", blockstate location exception: 
+net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:armory.Items.SmithingsGuide#inventory with loader VariantLoader.INSTANCE, skipping
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:325) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadVariantItemModels(ModelBakery.java:170) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:147) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) [ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.registerReloadListener(SimpleReloadableResourceManager.java:122) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:540) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:386) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+Caused by: net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Loader INSTANCE returned missing model while loading model armory:block/guide/Guide.obj
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:157) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader$WeightedRandomModel.<init>(ModelLoader.java:752) ~[ModelLoader$WeightedRandomModel.class:?]
+	at net.minecraftforge.client.model.ModelLoader$VariantLoader.loadModel(ModelLoader.java:1184) ~[ModelLoader$VariantLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
+	... 20 more
+[17:51:35] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Conduit#inventory for item "armory:Armory.Blocks.Conduit", normal location exception: 
+net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:item/Armory.Blocks.Conduit with loader VanillaLoader.INSTANCE, skipping
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:317) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadVariantItemModels(ModelBakery.java:170) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:147) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) [ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.registerReloadListener(SimpleReloadableResourceManager.java:122) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:540) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:386) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+Caused by: java.io.FileNotFoundException: armory:models/item/Armory.Blocks.Conduit.json
+	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:68) ~[FallbackResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:65) ~[SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadModel(ModelBakery.java:311) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.access$1100(ModelLoader.java:118) ~[ModelLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoader$VanillaLoader.loadModel(ModelLoader.java:868) ~[ModelLoader$VanillaLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
+	... 20 more
+[17:51:35] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Conduit#inventory for item "armory:Armory.Blocks.Conduit", blockstate location exception: 
+net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:Armory.Blocks.Conduit#inventory with loader VariantLoader.INSTANCE, skipping
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:325) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadVariantItemModels(ModelBakery.java:170) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:147) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) [ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.registerReloadListener(SimpleReloadableResourceManager.java:122) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:540) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:386) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+Caused by: net.minecraft.client.renderer.block.model.ModelBlockDefinition$MissingVariantException
+	at net.minecraft.client.renderer.block.model.ModelBlockDefinition.getVariant(ModelBlockDefinition.java:78) ~[ModelBlockDefinition.class:?]
+	at net.minecraftforge.client.model.ModelLoader$VariantLoader.loadModel(ModelLoader.java:1183) ~[ModelLoader$VariantLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
+	... 20 more
+[17:51:36] [Client thread/INFO]: SmithsCore Init completed after: 7 ms.
+[17:51:36] [Client thread/INFO]: Starting init
+[17:51:36] [Client thread/INFO]: Finished init after: 0 ms!
+[17:51:36] [Client thread/INFO]: Injecting itemstacks
+[17:51:36] [Client thread/INFO]: Itemstack injection complete
+[17:51:36] [Client thread/INFO]: SmithsCore Post-Init completed after: 0 ms.
+[17:51:36] [Client thread/INFO]: Starting post init
+[17:51:36] [Client thread/INFO]: Finished post init after: 0 ms!
+[17:51:36] [Client thread/INFO]: Notifying requesters of API init completion.
+[17:51:36] [Client thread/INFO]: Started loading custom ArmorMaterial Values from Config.
+[17:51:36] [Client thread/INFO]: Loading of the custom ArmorMaterial Values has succesfully been performed!
+[17:51:36] [Client thread/INFO]: Forge Mod Loader has successfully loaded 6 mods
+[17:51:36] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
+[17:51:45] [Client thread/INFO]: SoundSystem shutting down...
+[17:51:45] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[17:51:45] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[17:51:45] [Thread-10/INFO]: Initializing LWJGL OpenAL
+[17:51:45] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[17:51:45] [Thread-10/INFO]: OpenAL initialized.
+[17:51:45] [Client thread/INFO]: OBJLoader.Parser: command 's' (model: 'armory:models/block/anvil/BlockModel.obj') is not currently supported, skipping. Line: 76 's off'
+[17:51:45] [Client thread/INFO]: OBJLoader.Parser: command 'l' (model: 'armory:models/block/anvil/BlockModel.obj') is not currently supported, skipping. Line: 94 'l 29 30'
+[17:51:46] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
+[17:51:46] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
+[17:51:46] [Sound Library Loader/INFO]: Sound engine started
+[17:51:59] [Client thread/INFO]: Max texture size: 8192
+[17:52:00] [Client thread/INFO]: Created: 2048x2048 textures-atlas
+[17:52:03] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Tank#inventory for item "armory:Armory.Blocks.Tank", normal location exception: 
+net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:item/Armory.Blocks.Tank with loader VanillaLoader.INSTANCE, skipping
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:317) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadVariantItemModels(ModelBakery.java:170) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:147) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) [ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.notifyReloadListeners(SimpleReloadableResourceManager.java:132) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.reloadResources(SimpleReloadableResourceManager.java:113) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.refreshResources(Minecraft.java:799) [Minecraft.class:?]
+	at net.minecraftforge.fml.client.FMLClientHandler.finishMinecraftLoading(FMLClientHandler.java:338) [FMLClientHandler.class:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:561) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:386) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+Caused by: java.io.FileNotFoundException: armory:models/item/Armory.Blocks.Tank.json
+	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:68) ~[FallbackResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:65) ~[SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadModel(ModelBakery.java:311) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.access$1100(ModelLoader.java:118) ~[ModelLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoader$VanillaLoader.loadModel(ModelLoader.java:868) ~[ModelLoader$VanillaLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
+	... 23 more
+[17:52:03] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Tank#inventory for item "armory:Armory.Blocks.Tank", blockstate location exception: 
+net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:Armory.Blocks.Tank#inventory with loader VariantLoader.INSTANCE, skipping
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:325) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadVariantItemModels(ModelBakery.java:170) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:147) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) [ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.notifyReloadListeners(SimpleReloadableResourceManager.java:132) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.reloadResources(SimpleReloadableResourceManager.java:113) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.refreshResources(Minecraft.java:799) [Minecraft.class:?]
+	at net.minecraftforge.fml.client.FMLClientHandler.finishMinecraftLoading(FMLClientHandler.java:338) [FMLClientHandler.class:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:561) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:386) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+Caused by: net.minecraft.client.renderer.block.model.ModelBlockDefinition$MissingVariantException
+	at net.minecraft.client.renderer.block.model.ModelBlockDefinition.getVariant(ModelBlockDefinition.java:78) ~[ModelBlockDefinition.class:?]
+	at net.minecraftforge.client.model.ModelLoader$VariantLoader.loadModel(ModelLoader.java:1183) ~[ModelLoader$VariantLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
+	... 23 more
+[17:52:03] [Client thread/ERROR]: Exception loading model for variant armory:armory.Items.SmithingsGuide#inventory for item "armory:Armory.Items.SmithingsGuide", normal location exception: 
+net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:item/armory.Items.SmithingsGuide with loader VanillaLoader.INSTANCE, skipping
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:317) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadVariantItemModels(ModelBakery.java:170) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:147) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) [ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.notifyReloadListeners(SimpleReloadableResourceManager.java:132) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.reloadResources(SimpleReloadableResourceManager.java:113) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.refreshResources(Minecraft.java:799) [Minecraft.class:?]
+	at net.minecraftforge.fml.client.FMLClientHandler.finishMinecraftLoading(FMLClientHandler.java:338) [FMLClientHandler.class:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:561) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:386) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+Caused by: java.io.FileNotFoundException: armory:models/item/armory.Items.SmithingsGuide.json
+	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:68) ~[FallbackResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:65) ~[SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadModel(ModelBakery.java:311) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.access$1100(ModelLoader.java:118) ~[ModelLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoader$VanillaLoader.loadModel(ModelLoader.java:868) ~[ModelLoader$VanillaLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
+	... 23 more
+[17:52:03] [Client thread/ERROR]: Exception loading model for variant armory:armory.Items.SmithingsGuide#inventory for item "armory:Armory.Items.SmithingsGuide", blockstate location exception: 
+net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:armory.Items.SmithingsGuide#inventory with loader VariantLoader.INSTANCE, skipping
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:325) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadVariantItemModels(ModelBakery.java:170) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:147) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) [ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.notifyReloadListeners(SimpleReloadableResourceManager.java:132) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.reloadResources(SimpleReloadableResourceManager.java:113) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.refreshResources(Minecraft.java:799) [Minecraft.class:?]
+	at net.minecraftforge.fml.client.FMLClientHandler.finishMinecraftLoading(FMLClientHandler.java:338) [FMLClientHandler.class:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:561) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:386) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+Caused by: net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Loader INSTANCE returned missing model while loading model armory:block/guide/Guide.obj
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:157) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader$WeightedRandomModel.<init>(ModelLoader.java:752) ~[ModelLoader$WeightedRandomModel.class:?]
+	at net.minecraftforge.client.model.ModelLoader$VariantLoader.loadModel(ModelLoader.java:1184) ~[ModelLoader$VariantLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
+	... 23 more
+[17:52:03] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Conduit#inventory for item "armory:Armory.Blocks.Conduit", normal location exception: 
+net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:item/Armory.Blocks.Conduit with loader VanillaLoader.INSTANCE, skipping
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:317) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadVariantItemModels(ModelBakery.java:170) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:147) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) [ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.notifyReloadListeners(SimpleReloadableResourceManager.java:132) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.reloadResources(SimpleReloadableResourceManager.java:113) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.refreshResources(Minecraft.java:799) [Minecraft.class:?]
+	at net.minecraftforge.fml.client.FMLClientHandler.finishMinecraftLoading(FMLClientHandler.java:338) [FMLClientHandler.class:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:561) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:386) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+Caused by: java.io.FileNotFoundException: armory:models/item/Armory.Blocks.Conduit.json
+	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:68) ~[FallbackResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:65) ~[SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadModel(ModelBakery.java:311) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.access$1100(ModelLoader.java:118) ~[ModelLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoader$VanillaLoader.loadModel(ModelLoader.java:868) ~[ModelLoader$VanillaLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
+	... 23 more
+[17:52:03] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Conduit#inventory for item "armory:Armory.Blocks.Conduit", blockstate location exception: 
+net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:Armory.Blocks.Conduit#inventory with loader VariantLoader.INSTANCE, skipping
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
+	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:325) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelBakery.loadVariantItemModels(ModelBakery.java:170) ~[ModelBakery.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:147) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) [ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.notifyReloadListeners(SimpleReloadableResourceManager.java:132) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.reloadResources(SimpleReloadableResourceManager.java:113) [SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.refreshResources(Minecraft.java:799) [Minecraft.class:?]
+	at net.minecraftforge.fml.client.FMLClientHandler.finishMinecraftLoading(FMLClientHandler.java:338) [FMLClientHandler.class:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:561) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:386) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_73]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+Caused by: net.minecraft.client.renderer.block.model.ModelBlockDefinition$MissingVariantException
+	at net.minecraft.client.renderer.block.model.ModelBlockDefinition.getVariant(ModelBlockDefinition.java:78) ~[ModelBlockDefinition.class:?]
+	at net.minecraftforge.client.model.ModelLoader$VariantLoader.loadModel(ModelLoader.java:1183) ~[ModelLoader$VariantLoader.class:?]
+	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
+	... 23 more
+[17:52:05] [Client thread/WARN]: Skipping bad option: lastServer:
+[17:52:07] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[17:52:57] [Server thread/INFO]: Starting integrated minecraft server version 1.10.2
+[17:52:57] [Server thread/INFO]: Generating keypair
+[17:52:57] [Server thread/INFO]: Injecting existing block and item data into this server instance
+[17:52:58] [Server thread/INFO]: Applying holder lookups
+[17:52:58] [Server thread/INFO]: Holder lookups applied
+[17:52:58] [Server thread/INFO]: Loading dimension 0 (New World) (net.minecraft.server.integrated.IntegratedServer@3074a33d)
+[17:52:58] [Server thread/INFO]: Loading dimension 1 (New World) (net.minecraft.server.integrated.IntegratedServer@3074a33d)
+[17:52:58] [Server thread/INFO]: Loading dimension -1 (New World) (net.minecraft.server.integrated.IntegratedServer@3074a33d)
+[17:52:58] [Server thread/INFO]: Preparing start region for level 0
+[17:52:59] [Server thread/INFO]: Adding player UUID to list
+[17:52:59] [Server thread/INFO]: Adding player UUID to list
+[17:53:00] [Server thread/INFO]: Changing view distance to 12, from 10
+[17:53:01] [Netty Local Client IO #0/INFO]: Server protocol version 2
+[17:53:01] [Netty Server IO #1/INFO]: Client protocol version 2
+[17:53:01] [Netty Server IO #1/INFO]: Client attempting to join with 6 mods : SmithsCore@1.10.2-1.2.0.0-232,FML@8.0.99.99,Forge@12.18.1.2014,mcp@9.19,Armory@@VERSION@,JEI@3.7.8.234
+[17:53:01] [Netty Local Client IO #0/INFO]: [Netty Local Client IO #0] Client side modded connection established
+[17:53:01] [Server thread/INFO]: [Server thread] Server side modded connection established
+[17:53:01] [Server thread/INFO]: Player502[local:E:1f50afc7] logged in with entity id 11 at (-822.510527184283, 5.0, 225.21090497004482)
+[17:53:01] [Server thread/INFO]: Player502 joined the game
+[17:53:01] [Server thread/INFO]: Updating player UUID list
+[17:53:01] [Server thread/INFO]: Started sending properties to the Client.
+[17:53:01] [Server thread/INFO]: Ended property sync.
+[17:53:02] [Server thread/INFO]: Saving and pausing game...
+[17:53:02] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:53:02] [Client thread/INFO]: Registering plugin: mezz.jei.plugins.vanilla.VanillaPlugin
+[17:53:02] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:53:02] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:53:03] [Client thread/INFO]: Registered  plugin: mezz.jei.plugins.vanilla.VanillaPlugin in 0 seconds
+[17:53:03] [Client thread/INFO]: Registering plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat
+[17:53:03] [Client thread/INFO]: Registered  plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat in 0 seconds
+[17:53:03] [Client thread/INFO]: Registering plugin: com.smithsmodding.armory.compatibility.JEICompatMod
+[17:53:03] [Client thread/INFO]: Registered  plugin: com.smithsmodding.armory.compatibility.JEICompatMod in 0 seconds
+[17:53:03] [Client thread/INFO]: Registering plugin: mezz.jei.plugins.jei.JEIInternalPlugin
+[17:53:03] [Client thread/INFO]: Registered  plugin: mezz.jei.plugins.jei.JEIInternalPlugin in 0 seconds
+[17:53:07] [Server thread/INFO]: Saving and pausing game...
+[17:53:07] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:53:08] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:53:08] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:53:08] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@13718b07[id=1c6ab893-c8be-3ad8-a14c-5cafcb89dfd5,name=Player502,properties={},legacy=false]
 com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
 	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:65) ~[YggdrasilAuthenticationService.class:?]
 	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:175) [YggdrasilMinecraftSessionService.class:?]
@@ -50,14 +565,26 @@ com.mojang.authlib.exceptions.AuthenticationException: The client has sent too m
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_73]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_73]
 	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_73]
-[16:24:23] [Server thread/INFO]: Saving and pausing game...
-[16:24:23] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[16:24:23] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[16:24:23] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[16:24:28] [Server thread/INFO]: Player789 has just earned the achievement [Taking Inventory]
-[16:24:28] [Client thread/INFO]: [CHAT] Player789 has just earned the achievement [Taking Inventory]
-[16:24:49] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 6414ms behind, skipping 128 tick(s)
-[16:29:32] [Server thread/INFO]: Saving and pausing game...
-[16:29:32] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[16:29:32] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[16:29:32] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:54:51] [Server thread/INFO]: Saving and pausing game...
+[17:54:51] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:54:51] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:54:51] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:56:48] [Server thread/INFO]: Saving and pausing game...
+[17:56:48] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:56:48] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:56:48] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[18:00:00] [Client thread/INFO]: Stopping!
+[18:00:00] [Client thread/INFO]: SoundSystem shutting down...
+[18:00:00] [Server thread/INFO]: Stopping server
+[18:00:01] [Server thread/INFO]: Saving players
+[18:00:01] [Server thread/INFO]: Saving worlds
+[18:00:01] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[18:00:01] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[18:00:01] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[18:00:01] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[18:00:01] [Server thread/INFO]: Unloading dimension 0
+[18:00:01] [Server thread/INFO]: Unloading dimension -1
+[18:00:01] [Server thread/INFO]: Unloading dimension 1
+[18:00:01] [Client Shutdown Thread/INFO]: Stopping server
+[18:00:01] [Client Shutdown Thread/INFO]: Saving players
+[18:00:01] [Client Shutdown Thread/INFO]: Saving worlds
