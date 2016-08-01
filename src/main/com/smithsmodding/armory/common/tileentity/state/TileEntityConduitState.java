@@ -109,33 +109,33 @@ public class TileEntityConduitState implements ITileEntityState {
         switch (facing) {
             case NORTH:
                 if (!canExtractFromDirection(facing)) return;
-                if (flowVector.x < 10)
-                    flowVector.x += 1;
+                if (flowVector.x < 20)
+                    flowVector.x = 20;
                 break;
             case SOUTH:
                 if (!canExtractFromDirection(facing)) return;
-                if (flowVector.x > -10)
-                    flowVector.x -= 1;
+                if (flowVector.x > -20)
+                    flowVector.x = -20;
                 break;
             case EAST:
                 if (!canExtractFromDirection(facing)) return;
-                if (flowVector.z < 10)
-                    flowVector.z += 1;
+                if (flowVector.z < 20)
+                    flowVector.z = 20;
                 break;
             case WEST:
                 if (!canExtractFromDirection(facing)) return;
-                if (flowVector.z > -10)
-                    flowVector.z -= 1;
+                if (flowVector.z > -20)
+                    flowVector.z = -20;
                 break;
             case UP:
                 if (!canExtractFromDirection(facing)) return;
-                if (flowVector.y < 10)
-                    flowVector.y += 1;
+                if (flowVector.y < 20)
+                    flowVector.y = 20;
                 break;
             case DOWN:
                 if (!canExtractFromDirection(facing)) return;
-                if (flowVector.y > -10)
-                    flowVector.y -= 1;
+                if (flowVector.y > -20)
+                    flowVector.y = -20;
                 break;
             default:
                 break;

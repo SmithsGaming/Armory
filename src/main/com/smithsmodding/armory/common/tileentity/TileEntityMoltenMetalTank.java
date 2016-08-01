@@ -4,13 +4,12 @@ import com.smithsmodding.armory.api.fluid.IMoltenMetalRequester;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.types.EnumTankType;
+import com.smithsmodding.armory.common.tileentity.conduit.ConduitFluidTank;
+import com.smithsmodding.armory.common.tileentity.conduit.IConduitTankProvider;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityMoltenMetalTankGuiManager;
-import com.smithsmodding.armory.common.tileentity.moltenmetal.MoltenMetalTank;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityMoltenMetalTankState;
-import com.smithsmodding.smithscore.client.gui.management.IGUIManager;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
-import com.smithsmodding.smithscore.common.tileentity.state.ITileEntityState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -24,26 +23,27 @@ import javax.annotation.Nullable;
 /**
  * Author Orion (Created on: 26.07.2016)
  */
-public class TileEntityMoltenMetalTank extends TileEntitySmithsCore implements ITickable, IFluidContainingEntity {
+public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMoltenMetalTankState, TileEntityMoltenMetalTankGuiManager> implements ITickable, IFluidContainingEntity, IConduitTankProvider {
 
-    private MoltenMetalTank tank;
+    boolean shouldUpdateState;
+    private ConduitFluidTank tank;
     private EnumTankType type;
 
     protected TileEntityMoltenMetalTank() {
     }
 
     public TileEntityMoltenMetalTank(EnumTankType type) {
-        this.tank = new MoltenMetalTank(type.getTankContents(), 1);
+        this.tank = new ConduitFluidTank(this, type.getTankContents(), type.getTankContents() / References.General.FLUID_INGOT);
         this.type = type;
     }
 
     @Override
-    protected IGUIManager getInitialGuiManager() {
+    protected TileEntityMoltenMetalTankGuiManager getInitialGuiManager() {
         return new TileEntityMoltenMetalTankGuiManager();
     }
 
     @Override
-    protected ITileEntityState getInitialState() {
+    protected TileEntityMoltenMetalTankState getInitialState() {
         return new TileEntityMoltenMetalTankState();
     }
 
@@ -55,7 +55,7 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore implements I
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         this.type = EnumTankType.byMetadata(compound.getInteger(References.NBTTagCompoundData.TE.MoltenMetalTank.TYPE));
-        this.tank = new MoltenMetalTank(type.getTankContents(), 1);
+        this.tank = new ConduitFluidTank(this, type.getTankContents(), type.getTankContents() / References.General.FLUID_INGOT);
 
         super.readFromNBT(compound);
     }
@@ -97,13 +97,25 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore implements I
                 if (tank.getFluidAmount() <= 0)
                     return;
 
-                FluidStack outputStack = tank.getFluidStacks().get(0);
-                outputStack.amount -= requester.fillNext(outputStack, true, facing.getOpposite());
+                FluidStack simmedStack = tank.drainNext(Integer.MAX_VALUE, false, facing);
+                if (simmedStack == null)
+                    continue;
 
-                if (outputStack.amount <= 0)
-                    tank.getFluidStacks().remove(0);
+                Integer simmedUsage = requester.fillNext(simmedStack, false, facing.getOpposite());
+
+                if (simmedStack.amount < simmedUsage)
+                    simmedStack.amount = simmedUsage;
+                if (simmedUsage < simmedStack.amount)
+                    simmedUsage = simmedStack.amount;
+
+                tank.drainNext(simmedUsage, true, facing);
+                requester.fillNext(simmedStack, true, facing.getOpposite());
             }
         }
+
+        shouldUpdateState = !shouldUpdateState;
+        if (shouldUpdateState)
+            getState().onStateUpdated();
     }
 
     @Override
@@ -119,5 +131,25 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore implements I
     @Override
     public int getTankContentsVolumeOnSide(@Nullable EnumFacing side) {
         return tank.getFluidAmount();
+    }
+
+    @Override
+    public boolean canExtractFrom(EnumFacing direction) {
+        return getState().canExtractFromDirection(direction);
+    }
+
+    @Override
+    public boolean canInsertFrom(EnumFacing direction) {
+        return getState().canInsertFromDirection(direction);
+    }
+
+    @Override
+    public void onExtractionFrom(EnumFacing direction) {
+        getState().onExtraction(direction);
+    }
+
+    @Override
+    public void onInsertionFrom(EnumFacing direction) {
+        getState().onInsertion(direction);
     }
 }

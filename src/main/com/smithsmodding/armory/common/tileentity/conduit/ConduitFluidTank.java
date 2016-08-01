@@ -57,6 +57,19 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
         return getTotalContents();
     }
 
+    public void setFluid(FluidStack stack) {
+        if (stack == null) {
+            this.inputBuffer = null;
+            this.contents = null;
+            this.outputBuffer = null;
+            return;
+        }
+
+        this.inputBuffer = new FluidStack(stack, 0);
+        this.contents = stack.copy();
+        this.outputBuffer = new FluidStack(stack, 0);
+    }
+
     @Override
     public int getFluidAmount() {
         if (getTotalContents() == null)

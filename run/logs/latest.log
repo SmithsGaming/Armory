@@ -1,37 +1,37 @@
-[17:50:32] [main/INFO]: Extra: []
-[17:50:32] [main/INFO]: Running with arguments: [--userProperties, {}, --assetsDir, C:/Users/marcf/.gradle/caches/minecraft/assets, --assetIndex, 1.10, --accessToken{REDACTED}, --version, 1.10.2, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, net.minecraftforge.gradle.tweakers.CoremodTweaker]
-[17:50:32] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
-[17:50:32] [main/INFO]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
-[17:50:32] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.CoremodTweaker
-[17:50:32] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
-[17:50:32] [main/INFO]: Forge Mod Loader version 12.18.1.2014 for Minecraft 1.10.2 loading
-[17:50:32] [main/INFO]: Java is Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_73, running on Windows 10:amd64:10.0, installed at C:\Program Files\Java\jdk1.8.0_73\jre
-[17:50:32] [main/INFO]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
-[17:50:32] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.CoremodTweaker
-[17:50:32] [main/INFO]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
-[17:50:32] [main/INFO]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
-[17:50:32] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[17:50:32] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
-[17:50:32] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
-[17:50:32] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[17:50:32] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[17:50:32] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[17:50:32] [main/ERROR]: The binary patch set is missing. Either you are in a development environment, or things are not going to work!
-[17:50:36] [main/ERROR]: FML appears to be missing any signature data. This is not a good thing
-[17:50:36] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[17:50:36] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
-[17:50:38] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
-[17:50:40] [main/INFO]: Remapping AccessTransformer rules...
-[17:50:40] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
-[17:50:40] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
-[17:50:40] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
-[17:50:43] [Client thread/INFO]: Setting user: Player502
-[17:50:53] [Client thread/WARN]: Skipping bad option: lastServer:
-[17:50:53] [Client thread/INFO]: LWJGL Version: 2.9.4
-[17:50:54] [Client thread/INFO]: [net.minecraftforge.fml.client.SplashProgress:start:221]: ---- Minecraft Crash Report ----
-// Oh - I know what I did wrong!
+[19:27:28] [main/INFO]: Extra: []
+[19:27:28] [main/INFO]: Running with arguments: [--userProperties, {}, --assetsDir, C:/Users/marcf/.gradle/caches/minecraft/assets, --assetIndex, 1.10, --accessToken{REDACTED}, --version, 1.10.2, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, net.minecraftforge.gradle.tweakers.CoremodTweaker]
+[19:27:28] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[19:27:28] [main/INFO]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[19:27:28] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.CoremodTweaker
+[19:27:28] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[19:27:28] [main/INFO]: Forge Mod Loader version 12.18.1.2014 for Minecraft 1.10.2 loading
+[19:27:28] [main/INFO]: Java is Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_73, running on Windows 10:amd64:10.0, installed at C:\Program Files\Java\jdk1.8.0_73\jre
+[19:27:28] [main/INFO]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
+[19:27:28] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.CoremodTweaker
+[19:27:28] [main/INFO]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
+[19:27:28] [main/INFO]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
+[19:27:28] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[19:27:28] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[19:27:28] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[19:27:28] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[19:27:28] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[19:27:28] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[19:27:29] [main/ERROR]: The binary patch set is missing. Either you are in a development environment, or things are not going to work!
+[19:27:33] [main/ERROR]: FML appears to be missing any signature data. This is not a good thing
+[19:27:33] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[19:27:33] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[19:27:34] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[19:27:37] [main/INFO]: Remapping AccessTransformer rules...
+[19:27:37] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[19:27:37] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[19:27:37] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[19:27:39] [Client thread/INFO]: Setting user: Player209
+[19:27:52] [Client thread/WARN]: Skipping bad option: lastServer:
+[19:27:52] [Client thread/INFO]: LWJGL Version: 2.9.4
+[19:27:55] [Client thread/INFO]: [net.minecraftforge.fml.client.SplashProgress:start:221]: ---- Minecraft Crash Report ----
+// This doesn't make any sense!
 
-Time: 7/28/16 5:50 PM
+Time: 7/29/16 7:27 PM
 Description: Loading screen debug info
 
 This is just a prompt for computer specs to be printed. THIS IS NOT A ERROR
@@ -46,64 +46,64 @@ Details:
 	Operating System: Windows 10 (amd64) version 10.0
 	Java Version: 1.8.0_73, Oracle Corporation
 	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
-	Memory: 198125728 bytes (188 MB) / 443547648 bytes (423 MB) up to 928514048 bytes (885 MB)
+	Memory: 87399328 bytes (83 MB) / 437256192 bytes (417 MB) up to 928514048 bytes (885 MB)
 	JVM Flags: 0 total; 
 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
 	FML: 
 	Loaded coremods (and transformers): 
 	GL info: ' Vendor: 'Intel' Version: '4.0.0 - Build 10.18.10.4252' Renderer: 'Intel(R) HD Graphics 4000'
-[17:50:55] [Client thread/INFO]: MinecraftForge v12.18.1.2014 Initialized
-[17:50:55] [Client thread/INFO]: Replaced 233 ore recipes
-[17:50:56] [Client thread/INFO]: Found 0 mods from the command line. Injecting into mod discoverer
-[17:50:56] [Client thread/INFO]: Searching C:\Users\marcf\Documents\Development\Minecraft\Armory\run\mods for mods
-[17:51:05] [Client thread/INFO]: Forge Mod Loader has identified 6 mods to load
-[17:51:05] [Client thread/INFO]: Attempting connection with missing mods [mcp, FML, Forge, Armory, SmithsCore, JEI] at CLIENT
-[17:51:05] [Client thread/INFO]: Attempting connection with missing mods [mcp, FML, Forge, Armory, SmithsCore, JEI] at SERVER
-[17:51:08] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
-[17:51:08] [Client thread/INFO]: Processing ObjectHolder annotations
-[17:51:08] [Client thread/INFO]: Found 423 ObjectHolder annotations
-[17:51:08] [Client thread/INFO]: Identifying ItemStackHolder annotations
-[17:51:08] [Client thread/INFO]: Found 0 ItemStackHolder annotations
-[17:51:08] [Client thread/INFO]: Configured a dormant chunk cache size of 0
-[17:51:09] [Client thread/INFO]: SmithsCore starting in Normal mode.
-[17:51:09] [Client thread/INFO]: Initializing event handlers.
-[17:51:09] [Forge Version Check/INFO]: [Forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
-[17:51:09] [Forge Version Check/INFO]: [Forge] Found status: OUTDATED Target: 12.18.1.2027
-[17:51:09] [Client thread/INFO]: SmithsCore Pre-Init completed after: 810 mS.
-[17:51:09] [Client thread/INFO]: Starting pre init
-[17:51:10] [Client thread/INFO]: Initialized material: Vanilla.Iron
-[17:51:10] [Client thread/INFO]: Initialized material: Vanilla.Obsidian
-[17:51:10] [Client thread/INFO]: Added model definition for: item.Armory.Leggings.Medieval add: armor/Armory.Leggings.Medieval.MLA-Armory in the Domain: armory
-[17:51:10] [Client thread/INFO]: Added model definition for: item.Armory.Shoes.Medieval add: armor/Armory.Shoes.Medieval.MLA-Armory in the Domain: armory
-[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Chestplate.Medieval add: armor/Armory.Chestplate.Medieval.MLA-Armory in the Domain: armory
-[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Helmet.Medieval add: armor/Armory.Helmet.Medieval.MLA-Armory in the Domain: armory
-[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.HeatedIngots add: heateditem/Armory.Items.Components.HeatedIngots.HI-Armory in the Domain: armory
-[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.ArmorComponent add: component/Armory.Items.ArmorComponent.AC-Armory in the Domain: armory
-[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.MetalChain add: materialized/Armory.Items.Components.MetalChain.MIM-Armory in the Domain: armory
-[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.MetalPlate add: materialized/Armory.Items.Components.MetalPlate.MIM-Armory in the Domain: armory
-[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.MetalRing add: materialized/Armory.Items.Components.MetalRing.MIM-Armory in the Domain: armory
-[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.MetalNugget add: materialized/Armory.Items.Components.MetalNugget.MIM-Armory in the Domain: armory
-[17:51:11] [Client thread/INFO]: Added: armory to the SmitshCore OBJ Loader.
-[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Tongs add: Armory.Resources.MCM-smithscore in the Domain: armory
-[17:51:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.ItemHammer add: Armory.Resources.MCM-smithscore in the Domain: armory
-[17:51:11] [Client thread/INFO]: Initialized material: _internal_gui
-[17:51:11] [Client thread/INFO]: Finished pre init after: 1594 ms!
-[17:51:11] [Client thread/INFO]: Applying holder lookups
-[17:51:11] [Client thread/INFO]: Holder lookups applied
-[17:51:11] [Client thread/INFO]: Injecting itemstacks
-[17:51:11] [Client thread/INFO]: Itemstack injection complete
-[17:51:20] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[17:51:20] [Thread-8/INFO]: Initializing LWJGL OpenAL
-[17:51:20] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[17:51:20] [Thread-8/INFO]: OpenAL initialized.
-[17:51:21] [Sound Library Loader/INFO]: Sound engine started
-[17:51:21] [Client thread/INFO]: OBJLoader.Parser: command '%s' (model: '%s') is not currently supported, skipping. Line: %d '%s'
-[17:51:21] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
-[17:51:21] [Client thread/INFO]: OBJLoader.Parser: command '%s' (model: '%s') is not currently supported, skipping. Line: %d '%s'
-[17:51:21] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
-[17:51:32] [Client thread/INFO]: Max texture size: 8192
-[17:51:32] [Client thread/INFO]: Created: 16x16 textures-atlas
-[17:51:35] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Tank#inventory for item "armory:Armory.Blocks.Tank", normal location exception: 
+[19:27:55] [Client thread/INFO]: MinecraftForge v12.18.1.2014 Initialized
+[19:27:55] [Client thread/INFO]: Replaced 233 ore recipes
+[19:27:57] [Client thread/INFO]: Found 0 mods from the command line. Injecting into mod discoverer
+[19:27:57] [Client thread/INFO]: Searching C:\Users\marcf\Documents\Development\Minecraft\Armory\run\mods for mods
+[19:28:05] [Client thread/INFO]: Forge Mod Loader has identified 6 mods to load
+[19:28:06] [Client thread/INFO]: Attempting connection with missing mods [mcp, FML, Forge, Armory, SmithsCore, JEI] at CLIENT
+[19:28:06] [Client thread/INFO]: Attempting connection with missing mods [mcp, FML, Forge, Armory, SmithsCore, JEI] at SERVER
+[19:28:08] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
+[19:28:08] [Client thread/INFO]: Processing ObjectHolder annotations
+[19:28:08] [Client thread/INFO]: Found 423 ObjectHolder annotations
+[19:28:08] [Client thread/INFO]: Identifying ItemStackHolder annotations
+[19:28:08] [Client thread/INFO]: Found 0 ItemStackHolder annotations
+[19:28:08] [Client thread/INFO]: Configured a dormant chunk cache size of 0
+[19:28:09] [Client thread/INFO]: SmithsCore starting in Normal mode.
+[19:28:09] [Client thread/INFO]: Initializing event handlers.
+[19:28:09] [Forge Version Check/INFO]: [Forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
+[19:28:09] [Forge Version Check/INFO]: [Forge] Found status: OUTDATED Target: 12.18.1.2039
+[19:28:09] [Client thread/INFO]: SmithsCore Pre-Init completed after: 723 mS.
+[19:28:09] [Client thread/INFO]: Starting pre init
+[19:28:10] [Client thread/INFO]: Initialized material: Vanilla.Iron
+[19:28:10] [Client thread/INFO]: Initialized material: Vanilla.Obsidian
+[19:28:11] [Client thread/INFO]: Added model definition for: item.Armory.Leggings.Medieval add: armor/Armory.Leggings.Medieval.MLA-Armory in the Domain: armory
+[19:28:11] [Client thread/INFO]: Added model definition for: item.Armory.Shoes.Medieval add: armor/Armory.Shoes.Medieval.MLA-Armory in the Domain: armory
+[19:28:11] [Client thread/INFO]: Added model definition for: item.Armory.Chestplate.Medieval add: armor/Armory.Chestplate.Medieval.MLA-Armory in the Domain: armory
+[19:28:11] [Client thread/INFO]: Added model definition for: item.Armory.Helmet.Medieval add: armor/Armory.Helmet.Medieval.MLA-Armory in the Domain: armory
+[19:28:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.HeatedIngots add: heateditem/Armory.Items.Components.HeatedIngots.HI-Armory in the Domain: armory
+[19:28:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.ArmorComponent add: component/Armory.Items.ArmorComponent.AC-Armory in the Domain: armory
+[19:28:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.MetalChain add: materialized/Armory.Items.Components.MetalChain.MIM-Armory in the Domain: armory
+[19:28:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.MetalPlate add: materialized/Armory.Items.Components.MetalPlate.MIM-Armory in the Domain: armory
+[19:28:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.MetalRing add: materialized/Armory.Items.Components.MetalRing.MIM-Armory in the Domain: armory
+[19:28:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Components.MetalNugget add: materialized/Armory.Items.Components.MetalNugget.MIM-Armory in the Domain: armory
+[19:28:11] [Client thread/INFO]: Added: armory to the SmitshCore OBJ Loader.
+[19:28:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.Tongs add: Armory.Resources.MCM-smithscore in the Domain: armory
+[19:28:11] [Client thread/INFO]: Added model definition for: item.Armory.Items.ItemHammer add: Armory.Resources.MCM-smithscore in the Domain: armory
+[19:28:11] [Client thread/INFO]: Initialized material: _internal_gui
+[19:28:11] [Client thread/INFO]: Finished pre init after: 2192 ms!
+[19:28:12] [Client thread/INFO]: Applying holder lookups
+[19:28:12] [Client thread/INFO]: Holder lookups applied
+[19:28:12] [Client thread/INFO]: Injecting itemstacks
+[19:28:12] [Client thread/INFO]: Itemstack injection complete
+[19:28:20] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[19:28:21] [Thread-8/INFO]: Initializing LWJGL OpenAL
+[19:28:21] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[19:28:21] [Thread-8/INFO]: OpenAL initialized.
+[19:28:21] [Sound Library Loader/INFO]: Sound engine started
+[19:28:22] [Client thread/INFO]: OBJLoader.Parser: command '%s' (model: '%s') is not currently supported, skipping. Line: %d '%s'
+[19:28:22] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
+[19:28:22] [Client thread/INFO]: OBJLoader.Parser: command '%s' (model: '%s') is not currently supported, skipping. Line: %d '%s'
+[19:28:22] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
+[19:28:33] [Client thread/INFO]: Max texture size: 8192
+[19:28:33] [Client thread/INFO]: Created: 16x16 textures-atlas
+[19:28:36] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Tank#inventory for item "armory:Armory.Blocks.Tank", normal location exception: 
 net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:item/Armory.Blocks.Tank with loader VanillaLoader.INSTANCE, skipping
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
 	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:317) ~[ModelLoader.class:?]
@@ -134,7 +134,7 @@ Caused by: java.io.FileNotFoundException: armory:models/item/Armory.Blocks.Tank.
 	at net.minecraftforge.client.model.ModelLoader$VanillaLoader.loadModel(ModelLoader.java:868) ~[ModelLoader$VanillaLoader.class:?]
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
 	... 20 more
-[17:51:35] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Tank#inventory for item "armory:Armory.Blocks.Tank", blockstate location exception: 
+[19:28:36] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Tank#inventory for item "armory:Armory.Blocks.Tank", blockstate location exception: 
 net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:Armory.Blocks.Tank#inventory with loader VariantLoader.INSTANCE, skipping
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
 	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:325) ~[ModelLoader.class:?]
@@ -162,7 +162,7 @@ Caused by: net.minecraft.client.renderer.block.model.ModelBlockDefinition$Missin
 	at net.minecraftforge.client.model.ModelLoader$VariantLoader.loadModel(ModelLoader.java:1183) ~[ModelLoader$VariantLoader.class:?]
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
 	... 20 more
-[17:51:35] [Client thread/ERROR]: Exception loading model for variant armory:armory.Items.SmithingsGuide#inventory for item "armory:Armory.Items.SmithingsGuide", normal location exception: 
+[19:28:36] [Client thread/ERROR]: Exception loading model for variant armory:armory.Items.SmithingsGuide#inventory for item "armory:Armory.Items.SmithingsGuide", normal location exception: 
 net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:item/armory.Items.SmithingsGuide with loader VanillaLoader.INSTANCE, skipping
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
 	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:317) ~[ModelLoader.class:?]
@@ -193,7 +193,7 @@ Caused by: java.io.FileNotFoundException: armory:models/item/armory.Items.Smithi
 	at net.minecraftforge.client.model.ModelLoader$VanillaLoader.loadModel(ModelLoader.java:868) ~[ModelLoader$VanillaLoader.class:?]
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
 	... 20 more
-[17:51:35] [Client thread/ERROR]: Exception loading model for variant armory:armory.Items.SmithingsGuide#inventory for item "armory:Armory.Items.SmithingsGuide", blockstate location exception: 
+[19:28:36] [Client thread/ERROR]: Exception loading model for variant armory:armory.Items.SmithingsGuide#inventory for item "armory:Armory.Items.SmithingsGuide", blockstate location exception: 
 net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:armory.Items.SmithingsGuide#inventory with loader VariantLoader.INSTANCE, skipping
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
 	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:325) ~[ModelLoader.class:?]
@@ -222,7 +222,7 @@ Caused by: net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: 
 	at net.minecraftforge.client.model.ModelLoader$VariantLoader.loadModel(ModelLoader.java:1184) ~[ModelLoader$VariantLoader.class:?]
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
 	... 20 more
-[17:51:35] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Conduit#inventory for item "armory:Armory.Blocks.Conduit", normal location exception: 
+[19:28:36] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Conduit#inventory for item "armory:Armory.Blocks.Conduit", normal location exception: 
 net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:item/Armory.Blocks.Conduit with loader VanillaLoader.INSTANCE, skipping
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
 	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:317) ~[ModelLoader.class:?]
@@ -253,7 +253,7 @@ Caused by: java.io.FileNotFoundException: armory:models/item/Armory.Blocks.Condu
 	at net.minecraftforge.client.model.ModelLoader$VanillaLoader.loadModel(ModelLoader.java:868) ~[ModelLoader$VanillaLoader.class:?]
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
 	... 20 more
-[17:51:35] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Conduit#inventory for item "armory:Armory.Blocks.Conduit", blockstate location exception: 
+[19:28:36] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Conduit#inventory for item "armory:Armory.Blocks.Conduit", blockstate location exception: 
 net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:Armory.Blocks.Conduit#inventory with loader VariantLoader.INSTANCE, skipping
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
 	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:325) ~[ModelLoader.class:?]
@@ -281,33 +281,33 @@ Caused by: net.minecraft.client.renderer.block.model.ModelBlockDefinition$Missin
 	at net.minecraftforge.client.model.ModelLoader$VariantLoader.loadModel(ModelLoader.java:1183) ~[ModelLoader$VariantLoader.class:?]
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
 	... 20 more
-[17:51:36] [Client thread/INFO]: SmithsCore Init completed after: 7 ms.
-[17:51:36] [Client thread/INFO]: Starting init
-[17:51:36] [Client thread/INFO]: Finished init after: 0 ms!
-[17:51:36] [Client thread/INFO]: Injecting itemstacks
-[17:51:36] [Client thread/INFO]: Itemstack injection complete
-[17:51:36] [Client thread/INFO]: SmithsCore Post-Init completed after: 0 ms.
-[17:51:36] [Client thread/INFO]: Starting post init
-[17:51:36] [Client thread/INFO]: Finished post init after: 0 ms!
-[17:51:36] [Client thread/INFO]: Notifying requesters of API init completion.
-[17:51:36] [Client thread/INFO]: Started loading custom ArmorMaterial Values from Config.
-[17:51:36] [Client thread/INFO]: Loading of the custom ArmorMaterial Values has succesfully been performed!
-[17:51:36] [Client thread/INFO]: Forge Mod Loader has successfully loaded 6 mods
-[17:51:36] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
-[17:51:45] [Client thread/INFO]: SoundSystem shutting down...
-[17:51:45] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[17:51:45] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[17:51:45] [Thread-10/INFO]: Initializing LWJGL OpenAL
-[17:51:45] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[17:51:45] [Thread-10/INFO]: OpenAL initialized.
-[17:51:45] [Client thread/INFO]: OBJLoader.Parser: command 's' (model: 'armory:models/block/anvil/BlockModel.obj') is not currently supported, skipping. Line: 76 's off'
-[17:51:45] [Client thread/INFO]: OBJLoader.Parser: command 'l' (model: 'armory:models/block/anvil/BlockModel.obj') is not currently supported, skipping. Line: 94 'l 29 30'
-[17:51:46] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
-[17:51:46] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
-[17:51:46] [Sound Library Loader/INFO]: Sound engine started
-[17:51:59] [Client thread/INFO]: Max texture size: 8192
-[17:52:00] [Client thread/INFO]: Created: 2048x2048 textures-atlas
-[17:52:03] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Tank#inventory for item "armory:Armory.Blocks.Tank", normal location exception: 
+[19:28:38] [Client thread/INFO]: SmithsCore Init completed after: 7 ms.
+[19:28:38] [Client thread/INFO]: Starting init
+[19:28:38] [Client thread/INFO]: Finished init after: 0 ms!
+[19:28:38] [Client thread/INFO]: Injecting itemstacks
+[19:28:38] [Client thread/INFO]: Itemstack injection complete
+[19:28:38] [Client thread/INFO]: SmithsCore Post-Init completed after: 0 ms.
+[19:28:38] [Client thread/INFO]: Starting post init
+[19:28:38] [Client thread/INFO]: Finished post init after: 0 ms!
+[19:28:38] [Client thread/INFO]: Notifying requesters of API init completion.
+[19:28:39] [Client thread/INFO]: Started loading custom ArmorMaterial Values from Config.
+[19:28:39] [Client thread/INFO]: Loading of the custom ArmorMaterial Values has succesfully been performed!
+[19:28:39] [Client thread/INFO]: Forge Mod Loader has successfully loaded 6 mods
+[19:28:39] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
+[19:28:47] [Client thread/INFO]: SoundSystem shutting down...
+[19:28:47] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[19:28:47] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[19:28:47] [Thread-10/INFO]: Initializing LWJGL OpenAL
+[19:28:47] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[19:28:47] [Thread-10/INFO]: OpenAL initialized.
+[19:28:47] [Client thread/INFO]: OBJLoader.Parser: command 's' (model: 'armory:models/block/anvil/BlockModel.obj') is not currently supported, skipping. Line: 76 's off'
+[19:28:47] [Client thread/INFO]: OBJLoader.Parser: command 'l' (model: 'armory:models/block/anvil/BlockModel.obj') is not currently supported, skipping. Line: 94 'l 29 30'
+[19:28:47] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
+[19:28:47] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
+[19:28:47] [Sound Library Loader/INFO]: Sound engine started
+[19:28:59] [Client thread/INFO]: Max texture size: 8192
+[19:28:59] [Client thread/INFO]: Created: 2048x2048 textures-atlas
+[19:29:02] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Tank#inventory for item "armory:Armory.Blocks.Tank", normal location exception: 
 net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:item/Armory.Blocks.Tank with loader VanillaLoader.INSTANCE, skipping
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
 	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:317) ~[ModelLoader.class:?]
@@ -341,7 +341,7 @@ Caused by: java.io.FileNotFoundException: armory:models/item/Armory.Blocks.Tank.
 	at net.minecraftforge.client.model.ModelLoader$VanillaLoader.loadModel(ModelLoader.java:868) ~[ModelLoader$VanillaLoader.class:?]
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
 	... 23 more
-[17:52:03] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Tank#inventory for item "armory:Armory.Blocks.Tank", blockstate location exception: 
+[19:29:02] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Tank#inventory for item "armory:Armory.Blocks.Tank", blockstate location exception: 
 net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:Armory.Blocks.Tank#inventory with loader VariantLoader.INSTANCE, skipping
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
 	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:325) ~[ModelLoader.class:?]
@@ -372,7 +372,7 @@ Caused by: net.minecraft.client.renderer.block.model.ModelBlockDefinition$Missin
 	at net.minecraftforge.client.model.ModelLoader$VariantLoader.loadModel(ModelLoader.java:1183) ~[ModelLoader$VariantLoader.class:?]
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
 	... 23 more
-[17:52:03] [Client thread/ERROR]: Exception loading model for variant armory:armory.Items.SmithingsGuide#inventory for item "armory:Armory.Items.SmithingsGuide", normal location exception: 
+[19:29:02] [Client thread/ERROR]: Exception loading model for variant armory:armory.Items.SmithingsGuide#inventory for item "armory:Armory.Items.SmithingsGuide", normal location exception: 
 net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:item/armory.Items.SmithingsGuide with loader VanillaLoader.INSTANCE, skipping
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
 	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:317) ~[ModelLoader.class:?]
@@ -406,7 +406,7 @@ Caused by: java.io.FileNotFoundException: armory:models/item/armory.Items.Smithi
 	at net.minecraftforge.client.model.ModelLoader$VanillaLoader.loadModel(ModelLoader.java:868) ~[ModelLoader$VanillaLoader.class:?]
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
 	... 23 more
-[17:52:03] [Client thread/ERROR]: Exception loading model for variant armory:armory.Items.SmithingsGuide#inventory for item "armory:Armory.Items.SmithingsGuide", blockstate location exception: 
+[19:29:02] [Client thread/ERROR]: Exception loading model for variant armory:armory.Items.SmithingsGuide#inventory for item "armory:Armory.Items.SmithingsGuide", blockstate location exception: 
 net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:armory.Items.SmithingsGuide#inventory with loader VariantLoader.INSTANCE, skipping
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
 	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:325) ~[ModelLoader.class:?]
@@ -438,7 +438,7 @@ Caused by: net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: 
 	at net.minecraftforge.client.model.ModelLoader$VariantLoader.loadModel(ModelLoader.java:1184) ~[ModelLoader$VariantLoader.class:?]
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
 	... 23 more
-[17:52:03] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Conduit#inventory for item "armory:Armory.Blocks.Conduit", normal location exception: 
+[19:29:02] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Conduit#inventory for item "armory:Armory.Blocks.Conduit", normal location exception: 
 net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:item/Armory.Blocks.Conduit with loader VanillaLoader.INSTANCE, skipping
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
 	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:317) ~[ModelLoader.class:?]
@@ -472,7 +472,7 @@ Caused by: java.io.FileNotFoundException: armory:models/item/Armory.Blocks.Condu
 	at net.minecraftforge.client.model.ModelLoader$VanillaLoader.loadModel(ModelLoader.java:868) ~[ModelLoader$VanillaLoader.class:?]
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
 	... 23 more
-[17:52:03] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Conduit#inventory for item "armory:Armory.Blocks.Conduit", blockstate location exception: 
+[19:29:02] [Client thread/ERROR]: Exception loading model for variant armory:Armory.Blocks.Conduit#inventory for item "armory:Armory.Blocks.Conduit", blockstate location exception: 
 net.minecraftforge.client.model.ModelLoaderRegistry$LoaderException: Exception loading model armory:Armory.Blocks.Conduit#inventory with loader VariantLoader.INSTANCE, skipping
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:153) ~[ModelLoaderRegistry.class:?]
 	at net.minecraftforge.client.model.ModelLoader.loadItemModels(ModelLoader.java:325) ~[ModelLoader.class:?]
@@ -503,47 +503,46 @@ Caused by: net.minecraft.client.renderer.block.model.ModelBlockDefinition$Missin
 	at net.minecraftforge.client.model.ModelLoader$VariantLoader.loadModel(ModelLoader.java:1183) ~[ModelLoader$VariantLoader.class:?]
 	at net.minecraftforge.client.model.ModelLoaderRegistry.getModel(ModelLoaderRegistry.java:149) ~[ModelLoaderRegistry.class:?]
 	... 23 more
-[17:52:05] [Client thread/WARN]: Skipping bad option: lastServer:
-[17:52:07] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
-[17:52:57] [Server thread/INFO]: Starting integrated minecraft server version 1.10.2
-[17:52:57] [Server thread/INFO]: Generating keypair
-[17:52:57] [Server thread/INFO]: Injecting existing block and item data into this server instance
-[17:52:58] [Server thread/INFO]: Applying holder lookups
-[17:52:58] [Server thread/INFO]: Holder lookups applied
-[17:52:58] [Server thread/INFO]: Loading dimension 0 (New World) (net.minecraft.server.integrated.IntegratedServer@3074a33d)
-[17:52:58] [Server thread/INFO]: Loading dimension 1 (New World) (net.minecraft.server.integrated.IntegratedServer@3074a33d)
-[17:52:58] [Server thread/INFO]: Loading dimension -1 (New World) (net.minecraft.server.integrated.IntegratedServer@3074a33d)
-[17:52:58] [Server thread/INFO]: Preparing start region for level 0
-[17:52:59] [Server thread/INFO]: Adding player UUID to list
-[17:52:59] [Server thread/INFO]: Adding player UUID to list
-[17:53:00] [Server thread/INFO]: Changing view distance to 12, from 10
-[17:53:01] [Netty Local Client IO #0/INFO]: Server protocol version 2
-[17:53:01] [Netty Server IO #1/INFO]: Client protocol version 2
-[17:53:01] [Netty Server IO #1/INFO]: Client attempting to join with 6 mods : SmithsCore@1.10.2-1.2.0.0-232,FML@8.0.99.99,Forge@12.18.1.2014,mcp@9.19,Armory@@VERSION@,JEI@3.7.8.234
-[17:53:01] [Netty Local Client IO #0/INFO]: [Netty Local Client IO #0] Client side modded connection established
-[17:53:01] [Server thread/INFO]: [Server thread] Server side modded connection established
-[17:53:01] [Server thread/INFO]: Player502[local:E:1f50afc7] logged in with entity id 11 at (-822.510527184283, 5.0, 225.21090497004482)
-[17:53:01] [Server thread/INFO]: Player502 joined the game
-[17:53:01] [Server thread/INFO]: Updating player UUID list
-[17:53:01] [Server thread/INFO]: Started sending properties to the Client.
-[17:53:01] [Server thread/INFO]: Ended property sync.
-[17:53:02] [Server thread/INFO]: Saving and pausing game...
-[17:53:02] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:53:02] [Client thread/INFO]: Registering plugin: mezz.jei.plugins.vanilla.VanillaPlugin
-[17:53:02] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:53:02] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:53:03] [Client thread/INFO]: Registered  plugin: mezz.jei.plugins.vanilla.VanillaPlugin in 0 seconds
-[17:53:03] [Client thread/INFO]: Registering plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat
-[17:53:03] [Client thread/INFO]: Registered  plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat in 0 seconds
-[17:53:03] [Client thread/INFO]: Registering plugin: com.smithsmodding.armory.compatibility.JEICompatMod
-[17:53:03] [Client thread/INFO]: Registered  plugin: com.smithsmodding.armory.compatibility.JEICompatMod in 0 seconds
-[17:53:03] [Client thread/INFO]: Registering plugin: mezz.jei.plugins.jei.JEIInternalPlugin
-[17:53:03] [Client thread/INFO]: Registered  plugin: mezz.jei.plugins.jei.JEIInternalPlugin in 0 seconds
-[17:53:07] [Server thread/INFO]: Saving and pausing game...
-[17:53:07] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:53:08] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:53:08] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:53:08] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@13718b07[id=1c6ab893-c8be-3ad8-a14c-5cafcb89dfd5,name=Player502,properties={},legacy=false]
+[19:29:02] [Client thread/WARN]: Skipping bad option: lastServer:
+[19:29:05] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[19:30:49] [Client thread/INFO]: Deleting level Copy of New World
+[19:30:49] [Client thread/INFO]: Attempt 1...
+[19:30:57] [Server thread/INFO]: Starting integrated minecraft server version 1.10.2
+[19:30:57] [Server thread/INFO]: Generating keypair
+[19:30:57] [Server thread/INFO]: Injecting existing block and item data into this server instance
+[19:30:58] [Server thread/INFO]: Applying holder lookups
+[19:30:58] [Server thread/INFO]: Holder lookups applied
+[19:30:58] [Server thread/INFO]: Loading dimension 0 (Copy of New World) (net.minecraft.server.integrated.IntegratedServer@61e004b3)
+[19:31:01] [Server thread/INFO]: Loading dimension 1 (Copy of New World) (net.minecraft.server.integrated.IntegratedServer@61e004b3)
+[19:31:01] [Server thread/INFO]: Loading dimension -1 (Copy of New World) (net.minecraft.server.integrated.IntegratedServer@61e004b3)
+[19:31:01] [Server thread/INFO]: Preparing start region for level 0
+[19:31:02] [Server thread/INFO]: Preparing spawn area: 90%
+[19:31:03] [Server thread/INFO]: Changing view distance to 12, from 10
+[19:31:04] [Netty Local Client IO #0/INFO]: Server protocol version 2
+[19:31:04] [Netty Server IO #1/INFO]: Client protocol version 2
+[19:31:04] [Netty Server IO #1/INFO]: Client attempting to join with 6 mods : SmithsCore@1.10.2-1.2.0.0-232,FML@8.0.99.99,Forge@12.18.1.2014,mcp@9.19,Armory@@VERSION@,JEI@3.7.8.234
+[19:31:04] [Netty Local Client IO #0/INFO]: [Netty Local Client IO #0] Client side modded connection established
+[19:31:04] [Server thread/INFO]: [Server thread] Server side modded connection established
+[19:31:04] [Server thread/INFO]: Player209[local:E:7a22f8ae] logged in with entity id 0 at (-824.5, 4.0, 223.5)
+[19:31:04] [Server thread/INFO]: Player209 joined the game
+[19:31:05] [Server thread/INFO]: Updating player UUID list
+[19:31:05] [Server thread/INFO]: Started sending properties to the Client.
+[19:31:05] [Server thread/INFO]: Ended property sync.
+[19:31:06] [Server thread/INFO]: Saving and pausing game...
+[19:31:07] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[19:31:07] [Client thread/INFO]: Registering plugin: mezz.jei.plugins.vanilla.VanillaPlugin
+[19:31:07] [Client thread/INFO]: Registered  plugin: mezz.jei.plugins.vanilla.VanillaPlugin in 0 seconds
+[19:31:07] [Client thread/INFO]: Registering plugin: com.smithsmodding.armory.compatibility.JEICompatMod
+[19:31:07] [Client thread/INFO]: Registered  plugin: com.smithsmodding.armory.compatibility.JEICompatMod in 0 seconds
+[19:31:07] [Client thread/INFO]: Registering plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat
+[19:31:07] [Client thread/INFO]: Registered  plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat in 0 seconds
+[19:31:07] [Client thread/INFO]: Registering plugin: mezz.jei.plugins.jei.JEIInternalPlugin
+[19:31:07] [Client thread/INFO]: Registered  plugin: mezz.jei.plugins.jei.JEIInternalPlugin in 0 seconds
+[19:31:10] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[19:31:10] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[19:31:10] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 5254ms behind, skipping 105 tick(s)
+[19:31:10] [Server thread/INFO]: Saving and pausing game...
+[19:31:11] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@37a38777[id=aa672712-7b9a-35e7-9d78-80bd1544826b,name=Player209,properties={},legacy=false]
 com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
 	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:65) ~[YggdrasilAuthenticationService.class:?]
 	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:175) [YggdrasilMinecraftSessionService.class:?]
@@ -565,26 +564,230 @@ com.mojang.authlib.exceptions.AuthenticationException: The client has sent too m
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_73]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_73]
 	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_73]
-[17:54:51] [Server thread/INFO]: Saving and pausing game...
-[17:54:51] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:54:51] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:54:51] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:56:48] [Server thread/INFO]: Saving and pausing game...
-[17:56:48] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:56:48] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:56:48] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[18:00:00] [Client thread/INFO]: Stopping!
-[18:00:00] [Client thread/INFO]: SoundSystem shutting down...
-[18:00:00] [Server thread/INFO]: Stopping server
-[18:00:01] [Server thread/INFO]: Saving players
-[18:00:01] [Server thread/INFO]: Saving worlds
-[18:00:01] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[18:00:01] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[18:00:01] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[18:00:01] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[18:00:01] [Server thread/INFO]: Unloading dimension 0
-[18:00:01] [Server thread/INFO]: Unloading dimension -1
-[18:00:01] [Server thread/INFO]: Unloading dimension 1
-[18:00:01] [Client Shutdown Thread/INFO]: Stopping server
-[18:00:01] [Client Shutdown Thread/INFO]: Saving players
-[18:00:01] [Client Shutdown Thread/INFO]: Saving worlds
+[19:31:11] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[19:31:11] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[19:31:11] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[19:32:12] [Server thread/INFO]: [Player209: Set the time to 1000]
+[19:32:12] [Client thread/INFO]: [CHAT] Set the time to 1000
+[19:32:21] [Client thread/INFO]: [CHAT] doDaylightCycle, doEntityDrops, doFireTick, doMobLoot, doMobSpawning, doTileDrops
+[19:32:22] [Server thread/INFO]: [Player209: Game rule doDaylightCycle has been updated to false]
+[19:32:22] [Client thread/INFO]: [CHAT] Game rule doDaylightCycle has been updated to false
+[19:32:32] [Server thread/INFO]: [Player209: Set game difficulty to Peaceful]
+[19:32:32] [Client thread/INFO]: [CHAT] Set game difficulty to Peaceful
+[19:32:33] [Server thread/INFO]: Saving and pausing game...
+[19:32:33] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[19:32:34] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[19:32:34] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[19:32:38] [Server thread/INFO]: Player209 has just earned the achievement [Taking Inventory]
+[19:32:38] [Client thread/INFO]: [CHAT] Player209 has just earned the achievement [Taking Inventory]
+[19:32:46] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2385ms behind, skipping 47 tick(s)
+[19:32:55] [Server thread/INFO]: Saving and pausing game...
+[19:32:56] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[19:32:58] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[19:32:59] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[19:35:12] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 5160ms behind, skipping 103 tick(s)
+[19:35:16] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 1872.197678 ms
+[19:35:16] [Client thread/WARN]: Something's taking too long! 'root' took aprox 1933.86658 ms
+[19:35:18] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 1364.308251 ms
+[19:35:18] [Client thread/WARN]: Something's taking too long! 'root' took aprox 1388.272959 ms
+[19:35:19] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 1510.462487 ms
+[19:35:19] [Client thread/WARN]: Something's taking too long! 'root' took aprox 1545.913593 ms
+[19:35:20] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 922.398294 ms
+[19:35:20] [Client thread/WARN]: Something's taking too long! 'root' took aprox 940.529849 ms
+[19:35:22] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 1815.418916 ms
+[19:35:22] [Client thread/WARN]: Something's taking too long! 'root' took aprox 1841.491215 ms
+[19:35:23] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 805.42552 ms
+[19:35:23] [Client thread/WARN]: Something's taking too long! 'root' took aprox 821.156078 ms
+[19:35:23] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 531.656115 ms
+[19:35:24] [Client thread/WARN]: Something's taking too long! 'root' took aprox 577.273281 ms
+[19:35:24] [Server thread/INFO]: Saving and pausing game...
+[19:35:24] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[19:35:25] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 1250.700619 ms
+[19:35:25] [Client thread/WARN]: Something's taking too long! 'root' took aprox 1266.719754 ms
+[19:35:25] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 205.635253 ms
+[19:35:25] [Client thread/WARN]: Something's taking too long! 'root' took aprox 221.436446 ms
+[19:35:25] [Netty Local Client IO #0/INFO]: Disconnect: Clearing cached connected player list.
+[19:35:25] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[19:35:25] [Netty Local Client IO #0/INFO]: Started loading custom ArmorMaterial Values from Config.
+[19:35:25] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[19:35:25] [Netty Local Client IO #0/INFO]: Loading of the custom ArmorMaterial Values has succesfully been performed!
+[19:35:25] [Server thread/INFO]: Stopping server
+[19:35:25] [Server thread/INFO]: Saving players
+[19:35:25] [Server thread/INFO]: Saving worlds
+[19:35:25] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[19:35:25] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[19:35:25] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[19:35:25] [Server thread/INFO]: Unloading dimension 0
+[19:35:25] [Server thread/INFO]: Unloading dimension -1
+[19:35:25] [Server thread/INFO]: Unloading dimension 1
+[19:35:27] [Client thread/WARN]: Something's taking too long! 'root.tick.textures' took aprox 2201.517876 ms
+[19:35:27] [Client thread/WARN]: Something's taking too long! 'root.tick' took aprox 2202.697547 ms
+[19:35:27] [Client thread/WARN]: Something's taking too long! 'root' took aprox 2253.955279 ms
+[19:35:27] [Server thread/INFO]: Applying holder lookups
+[19:35:27] [Server thread/INFO]: Holder lookups applied
+[19:35:30] [Client thread/INFO]: Deleting level Copy of New World
+[19:35:30] [Client thread/INFO]: Attempt 1...
+[19:35:35] [Server thread/INFO]: Starting integrated minecraft server version 1.10.2
+[19:35:35] [Server thread/INFO]: Generating keypair
+[19:35:35] [Server thread/INFO]: Injecting existing block and item data into this server instance
+[19:35:35] [Server thread/INFO]: Applying holder lookups
+[19:35:35] [Server thread/INFO]: Holder lookups applied
+[19:35:35] [Server thread/INFO]: Loading dimension 0 (Copy of New World) (net.minecraft.server.integrated.IntegratedServer@5b8bfe28)
+[19:35:37] [Server thread/INFO]: Loading dimension 1 (Copy of New World) (net.minecraft.server.integrated.IntegratedServer@5b8bfe28)
+[19:35:37] [Server thread/INFO]: Loading dimension -1 (Copy of New World) (net.minecraft.server.integrated.IntegratedServer@5b8bfe28)
+[19:35:37] [Server thread/INFO]: Preparing start region for level 0
+[19:35:38] [Server thread/INFO]: Changing view distance to 12, from 10
+[19:35:38] [Netty Local Client IO #1/INFO]: Server protocol version 2
+[19:35:38] [Netty Server IO #3/INFO]: Client protocol version 2
+[19:35:38] [Netty Server IO #3/INFO]: Client attempting to join with 6 mods : SmithsCore@1.10.2-1.2.0.0-232,FML@8.0.99.99,Forge@12.18.1.2014,mcp@9.19,Armory@@VERSION@,JEI@3.7.8.234
+[19:35:38] [Netty Local Client IO #1/INFO]: [Netty Local Client IO #1] Client side modded connection established
+[19:35:38] [Server thread/INFO]: [Server thread] Server side modded connection established
+[19:35:38] [Server thread/INFO]: Player209[local:E:36d41304] logged in with entity id 155151 at (-828.5, 4.0, 221.5)
+[19:35:38] [Server thread/INFO]: Player209 joined the game
+[19:35:38] [Server thread/INFO]: Updating player UUID list
+[19:35:38] [Server thread/INFO]: Started sending properties to the Client.
+[19:35:38] [Server thread/INFO]: Ended property sync.
+[19:35:39] [Server thread/INFO]: Saving and pausing game...
+[19:35:39] [Client thread/INFO]: Registering plugin: mezz.jei.plugins.vanilla.VanillaPlugin
+[19:35:39] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[19:35:39] [Client thread/INFO]: Registered  plugin: mezz.jei.plugins.vanilla.VanillaPlugin in 0 seconds
+[19:35:39] [Client thread/INFO]: Registering plugin: com.smithsmodding.armory.compatibility.JEICompatMod
+[19:35:39] [Client thread/INFO]: Registered  plugin: com.smithsmodding.armory.compatibility.JEICompatMod in 0 seconds
+[19:35:39] [Client thread/INFO]: Registering plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat
+[19:35:39] [Client thread/INFO]: Registered  plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat in 0 seconds
+[19:35:39] [Client thread/INFO]: Registering plugin: mezz.jei.plugins.jei.JEIInternalPlugin
+[19:35:39] [Client thread/INFO]: Registered  plugin: mezz.jei.plugins.jei.JEIInternalPlugin in 0 seconds
+[19:35:43] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[19:35:43] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[19:35:43] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 4365ms behind, skipping 87 tick(s)
+[19:38:17] [Server thread/INFO]: Player209 has just earned the achievement [Taking Inventory]
+[19:38:17] [Client thread/WARN]: Something's taking too long! 'root' took aprox 112.803476 ms
+[19:38:17] [Client thread/INFO]: [CHAT] Player209 has just earned the achievement [Taking Inventory]
+[19:38:25] [Client thread/WARN]: Something's taking too long! 'root' took aprox 102.147798 ms
+[19:38:25] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 245.470582 ms
+[19:38:25] [Client thread/WARN]: Something's taking too long! 'root' took aprox 272.377224 ms
+[19:38:25] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 209.541933 ms
+[19:38:25] [Client thread/WARN]: Something's taking too long! 'root' took aprox 260.634849 ms
+[19:38:26] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 416.481224 ms
+[19:38:26] [Client thread/WARN]: Something's taking too long! 'root' took aprox 446.850809 ms
+[19:38:26] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 302.658667 ms
+[19:38:26] [Client thread/WARN]: Something's taking too long! 'root' took aprox 348.097736 ms
+[19:38:27] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 625.265486 ms
+[19:38:27] [Client thread/WARN]: Something's taking too long! 'root' took aprox 659.663099 ms
+[19:38:27] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 342.040601 ms
+[19:38:27] [Client thread/WARN]: Something's taking too long! 'root' took aprox 380.493409 ms
+[19:38:28] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2095ms behind, skipping 41 tick(s)
+[19:38:28] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 699.739314 ms
+[19:38:28] [Client thread/WARN]: Something's taking too long! 'root' took aprox 739.213014 ms
+[19:38:29] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 506.112072 ms
+[19:38:29] [Client thread/WARN]: Something's taking too long! 'root' took aprox 579.863245 ms
+[19:38:29] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 482.1045 ms
+[19:38:29] [Client thread/WARN]: Something's taking too long! 'root' took aprox 537.815278 ms
+[19:38:30] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 806.374571 ms
+[19:38:30] [Client thread/WARN]: Something's taking too long! 'root' took aprox 855.106333 ms
+[19:38:36] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 5692.120353 ms
+[19:38:36] [Client thread/WARN]: Something's taking too long! 'root' took aprox 5755.262939 ms
+[19:38:37] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 677.525999 ms
+[19:38:37] [Client thread/WARN]: Something's taking too long! 'root' took aprox 701.3597 ms
+[19:38:37] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 728.76079 ms
+[19:38:38] [Client thread/WARN]: Something's taking too long! 'root.tick.level' took aprox 127.760061 ms
+[19:38:38] [Client thread/WARN]: Something's taking too long! 'root.tick' took aprox 251.135298 ms
+[19:38:38] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.terrain_setup.rebuildNear.build near' took aprox 115.076485 ms
+[19:38:38] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.terrain_setup.rebuildNear' took aprox 115.814232 ms
+[19:38:38] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.terrain_setup' took aprox 117.55959 ms
+[19:38:38] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 133.454359 ms
+[19:38:38] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 137.787265 ms
+[19:38:38] [Client thread/WARN]: Something's taking too long! 'root' took aprox 1119.581452 ms
+[19:38:38] [Client thread/WARN]: Something's taking too long! 'root' took aprox 139.63284 ms
+[19:38:41] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 2552.172973 ms
+[19:38:41] [Client thread/WARN]: Something's taking too long! 'root' took aprox 2579.180437 ms
+[19:38:41] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 353.676118 ms
+[19:38:41] [Client thread/WARN]: Something's taking too long! 'root' took aprox 375.922033 ms
+[19:38:41] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 297.463647 ms
+[19:38:41] [Client thread/WARN]: Something's taking too long! 'root' took aprox 331.456767 ms
+[19:38:42] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 342.746352 ms
+[19:38:42] [Client thread/WARN]: Something's taking too long! 'root' took aprox 378.416005 ms
+[19:38:42] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 256.013968 ms
+[19:38:42] [Client thread/WARN]: Something's taking too long! 'root' took aprox 323.247367 ms
+[19:38:43] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 581.316402 ms
+[19:38:43] [Client thread/WARN]: Something's taking too long! 'root' took aprox 617.158719 ms
+[19:38:43] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 657.55068 ms
+[19:38:43] [Client thread/WARN]: Something's taking too long! 'root' took aprox 691.447204 ms
+[19:38:44] [Client thread/WARN]: Something's taking too long! 'root.scheduledExecutables' took aprox 350.764372 ms
+[19:38:44] [Client thread/WARN]: Something's taking too long! 'root' took aprox 427.305943 ms
+[19:38:45] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.entities' took aprox 139.105189 ms
+[19:38:45] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities' took aprox 139.512701 ms
+[19:38:45] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 155.687596 ms
+[19:38:45] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 161.05347 ms
+[19:38:45] [Client thread/WARN]: Something's taking too long! 'root' took aprox 195.609861 ms
+[19:38:45] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.entities' took aprox 269.979848 ms
+[19:38:45] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities' took aprox 270.631866 ms
+[19:38:45] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 288.94152 ms
+[19:38:45] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 293.996477 ms
+[19:38:45] [Client thread/WARN]: Something's taking too long! 'root' took aprox 313.02335 ms
+[19:38:46] [Client thread/WARN]: Something's taking too long! 'root' took aprox 124.240368 ms
+[19:38:46] [Client thread/WARN]: Something's taking too long! 'root' took aprox 144.445102 ms
+[19:38:49] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2512ms behind, skipping 50 tick(s)
+[19:39:17] [Server thread/INFO]: Saving and pausing game...
+[19:39:17] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[19:39:17] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[19:39:17] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[19:40:07] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.terrain' took aprox 108.941471 ms
+[19:40:07] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 139.928061 ms
+[19:40:07] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 154.053323 ms
+[19:40:07] [Client thread/WARN]: Something's taking too long! 'root' took aprox 156.359537 ms
+[19:40:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 114.379791 ms
+[19:40:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.gui.forgeHudText' took aprox 190.461931 ms
+[19:40:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.gui' took aprox 197.41378 ms
+[19:40:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 323.91146 ms
+[19:40:09] [Client thread/WARN]: Something's taking too long! 'root' took aprox 334.638378 ms
+[19:40:10] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.clouds' took aprox 124.397939 ms
+[19:40:10] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 231.948437 ms
+[19:40:10] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 270.971157 ms
+[19:40:10] [Client thread/WARN]: Something's taking too long! 'root' took aprox 272.566793 ms
+[19:40:10] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.sky' took aprox 337.23317 ms
+[19:40:10] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 374.118718 ms
+[19:40:10] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 437.254663 ms
+[19:40:10] [Client thread/WARN]: Something's taking too long! 'root' took aprox 438.692123 ms
+[19:40:10] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 110.232832 ms
+[19:40:10] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 116.500059 ms
+[19:40:10] [Client thread/WARN]: Something's taking too long! 'root' took aprox 122.597642 ms
+[19:40:11] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 119.540399 ms
+[19:40:12] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 128.153084 ms
+[19:40:12] [Client thread/WARN]: Something's taking too long! 'root' took aprox 129.248838 ms
+[19:40:12] [Client thread/WARN]: Something's taking too long! 'root.display_update' took aprox 483.311941 ms
+[19:40:12] [Client thread/WARN]: Something's taking too long! 'root' took aprox 502.218675 ms
+[19:40:14] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 120.829947 ms
+[19:40:14] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 126.545979 ms
+[19:40:14] [Client thread/WARN]: Something's taking too long! 'root' took aprox 127.557212 ms
+[19:40:14] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 121.589428 ms
+[19:40:14] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 127.181094 ms
+[19:40:14] [Client thread/WARN]: Something's taking too long! 'root' took aprox 128.468227 ms
+[19:40:14] [Client thread/WARN]: Something's taking too long! 'root.display_update' took aprox 102.051203 ms
+[19:40:14] [Client thread/WARN]: Something's taking too long! 'root' took aprox 107.162909 ms
+[19:40:14] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 101.300173 ms
+[19:40:14] [Client thread/WARN]: Something's taking too long! 'root' took aprox 102.617493 ms
+[19:40:15] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 100.190534 ms
+[19:40:15] [Client thread/WARN]: Something's taking too long! 'root' took aprox 101.716138 ms
+[19:40:15] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 119.934025 ms
+[19:40:15] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 182.110658 ms
+[19:40:15] [Client thread/WARN]: Something's taking too long! 'root' took aprox 186.663921 ms
+[19:40:15] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.terrain.render_Solid' took aprox 142.161225 ms
+[19:40:15] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.terrain' took aprox 150.043407 ms
+[19:40:15] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 192.837574 ms
+[19:40:15] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 198.374903 ms
+[19:40:15] [Client thread/WARN]: Something's taking too long! 'root' took aprox 199.49541 ms
+[19:40:19] [Client thread/WARN]: Something's taking too long! 'root.display_update' took aprox 170.250557 ms
+[19:40:19] [Client thread/WARN]: Something's taking too long! 'root' took aprox 344.147588 ms
+[19:40:19] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.entities' took aprox 143.435076 ms
+[19:40:19] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities' took aprox 143.809384 ms
+[19:40:19] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 190.223461 ms
+[19:40:19] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 197.809821 ms
+[19:40:19] [Client thread/WARN]: Something's taking too long! 'root' took aprox 272.297533 ms
+[19:40:20] [Client thread/WARN]: Something's taking too long! 'root' took aprox 464.701032 ms
+[19:40:20] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.terrain.render_Solid' took aprox 108.346203 ms
+[19:40:20] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.terrain' took aprox 146.311203 ms
+[19:40:20] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 312.024796 ms
+[19:40:20] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 340.639365 ms
+[19:40:20] [Client thread/WARN]: Something's taking too long! 'root' took aprox 342.137197 ms
+[19:40:21] [Client thread/WARN]: Something's taking too long! 'root' took aprox 142.680425 ms

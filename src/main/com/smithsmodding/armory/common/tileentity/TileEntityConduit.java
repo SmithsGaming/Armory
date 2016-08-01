@@ -9,6 +9,9 @@ import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityConduitG
 import com.smithsmodding.armory.common.tileentity.state.TileEntityConduitState;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -47,6 +50,21 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
 
     public ConduitFluidTank getConduit() {
         return conduit;
+    }
+
+    @Override
+    protected NBTBase writeFluidsToCompound() {
+        return conduit.serializeNBT();
+    }
+
+    @Override
+    protected void readFluidsFromCompound(NBTBase inventoryCompound) {
+        if (inventoryCompound instanceof NBTTagList) {
+            super.readFluidsFromCompound(inventoryCompound);
+            return;
+        }
+
+        conduit.deserializeNBT((NBTTagCompound) inventoryCompound);
     }
 
     @Override
@@ -101,7 +119,7 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
             if (simmedFill < simmedDrain.amount)
                 simmedDrain.amount = simmedFill;
 
-            requester.fillNext(simmedDrain, true, facing.getOpposite());
+            requester.fillNext(simmedDrain, true, facing);
             sourceTank.drainNext(simmedFill, true, facing.getOpposite());
         }
     }
