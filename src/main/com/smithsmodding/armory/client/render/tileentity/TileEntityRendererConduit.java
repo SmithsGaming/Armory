@@ -21,6 +21,10 @@ public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEnt
 
         double height = te.getConduit().getFluidAmount() / ((double) te.getConduit().getCapacity()) * 0.04995;
 
+        FluidStack stackToRender = te.getConduit().getFluid();
+        if (stackToRender == null)
+            return;
+
         for (EnumFacing facing : EnumFacing.values()) {
             if (facing == EnumFacing.UP || facing == EnumFacing.DOWN)
                 continue;
@@ -29,11 +33,6 @@ public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEnt
 
             if (!(neighbor instanceof IFluidContainingEntity) && !(neighbor instanceof TileEntityConduit))
                 continue;
-
-            FluidStack stackToRender = te.getConduit().getFluid();
-            if (stackToRender == null)
-                continue;
-
 
             switch (facing) {
                 case NORTH: {
@@ -54,10 +53,6 @@ public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEnt
                 }
             }
         }
-
-        FluidStack stackToRender = te.getConduit().getFluid();
-        if (stackToRender == null)
-            return;
 
         renderCenter(stackToRender, te.getPos(), x, y, z, height);
     }

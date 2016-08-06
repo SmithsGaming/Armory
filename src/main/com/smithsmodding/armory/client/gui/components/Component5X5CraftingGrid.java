@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.client.gui.components;
 
-import com.smithsmodding.smithscore.client.gui.GuiContainerSmithsCore;
 import com.smithsmodding.smithscore.client.gui.components.core.ComponentOrientation;
 import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentBorder;
@@ -9,6 +8,7 @@ import com.smithsmodding.smithscore.client.gui.components.implementations.Compon
 import com.smithsmodding.smithscore.client.gui.components.implementations.CoreComponent;
 import com.smithsmodding.smithscore.client.gui.hosts.IGUIBasedComponentHost;
 import com.smithsmodding.smithscore.client.gui.management.IGUIManager;
+import com.smithsmodding.smithscore.client.gui.management.IRenderManager;
 import com.smithsmodding.smithscore.client.gui.state.CoreComponentState;
 import com.smithsmodding.smithscore.client.gui.state.IGUIComponentState;
 import com.smithsmodding.smithscore.client.gui.state.SlotComponentState;
@@ -16,10 +16,12 @@ import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
 import com.smithsmodding.smithscore.util.client.Textures;
 import com.smithsmodding.smithscore.util.client.color.Colors;
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate2D;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.inventory.Slot;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * Author Marc (Created on: 16.06.2016)
@@ -87,7 +89,7 @@ public class Component5X5CraftingGrid extends CoreComponent implements IGUIBased
     }
 
     @Override
-    public GuiContainerSmithsCore getRootGuiObject() {
+    public IGUIBasedComponentHost getRootGuiObject() {
         return parent.getRootGuiObject();
     }
 
@@ -104,6 +106,21 @@ public class Component5X5CraftingGrid extends CoreComponent implements IGUIBased
     @Override
     public IGUIComponent getComponentByID(String uniqueUIID) {
         return componentHashMap.get(uniqueUIID);
+    }
+
+    @Override
+    public void drawHoveringText(List<String> textLines, int x, int y, FontRenderer font) {
+        getComponentHost().drawHoveringText(textLines, x, y, font);
+    }
+
+    @Override
+    public IRenderManager getRenderManager() {
+        return getComponentHost().getRenderManager();
+    }
+
+    @Override
+    public int getDefaultDisplayVerticalOffset() {
+        return getComponentHost().getDefaultDisplayVerticalOffset();
     }
 
     @Override

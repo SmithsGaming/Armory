@@ -16,7 +16,7 @@ public class TileEntityRendererMoltenMetalTank extends TileEntitySpecialRenderer
         if (te == null)
             return;
 
-        double height = te.getTankContentsVolumeOnSide(null) / ((double) te.getTotalTankSizeOnSide(null));
+        double height = te.getTankContentsVolumeOnSide(null) / ((double) te.getTotalTankSizeOnSide(null)) * 0.7;
         FluidStack stack = te.getTankForSide(null).getFluid();
         if (stack == null)
             return;

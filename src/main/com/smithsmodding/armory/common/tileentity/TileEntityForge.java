@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.common.tileentity;
 
-import com.smithsmodding.armory.api.fluid.IMoltenMetalRequester;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModLogger;
@@ -64,8 +63,6 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         super.update();
 
         meltIngots();
-
-        outputLiquids();
 
         markDirty();
     }
@@ -163,28 +160,6 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         fluidCompound.setString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL, material.getUniqueID());
 
         getTankForSide(null).fill(HeatableItemRegistry.getInstance().getMoltenStack(stack), true);
-    }
-
-    private void outputLiquids() {
-        if (getStructure().getData().getMoltenMetals().getFluidStacks().size() == 0)
-            return;
-
-        for (EnumFacing facing : EnumFacing.HORIZONTALS) {
-            TileEntity entity = getWorld().getTileEntity(pos.offset(facing));
-
-            if (entity == null)
-                continue;
-
-            if (entity.hasCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite())) {
-                IMoltenMetalRequester requester = entity.getCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite());
-
-                FluidStack outputStack = getStructure().getData().getMoltenMetals().getFluidStacks().get(0);
-                outputStack.amount -= requester.fillNext(outputStack, true, facing.getOpposite());
-
-                if (outputStack.amount <= 0)
-                    getStructure().getData().getMoltenMetals().getFluidStacks().remove(0);
-            }
-        }
     }
 
     @Override

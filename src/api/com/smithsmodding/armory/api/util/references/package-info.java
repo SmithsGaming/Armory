@@ -1,7 +1,7 @@
 /**
  * Author Orion (Created on: 07.07.2016)
  */
-@API(owner = "armory", apiVersion = References.General.API_VERSION, provides = "armory-api|references")
+@API(owner = "armory", apiVersion = References.General.API_VERSION, provides = "armory-api|util|references")
 package com.smithsmodding.armory.api.util.references;
 
 import net.minecraftforge.fml.common.API;

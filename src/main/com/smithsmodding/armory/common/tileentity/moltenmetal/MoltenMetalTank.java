@@ -1,7 +1,6 @@
 package com.smithsmodding.armory.common.tileentity.moltenmetal;
 
 import com.smithsmodding.armory.api.fluid.IMoltenMetalProvider;
-import com.smithsmodding.armory.api.fluid.IMoltenMetalRequester;
 import com.smithsmodding.smithscore.common.fluid.MultiFluidTank;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidStack;
@@ -12,7 +11,7 @@ import java.util.List;
 /**
  * Author Orion (Created on: 26.07.2016)
  */
-public class MoltenMetalTank extends MultiFluidTank implements IMoltenMetalProvider, IMoltenMetalRequester {
+public class MoltenMetalTank extends MultiFluidTank implements IMoltenMetalProvider {
 
     private final Integer maxLiquidCount;
 
@@ -32,21 +31,21 @@ public class MoltenMetalTank extends MultiFluidTank implements IMoltenMetalProvi
     }
 
     @Override
-    public boolean canDrain(@Nonnull EnumFacing extractionDirection) {
-        return drainNext(Integer.MAX_VALUE, false, extractionDirection) != null;
+    public boolean canDrain() {
+        return drainNext(Integer.MAX_VALUE, false) != null;
     }
 
     @Override
-    public FluidStack drainNext(int maxAmount, boolean doDrain, @Nonnull EnumFacing extractionDirection) {
+    public FluidStack drainNext(int maxAmount, boolean doDrain) {
         return drain(maxAmount, doDrain);
     }
 
-    @Override
+    //@Override
     public boolean canFill(FluidStack fluidStack, @Nonnull EnumFacing insertionDirection) {
         return fillNext(fluidStack, false, insertionDirection) > 0;
     }
 
-    @Override
+    //@Override
     public int fillNext(FluidStack source, boolean doFill, @Nonnull EnumFacing insertionDirection) {
         return fill(source, doFill);
     }

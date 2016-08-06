@@ -4,48 +4,32 @@ import com.smithsmodding.armory.api.fluid.IMoltenMetalProvider;
 import com.smithsmodding.armory.api.fluid.IMoltenMetalRequester;
 import com.smithsmodding.armory.api.util.references.References;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
  * Author Orion (Created on: 25.07.2016)
  */
-public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalRequester, IFluidTank, ITickable, INBTSerializable<NBTTagCompound> {
+public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalRequester, IFluidTank, INBTSerializable<NBTTagCompound> {
 
-    private final IConduitTankProvider provider;
-    private final int maxContents;
-    private final int maxBufferTransferRate;
-
-    FluidStack inputBuffer;
     FluidStack contents;
-    FluidStack outputBuffer;
+    private int maxContents;
 
-    public ConduitFluidTank(IConduitTankProvider provider, int maxContents, int maxBufferTransferRate) {
-        this.provider = provider;
+    public ConduitFluidTank(int maxContents) {
         this.maxContents = maxContents;
-        this.maxBufferTransferRate = maxBufferTransferRate;
     }
 
     @Override
-    public boolean canFill(FluidStack fluidStack, @Nonnull EnumFacing insertionDirection) {
-        if (!provider.canInsertFrom(insertionDirection))
-            return false;
-
-        if (inputBuffer == null && contents == null && outputBuffer == null)
+    public boolean canFill(FluidStack fluidStack) {
+        if (contents == null)
             return true;
 
-        if (inputBuffer != null) {
-            if (inputBuffer.amount > 0)
-                return false;
-
-            return inputBuffer.amount + contents.amount + outputBuffer.amount < maxContents;
+        if (contents != null) {
+            return contents.amount < maxContents;
         }
 
         return false;
@@ -59,15 +43,11 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
 
     public void setFluid(FluidStack stack) {
         if (stack == null) {
-            this.inputBuffer = null;
             this.contents = null;
-            this.outputBuffer = null;
             return;
         }
 
-        this.inputBuffer = new FluidStack(stack, 0);
         this.contents = stack.copy();
-        this.outputBuffer = new FluidStack(stack, 0);
     }
 
     @Override
@@ -96,13 +76,11 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
         if (!getFluid().isFluidEqual(resource))
             return 0;
 
-        if (inputBuffer == null && doFill) {
-            inputBuffer = new FluidStack(resource, 0);
+        if (contents == null && doFill) {
             contents = new FluidStack(resource, 0);
-            outputBuffer = new FluidStack(resource, 0);
         }
 
-        int usage = Math.min(resource.amount, maxContents - contents.amount - inputBuffer.amount - outputBuffer.amount);
+        int usage = Math.min(resource.amount, maxContents - contents.amount);
 
         if (doFill)
             contents.amount += usage;
@@ -111,23 +89,28 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
     }
 
     @Override
-    public int fillNext(FluidStack source, boolean doFill, @Nonnull EnumFacing insertionDirection) {
-        if (!canFill(source, insertionDirection))
+    public int fillNext(FluidStack source, boolean doFill) {
+        if (!canFill(source))
             return 0;
 
-        if (inputBuffer == null && doFill) {
-            inputBuffer = new FluidStack(source, 0);
+        if (contents == null && doFill) {
             contents = new FluidStack(source, 0);
-            outputBuffer = new FluidStack(source, 0);
         }
 
-        int usage = Math.min(source.amount, maxBufferTransferRate);
+        int usage = Math.min(source.amount, maxContents - (contents == null ? 0 : contents.amount));
 
         if (doFill) {
-            inputBuffer.amount = usage;
-            provider.onInsertionFrom(insertionDirection);
+            contents.amount += usage;
         }
         return usage;
+    }
+
+    public FluidStack getCurrentContents() {
+        return contents;
+    }
+
+    public void setCurrentContents(FluidStack newContents) {
+        this.contents = newContents;
     }
 
     @Nullable
@@ -143,9 +126,7 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
             contents.amount -= usage;
 
             if (getTotalContents().amount <= 0) {
-                inputBuffer = null;
                 contents = null;
-                outputBuffer = null;
             }
         }
 
@@ -153,26 +134,23 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
     }
 
     @Override
-    public boolean canDrain(@Nonnull EnumFacing direction) {
-        return (outputBuffer != null && outputBuffer.amount > 0 && provider.canExtractFrom(direction));
+    public boolean canDrain() {
+        return (contents != null && contents.amount > 0);
     }
 
     @Override
-    public FluidStack drainNext(int maxAmount, boolean doDrain, @Nonnull EnumFacing extractionDirection) {
-        if (outputBuffer == null || !canDrain(extractionDirection))
+    public FluidStack drainNext(int maxAmount, boolean doDrain) {
+        if (contents == null || !canDrain())
             return null;
 
-        int usage = Math.min(outputBuffer.amount, maxAmount);
+        int usage = Math.min(contents.amount, maxAmount);
 
-        FluidStack resultStank = new FluidStack(outputBuffer, usage);
+        FluidStack resultStank = new FluidStack(contents, usage);
         if (doDrain) {
-            outputBuffer.amount -= usage;
+            contents.amount -= usage;
 
-            provider.onExtractionFrom(extractionDirection);
             if (getTotalContents().amount <= 0) {
-                inputBuffer = null;
                 contents = null;
-                outputBuffer = null;
             }
         }
 
@@ -183,61 +161,39 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
         if (contents == null)
             return null;
 
-        return new FluidStack(contents, inputBuffer.amount + contents.amount + outputBuffer.amount);
-    }
-
-    @Override
-    public void update() {
-        if (inputBuffer == null)
-            return;
-
-        contents.amount += inputBuffer.amount;
-        inputBuffer.amount = 0;
-
-        if (outputBuffer.amount < maxBufferTransferRate && contents.amount > 0) {
-            contents.amount -= (maxBufferTransferRate - outputBuffer.amount);
-            outputBuffer.amount += (maxBufferTransferRate - outputBuffer.amount);
-        }
+        return contents.copy();
     }
 
     @Override
     public NBTTagCompound serializeNBT() {
         NBTTagCompound compound = new NBTTagCompound();
 
-        if (inputBuffer == null)
+        if (contents == null)
             return compound;
 
-        compound.setTag(References.NBTTagCompoundData.TE.Conduit.INPUT, inputBuffer.writeToNBT(new NBTTagCompound()));
         compound.setTag(References.NBTTagCompoundData.TE.Conduit.CONTENTS, contents.writeToNBT(new NBTTagCompound()));
-        compound.setTag(References.NBTTagCompoundData.TE.Conduit.OUTPUT, outputBuffer.writeToNBT(new NBTTagCompound()));
 
         return compound;
     }
 
     @Override
     public void deserializeNBT(NBTTagCompound nbt) {
-        if (!nbt.hasKey(References.NBTTagCompoundData.TE.Conduit.INPUT)) {
-            inputBuffer = null;
+        if (!nbt.hasKey(References.NBTTagCompoundData.TE.Conduit.CONTENTS)) {
             contents = null;
-            outputBuffer = null;
 
             return;
         }
 
-        inputBuffer = FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag(References.NBTTagCompoundData.TE.Conduit.INPUT));
         contents = FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag(References.NBTTagCompoundData.TE.Conduit.CONTENTS));
-        outputBuffer = FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag(References.NBTTagCompoundData.TE.Conduit.OUTPUT));
-    }
-
-    public FluidStack getInputBuffer() {
-        return inputBuffer;
-    }
-
-    public FluidStack getOutputBuffer() {
-        return outputBuffer;
     }
 
     public FluidStack getContents() {
         return contents;
+    }
+
+    public void updateSize(int newSize) {
+        this.maxContents = newSize;
+        if (contents != null && contents.amount > newSize)
+            contents.amount = newSize;
     }
 }

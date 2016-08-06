@@ -1,10 +1,9 @@
 package com.smithsmodding.armory.common.tileentity;
 
-import com.smithsmodding.armory.api.fluid.IMoltenMetalRequester;
+import com.smithsmodding.armory.api.util.common.MoltenMetalHelper;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.conduit.ConduitFluidTank;
-import com.smithsmodding.armory.common.tileentity.conduit.IConduitTankProvider;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityConduitGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityConduitState;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
@@ -15,7 +14,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
@@ -24,13 +22,14 @@ import javax.annotation.Nullable;
 /**
  * Author Orion (Created on: 24.07.2016)
  */
-public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitState, TileEntityConduitGuiManager> implements ITickable, IFluidContainingEntity, IConduitTankProvider {
+public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitState, TileEntityConduitGuiManager> implements ITickable, IFluidContainingEntity {
 
     ConduitFluidTank conduit;
-    boolean shouldUpdateState = true;
+    int ticksUntilNextBalanceAttempt = 0;
+    int failedAttempts = 0;
 
     public TileEntityConduit() {
-        conduit = new ConduitFluidTank(this, 300, 150);
+        conduit = new ConduitFluidTank(300);
     }
 
     @Override
@@ -72,93 +71,97 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
         if (isRemote())
             return;
 
-        conduit.update();
-
-        shouldUpdateState = !shouldUpdateState;
-        if (shouldUpdateState)
-            getState().onStateUpdated();
-
         handleInternals();
+
+        handlePushToRequesters();
+
+        handlePullFromProviders();
 
         markDirty();
     }
 
     public void handleInternals() {
-        TileEntity north = getWorld().getTileEntity(getPos().north());
-        TileEntity east = getWorld().getTileEntity(getPos().east());
-        TileEntity south = getWorld().getTileEntity(getPos().south());
-        TileEntity west = getWorld().getTileEntity(getPos().west());
-        TileEntity up = getWorld().getTileEntity(getPos().up());
-        TileEntity down = getWorld().getTileEntity(getPos().down());
-
-        pushOutputForSide(north, conduit, EnumFacing.NORTH);
-        pushOutputForSide(east, conduit, EnumFacing.EAST);
-        pushOutputForSide(south, conduit, EnumFacing.SOUTH);
-        pushOutputForSide(west, conduit, EnumFacing.WEST);
-        pushOutputForSide(up, conduit, EnumFacing.UP);
-        pushOutputForSide(down, conduit, EnumFacing.DOWN);
-    }
-
-    public void pushOutputForSide(TileEntity entity, ConduitFluidTank sourceTank, EnumFacing facing) {
-        if (entity == null || sourceTank == null)
+        if (ticksUntilNextBalanceAttempt > 0) {
+            ticksUntilNextBalanceAttempt--;
             return;
+        }
 
-        if (entity.hasCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite())) {
-            IMoltenMetalRequester requester = entity.getCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite());
-            if (requester == null)
-                return;
+        int currentContents = conduit.getFluidAmount();
+        int summedContents = currentContents;
+        int countedComponents = 1;
+        FluidStack source = conduit.getFluid();
 
-            FluidStack simmedDrain = sourceTank.drainNext(Integer.MAX_VALUE, false, facing.getOpposite());
-            if (simmedDrain == null)
-                return;
+        for (EnumFacing facing : EnumFacing.values()) {
+            if (facing == EnumFacing.UP)
+                continue;
 
-            int simmedFill = requester.fillNext(simmedDrain, false, facing.getOpposite());
+            TileEntity entity = getWorld().getTileEntity(pos.offset(facing));
+            if (entity instanceof TileEntityConduit) {
+                TileEntityConduit tileEntityConduit = (TileEntityConduit) entity;
 
-            if (simmedDrain.amount < simmedFill)
-                simmedFill = simmedDrain.amount;
-            if (simmedFill < simmedDrain.amount)
-                simmedDrain.amount = simmedFill;
+                countedComponents++;
+                summedContents += tileEntityConduit.conduit.getFluidAmount();
 
-            requester.fillNext(simmedDrain, true, facing);
-            sourceTank.drainNext(simmedFill, true, facing.getOpposite());
+                if (source == null)
+                    source = tileEntityConduit.conduit.getFluid();
+            }
+        }
+
+        int contentsPerComponent = summedContents / countedComponents;
+
+        if (contentsPerComponent == 0 || source == null) {
+            failedAttempts++;
+
+            if (failedAttempts > 10) {
+                ticksUntilNextBalanceAttempt = 10;
+            }
+
+            return;
+        }
+
+        failedAttempts = 0;
+
+        for (EnumFacing facing : EnumFacing.values()) {
+            if (facing == EnumFacing.UP)
+                continue;
+
+            TileEntity entity = getWorld().getTileEntity(pos.offset(facing));
+            if (entity instanceof TileEntityConduit) {
+                TileEntityConduit tileEntityConduit = (TileEntityConduit) entity;
+
+                tileEntityConduit.conduit.setFluid(new FluidStack(source, contentsPerComponent));
+            }
+        }
+
+        conduit.setFluid(new FluidStack(source, contentsPerComponent + (summedContents % contentsPerComponent)));
+    }
+
+    public void handlePushToRequesters() {
+        for (EnumFacing facing : EnumFacing.values()) {
+            if (facing == EnumFacing.UP)
+                continue;
+
+            TileEntity entity = getWorld().getTileEntity(getPos().offset(facing));
+
+            if (entity == null || !entity.hasCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite()))
+                continue;
+
+            MoltenMetalHelper.transferMaxAmount(conduit, entity.getCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite()));
         }
     }
 
-    @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (capability == ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY || capability == ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY)
-            return true;
+    public void handlePullFromProviders() {
+        for (EnumFacing facing : EnumFacing.values()) {
+            if (facing == EnumFacing.UP)
+                continue;
 
-        return super.hasCapability(capability, facing);
-    }
+            TileEntity entity = getWorld().getTileEntity(getPos().offset(facing));
 
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY || capability == ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY) {
-            return (T) conduit;
+            if (entity == null || !entity.hasCapability(ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY, facing.getOpposite()))
+                continue;
+
+            MoltenMetalHelper.transferMaxAmount(entity.getCapability(ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY, facing.getOpposite()), conduit);
         }
-
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public boolean canExtractFrom(EnumFacing direction) {
-        return getState().canExtractFromDirection(direction);
-    }
-
-    @Override
-    public boolean canInsertFrom(EnumFacing direction) {
-        return getState().canInsertFromDirection(direction);
-    }
-
-    @Override
-    public void onExtractionFrom(EnumFacing direction) {
-        getState().onExtraction(direction);
-    }
-
-    @Override
-    public void onInsertionFrom(EnumFacing direction) {
-        getState().onInsertion(direction);
     }
 
     @Override

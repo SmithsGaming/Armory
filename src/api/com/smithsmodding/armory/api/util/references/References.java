@@ -458,13 +458,14 @@ public class References {
             }
 
             public class Conduit {
-                public static final String TANKS = "Tanks";
-                public static final String INPUT = "Input";
-                public static final String OUTPUT = "Output";
                 public static final String CONTENTS = "Contents";
-                public static final String FLOWX = "FlowX";
-                public static final String FLOWY = "FlowY";
-                public static final String FLOWZ = "FlowZ";
+
+                public class Structure {
+                    public static final String DATA = "Data";
+                    public static final String PARTS = "Parts";
+                    public static final String FLUIDS = "Fluids";
+                    public static final String TYPE = "Type";
+                }
             }
 
             public class MoltenMetalTank {
