@@ -1,13 +1,16 @@
 package com.smithsmodding.armory.common.tileentity;
 
+import com.smithsmodding.armory.api.fluid.IMoltenMetalProvider;
 import com.smithsmodding.armory.api.util.common.MoltenMetalHelper;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.armory.common.block.BlockConduit;
 import com.smithsmodding.armory.common.tileentity.conduit.ConduitFluidTank;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityConduitGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityConduitState;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -18,6 +21,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 
 /**
  * Author Orion (Created on: 24.07.2016)
@@ -27,6 +31,8 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
     ConduitFluidTank conduit;
     int ticksUntilNextBalanceAttempt = 0;
     int failedAttempts = 0;
+
+    ArrayList<EnumFacing> connectedSides = new ArrayList<>();
 
     public TileEntityConduit() {
         conduit = new ConduitFluidTank(300);
@@ -68,14 +74,15 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
 
     @Override
     public void update() {
-        if (isRemote())
+        if (isRemote()) {
             return;
+        }
 
         handleInternals();
 
-        handlePushToRequesters();
-
         handlePullFromProviders();
+
+        handlePushToRequesters();
 
         markDirty();
     }
@@ -92,11 +99,12 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
         FluidStack source = conduit.getFluid();
 
         for (EnumFacing facing : EnumFacing.values()) {
-            if (facing == EnumFacing.UP)
+            if (facing.getAxis().isVertical())
                 continue;
 
             TileEntity entity = getWorld().getTileEntity(pos.offset(facing));
-            if (entity instanceof TileEntityConduit) {
+            IBlockState state = getWorld().getBlockState(pos.offset(facing)).getActualState(getWorld(), pos.offset(facing));
+            if (entity instanceof TileEntityConduit && state.getValue(BlockConduit.TYPE) == getWorld().getBlockState(pos).getActualState(getWorld(), pos).getValue(BlockConduit.TYPE)) {
                 TileEntityConduit tileEntityConduit = (TileEntityConduit) entity;
 
                 countedComponents++;
@@ -122,18 +130,25 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
         failedAttempts = 0;
 
         for (EnumFacing facing : EnumFacing.values()) {
-            if (facing == EnumFacing.UP)
+            if (facing.getAxis().isVertical())
                 continue;
 
             TileEntity entity = getWorld().getTileEntity(pos.offset(facing));
-            if (entity instanceof TileEntityConduit) {
+            IBlockState state = getWorld().getBlockState(pos.offset(facing)).getActualState(getWorld(), pos.offset(facing));
+            if (entity instanceof TileEntityConduit && state.getValue(BlockConduit.TYPE) == getWorld().getBlockState(pos).getActualState(getWorld(), pos).getValue(BlockConduit.TYPE)) {
                 TileEntityConduit tileEntityConduit = (TileEntityConduit) entity;
 
                 tileEntityConduit.conduit.setFluid(new FluidStack(source, contentsPerComponent));
             }
         }
 
-        conduit.setFluid(new FluidStack(source, contentsPerComponent + (summedContents % contentsPerComponent)));
+        conduit.setFluid(new FluidStack(source, contentsPerComponent));
+
+        TileEntity entityDown = getWorld().getTileEntity(getPos().offset(EnumFacing.DOWN));
+        IBlockState state = getWorld().getBlockState(pos.offset(EnumFacing.DOWN)).getActualState(getWorld(), pos.offset(EnumFacing.DOWN));
+        if (entityDown instanceof TileEntityConduit && state.getValue(BlockConduit.TYPE) == getWorld().getBlockState(pos).getActualState(getWorld(), pos).getValue(BlockConduit.TYPE)) {
+            MoltenMetalHelper.transferMaxAmount(conduit, ((TileEntityConduit) entityDown).conduit);
+        }
     }
 
     public void handlePushToRequesters() {
@@ -147,6 +162,7 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
                 continue;
 
             MoltenMetalHelper.transferMaxAmount(conduit, entity.getCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite()));
+            entity.markDirty();
         }
     }
 
@@ -159,6 +175,9 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
 
             if (entity == null || !entity.hasCapability(ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY, facing.getOpposite()))
                 continue;
+
+            IMoltenMetalProvider provider = entity.getCapability(ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY, facing.getOpposite());
+            FluidStack sim = provider == null ? null : provider.drainNext(Integer.MAX_VALUE, false);
 
             MoltenMetalHelper.transferMaxAmount(entity.getCapability(ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY, facing.getOpposite()), conduit);
         }
@@ -177,5 +196,13 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
     @Override
     public int getTankContentsVolumeOnSide(@Nullable EnumFacing side) {
         return conduit.getFluidAmount();
+    }
+
+    public ArrayList<EnumFacing> getConnectedSides() {
+        return connectedSides;
+    }
+
+    public void setConnectedSides(ArrayList<EnumFacing> connectedSides) {
+        this.connectedSides = connectedSides;
     }
 }

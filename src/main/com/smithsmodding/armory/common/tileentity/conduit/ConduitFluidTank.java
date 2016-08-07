@@ -32,7 +32,7 @@ public class ConduitFluidTank implements IMoltenMetalProvider, IMoltenMetalReque
             return contents.amount < maxContents;
         }
 
-        return false;
+        return fluidStack.isFluidEqual(contents);
     }
 
     @Nullable

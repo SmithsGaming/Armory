@@ -21,6 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,15 +38,15 @@ public class BlockConduit extends BlockArmoryTileEntity {
 
     public static final PropertyEnum<EnumConduitType> TYPE = PropertyEnum.create("type", EnumConduitType.class);
 
-    private static final HashMap<EnumFacing, IProperty> sideProperties = new HashMap<>();
+    public static final HashMap<EnumFacing, IProperty<Boolean>> SIDEPROPERTIES = new HashMap<>();
 
     static {
-        sideProperties.put(EnumFacing.NORTH, NORTH);
-        sideProperties.put(EnumFacing.SOUTH, SOUTH);
-        sideProperties.put(EnumFacing.EAST, EAST);
-        sideProperties.put(EnumFacing.WEST, WEST);
-        sideProperties.put(EnumFacing.UP, UP);
-        sideProperties.put(EnumFacing.DOWN, DOWN);
+        SIDEPROPERTIES.put(EnumFacing.NORTH, NORTH);
+        SIDEPROPERTIES.put(EnumFacing.SOUTH, SOUTH);
+        SIDEPROPERTIES.put(EnumFacing.EAST, EAST);
+        SIDEPROPERTIES.put(EnumFacing.WEST, WEST);
+        SIDEPROPERTIES.put(EnumFacing.UP, UP);
+        SIDEPROPERTIES.put(EnumFacing.DOWN, DOWN);
     }
 
     public BlockConduit() {
@@ -106,25 +107,32 @@ public class BlockConduit extends BlockArmoryTileEntity {
     }
 
     private IBlockState handleEnvironmentChange(IBlockAccess world, BlockPos pos, IBlockState state) {
+        ArrayList<EnumFacing> connectedSides = new ArrayList<>();
+
         for (EnumFacing facing : EnumFacing.values()) {
-            BlockPos target = pos.add(facing.getDirectionVec());
+            BlockPos target = pos.offset(facing);
 
             TileEntity tileEntity = world.getTileEntity(target);
 
             if ((tileEntity != null && (tileEntity.hasCapability(ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY, facing.getOpposite()) || tileEntity.hasCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite()))) && !(tileEntity instanceof TileEntityConduit)) {
-                state = state.withProperty(sideProperties.get(facing), true);
+                state = state.withProperty(SIDEPROPERTIES.get(facing), true);
+                connectedSides.add(facing);
             } else if (tileEntity instanceof TileEntityConduit) {
-                IBlockState targetConduitState = world.getBlockState(pos);
+                IBlockState targetConduitState = world.getBlockState(target);
 
                 if (targetConduitState.getValue(TYPE) == state.getValue(TYPE)) {
-                    state = state.withProperty(sideProperties.get(facing), true);
+                    state = state.withProperty(SIDEPROPERTIES.get(facing), true);
+                    connectedSides.add(facing);
                 } else {
-                    state = state.withProperty(sideProperties.get(facing), false);
+                    state = state.withProperty(SIDEPROPERTIES.get(facing), false);
                 }
             } else {
-                state = state.withProperty(sideProperties.get(facing), false);
+                state = state.withProperty(SIDEPROPERTIES.get(facing), false);
             }
         }
+
+        TileEntityConduit conduit = (TileEntityConduit) world.getTileEntity(pos);
+        conduit.setConnectedSides(connectedSides);
 
         return state;
     }

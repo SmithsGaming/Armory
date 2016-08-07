@@ -8,6 +8,7 @@ import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.conduit.ConduitFluidTank;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityMoltenMetalTankGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityMoltenMetalTankState;
+import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import net.minecraft.nbt.NBTTagCompound;
@@ -53,7 +54,6 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         this.type = EnumTankType.byMetadata(compound.getInteger(References.NBTTagCompoundData.TE.MoltenMetalTank.TYPE));
-        this.tank = new ConduitFluidTank(type.getTankContents());
 
         super.readFromNBT(compound);
     }
@@ -67,7 +67,7 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
 
     @Override
     public boolean hasCapability(Capability capability, EnumFacing facing) {
-        if (capability == ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY || capability == ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY)
+        if (!(facing == EnumFacing.UP || facing == EnumFacing.DOWN) && (capability == ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY || capability == ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY))
             return true;
 
         return super.hasCapability(capability, facing);
@@ -75,7 +75,7 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
 
     @Override
     public Object getCapability(Capability capability, EnumFacing facing) {
-        if (capability == ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY || capability == ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY)
+        if (!(facing == EnumFacing.UP || facing == EnumFacing.DOWN) && (capability == ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY || capability == ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY))
             return tank;
 
         return super.getCapability(capability, facing);
@@ -83,7 +83,8 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
 
     @Override
     public void update() {
-        tank.setFluid(new FluidStack(HeatableItemRegistry.getInstance().getMoltenStack(MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON), References.InternalNames.HeatedItemTypes.INGOT), type.getTankContents()));
+        if (SmithsCore.isInDevenvironment())
+            tank.setFluid(new FluidStack(HeatableItemRegistry.getInstance().getMoltenStack(MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON), References.InternalNames.HeatedItemTypes.INGOT), type.getTankContents()));
     }
 
     @Override

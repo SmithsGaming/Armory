@@ -14,6 +14,9 @@ public class MoltenMetalHelper {
     }
 
     public static void transferAmount(IMoltenMetalProvider provider, IMoltenMetalRequester requester, int maxAmount) {
+        if (provider == null || requester == null)
+            return;
+
         FluidStack simmedDrain = provider.drainNext(maxAmount, false);
         if (simmedDrain == null)
             return;
