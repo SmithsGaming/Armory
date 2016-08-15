@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.client.render.tileentity;
 
 import com.smithsmodding.armory.common.tileentity.TileEntityConduit;
+import com.smithsmodding.armory.common.tileentity.conduit.ConduitFluidTank;
 import com.smithsmodding.smithscore.util.client.RenderHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
@@ -17,18 +18,35 @@ public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEnt
         if (te == null)
             return;
 
-        double height = te.getConduit().getFluidAmount() / ((double) te.getConduit().getCapacity()) * 0.04995;
-
-        if (height < 0.00001)
+        if (te.getStructure() == null)
             return;
 
-        FluidStack stackToRender = te.getConduit().getFluid();
-        if (stackToRender == null)
-            return;
 
+        te.getWorld().theProfiler.startSection(getClass().getSimpleName());
+
+        te.getWorld().theProfiler.startSection("StructureRetrieval");
+        ConduitFluidTank tank = te.getStructure().getData().getStructureTank();
+        te.getWorld().theProfiler.endSection();
+
+        double height = tank.getFluidAmount() / ((double) tank.getCapacity()) * 0.04995;
+
+        if (height < 0.00001) {
+            te.getWorld().theProfiler.endSection();
+            return;
+        }
+
+        FluidStack stackToRender = tank.getFluid();
+        if (stackToRender == null) {
+            te.getWorld().theProfiler.endSection();
+            return;
+        }
+
+        te.getWorld().theProfiler.startSection("fluid");
         for (EnumFacing facing : te.getConnectedSides()) {
             if (facing == EnumFacing.UP || facing == EnumFacing.DOWN)
                 continue;
+
+            te.getWorld().theProfiler.startSection(facing.getName());
 
             switch (facing) {
                 case NORTH: {
@@ -48,9 +66,17 @@ public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEnt
                     break;
                 }
             }
+
+            te.getWorld().theProfiler.endSection();
         }
 
+        te.getWorld().theProfiler.startSection("center");
         renderCenter(stackToRender, te.getPos(), x, y, z, height);
+        te.getWorld().theProfiler.endSection();
+
+        te.getWorld().theProfiler.endSection();
+
+        te.getWorld().theProfiler.endSection();
     }
 
     private void renderCenter(FluidStack fluidStack, BlockPos pos, double x, double y, double z, double height) {

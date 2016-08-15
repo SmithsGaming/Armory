@@ -10,6 +10,7 @@ import com.smithsmodding.armory.common.handlers.config.ConfigSyncCompletedEventH
 import com.smithsmodding.armory.common.handlers.config.MaterialPropertyValueEventHandler;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
+import com.smithsmodding.armory.common.structure.conduit.StructureFactoryConduit;
 import com.smithsmodding.armory.common.structure.forge.StructureFactoryForge;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.common.structures.StructureRegistry;
@@ -41,6 +42,7 @@ public class ArmoryCommonProxy {
 
     public void initializeStructures() {
         StructureRegistry.getServerInstance().registerStructureFactory(new StructureFactoryForge());
+        StructureRegistry.getServerInstance().registerStructureFactory(new StructureFactoryConduit());
     }
 
     public void registerEventHandlers() {

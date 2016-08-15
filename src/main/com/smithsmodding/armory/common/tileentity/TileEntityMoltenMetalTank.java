@@ -8,7 +8,6 @@ import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.conduit.ConduitFluidTank;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityMoltenMetalTankGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityMoltenMetalTankState;
-import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import net.minecraft.nbt.NBTTagCompound;
@@ -54,6 +53,7 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         this.type = EnumTankType.byMetadata(compound.getInteger(References.NBTTagCompoundData.TE.MoltenMetalTank.TYPE));
+        this.tank = new ConduitFluidTank(this.type.getTankContents());
 
         super.readFromNBT(compound);
     }
@@ -83,8 +83,11 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
 
     @Override
     public void update() {
-        if (SmithsCore.isInDevenvironment())
-            tank.setFluid(new FluidStack(HeatableItemRegistry.getInstance().getMoltenStack(MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON), References.InternalNames.HeatedItemTypes.INGOT), type.getTankContents()));
+        //if (SmithsCore.isInDevenvironment())
+        if (tank == null)
+            return;
+
+        tank.setFluid(new FluidStack(HeatableItemRegistry.getInstance().getMoltenStack(MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON), References.InternalNames.HeatedItemTypes.INGOT), type.getTankContents()));
     }
 
     @Override

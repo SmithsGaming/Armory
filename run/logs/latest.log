@@ -1,40 +1,43 @@
-[19:55:47] [Client thread/INFO]: Setting user: Player10
-[19:55:53] [Client thread/WARN]: Skipping bad option: lastServer:
-[19:55:53] [Client thread/INFO]: LWJGL Version: 2.9.4
-[19:56:00] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
-[19:56:06] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[19:56:06] [Thread-8/INFO]: Initializing LWJGL OpenAL
-[19:56:06] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[19:56:06] [Thread-8/INFO]: OpenAL initialized.
-[19:56:07] [Sound Library Loader/INFO]: Sound engine started
-[19:56:12] [Client thread/INFO]: Created: 16x16 textures-atlas
-[19:56:14] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
-[19:56:17] [Client thread/INFO]: SoundSystem shutting down...
-[19:56:18] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[19:56:18] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[19:56:18] [Thread-10/INFO]: Initializing LWJGL OpenAL
-[19:56:18] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[19:56:18] [Thread-10/INFO]: OpenAL initialized.
-[19:56:18] [Sound Library Loader/INFO]: Sound engine started
-[19:56:23] [Client thread/INFO]: Created: 2048x2048 textures-atlas
-[19:56:24] [Client thread/WARN]: Skipping bad option: lastServer:
-[19:56:25] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
-[19:57:15] [Server thread/INFO]: Starting integrated minecraft server version 1.10.2
-[19:57:15] [Server thread/INFO]: Generating keypair
-[19:57:16] [Server thread/INFO]: Preparing start region for level 0
-[19:57:17] [Server thread/INFO]: Changing view distance to 12, from 10
-[19:57:18] [Server thread/INFO]: Player10[local:E:efe5523c] logged in with entity id 0 at (718.4255373827928, 57.0, 1766.446815404448)
-[19:57:18] [Server thread/INFO]: Player10 joined the game
-[19:57:34] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 15622ms behind, skipping 312 tick(s)
-[19:57:34] [Server thread/INFO]: Saving and pausing game...
-[19:57:34] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Overworld
-[19:57:35] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Nether
-[19:57:35] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/The End
-[19:57:37] [Server thread/INFO]: Saving and pausing game...
-[19:57:37] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Overworld
-[19:57:37] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Nether
-[19:57:37] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/The End
-[19:57:37] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@267b457d[id=a63f2212-89e7-3508-92f3-b41a096e71fa,name=Player10,properties={},legacy=false]
+[11:20:36] [Client thread/INFO]: Setting user: Player619
+[11:20:40] [Client thread/WARN]: Skipping bad option: lastServer:
+[11:20:40] [Client thread/INFO]: LWJGL Version: 2.9.4
+[11:20:50] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
+[11:20:55] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[11:20:55] [Thread-8/INFO]: Initializing LWJGL OpenAL
+[11:20:55] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[11:20:55] [Thread-8/INFO]: OpenAL initialized.
+[11:20:56] [Sound Library Loader/INFO]: Sound engine started
+[11:21:01] [Client thread/INFO]: Created: 16x16 textures-atlas
+[11:21:03] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
+[11:21:07] [Client thread/INFO]: SoundSystem shutting down...
+[11:21:07] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[11:21:07] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[11:21:07] [Thread-10/INFO]: Initializing LWJGL OpenAL
+[11:21:07] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[11:21:07] [Thread-10/INFO]: OpenAL initialized.
+[11:21:07] [Sound Library Loader/INFO]: Sound engine started
+[11:21:12] [Client thread/INFO]: Created: 2048x2048 textures-atlas
+[11:21:13] [Client thread/WARN]: Skipping bad option: lastServer:
+[11:21:14] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[11:21:18] [Client thread/INFO]: Deleting level Copy of New World
+[11:21:18] [Client thread/INFO]: Attempt 1...
+[11:21:22] [Server thread/INFO]: Starting integrated minecraft server version 1.10.2
+[11:21:22] [Server thread/INFO]: Generating keypair
+[11:21:22] [Server thread/WARN]: Unable to find spawn biome
+[11:21:24] [Server thread/INFO]: Preparing start region for level 0
+[11:21:25] [Server thread/INFO]: Preparing spawn area: 75%
+[11:21:25] [Server thread/INFO]: Changing view distance to 12, from 10
+[11:21:27] [Server thread/INFO]: Player619[local:E:fb852296] logged in with entity id 0 at (733.5, 56.0, 747.5)
+[11:21:27] [Server thread/INFO]: Player619 joined the game
+[11:21:28] [Server thread/INFO]: Saving and pausing game...
+[11:21:28] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[11:21:30] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[11:21:30] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[11:21:30] [Server thread/INFO]: Saving and pausing game...
+[11:21:30] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[11:21:30] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[11:21:30] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[11:21:30] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@440f2921[id=c983ec91-cb7c-368a-b8d4-167bfb5123ef,name=Player619,properties={},legacy=false]
 com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
 	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:65) ~[YggdrasilAuthenticationService.class:?]
 	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:175) [YggdrasilMinecraftSessionService.class:?]
@@ -56,25 +59,155 @@ com.mojang.authlib.exceptions.AuthenticationException: The client has sent too m
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_65]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_65]
 	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_65]
-[20:00:23] [Server thread/INFO]: Saving and pausing game...
-[20:00:23] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Overworld
-[20:00:23] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Nether
-[20:00:23] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/The End
-[20:21:53] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 7392ms behind, skipping 147 tick(s)
-[20:21:53] [Server thread/INFO]: Saving and pausing game...
-[20:21:53] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Overworld
-[20:21:53] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Nether
-[20:21:53] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/The End
-[20:22:00] [Server thread/INFO]: Saving and pausing game...
-[20:22:00] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Overworld
-[20:22:00] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Nether
-[20:22:00] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/The End
-[20:26:09] [Server thread/INFO]: Stopping server
-[20:26:09] [Server thread/INFO]: Saving players
-[20:26:09] [Server thread/INFO]: Saving worlds
-[20:26:09] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Overworld
-[20:26:09] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Nether
-[20:26:09] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/The End
-[20:26:10] [Client thread/INFO]: Stopping!
-[20:26:10] [Client thread/INFO]: SoundSystem shutting down...
-[20:26:10] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[11:23:40] [Server thread/INFO]: Saving and pausing game...
+[11:23:40] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[11:23:40] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[11:23:40] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[11:23:42] [Server thread/INFO]: Player619 has just earned the achievement [Taking Inventory]
+[11:23:42] [Client thread/INFO]: [CHAT] Player619 has just earned the achievement [Taking Inventory]
+[11:24:25] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 118.891906 ms
+[11:24:25] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 119.851675 ms
+[11:24:25] [Client thread/WARN]: Something's taking too long! 'root' took aprox 128.39061 ms
+[11:24:35] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2500ms behind, skipping 50 tick(s)
+[11:24:56] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 4832ms behind, skipping 96 tick(s)
+[11:25:10] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 3802ms behind, skipping 76 tick(s)
+[11:25:14] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 100.005585 ms
+[11:25:14] [Client thread/WARN]: Something's taking too long! 'root' took aprox 101.420881 ms
+[11:25:15] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 139.600018 ms
+[11:25:15] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 143.071386 ms
+[11:25:15] [Client thread/WARN]: Something's taking too long! 'root' took aprox 164.364421 ms
+[11:25:15] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 125.248166 ms
+[11:25:15] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 126.049059 ms
+[11:25:15] [Client thread/WARN]: Something's taking too long! 'root' took aprox 142.158162 ms
+[11:25:16] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 101.521419 ms
+[11:25:16] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 102.277629 ms
+[11:25:16] [Client thread/WARN]: Something's taking too long! 'root' took aprox 108.620855 ms
+[11:25:19] [Server thread/INFO]: Saving and pausing game...
+[11:25:19] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[11:25:19] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[11:25:19] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[11:25:26] [Client thread/WARN]: Something's taking too long! 'root' took aprox 120.180597 ms
+[11:25:26] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.terrain_setup.rebuildNear' took aprox 102.436815 ms
+[11:25:26] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.terrain_setup' took aprox 103.289528 ms
+[11:25:26] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 105.928971 ms
+[11:25:26] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 106.64267 ms
+[11:25:26] [Client thread/WARN]: Something's taking too long! 'root' took aprox 123.987091 ms
+[11:25:27] [Client thread/WARN]: Something's taking too long! 'root' took aprox 106.346641 ms
+[11:25:29] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 113.182319 ms
+[11:25:29] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 125.63077 ms
+[11:25:29] [Client thread/WARN]: Something's taking too long! 'root' took aprox 149.470466 ms
+[11:25:30] [Client thread/WARN]: Something's taking too long! 'root' took aprox 109.221293 ms
+[11:25:31] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 102.998464 ms
+[11:25:31] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 103.783532 ms
+[11:25:31] [Client thread/WARN]: Something's taking too long! 'root' took aprox 105.44738 ms
+[11:25:40] [Server thread/INFO]: Saving and pausing game...
+[11:25:40] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[11:25:40] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[11:25:40] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[11:26:55] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.gui.forgeHudText' took aprox 102.505081 ms
+[11:26:55] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.gui' took aprox 104.133865 ms
+[11:26:55] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 107.95091 ms
+[11:26:55] [Client thread/WARN]: Something's taking too long! 'root' took aprox 108.136472 ms
+[11:27:21] [Server thread/INFO]: Saving and pausing game...
+[11:27:21] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[11:27:21] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[11:27:21] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[11:28:55] [Server thread/INFO]: Saving and pausing game...
+[11:28:55] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[11:28:55] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[11:28:55] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[11:31:23] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.gui.forgeHudText' took aprox 112.008751 ms
+[11:31:23] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.gui' took aprox 113.097606 ms
+[11:31:23] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 117.300358 ms
+[11:31:23] [Client thread/WARN]: Something's taking too long! 'root' took aprox 117.482196 ms
+[11:32:06] [Server thread/INFO]: Saving and pausing game...
+[11:32:06] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[11:32:06] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[11:32:06] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[11:32:08] [Server thread/INFO]: Saving and pausing game...
+[11:32:08] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[11:32:08] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[11:32:08] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[11:33:12] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.clouds' took aprox 106.938699 ms
+[11:33:12] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 114.823825 ms
+[11:33:12] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 118.451275 ms
+[11:33:12] [Client thread/WARN]: Something's taking too long! 'root' took aprox 118.715343 ms
+[11:33:25] [Client thread/WARN]: Something's taking too long! 'root.render' took aprox 176.81132 ms
+[11:33:25] [Client thread/WARN]: Something's taking too long! 'root' took aprox 221.203047 ms
+[11:33:36] [Server thread/INFO]: Saving and pausing game...
+[11:33:36] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[11:33:36] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[11:33:36] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[11:34:01] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 3359ms behind, skipping 67 tick(s)
+[11:34:03] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.blockentities.TileEntityRendererConduit.fluid.north' took aprox 5728.332273 ms
+[11:34:07] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.blockentities.TileEntityRendererConduit.fluid.south' took aprox 2019.801716 ms
+[11:34:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.blockentities.TileEntityRendererConduit.fluid.center' took aprox 1476.434611 ms
+[11:34:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.blockentities.TileEntityRendererConduit.fluid' took aprox 11596.552837 ms
+[11:34:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.blockentities.TileEntityRendererConduit' took aprox 11596.600623 ms
+[11:34:18] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 4225ms behind, skipping 84 tick(s)
+[11:34:37] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 3397ms behind, skipping 67 tick(s)
+[11:35:06] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.blockentities.TileEntityRendererConduit.fluid.north' took aprox 57268.904783 ms
+[11:35:09] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2765ms behind, skipping 55 tick(s)
+[11:35:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.blockentities.TileEntityRendererConduit.fluid.south' took aprox 2805.183312 ms
+[11:35:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.blockentities.TileEntityRendererConduit.fluid' took aprox 60074.510419 ms
+[11:35:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.blockentities.TileEntityRendererConduit' took aprox 60074.566893 ms
+[11:35:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities.blockentities' took aprox 71672.284611 ms
+[11:35:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level.entities' took aprox 71677.045909 ms
+[11:35:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer.level' took aprox 71680.350023 ms
+[11:35:09] [Client thread/WARN]: Something's taking too long! 'root.gameRenderer' took aprox 71681.350131 ms
+[11:35:09] [Client thread/WARN]: Something's taking too long! 'root' took aprox 71681.498146 ms
+[11:36:12] [Server thread/FATAL]: Error executing task
+java.util.concurrent.ExecutionException: java.lang.NullPointerException
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_65]
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_65]
+	at net.minecraft.util.Util.runTask(Util.java:26) [Util.class:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:742) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:687) [MinecraftServer.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:536) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_65]
+Caused by: java.lang.NullPointerException
+	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getValidPathableNeighborComponents(TileEntityConduit.java:175) ~[TileEntityConduit.class:?]
+	at com.smithsmodding.smithscore.common.pathfinding.PathFinder.<init>(PathFinder.java:42) ~[PathFinder.class:?]
+	at com.smithsmodding.smithscore.common.structures.IStructureController.checkIfComponentStillConnected(IStructureController.java:65) ~[IStructureController.class:?]
+	at com.smithsmodding.smithscore.common.structures.IStructureController.validateStructureIntegrity(IStructureController.java:54) ~[IStructureController.class:?]
+	at com.smithsmodding.smithscore.common.structures.IStructureController.onPartDestroyed(IStructureController.java:142) ~[IStructureController.class:?]
+	at com.smithsmodding.armory.common.block.BlockConduit.breakBlock(BlockConduit.java:107) ~[BlockConduit.class:?]
+	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:610) ~[Chunk.class:?]
+	at net.minecraft.world.World.setBlockState(World.java:382) ~[World.class:?]
+	at net.minecraft.block.Block.removedByPlayer(Block.java:1317) ~[Block.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:298) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:292) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.tryHarvestBlock(PlayerInteractionManager.java:339) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.onBlockClicked(PlayerInteractionManager.java:175) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.network.NetHandlerPlayServer.processPlayerDigging(NetHandlerPlayServer.java:658) ~[NetHandlerPlayServer.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:56) ~[CPacketPlayerDigging.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:12) ~[CPacketPlayerDigging.class:?]
+	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_65]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_65]
+	at net.minecraft.util.Util.runTask(Util.java:25) ~[Util.class:?]
+	... 5 more
+[11:36:12] [Server thread/ERROR]: Encountered an unexpected exception
+net.minecraft.util.ReportedException: Ticking block entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:789) ~[MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:687) ~[MinecraftServer.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) ~[IntegratedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:536) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_65]
+Caused by: java.lang.NullPointerException
+	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.handlePushToRequesters(TileEntityConduit.java:102) ~[TileEntityConduit.class:?]
+	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.update(TileEntityConduit.java:81) ~[TileEntityConduit.class:?]
+	at net.minecraft.world.World.updateEntities(World.java:1940) ~[World.class:?]
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:644) ~[WorldServer.class:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:783) ~[MinecraftServer.class:?]
+	... 4 more
+[11:36:12] [Server thread/ERROR]: This crash report has been saved to: D:\Development\Minecraft\Armory\run\.\crash-reports\crash-2016-08-15_11.36.12-server.txt
+[11:36:12] [Server thread/INFO]: Stopping server
+[11:36:12] [Server thread/INFO]: Saving players
+[11:36:12] [Server thread/INFO]: Saving worlds
+[11:36:12] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[11:36:12] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[11:36:12] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[11:36:13] [Client Shutdown Thread/INFO]: Stopping server
+[11:36:13] [Client Shutdown Thread/INFO]: Saving players

@@ -5,6 +5,7 @@ import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.types.EnumConduitType;
 import com.smithsmodding.armory.common.tileentity.TileEntityConduit;
+import com.smithsmodding.smithscore.common.structures.StructureRegistry;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -57,7 +58,7 @@ public class BlockConduit extends BlockArmoryTileEntity {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityConduit();
+        return new TileEntityConduit(EnumConduitType.byMetadata(meta));
     }
 
     public boolean isFullCube(IBlockState state) {
@@ -84,6 +85,29 @@ public class BlockConduit extends BlockArmoryTileEntity {
         } else {
             worldIn.setBlockState(pos, state.withProperty(TYPE, EnumConduitType.LIGHT));
         }
+
+        TileEntityConduit conduit = (TileEntityConduit) worldIn.getTileEntity(pos);
+
+        if (!worldIn.isRemote) {
+            if (conduit instanceof TileEntityConduit) {
+                StructureRegistry.getInstance().onStructurePartPlaced(conduit);
+
+                worldIn.markChunkDirty(pos, conduit);
+            }
+        }
+    }
+
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        if (!worldIn.isRemote) {
+            if (worldIn.getTileEntity(pos) instanceof TileEntityConduit) {
+                TileEntityConduit conduit = (TileEntityConduit) worldIn.getTileEntity(pos);
+
+                conduit.getStructure().getController().onPartDestroyed(conduit);
+            }
+        }
+
+        super.breakBlock(worldIn, pos, state);
     }
 
     @Override

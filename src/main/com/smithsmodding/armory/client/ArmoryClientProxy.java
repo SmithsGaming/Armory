@@ -9,6 +9,7 @@ import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.ArmoryCommonProxy;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
+import com.smithsmodding.armory.common.structure.conduit.StructureFactoryConduit;
 import com.smithsmodding.armory.common.structure.forge.StructureFactoryForge;
 import com.smithsmodding.smithscore.common.structures.StructureRegistry;
 import com.smithsmodding.smithscore.util.client.ResourceHelper;
@@ -169,6 +170,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
     public void initializeStructures() {
         super.initializeStructures();
         StructureRegistry.getClientInstance().registerStructureFactory(new StructureFactoryForge());
+        StructureRegistry.getClientInstance().registerStructureFactory(new StructureFactoryConduit());
     }
 
     @Override
