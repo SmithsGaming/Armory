@@ -13,9 +13,9 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements ITileEntityState {
 
-    float currentTemp;
-    float lastTemp;
-    float lastChange;
+    float currentTemp = 20;
+    float lastTemp = 20;
+    float lastChange = 0;
     float maxTemp;
     float lastNegativeTerm;
     float lastPositiveTerm;

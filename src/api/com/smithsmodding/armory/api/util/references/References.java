@@ -465,6 +465,13 @@ public class References {
                     public static final String PARTS = "Parts";
                     public static final String FLUIDS = "Fluids";
                     public static final String TYPE = "Type";
+                    public static final String OUTPUTCONNECTIONS = "Outputs";
+                    public static final String INPUTCONNECTIONS = "Inputs";
+
+                    public class Connections {
+                        public static final String COORDINATE = "Coordinate";
+                        public static final String SIDES = "Sides";
+                    }
                 }
             }
 

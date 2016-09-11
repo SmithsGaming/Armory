@@ -90,7 +90,7 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
 
     public boolean heatIngots(IForgeFuelDataContainer fuelData, S localData) {
 
-        if ((localData.getLastChange() == 0F) && (localData.getCurrentTemp() <= 20F) && (getInsertedIngotAmount() == 0)) {
+        if ((localData.getLastChange() == 0F) && (localData.getCurrentTemp() <= 20F) || (getInsertedIngotAmount() == 0)) {
             return true;
         }
 

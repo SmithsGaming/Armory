@@ -3,8 +3,6 @@ package com.smithsmodding.armory.common.tileentity;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.types.EnumTankType;
-import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.conduit.ConduitFluidTank;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityMoltenMetalTankGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityMoltenMetalTankState;
@@ -14,7 +12,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
 import javax.annotation.Nullable;
@@ -83,11 +80,7 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
 
     @Override
     public void update() {
-        //if (SmithsCore.isInDevenvironment())
-        if (tank == null)
-            return;
 
-        tank.setFluid(new FluidStack(HeatableItemRegistry.getInstance().getMoltenStack(MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON), References.InternalNames.HeatedItemTypes.INGOT), type.getTankContents()));
     }
 
     @Override

@@ -20,6 +20,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Author Orion (Created on: 24.07.2016)
@@ -29,6 +30,7 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
     EnumConduitType type;
 
     ArrayList<EnumFacing> connectedSides = new ArrayList<>();
+    HashSet<TileEntity> pushedOutputs = new HashSet<>();
     private Coordinate3D masterLocation;
 
     public TileEntityConduit() {
@@ -77,6 +79,11 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
             return;
         }
 
+        if (this.getStructure() == null)
+            return;
+
+        this.pushedOutputs.clear();
+
         this.getWorld().theProfiler.startSection("push");
         handlePushToRequesters();
         this.getWorld().theProfiler.endSection();
@@ -106,7 +113,10 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
             if (entity == null || !entity.hasCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite()))
                 continue;
 
+            int contentsBefore = getStructure().getData().getStructureTank().getFluidAmount();
             MoltenMetalHelper.transferMaxAmount(getStructure().getData().getStructureTank(), entity.getCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite()));
+            if (contentsBefore != getStructure().getData().getStructureTank().getFluidAmount())
+                pushedOutputs.add(entity);
         }
     }
 
@@ -120,6 +130,9 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
             if (entity == null || !entity.hasCapability(ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY, facing.getOpposite()))
                 continue;
 
+            if (pushedOutputs.contains(entity))
+                continue;
+
             MoltenMetalHelper.transferMaxAmount(entity.getCapability(ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY, facing.getOpposite()), getStructure().getData().getStructureTank());
         }
     }
@@ -129,8 +142,6 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
 
         if (entity instanceof TileEntityConduit) {
             TileEntityConduit conduit = (TileEntityConduit) entity;
-
-            int amountBefore = conduit.getStructure().getData().getStructureTank().getFluidAmount();
 
             MoltenMetalHelper.transferMaxAmount(getStructure().getData().getStructureTank(), conduit.getStructure().getData().getStructureTank());
 
@@ -179,7 +190,7 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
             if (tileEntity instanceof TileEntityConduit) {
                 TileEntityConduit other = (TileEntityConduit) tileEntity;
 
-                if (getStructure().getData().getStructureType() == other.getStructure().getData().getStructureType())
+                if (type == other.type)
                     components.add(other);
             }
         }
