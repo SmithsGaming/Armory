@@ -11,4 +11,5 @@ public class ModBlocks {
     public static Block blockFirePlace;
     public static Block blockConduit;
     public static Block blockMoltenMetalTank;
+    public static Block blockMoltenMetalPump;
 }

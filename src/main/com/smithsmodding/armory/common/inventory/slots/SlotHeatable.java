@@ -12,6 +12,7 @@ import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class SlotHeatable extends SlotSmithsCore {
 
@@ -24,7 +25,7 @@ public class SlotHeatable extends SlotSmithsCore {
     }
 
     @Override
-    public boolean isItemValid (ItemStack pItemStack) {
+    public boolean isItemValid(@NotNull ItemStack pItemStack) {
         if (pItemStack.getItem() instanceof ItemHeatedItem) {
             return true;
         }
@@ -42,7 +43,7 @@ public class SlotHeatable extends SlotSmithsCore {
     }
 
     @Override
-    public int getSlotStackLimit () {
+    public int getSlotStackLimit() {
         return 1;
     }
 

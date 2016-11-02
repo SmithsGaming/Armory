@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Orion
  * Created on 16.05.2015
  * 13:42
- *
+ * <p>
  * Copyrighted according to Project specific license
  */
 public class ItemTongs extends Item {

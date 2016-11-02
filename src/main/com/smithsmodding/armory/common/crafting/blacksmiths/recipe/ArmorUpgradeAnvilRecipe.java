@@ -16,6 +16,8 @@ import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,14 +26,16 @@ import java.util.HashMap;
  * Created by Orion
  * Created on 28.05.2015
  * 21:24
- *
+ * <p>
  * Copyrighted according to Project specific license
  */
 public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
     private String iArmorType;
     private String iArmorMaterial;
+    @NotNull
     private ArrayList<Integer> iUpgradeComponents = new ArrayList<Integer>(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS);
 
+    @NotNull
     private String iTranslatedUpgrades = "";
 
     public ArmorUpgradeAnvilRecipe(String pArmorType, String pArmorMaterial) {
@@ -40,7 +44,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
     }
 
     @Override
-    public boolean matchesRecipe(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents, int pHammerUsagesLeft, int pTongsUsagesLeft) {
+    public boolean matchesRecipe(@NotNull ItemStack[] pCraftingSlotContents, @NotNull ItemStack[] pAdditionalSlotContents, int pHammerUsagesLeft, int pTongsUsagesLeft) {
         if (pCraftingSlotContents[12] == null)
             return false;
 
@@ -131,10 +135,12 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
         return (!(tArmorStack == null));
     }
 
+    @Nullable
     @Override
     public IAnvilRecipeComponent getComponent(int pComponentIndex) {
         if (pComponentIndex == 12) {
             return new StandardAnvilRecipeComponent(new ItemStack(ModItems.metalRing)) {
+                @Nullable
                 @Override
                 public ItemStack getComponentTargetStack() {
                     return MedievalArmorFactory.getInstance().buildNewMLAArmor(ArmorRegistry.getInstance().getArmor(iArmorType), new HashMap<MLAAddon, Integer>(), MaterialRegistry.getInstance().getMaterial(iArmorMaterial).getBaseDurability(iArmorType), iArmorMaterial);
@@ -154,6 +160,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
         return getComponents()[pComponentIndex];
     }
 
+    @Nullable
     @Override
     public ArmorUpgradeAnvilRecipe setCraftingSlotContent(int pSlotIndex, IAnvilRecipeComponent pComponent) {
         if (pSlotIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
@@ -168,6 +175,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
         return this;
     }
 
+    @Nullable
     public ArmorUpgradeAnvilRecipe setUpgradeCraftingSlotComponent(int pSlotIndex, IAnvilRecipeComponent pComponent) {
         if (pSlotIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
             return null;
@@ -182,6 +190,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
         return setCraftingSlotContent(pSlotIndex, pComponent);
     }
 
+    @Nullable
     @Override
     public ItemStack getResult(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents) {
         HashMap<MLAAddon, Integer> tNewAddons = new HashMap<MLAAddon, Integer>();

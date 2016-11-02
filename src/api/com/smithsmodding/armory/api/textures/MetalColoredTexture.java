@@ -9,6 +9,7 @@ package com.smithsmodding.armory.api.textures;
 import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.math.MathHelper;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 
@@ -19,7 +20,7 @@ public class MetalColoredTexture extends AbstractColoredTexture {
     protected float brightness;
     protected float hueshift;
 
-    public MetalColoredTexture (TextureAtlasSprite baseTexture, String spriteName, int baseColor, float shinyness, float brightness, float hueshift) {
+    public MetalColoredTexture(@NotNull TextureAtlasSprite baseTexture, String spriteName, int baseColor, float shinyness, float brightness, float hueshift) {
         super(baseTexture, spriteName);
         this.baseColor = baseColor;
         this.shinyness = shinyness;

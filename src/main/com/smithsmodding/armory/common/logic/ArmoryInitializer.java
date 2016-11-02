@@ -38,8 +38,7 @@ import com.smithsmodding.armory.common.material.fluidmodifiers.ObsidianToLavaSet
 import com.smithsmodding.armory.common.registry.*;
 import com.smithsmodding.armory.common.tileentity.*;
 import com.smithsmodding.smithscore.SmithsCore;
-import com.smithsmodding.smithscore.util.common.ItemStackHelper;
-import net.minecraft.client.resources.I18n;
+import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -52,6 +51,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -838,7 +838,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.BACKRIGHT );
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.BACKRIGHT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -855,7 +855,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.BACKLEFT );
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.BACKLEFT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -872,7 +872,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.FRONTRIGHT );
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.FRONTRIGHT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -889,7 +889,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.FRONTLEFT );
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Chestplate.FRONTLEFT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -915,7 +915,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.BACKRIGHT );
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.BACKRIGHT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -932,7 +932,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.BACKLEFT );
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.BACKLEFT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -949,7 +949,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.FRONTRIGHT );
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.FRONTRIGHT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -966,7 +966,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.FRONTLEFT );
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Leggings.FRONTLEFT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -992,7 +992,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Shoes.LEFT );
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Shoes.LEFT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1009,7 +1009,7 @@ public class ArmoryInitializer {
                         ItemStack tUpgradeStack = new ItemStack(ModItems.armorComponent, 1);
                         NBTTagCompound pUpgradeCompound = new NBTTagCompound();
                         pUpgradeCompound.setString(References.NBTTagCompoundData.Material, tUpgradeMaterial.getUniqueID());
-                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Shoes.RIGHT );
+                        pUpgradeCompound.setString(References.NBTTagCompoundData.Addons.AddonID, References.InternalNames.AddonPositions.Shoes.RIGHT);
 
                         tUpgradeStack.setTagCompound(pUpgradeCompound);
 
@@ -1027,11 +1027,10 @@ public class ArmoryInitializer {
     }
 
     public static class GlobalInitialization {
-        public static void registerAnvilMaterials()
-        {
-            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.STONE, 250, I18n.format(TranslationKeys.Materials.Anvil.Stone)));
-            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.IRON, 1500, I18n.format(TranslationKeys.Materials.Anvil.Iron)));
-            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.OBSIDIAN, 2200, I18n.format(TranslationKeys.Materials.Anvil.Obsidian)));
+        public static void registerAnvilMaterials() {
+            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.STONE, 250, TranslationKeys.Materials.Anvil.Stone));
+            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.IRON, 1500, TranslationKeys.Materials.Anvil.Iron));
+            AnvilMaterialRegistry.getInstance().registerNewAnvilMaterial(new AnvilMaterial(References.InternalNames.Materials.Anvil.OBSIDIAN, 2200, TranslationKeys.Materials.Anvil.Obsidian));
         }
     }
 
@@ -1042,6 +1041,7 @@ public class ArmoryInitializer {
             ModBlocks.blockFirePlace = new BlockFirePlace();
             ModBlocks.blockConduit = new BlockConduit();
             ModBlocks.blockMoltenMetalTank = new BlockMoltenMetalTank();
+            ModBlocks.blockMoltenMetalPump = new BlockPump();
 
             GameRegistry.register(ModBlocks.blockForge);
             GameRegistry.register(new ItemBlock(ModBlocks.blockForge).setRegistryName(ModBlocks.blockForge.getRegistryName()));
@@ -1053,6 +1053,8 @@ public class ArmoryInitializer {
             GameRegistry.register(new ItemBlock(ModBlocks.blockConduit).setRegistryName(ModBlocks.blockConduit.getRegistryName()));
             GameRegistry.register(ModBlocks.blockMoltenMetalTank);
             GameRegistry.register(new ItemBlock(ModBlocks.blockMoltenMetalTank).setRegistryName(ModBlocks.blockMoltenMetalTank.getRegistryName()));
+            GameRegistry.register(ModBlocks.blockMoltenMetalPump);
+            GameRegistry.register(new ItemBlock(ModBlocks.blockMoltenMetalPump).setRegistryName(ModBlocks.blockMoltenMetalPump.getRegistryName()));
         }
 
         public static void registerItems() {
@@ -1094,6 +1096,7 @@ public class ArmoryInitializer {
             GameRegistry.registerTileEntity(TileEntityBlackSmithsAnvil.class, References.InternalNames.TileEntities.ArmorsAnvil);
             GameRegistry.registerTileEntity(TileEntityConduit.class, References.InternalNames.TileEntities.Conduit);
             GameRegistry.registerTileEntity(TileEntityMoltenMetalTank.class, References.InternalNames.TileEntities.Tank);
+            GameRegistry.registerTileEntity(TileEntityPump.class, References.InternalNames.TileEntities.Pump);
         }
 
         public static void registerCreativeTabs() {
@@ -1130,7 +1133,7 @@ public class ArmoryInitializer {
             }
         }
 
-        public static void tryRemoveRecipeFromGame(IRecipe recipe, Iterator iterator) {
+        public static void tryRemoveRecipeFromGame(@NotNull IRecipe recipe, @NotNull Iterator iterator) {
             if (recipe.getRecipeOutput() == null)
                 return;
 
@@ -1162,10 +1165,10 @@ public class ArmoryInitializer {
             ArrayList<ItemStack> plates = new ArrayList<ItemStack>();
             ArrayList<ItemStack> nuggets = new ArrayList<ItemStack>();
 
-            ModItems.metalChain.getSubItems(null, null, chains);
-            ModItems.metalRing.getSubItems(null, null, rings);
-            ModItems.metalPlate.getSubItems(null, null, plates);
-            ModItems.metalNugget.getSubItems(null, null, nuggets);
+            ((ItemResource) ModItems.metalChain).buildSubItemList(ModItems.metalChain, null, chains);
+            ((ItemResource) ModItems.metalNugget).buildSubItemList(ModItems.metalNugget, null, chains);
+            ((ItemResource) ModItems.metalPlate).buildSubItemList(ModItems.metalPlate, null, chains);
+            ((ItemResource) ModItems.metalRing).buildSubItemList(ModItems.metalRing, null, chains);
 
             for (ItemStack chain : chains) {
                 String material = chain.getTagCompound().getString(References.NBTTagCompoundData.Material);

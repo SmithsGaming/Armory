@@ -8,6 +8,7 @@ package com.smithsmodding.armory.api.textures;
 
 import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.image.DirectColorModel;
 
@@ -20,8 +21,8 @@ public class ExtraUtilityTexture extends AbstractColoredTexture {
     boolean[] trans;
     boolean[] edge;
 
-    public ExtraUtilityTexture (TextureAtlasSprite baseTexture,
-                                String spriteName) {
+    public ExtraUtilityTexture(@NotNull TextureAtlasSprite baseTexture,
+                               String spriteName) {
         super(baseTexture, spriteName);
     }
 

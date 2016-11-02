@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.api.registries;
 
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
@@ -13,7 +14,7 @@ public interface IArmorRegistry {
      *
      * @return A HashMap with as Key the uniqueID of the armor and as Value a instance of a MultiLayeredArmor
      */
-    HashMap<String, MultiLayeredArmor> getAllRegisteredArmors();
+    @NotNull HashMap<String, MultiLayeredArmor> getAllRegisteredArmors();
 
     /**
      * Function to register a new Instance of MultiLayeredArmor

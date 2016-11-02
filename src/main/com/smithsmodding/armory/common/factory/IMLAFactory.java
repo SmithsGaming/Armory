@@ -5,10 +5,12 @@ package com.smithsmodding.armory.common.factory;
 /  Created on : 03/07/2014
 */
 
-import com.smithsmodding.armory.api.armor.*;
-import net.minecraft.item.*;
+import com.smithsmodding.armory.api.armor.MLAAddon;
+import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
+import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.HashMap;
 
 public interface IMLAFactory {
     /**
@@ -22,7 +24,7 @@ public interface IMLAFactory {
      * @param pData          Extra data for your factory
      * @return An Itemstack containing your now modified armor.
      */
-    ItemStack buildMLAArmor(MultiLayeredArmor pBaseArmor, ItemStack pBaseItemStack, HashMap<MLAAddon, Integer> pNewAddons, Integer pNewTotalDurability, String iInternalMaterialName, Object... pData);
+    @Nullable ItemStack buildMLAArmor(MultiLayeredArmor pBaseArmor, ItemStack pBaseItemStack, HashMap<MLAAddon, Integer> pNewAddons, Integer pNewTotalDurability, String iInternalMaterialName, Object... pData);
 
     /**
      * Function used to create a new armor ItemStack
@@ -32,7 +34,7 @@ public interface IMLAFactory {
      * @param pData      Extra data for your factory
      * @return A new ItemStack with full durability
      */
-    ItemStack buildNewMLAArmor(MultiLayeredArmor pBaseArmor, HashMap<MLAAddon, Integer> pAddons, Integer pTotalDurability, String iInternalMaterialName, Object... pData);
+    @Nullable ItemStack buildNewMLAArmor(MultiLayeredArmor pBaseArmor, HashMap<MLAAddon, Integer> pAddons, Integer pTotalDurability, String iInternalMaterialName, Object... pData);
 
-    String getArmorGivenName(ItemStack pStack);
+    @Nullable String getArmorGivenName(ItemStack pStack);
 }

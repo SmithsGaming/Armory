@@ -5,6 +5,7 @@ import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class TileEntityForgeState extends TileEntityForgeBaseState<TileEntityForge> {
 
     private float mixingProgress = 0;
+    @NotNull
     private ArrayList<Float> meltingProgress = new ArrayList<Float>();
 
     @Override
@@ -40,6 +42,7 @@ public class TileEntityForgeState extends TileEntityForgeBaseState<TileEntityFor
         }
     }
 
+    @NotNull
     @Override
     public NBTBase writeToNBTTagCompound() {
         NBTTagCompound compound = (NBTTagCompound) super.writeToNBTTagCompound();

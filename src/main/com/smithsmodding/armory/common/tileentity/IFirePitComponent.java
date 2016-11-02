@@ -10,11 +10,11 @@ import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;
 
 public interface IFirePitComponent {
 
-    float getPositiveInflunce ();
+    float getPositiveInflunce();
 
-    float getNegativeInfluece ();
+    float getNegativeInfluece();
 
-    int getMaxTempInfluence ();
+    int getMaxTempInfluence();
 
     boolean canInfluenceTE(Coordinate3D coordinate);
 }

@@ -32,8 +32,7 @@ public class ComponentBlackSmithsAnvilCraftingGrid extends Component5X5CraftingG
 
             if (slotIndex - startSlotIndexCraftingGrid == 11) {
                 holoSprite = com.smithsmodding.armory.api.util.client.Textures.Gui.Anvil.HOLOWPICKAXE.getIcon();
-            }
-            else if (slotIndex - startSlotIndexCraftingGrid == 13) {
+            } else if (slotIndex - startSlotIndexCraftingGrid == 13) {
                 holoSprite = com.smithsmodding.armory.api.util.client.Textures.Gui.Anvil.HOLOWBOOK.getIcon();
             }
 
@@ -48,5 +47,10 @@ public class ComponentBlackSmithsAnvilCraftingGrid extends Component5X5CraftingG
         Slot slot = crafter.getSlot(craftingProductionSlotIndex);
         Coordinate2D slotLocation = new Coordinate2D(slot.xDisplayPosition - 1, slot.yDisplayPosition - 1).getTranslatedCoordinate(getLocalCoordinate().getInvertedCoordinate());
         registerNewComponent(new ComponentSlot(getID() + ".Out", new SlotComponentState(null, slot, crafter.getContainerInventory(), null), host, slotLocation, Colors.DEFAULT));
+    }
+
+    @Override
+    public IGUIBasedComponentHost getRootGuiObject() {
+        return super.getRootGuiObject();
     }
 }

@@ -12,6 +12,8 @@ import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ITickable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Author Orion (Created on: 23.06.2016)
@@ -45,9 +47,10 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
         }
     }
 
+    @Nullable
     public abstract IForgeFuelDataContainer getFuelData();
 
-    public void heatFurnace(IForgeFuelDataContainer fuelData, S localData) {
+    public void heatFurnace(@NotNull IForgeFuelDataContainer fuelData, @NotNull S localData) {
         calculateHeatTerms(localData);
 
         localData.setLastChange(0F);
@@ -88,7 +91,7 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
         localData.setLastChange(localData.getLastChange() * (1 - localData.getHeatedPercentage()));
     }
 
-    public boolean heatIngots(IForgeFuelDataContainer fuelData, S localData) {
+    public boolean heatIngots(IForgeFuelDataContainer fuelData, @NotNull S localData) {
 
         if ((localData.getLastChange() == 0F) && (localData.getCurrentTemp() <= 20F) || (getInsertedIngotAmount() == 0)) {
             return true;

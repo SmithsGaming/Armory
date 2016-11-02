@@ -8,6 +8,7 @@ import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,15 +38,16 @@ public class MultiLayeredArmorModelDeserializer implements JsonDeserializer<Mult
      * @return A ModelDefinition for a MultiComponentModel.
      * @throws IOException Thrown when the given ModelLocation points to nothing or not to a ModelFile.
      */
-    public MultiLayeredArmorModelDefinition deserialize(ResourceLocation modelLocation) throws IOException {
+    public MultiLayeredArmorModelDefinition deserialize(@NotNull ResourceLocation modelLocation) throws IOException {
         IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
         Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
 
         return gson.fromJson(reader, definitionType);
     }
 
+    @NotNull
     @Override
-    public MultiLayeredArmorModelDefinition deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public MultiLayeredArmorModelDefinition deserialize(@NotNull JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();
         JsonObject layers = jsonObject.get("layers").getAsJsonObject();
         JsonObject broken = jsonObject.get("broken").getAsJsonObject();

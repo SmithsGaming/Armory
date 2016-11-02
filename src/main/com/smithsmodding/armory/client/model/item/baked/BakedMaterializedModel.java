@@ -12,6 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public class BakedMaterializedModel extends BakedWrappedModel.PerspectiveAware {
         this.childModels = childModels;
     }
 
+    @NotNull
     @Override
     public ItemOverrideList getOverrides() {
         return overrides;

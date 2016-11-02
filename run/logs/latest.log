@@ -1,35 +1,36 @@
-[09:41:43] [Client thread/INFO]: Setting user: Player411
-[09:41:47] [Client thread/WARN]: Skipping bad option: lastServer:
-[09:41:47] [Client thread/INFO]: LWJGL Version: 2.9.4
-[09:41:52] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items, FMLFileResourcePack:ExtraUtils2
-[09:41:59] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[09:41:59] [Thread-8/INFO]: Initializing LWJGL OpenAL
-[09:41:59] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[09:41:59] [Thread-8/INFO]: OpenAL initialized.
-[09:41:59] [Sound Library Loader/INFO]: Sound engine started
-[09:42:04] [Client thread/INFO]: Created: 16x16 textures-atlas
-[09:42:05] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items, FMLFileResourcePack:ExtraUtils2
-[09:42:08] [Client thread/INFO]: SoundSystem shutting down...
-[09:42:08] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[09:42:08] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[09:42:09] [Thread-10/INFO]: Initializing LWJGL OpenAL
-[09:42:09] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[09:42:09] [Thread-10/INFO]: OpenAL initialized.
-[09:42:09] [Sound Library Loader/INFO]: Sound engine started
-[09:42:13] [Client thread/INFO]: Created: 2048x2048 textures-atlas
-[09:42:14] [Client thread/WARN]: Skipping bad option: lastServer:
-[09:42:15] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
-[09:43:11] [Server thread/INFO]: Starting integrated minecraft server version 1.10.2
-[09:43:11] [Server thread/INFO]: Generating keypair
-[09:43:12] [Server thread/INFO]: Preparing start region for level 0
-[09:43:12] [Server thread/INFO]: Changing view distance to 12, from 10
-[09:43:13] [Server thread/INFO]: Player411[local:E:b7c8ea10] logged in with entity id 38 at (1760.644925257137, 4.0, 832.9600153389085)
-[09:43:13] [Server thread/INFO]: Player411 joined the game
-[09:43:14] [Server thread/INFO]: Saving and pausing game...
-[09:43:14] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Overworld
-[09:43:14] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Nether
-[09:43:14] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/The End
-[09:43:15] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@3bea8a16[id=f32cf69c-7cce-3f6d-81d4-191672800bce,name=Player411,properties={},legacy=false]
+[22:45:21] [Client thread/INFO]: Setting user: Player32
+[22:45:27] [Client thread/WARN]: Skipping bad option: lastServer:
+[22:45:27] [Client thread/INFO]: LWJGL Version: 2.9.4
+[22:45:34] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items, FMLFileResourcePack:ExtraUtils2
+[22:45:43] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[22:45:43] [Thread-8/INFO]: Initializing LWJGL OpenAL
+[22:45:43] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:45:44] [Thread-8/INFO]: OpenAL initialized.
+[22:45:44] [Sound Library Loader/INFO]: Sound engine started
+[22:45:49] [Client thread/INFO]: Created: 16x16 textures-atlas
+[22:45:51] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items, FMLFileResourcePack:ExtraUtils2
+[22:45:55] [Client thread/INFO]: SoundSystem shutting down...
+[22:45:55] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[22:45:55] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[22:45:55] [Thread-10/INFO]: Initializing LWJGL OpenAL
+[22:45:55] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:45:56] [Thread-10/INFO]: OpenAL initialized.
+[22:45:56] [Sound Library Loader/INFO]: Sound engine started
+[22:46:02] [Client thread/INFO]: Created: 2048x2048 textures-atlas
+[22:46:03] [Client thread/WARN]: Skipping bad option: lastServer:
+[22:46:04] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[22:46:11] [Server thread/INFO]: Starting integrated minecraft server version 1.10.2
+[22:46:11] [Server thread/INFO]: Generating keypair
+[22:46:12] [Server thread/INFO]: Preparing start region for level 0
+[22:46:12] [Server thread/WARN]: Keeping entity Pig that already exists with UUID b9ea75a5-29b5-4c76-a8e7-0edecd280c25
+[22:46:13] [Server thread/INFO]: Changing view distance to 12, from 10
+[22:46:14] [Server thread/INFO]: Player32[local:E:5f3e52fa] logged in with entity id 164 at (581.3268454051513, 4.0, -345.5954836034061)
+[22:46:14] [Server thread/INFO]: Player32 joined the game
+[22:46:15] [Server thread/INFO]: Saving and pausing game...
+[22:46:15] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[22:46:15] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[22:46:15] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[22:46:17] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@4b426360[id=cdc68907-d5a3-31ac-b4e8-b157ad0dd513,name=Player32,properties={},legacy=false]
 com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
 	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:65) ~[YggdrasilAuthenticationService.class:?]
 	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:175) [YggdrasilMinecraftSessionService.class:?]
@@ -51,21 +52,28 @@ com.mojang.authlib.exceptions.AuthenticationException: The client has sent too m
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_65]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_65]
 	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_65]
-[09:43:16] [Server thread/INFO]: Player411 has just earned the achievement [Taking Inventory]
-[09:43:16] [Client thread/INFO]: [CHAT] Player411 has just earned the achievement [Taking Inventory]
-[09:43:52] [Server thread/INFO]: Saving and pausing game...
-[09:43:52] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Overworld
-[09:43:52] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Nether
-[09:43:52] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/The End
-[09:43:53] [Client thread/INFO]: Stopping!
-[09:43:53] [Client thread/INFO]: SoundSystem shutting down...
-[09:43:53] [Server thread/INFO]: Stopping server
-[09:43:53] [Server thread/INFO]: Saving players
-[09:43:53] [Server thread/INFO]: Saving worlds
-[09:43:53] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Overworld
-[09:43:53] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/Nether
-[09:43:53] [Server thread/INFO]: Saving chunks for level 'Copy of Copy of New World'/The End
-[09:43:53] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[09:43:53] [Client Shutdown Thread/INFO]: Stopping server
-[09:43:53] [Client Shutdown Thread/INFO]: Saving players
-[09:43:53] [Client Shutdown Thread/INFO]: Saving worlds
+[22:46:17] [Server thread/INFO]: Saving and pausing game...
+[22:46:17] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[22:46:17] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[22:46:17] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[22:46:25] [Server thread/INFO]: Player32 has just earned the achievement [Taking Inventory]
+[22:46:25] [Client thread/INFO]: [CHAT] Player32 has just earned the achievement [Taking Inventory]
+[22:46:36] [Server thread/INFO]: [Player32: Set own game mode to Survival Mode]
+[22:46:36] [Client thread/INFO]: [CHAT] Your game mode has been updated to Survival Mode
+[22:46:42] [Server thread/INFO]: Saving and pausing game...
+[22:46:42] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[22:46:42] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[22:46:42] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[22:47:41] [Server thread/INFO]: Saving and pausing game...
+[22:47:41] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[22:47:41] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[22:47:41] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[22:47:42] [Server thread/INFO]: Stopping server
+[22:47:42] [Server thread/INFO]: Saving players
+[22:47:42] [Server thread/INFO]: Saving worlds
+[22:47:42] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[22:47:42] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[22:47:42] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[22:47:43] [Client thread/INFO]: Stopping!
+[22:47:43] [Client thread/INFO]: SoundSystem shutting down...
+[22:47:44] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com

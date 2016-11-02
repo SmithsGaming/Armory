@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.jetbrains.annotations.NotNull;
 
 import javax.vecmath.Vector3f;
 import java.util.Collection;
@@ -28,17 +29,18 @@ public class HeatedItemItemModel extends ItemLayerModel {
 
     TemperatureBarComponentModel gaugeDisplay;
 
-    public HeatedItemItemModel (ImmutableList<ResourceLocation> defaultTextures) {
+    public HeatedItemItemModel(ImmutableList<ResourceLocation> defaultTextures) {
         super(defaultTextures);
 
         this.gaugeDisplay = new TemperatureBarComponentModel(defaultTextures);
     }
 
     @Override
-    public Collection<ResourceLocation> getDependencies () {
+    public Collection<ResourceLocation> getDependencies() {
         return ImmutableList.of();
     }
 
+    @NotNull
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         //Get ourselfs the base model to use.

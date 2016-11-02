@@ -213,6 +213,7 @@ public class References {
             public static final String ArmorsAnvil = "Container.Armory.Anvil";
             public static final String Conduit = "Container.Armory.Conduit";
             public static final String Tank = "Container.Armory.Tank";
+            public static final String Pump = "Container.Armory.Pump";
 
             public static final class Structures {
                 public static final String Forge = "Structures.Armory.Forge";

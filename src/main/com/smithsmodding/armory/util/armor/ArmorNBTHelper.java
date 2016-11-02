@@ -13,16 +13,18 @@ import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
-import com.smithsmodding.smithscore.util.common.NBTHelper;
+import com.smithsmodding.smithscore.util.common.helper.NBTHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 public class ArmorNBTHelper {
-    public static HashMap<MLAAddon, Integer> getAddonMap(ItemStack pItemStack) {
+    @NotNull
+    public static HashMap<MLAAddon, Integer> getAddonMap(@NotNull ItemStack pItemStack) {
         HashMap<MLAAddon, Integer> tAddonMap = new HashMap<MLAAddon, Integer>();
         NBTTagCompound tStackCompound = pItemStack.getTagCompound();
         String tTier = tStackCompound.getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.ArmorTier);
@@ -39,7 +41,7 @@ public class ArmorNBTHelper {
         return tAddonMap;
     }
 
-    public static MLAAddon getMLAAddon(String pAddonID, String pTier) {
+    public static MLAAddon getMLAAddon(String pAddonID, @NotNull String pTier) {
         if (pTier.equals(References.InternalNames.Tiers.MEDIEVAL)) {
             return MedievalAddonRegistry.getInstance().getUpgrade(pAddonID);
         } else {
@@ -47,7 +49,8 @@ public class ArmorNBTHelper {
         }
     }
 
-    public static NBTTagCompound createAddonListCompound(HashMap<MLAAddon, Integer> pAddonMap) {
+    @NotNull
+    public static NBTTagCompound createAddonListCompound(@NotNull HashMap<MLAAddon, Integer> pAddonMap) {
         NBTTagCompound tAddonsCompound = new NBTTagCompound();
 
         for (Map.Entry<MLAAddon, Integer> entry : pAddonMap.entrySet()) {
@@ -64,15 +67,16 @@ public class ArmorNBTHelper {
         return tAddonsCompound;
     }
 
-    public static String getRegisteredInternalName(ItemStack pItemStack) {
+    public static String getRegisteredInternalName(@NotNull ItemStack pItemStack) {
         return pItemStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.ArmorID);
     }
 
-    public static String getArmorBaseMaterialName(ItemStack pItemStack) {
+    public static String getArmorBaseMaterialName(@NotNull ItemStack pItemStack) {
         return pItemStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.MaterialID);
     }
 
-    public static HashMap<ArmorUpgradeMedieval, Integer> getInstalledArmorMedievalUpgradesOnItemStack(ItemStack pBaseArmor) {
+    @NotNull
+    public static HashMap<ArmorUpgradeMedieval, Integer> getInstalledArmorMedievalUpgradesOnItemStack(@NotNull ItemStack pBaseArmor) {
         HashMap<MLAAddon, Integer> tInstalledAddons = ArmorNBTHelper.getAddonMap(pBaseArmor);
         HashMap<ArmorUpgradeMedieval, Integer> tInstalledUpgrades = new HashMap<ArmorUpgradeMedieval, Integer>();
         Iterator tIterator = tInstalledAddons.entrySet().iterator();
@@ -87,14 +91,14 @@ public class ArmorNBTHelper {
         return tInstalledUpgrades;
     }
 
-    public static IArmorMaterial getBaseMaterialOfItemStack(ItemStack pArmorStack) {
+    public static IArmorMaterial getBaseMaterialOfItemStack(@NotNull ItemStack pArmorStack) {
         if (!(pArmorStack.getItem() instanceof MultiLayeredArmor))
             return null;
 
         return MaterialRegistry.getInstance().getMaterial(pArmorStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.MaterialID));
     }
 
-    public static boolean checkIfStackIsBroken (ItemStack armorStack) {
+    public static boolean checkIfStackIsBroken(@NotNull ItemStack armorStack) {
         return NBTHelper.getBoolean(armorStack, References.NBTTagCompoundData.Armor.IsBroken);
     }
 }

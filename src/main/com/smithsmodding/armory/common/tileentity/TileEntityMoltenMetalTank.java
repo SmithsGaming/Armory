@@ -1,9 +1,7 @@
 package com.smithsmodding.armory.common.tileentity;
 
-import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.types.EnumTankType;
-import com.smithsmodding.armory.common.tileentity.conduit.ConduitFluidTank;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityMoltenMetalTankGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityMoltenMetalTankState;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
@@ -13,6 +11,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.IFluidTank;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -21,27 +20,28 @@ import javax.annotation.Nullable;
  */
 public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMoltenMetalTankState, TileEntityMoltenMetalTankGuiManager> implements ITickable, IFluidContainingEntity {
 
-    private ConduitFluidTank tank;
     private EnumTankType type;
 
     public TileEntityMoltenMetalTank() {
     }
 
-    public TileEntityMoltenMetalTank(EnumTankType type) {
-        this.tank = new ConduitFluidTank(type.getTankContents());
+    public TileEntityMoltenMetalTank(@NotNull EnumTankType type) {
         this.type = type;
     }
 
+    @NotNull
     @Override
     protected TileEntityMoltenMetalTankGuiManager getInitialGuiManager() {
         return new TileEntityMoltenMetalTankGuiManager();
     }
 
+    @NotNull
     @Override
     protected TileEntityMoltenMetalTankState getInitialState() {
         return new TileEntityMoltenMetalTankState();
     }
 
+    @NotNull
     @Override
     public String getContainerID() {
         return References.InternalNames.TileEntities.Tank + "-" + getLocation().toString();
@@ -50,7 +50,6 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         this.type = EnumTankType.byMetadata(compound.getInteger(References.NBTTagCompoundData.TE.MoltenMetalTank.TYPE));
-        this.tank = new ConduitFluidTank(this.type.getTankContents());
 
         super.readFromNBT(compound);
     }
@@ -64,17 +63,11 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
 
     @Override
     public boolean hasCapability(Capability capability, EnumFacing facing) {
-        if (!(facing == EnumFacing.UP || facing == EnumFacing.DOWN) && (capability == ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY || capability == ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY))
-            return true;
-
         return super.hasCapability(capability, facing);
     }
 
     @Override
     public Object getCapability(Capability capability, EnumFacing facing) {
-        if (!(facing == EnumFacing.UP || facing == EnumFacing.DOWN) && (capability == ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY || capability == ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY))
-            return tank;
-
         return super.getCapability(capability, facing);
     }
 
@@ -85,16 +78,16 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
 
     @Override
     public IFluidTank getTankForSide(@Nullable EnumFacing side) {
-        return tank;
+        return null;
     }
 
     @Override
     public int getTotalTankSizeOnSide(@Nullable EnumFacing side) {
-        return tank.getCapacity();
+        return 0;
     }
 
     @Override
     public int getTankContentsVolumeOnSide(@Nullable EnumFacing side) {
-        return tank.getFluidAmount();
+        return 0;
     }
 }

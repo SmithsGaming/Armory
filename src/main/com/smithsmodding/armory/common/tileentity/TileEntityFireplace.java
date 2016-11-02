@@ -9,6 +9,8 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Marc on 27.02.2016.
@@ -33,9 +35,13 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
     public static float NEGATIVEHEAT = -0.15F;
     private boolean cookingShouldUpdateHeat = false;
 
+    @NotNull
     private ItemStack[] ingotStacks = new ItemStack[INGOTSLOTCOUNT];
+    @NotNull
     private ItemStack[] foodInputStacks = new ItemStack[FOODCOOKINPUTCOUNT];
+    @NotNull
     private ItemStack[] foodOutputStacks = new ItemStack[FOODCOOKOUTPUTCOUNT];
+    @NotNull
     private ItemStack[] fuelStacks = new ItemStack[FUELSLOTCOUNT];
 
     private float heatedProcentage;
@@ -43,11 +49,13 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
     public TileEntityFireplace() {
     }
 
+    @NotNull
     @Override
     protected TileEntityFireplaceGuiManager getInitialGuiManager() {
         return new TileEntityFireplaceGuiManager(this);
     }
 
+    @NotNull
     @Override
     protected TileEntityFireplaceState getInitialState() {
         return new TileEntityFireplaceState();
@@ -60,6 +68,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
      *
      * @return The ID of this Container Instance.
      */
+    @NotNull
     @Override
     public String getContainerID() {
         return References.InternalNames.TileEntities.FireplaceContainer + "-" + getLocation().toString();
@@ -78,6 +87,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
      *
      * @param index
      */
+    @Nullable
     @Override
     public ItemStack getStackInSlot(int index) {
         if (index < INGOTSLOTCOUNT) {
@@ -122,7 +132,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
      * @param stack
      */
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setInventorySlotContents(int index, @Nullable ItemStack stack) {
         if (index < INGOTSLOTCOUNT) {
             ingotStacks[index] = stack;
             return;
@@ -176,7 +186,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
      * @param stack
      */
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
+    public boolean isItemValidForSlot(int index, @NotNull ItemStack stack) {
         if (index < INGOTSLOTCOUNT) {
             for (int i = 0; i < FOODCOOKINPUTCOUNT; i++) {
                 if (getStackInSlot(i + INGOTSLOTCOUNT) != null)
@@ -252,7 +262,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
     }
 
     @Override
-    protected void calculateHeatTerms(TileEntityFireplaceState localData) {
+    protected void calculateHeatTerms(@NotNull TileEntityFireplaceState localData) {
         localData.setMaxTemp(2150f);
         localData.setLastNegativeTerm(NEGATIVEHEAT);
         localData.setLastPositiveTerm(POSITIVEHEAT);

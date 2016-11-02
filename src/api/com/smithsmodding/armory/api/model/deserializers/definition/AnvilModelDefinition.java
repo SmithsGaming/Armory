@@ -1,7 +1,8 @@
 package com.smithsmodding.armory.api.model.deserializers.definition;
 
 import com.google.common.base.Charsets;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.smithsmodding.armory.api.model.deserializers.AnvilBottomTextureDeserializer;
 import com.smithsmodding.armory.api.model.deserializers.AnvilModelDeserializer;
@@ -9,6 +10,7 @@ import com.smithsmodding.armory.api.model.deserializers.AnvilTopTextureDeseriali
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -43,6 +45,32 @@ public class AnvilModelDefinition {
         this.textureBottomPaths = textureBottomPaths;
     }
 
+    @NotNull
+    public static AnvilModelDefinition loadModel(@NotNull ResourceLocation modelLocation) throws IOException {
+        return new AnvilModelDefinition(loadModelDefinition(modelLocation), loadModelTexturesForTop(modelLocation), loadModelTexturesForBottom(modelLocation));
+    }
+
+    public static String loadModelDefinition(@NotNull ResourceLocation modelLocation) throws IOException {
+        IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
+        Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
+
+        return GSONMODEL.fromJson(reader, stringType);
+    }
+
+    public static Map<String, String> loadModelTexturesForTop(@NotNull ResourceLocation modelLocation) throws IOException {
+        IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
+        Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
+
+        return GSONTOP.fromJson(reader, maptype);
+    }
+
+    public static Map<String, String> loadModelTexturesForBottom(@NotNull ResourceLocation modelLocation) throws IOException {
+        IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
+        Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
+
+        return GSONBOTTOM.fromJson(reader, maptype);
+    }
+
     public String getModelPath() {
         return modelPath;
     }
@@ -53,31 +81,6 @@ public class AnvilModelDefinition {
 
     public Map<String, String> getTextureBottomPaths() {
         return textureBottomPaths;
-    }
-
-    public static AnvilModelDefinition loadModel(ResourceLocation modelLocation) throws IOException {
-        return new AnvilModelDefinition(loadModelDefinition(modelLocation), loadModelTexturesForTop(modelLocation), loadModelTexturesForBottom(modelLocation));
-    }
-
-    public static String loadModelDefinition(ResourceLocation modelLocation) throws IOException {
-        IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
-        Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
-
-        return GSONMODEL.fromJson(reader, stringType);
-    }
-
-    public static Map<String, String> loadModelTexturesForTop(ResourceLocation modelLocation) throws IOException {
-        IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
-        Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
-
-        return GSONTOP.fromJson(reader, maptype);
-    }
-
-    public static Map<String, String> loadModelTexturesForBottom(ResourceLocation modelLocation) throws IOException {
-        IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
-        Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
-
-        return GSONBOTTOM.fromJson(reader, maptype);
     }
 
 }

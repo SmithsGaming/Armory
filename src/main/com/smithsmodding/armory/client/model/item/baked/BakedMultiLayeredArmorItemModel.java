@@ -9,8 +9,8 @@ import com.smithsmodding.armory.client.model.item.baked.components.BakedSubCompo
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
 import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
-import com.smithsmodding.smithscore.util.common.NBTHelper;
 import com.smithsmodding.smithscore.util.common.Pair;
+import com.smithsmodding.smithscore.util.common.helper.NBTHelper;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -20,6 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -28,7 +30,9 @@ import java.util.*;
  */
 public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.PerspectiveAware {
 
+    @NotNull
     private static final List<List<BakedQuad>> empty_face_quads;
+    @NotNull
     private static final List<BakedQuad> empty_list;
 
     static {
@@ -39,6 +43,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
         }
     }
 
+    @NotNull
     protected final Overrides overrides;
     protected final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
     protected Pair<String, BakedSubComponentModel> baseLayer;
@@ -59,6 +64,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
         this.transforms = transforms;
     }
 
+    @NotNull
     @Override
     public ItemOverrideList getOverrides() {
         return overrides;
@@ -73,6 +79,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
             this.parent = parent;
         }
 
+        @Nullable
         @Override
         public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
             NBTTagCompound baseTag = NBTHelper.getTagCompound(stack);
@@ -87,7 +94,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
             //Sort the list based on priority.
             Collections.sort(installedAddons, new Comparator<MLAAddon>() {
                 @Override
-                public int compare(MLAAddon o1, MLAAddon o2) {
+                public int compare(@NotNull MLAAddon o1, @NotNull MLAAddon o2) {
                     return Integer.compare(o1.getLayerPriority(), o2.getLayerPriority());
                 }
             });

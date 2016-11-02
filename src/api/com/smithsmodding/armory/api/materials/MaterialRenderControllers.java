@@ -2,14 +2,13 @@ package com.smithsmodding.armory.api.materials;
 
 import com.smithsmodding.armory.api.textures.*;
 import com.smithsmodding.smithscore.client.textures.ITextureController;
-import com.smithsmodding.smithscore.util.client.color.ColorSampler;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 /*
   A BIG NOTE UPFRONT. Due to the similarities between TiC ToolSystem and Armories armor system this is a near repackage.
@@ -60,6 +59,7 @@ public class MaterialRenderControllers {
             return suffix;
         }
 
+        @NotNull
         @Override
         public ITextureController setTextureSuffix(String suffix) {
             this.suffix = suffix;
@@ -71,6 +71,7 @@ public class MaterialRenderControllers {
             return identifier;
         }
 
+        @NotNull
         @Override
         public ITextureController setCreationIdentifier(String identifier) {
             this.identifier = identifier;
@@ -124,13 +125,15 @@ public class MaterialRenderControllers {
             this.high = high;
         }
 
+        @NotNull
         @Override
         public MinecraftColor getVertexColor () {
             return new MinecraftColor(mid);
         }
 
+        @NotNull
         @Override
-        public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {
+        public TextureAtlasSprite getTexture(@NotNull TextureAtlasSprite baseTexture, String location) {
             return new SimpleColoredTexture(low, mid, high, baseTexture, location);
         }
     }
@@ -141,13 +144,15 @@ public class MaterialRenderControllers {
             super(low, mid, high);
         }
 
+        @NotNull
         @Override
         public MinecraftColor getVertexColor () {
             return new MinecraftColor(mid);
         }
 
+        @NotNull
         @Override
-        public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {
+        public TextureAtlasSprite getTexture(@NotNull TextureAtlasSprite baseTexture, String location) {
             return new InverseColoredTexture(low, mid, high, baseTexture, location);
         }
     }
@@ -169,13 +174,15 @@ public class MaterialRenderControllers {
             this(color, 0.4f, 0.4f, 0.1f);
         }
 
+        @NotNull
         @Override
         public MinecraftColor getVertexColor () {
             return new MinecraftColor(color);
         }
 
+        @NotNull
         @Override
-        public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {
+        public TextureAtlasSprite getTexture(@NotNull TextureAtlasSprite baseTexture, String location) {
             return new MetalColoredTexture(baseTexture, location, color, shinyness, brightness, hueshift);
         }
     }
@@ -192,8 +199,9 @@ public class MaterialRenderControllers {
             this.texturePath = texturePath;
         }
 
+        @NotNull
         @Override
-        public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {
+        public TextureAtlasSprite getTexture(@NotNull TextureAtlasSprite baseTexture, String location) {
             TextureAtlasSprite blockTexture = Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(texturePath);
 
             if (blockTexture == null) {
@@ -219,8 +227,9 @@ public class MaterialRenderControllers {
             this.texturePath = texturePath;
         }
 
+        @NotNull
         @Override
-        public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {
+        public TextureAtlasSprite getTexture(@NotNull TextureAtlasSprite baseTexture, String location) {
             TextureAtlasSprite blockTexture = Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(texturePath);
 
             if (blockTexture == null) {

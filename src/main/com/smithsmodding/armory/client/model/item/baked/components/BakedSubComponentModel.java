@@ -14,6 +14,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +22,11 @@ import java.util.Map;
 
 /**
  * Created by Marc on 06.12.2015.
- *
+ * <p>
  * A baked model for a component made up out of a single material.
  */
 public class BakedSubComponentModel extends BakedWrappedModel.PerspectiveAware {
+    @NotNull
     private final Overrides overrides;
     //Map that contains a premapped combination of materials to models.
     protected Map<String, IBakedModel> materializedComponents;
@@ -54,7 +56,7 @@ public class BakedSubComponentModel extends BakedWrappedModel.PerspectiveAware {
      * @param material The material to register a new model for.
      * @param model    The model to register.
      */
-    public void addMaterialModel(IArmorMaterial material, IBakedModel model) {
+    public void addMaterialModel(@NotNull IArmorMaterial material, IBakedModel model) {
         materializedComponents.put(material.getUniqueID(), model);
     }
 
@@ -73,6 +75,7 @@ public class BakedSubComponentModel extends BakedWrappedModel.PerspectiveAware {
         return materialModel;
     }
 
+    @NotNull
     @Override
     public ItemOverrideList getOverrides() {
         return overrides;

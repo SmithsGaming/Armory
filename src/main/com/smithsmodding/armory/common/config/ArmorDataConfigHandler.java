@@ -3,8 +3,8 @@ package com.smithsmodding.armory.common.config;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.materials.IArmorConfigurator;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
@@ -15,7 +15,7 @@ import java.util.Map;
  * Created by Orion
  * Created on 09.06.2015
  * 15:11
- *
+ * <p>
  * Copyrighted according to Project specific license
  */
 public class ArmorDataConfigHandler implements IArmorConfigurator {

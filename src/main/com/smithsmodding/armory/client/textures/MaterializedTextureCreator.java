@@ -19,6 +19,8 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,24 +28,28 @@ import java.util.Map;
 
 /**
  * Created by Marc on 06.12.2015.
- *
+ * <p>
  * TextureManager used to handle grayscale textures and color them for each material.
  * Modelled after parts of the TinkersConstruct CustomTextureCreator.
  */
 public class MaterializedTextureCreator implements IResourceManagerReloadListener {
 
+    @Nullable
     private static final IArmorMaterial guiMaterial;
     //Variable containing the location of all grayscale base textures.
+    @NotNull
     private static ArrayList<ResourceLocation> baseTextures = new ArrayList<ResourceLocation>();
     //Variable that holds the colored end textures when the Creator has reloaded
+    @NotNull
     private static Map<String, Map<String, TextureAtlasSprite>> buildSprites = Maps.newHashMap();
 
     //Initializes the dummy gui material with a proper set of render info.
     static {
         guiMaterial = new ArmorMaterial("_internal_gui", "Internal-gui", false, 0F, -1, 0F, null);
         guiMaterial.setRenderInfo(new MaterialRenderControllers.AbstractMaterialTextureController() {
+            @NotNull
             @Override
-            public TextureAtlasSprite getTexture (TextureAtlasSprite baseTexture, String location) {
+            public TextureAtlasSprite getTexture(@NotNull TextureAtlasSprite baseTexture, String location) {
                 return new GuiOutlineTexture(baseTexture, location);
             }
         });
@@ -54,7 +60,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      *
      * @param location The location of the Texture.
      */
-    public static void registerBaseTexture (ResourceLocation location) {
+    public static void registerBaseTexture(ResourceLocation location) {
         baseTextures.add(location);
     }
 
@@ -63,7 +69,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      *
      * @param locations The location of the textures to register.
      */
-    public static void registerBaseTexture (Collection<ResourceLocation> locations) {
+    public static void registerBaseTexture(@NotNull Collection<ResourceLocation> locations) {
         baseTextures.addAll(locations);
     }
 
@@ -72,7 +78,8 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      *
      * @return A map containing all the colored textures using the base texture and the materialname as keys.
      */
-    public static Map<String, Map<String, TextureAtlasSprite>> getBuildSprites () {
+    @NotNull
+    public static Map<String, Map<String, TextureAtlasSprite>> getBuildSprites() {
         return buildSprites;
     }
 
@@ -83,7 +90,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      * @param event The events fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
      */
     @SubscribeEvent(priority = EventPriority.LOW)
-    public void createCustomTextures (TextureStitchEvent.Pre event) {
+    public void createCustomTextures(@NotNull TextureStitchEvent.Pre event) {
         //Only run the creation once, after all mods have been loaded.
         if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
             return;
@@ -98,7 +105,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      *
      * @param map The map to register the textures to.
      */
-    public void createMaterialTextures (TextureMap map) {
+    public void createMaterialTextures(@NotNull TextureMap map) {
         for (ResourceLocation baseTexture : baseTextures) {
             //NO Reason doing something twice!
             if (buildSprites.containsKey(baseTexture.toString()))
@@ -129,7 +136,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
         }
     }
 
-    private TextureAtlasSprite createTexture (IArmorMaterial material, ResourceLocation baseTexture, TextureAtlasSprite base, TextureMap map) {
+    private TextureAtlasSprite createTexture(@NotNull IArmorMaterial material, @NotNull ResourceLocation baseTexture, TextureAtlasSprite base, @NotNull TextureMap map) {
         String location = baseTexture.toString() + "_" + material.getUniqueID();
         TextureAtlasSprite sprite;
 
@@ -151,7 +158,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
                 if (base2 == null && ResourceHelper.exists(loc2)) {
                     base2 = new AbstractColoredTexture(loc2, loc2) {
                         @Override
-                        protected int colorPixel (int pixel, int mipmap, int pxCoord) {
+                        protected int colorPixel(int pixel, int mipmap, int pxCoord) {
                             return pixel;
                         }
                     };
@@ -181,7 +188,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      * @param resourceManager The resource manager that reloaded.
      */
     @Override
-    public void onResourceManagerReload (IResourceManager resourceManager) {
+    public void onResourceManagerReload(IResourceManager resourceManager) {
         baseTextures.clear();
         buildSprites.values().forEach(Map::clear);
         buildSprites.clear();

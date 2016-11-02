@@ -7,10 +7,11 @@ import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
 import com.smithsmodding.armory.common.registry.ArmorRegistry;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
@@ -20,14 +21,16 @@ import java.util.HashMap;
 public class ArmorTab extends CreativeTabs {
 
     public ArmorTab() {
-        super(I18n.format(TranslationKeys.CreativeTabs.Armor));
+        super(TranslationKeys.CreativeTabs.Armor);
     }
 
+    @NotNull
     @Override
     public String getTranslatedTabLabel() {
         return getTabLabel();
     }
 
+    @Nullable
     @Override
     public ItemStack getIconItemStack() {
         HashMap<MLAAddon, Integer> tHelmetAddons = new HashMap<MLAAddon, Integer>();

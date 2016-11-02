@@ -1,13 +1,15 @@
 package com.smithsmodding.armory.common.config;
 
 import com.smithsmodding.armory.api.armor.MLAAddon;
-import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.armory.api.events.common.config.MaterialPropertyValueEvent;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.smithscore.common.events.network.NetworkableEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -16,7 +18,7 @@ import java.util.Map;
  * Created by Orion
  * Created on 09.06.2015
  * 17:48
- *
+ * <p>
  * Copyrighted according to Project specific license
  */
 public class ArmorDataSynchronizer {
@@ -85,7 +87,7 @@ public class ArmorDataSynchronizer {
             sendMessage(new MaterialPropertyValueEvent(material.getUniqueID(), "setMeltingPoint", new String[]{"Float"}, new Object[]{material.getMeltingPoint()}), (EntityPlayerMP) connectingPlayer);
     }
 
-    public void sendMessage(NetworkableEvent eventMessage, EntityPlayerMP player) {
+    public void sendMessage(@NotNull NetworkableEvent eventMessage, @Nullable EntityPlayerMP player) {
         if (player == null) {
             eventMessage.handleClientToServerSide();
             return;

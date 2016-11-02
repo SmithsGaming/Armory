@@ -1,21 +1,23 @@
 package com.smithsmodding.armory.common.registry;
 
-import com.smithsmodding.armory.api.materials.*;
-import com.smithsmodding.armory.api.registries.*;
+import com.smithsmodding.armory.api.materials.IAnvilMaterial;
+import com.smithsmodding.armory.api.registries.IAnvilMaterialRegistry;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.HashMap;
 
 /**
  * Created by Marc on 22.02.2016.
  */
 public class AnvilMaterialRegistry implements IAnvilMaterialRegistry {
 
+    @NotNull
     private static AnvilMaterialRegistry instance = new AnvilMaterialRegistry();
 
     HashMap<String, IAnvilMaterial> materialHashMap = new HashMap<>();
 
-    public static AnvilMaterialRegistry getInstance()
-    {
+    @NotNull
+    public static AnvilMaterialRegistry getInstance() {
         return instance;
     }
 
@@ -25,7 +27,7 @@ public class AnvilMaterialRegistry implements IAnvilMaterialRegistry {
      * @return A HashMap with as Key the uniqueID of the anvil material and as Value a instance of a IAnvilMaterial
      */
     @Override
-    public HashMap<String, IAnvilMaterial> getAllRegisteredAnvilMaterials () {
+    public HashMap<String, IAnvilMaterial> getAllRegisteredAnvilMaterials() {
         return materialHashMap;
     }
 
@@ -35,7 +37,7 @@ public class AnvilMaterialRegistry implements IAnvilMaterialRegistry {
      * @param pAnvilMaterial The armor you want to register.
      */
     @Override
-    public void registerNewAnvilMaterial (IAnvilMaterial pAnvilMaterial) {
+    public void registerNewAnvilMaterial(@NotNull IAnvilMaterial pAnvilMaterial) {
         materialHashMap.put(pAnvilMaterial.getID(), pAnvilMaterial);
     }
 
@@ -43,12 +45,11 @@ public class AnvilMaterialRegistry implements IAnvilMaterialRegistry {
      * Returns the material for a given uniqueID or null if not registered
      *
      * @param pInternalName The uniqueID of the requested armor.
-     *
      * @return The instance of AnvilMaterial registered to this IAnvilMaterialRegistry with the given uniqueID, if
      * present or null if none is registered with that name.
      */
     @Override
-    public IAnvilMaterial getAnvilMaterial (String pInternalName) {
+    public IAnvilMaterial getAnvilMaterial(String pInternalName) {
         return materialHashMap.get(pInternalName);
     }
 
@@ -58,7 +59,7 @@ public class AnvilMaterialRegistry implements IAnvilMaterialRegistry {
      * @return A HashMap with as Key the uniqueID of the material and as Value the a instance of IAnvilMaterial
      */
     @Override
-    public HashMap<String, IAnvilMaterial> getAnvilMaterials () {
+    public HashMap<String, IAnvilMaterial> getAnvilMaterials() {
         return materialHashMap;
     }
 
@@ -68,7 +69,7 @@ public class AnvilMaterialRegistry implements IAnvilMaterialRegistry {
      * @param pNewMaterials A new HashMap with material Definitions.
      */
     @Override
-    public void setAllAnvilMaterialMaterials (HashMap<String, IAnvilMaterial> pNewMaterials) {
+    public void setAllAnvilMaterialMaterials(HashMap<String, IAnvilMaterial> pNewMaterials) {
         materialHashMap = pNewMaterials;
     }
 }

@@ -6,6 +6,8 @@ import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.api.registries.IArmorPartRegistry;
 import com.smithsmodding.armory.api.registries.IMLAAddonRegistry;
 import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
@@ -13,22 +15,27 @@ import java.util.HashMap;
  * Created by Orion
  * Created on 08.06.2015
  * 13:45
- *
+ * <p>
  * Copyrighted according to Project specific license
  */
 public class MedievalAddonRegistry implements IArmorPartRegistry, IMLAAddonRegistry {
 
+    @NotNull
     private static MedievalAddonRegistry instance = new MedievalAddonRegistry();
 
     //ArrayList for storing all the modifiers and upgrades
+    @NotNull
     protected HashMap<String, MLAAddon> addonHashMap = new HashMap<String, MLAAddon>();
 
+    @NotNull
     protected HashMap<IArmorMaterial, HashMap<MLAAddon, Boolean>> upgradeStates = new HashMap<IArmorMaterial, HashMap<MLAAddon, Boolean>>();
 
+    @NotNull
     public static MedievalAddonRegistry getInstance() {
         return instance;
     }
 
+    @NotNull
     public HashMap<String, MLAAddon> getUpgrades() {
         HashMap<String, MLAAddon> tMedievalUpgrades = new HashMap<String, MLAAddon>();
 
@@ -39,6 +46,7 @@ public class MedievalAddonRegistry implements IArmorPartRegistry, IMLAAddonRegis
         return tMedievalUpgrades;
     }
 
+    @Nullable
     @Override
     public MLAAddon getAddonForMaterialIndependantName(String addonId) {
         for (MLAAddon addon : getUpgrades().values())
@@ -50,13 +58,13 @@ public class MedievalAddonRegistry implements IArmorPartRegistry, IMLAAddonRegis
         return null;
     }
 
-    public void registerUpgrade(MLAAddon pUpgrade) {
+    public void registerUpgrade(@NotNull MLAAddon pUpgrade) {
         addonHashMap.put(pUpgrade.getUniqueID(), pUpgrade);
 
         ArmorRegistry.getInstance().getArmor(pUpgrade.getUniqueArmorID()).registerAddon(pUpgrade);
     }
 
-    public MLAAddon getUpgrade (String pUpgradeInternalName) {
+    public MLAAddon getUpgrade(String pUpgradeInternalName) {
         return this.addonHashMap.get(pUpgradeInternalName);
     }
 
@@ -69,7 +77,7 @@ public class MedievalAddonRegistry implements IArmorPartRegistry, IMLAAddonRegis
     }
 
     @Override
-    public void setPartStateForMaterial (IArmorMaterial material, MLAAddon addon, boolean state) {
+    public void setPartStateForMaterial(IArmorMaterial material, MLAAddon addon, boolean state) {
         if (!upgradeStates.containsKey(material))
             upgradeStates.put(material, new HashMap<MLAAddon, Boolean>());
 
@@ -82,7 +90,7 @@ public class MedievalAddonRegistry implements IArmorPartRegistry, IMLAAddonRegis
     }
 
     @Override
-    public boolean getPartStateForMaterial (IArmorMaterial material, MLAAddon addon) {
+    public boolean getPartStateForMaterial(IArmorMaterial material, MLAAddon addon) {
         if (!upgradeStates.containsKey(material))
             upgradeStates.put(material, new HashMap<MLAAddon, Boolean>());
 
@@ -93,7 +101,7 @@ public class MedievalAddonRegistry implements IArmorPartRegistry, IMLAAddonRegis
     }
 
     @Override
-    public boolean getPartStateForMaterial(IArmorMaterial material, String materialIndependantId) {
+    public boolean getPartStateForMaterial(@NotNull IArmorMaterial material, String materialIndependantId) {
         return getPartStateForMaterial(material, getUpgrade(materialIndependantId + "-" + material.getUniqueID()));
     }
 }

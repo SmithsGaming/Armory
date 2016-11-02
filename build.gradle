@@ -104,6 +104,9 @@ dependencies {
 
     //Maven uploader
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.8'
+
+    //NotNull analyzer
+    compile group: 'org.jetbrains', name: 'annotations', version: config.jetbrains_annotations_version
 }
 
 sourceSets {

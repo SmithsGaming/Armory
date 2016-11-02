@@ -1,7 +1,9 @@
 package com.smithsmodding.armory.api.crafting.blacksmiths.component;
 
-import com.smithsmodding.smithscore.util.common.ItemStackHelper;
+import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Orion
@@ -24,11 +26,13 @@ public class StandardAnvilRecipeComponent implements IAnvilRecipeComponent {
         setComponentStackUsage(pComponentUsage);
     }
 
+    @Nullable
     @Override
     public ItemStack getComponentTargetStack() {
         return iTargetItemStack;
     }
 
+    @NotNull
     @Override
     public StandardAnvilRecipeComponent setComponentTargetStack(ItemStack pNewTargetStack) {
         iTargetItemStack = pNewTargetStack;
@@ -37,7 +41,7 @@ public class StandardAnvilRecipeComponent implements IAnvilRecipeComponent {
     }
 
     @Override
-    public int getResultingStackSizeForComponent(ItemStack pComponentStack) {
+    public int getResultingStackSizeForComponent(@NotNull ItemStack pComponentStack) {
         if (ItemStackHelper.equalsIgnoreStackSize(pComponentStack, iTargetItemStack)) {
             return pComponentStack.stackSize - iComponentUsage;
         }
@@ -46,6 +50,7 @@ public class StandardAnvilRecipeComponent implements IAnvilRecipeComponent {
         return pComponentStack.stackSize;
     }
 
+    @NotNull
     @Override
     public StandardAnvilRecipeComponent setComponentStackUsage(int pNewUsage) {
         iComponentUsage = pNewUsage;
@@ -54,7 +59,7 @@ public class StandardAnvilRecipeComponent implements IAnvilRecipeComponent {
     }
 
     @Override
-    public boolean isValidComponentForSlot(ItemStack pComparedItemStack) {
+    public boolean isValidComponentForSlot(@NotNull ItemStack pComparedItemStack) {
         if (ItemStackHelper.equalsIgnoreStackSize(pComparedItemStack, iTargetItemStack)) {
             return getResultingStackSizeForComponent(pComparedItemStack) >= 0;
         }

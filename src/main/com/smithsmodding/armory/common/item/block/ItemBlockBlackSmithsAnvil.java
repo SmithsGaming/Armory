@@ -9,24 +9,28 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Marc on 23.02.2016.
  */
-public class ItemBlockBlackSmithsAnvil extends ItemBlock
-{
+public class ItemBlockBlackSmithsAnvil extends ItemBlock {
 
-    public ItemBlockBlackSmithsAnvil (Block block) {
+    public ItemBlockBlackSmithsAnvil(@NotNull Block block) {
         super(block);
         this.setRegistryName(block.getRegistryName());
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public FontRenderer getFontRenderer(ItemStack stack) {
         return super.getFontRenderer(stack);
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public String getItemStackDisplayName(ItemStack pStack) {
         if (pStack.getTagCompound() == null)
             return "";

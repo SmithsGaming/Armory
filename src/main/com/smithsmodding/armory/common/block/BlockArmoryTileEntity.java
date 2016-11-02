@@ -11,18 +11,19 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
 public abstract class BlockArmoryTileEntity extends BlockArmory implements ITileEntityProvider {
-    Random iRand = new Random();
+    @NotNull Random rand = new Random();
 
-    public BlockArmoryTileEntity(String pBlockName, Material pBlockMaterial) {
+    public BlockArmoryTileEntity(@NotNull String pBlockName, @NotNull Material pBlockMaterial) {
         super(pBlockName, pBlockMaterial);
     }
 
     @Override
-    public void breakBlock (World worldIn, BlockPos pos, IBlockState state) {
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         /*        IInventory tContent = (IInventory) pWorld.getTileEntity(pX, pY, pZ);
 
         if (tContent != null) {
@@ -30,12 +31,12 @@ public abstract class BlockArmoryTileEntity extends BlockArmory implements ITile
                 ItemStack tStack = tContent.getStackInSlot(tStackIndex);
 
                 if (tStack != null) {
-                    float f = this.iRand.nextFloat() * 0.8F + 0.1F;
-                    float f1 = this.iRand.nextFloat() * 0.8F + 0.1F;
+                    float f = this.rand.nextFloat() * 0.8F + 0.1F;
+                    float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
                     EntityItem tEntity;
 
-                    for (float f2 = this.iRand.nextFloat() * 0.8F + 0.1F; tStack.stackSize > 0; pWorld.spawnEntityInWorld(tEntity)) {
-                        int j1 = this.iRand.nextInt(21) + 10;
+                    for (float f2 = this.rand.nextFloat() * 0.8F + 0.1F; tStack.stackSize > 0; pWorld.spawnEntityInWorld(tEntity)) {
+                        int j1 = this.rand.nextInt(21) + 10;
 
                         if (j1 > tStack.stackSize) {
                             j1 = tStack.stackSize;
@@ -44,9 +45,9 @@ public abstract class BlockArmoryTileEntity extends BlockArmory implements ITile
                         tStack.stackSize -= j1;
                         tEntity = new EntityItem(pWorld, (double) ((float) pX + f), (double) ((float) pY + f1), (double) ((float) pZ + f2), new ItemStack(tStack.getItem(), j1, tStack.getItemDamage()));
                         float f3 = 0.05F;
-                        tEntity.motionX = (double) ((float) this.iRand.nextGaussian() * f3);
-                        tEntity.motionY = (double) ((float) this.iRand.nextGaussian() * f3 + 0.2F);
-                        tEntity.motionZ = (double) ((float) this.iRand.nextGaussian() * f3);
+                        tEntity.motionX = (double) ((float) this.rand.nextGaussian() * f3);
+                        tEntity.motionY = (double) ((float) this.rand.nextGaussian() * f3 + 0.2F);
+                        tEntity.motionZ = (double) ((float) this.rand.nextGaussian() * f3);
 
                         if (tStack.hasTagCompound()) {
                             tEntity.getEntityItem().setTagCompound((NBTTagCompound) tStack.getTagCompound().copy());

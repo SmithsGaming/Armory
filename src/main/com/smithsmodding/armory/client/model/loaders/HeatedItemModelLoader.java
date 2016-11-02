@@ -15,6 +15,7 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.Map;
@@ -26,12 +27,12 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
     public static final String EXTENSION = ".HI-Armory";
 
     @Override
-    public boolean accepts (ResourceLocation modelLocation) {
+    public boolean accepts(@NotNull ResourceLocation modelLocation) {
         return modelLocation.getResourcePath().endsWith(EXTENSION); // HeatedItem armory extension. Foo.HI-armory.json
     }
 
     @Override
-    public IModel loadModel (ResourceLocation modelLocation) throws IOException {
+    public IModel loadModel(@NotNull ResourceLocation modelLocation) throws IOException {
         if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
             return DummyModel.INSTANCE;
         }
@@ -92,7 +93,7 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
     }
 
     @Override
-    public void onResourceManagerReload (IResourceManager resourceManager) {
+    public void onResourceManagerReload(IResourceManager resourceManager) {
 
     }
 }

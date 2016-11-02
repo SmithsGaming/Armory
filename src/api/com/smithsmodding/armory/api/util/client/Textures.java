@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Marc on 06.12.2015.
@@ -23,7 +24,7 @@ public class Textures {
      * @param event The events fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
      */
     @SubscribeEvent(priority = EventPriority.LOW)
-    public void registerTexturesToMap (TextureStitchEvent.Pre event) {
+    public void registerTexturesToMap(@NotNull TextureStitchEvent.Pre event) {
         TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWPICKAXE.getPrimaryLocation()));
         TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWBOOK.getPrimaryLocation()));
         TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWHAMMER.getPrimaryLocation()));
@@ -56,16 +57,24 @@ public class Textures {
     public static class MultiArmor {
         public static class Materials {
             public static class Iron {
+                @NotNull
                 public static CustomResource HelmetResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:items/multiarmor/base/armory.Helmet_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.IRON);
+                @NotNull
                 public static CustomResource ChestplateResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:items/multiarmor/base/armory.Chestplate_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.IRON);
+                @NotNull
                 public static CustomResource LegginsResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:items/multiarmor/base/armory.Leggins_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.IRON);
+                @NotNull
                 public static CustomResource ShoesResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:items/multiarmor/base/armory.Shoes_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.IRON);
             }
 
             public static class Obsidian {
+                @NotNull
                 public static CustomResource HelmetResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:items/multiarmor/base/armory.Helmet_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.OBSIDIAN);
+                @NotNull
                 public static CustomResource ChestplateResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:items/multiarmor/base/armory.Chestplate_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.OBSIDIAN);
+                @NotNull
                 public static CustomResource LegginsResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:items/multiarmor/base/armory.Leggins_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.OBSIDIAN);
+                @NotNull
                 public static CustomResource ShoesResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:items/multiarmor/base/armory.Shoes_Base", "armory:textures/models/multiarmor/base/Base.png", Colors.Metals.OBSIDIAN);
             }
         }
@@ -73,38 +82,54 @@ public class Textures {
 
     public static class Items {
         public static class ItemRing {
+            @NotNull
             public static CustomResource IronResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:basic/16x Ring", "", Colors.Metals.IRON);
+            @NotNull
             public static CustomResource ObsidianResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:basic/16x Ring", "", Colors.Metals.OBSIDIAN);
         }
 
         public static class ItemChain {
+            @NotNull
             public static CustomResource IronResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:basic/16x Chain", "", Colors.Metals.IRON);
+            @NotNull
             public static CustomResource ObsidianResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:basic/16x Chain", "", Colors.Metals.OBSIDIAN);
         }
 
         public static class ItemNugget {
+            @NotNull
             public static CustomResource IronResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:basic/16x Nugget", "", Colors.Metals.IRON);
+            @NotNull
             public static CustomResource ObsidianResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:basic/16x Nugget", "", Colors.Metals.OBSIDIAN);
         }
 
         public static class ItemPlate {
+            @NotNull
             public static CustomResource IronResource = new CustomResource(References.InternalNames.Materials.Vanilla.IRON, "armory:basic/16x Plate", "", Colors.Metals.IRON);
+            @NotNull
             public static CustomResource ObsidianResource = new CustomResource(References.InternalNames.Materials.Vanilla.OBSIDIAN, "armory:basic/16x Plate", "", Colors.Metals.OBSIDIAN);
         }
     }
 
     public static class Gui {
+        @NotNull
         private static String GUITEXTUREPATH = "armory:textures/gui/";
+        @NotNull
         private static String COMPONENTTEXTUREPATH = GUITEXTUREPATH + "components/";
 
         public static class Basic {
+            @NotNull
             private static String BASICTEXTUREPATH = GUITEXTUREPATH + "Basic/";
 
             public static class Slots {
+                @NotNull
                 public static CustomResource HAMMERSLOT = new CustomResource("Gui.Anvil.Slot.Hammer", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 18, 0, 18, 18);
+                @NotNull
                 public static CustomResource TONGSSLOT = new CustomResource("Gui.Anvil.Slot.Tongs", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 36, 0, 18, 18);
+                @NotNull
                 public static CustomResource BOOKSLOT = new CustomResource("Gui.Anvil.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 55, 1, 16, 16);
+                @NotNull
                 public static CustomResource UPGRADETOOLSLOT = new CustomResource("Gui.Anvil.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 73, 1, 16, 16);
+                @NotNull
                 public static CustomResource UPGRADEPAYMENTSLOT = new CustomResource("Gui.Anvil.Slot.Book", Basic.BASICTEXTUREPATH + "slot.png", Colors.DEFAULT, 91, 1, 16, 16);
             }
 
@@ -138,30 +163,42 @@ public class Textures {
 
 
             public static class Images {
+                @NotNull
                 private static String IMAGETEXTUREPATH = GUITEXTUREPATH + "images/";
 
+                @NotNull
                 public static CustomResource HAMMER = new CustomResource("Gui.Anvil.Image.Hammer", Basic.Images.IMAGETEXTUREPATH + "AnvilHammer", Colors.DEFAULT, 0, 0, 30, 30);
             }
         }
 
         public static class FirePit {
+            @NotNull
             public static CustomResource THERMOMETERICON = new CustomResource("Gui.Forge.Thermometer", "armory:gui/images/16x ThermoALT", Colors.DEFAULT, 0, 0, 16, 16);
+            @NotNull
             public static CustomResource DROPEMPTY = new CustomResource("Gui.Anvil.ProgressBars.Drop.Empty", Basic.Components.RANDOMTEXTUREFILE, Colors.DEFAULT, 16, 32, 8, 12);
+            @NotNull
             public static CustomResource DROPFULL = new CustomResource("Gui.Anvil.ProgressBars.Drop.Empty", Basic.Components.RANDOMTEXTUREFILE, Colors.DEFAULT, 24, 32, 8, 12);
         }
 
         public static class Anvil {
+            @NotNull
             public static CustomResource LOGO = new CustomResource("Gui.Anvil.Image.Logo", "armory:gui/images/AnvilHammer", Colors.DEFAULT, 0, 0, 15, 15);
+            @NotNull
             public static CustomResource EXPERIENCEORB = new CustomResource("Gui.Anvil.Image.ExperienceOrb", GUITEXTUREPATH + "components/RandomElements.png", Colors.DEFAULT, 16, 0, 16, 16);
+            @NotNull
             public static CustomResource HOLOWPICKAXE = new CustomResource("Gui.Anvil.SlotHolo.Pickaxe", "minecraft:items/iron_pickaxe", Colors.DEFAULT, 0, 0, 16, 16);
+            @NotNull
             public static CustomResource HOLOWBOOK = new CustomResource("Gui.Anvil.SlotHolo.Book", "minecraft:items/book_normal", Colors.DEFAULT, 0,0, 16, 16);
+            @NotNull
             public static CustomResource HOLOWHAMMER = new CustomResource("Gui.Anvil.SlotHolo.Hammer", "armory:items/basic/16x Work Hammer", Colors.DEFAULT, 0,0,16,16);
+            @NotNull
             public static CustomResource HOLOWTONGS = new CustomResource("Gui.Anvil.SlotHolo.Tongs", "armory:items/basic/16x Tongs", Colors.DEFAULT, 0,0,16,16);
         }
 
         public static class Compatibility {
             public static class JEI {
                 public static class ArmorsAnvil {
+                    @NotNull
                     public static CustomResource GUI = new CustomResource("Gui.Compatibility.NEI.Anvil.gui", GUITEXTUREPATH + "jei/anvil.png", 0, 0, 162, 133);
                 }
             }

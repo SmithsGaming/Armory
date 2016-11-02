@@ -12,14 +12,18 @@ import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
-import com.smithsmodding.smithscore.util.common.ItemStackHelper;
+import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class HeatedItemFactory {
+    @Nullable
     private static HeatedItemFactory INSTANCE = null;
 
-    public static HeatedItemFactory getInstance () {
+    @Nullable
+    public static HeatedItemFactory getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new HeatedItemFactory();
         }
@@ -27,7 +31,8 @@ public class HeatedItemFactory {
         return INSTANCE;
     }
 
-    public ItemStack generateHeatedItem (IArmorMaterial material, String type, float temp) {
+    @Nullable
+    public ItemStack generateHeatedItem(IArmorMaterial material, String type, float temp) {
         ItemStack pBaseStack = HeatableItemRegistry.getInstance().getBaseStack(material, type);
         if (pBaseStack == null)
             return null;
@@ -38,7 +43,8 @@ public class HeatedItemFactory {
         return pHeatedStack;
     }
 
-    public ItemStack convertToHeatedIngot (ItemStack pCooledIngotStack) {
+    @Nullable
+    public ItemStack convertToHeatedIngot(@NotNull ItemStack pCooledIngotStack) {
         if (!HeatableItemRegistry.getInstance().isHeatable(pCooledIngotStack)) {
             ModLogger.getInstance().info("Got a not convertable item!:");
             ModLogger.getInstance().info(ItemStackHelper.toString(pCooledIngotStack));
@@ -53,7 +59,7 @@ public class HeatedItemFactory {
         tStackCompound.setInteger(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE, 20);
 
         if (pCooledIngotStack.getItem() instanceof IHeatableItem) {
-            tStackCompound.setString(References.NBTTagCompoundData.HeatedIngot.TYPE, ( (IHeatableItem) pCooledIngotStack.getItem() ).getInternalType());
+            tStackCompound.setString(References.NBTTagCompoundData.HeatedIngot.TYPE, ((IHeatableItem) pCooledIngotStack.getItem()).getInternalType());
         } else {
             tStackCompound.setString(References.NBTTagCompoundData.HeatedIngot.TYPE, References.InternalNames.HeatedItemTypes.INGOT);
         }
@@ -63,8 +69,9 @@ public class HeatedItemFactory {
         return tReturnStack;
     }
 
-    public ItemStack convertToCooledIngot (ItemStack pHeatedItemStack) {
-        if (!( pHeatedItemStack.getItem() instanceof ItemHeatedItem )) {
+    @NotNull
+    public ItemStack convertToCooledIngot(@NotNull ItemStack pHeatedItemStack) {
+        if (!(pHeatedItemStack.getItem() instanceof ItemHeatedItem)) {
             return pHeatedItemStack;
         }
 

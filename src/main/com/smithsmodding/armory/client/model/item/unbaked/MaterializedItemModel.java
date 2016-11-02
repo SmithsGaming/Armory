@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -24,15 +25,17 @@ import java.util.Map;
  */
 public class MaterializedItemModel extends ItemLayerModel {
 
+    @NotNull
     private final ResourceLocation coreTexture;
     private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
 
-    public MaterializedItemModel(ResourceLocation coreTexture, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+    public MaterializedItemModel(@NotNull ResourceLocation coreTexture, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
         super(ImmutableList.of(coreTexture));
         this.coreTexture = coreTexture;
         this.transforms = transforms;
     }
 
+    @NotNull
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         IBakedModel parent = super.bake(state, format, bakedTextureGetter);

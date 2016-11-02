@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +22,9 @@ import java.util.List;
  * Created by Marc on 22.02.2016.
  */
 public class BlackSmithsAnvilBakedModel extends BakedWrappedModel {
+    @NotNull
     private final Overrides overrides;
+    @NotNull
     private HashMap<String, IBakedModel> bakedModelHashMap = new HashMap<>();
 
     public BlackSmithsAnvilBakedModel(IBakedModel parent) {
@@ -29,19 +32,20 @@ public class BlackSmithsAnvilBakedModel extends BakedWrappedModel {
         overrides = new Overrides(this);
     }
 
-    public void registerBakedModel(IBakedModel model, String materialID)
-    {
+    public void registerBakedModel(IBakedModel model, String materialID) {
         bakedModelHashMap.put(materialID, model);
     }
 
+    @NotNull
     @Override
-    public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
+    public List<BakedQuad> getQuads(@NotNull IBlockState state, EnumFacing side, long rand) {
         if (((IExtendedBlockState) state).getValue(BlockBlackSmithsAnvil.PROPERTY_ANVIL_MATERIAL) == null)
             return getParentModel().getQuads(state, side, rand);
 
         return bakedModelHashMap.get(((IExtendedBlockState) state).getValue(BlockBlackSmithsAnvil.PROPERTY_ANVIL_MATERIAL)).getQuads(state, side, rand);
     }
 
+    @NotNull
     @Override
     public ItemOverrideList getOverrides() {
         return overrides;

@@ -13,6 +13,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -21,7 +22,9 @@ import java.util.List;
 
 public class CommandArmory extends CommandBase {
 
+    @NotNull
     private static List<CommandBase> modCommands = new ArrayList<CommandBase>();
+    @NotNull
     private static List<String> commands = new ArrayList<String>();
 
     static {
@@ -34,11 +37,13 @@ public class CommandArmory extends CommandBase {
         }
     }
 
+    @NotNull
     @Override
     public String getCommandName() {
         return References.InternalNames.Commands.BASECOMMAND;
     }
 
+    @NotNull
     @Override
     public String getCommandUsage(ICommandSender pCommandSender) {
         return TranslationKeys.Messages.Commands.BASEUSAGE;
@@ -55,6 +60,7 @@ public class CommandArmory extends CommandBase {
         }
     }
 
+    @org.jetbrains.annotations.Nullable
     @Override
     public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
         if (args.length == 1) {

@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -23,15 +24,17 @@ import java.util.Map;
  */
 public class ArmorComponentModel extends ItemLayerModel {
 
+    @NotNull
     private final ImmutableMap<String, ResourceLocation> textures;
     private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
 
-    public ArmorComponentModel(ImmutableMap<String, ResourceLocation> textures, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+    public ArmorComponentModel(@NotNull ImmutableMap<String, ResourceLocation> textures, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
         super(ImmutableList.copyOf(textures.values()));
         this.textures = textures;
         this.transforms = transforms;
     }
 
+    @NotNull
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         ImmutableMap.Builder<String, BakedSubComponentModel> componentBuilder = new ImmutableMap.Builder();

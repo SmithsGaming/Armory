@@ -9,7 +9,6 @@ import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.ArmoryCommonProxy;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
-import com.smithsmodding.armory.common.structure.conduit.StructureFactoryConduit;
 import com.smithsmodding.armory.common.structure.forge.StructureFactoryForge;
 import com.smithsmodding.smithscore.common.structures.StructureRegistry;
 import com.smithsmodding.smithscore.util.client.ResourceHelper;
@@ -27,24 +26,30 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Orion on 26-3-2014.
  */
 public class ArmoryClientProxy extends ArmoryCommonProxy {
 
+    @NotNull
     private static ArmorComponentModelLoader armorComponentModelLoader = new ArmorComponentModelLoader();
+    @NotNull
     private static MultiLayeredArmorModelLoader multiLayeredArmorModelLoader = new MultiLayeredArmorModelLoader();
+    @NotNull
     private static HeatedItemModelLoader heatedItemModelLoader = new HeatedItemModelLoader();
+    @NotNull
     private static AnvilModelLoader anvilBlockModelLoader = new AnvilModelLoader();
+    @NotNull
     private static MaterializedItemModelLoader materializedItemModelLoader = new MaterializedItemModelLoader();
 
-    public static void registerBlockModel(Block block) {
+    public static void registerBlockModel(@NotNull Block block) {
         Item blockItem = Item.getItemFromBlock(block);
         ModelLoader.setCustomModelResourceLocation(blockItem, 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
     }
 
-    public static ResourceLocation registerMaterializedItemModel(Item item) {
+    public static ResourceLocation registerMaterializedItemModel(@NotNull Item item) {
         ResourceLocation itemLocation = ResourceHelper.getItemLocation(item);
         if (itemLocation == null) {
             return null;
@@ -55,7 +60,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         return registerMaterializedItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
     }
 
-    public static ResourceLocation registerComponentItemModel(ItemArmorComponent item) {
+    public static ResourceLocation registerComponentItemModel(@NotNull ItemArmorComponent item) {
         ResourceLocation itemLocation = ResourceHelper.getItemLocation(item);
         if (itemLocation == null) {
             return null;
@@ -66,7 +71,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         return registerComponentItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
     }
 
-    public static ResourceLocation registerArmorItemModel(MultiLayeredArmor item) {
+    public static ResourceLocation registerArmorItemModel(@NotNull MultiLayeredArmor item) {
         ResourceLocation itemLocation = ResourceHelper.getItemLocation(item);
         if (itemLocation == null) {
             return null;
@@ -77,7 +82,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         return registerArmorItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
     }
 
-    public static ResourceLocation registerHeatedItemItemModel(ItemHeatedItem item) {
+    public static ResourceLocation registerHeatedItemItemModel(@NotNull ItemHeatedItem item) {
         ResourceLocation itemLocation = ResourceHelper.getItemLocation(item);
         if (itemLocation == null) {
             return null;
@@ -88,7 +93,8 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         return registerHeatedItemItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
     }
 
-    public static ResourceLocation registerMaterializedItemModel(Item item, final ResourceLocation location) {
+    @NotNull
+    public static ResourceLocation registerMaterializedItemModel(@NotNull Item item, @NotNull final ResourceLocation location) {
         if (!location.getResourcePath().endsWith(MaterializedItemModelLoader.EXTENSION)) {
             ModLogger.getInstance().error("The materialized-model " + location.toString() + " does not end with '"
                     + MaterializedItemModelLoader.EXTENSION
@@ -98,7 +104,8 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         return registerItemModelDefinition(item, location, MaterializedItemModelLoader.EXTENSION);
     }
 
-    public static ResourceLocation registerComponentItemModel(ItemArmorComponent item, final ResourceLocation location) {
+    @NotNull
+    public static ResourceLocation registerComponentItemModel(@NotNull ItemArmorComponent item, @NotNull final ResourceLocation location) {
         if (!location.getResourcePath().endsWith(ArmorComponentModelLoader.EXTENSION)) {
             ModLogger.getInstance().error("The component-model " + location.toString() + " does not end with '"
                     + ArmorComponentModelLoader.EXTENSION
@@ -108,7 +115,8 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         return registerItemModelDefinition(item, location, ArmorComponentModelLoader.EXTENSION);
     }
 
-    public static ResourceLocation registerArmorItemModel(MultiLayeredArmor item, final ResourceLocation location) {
+    @NotNull
+    public static ResourceLocation registerArmorItemModel(@NotNull MultiLayeredArmor item, @NotNull final ResourceLocation location) {
         if (!location.getResourcePath().endsWith(MultiLayeredArmorModelLoader.EXTENSION)) {
             ModLogger.getInstance().error("The armor-model " + location.toString() + " does not end with '"
                     + MultiLayeredArmorModelLoader.EXTENSION
@@ -118,7 +126,8 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         return registerItemModelDefinition(item, location, MultiLayeredArmorModelLoader.EXTENSION);
     }
 
-    public static ResourceLocation registerHeatedItemItemModel(ItemHeatedItem item, final ResourceLocation location) {
+    @NotNull
+    public static ResourceLocation registerHeatedItemItemModel(@NotNull ItemHeatedItem item, @NotNull final ResourceLocation location) {
         if (!location.getResourcePath().endsWith(HeatedItemModelLoader.EXTENSION)) {
             ModLogger.getInstance().error("The heated-model " + location.toString() + " does not end with '"
                     + HeatedItemModelLoader.EXTENSION
@@ -128,7 +137,8 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         return registerItemModelDefinition(item, location, HeatedItemModelLoader.EXTENSION);
     }
 
-    public static ResourceLocation registerItemModelDefinition(Item item, final ResourceLocation location, String requiredExtension) {
+    @NotNull
+    public static ResourceLocation registerItemModelDefinition(@NotNull Item item, @NotNull final ResourceLocation location, @NotNull String requiredExtension) {
         if (!location.getResourcePath().endsWith(requiredExtension)) {
             ModLogger.getInstance().error("The item-model " + location.toString() + " does not end with '"
                     + requiredExtension
@@ -136,8 +146,9 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
         }
 
         ModelLoader.setCustomMeshDefinition(item, new ItemMeshDefinition() {
+            @NotNull
             @Override
-            public ModelResourceLocation getModelLocation (ItemStack stack) {
+            public ModelResourceLocation getModelLocation(ItemStack stack) {
                 return new ModelResourceLocation(location, "inventory");
             }
         });
@@ -170,7 +181,6 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
     public void initializeStructures() {
         super.initializeStructures();
         StructureRegistry.getClientInstance().registerStructureFactory(new StructureFactoryForge());
-        StructureRegistry.getClientInstance().registerStructureFactory(new StructureFactoryConduit());
     }
 
     @Override

@@ -19,6 +19,7 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
@@ -42,6 +43,7 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
         this.transforms = transforms;
     }
 
+    @NotNull
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         //Get ourselfs the base model to use.

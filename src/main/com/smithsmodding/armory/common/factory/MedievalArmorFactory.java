@@ -11,6 +11,8 @@ import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,8 +26,9 @@ public class MedievalArmorFactory implements IMLAFactory {
         return iInstance;
     }
 
+    @Nullable
     @Override
-    public ItemStack buildMLAArmor(MultiLayeredArmor pBaseArmor, ItemStack pBaseItemStack, HashMap<MLAAddon, Integer> pNewAddons, Integer pNewTotalDurability, String pInternalMaterialName, Object... pData) {
+    public ItemStack buildMLAArmor(@NotNull MultiLayeredArmor pBaseArmor, @NotNull ItemStack pBaseItemStack, @NotNull HashMap<MLAAddon, Integer> pNewAddons, Integer pNewTotalDurability, @NotNull String pInternalMaterialName, Object... pData) {
         HashMap<MLAAddon, Integer> tAddonMap = ArmorNBTHelper.getAddonMap(pBaseItemStack);
         Integer tOldTotalDurability = pBaseItemStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.TotalDurability);
         Integer tOldCurrentDurability = pBaseItemStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.CurrentDurability);
@@ -64,8 +67,9 @@ public class MedievalArmorFactory implements IMLAFactory {
         return tReturnItemStack;
     }
 
+    @Nullable
     @Override
-    public ItemStack buildNewMLAArmor(MultiLayeredArmor pBaseArmor, HashMap<MLAAddon, Integer> pAddons, Integer pTotalDurability, String pInternalMaterialName, Object... pData) {
+    public ItemStack buildNewMLAArmor(@NotNull MultiLayeredArmor pBaseArmor, @NotNull HashMap<MLAAddon, Integer> pAddons, Integer pTotalDurability, @NotNull String pInternalMaterialName, Object... pData) {
         if (!(validateNewAgainstNewAddons(pAddons)))
             return null;
 
@@ -93,12 +97,13 @@ public class MedievalArmorFactory implements IMLAFactory {
         return tReturnItemStack;
     }
 
+    @Nullable
     @Override
     public String getArmorGivenName(ItemStack pStack) {
         return null;
     }
 
-    private boolean validateOldAgainstNewAddons(HashMap<MLAAddon, Integer> pOldAddonMap, HashMap<MLAAddon, Integer> pNewAddonMap) {
+    private boolean validateOldAgainstNewAddons(@NotNull HashMap<MLAAddon, Integer> pOldAddonMap, @NotNull HashMap<MLAAddon, Integer> pNewAddonMap) {
         boolean tContinueCrafting = true;
         Iterator tInstalledIterator = pOldAddonMap.entrySet().iterator();
 
@@ -124,7 +129,7 @@ public class MedievalArmorFactory implements IMLAFactory {
         return tContinueCrafting;
     }
 
-    private boolean validateNewAgainstNewAddons(HashMap<MLAAddon, Integer> pNewAddonMap) {
+    private boolean validateNewAgainstNewAddons(@NotNull HashMap<MLAAddon, Integer> pNewAddonMap) {
         boolean tContinueCrafting = true;
         Iterator tExternalIterator = (Iterator) pNewAddonMap.entrySet().iterator();
 

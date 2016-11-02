@@ -14,6 +14,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.common.model.IModelPart;
 import net.minecraftforge.common.model.IModelState;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
@@ -27,7 +29,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
      *
      * @param textures The possible textures for the unbaked model.
      */
-    public TemperatureBarComponentModel (ImmutableList<ResourceLocation> textures) {
+    public TemperatureBarComponentModel(ImmutableList<ResourceLocation> textures) {
         super(textures);
     }
 
@@ -39,6 +41,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
      * @param bakedTextureGetter Function to get the Texture for the model.
      * @return A ItemStack depending model that is ready to be used.
      */
+    @NotNull
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         return generateBackedComponentModel(state, format, bakedTextureGetter);
@@ -49,7 +52,8 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
      *
      * @return The location of the grayscale texture.
      */
-    public ResourceLocation getTexture () {
+    @Nullable
+    public ResourceLocation getTexture() {
         ArrayList<ResourceLocation> textures = new ArrayList<ResourceLocation>();
         textures.addAll(getTextures());
 
@@ -67,7 +71,8 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
      * @param bakedTextureGetter Function to get the baked textures.
      * @return A baked model containing all individual possible textures this model can have.
      */
-    public BakedTemperatureBarModel generateBackedComponentModel (IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+    @NotNull
+    public BakedTemperatureBarModel generateBackedComponentModel(@NotNull IModelState state, VertexFormat format, @NotNull Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         // Get ourselfs a normal model to use.
         IBakedModel base = super.bake(state, DefaultVertexFormats.ITEM, bakedTextureGetter);
 

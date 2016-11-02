@@ -8,23 +8,29 @@ package com.smithsmodding.armory.common.registry;
 
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.smithsmodding.armory.api.registries.IAnvilRecipeRegistry;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
 public class AnvilRecipeRegistry implements IAnvilRecipeRegistry {
+    @NotNull
     private static AnvilRecipeRegistry instance = new AnvilRecipeRegistry();
 
+    @NotNull
     private HashMap<String, AnvilRecipe> mappedRecipes = new HashMap<String, AnvilRecipe>();
+    @NotNull
     private HashMap<AnvilRecipe, String> reverseMappedRecipeds = new HashMap<>();
 
-    private AnvilRecipeRegistry () {}
+    private AnvilRecipeRegistry() {
+    }
 
+    @NotNull
     public static IAnvilRecipeRegistry getInstance() {
         return instance;
     }
 
     @Override
-    public void addRecipe(String pID, AnvilRecipe pNewRecipe) {
+    public void addRecipe(String pID, @NotNull AnvilRecipe pNewRecipe) {
         pNewRecipe.setInternalName(pID);
 
         mappedRecipes.put(pID, pNewRecipe);
@@ -40,6 +46,7 @@ public class AnvilRecipeRegistry implements IAnvilRecipeRegistry {
         return reverseMappedRecipeds.get(recipe);
     }
 
+    @NotNull
     @Override
     public HashMap<String, AnvilRecipe> getRecipes() {
         return mappedRecipes;

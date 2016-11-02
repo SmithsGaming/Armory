@@ -7,12 +7,14 @@ import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.crafting.blacksmiths.component.HeatedAnvilRecipeComponent;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.smithscore.client.textures.ITextureController;
-import com.smithsmodding.smithscore.util.client.color.ColorSampler;
-import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Marc on 22.02.2016.
@@ -21,33 +23,36 @@ public class AnvilMaterial implements IAnvilMaterial {
 
     String id;
     int durability;
-    String translatedDisplayName;
-    String translatedDisplayNameColor;
+    String nameTranslationKey;
+    @Nullable String translatedDisplayNameColor;
     ITextureController info;
 
-    public AnvilMaterial (String id, int durability, String translatedDisplayName) {
+    public AnvilMaterial(String id, int durability, String nameTranslationKey) {
         this.id = id;
         this.durability = durability;
-        this.translatedDisplayName = translatedDisplayName;
+        this.nameTranslationKey = nameTranslationKey;
         translatedDisplayNameColor = null;
     }
 
     @Override
-    public String getID () {
+    public String getID() {
         return id;
     }
 
     @Override
-    public int durability () {
+    public int durability() {
         return durability;
     }
 
     @Override
-    public String translatedDisplayName () {
-        return translatedDisplayName;
+    @SideOnly(Side.CLIENT)
+    public String translatedDisplayName() {
+        return I18n.format(nameTranslationKey);
     }
 
+    @Nullable
     @Override
+    @SideOnly(Side.CLIENT)
     public String translatedDisplayNameColor() {
         if (translatedDisplayNameColor == null)
             translatedDisplayNameColor = getRenderInfo().getVertexColor().encodeColor();
@@ -56,15 +61,18 @@ public class AnvilMaterial implements IAnvilMaterial {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public ITextureController getRenderInfo() {
         return info;
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void setRenderInfo(ITextureController info) {
         this.info = info;
     }
 
+    @Nullable
     @Override
     public AnvilRecipe getRecipeForAnvil() {
         if (id.equals(References.InternalNames.Materials.Anvil.STONE))
@@ -73,7 +81,8 @@ public class AnvilMaterial implements IAnvilMaterial {
         return generateRecipeForMaterialId(id);
     }
 
-    private AnvilRecipe generateRecipeForMaterialId(String materialId) {
+    @NotNull
+    private AnvilRecipe generateRecipeForMaterialId(@NotNull String materialId) {
         ItemStack stack = new ItemStack(Item.getItemFromBlock(ModBlocks.blockBlackSmithsAnvil));
 
         NBTTagCompound compound = new NBTTagCompound();

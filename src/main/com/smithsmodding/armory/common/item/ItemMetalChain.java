@@ -15,6 +15,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -32,9 +33,8 @@ public class ItemMetalChain extends ItemResource implements IHeatableItem {
         return true;
     }
 
-
     @Override
-    public void getSubItems(Item pRing, CreativeTabs pCreativeTab, List pItemStacks) {
+    public void buildSubItemList(Item item, CreativeTabs tabs, List<ItemStack> subItems) {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
             ItemStack tChainStack = new ItemStack(this, 1, tMaterial.getItemDamageMaterialIndex());
 
@@ -45,10 +45,11 @@ public class ItemMetalChain extends ItemResource implements IHeatableItem {
             if (!HeatableItemRegistry.getInstance().isHeatable(tChainStack))
                 HeatableItemRegistry.getInstance().addBaseStack(tMaterial, tChainStack);
 
-            pItemStacks.add(tChainStack);
+            subItems.add(tChainStack);
         }
     }
 
+    @NotNull
     @Override
     public String getInternalType() {
         return References.InternalNames.HeatedItemTypes.CHAIN;

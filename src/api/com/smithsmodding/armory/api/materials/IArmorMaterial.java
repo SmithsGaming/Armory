@@ -3,7 +3,8 @@ package com.smithsmodding.armory.api.materials;
 import com.smithsmodding.armory.api.registries.IArmorPartRegistry;
 import com.smithsmodding.smithscore.client.textures.ITextureController;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
@@ -23,9 +24,9 @@ public interface IArmorMaterial {
 
     void setItemDamageMaterialIndex(Integer materialIndex);
 
-    ItemStack getBaseItemStack ();
+    @Nullable ItemStack getBaseItemStack();
 
-    String getType ();
+    @NotNull String getType();
 
     String getOreDicName ();
 
@@ -37,21 +38,21 @@ public interface IArmorMaterial {
 
     Float getBaseDamageAbsorption(String pTargetArmorInternalName);
 
-    HashMap<String, Float> getAllBaseDamageAbsorptionValues ();
+    @NotNull HashMap<String, Float> getAllBaseDamageAbsorptionValues();
 
 
     void setBaseDurability(String pTargetArmorInternalName, int pBaseDurability);
 
     int getBaseDurability(String pTargetArmorInternalName);
 
-    HashMap<String, Integer> getAllBaseDurabilityValues();
+    @NotNull HashMap<String, Integer> getAllBaseDurabilityValues();
 
 
     void setMaxModifiersOnPart(String pTargetArmorInternalName, int pMaxModifiers);
 
     int getMaxModifiersOnPart(String pTargetArmorInternalName);
 
-    HashMap<String, Integer> getAllMaxModifiersAmounts();
+    @NotNull HashMap<String, Integer> getAllMaxModifiersAmounts();
 
 
     boolean getIsBaseArmorMaterial ();
@@ -74,11 +75,11 @@ public interface IArmorMaterial {
 
     ITextureController getRenderInfo();
 
-    IArmorMaterial setRenderInfo(ITextureController newInfo);
+    @NotNull IArmorMaterial setRenderInfo(ITextureController newInfo);
 
     String getTranslationKey ();
 
-    IArmorMaterial setTranslationKey (String key);
+    @NotNull IArmorMaterial setTranslationKey(String key);
 
     String getNameColor();
 }

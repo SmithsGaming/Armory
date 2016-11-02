@@ -2,6 +2,7 @@ package com.smithsmodding.armory.common.registry;
 
 import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
 import com.smithsmodding.armory.api.registries.IArmorRegistry;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
@@ -12,6 +13,7 @@ public class ArmorRegistry implements IArmorRegistry {
     private static ArmorRegistry instance;
 
     //Hashmap for storing all the basic armor mappings
+    @NotNull
     protected HashMap<String, MultiLayeredArmor> mappings = new HashMap<String, MultiLayeredArmor>();
 
     public static ArmorRegistry getInstance() {
@@ -24,11 +26,12 @@ public class ArmorRegistry implements IArmorRegistry {
 
 
     //ArmorMappings
+    @NotNull
     public HashMap<String, MultiLayeredArmor> getAllRegisteredArmors() {
         return mappings;
     }
 
-    public void registerNewArmor(MultiLayeredArmor armor) {
+    public void registerNewArmor(@NotNull MultiLayeredArmor armor) {
         mappings.put(armor.getUniqueID(), armor);
     }
 

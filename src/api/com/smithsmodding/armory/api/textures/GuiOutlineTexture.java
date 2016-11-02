@@ -6,7 +6,8 @@ package com.smithsmodding.armory.api.textures;
   of Wrapper classes instead of direct access.
  */
 
-import net.minecraft.client.renderer.texture.*;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import org.jetbrains.annotations.NotNull;
 
 public class GuiOutlineTexture extends ExtraUtilityTexture {
 
@@ -14,7 +15,7 @@ public class GuiOutlineTexture extends ExtraUtilityTexture {
         super(baseTextureLocation, spriteName);
     }
 
-    public GuiOutlineTexture (TextureAtlasSprite baseTexture, String spriteName) {
+    public GuiOutlineTexture(@NotNull TextureAtlasSprite baseTexture, String spriteName) {
         super(baseTexture, spriteName);
     }
 

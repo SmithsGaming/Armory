@@ -18,6 +18,7 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJModel;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
+import org.jetbrains.annotations.NotNull;
 
 import javax.vecmath.Vector4f;
 import java.io.IOException;
@@ -30,12 +31,12 @@ public class AnvilModelLoader implements ICustomModelLoader {
     public static final String EXTENSION = ".Anvil-Armory";
 
     @Override
-    public boolean accepts (ResourceLocation modelLocation) {
+    public boolean accepts(@NotNull ResourceLocation modelLocation) {
         return modelLocation.getResourcePath().endsWith(EXTENSION); // Anvil armory extension. Foo.Anvil-armory.json
     }
 
     @Override
-    public IModel loadModel (ResourceLocation modelLocation) throws IOException {
+    public IModel loadModel(@NotNull ResourceLocation modelLocation) throws IOException {
         if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
             return DummyModel.INSTANCE;
         }
@@ -53,10 +54,8 @@ public class AnvilModelLoader implements ICustomModelLoader {
 
             BlackSmithsAnvilModel model = new BlackSmithsAnvilModel(objModel);
 
-            for(IAnvilMaterial material : AnvilMaterialRegistry.getInstance().getAllRegisteredAnvilMaterials().values())
-            {
-                if (modelDefinition.getTextureTopPaths().containsKey(material.getID()) || modelDefinition.getTextureBottomPaths().containsKey(material.getID()))
-                {
+            for (IAnvilMaterial material : AnvilMaterialRegistry.getInstance().getAllRegisteredAnvilMaterials().values()) {
+                if (modelDefinition.getTextureTopPaths().containsKey(material.getID()) || modelDefinition.getTextureBottomPaths().containsKey(material.getID())) {
                     ImmutableMap.Builder<String, String> builder = new ImmutableMap.Builder<>();
 
                     if (modelDefinition.getTextureTopPaths().containsKey(material.getID()))
@@ -67,9 +66,7 @@ public class AnvilModelLoader implements ICustomModelLoader {
 
 
                     model.registerNewMaterializedModel(((SmithsCoreOBJModel) objModel).retexture(builder.build()), material.getID());
-                }
-                else
-                {
+                } else {
                     OBJModel newModel = (OBJModel) ModelHelper.forceLoadOBJModel(new ResourceLocation(modelDefinition.getModelPath()));
 
                     OBJModel.Material materialOBJ = newModel.getMatLib().getMaterial("Anvil");
@@ -97,7 +94,7 @@ public class AnvilModelLoader implements ICustomModelLoader {
     }
 
     @Override
-    public void onResourceManagerReload (IResourceManager resourceManager) {
+    public void onResourceManagerReload(IResourceManager resourceManager) {
 
     }
 

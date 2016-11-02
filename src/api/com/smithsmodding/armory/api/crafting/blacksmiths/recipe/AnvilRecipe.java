@@ -4,6 +4,8 @@ import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeC
 import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.smithscore.common.tileentity.IWatchableTileEntity;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,14 +25,16 @@ public class AnvilRecipe {
     private int hammer;
     private int tongs;
     private boolean isShapeless = false;
+    @NotNull
     private IAnvilRecipeComponent[] components = new IAnvilRecipeComponent[ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS];
+    @NotNull
     private IAnvilRecipeComponent[] additionals = new IAnvilRecipeComponent[ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS];
     private String Id;
 
     public AnvilRecipe() {
     }
 
-    public boolean matchesRecipe(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents, int pHammerUsagesLeft, int pTongsUsagesLeft) {
+    public boolean matchesRecipe(@NotNull ItemStack[] pCraftingSlotContents, @NotNull ItemStack[] pAdditionalSlotContents, int pHammerUsagesLeft, int pTongsUsagesLeft) {
         if (pHammerUsagesLeft == 0)
             pHammerUsagesLeft = 150;
 
@@ -124,6 +128,7 @@ public class AnvilRecipe {
         return Id;
     }
 
+    @Nullable
     public IAnvilRecipeComponent getComponent(int pComponentIndex) {
         if (pComponentIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
             return null;
@@ -132,6 +137,7 @@ public class AnvilRecipe {
         return components[pComponentIndex];
     }
 
+    @Nullable
     public IAnvilRecipeComponent getAdditionalComponent(int pComponentIndex) {
         if (pComponentIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS) {
             return null;
@@ -140,12 +146,14 @@ public class AnvilRecipe {
         return additionals[pComponentIndex];
     }
 
+    @NotNull
     public AnvilRecipe setInternalName(String pNewInternalID) {
         this.Id = pNewInternalID;
 
         return this;
     }
 
+    @Nullable
     public AnvilRecipe setCraftingSlotContent(int pSlotIndex, IAnvilRecipeComponent pComponent) {
         if (pSlotIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
             return null;
@@ -156,6 +164,7 @@ public class AnvilRecipe {
         return this;
     }
 
+    @Nullable
     public AnvilRecipe setAdditionalCraftingSlotContent(int pSlotIndex, IAnvilRecipeComponent pComponent) {
         if (pSlotIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS) {
             return null;
@@ -166,30 +175,35 @@ public class AnvilRecipe {
         return this;
     }
 
-    public AnvilRecipe setResult(ItemStack pResult) {
+    @NotNull
+    public AnvilRecipe setResult(@NotNull ItemStack pResult) {
         resultAmount = pResult.stackSize;
         result = pResult;
 
         return this;
     }
 
+    @NotNull
     public AnvilRecipe setProgress(int pNewProgress) {
         targetProgress = pNewProgress;
 
         return this;
     }
 
+    @NotNull
     public AnvilRecipe setTongUsage(int pNewUsage) {
         tongs = pNewUsage;
 
         return this;
     }
 
+    @NotNull
     public AnvilRecipe setShapeLess() {
         isShapeless = true;
         return this;
     }
 
+    @Nullable
     public ItemStack getResult(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents) {
         result.stackSize = resultAmount;
         return result;
@@ -199,10 +213,12 @@ public class AnvilRecipe {
         return isShapeless;
     }
 
+    @NotNull
     public IAnvilRecipeComponent[] getComponents() {
         return components;
     }
 
+    @NotNull
     public IAnvilRecipeComponent[] getAdditionalComponents() {
         return additionals;
     }
@@ -215,6 +231,7 @@ public class AnvilRecipe {
         return hammer;
     }
 
+    @NotNull
     public AnvilRecipe setHammerUsage(int pNewUsage) {
         hammer = pNewUsage;
 

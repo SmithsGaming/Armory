@@ -3,6 +3,7 @@ package com.smithsmodding.armory.common.inventory.slots;
 import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Author Marc (Created on: 30.03.2016)
@@ -23,7 +24,7 @@ public class SlotInventoryCheck extends SlotSmithsCore {
     }
 
     @Override
-    public boolean isItemValid(ItemStack pItemStack) {
+    public boolean isItemValid(@NotNull ItemStack pItemStack) {
         return inventory.isItemValidForSlot(getSlotIndex(), pItemStack);
     }
 

@@ -14,11 +14,12 @@ import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
 import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
+import org.jetbrains.annotations.NotNull;
 
 public class ContainerForge extends ContainerSmithsCore {
     private TileEntityForge tileEntityForge;
 
-    public ContainerForge(EntityPlayer playerMP, TileEntityForge tileEntityForge) {
+    public ContainerForge(@NotNull EntityPlayer playerMP, TileEntityForge tileEntityForge) {
         super(References.InternalNames.TileEntities.ForgeContainer, tileEntityForge, tileEntityForge, playerMP);
 
         this.tileEntityForge = tileEntityForge;
@@ -31,29 +32,25 @@ public class ContainerForge extends ContainerSmithsCore {
     }
 
     @Override
-    public boolean canInteractWith (EntityPlayer playerIn) {
+    public boolean canInteractWith(EntityPlayer playerIn) {
         return true;
     }
 
     @Override
-    public void onTabChanged (String newActiveTabID) {
+    public void onTabChanged(@NotNull String newActiveTabID) {
         super.onTabChanged(newActiveTabID);
 
         inventorySlots.clear();
         inventoryItemStacks.clear();
 
-        if (newActiveTabID.endsWith("Inventory"))
-        {
+        if (newActiveTabID.endsWith("Inventory")) {
             generateStandardInventory();
-        }
-        else
-        {
+        } else {
             generateMoltenInventory();
         }
     }
 
-    private void generateStandardInventory()
-    {
+    private void generateStandardInventory() {
         this.addSlotToContainer(new SlotHeatable(tileEntityForge, 0, 23, 51, 0));
         this.addSlotToContainer(new SlotHeatable(tileEntityForge, 1, 51, 37, 1));
         this.addSlotToContainer(new SlotHeatable(tileEntityForge, 2, 80, 33, 2));
@@ -75,8 +72,7 @@ public class ContainerForge extends ContainerSmithsCore {
         }
     }
 
-    private void generateMoltenInventory()
-    {
+    private void generateMoltenInventory() {
         for (int infusionStackIndex = 0; infusionStackIndex < TileEntityForge.INFUSIONSTACK_AMOUNT; infusionStackIndex++) {
             this.addSlotToContainer(new SlotSmithsCore(tileEntityForge, infusionStackIndex + TileEntityForge.INGOTSTACKS_AMOUNT + TileEntityForge.FUELSTACK_AMOUNT, 59 + infusionStackIndex * 21, 63));
         }

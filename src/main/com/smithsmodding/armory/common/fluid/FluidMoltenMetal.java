@@ -9,18 +9,20 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Marc on 19.12.2015.
  */
 public class FluidMoltenMetal extends Fluid {
 
-    public FluidMoltenMetal () {
+    public FluidMoltenMetal() {
         super(References.InternalNames.Fluids.MOLTENMETAL, new ResourceLocation(Textures.Blocks.LiquidMetalStill.getPrimaryLocation()), new ResourceLocation(Textures.Blocks.LiquidMetalFlow.getPrimaryLocation()));
     }
 
     @Override
-    public int getColor (FluidStack stack) {
+    public int getColor(@Nullable FluidStack stack) {
         if (stack == null || stack.tag == null)
             return getColor();
 
@@ -33,7 +35,7 @@ public class FluidMoltenMetal extends Fluid {
     }
 
     @Override
-    public int getTemperature (FluidStack stack) {
+    public int getTemperature(@Nullable FluidStack stack) {
         if (stack == null || stack.tag == null)
             return 20;
 
@@ -46,9 +48,9 @@ public class FluidMoltenMetal extends Fluid {
     }
 
 
-
+    @NotNull
     @Override
-    public String getLocalizedName (FluidStack stack) {
+    public String getLocalizedName(@Nullable FluidStack stack) {
         if (stack == null || stack.tag == null)
             return "Undefined molten Metal.";
 

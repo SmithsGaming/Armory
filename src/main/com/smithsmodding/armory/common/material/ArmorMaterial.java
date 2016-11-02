@@ -17,8 +17,9 @@ import com.smithsmodding.smithscore.client.textures.ITextureController;
 import com.smithsmodding.smithscore.util.client.color.ColorSampler;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
@@ -31,12 +32,16 @@ public class ArmorMaterial implements IArmorMaterial {
     private boolean isBaseMaterial;
     private int meltingTime;
 
+    @NotNull
     private HashMap<String, Float> partAbsorptionRatios = new HashMap<String, Float>();
+    @NotNull
     private HashMap<String, Integer> partDurabilities = new HashMap<String, Integer>();
+    @NotNull
     private HashMap<String, Integer> partModifierCounts = new HashMap<String, Integer>();
 
     private float meltingPoint;
     private float heatCoefficient;
+    @Nullable
     private ItemStack baseStack;
 
     private ITextureController renderInfo;
@@ -44,7 +49,7 @@ public class ArmorMaterial implements IArmorMaterial {
 
 
     //Constructor
-    public ArmorMaterial (String uniqueIdentifier, String oreDictionaryIdentifier, boolean isBaseMaterial, float meltingPoint, int meltingTime, float heatCoefficient, ItemStack baseStack) {
+    public ArmorMaterial(String uniqueIdentifier, String oreDictionaryIdentifier, boolean isBaseMaterial, float meltingPoint, int meltingTime, float heatCoefficient, @Nullable ItemStack baseStack) {
         this.oreDictionaryIdentifier = oreDictionaryIdentifier;
         this.uniqueIdentifier = uniqueIdentifier;
 
@@ -74,12 +79,12 @@ public class ArmorMaterial implements IArmorMaterial {
 
 
     @Override
-    public String getUniqueID () {
+    public String getUniqueID() {
         return uniqueIdentifier;
     }
 
     @Override
-    public int getItemDamageMaterialIndex () {
+    public int getItemDamageMaterialIndex() {
         return materialIndex;
     }
 
@@ -88,41 +93,41 @@ public class ArmorMaterial implements IArmorMaterial {
         this.materialIndex = materialIndex;
     }
 
+    @Nullable
     @Override
-    public ItemStack getBaseItemStack () {
+    public ItemStack getBaseItemStack() {
         return baseStack;
     }
 
     @Override
-    public String getOreDicName () {
+    public String getOreDicName() {
         return oreDictionaryIdentifier;
     }
 
+    @NotNull
     @Override
-    public String getType () {
+    public String getType() {
         return References.InternalNames.Tiers.MEDIEVAL;
     }
 
-    public int getMeltingTime () {
+    public int getMeltingTime() {
         return meltingTime;
     }
 
 
-
-    public void setBaseDamageAbsorption (String pTargetArmorInternalName, Float pBaseDamageAbsorption) {
+    public void setBaseDamageAbsorption(String pTargetArmorInternalName, Float pBaseDamageAbsorption) {
         partAbsorptionRatios.put(pTargetArmorInternalName, pBaseDamageAbsorption);
     }
 
-    public Float getBaseDamageAbsorption (String pTargetArmorInternalName) {
+    public Float getBaseDamageAbsorption(String pTargetArmorInternalName) {
         return partAbsorptionRatios.get(pTargetArmorInternalName);
     }
 
+    @NotNull
     @Override
-    public HashMap<String, Float> getAllBaseDamageAbsorptionValues () {
+    public HashMap<String, Float> getAllBaseDamageAbsorptionValues() {
         return partAbsorptionRatios;
     }
-
-
 
 
     public void setBaseDurability(String pTargetArmorInternalName, int pBaseDurability) {
@@ -136,6 +141,7 @@ public class ArmorMaterial implements IArmorMaterial {
         return 100;
     }
 
+    @NotNull
     @Override
     public HashMap<String, Integer> getAllBaseDurabilityValues() {
         return partDurabilities;
@@ -150,6 +156,7 @@ public class ArmorMaterial implements IArmorMaterial {
         return partModifierCounts.get(pTargetArmorInternalName);
     }
 
+    @NotNull
     @Override
     public HashMap<String, Integer> getAllMaxModifiersAmounts() {
         return partModifierCounts;
@@ -157,7 +164,7 @@ public class ArmorMaterial implements IArmorMaterial {
 
 
     @Override
-    public boolean getIsBaseArmorMaterial () {
+    public boolean getIsBaseArmorMaterial() {
         return isBaseMaterial;
     }
 
@@ -167,7 +174,7 @@ public class ArmorMaterial implements IArmorMaterial {
     }
 
     @Override
-    public float getMeltingPoint () {
+    public float getMeltingPoint() {
         return meltingPoint;
     }
 
@@ -177,7 +184,7 @@ public class ArmorMaterial implements IArmorMaterial {
     }
 
     @Override
-    public float getHeatCoefficient () {
+    public float getHeatCoefficient() {
         return heatCoefficient;
     }
 
@@ -186,8 +193,9 @@ public class ArmorMaterial implements IArmorMaterial {
         this.heatCoefficient = heatCoefficient;
     }
 
+    @NotNull
     @Override
-    public IArmorPartRegistry getPartRegistry () {
+    public IArmorPartRegistry getPartRegistry() {
         return MedievalAddonRegistry.getInstance();
     }
 
@@ -201,6 +209,7 @@ public class ArmorMaterial implements IArmorMaterial {
         return renderInfo;
     }
 
+    @NotNull
     @Override
     public IArmorMaterial setRenderInfo(ITextureController newInfo) {
         renderInfo = newInfo;
@@ -208,18 +217,25 @@ public class ArmorMaterial implements IArmorMaterial {
     }
 
     @Override
-    public String getTranslationKey () {
+    public String getTranslationKey() {
         return translationKey;
     }
 
+    @NotNull
     @Override
-    public IArmorMaterial setTranslationKey (String key) {
+    public IArmorMaterial setTranslationKey(String key) {
         translationKey = key;
         return this;
     }
 
     @Override
     public String getNameColor() {
+        if (renderInfo == null)
+            return "";
+
+        if (renderInfo.getVertexColor() == null)
+            return "";
+
         return renderInfo.getVertexColor().encodeColor();
     }
 }

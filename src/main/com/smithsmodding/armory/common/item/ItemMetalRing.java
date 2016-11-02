@@ -15,6 +15,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -32,11 +33,8 @@ public class ItemMetalRing extends ItemResource implements IHeatableItem {
         return true;
     }
 
-    /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     */
     @Override
-    public void getSubItems(Item pRing, CreativeTabs pCreativeTab, List pItemStacks) {
+    public void buildSubItemList(Item item, CreativeTabs tabs, List<ItemStack> subItems) {
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
             ItemStack tRingStack = new ItemStack(this, 1, tMaterial.getItemDamageMaterialIndex());
 
@@ -47,10 +45,11 @@ public class ItemMetalRing extends ItemResource implements IHeatableItem {
             if (!HeatableItemRegistry.getInstance().isHeatable(tRingStack))
                 HeatableItemRegistry.getInstance().addBaseStack(tMaterial, tRingStack);
 
-            pItemStacks.add(tRingStack);
+            subItems.add(tRingStack);
         }
     }
 
+    @NotNull
     @Override
     public String getInternalType() {
         return References.InternalNames.HeatedItemTypes.RING;

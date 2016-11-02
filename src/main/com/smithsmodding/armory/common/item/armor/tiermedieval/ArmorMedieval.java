@@ -19,7 +19,6 @@ import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,9 +27,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import java.security.InvalidParameterException;
 import java.util.HashMap;
@@ -38,7 +39,7 @@ import java.util.List;
 
 public class ArmorMedieval extends MultiLayeredArmor {
 
-    public ArmorMedieval(String pInternalName, String baseLayerAddonPositionId, EntityEquipmentSlot slotPart) {
+    public ArmorMedieval(@NotNull String pInternalName, String baseLayerAddonPositionId, @NotNull EntityEquipmentSlot slotPart) {
         super(pInternalName, baseLayerAddonPositionId, 1, slotPart);
         this.setUnlocalizedName(pInternalName);
         this.setMaxStackSize(1);
@@ -48,8 +49,9 @@ public class ArmorMedieval extends MultiLayeredArmor {
     }
 
     //Functions for ISpecialArmor. TODO: Needs to be implemented.
+    @NotNull
     @Override
-    public ISpecialArmor.ArmorProperties getProperties(EntityLivingBase pEntity, ItemStack pStack, DamageSource pSource, double pDamage, int pSlot) {
+    public ISpecialArmor.ArmorProperties getProperties(EntityLivingBase pEntity, @NotNull ItemStack pStack, DamageSource pSource, double pDamage, int pSlot) {
         IArmorMaterial tBaseMaterial = ArmorNBTHelper.getBaseMaterialOfItemStack(pStack);
         float tDamageRatio = tBaseMaterial.getBaseDamageAbsorption(this.getUniqueID());
 
@@ -61,7 +63,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
     }
 
     @Override
-    public int getArmorDisplay(EntityPlayer pEntity, ItemStack pStack, int pSlot) {
+    public int getArmorDisplay(EntityPlayer pEntity, @NotNull ItemStack pStack, int pSlot) {
         IArmorMaterial tBaseMaterial = ArmorNBTHelper.getBaseMaterialOfItemStack(pStack);
         float tDamageRatio = tBaseMaterial.getBaseDamageAbsorption(this.getUniqueID());
 
@@ -73,7 +75,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
     }
 
     @Override
-    public void damageArmor(EntityLivingBase pEntity, ItemStack pStack, DamageSource pSource, int pDamage, int pSlot) {
+    public void damageArmor(@NotNull EntityLivingBase pEntity, @NotNull ItemStack pStack, DamageSource pSource, int pDamage, int pSlot) {
         IArmorMaterial tArmorMaterial = ArmorNBTHelper.getBaseMaterialOfItemStack(pStack);
         pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).setInteger(References.NBTTagCompoundData.Armor.CurrentDurability, pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.CurrentDurability) - pDamage);
 
@@ -154,20 +156,23 @@ public class ArmorMedieval extends MultiLayeredArmor {
         super.registerAddon(pNewAddon);
     }
 
+    @NotNull
     @Override
     public String getItemStackDisplayName(ItemStack pStack) {
         if (!pStack.hasTagCompound())
-            return I18n.format(this.getUnlocalizedName() + ".name");
+            return I18n.translateToLocal(this.getUnlocalizedName() + ".name");
 
         if (pStack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
             return pStack.getTagCompound().getString(References.NBTTagCompoundData.CustomName);
 
         IArmorMaterial tMaterial = MaterialRegistry.getInstance().getMaterial(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.MaterialID));
 
-        return tMaterial.getNameColor() + I18n.format(tMaterial.getTranslationKey()) + " " + TextFormatting.RESET + I18n.format(this.getUnlocalizedName() + ".name");
+        return tMaterial.getNameColor() + I18n.translateToLocal(tMaterial.getTranslationKey()) + " " + TextFormatting.RESET + I18n.translateToLocal(this.getUnlocalizedName() + ".name");
     }
 
+    @NotNull
     @Override
+    @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
         ModelExtendedBiped tModel = new ModelExtendedBiped(1F, itemStack);
 

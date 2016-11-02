@@ -5,9 +5,10 @@ import com.smithsmodding.armory.api.armor.MaterialDependentMLAAddon;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Orion on 27-3-2014.
@@ -29,10 +30,11 @@ public class ArmorUpgradeMedieval extends MaterialDependentMLAAddon {
         this.extraDurability = extraDurability;
     }
 
+    @NotNull
     @Override
     public String getDisplayName() {
         IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(materialInternalName);
-        return material.getNameColor() + I18n.format(material.getTranslationKey()) + getVisibleNameColor() + " " + I18n.format(getVisibleName()) + TextFormatting.RESET;
+        return material.getNameColor() + I18n.translateToLocal(material.getTranslationKey()) + getVisibleNameColor() + " " + I18n.translateToLocal(getVisibleName()) + TextFormatting.RESET;
     }
 
     @Override

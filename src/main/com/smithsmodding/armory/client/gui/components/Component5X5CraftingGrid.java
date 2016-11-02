@@ -19,6 +19,7 @@ import com.smithsmodding.smithscore.util.common.positioning.Coordinate2D;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.inventory.Slot;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -28,6 +29,7 @@ import java.util.List;
  */
 public class Component5X5CraftingGrid extends CoreComponent implements IGUIBasedComponentHost {
 
+    @NotNull
     protected final LinkedHashMap<String, IGUIComponent> componentHashMap;
     protected final int startSlotIndexCraftingGrid;
     protected final int endSlotIndexCraftingGrid;
@@ -81,11 +83,11 @@ public class Component5X5CraftingGrid extends CoreComponent implements IGUIBased
     }
 
     @Override
-    public void registerNewComponent (IGUIComponent component) {
+    public void registerNewComponent(@NotNull IGUIComponent component) {
         componentHashMap.put(component.getID(), component);
 
         if (component instanceof IGUIBasedComponentHost)
-            ( (IGUIBasedComponentHost) component ).registerComponents((IGUIBasedComponentHost) component);
+            ((IGUIBasedComponentHost) component).registerComponents((IGUIBasedComponentHost) component);
     }
 
     @Override
@@ -98,6 +100,7 @@ public class Component5X5CraftingGrid extends CoreComponent implements IGUIBased
         return parent.getRootManager();
     }
 
+    @NotNull
     @Override
     public LinkedHashMap<String, IGUIComponent> getAllComponents() {
         return componentHashMap;

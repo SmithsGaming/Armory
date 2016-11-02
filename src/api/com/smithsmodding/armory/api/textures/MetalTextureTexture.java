@@ -6,20 +6,21 @@ package com.smithsmodding.armory.api.textures;
   of Wrapper classes instead of direct access.
  */
 
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.client.resources.*;
-import net.minecraft.util.*;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 public class MetalTextureTexture extends MetalColoredTexture {
 
     protected TextureColoredTexture texture2;
 
-    public MetalTextureTexture (String addTextureLocation, TextureAtlasSprite baseTexture, String spriteName, int baseColor, float shinyness, float brightness, float hueshift) {
+    public MetalTextureTexture(String addTextureLocation, @NotNull TextureAtlasSprite baseTexture, String spriteName, int baseColor, float shinyness, float brightness, float hueshift) {
         super(baseTexture, spriteName, baseColor, shinyness, brightness, hueshift);
         texture2 = new TextureColoredTexture(addTextureLocation, baseTexture, spriteName);
     }
 
-    public MetalTextureTexture (TextureAtlasSprite addTexture, TextureAtlasSprite baseTexture, String spriteName, int baseColor, float shinyness, float brightness, float hueshift) {
+    public MetalTextureTexture(@NotNull TextureAtlasSprite addTexture, @NotNull TextureAtlasSprite baseTexture, String spriteName, int baseColor, float shinyness, float brightness, float hueshift) {
         super(baseTexture, spriteName, baseColor, shinyness, brightness, hueshift);
         texture2 = new TextureColoredTexture(addTexture, baseTexture, spriteName);
     }

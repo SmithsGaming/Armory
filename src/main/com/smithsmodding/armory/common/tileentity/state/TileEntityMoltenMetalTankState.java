@@ -3,6 +3,7 @@ package com.smithsmodding.armory.common.tileentity.state;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import com.smithsmodding.smithscore.common.tileentity.state.ITileEntityState;
 import net.minecraft.nbt.NBTBase;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Author Orion (Created on: 26.07.2016)
@@ -34,6 +35,7 @@ public class TileEntityMoltenMetalTankState implements ITileEntityState {
 
     }
 
+    @Nullable
     @Override
     public NBTBase writeToNBTTagCompound() {
         return null;
@@ -49,6 +51,7 @@ public class TileEntityMoltenMetalTankState implements ITileEntityState {
 
     }
 
+    @Nullable
     @Override
     public NBTBase writeToSynchronizationCompound() {
         return null;

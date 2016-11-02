@@ -8,6 +8,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.server.MinecraftServer;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by marcf on 9/28/2015.
@@ -18,11 +19,13 @@ public class CommandEnableTempDecay extends CommandBase {
         return 2;
     }
 
+    @NotNull
     @Override
     public String getCommandName() {
         return References.InternalNames.Commands.ENABLEDECAY;
     }
 
+    @NotNull
     @Override
     public String getCommandUsage(ICommandSender pSender) {
         return TranslationKeys.Messages.Commands.TEMPDECAYUSAGE;

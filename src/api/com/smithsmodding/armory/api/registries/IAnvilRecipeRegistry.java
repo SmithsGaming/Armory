@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.api.registries;
 
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
@@ -14,7 +15,7 @@ public interface IAnvilRecipeRegistry {
 
     String getID(AnvilRecipe recipe);
 
-    HashMap<String, AnvilRecipe> getRecipes();
+    @NotNull HashMap<String, AnvilRecipe> getRecipes();
 
     void clearAllStoredRecipes();
 }

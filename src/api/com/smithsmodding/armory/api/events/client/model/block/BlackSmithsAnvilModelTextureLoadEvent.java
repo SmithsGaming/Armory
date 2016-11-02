@@ -5,6 +5,7 @@ import com.smithsmodding.armory.api.util.references.ModBlocks;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.smithscore.common.events.SmithsCoreEvent;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,18 +16,20 @@ import java.util.Map;
 public class BlackSmithsAnvilModelTextureLoadEvent extends SmithsCoreEvent
 {
 
-    Map<String, String> additionalTopTextureLayers = new HashMap<>();
-    Map<String, String> additionalBottomTextureLayers = new HashMap<>();
+    @NotNull Map<String, String> additionalTopTextureLayers = new HashMap<>();
+    @NotNull Map<String, String> additionalBottomTextureLayers = new HashMap<>();
 
+    @NotNull
     public Map<String, String> getAdditionalTopTextureLayers () {
         return additionalTopTextureLayers;
     }
 
+    @NotNull
     public Map<String, String> getAdditionalBottomTextureLayers () {
         return additionalBottomTextureLayers;
     }
 
-    public void addAdditionalTopTextureLayers (ResourceLocation modelDefinitionLocation) {
+    public void addAdditionalTopTextureLayers(@NotNull ResourceLocation modelDefinitionLocation) {
         try {
             additionalTopTextureLayers.putAll(AnvilModelDefinition.loadModelTexturesForTop(modelDefinitionLocation));
         } catch (Exception ex) {
@@ -34,7 +37,7 @@ public class BlackSmithsAnvilModelTextureLoadEvent extends SmithsCoreEvent
         }
     }
 
-    public void addAdditionalBottomTextureLayers (ResourceLocation modelDefinitionLocation) {
+    public void addAdditionalBottomTextureLayers(@NotNull ResourceLocation modelDefinitionLocation) {
         try {
             additionalBottomTextureLayers.putAll(AnvilModelDefinition.loadModelTexturesForBottom(modelDefinitionLocation));
         } catch (Exception ex) {

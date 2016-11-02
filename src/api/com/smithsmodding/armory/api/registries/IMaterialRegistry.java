@@ -2,6 +2,7 @@ package com.smithsmodding.armory.api.registries;
 
 import com.smithsmodding.armory.api.logic.IMaterialInitializer;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
@@ -19,14 +20,14 @@ public interface IMaterialRegistry {
      *
      * @return A HashMap with as Key the uniqueID of the material and as Value the a instance of IArmorMaterial
      */
-    HashMap<String, IArmorMaterial> getArmorMaterials();
+    @NotNull HashMap<String, IArmorMaterial> getArmorMaterials();
 
     /**
      * Function to get all the material initializers registered to this IMaterialRegistry
      *
      * @return A HashMap with as Key the material and as Value the a instance of IMaterialInitializer
      */
-    HashMap<IArmorMaterial, IMaterialInitializer> getInitializers();
+    @NotNull HashMap<IArmorMaterial, IMaterialInitializer> getInitializers();
 
     /**
      * Function to register a new material to this registry

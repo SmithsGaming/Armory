@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent;
  * Created by Orion
  * Created on 09.06.2015
  * 17:47
- *
+ * <p>
  * Copyrighted according to Project specific license
  */
 public class ClientDisconnectedFromServerEventHandler {

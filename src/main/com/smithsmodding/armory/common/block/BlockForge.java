@@ -50,6 +50,8 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,6 +63,7 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
     public static final PropertyBool BURNING = PropertyBool.create("armoryburning");
     public static final PropertyBool ISMASTER = PropertyBool.create("armorymaster");
 
+    @NotNull
     protected static Map<String, EnumFacing> directionsMapping = new HashMap<String, EnumFacing>();
 
     static {
@@ -70,6 +73,7 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
         directionsMapping.put("PosY", EnumFacing.NORTH);
     }
 
+    @NotNull
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{CoreReferences.BlockStateProperties.Unlisted.OBJSTATE});
 
     public BlockForge() {
@@ -78,7 +82,7 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
         this.setDefaultState(this.blockState.getBaseState().withProperty(BURNING, false).withProperty(ISMASTER, false));
     }
 
-    public static void setBurningState (boolean burning, World worldIn, BlockPos pos) {
+    public static void setBurningState(boolean burning, @NotNull World worldIn, @NotNull BlockPos pos) {
         IBlockState original = worldIn.getBlockState(pos);
 
         if (original == null)
@@ -89,7 +93,7 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
         worldIn.setBlockState(pos, original, 3);
     }
 
-    public static void setMasterState (boolean isMaster, World worldIn, BlockPos pos) {
+    public static void setMasterState(boolean isMaster, @NotNull World worldIn, @NotNull BlockPos pos) {
         IBlockState original = worldIn.getBlockState(pos);
 
         if (original == null)
@@ -100,13 +104,14 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
         worldIn.setBlockState(pos, original, 3);
     }
 
+    @NotNull
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, BURNING, ISMASTER);
     }
-    
+
     @Override
-    public void breakBlock (World worldIn, BlockPos pos, IBlockState state) {
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         TileEntityForge forge = (TileEntityForge) worldIn.getTileEntity(pos);
 
         if (!worldIn.isRemote) {
@@ -121,7 +126,7 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
     }
 
     @Override
-    public void onBlockPlacedBy (World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+    public void onBlockPlacedBy(@Nullable World worldIn, @NotNull BlockPos pos, IBlockState state, EntityLivingBase placer, @NotNull ItemStack stack) {
         if (worldIn == null)
             return;
 
@@ -141,6 +146,7 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
         }
     }
 
+    @NotNull
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
@@ -167,13 +173,13 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
     }
 
     @Override
-    public boolean isVisuallyOpaque () {
+    public boolean isVisuallyOpaque() {
         return false;
     }
 
     //NEEDS TO BE REDONE!
     @Override
-    public IBlockState getExtendedState (IBlockState state, IBlockAccess world, BlockPos pos) {
+    public IBlockState getExtendedState(IBlockState state, @NotNull IBlockAccess world, @NotNull BlockPos pos) {
         ItemStack blockStack = new ItemStack(Item.getItemFromBlock(this));
 
         SmithsCoreOBJModel model = ((BakedSmithsCoreOBJModel) Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(blockStack)).getModel();
@@ -181,19 +187,16 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
 
         List<String> visibleParts = new ArrayList<String>();
 
-        for (String key : groups.keySet())
-        {
+        for (String key : groups.keySet()) {
             //Internal OBJ Parts for the model can be auto added and skipped.
-            if (key.startsWith("OBJModel"))
-            {
+            if (key.startsWith("OBJModel")) {
                 visibleParts.add(key);
                 continue;
             }
 
             String[] data = key.split("_");
 
-            if (data.length != 3)
-            {
+            if (data.length != 3) {
                 ModLogger.getInstance().error("Could not map a ModelPart to the Forge Structure. Skipping.");
                 continue;
             }
@@ -213,8 +216,7 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
 
             Block targetBlock = this;
 
-            for (String sideName : directionsMapping.keySet())
-            {
+            for (String sideName : directionsMapping.keySet()) {
                 if (name.contains(sideName))
                     relevantSides++;
             }
@@ -233,41 +235,29 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
                 }
             }
 
-            if (connectionType.toLowerCase().contains("always"))
-            {
+            if (connectionType.toLowerCase().contains("always")) {
                 requiredSides = 0;
-            }
-            else if (connectionType.toLowerCase().contains("air"))
-            {
+            } else if (connectionType.toLowerCase().contains("air")) {
                 targetBlock = Blocks.AIR;
-            }
-            else if (connectionType.toLowerCase().contains("connected"))
-            {
+            } else if (connectionType.toLowerCase().contains("connected")) {
                 targetBlock = this;
             }
 
-            if (renderCase.toLowerCase().contains("all"))
-            {
+            if (renderCase.toLowerCase().contains("all")) {
                 requiredSides = relevantSides;
-            }
-            else if (renderCase.toLowerCase().contains("alo"))
-            {
+            } else if (renderCase.toLowerCase().contains("alo")) {
                 requiredSides = 1;
             } else if (renderCase.toLowerCase().contains("not")) {
                 requiredSides = 7;
             }
 
-            if (requiredSides > 0)
-            {
-                for(String sideName : directionsMapping.keySet())
-                {
-                    if (name.contains(sideName))
-                    {
+            if (requiredSides > 0) {
+                for (String sideName : directionsMapping.keySet()) {
+                    if (name.contains(sideName)) {
                         Block comparisonBlock = world.getBlockState(pos.add(directionsMapping.get(sideName).getDirectionVec())).getBlock();
 
-                        if (targetBlock == comparisonBlock && targetBlock != Blocks.AIR)
-                        {
-                            foundSides ++;
+                        if (targetBlock == comparisonBlock && targetBlock != Blocks.AIR) {
+                            foundSides++;
                         } else if (targetBlock == Blocks.AIR && comparisonBlock != this) {
                             foundSides++;
                         }
@@ -275,8 +265,7 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
                 }
             }
 
-            if (requiredSides == 0 || foundSides >= requiredSides)
-            {
+            if (requiredSides == 0 || foundSides >= requiredSides) {
                 visibleParts.add(key);
             }
         }
@@ -285,13 +274,14 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
         return ((IExtendedBlockState) this.state.getBaseState()).withProperty(CoreReferences.BlockStateProperties.Unlisted.OBJSTATE, retState);
     }
 
+    @NotNull
     @Override
-    public TileEntity createNewTileEntity (World worldIn, int meta) {
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityForge();
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(@NotNull World worldIn, @NotNull BlockPos pos, IBlockState state, @NotNull EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (playerIn.isSneaking()) {
             return false;
         } else {
@@ -307,7 +297,8 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
     /**
      * Convert the given metadata into a BlockState for this block
      */
-    public IBlockState getStateFromMeta (int meta) {
+    @NotNull
+    public IBlockState getStateFromMeta(int meta) {
         int burningMeta = meta / 2;
         int masterMeta = meta % 2;
 
@@ -317,13 +308,13 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
     /**
      * Convert the BlockState into the correct metadata value
      */
-    public int getMetaFromState (IBlockState state) {
+    public int getMetaFromState(@NotNull IBlockState state) {
         boolean burningValue = state.getValue(BURNING);
         boolean masterValue = state.getValue(ISMASTER);
 
         int meta = 0;
 
-        meta = ( masterValue ? 1 : 0 ) | ( burningValue ? 2 : 0 );
+        meta = (masterValue ? 1 : 0) | (burningValue ? 2 : 0);
 
         return meta;
     }
@@ -332,7 +323,8 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
      * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
      * IBlockstate
      */
-    public IBlockState onBlockPlaced (World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+    @NotNull
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         return this.getDefaultState().withProperty(BURNING, false);
     }
 
@@ -344,7 +336,7 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
      * @param pos     Position of the block the player is looking at.
      */
     @Override
-    public void handleDebugInformation (RenderGameOverlayEvent.Text event, World worldIn, BlockPos pos) {
+    public void handleDebugInformation(@NotNull RenderGameOverlayEvent.Text event, @NotNull World worldIn, @NotNull BlockPos pos) {
         if (!SmithsCore.isInDevenvironment() && !Minecraft.getMinecraft().gameSettings.showDebugInfo)
             return;
 

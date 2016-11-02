@@ -1,0 +1,23 @@
+# Blender MTL File: 'Horizontal.blend'
+# Material Count: 9
+
+newmtl Connector
+Kd 0.640000 0.640000 0.640000
+map_Kd armory:blocks/forge/LightSheet
+
+newmtl Dark-Metal
+Kd 0.409600 0.409600 0.409600
+map_Kd armory:blocks/forge/DarkSheet
+
+newmtl FloorPlate
+Kd 0.640000 0.640000 0.640000
+map_Kd armory:blocks/forge/LightSheet
+
+newmtl Gold
+Kd 0.640000 0.640000 0.640000
+map_Kd minecraft:blocks/gold_block
+
+newmtl Light-Metal
+Kd 0.409600 0.409600 0.409600
+map_Kd armory:blocks/forge/LightSheet
+

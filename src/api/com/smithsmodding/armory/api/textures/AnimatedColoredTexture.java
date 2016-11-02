@@ -15,6 +15,8 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.data.AnimationFrame;
 import net.minecraft.client.resources.data.AnimationMetadataSection;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -28,10 +30,11 @@ import java.util.List;
  */
 public class AnimatedColoredTexture extends TextureColoredTexture {
 
+    @Nullable
     private TextureAtlasSprite actualTexture;
 
-    public AnimatedColoredTexture (TextureAtlasSprite addTexture,
-                                   TextureAtlasSprite baseTexture, String spriteName) {
+    public AnimatedColoredTexture(@NotNull TextureAtlasSprite addTexture,
+                                  @NotNull TextureAtlasSprite baseTexture, String spriteName) {
         super(addTexture, baseTexture, spriteName);
     }
 

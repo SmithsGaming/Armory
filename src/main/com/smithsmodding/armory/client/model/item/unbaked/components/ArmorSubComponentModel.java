@@ -21,13 +21,15 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 /**
  * Created by Marc on 06.12.2015.
- *
+ * <p>
  * model used to display singular components of the armor.
  * Is in implementation nearly the same as the TinkersConstruct Toolparts.
  */
@@ -58,6 +60,7 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
      * @param bakedTextureGetter Function to get the Texture for the model.
      * @return A ItemStack depending model that is ready to be used.
      */
+    @NotNull
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         return generateBackedComponentModel(state, format, bakedTextureGetter);
@@ -68,7 +71,8 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
      *
      * @return The location of the grayscale texture.
      */
-    public ResourceLocation getTexture () {
+    @Nullable
+    public ResourceLocation getTexture() {
         ArrayList<ResourceLocation> textures = new ArrayList<ResourceLocation>();
         textures.addAll(getTextures());
 
@@ -86,7 +90,8 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
      * @param bakedTextureGetter Function to get the baked textures.
      * @return A baked model containing all individual possible textures this model can have.
      */
-    public BakedSubComponentModel generateBackedComponentModel(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+    @NotNull
+    public BakedSubComponentModel generateBackedComponentModel(@NotNull IModelState state, VertexFormat format, @NotNull Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         // Get ourselfs a normal model to use.
         IBakedModel base = super.bake(state, format, bakedTextureGetter);
 

@@ -22,12 +22,14 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandGiveHeated extends CommandBase {
+    @NotNull
     @Override
     public String getCommandName() {
         return References.InternalNames.Commands.GIVEHEATED;
@@ -38,6 +40,7 @@ public class CommandGiveHeated extends CommandBase {
         return 2;
     }
 
+    @NotNull
     @Override
     public String getCommandUsage(ICommandSender pCommandSender) {
         return TranslationKeys.Messages.Commands.GIVEHEATEDUSAGE;
@@ -66,6 +69,7 @@ public class CommandGiveHeated extends CommandBase {
         }
     }
 
+    @org.jetbrains.annotations.Nullable
     @Override
     public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
         if (args.length == 1) {
@@ -86,7 +90,8 @@ public class CommandGiveHeated extends CommandBase {
         return null;
     }
 
-    private List getMaterialCompletionOptions(String pMaterialStart) {
+    @NotNull
+    private List getMaterialCompletionOptions(@NotNull String pMaterialStart) {
         ArrayList<String> tTabCompletionOptions = new ArrayList<String>();
 
         for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
@@ -98,7 +103,8 @@ public class CommandGiveHeated extends CommandBase {
         return tTabCompletionOptions;
     }
 
-    private List getTypeCompletionOptions(String pTypeStart) {
+    @NotNull
+    private List getTypeCompletionOptions(@NotNull String pTypeStart) {
         ArrayList<String> tTabCompletionOptions = new ArrayList<String>();
 
         for (String tType : HeatableItemRegistry.getInstance().getAllHeatableItemTypes()) {

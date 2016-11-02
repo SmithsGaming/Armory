@@ -1,5 +1,5 @@
 # Blender MTL File: 'Pump.blend'
-# Material Count: 14
+# Material Count: 13
 
 newmtl Dark-Metal
 Ns 96.078431
@@ -31,27 +31,7 @@ d 1.000000
 illum 2
 map_Kd D:\\Development\\Minecraft\\Armory\\resources\\assets\\armory\\textures\\blocks\\FirePit\\LightSheet.png
 
-newmtl Dark-Metal.003
-Ns 96.078431
-Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\LightSheet.png
-
-newmtl Dark-Metal.003_NONE
-Ns 96.078431
-Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd D:\\Development\\Minecraft\\Armory\\resources\\assets\\armory\\textures\\blocks\\FirePit\\LightSheet.png
-
-newmtl Dark-Metal_LightSheet.png
+newmtl Dark-Metal_LightSheet.png.001
 Ns 96.078431
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
@@ -72,6 +52,16 @@ illum 2
 map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\LightSheet.png
 
 newmtl Dark-Metal_LightSheet.png.003
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd D:\Development\Minecraft\Armory\resources\assets\armory\textures\blocks\FirePit\LightSheet.png
+
+newmtl Dark-Metal_LightSheet.png.005
 Ns 96.078431
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000

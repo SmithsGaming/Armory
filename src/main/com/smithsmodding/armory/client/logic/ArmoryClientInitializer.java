@@ -19,6 +19,7 @@ import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererForge
 import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererMoltenMetalTank;
 import com.smithsmodding.armory.common.block.BlockConduit;
 import com.smithsmodding.armory.common.block.BlockMoltenMetalTank;
+import com.smithsmodding.armory.common.block.BlockPump;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
@@ -28,6 +29,7 @@ import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityConduit;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.armory.common.tileentity.TileEntityMoltenMetalTank;
+import com.smithsmodding.smithscore.client.block.statemap.ExtendedStateMap;
 import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
 import com.smithsmodding.smithscore.client.model.loader.SmithsCoreOBJLoader;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
@@ -35,12 +37,13 @@ import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class ArmoryClientInitializer extends ArmoryInitializer {
     public static void InitializeClient() {
@@ -60,8 +63,9 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
     public static class MedievalClientInitialization {
         public static void registerMaterialResources() {
             MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).setRenderInfo(new MaterialRenderControllers.Metal(0xcacaca, 0f, 0.3f, 0f) {
+                @NotNull
                 @Override
-                public MinecraftColor getLiquidColor () {
+                public MinecraftColor getLiquidColor() {
                     return new MinecraftColor(MinecraftColor.RED);
                 }
             });
@@ -72,10 +76,8 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
         }
     }
 
-    public static class GlobalClientInitialization
-    {
-        public static void RegisterAnvilMaterialRenderInfo()
-        {
+    public static class GlobalClientInitialization {
+        public static void RegisterAnvilMaterialRenderInfo() {
             IArmorMaterial iron = MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON);
             IArmorMaterial obsidian = MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.OBSIDIAN);
 
@@ -106,36 +108,59 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
             CoreClientProxy.registerMultiComponentItemModel(ModItems.hammer, new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Resources." + MultiComponentModelLoader.EXTENSION));
 
             ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.blockConduit), new ItemMeshDefinition() {
+                @Nullable
                 @Override
                 public ModelResourceLocation getModelLocation(ItemStack stack) {
                     if (stack.getMetadata() == 1)
-                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "normal_conduit"), "inventory");
+                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Normal"), "inventory");
 
                     if (stack.getMetadata() == 2)
-                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "light_conduit"), "inventory");
+                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Light"), "inventory");
+
+                    if (stack.getMetadata() == 3)
+                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Vertical"), "inventory");
 
                     return null;
                 }
             });
 
-            ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.blockConduit), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "normal_conduit"), "inventory"),
-                    new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "light_conduit"), "inventory"));
+            ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.blockConduit), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Normal"), "inventory"),
+                    new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Light"), "inventory"),
+                    new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Vertical"), "inventory"));
 
             ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.blockMoltenMetalTank), new ItemMeshDefinition() {
+                @Nullable
                 @Override
                 public ModelResourceLocation getModelLocation(ItemStack stack) {
                     if (stack.getMetadata() == 1)
-                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "normal_mmtank"), "inventory");
+                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Tank.Normal"), "inventory");
 
                     if (stack.getMetadata() == 2)
-                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "light_mmtank"), "inventory");
+                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Tank.Light"), "inventory");
 
                     return null;
                 }
             });
 
-            ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.blockMoltenMetalTank), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "normal_mmtank"), "inventory"),
-                    new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "light_mmtank"), "inventory"));
+            ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.blockMoltenMetalTank), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Tank.Normal"), "inventory"),
+                    new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Tank.Light"), "inventory"));
+
+            ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.blockMoltenMetalPump), new ItemMeshDefinition() {
+                @Nullable
+                @Override
+                public ModelResourceLocation getModelLocation(ItemStack stack) {
+                    if (stack.getMetadata() == 1)
+                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Pump.Horizontal"), "inventory");
+
+                    if (stack.getMetadata() == 2)
+                        return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Pump.Vertical"), "inventory");
+
+                    return null;
+                }
+            });
+
+            ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.blockMoltenMetalPump), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Pump.Horizontal"), "inventory"),
+                    new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Pump.Vertical"), "inventory"));
         }
 
 
@@ -143,11 +168,10 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
             ArmoryClientProxy.registerBlockModel(ModBlocks.blockForge);
             ArmoryClientProxy.registerBlockModel(ModBlocks.blockBlackSmithsAnvil);
             ArmoryClientProxy.registerBlockModel(ModBlocks.blockFirePlace);
-            ArmoryClientProxy.registerBlockModel(ModBlocks.blockConduit);
-            ArmoryClientProxy.registerBlockModel(ModBlocks.blockMoltenMetalTank);
 
-            ModelLoader.setCustomStateMapper(ModBlocks.blockConduit, new StateMap.Builder().withName(BlockConduit.TYPE).withSuffix("_conduit").build());
-            ModelLoader.setCustomStateMapper(ModBlocks.blockMoltenMetalTank, new StateMap.Builder().withName(BlockMoltenMetalTank.TYPE).withSuffix("_mmtank").build());
+            ModelLoader.setCustomStateMapper(ModBlocks.blockConduit, new ExtendedStateMap.Builder().withName(BlockConduit.TYPE).withCamelCase(new char[]{'.'}).withPrefix("Armory.Blocks.Conduit.").build());
+            ModelLoader.setCustomStateMapper(ModBlocks.blockMoltenMetalTank, new ExtendedStateMap.Builder().withName(BlockMoltenMetalTank.TYPE).withCamelCase(new char[]{'.'}).withPrefix("Armory.Blocks.Tank.").build());
+            ModelLoader.setCustomStateMapper(ModBlocks.blockMoltenMetalPump, new ExtendedStateMap.Builder().withName(BlockPump.TYPE).withCamelCase(new char[]{'.'}).withPrefix("Armory.Blocks.Pump.").build());
 
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityForge.class, new TileEntityRendererForge());
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConduit.class, new TileEntityRendererConduit());

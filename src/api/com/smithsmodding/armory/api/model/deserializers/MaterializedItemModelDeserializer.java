@@ -4,6 +4,7 @@ import com.google.gson.*;
 import com.smithsmodding.armory.api.model.deserializers.definition.MaterializedItemModelDefinition;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -22,12 +23,13 @@ public class MaterializedItemModelDeserializer implements JsonDeserializer<Mater
     private MaterializedItemModelDeserializer() {
     }
 
-    public MaterializedItemModelDefinition deserialize(ResourceLocation modelLocation) throws IOException {
+    public MaterializedItemModelDefinition deserialize(@NotNull ResourceLocation modelLocation) throws IOException {
         return gson.fromJson(ModelHelper.getReaderForResource(ModelHelper.getModelLocation(modelLocation)), MaterializedItemModelDefinition.class);
     }
 
+    @NotNull
     @Override
-    public MaterializedItemModelDefinition deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public MaterializedItemModelDefinition deserialize(@NotNull JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();
         String coreResource = jsonObject.get("texture").getAsString();
 

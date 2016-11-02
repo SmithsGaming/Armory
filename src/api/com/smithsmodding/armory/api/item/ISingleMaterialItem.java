@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.api.item;
 
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Marc on 06.12.2015.
@@ -10,5 +11,5 @@ import net.minecraft.item.*;
  */
 public interface ISingleMaterialItem {
 
-    String getMaterialInternalName (ItemStack stack);
+    @NotNull String getMaterialInternalName(ItemStack stack);
 }

@@ -17,7 +17,7 @@ public class SlotFuelInput extends SlotSmithsCore {
     }
 
     @Override
-    public boolean isItemValid (ItemStack pItemStack) {
+    public boolean isItemValid(ItemStack pItemStack) {
         return TileEntityFurnace.isItemFuel(pItemStack);
     }
 }

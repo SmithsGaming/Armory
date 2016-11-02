@@ -25,25 +25,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.List;
 
 public class ItemHeatedItem extends Item {
 
-    public ItemHeatedItem () {
+    public ItemHeatedItem() {
         setMaxStackSize(1);
         setCreativeTab(ModCreativeTabs.heatedItemTab);
         setUnlocalizedName(References.InternalNames.Items.ItemHeatedIngot);
         this.setRegistryName(References.General.MOD_ID.toLowerCase(), References.InternalNames.Items.ItemHeatedIngot);
     }
 
-    public boolean areStacksEqualExceptTemp (ItemStack pFirstStack, ItemStack pSecondStack) {
-        if (!( pFirstStack.getItem() instanceof ItemHeatedItem )) {
+    public boolean areStacksEqualExceptTemp(@NotNull ItemStack pFirstStack, @NotNull ItemStack pSecondStack) {
+        if (!(pFirstStack.getItem() instanceof ItemHeatedItem)) {
             return false;
         }
 
-        if (!( pSecondStack.getItem() instanceof ItemHeatedItem )) {
+        if (!(pSecondStack.getItem() instanceof ItemHeatedItem)) {
             return false;
         }
 
@@ -55,17 +56,18 @@ public class ItemHeatedItem extends Item {
     }
 
     @Override
-    public boolean showDurabilityBar (ItemStack pStack) {
+    public boolean showDurabilityBar(ItemStack pStack) {
         return false;
     }
 
     @Override
-    public double getDurabilityForDisplay (ItemStack pStack) {
-        return ( pStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE) ) / ( MaterialRegistry.getInstance().getMaterial(pStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID)).getMeltingPoint() );
+    public double getDurabilityForDisplay(ItemStack pStack) {
+        return (pStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE)) / (MaterialRegistry.getInstance().getMaterial(pStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID)).getMeltingPoint());
     }
 
     @Override
-    public FontRenderer getFontRenderer(ItemStack stack) {
+    @SideOnly(Side.CLIENT)
+    public FontRenderer getFontRenderer(@NotNull ItemStack stack) {
         if (!stack.hasTagCompound())
             return CoreClientProxy.getMultiColoredFontRenderer();
 
@@ -75,7 +77,7 @@ public class ItemHeatedItem extends Item {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation (ItemStack pStack, EntityPlayer pPlayer, List pTooltipList, boolean pBoolean) {
+    public void addInformation(ItemStack pStack, EntityPlayer pPlayer, @NotNull List pTooltipList, boolean pBoolean) {
         String tTemperatureLine = I18n.format(TranslationKeys.Items.HeatedIngot.TemperatureTag);
         tTemperatureLine = tTemperatureLine + ": " + Math.round(HeatableItemRegistry.getInstance().getItemTemperature(pStack));
 
@@ -83,13 +85,13 @@ public class ItemHeatedItem extends Item {
     }
 
     @Override
-    public boolean getHasSubtypes () {
+    public boolean getHasSubtypes() {
         return true;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems (Item pItem, CreativeTabs pCreativeTab, List pItemStacks) {
+    public void getSubItems(Item pItem, CreativeTabs pCreativeTab, List pItemStacks) {
         Iterator<ItemStack> tStackIter = HeatableItemRegistry.getInstance().getAllMappedItems().iterator();
 
         while (tStackIter.hasNext()) {
@@ -110,17 +112,18 @@ public class ItemHeatedItem extends Item {
         }
     }
 
+    @NotNull
     @Override
-    public String getItemStackDisplayName (ItemStack pStack) {
+    public String getItemStackDisplayName(ItemStack pStack) {
         if (!pStack.hasTagCompound())
-            return I18n.format(this.getUnlocalizedName() + ".name");
+            return net.minecraft.util.text.translation.I18n.translateToLocal(this.getUnlocalizedName() + ".name");
 
         ItemStack tOriginalItemStack = ItemStack.loadItemStackFromNBT(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.HeatedIngot.ORIGINALITEM));
         return tOriginalItemStack.getItem().getItemStackDisplayName(tOriginalItemStack);
     }
 
     @Override
-    public void onUpdate(ItemStack pStack, World pWorldObj, Entity pEntity, int pSlotIndex, boolean pSelected) {
+    public void onUpdate(@NotNull ItemStack pStack, World pWorldObj, Entity pEntity, int pSlotIndex, boolean pSelected) {
 
         if (!(pEntity instanceof EntityPlayer))
             return;
@@ -148,6 +151,6 @@ public class ItemHeatedItem extends Item {
 
             tPlayer.setFire(1);
         }
-     }
+    }
 }
 

@@ -6,14 +6,16 @@ import com.smithsmodding.armory.common.factory.HeatedItemFactory;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.common.registry.MaterialRegistry;
-import com.smithsmodding.smithscore.util.common.ItemStackHelper;
+import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Orion
  * Created on 02.05.2015
  * 12:58
- *
+ * <p>
  * Copyrighted according to Project specific license
  */
 public class HeatedAnvilRecipeComponent implements IAnvilRecipeComponent {
@@ -32,13 +34,15 @@ public class HeatedAnvilRecipeComponent implements IAnvilRecipeComponent {
         maxTemp = pMaxTemp;
     }
 
+    @Nullable
     @Override
     public ItemStack getComponentTargetStack() {
         return HeatedItemFactory.getInstance().generateHeatedItem(MaterialRegistry.getInstance().getMaterial(materialName), internalType, ((minTemp + maxTemp) / 2));
     }
 
+    @NotNull
     @Override
-    public HeatedAnvilRecipeComponent setComponentTargetStack(ItemStack pNewTargetStack) {
+    public HeatedAnvilRecipeComponent setComponentTargetStack(@NotNull ItemStack pNewTargetStack) {
         if (!(pNewTargetStack.getItem() instanceof ItemHeatedItem)) {
             ModLogger.getInstance().error("Tried to register recipe with a non heatable Item." + ItemStackHelper.toString(pNewTargetStack));
         }
@@ -54,13 +58,14 @@ public class HeatedAnvilRecipeComponent implements IAnvilRecipeComponent {
         return 0;
     }
 
+    @NotNull
     @Override
     public HeatedAnvilRecipeComponent setComponentStackUsage(int pNewUsage) {
         return this;
     }
 
     @Override
-    public boolean isValidComponentForSlot(ItemStack pComparedItemStack) {
+    public boolean isValidComponentForSlot(@Nullable ItemStack pComparedItemStack) {
         if (pComparedItemStack == null)
             return false;
 

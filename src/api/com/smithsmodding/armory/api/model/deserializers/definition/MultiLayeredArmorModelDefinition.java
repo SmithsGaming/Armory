@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -13,11 +14,12 @@ import java.util.Map;
 public class MultiLayeredArmorModelDefinition {
 
     final ResourceLocation baseLocation;
+    @NotNull
     final Map<String, ResourceLocation> layerLocations;
     final Map<String, ResourceLocation> brokenLocations;
     final Map<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
 
-    public MultiLayeredArmorModelDefinition(ResourceLocation baseLocation, Map<String, ResourceLocation> layerLocations, Map<String, ResourceLocation> brokenLocations, Map<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+    public MultiLayeredArmorModelDefinition(ResourceLocation baseLocation, @NotNull Map<String, ResourceLocation> layerLocations, Map<String, ResourceLocation> brokenLocations, Map<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
         this.baseLocation = baseLocation;
         this.layerLocations = layerLocations;
         this.brokenLocations = brokenLocations;

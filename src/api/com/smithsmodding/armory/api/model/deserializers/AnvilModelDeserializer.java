@@ -2,10 +2,9 @@ package com.smithsmodding.armory.api.model.deserializers;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import com.smithsmodding.armory.api.model.deserializers.definition.AnvilModelDefinition;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
-import java.util.Map;
 
 /**
  * Author Orion (Created on: 07.07.2016)
@@ -15,6 +14,7 @@ public class AnvilModelDeserializer implements JsonDeserializer<String> {
     }.getType();
 
     private static final Gson GSON = new Gson();
+    @NotNull
     public static AnvilModelDeserializer instance = new AnvilModelDeserializer();
 
     /**
@@ -31,7 +31,7 @@ public class AnvilModelDeserializer implements JsonDeserializer<String> {
      * @throws JsonParseException if json is not in the expected format of {@code typeofT}
      */
     @Override
-    public String deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public String deserialize(@NotNull JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject obj = json.getAsJsonObject();
         JsonElement texElem = obj.get("model");
 

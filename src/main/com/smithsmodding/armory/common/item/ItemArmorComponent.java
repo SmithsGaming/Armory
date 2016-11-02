@@ -9,11 +9,14 @@ import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -29,8 +32,9 @@ public class ItemArmorComponent extends Item implements ISingleMaterialItem, ISi
         this.setRegistryName(References.General.MOD_ID.toLowerCase(), References.InternalNames.Items.ItemArmorComponent);
     }
 
+    @NotNull
     @Override
-    public String getMaterialInternalName(ItemStack stack) {
+    public String getMaterialInternalName(@NotNull ItemStack stack) {
         if (!(stack.getItem() instanceof ItemArmorComponent))
             return "";
 
@@ -43,8 +47,9 @@ public class ItemArmorComponent extends Item implements ISingleMaterialItem, ISi
         return stack.getTagCompound().getString(References.NBTTagCompoundData.Item.ItemComponent.MATERIAL);
     }
 
+    @NotNull
     @Override
-    public String getComponentTypeFromItemStack(ItemStack stack) {
+    public String getComponentTypeFromItemStack(@NotNull ItemStack stack) {
         if (!(stack.getItem() instanceof ItemArmorComponent))
             return "";
 
@@ -58,14 +63,16 @@ public class ItemArmorComponent extends Item implements ISingleMaterialItem, ISi
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public FontRenderer getFontRenderer(ItemStack stack) {
         return CoreClientProxy.getMultiColoredFontRenderer();
     }
 
+    @NotNull
     @Override
     public String getItemStackDisplayName(ItemStack pStack) {
         if (!pStack.hasTagCompound())
-            return I18n.format(this.getUnlocalizedName() + ".name");
+            return I18n.translateToLocal(this.getUnlocalizedName() + ".name");
 
         if (pStack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
             return pStack.getTagCompound().getString(References.NBTTagCompoundData.CustomName);

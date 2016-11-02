@@ -12,6 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class BakedArmorComponentModel extends BakedWrappedModel.PerspectiveAware
 
     private final ImmutableMap<String, BakedSubComponentModel> typeModels;
 
+    @NotNull
     private final Override overrides;
 
     public BakedArmorComponentModel(IBakedModel parentModel, ImmutableMap<String, BakedSubComponentModel> typeModels, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
@@ -30,6 +32,7 @@ public class BakedArmorComponentModel extends BakedWrappedModel.PerspectiveAware
         overrides = new Override(this);
     }
 
+    @NotNull
     @java.lang.Override
     public ItemOverrideList getOverrides() {
         return overrides;
@@ -46,7 +49,7 @@ public class BakedArmorComponentModel extends BakedWrappedModel.PerspectiveAware
 
         @java.lang.Override
         public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
-           if (stack.getItem() instanceof ISingleComponentItem) {
+            if (stack.getItem() instanceof ISingleComponentItem) {
                 String id = ((ISingleComponentItem) stack.getItem()).getComponentTypeFromItemStack(stack);
                 if (parent.typeModels.containsKey(id))
                     return parent.typeModels.get(id).getOverrides().handleItemState(originalModel, stack, world, entity);

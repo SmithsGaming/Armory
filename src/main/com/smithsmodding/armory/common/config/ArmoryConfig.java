@@ -4,6 +4,7 @@ import com.smithsmodding.armory.Armory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.relauncher.Side;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 
@@ -11,7 +12,7 @@ import java.io.File;
  * Created by Orion
  * Created on 14.06.2015
  * 10:34
- *
+ * <p>
  * Copyrighted according to Project specific license
  */
 public class ArmoryConfig {
@@ -23,11 +24,14 @@ public class ArmoryConfig {
     public static class ConfigHandler {
 
         static Configuration config;
+        @NotNull
         static String HARDMODECATERGORIE = "HardMode";
+        @NotNull
         static String MATERIALSCATEGORIE = "Materials";
+        @NotNull
         static String GLOBALCATEGORIE = "Global";
 
-        public static void init(File configFile) {
+        public static void init(@NotNull File configFile) {
             config = new Configuration(new File(configFile.getParentFile().getAbsolutePath() + "/Armory/Global.cfg"), true);
 
             ArmorDataConfigHandler.init(config.getConfigFile());

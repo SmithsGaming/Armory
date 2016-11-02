@@ -20,6 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.UUID;
@@ -28,9 +30,9 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
     int iStackSizeToBeUsedInRepair;
     int iMaximumCost;
     TileEntityBlackSmithsAnvil iEntity;
-    ItemStack iLeftInputStack;
-    ItemStack iRightInputStack;
-    ItemStack iOutputStack;
+    @Nullable ItemStack iLeftInputStack;
+    @Nullable ItemStack iRightInputStack;
+    @Nullable ItemStack iOutputStack;
 
     int iLevelPerPlayer;
 
@@ -53,11 +55,13 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
         return 3;
     }
 
+    @Nullable
     @Override
     public ItemStack getResult(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents) {
         return iOutputStack;
     }
 
+    @NotNull
     @Override
     public String getInternalID() {
         return "VanillaRepair";
@@ -100,7 +104,7 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
     }
 
     @Override
-    public void onRecipeUsed(IWatchableTileEntity pEntity) {
+    public void onRecipeUsed(@NotNull IWatchableTileEntity pEntity) {
         boolean tCreativePlayerConnected = false;
 
         for (UUID playerId : iEntity.getWatchingPlayers()) {

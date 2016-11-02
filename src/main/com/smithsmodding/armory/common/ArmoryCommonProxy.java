@@ -10,7 +10,6 @@ import com.smithsmodding.armory.common.handlers.config.ConfigSyncCompletedEventH
 import com.smithsmodding.armory.common.handlers.config.MaterialPropertyValueEventHandler;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
 import com.smithsmodding.armory.common.registry.GeneralRegistry;
-import com.smithsmodding.armory.common.structure.conduit.StructureFactoryConduit;
 import com.smithsmodding.armory.common.structure.forge.StructureFactoryForge;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.common.structures.StructureRegistry;
@@ -19,12 +18,13 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
 
 /**
  * Created by Orion on 26-4-2014
- *
+ * <p>
  * com.Orion.armory.common proxy for armory
  */
 public class ArmoryCommonProxy {
@@ -42,7 +42,6 @@ public class ArmoryCommonProxy {
 
     public void initializeStructures() {
         StructureRegistry.getServerInstance().registerStructureFactory(new StructureFactoryForge());
-        StructureRegistry.getServerInstance().registerStructureFactory(new StructureFactoryConduit());
     }
 
     public void registerEventHandlers() {
@@ -55,7 +54,7 @@ public class ArmoryCommonProxy {
 
     }
 
-    public EntityPlayer getPlayer(MessageContext pContext) {
+    public EntityPlayer getPlayer(@NotNull MessageContext pContext) {
         return pContext.getServerHandler().playerEntity;
     }
 
@@ -66,7 +65,7 @@ public class ArmoryCommonProxy {
         }
     }
 
-    private void callbackRegistration(String method, String modname) {
+    private void callbackRegistration(@NotNull String method, String modname) {
         String[] splitName = method.split("\\.");
         String methodName = splitName[splitName.length - 1];
         String className = method.substring(0, method.length() - methodName.length() - 1);

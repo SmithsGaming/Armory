@@ -8,6 +8,7 @@ package com.smithsmodding.armory.api.textures;
 
 import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import org.jetbrains.annotations.NotNull;
 
 public class SimpleColoredTexture extends AbstractColoredTexture {
 
@@ -16,8 +17,8 @@ public class SimpleColoredTexture extends AbstractColoredTexture {
     int maxBrightness;
     float weight = 0.60f; // 60-40 split between main color and high/low color
 
-    public SimpleColoredTexture (int colorLow, int colorMid, int colorHigh, TextureAtlasSprite baseTexture,
-                                 String spriteName) {
+    public SimpleColoredTexture(int colorLow, int colorMid, int colorHigh, @NotNull TextureAtlasSprite baseTexture,
+                                String spriteName) {
         super(baseTexture, spriteName);
         this.colorLow = colorLow;
         this.colorMid = colorMid;

@@ -5,7 +5,7 @@ import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.types.EnumConduitType;
 import com.smithsmodding.armory.common.tileentity.TileEntityConduit;
-import com.smithsmodding.smithscore.common.structures.StructureRegistry;
+import com.smithsmodding.armory.common.tileentity.TileEntityPump;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -21,6 +21,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,6 +57,7 @@ public class BlockConduit extends BlockArmoryTileEntity {
         setCreativeTab(ModCreativeTabs.generalTab);
     }
 
+    @NotNull
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityConduit(EnumConduitType.byMetadata(meta));
@@ -76,88 +78,170 @@ public class BlockConduit extends BlockArmoryTileEntity {
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
         list.add(new ItemStack(this, 1, 1));
         list.add(new ItemStack(this, 1, 2));
+        list.add(new ItemStack(this, 1, 3));
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        if (stack.getMetadata() == 1) {
-            worldIn.setBlockState(pos, state.withProperty(TYPE, EnumConduitType.NORMAL));
-        } else {
+    public void onBlockPlacedBy(@NotNull World worldIn, @NotNull BlockPos pos, @NotNull IBlockState state, EntityLivingBase placer, @NotNull ItemStack stack) {
+        if (stack.getMetadata() == 3) {
+            worldIn.setBlockState(pos, state.withProperty(TYPE, EnumConduitType.VERTICAL));
+        } else if (stack.getMetadata() == 2) {
             worldIn.setBlockState(pos, state.withProperty(TYPE, EnumConduitType.LIGHT));
-        }
-
-        TileEntityConduit conduit = (TileEntityConduit) worldIn.getTileEntity(pos);
-
-        if (!worldIn.isRemote) {
-            if (conduit instanceof TileEntityConduit) {
-                StructureRegistry.getInstance().onStructurePartPlaced(conduit);
-
-                worldIn.markChunkDirty(pos, conduit);
-            }
+        } else {
+            worldIn.setBlockState(pos, state.withProperty(TYPE, EnumConduitType.NORMAL));
         }
     }
 
-    @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        if (!worldIn.isRemote) {
-            if (worldIn.getTileEntity(pos) instanceof TileEntityConduit) {
-                TileEntityConduit conduit = (TileEntityConduit) worldIn.getTileEntity(pos);
-
-                conduit.getStructure().getController().onPartDestroyed(conduit);
-            }
-        }
-
-        super.breakBlock(worldIn, pos, state);
-    }
-
+    @NotNull
     @Override
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(TYPE, EnumConduitType.byMetadata(meta));
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(@NotNull IBlockState state) {
         return state.getValue(TYPE).getMetadata();
     }
 
+    @NotNull
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{NORTH, EAST, SOUTH, WEST, UP, DOWN, TYPE});
+        return new BlockStateContainer(this, NORTH, EAST, SOUTH, WEST, UP, DOWN, TYPE);
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+    public IBlockState getActualState(IBlockState state, @NotNull IBlockAccess world, @NotNull BlockPos pos) {
         return handleEnvironmentChange(world, pos, state);
     }
 
-    private IBlockState handleEnvironmentChange(IBlockAccess world, BlockPos pos, IBlockState state) {
+    private IBlockState handleEnvironmentChange(@NotNull IBlockAccess world, @NotNull BlockPos pos, IBlockState state) {
+        switch (state.getValue(TYPE)) {
+            case LIGHT:
+            case NORMAL:
+                return handleStandardEnvironmentChange(world, pos, state);
+            case VERTICAL:
+                return handleVerticalEnvironmentChange(world, pos, state);
+            default:
+                return state;
+        }
+
+    }
+
+    private IBlockState handleStandardEnvironmentChange(@NotNull IBlockAccess world, @NotNull BlockPos pos, IBlockState state) {
         ArrayList<EnumFacing> connectedSides = new ArrayList<>();
 
-        for (EnumFacing facing : EnumFacing.values()) {
+        TileEntityConduit conduit = (TileEntityConduit) world.getTileEntity(pos);
+
+        for (EnumFacing facing : EnumFacing.VALUES) {
+            if (facing == EnumFacing.DOWN)
+                continue;
+
             BlockPos target = pos.offset(facing);
 
             TileEntity tileEntity = world.getTileEntity(target);
+            if (tileEntity == null) {
+                state = state.withProperty(SIDEPROPERTIES.get(facing), false);
+                continue;
+            }
 
-            if ((tileEntity != null && (tileEntity.hasCapability(ModCapabilities.MOLTEN_METAL_PROVIDER_CAPABILITY, facing.getOpposite()) || tileEntity.hasCapability(ModCapabilities.MOLTEN_METAL_REQUESTER_CAPABILITY, facing.getOpposite()))) && !(tileEntity instanceof TileEntityConduit)) {
-                state = state.withProperty(SIDEPROPERTIES.get(facing), true);
-                connectedSides.add(facing);
-            } else if (tileEntity instanceof TileEntityConduit) {
-                IBlockState targetConduitState = world.getBlockState(target);
+            if (tileEntity instanceof TileEntityConduit) {
+                TileEntityConduit neighbor = (TileEntityConduit) tileEntity;
 
-                if (targetConduitState.getValue(TYPE) == state.getValue(TYPE)) {
-                    state = state.withProperty(SIDEPROPERTIES.get(facing), true);
+                if (conduit.getType() == neighbor.getType()) {
                     connectedSides.add(facing);
-                } else {
-                    state = state.withProperty(SIDEPROPERTIES.get(facing), false);
+                    state = state.withProperty(SIDEPROPERTIES.get(facing), true);
                 }
+            } else if (tileEntity instanceof TileEntityPump) {
+                if (world.getBlockState(target).getValue(BlockPump.DIRECTION).getOpposite() == facing) {
+                    connectedSides.add(facing);
+                    state = state.withProperty(SIDEPROPERTIES.get(facing), true);
+                }
+            } else if (tileEntity.hasCapability(ModCapabilities.MOD_MOLTENMETAL_ACCEPTOR_CAPABILITY, facing.getOpposite())) {
+                connectedSides.add(facing);
+                state = state.withProperty(SIDEPROPERTIES.get(facing), true);
             } else {
                 state = state.withProperty(SIDEPROPERTIES.get(facing), false);
             }
         }
 
-        TileEntityConduit conduit = (TileEntityConduit) world.getTileEntity(pos);
+        BlockPos target = pos.offset(EnumFacing.DOWN);
+
+        TileEntity tileEntity = world.getTileEntity(target);
+        if (tileEntity == null) {
+            state = state.withProperty(SIDEPROPERTIES.get(EnumFacing.DOWN), false);
+        } else {
+            if (tileEntity instanceof TileEntityConduit) {
+                TileEntityConduit neighbor = (TileEntityConduit) tileEntity;
+
+                if (conduit.getType() == neighbor.getType() || neighbor.getType() == EnumConduitType.VERTICAL) {
+                    connectedSides.add(EnumFacing.DOWN);
+                    state = state.withProperty(SIDEPROPERTIES.get(EnumFacing.DOWN), true);
+                }
+            } else if (tileEntity.hasCapability(ModCapabilities.MOD_MOLTENMETAL_ACCEPTOR_CAPABILITY, EnumFacing.UP)) {
+                connectedSides.add(EnumFacing.DOWN);
+                state = state.withProperty(SIDEPROPERTIES.get(EnumFacing.DOWN), true);
+            } else {
+                state = state.withProperty(SIDEPROPERTIES.get(EnumFacing.DOWN), false);
+            }
+        }
+
+        if (connectedSides.contains(EnumFacing.UP))
+            connectedSides.remove(EnumFacing.UP);
+
         conduit.setConnectedSides(connectedSides);
 
+        return state;
+    }
+
+    private IBlockState handleVerticalEnvironmentChange(@NotNull IBlockAccess world, @NotNull BlockPos pos, IBlockState state) {
+        ArrayList<EnumFacing> connectedSides = new ArrayList<>();
+
+        TileEntityConduit conduit = (TileEntityConduit) world.getTileEntity(pos);
+
+        BlockPos targetUp = pos.offset(EnumFacing.UP);
+
+        TileEntity tileEntityUp = world.getTileEntity(targetUp);
+        if (tileEntityUp == null) {
+            state = state.withProperty(SIDEPROPERTIES.get(EnumFacing.UP), false);
+        } else {
+            if (tileEntityUp instanceof TileEntityConduit) {
+                TileEntityConduit neighbor = (TileEntityConduit) tileEntityUp;
+
+                if (conduit.getType() == neighbor.getType()) {
+                    connectedSides.add(EnumFacing.UP);
+                    state = state.withProperty(SIDEPROPERTIES.get(EnumFacing.UP), true);
+                }
+            } else if (tileEntityUp.hasCapability(ModCapabilities.MOD_MOLTENMETAL_ACCEPTOR_CAPABILITY, EnumFacing.DOWN)) {
+                connectedSides.add(EnumFacing.UP);
+                state = state.withProperty(SIDEPROPERTIES.get(EnumFacing.UP), true);
+            } else {
+                state = state.withProperty(SIDEPROPERTIES.get(EnumFacing.UP), false);
+            }
+        }
+
+        BlockPos targetDown = pos.offset(EnumFacing.DOWN);
+
+        TileEntity tileEntityDown = world.getTileEntity(targetDown);
+        if (tileEntityDown == null) {
+            state = state.withProperty(SIDEPROPERTIES.get(EnumFacing.DOWN), false);
+        } else {
+            if (tileEntityDown instanceof TileEntityConduit) {
+                TileEntityConduit neighbor = (TileEntityConduit) tileEntityDown;
+
+                if (conduit.getType() == neighbor.getType()) {
+                    connectedSides.add(EnumFacing.DOWN);
+                    state = state.withProperty(SIDEPROPERTIES.get(EnumFacing.DOWN), true);
+                }
+            } else if (tileEntityDown.hasCapability(ModCapabilities.MOD_MOLTENMETAL_ACCEPTOR_CAPABILITY, EnumFacing.UP)) {
+                connectedSides.add(EnumFacing.DOWN);
+                state = state.withProperty(SIDEPROPERTIES.get(EnumFacing.DOWN), true);
+            } else {
+                state = state.withProperty(SIDEPROPERTIES.get(EnumFacing.DOWN), false);
+            }
+        }
+
+        conduit.setConnectedSides(connectedSides);
+        
         return state;
     }
 }

@@ -21,6 +21,7 @@ import com.smithsmodding.smithscore.util.client.color.Colors;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate2D;
 import net.minecraft.client.resources.I18n;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -29,7 +30,7 @@ import java.util.ArrayList;
  */
 public class GuiBlacksmithsAnvil extends GuiContainerSmithsCore {
 
-    public GuiBlacksmithsAnvil(ContainerSmithsCore container) {
+    public GuiBlacksmithsAnvil(@NotNull ContainerSmithsCore container) {
         super(container);
     }
 
@@ -44,7 +45,7 @@ public class GuiBlacksmithsAnvil extends GuiContainerSmithsCore {
     }
 
     @Override
-    public void registerComponents(IGUIBasedComponentHost host) {
+    public void registerComponents(@NotNull IGUIBasedComponentHost host) {
         host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.Anvil.BACKGROUND, host, new Coordinate2D(0, 0), 215, 175, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
         host.registerNewComponent(new ComponentPlayerInventory(References.InternalNames.GUIComponents.Anvil.PLAYERINVENTORY, host, new Coordinate2D(20, 172), Colors.DEFAULT, ((ContainerSmithsCore) inventorySlots).getPlayerInventory(), ComponentConnectionType.BELOWSMALLER));
         host.registerNewComponent(new ComponentBlackSmithsAnvilCraftingGrid(References.InternalNames.GUIComponents.Anvil.EXTENDEDCRAFTING, host, new CoreComponentState(), new Coordinate2D(10, 51), 0, ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS, ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS, (ContainerSmithsCore) inventorySlots));
@@ -52,8 +53,8 @@ public class GuiBlacksmithsAnvil extends GuiContainerSmithsCore {
         host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.Anvil.TOOLSLOTBORDER, host, new Coordinate2D(178, 103), 30, 52, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
         host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Anvil.HAMMERSLOT, new SlotComponentState(null, inventorySlots.getSlot(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS), ((ContainerSmithsCore) inventorySlots).getContainerInventory(), Textures.Gui.Anvil.HOLOWHAMMER.getIcon()), host, inventorySlots.getSlot(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS), Colors.DEFAULT));
         host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Anvil.TONGSLOT, new SlotComponentState(null, inventorySlots.getSlot(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS), ((ContainerSmithsCore) inventorySlots).getContainerInventory(), Textures.Gui.Anvil.HOLOWTONGS.getIcon()), host, inventorySlots.getSlot(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_TONGSLOTS), Colors.DEFAULT));
-        host.registerNewComponent(new ComponentImage(References.InternalNames.GUIComponents.Anvil.LOGO, new CoreComponentState(), host, new Coordinate2D(17,7), Textures.Gui.Anvil.LOGO));
+        host.registerNewComponent(new ComponentImage(References.InternalNames.GUIComponents.Anvil.LOGO, new CoreComponentState(), host, new Coordinate2D(17, 7), Textures.Gui.Anvil.LOGO));
         host.registerNewComponent(new ComponentExperienceLabel(References.InternalNames.GUIComponents.Anvil.EXPERIENCELABEL, host, new CoreComponentState(), new Coordinate2D(115, 78)));
-        host.registerNewComponent(new ComponentTextbox(References.InternalNames.GUIComponents.Anvil.TEXTBOX, new TextboxComponentState(null), host, new Coordinate2D(65,11), 102,22));
+        host.registerNewComponent(new ComponentTextbox(References.InternalNames.GUIComponents.Anvil.TEXTBOX, new TextboxComponentState(null), host, new Coordinate2D(65, 11), 102, 22));
     }
 }

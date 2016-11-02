@@ -3,6 +3,7 @@ package com.smithsmodding.armory.api.events.common.config;
 import com.smithsmodding.smithscore.common.events.network.StandardNetworkableEvent;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Orion
@@ -47,7 +48,7 @@ public class MaterialPropertyValueEvent extends StandardNetworkableEvent {
     }
 
     @Override
-    public void readFromMessageBuffer(ByteBuf buf) {
+    public void readFromMessageBuffer(@NotNull ByteBuf buf) {
         materialName = ByteBufUtils.readUTF8String(buf);
         propertyName = ByteBufUtils.readUTF8String(buf);
 
@@ -76,7 +77,7 @@ public class MaterialPropertyValueEvent extends StandardNetworkableEvent {
     }
 
     @Override
-    public void writeToMessageBuffer(ByteBuf buf) {
+    public void writeToMessageBuffer(@NotNull ByteBuf buf) {
         ByteBufUtils.writeUTF8String(buf, materialName);
         ByteBufUtils.writeUTF8String(buf, propertyName);
 

@@ -6,6 +6,7 @@ import com.smithsmodding.armory.api.model.deserializers.definition.MultiLayeredA
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.smithscore.common.events.SmithsCoreEvent;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 public class MultiLayeredArmorModelTextureLoadEvent extends SmithsCoreEvent {
 
     private final MultiLayeredArmor armor;
-    List<MultiLayeredArmorModelDefinition> additionalTextureDefinitions = new ArrayList<>();
+    @NotNull List<MultiLayeredArmorModelDefinition> additionalTextureDefinitions = new ArrayList<>();
 
     public MultiLayeredArmorModelTextureLoadEvent (MultiLayeredArmor armor) {
         this.armor = armor;
@@ -26,11 +27,12 @@ public class MultiLayeredArmorModelTextureLoadEvent extends SmithsCoreEvent {
         return armor;
     }
 
+    @NotNull
     public List<MultiLayeredArmorModelDefinition> getAdditionalTextureLayers() {
         return additionalTextureDefinitions;
     }
 
-    public void addAdditionalTextureLayers (ResourceLocation modelDefinitionLocation) {
+    public void addAdditionalTextureLayers(@NotNull ResourceLocation modelDefinitionLocation) {
         try {
             additionalTextureDefinitions.add(MultiLayeredArmorModelDeserializer.instance.deserialize(modelDefinitionLocation));
         } catch (Exception ex) {

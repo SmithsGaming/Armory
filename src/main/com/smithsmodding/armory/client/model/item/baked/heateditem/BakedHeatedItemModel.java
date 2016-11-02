@@ -15,6 +15,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +25,9 @@ import java.util.List;
  * Created by Marc on 08.12.2015.
  */
 public class BakedHeatedItemModel extends BakedWrappedModel {
+    @NotNull
     private static final List<List<BakedQuad>> empty_face_quads;
+    @NotNull
     private static final List<BakedQuad> empty_list;
 
     static {
@@ -35,6 +38,7 @@ public class BakedHeatedItemModel extends BakedWrappedModel {
         }
     }
 
+    @NotNull
     private final Overrides overrides;
     protected BakedTemperatureBarModel gaugeDisplay;
     protected BakedTemperatureBarModel gaugeDisplayTurned;
@@ -52,6 +56,7 @@ public class BakedHeatedItemModel extends BakedWrappedModel {
         overrides = new Overrides(this);
     }
 
+    @NotNull
     @Override
     public ItemOverrideList getOverrides() {
         return overrides;
@@ -66,6 +71,7 @@ public class BakedHeatedItemModel extends BakedWrappedModel {
             this.parent = parent;
         }
 
+        @NotNull
         @Override
         public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
             // get the texture for each part

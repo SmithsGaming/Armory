@@ -12,12 +12,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.relauncher.Side;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Base class for armory
- *
+ * <p>
  * Created by: Orion 25-3-2014
  */
 
@@ -35,7 +36,7 @@ public class Armory {
     public static Side side;
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(@NotNull FMLPreInitializationEvent event) {
         Stopwatch watch = Stopwatch.createStarted();
         ModLogger.getInstance().info("Starting pre init");
 
@@ -74,7 +75,7 @@ public class Armory {
     }
 
     @Mod.EventHandler
-    public void onIMCMessage(FMLInterModComms.IMCEvent event) {
+    public void onIMCMessage(@NotNull FMLInterModComms.IMCEvent event) {
         for (FMLInterModComms.IMCMessage message : event.getMessages()) {
             if (!message.isStringMessage())
                 continue;
@@ -94,7 +95,7 @@ public class Armory {
 
 
     @Mod.EventHandler
-    public void onServerStarting(FMLServerStartingEvent event) {
+    public void onServerStarting(@NotNull FMLServerStartingEvent event) {
         event.registerServerCommand(new CommandArmory());
     }
 }

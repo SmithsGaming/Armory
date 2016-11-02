@@ -10,23 +10,26 @@ import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class TextureColoredTexture extends AbstractColoredTexture {
 
+    @Nullable
     protected final TextureAtlasSprite addTexture;
     protected final String addTextureLocation;
     public boolean stencil = false;
     protected int[][] textureData;
 
-    public TextureColoredTexture (String addTextureLocation, TextureAtlasSprite baseTexture,
-                                  String spriteName) {
+    public TextureColoredTexture(String addTextureLocation, @NotNull TextureAtlasSprite baseTexture,
+                                 String spriteName) {
         super(baseTexture, spriteName);
         this.addTextureLocation = addTextureLocation;
         this.addTexture = null;
     }
 
-    public TextureColoredTexture (TextureAtlasSprite addTexture, TextureAtlasSprite baseTexture,
-                                  String spriteName) {
+    public TextureColoredTexture(@NotNull TextureAtlasSprite addTexture, @NotNull TextureAtlasSprite baseTexture,
+                                 String spriteName) {
         super(baseTexture, spriteName);
         this.addTextureLocation = addTexture.getIconName();
         this.addTexture = addTexture;

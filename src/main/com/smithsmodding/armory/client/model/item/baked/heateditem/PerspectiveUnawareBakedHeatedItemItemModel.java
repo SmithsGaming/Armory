@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.NotNull;
 
 import javax.vecmath.Matrix4f;
 import java.util.HashMap;
@@ -16,21 +17,22 @@ public class PerspectiveUnawareBakedHeatedItemItemModel extends BakedWrappedMode
 
     private boolean inventory = false;
 
+    @NotNull
     private HashMap<ItemCameraTransforms.TransformType, IPerspectiveAwareModel> modelHashMap = new HashMap<ItemCameraTransforms.TransformType, IPerspectiveAwareModel>();
 
     public PerspectiveUnawareBakedHeatedItemItemModel(IBakedModel standard) {
         super(standard);
     }
 
-    public void setInventoryMode (boolean mode) {
+    public void setInventoryMode(boolean mode) {
         inventory = mode;
     }
 
-    public void registerModel (ItemCameraTransforms.TransformType cameraTransforms, IPerspectiveAwareModel model) {
+    public void registerModel(ItemCameraTransforms.TransformType cameraTransforms, IPerspectiveAwareModel model) {
         modelHashMap.put(cameraTransforms, model);
     }
 
-    public IPerspectiveAwareModel getModel (ItemCameraTransforms.TransformType cameraTransforms) {
+    public IPerspectiveAwareModel getModel(ItemCameraTransforms.TransformType cameraTransforms) {
         return modelHashMap.get(cameraTransforms);
     }
 

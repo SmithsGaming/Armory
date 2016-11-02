@@ -21,6 +21,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.List;
@@ -52,6 +53,7 @@ public class BlockMoltenMetalTank extends BlockArmoryTileEntity {
         setCreativeTab(ModCreativeTabs.generalTab);
     }
 
+    @NotNull
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityMoltenMetalTank(EnumTankType.byMetadata(meta));
@@ -89,7 +91,7 @@ public class BlockMoltenMetalTank extends BlockArmoryTileEntity {
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+    public void onBlockPlacedBy(@NotNull World worldIn, @NotNull BlockPos pos, @NotNull IBlockState state, EntityLivingBase placer, @NotNull ItemStack stack) {
         if (stack.getMetadata() == 1) {
             worldIn.setBlockState(pos, state.withProperty(TYPE, EnumTankType.NORMAL));
         } else {
@@ -97,27 +99,29 @@ public class BlockMoltenMetalTank extends BlockArmoryTileEntity {
         }
     }
 
+    @NotNull
     @Override
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(TYPE, EnumTankType.byMetadata(meta));
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(@NotNull IBlockState state) {
         return state.getValue(TYPE).getMetadata();
     }
 
+    @NotNull
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{NORTH, EAST, SOUTH, WEST, TYPE});
+        return new BlockStateContainer(this, NORTH, EAST, SOUTH, WEST, TYPE);
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+    public IBlockState getActualState(IBlockState state, @NotNull IBlockAccess world, @NotNull BlockPos pos) {
         return handleEnvironmentChange(world, pos, state);
     }
 
-    private IBlockState handleEnvironmentChange(IBlockAccess world, BlockPos pos, IBlockState state) {
+    private IBlockState handleEnvironmentChange(@NotNull IBlockAccess world, @NotNull BlockPos pos, IBlockState state) {
         for (EnumFacing facing : EnumFacing.HORIZONTALS) {
             BlockPos target = pos.add(facing.getDirectionVec());
 

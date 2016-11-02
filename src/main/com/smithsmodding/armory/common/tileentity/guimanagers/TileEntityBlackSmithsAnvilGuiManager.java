@@ -6,17 +6,16 @@ import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.smithscore.client.events.gui.GuiInputEvent;
 import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIManager;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Marc on 14.02.2016.
  */
-public class TileEntityBlackSmithsAnvilGuiManager extends TileStorageBasedGUIManager
-{
+public class TileEntityBlackSmithsAnvilGuiManager extends TileStorageBasedGUIManager {
 
     TileEntityBlackSmithsAnvil anvil;
 
-    public TileEntityBlackSmithsAnvilGuiManager(TileEntityBlackSmithsAnvil anvil)
-    {
+    public TileEntityBlackSmithsAnvilGuiManager(TileEntityBlackSmithsAnvil anvil) {
         this.anvil = anvil;
     }
 
@@ -28,7 +27,7 @@ public class TileEntityBlackSmithsAnvilGuiManager extends TileStorageBasedGUIMan
     }
 
     @Override
-    public String getLabelContents(IGUIComponent component) {
+    public String getLabelContents(@NotNull IGUIComponent component) {
         if (component.getID().equals(References.InternalNames.GUIComponents.Anvil.TEXTBOX))
             return (anvil.getState()).getItemName();
 
@@ -43,7 +42,7 @@ public class TileEntityBlackSmithsAnvilGuiManager extends TileStorageBasedGUIMan
     }
 
     @Override
-    public float getProgressBarValue(IGUIComponent component) {
+    public float getProgressBarValue(@NotNull IGUIComponent component) {
         if (component.getID().equals(References.InternalNames.GUIComponents.Anvil.EXTENDEDCRAFTING + ".Progress")) {
             if (anvil.getCurrentRecipe() == null) {
                 return 0F;
@@ -54,7 +53,6 @@ public class TileEntityBlackSmithsAnvilGuiManager extends TileStorageBasedGUIMan
 
         return 0f;
     }
-
 
 
 }

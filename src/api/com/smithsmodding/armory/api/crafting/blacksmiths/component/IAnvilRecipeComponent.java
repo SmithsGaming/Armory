@@ -1,6 +1,8 @@
 package com.smithsmodding.armory.api.crafting.blacksmiths.component;
 
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Orion
@@ -11,13 +13,13 @@ import net.minecraft.item.ItemStack;
  */
 public interface IAnvilRecipeComponent {
 
-    ItemStack getComponentTargetStack();
+    @Nullable ItemStack getComponentTargetStack();
 
-    IAnvilRecipeComponent setComponentTargetStack(ItemStack pNewTargetStack);
+    @NotNull IAnvilRecipeComponent setComponentTargetStack(ItemStack pNewTargetStack);
 
     int getResultingStackSizeForComponent(ItemStack pComponentStack);
 
-    IAnvilRecipeComponent setComponentStackUsage(int pNewUsage);
+    @NotNull IAnvilRecipeComponent setComponentStackUsage(int pNewUsage);
 
     boolean isValidComponentForSlot(ItemStack pComparedItemStack);
 }

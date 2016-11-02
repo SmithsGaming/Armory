@@ -13,11 +13,13 @@ import com.smithsmodding.armory.common.tileentity.state.TileEntityBlackSmithsAnv
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
-import com.smithsmodding.smithscore.util.common.ItemStackHelper;
+import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -26,26 +28,35 @@ import java.util.*;
  */
 public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityBlackSmithsAnvilState, TileEntityBlackSmithsAnvilGuiManager> implements IItemStorage, ITickable, com.smithsmodding.smithscore.common.tileentity.IWatchableTileEntity {
 
+    @NotNull
     private ItemStack[] craftingStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS];
+    @NotNull
     private ItemStack[] outputStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS];
+    @NotNull
     private ItemStack[] hammerStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS];
+    @NotNull
     private ItemStack[] tongStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_TONGSLOTS];
+    @NotNull
     private ItemStack[] additionalCraftingStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS];
+    @NotNull
     private ItemStack[] coolingStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_COOLSLOTS];
 
     public TileEntityBlackSmithsAnvil() {
     }
 
+    @NotNull
     @Override
     protected TileEntityBlackSmithsAnvilGuiManager getInitialGuiManager() {
         return new TileEntityBlackSmithsAnvilGuiManager(this);
     }
 
+    @NotNull
     @Override
     protected TileEntityBlackSmithsAnvilState getInitialState() {
         return new TileEntityBlackSmithsAnvilState();
     }
 
+    @NotNull
     @Override
     public String getContainerID() {
         return References.InternalNames.TileEntities.ArmorsAnvil + "-" + getLocation().toString();
@@ -56,6 +67,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
         return ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_TONGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_BLUEPRINTLIBRARYSLOTS;
     }
 
+    @Nullable
     @Override
     public ItemStack getStackInSlot(int pSlotID) {
         if (pSlotID < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS)
@@ -92,6 +104,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
         return null;
     }
 
+    @Nullable
     @Override
     public ItemStack decrStackSize(int pSlotIndex, int pDecrAmount) {
         ItemStack tItemStack = getStackInSlot(pSlotIndex);
@@ -347,6 +360,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
         setCurrentRecipe(null);
     }
 
+    @Nullable
     public AnvilRecipe getCurrentRecipe() {
         return (getState()).getRecipe();
     }
@@ -438,6 +452,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
         (getState()).setProcessingCraftingResult(false);
     }
 
+    @NotNull
     public AnvilType getCurrentAnvilType() {
         boolean DEBUG = false;
         if (DEBUG)

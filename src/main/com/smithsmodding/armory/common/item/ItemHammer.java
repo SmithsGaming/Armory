@@ -22,6 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ import java.util.List;
  * Created by Orion
  * Created on 16.05.2015
  * 13:28
- *
+ * <p>
  * Copyrighted according to Project specific license
  */
 public class ItemHammer extends Item {
@@ -67,8 +68,9 @@ public class ItemHammer extends Item {
         pItemStacks.add(tHammerStack);
     }
 
+    @NotNull
     @Override
-    public EnumActionResult onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
+    public EnumActionResult onItemUseFirst(ItemStack stack, EntityPlayer player, @NotNull World world, @NotNull BlockPos pos, @NotNull EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
         if (!world.isRemote) {
             IBlockState blockState = world.getBlockState(pos);
 

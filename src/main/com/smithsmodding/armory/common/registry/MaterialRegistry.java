@@ -9,6 +9,7 @@ import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
 import com.smithsmodding.armory.api.logic.IMaterialInitializer;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.api.registries.IMaterialRegistry;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
@@ -16,8 +17,10 @@ public class MaterialRegistry implements IMaterialRegistry {
     private static MaterialRegistry instance;
 
     //Hashmap for storing all the materials
+    @NotNull
     protected HashMap<String, IArmorMaterial> materials = new HashMap<String, IArmorMaterial>();
 
+    @NotNull
     protected HashMap<IArmorMaterial, IMaterialInitializer> initializers = new HashMap<>();
 
     public static MaterialRegistry getInstance() {
@@ -29,17 +32,19 @@ public class MaterialRegistry implements IMaterialRegistry {
     }
 
     //ArmorMaterials
+    @NotNull
     public HashMap<String, IArmorMaterial> getArmorMaterials() {
         return materials;
     }
 
+    @NotNull
     @Override
     public HashMap<IArmorMaterial, IMaterialInitializer> getInitializers() {
         return initializers;
     }
 
     @Override
-    public void registerMaterial(IArmorMaterial material, IMaterialInitializer initializer) {
+    public void registerMaterial(@NotNull IArmorMaterial material, @NotNull IMaterialInitializer initializer) {
         materials.put(material.getUniqueID(), material);
         initializers.put(material, initializer);
 

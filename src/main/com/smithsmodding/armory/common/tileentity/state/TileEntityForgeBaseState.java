@@ -7,6 +7,7 @@ import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import com.smithsmodding.smithscore.common.tileentity.state.ITileEntityState;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Author Orion (Created on: 23.06.2016)
@@ -66,6 +67,7 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
         }
     }
 
+    @NotNull
     @Override
     public NBTBase writeToNBTTagCompound() {
         NBTTagCompound compound = new NBTTagCompound();
@@ -91,6 +93,7 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
         readFromNBTTagCompound(stateData);
     }
 
+    @NotNull
     @Override
     public NBTBase writeToSynchronizationCompound() {
         return writeToNBTTagCompound();

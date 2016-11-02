@@ -22,6 +22,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
 import org.apache.commons.io.FilenameUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,12 +35,12 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
     public static final String EXTENSION = ".MLA-Armory";
 
     @Override
-    public boolean accepts (ResourceLocation modelLocation) {
+    public boolean accepts(@NotNull ResourceLocation modelLocation) {
         return modelLocation.getResourcePath().endsWith(EXTENSION); // MLA armory extension. Foo.MLA-armory.json
     }
 
     @Override
-    public IModel loadModel (ResourceLocation modelLocation) throws IOException {
+    public IModel loadModel(@NotNull ResourceLocation modelLocation) throws IOException {
         if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
             return DummyModel.INSTANCE;
         }
@@ -165,7 +166,7 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
     }
 
     @Override
-    public void onResourceManagerReload (IResourceManager resourceManager) {
+    public void onResourceManagerReload(IResourceManager resourceManager) {
 
     }
 }

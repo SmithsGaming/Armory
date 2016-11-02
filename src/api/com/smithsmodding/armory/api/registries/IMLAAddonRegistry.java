@@ -1,6 +1,8 @@
 package com.smithsmodding.armory.api.registries;
 
 import com.smithsmodding.armory.api.armor.MLAAddon;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
@@ -17,7 +19,7 @@ public interface IMLAAddonRegistry {
      *
      * @return A HashMap with as Key the uniqueID representing the MLAAddon in the Value.
      */
-    HashMap<String, MLAAddon> getUpgrades();
+    @NotNull HashMap<String, MLAAddon> getUpgrades();
 
     /**
      * Function to register a new Upgrade
@@ -40,5 +42,5 @@ public interface IMLAAddonRegistry {
      * @param addonId The searched AddonID.
      * @return The first registered instance of a MLAAddon registered with the given addonID as material independent ID.
      */
-    MLAAddon getAddonForMaterialIndependantName(String addonId);
+    @Nullable MLAAddon getAddonForMaterialIndependantName(String addonId);
 }

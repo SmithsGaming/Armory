@@ -20,6 +20,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class ModelExtendedBiped extends ModelBiped {
 
     private float scaleFactor;
 
-    public ModelExtendedBiped (float pScaleFactor, ItemStack pStackToBeRendered) {
+    public ModelExtendedBiped(float pScaleFactor, ItemStack pStackToBeRendered) {
         textureWidth = 64;
         textureHeight = 64;
 
@@ -99,10 +100,10 @@ public class ModelExtendedBiped extends ModelBiped {
         this.scaleFactor = pScaleFactor;
     }
 
-    private static void renderLayer (Entity entity, float f, float f1, float f2, float f3, float f4, float f5, ModelExtendedBiped layerModel, MLAAddon layer, MultiLayeredArmor armor) {
+    private static void renderLayer(@NotNull Entity entity, float f, float f1, float f2, float f3, float f4, float f5, @NotNull ModelExtendedBiped layerModel, @NotNull MLAAddon layer, @NotNull MultiLayeredArmor armor) {
         layerModel.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-        layerModel.isChild = ( (EntityLivingBase) entity ).isChild();
+        layerModel.isChild = ((EntityLivingBase) entity).isChild();
 
         ResourceLocation modelLocation = layer.getModelTextureLocation();
         Minecraft.getMinecraft().renderEngine.bindTexture(modelLocation);
@@ -110,7 +111,7 @@ public class ModelExtendedBiped extends ModelBiped {
         handleArmorType(armor.getEquipmentSlot(), layerModel);
 
         if (layer.isMaterialDependent()) {
-            IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(( (MaterialDependentMLAAddon) layer ).getUniqueMaterialID());
+            IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(((MaterialDependentMLAAddon) layer).getUniqueMaterialID());
             material.getRenderInfo().getVertexColor().performOpenGLColoring();
         }
 
@@ -149,7 +150,7 @@ public class ModelExtendedBiped extends ModelBiped {
             MinecraftColor.resetOpenGLColoring();
     }
 
-    private static void handleArmorType(EntityEquipmentSlot slot, ModelExtendedBiped model) {
+    private static void handleArmorType(@NotNull EntityEquipmentSlot slot, @NotNull ModelExtendedBiped model) {
         switch (slot) {
             case HEAD:
                 model.bipedHead.showModel = true;
@@ -184,14 +185,14 @@ public class ModelExtendedBiped extends ModelBiped {
         }
     }
 
-    private void setRotation (ModelRenderer model, float x, float y, float z) {
+    private void setRotation(@NotNull ModelRenderer model, float x, float y, float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
 
     @Override
-    public void setRotationAngles (float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
+    public void setRotationAngles(float par1, float par2, float par3, float par4, float par5, float par6, Entity par7Entity) {
         super.setRotationAngles(par1, par2, par2, par4, par5, par6, par7Entity);
 
         bipedRightFoot.rotateAngleX = bipedRightLeg.rotateAngleX;
@@ -225,7 +226,7 @@ public class ModelExtendedBiped extends ModelBiped {
     }
 
     @Override
-    public void render (Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         MultiLayeredArmor tArmor = (MultiLayeredArmor) iStackToBeRendered.getItem();
 
         ArrayList<MLAAddon> installedAddons = new ArrayList<MLAAddon>();
@@ -234,7 +235,7 @@ public class ModelExtendedBiped extends ModelBiped {
         //Sort the list based on priority.
         Collections.sort(installedAddons, new Comparator<MLAAddon>() {
             @Override
-            public int compare (MLAAddon o1, MLAAddon o2) {
+            public int compare(@NotNull MLAAddon o1, @NotNull MLAAddon o2) {
                 return Integer.compare(o1.getLayerPriority(), o2.getLayerPriority());
             }
         });

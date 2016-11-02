@@ -7,6 +7,7 @@ package com.smithsmodding.armory.api.armor;
 
 
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class MLAAddon implements ILayeredArmorLayer {
     protected String uniqueID = "";
@@ -131,6 +132,7 @@ public abstract class MLAAddon implements ILayeredArmorLayer {
         return layerPriority;
     }
 
+    @NotNull
     public abstract String getDisplayName();
 
 

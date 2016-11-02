@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.NotNull;
 
 import javax.vecmath.Matrix4f;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class PerspectiveDependentBakedHeatedItemItemModel extends BakedWrappedMo
         this.gaugeQuads = gaugeQuads;
     }
 
+    @NotNull
     @Override
     public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
         List<BakedQuad> result = new ArrayList<>(getParentModel().getQuads(state, side, rand));
@@ -34,6 +36,7 @@ public class PerspectiveDependentBakedHeatedItemItemModel extends BakedWrappedMo
         return result;
     }
 
+    @NotNull
     @Override
     public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType) {
         if (getParentModel() instanceof IPerspectiveAwareModel) {

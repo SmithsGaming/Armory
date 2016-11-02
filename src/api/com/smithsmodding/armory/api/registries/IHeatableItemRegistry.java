@@ -3,6 +3,8 @@ package com.smithsmodding.armory.api.registries;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,11 +18,11 @@ public interface IHeatableItemRegistry {
 
     void setItemTemperature(ItemStack pItemStack, float pNewTemp);
 
-    ItemStack getBaseStack (IArmorMaterial material, String internalType);
+    @NotNull ItemStack getBaseStack(IArmorMaterial material, String internalType);
 
     FluidStack getMoltenStack(IArmorMaterial material, String internalType);
 
-    FluidStack getMoltenStack(ItemStack stackToBeMolten);
+    @Nullable FluidStack getMoltenStack(ItemStack stackToBeMolten);
 
     void addBaseStack(IArmorMaterial material, ItemStack stack);
 
@@ -30,23 +32,23 @@ public interface IHeatableItemRegistry {
 
     boolean isHeatable(ItemStack stack);
 
-    IArmorMaterial getMaterialFromStack(ItemStack stack);
+    @Nullable IArmorMaterial getMaterialFromStack(ItemStack stack);
 
-    IArmorMaterial getMaterialFromHeatedStack(ItemStack stack);
+    @Nullable IArmorMaterial getMaterialFromHeatedStack(ItemStack stack);
 
-    IArmorMaterial getMaterialFromCooledStack(ItemStack stack);
+    @Nullable IArmorMaterial getMaterialFromCooledStack(ItemStack stack);
 
-    IArmorMaterial getMaterialFromMoltenStack(FluidStack stack);
+    @Nullable IArmorMaterial getMaterialFromMoltenStack(FluidStack stack);
 
     List<String> getInternalTypeFromItemStack(ItemStack stack);
 
-    String getInternalTypeFromHeatedStack(ItemStack stack);
+    @Nullable String getInternalTypeFromHeatedStack(ItemStack stack);
 
     List<String> getInternalTypeFromCooledStack(ItemStack stack);
 
-    ArrayList<ItemStack> getAllMappedItems();
+    @NotNull ArrayList<ItemStack> getAllMappedItems();
 
-    HashSet<String> getAllHeatableItemTypes();
+    @NotNull HashSet<String> getAllHeatableItemTypes();
 
     void reloadOreDictionary();
 
