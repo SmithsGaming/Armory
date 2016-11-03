@@ -1,237 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74002fd1-8a4c-40a4-8318-25b111c6ed5d" name="Default" comment="Updating  to a new version of SmithsCore&#10;Fixes a bunch of blocks, including a bunch of bugs with the Anvil.&#10;&#10;Closes:&#10;  * SmithsGaming/SmithsCore#12&#10;  * SmithsGaming/Armory#38&#10;  * SmithsGaming/Armory#42">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/fluid/IMoltenMetalAcceptor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockPump.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/types/EnumPumpType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityPump.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityPumpState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Pump.Horizontal.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Pump.Vertical.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/pump/Horizontal.mtl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/pump/Horizontal.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/pump/Vertical.mtl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/assets/armory/models/block/pump/Vertical.obj" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/fluid/IMoltenMetalRequester.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/common/MoltenMetalHelper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/conduit/StructureConduit.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/conduit/StructureControllerConduit.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/conduit/StructureDataConduit.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/conduit/StructureFactoryConduit.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/conduit/ConduitFluidTank.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/conduit/TrackedStack.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityConduitGuiManager.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Art/models/Blocks/MoltenMetalPump/Pump.blend" afterPath="$PROJECT_DIR$/Art/models/Blocks/MoltenMetalPump/Pump.blend" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Art/models/Blocks/MoltenMetalPump/Pump.blend1" afterPath="$PROJECT_DIR$/Art/models/Blocks/MoltenMetalPump/Pump.blend1" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/saves/New World/level.dat_old" afterPath="$PROJECT_DIR$/run/saves/New World/level.dat_old" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/saves/New World/region/r.-1.0.mca" afterPath="$PROJECT_DIR$/run/saves/New World/region/r.-1.0.mca" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/saves/New World/region/r.0.0.mca" afterPath="$PROJECT_DIR$/run/saves/New World/region/r.0.0.mca" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/saves/New World/session.lock" afterPath="$PROJECT_DIR$/run/saves/New World/session.lock" />
+    <list default="true" id="74002fd1-8a4c-40a4-8318-25b111c6ed5d" name="Default" comment="Updated the build system to create better changelogs.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sample-html.tpl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/gradle.log" afterPath="$PROJECT_DIR$/.gradle/gradle.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Art/models/Blocks/MoltenMetalPump/Pump.mtl" afterPath="$PROJECT_DIR$/Art/models/Blocks/MoltenMetalPump/Pump.mtl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Art/models/Blocks/MoltenMetalPump/Pump.obj" afterPath="$PROJECT_DIR$/Art/models/Blocks/MoltenMetalPump/Pump.obj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.properties" afterPath="$PROJECT_DIR$/build.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/config/Armory/Material Configuration/Vanilla.Iron/Global.cfg" afterPath="$PROJECT_DIR$/run/config/Armory/Material Configuration/Vanilla.Iron/Global.cfg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/config/Armory/Material Configuration/Vanilla.Obsidian/Global.cfg" afterPath="$PROJECT_DIR$/run/config/Armory/Material Configuration/Vanilla.Obsidian/Global.cfg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/config/JEI/worldSettings.cfg" afterPath="$PROJECT_DIR$/run/config/JEI/worldSettings.cfg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/config/forge.cfg" afterPath="$PROJECT_DIR$/run/config/forge.cfg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/config/splash.properties" afterPath="$PROJECT_DIR$/run/config/splash.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/logs/fml-client-latest.log" afterPath="$PROJECT_DIR$/run/logs/fml-client-latest.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/logs/fml-junk-earlystartup.log" afterPath="$PROJECT_DIR$/run/logs/fml-junk-earlystartup.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/logs/latest.log" afterPath="$PROJECT_DIR$/run/logs/latest.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/options.txt" afterPath="$PROJECT_DIR$/run/options.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/saves/New World/DIM-1/data/villages_nether.dat" afterPath="$PROJECT_DIR$/run/saves/New World/DIM-1/data/villages_nether.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/saves/New World/DIM1/data/villages_end.dat" afterPath="$PROJECT_DIR$/run/saves/New World/DIM1/data/villages_end.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/saves/New World/data/villages.dat" afterPath="$PROJECT_DIR$/run/saves/New World/data/villages.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/saves/New World/level.dat" afterPath="$PROJECT_DIR$/run/saves/New World/level.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/usercache.json" afterPath="$PROJECT_DIR$/run/usercache.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run/usernamecache.json" afterPath="$PROJECT_DIR$/run/usernamecache.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/IArmoryAPI.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/IArmoryAPI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/ISingleComponentItem.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/ISingleComponentItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/MLAAddon.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/MLAAddon.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/MultiLayeredArmor.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/armor/MultiLayeredArmor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/component/IAnvilRecipeComponent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/component/IAnvilRecipeComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/component/StandardAnvilRecipeComponent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/component/StandardAnvilRecipeComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/recipe/AnvilRecipe.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/recipe/AnvilRecipe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/client/model/block/BlackSmithsAnvilModelTextureLoadEvent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/client/model/block/BlackSmithsAnvilModelTextureLoadEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/client/model/item/MultiLayeredArmorModelTextureLoadEvent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/client/model/item/MultiLayeredArmorModelTextureLoadEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/common/config/MaterialPropertyValueEvent.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/events/common/config/MaterialPropertyValueEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/fluid/IMoltenMetalProvider.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/fluid/IMoltenMetalProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/helpers/IMaterialConstructionHelper.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/helpers/IMaterialConstructionHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/helpers/IMedievalUpgradeConstructionHelper.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/helpers/IMedievalUpgradeConstructionHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/item/IHeatableItem.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/item/IHeatableItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/item/ISingleMaterialItem.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/item/ISingleMaterialItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/IAnvilMaterial.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/IAnvilMaterial.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/IArmorMaterial.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/IArmorMaterial.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/MaterialRenderControllers.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/materials/MaterialRenderControllers.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/AnvilBottomTextureDeserializer.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/AnvilBottomTextureDeserializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/AnvilModelDeserializer.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/AnvilModelDeserializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/AnvilTopTextureDeserializer.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/AnvilTopTextureDeserializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/MaterializedItemModelDeserializer.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/MaterializedItemModelDeserializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/MultiLayeredArmorModelDeserializer.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/MultiLayeredArmorModelDeserializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/definition/AnvilModelDefinition.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/definition/AnvilModelDefinition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/definition/MultiLayeredArmorModelDefinition.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/model/deserializers/definition/MultiLayeredArmorModelDefinition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IAnvilRecipeRegistry.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IAnvilRecipeRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IArmorRegistry.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IArmorRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IHeatableItemRegistry.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IHeatableItemRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IMLAAddonRegistry.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IMLAAddonRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IMaterialRegistry.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/registries/IMaterialRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/AnimatedColoredTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/AnimatedColoredTexture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/ExtraUtilityTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/ExtraUtilityTexture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/GuiOutlineTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/GuiOutlineTexture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/InverseColoredTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/InverseColoredTexture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/MetalColoredTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/MetalColoredTexture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/MetalTextureTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/MetalTextureTexture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/SimpleColoredTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/SimpleColoredTexture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/TextureColoredTexture.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/textures/TextureColoredTexture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/client/Colors.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/client/Colors.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/client/Textures.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/client/Textures.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/references/ModBlocks.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/references/ModBlocks.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/references/ModCapabilities.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/references/ModCapabilities.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/references/ModLogger.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/references/ModLogger.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/references/References.java" afterPath="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/references/References.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/Armory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/ArmoryClientProxy.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/ArmoryClientProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/components/Component5X5CraftingGrid.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/components/Component5X5CraftingGrid.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/components/ComponentBlackSmithsAnvilCraftingGrid.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/components/ComponentBlackSmithsAnvilCraftingGrid.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/blacksmithsanvil/GuiBlacksmithsAnvil.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/blacksmithsanvil/GuiBlacksmithsAnvil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/fireplace/GuiFireplace.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/fireplace/GuiFireplace.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/fireplace/TabFireplaceFood.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/fireplace/TabFireplaceFood.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/fireplace/TabFireplaceMeltingMetal.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/fireplace/TabFireplaceMeltingMetal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/forge/GuiForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/forge/GuiForge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/forge/TabForgeMeltingMetal.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/forge/TabForgeMeltingMetal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/forge/TabForgeMoltenMetal.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/gui/implementations/forge/TabForgeMoltenMetal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/handler/ClientDisconnectedFromServerEventHandler.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/handler/ClientDisconnectedFromServerEventHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/logic/ArmoryClientInitializer.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/logic/ArmoryClientInitializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/block/baked/BlackSmithsAnvilBakedModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/block/baked/BlackSmithsAnvilBakedModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/block/unbaked/BlackSmithsAnvilModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/block/unbaked/BlackSmithsAnvilModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/entity/ModelExtendedBiped.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/entity/ModelExtendedBiped.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/BakedArmorComponentModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/BakedArmorComponentModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/BakedMaterializedModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/BakedMaterializedModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/BakedMultiLayeredArmorItemModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/BakedMultiLayeredArmorItemModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/components/BakedSubComponentModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/components/BakedSubComponentModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/components/BakedTemperatureBarModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/components/BakedTemperatureBarModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/heateditem/BakedHeatedItemModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/heateditem/BakedHeatedItemModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/heateditem/PerspectiveDependentBakedHeatedItemItemModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/heateditem/PerspectiveDependentBakedHeatedItemItemModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/heateditem/PerspectiveUnawareBakedHeatedItemItemModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/heateditem/PerspectiveUnawareBakedHeatedItemItemModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/ArmorComponentModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/ArmorComponentModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/HeatedItemItemModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/HeatedItemItemModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/MaterializedItemModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/MaterializedItemModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/MultiLayeredArmorItemModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/MultiLayeredArmorItemModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/components/ArmorSubComponentModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/components/ArmorSubComponentModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/components/TemperatureBarComponentModel.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/unbaked/components/TemperatureBarComponentModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/AnvilModelLoader.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/AnvilModelLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/ArmorComponentModelLoader.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/ArmorComponentModelLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/HeatedItemModelLoader.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/HeatedItemModelLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MaterializedItemModelLoader.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MaterializedItemModelLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/loaders/MultiLayeredArmorModelLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/render/tileentity/TileEntityRendererConduit.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/render/tileentity/TileEntityRendererConduit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/render/tileentity/TileEntityRendererForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/render/tileentity/TileEntityRendererForge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/render/tileentity/TileEntityRendererMoltenMetalTank.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/render/tileentity/TileEntityRendererMoltenMetalTank.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/textures/MaterializedTextureCreator.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/textures/MaterializedTextureCreator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/ArmoryCommonProxy.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/ArmoryCommonProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/addons/ArmorUpgradeMedieval.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/addons/ArmorUpgradeMedieval.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/anvil/AnvilMaterial.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/anvil/AnvilMaterial.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockArmory.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockArmory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockArmoryTileEntity.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockArmoryTileEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockBlackSmithsAnvil.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockBlackSmithsAnvil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockConduit.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockConduit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockFirePlace.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockFirePlace.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockForge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockMoltenMetalTank.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockMoltenMetalTank.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/properties/PropertyAnvilMaterial.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/properties/PropertyAnvilMaterial.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandArmory.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandArmory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandEnableTempDecay.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandEnableTempDecay.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandGiveHeated.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/command/CommandGiveHeated.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/config/ArmorDataConfigHandler.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/config/ArmorDataConfigHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/config/ArmorDataSynchronizer.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/config/ArmorDataSynchronizer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/config/ArmoryConfig.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/config/ArmoryConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/component/HeatedAnvilRecipeComponent.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/component/HeatedAnvilRecipeComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/component/OreDicAnvilRecipeComponent.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/component/OreDicAnvilRecipeComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/recipe/ArmorUpgradeAnvilRecipe.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/recipe/ArmorUpgradeAnvilRecipe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/recipe/VanillaAnvilRecipe.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/recipe/VanillaAnvilRecipe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/ArmorTab.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/ArmorTab.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/ComponentsTab.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/ComponentsTab.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/GeneralTabs.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/GeneralTabs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/HeatedItemTab.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/HeatedItemTab.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/factory/HeatedItemFactory.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/factory/HeatedItemFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/factory/IMLAFactory.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/factory/IMLAFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/factory/MedievalArmorFactory.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/factory/MedievalArmorFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/fluid/FluidMoltenMetal.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/fluid/FluidMoltenMetal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/GuiHandler.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/GuiHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/config/ArmoryDataSyncerEventHandler.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/config/ArmoryDataSyncerEventHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/config/ConfigSyncCompletedEventHandler.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/config/ConfigSyncCompletedEventHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/config/MaterialPropertyValueEventHandler.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/handlers/config/MaterialPropertyValueEventHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/ArmoryHelpers.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/ArmoryHelpers.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/MaterialConstructionHelper.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/MaterialConstructionHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/MedievalUpgradeConstructionHelper.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/helpers/MedievalUpgradeConstructionHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/ContainerBlacksmithsAnvil.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/ContainerBlacksmithsAnvil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/ContainerFireplace.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/ContainerFireplace.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/ContainerForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/ContainerForge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/slots/SlotFuelInput.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/slots/SlotFuelInput.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/slots/SlotHeatable.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/slots/SlotHeatable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/slots/SlotInventoryCheck.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/inventory/slots/SlotInventoryCheck.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemArmorComponent.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemArmorComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHammer.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHammer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHeatedItem.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemHeatedItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemMetalChain.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemMetalChain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemMetalRing.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemMetalRing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemNugget.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemNugget.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemPlate.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemPlate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemResource.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemTongs.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/ItemTongs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/armor/tiermedieval/ArmorMedieval.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/armor/tiermedieval/ArmorMedieval.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/block/ItemBlockBlackSmithsAnvil.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/item/block/ItemBlockBlackSmithsAnvil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/ArmoryInitializer.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/ArmoryInitializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/material/IronMaterialInitializer.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/material/IronMaterialInitializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/material/ObsidianMaterialInitializer.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/logic/material/ObsidianMaterialInitializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/ArmorMaterial.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/ArmorMaterial.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/ChainLayer.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/ChainLayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/fluidmodifiers/ObsidianToLavaSetter.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/material/fluidmodifiers/ObsidianToLavaSetter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/AnvilMaterialRegistry.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/AnvilMaterialRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/AnvilRecipeRegistry.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/AnvilRecipeRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/ArmorRegistry.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/ArmorRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/GeneralRegistry.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/GeneralRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/HeatableItemRegistry.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/HeatableItemRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/MaterialRegistry.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/MaterialRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/MedievalAddonRegistry.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/MedievalAddonRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureControllerForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureControllerForge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureDataForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureDataForge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureFactoryForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureFactoryForge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/structure/forge/StructureForge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/IFirePitComponent.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/IFirePitComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityBlackSmithsAnvil.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityBlackSmithsAnvil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityConduit.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityConduit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityFireplace.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityFireplace.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityForge.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityForge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityForgeBase.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityForgeBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityMoltenMetalTank.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityMoltenMetalTank.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityBlackSmithsAnvilGuiManager.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityBlackSmithsAnvilGuiManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityFireplaceGuiManager.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityFireplaceGuiManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityForgeGuiManager.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/guimanagers/TileEntityForgeGuiManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/moltenmetal/MoltenMetalTank.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/moltenmetal/MoltenMetalTank.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityBlackSmithsAnvilState.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityBlackSmithsAnvilState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityConduitState.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityConduitState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityFireplaceState.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityFireplaceState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityForgeBaseState.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityForgeBaseState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityForgeState.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityForgeState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityMoltenMetalTankState.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/state/TileEntityMoltenMetalTankState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeMaker.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeMaker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeWrapper.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/compatibility/recipes/anvil/BlackSmithsAnvilRecipeWrapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/armor/ArmorNBTHelper.java" afterPath="$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/armor/ArmorNBTHelper.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/light_conduit.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Conduit.Light.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/light_mmtank.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Tank.Light.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/normal_conduit.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Conduit.Normal.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/normal_mmtank.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Tank.Normal.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/vertical_conduit.json" afterPath="$PROJECT_DIR$/src/resources/assets/armory/blockstates/Armory.Blocks.Conduit.Vertical.json" />
     </list>
     <ignored path="Armory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -284,6 +58,110 @@
                 <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
               </PATH_ELEMENT>
             </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Armory" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Tasks" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Armory" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Tasks" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="other" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode$1" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Armory" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Tasks" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="forgegradle" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode$1" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Armory" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Tasks" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="documentation" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode$1" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Armory" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Tasks" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="build setup" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode$1" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Armory" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Tasks" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="build" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode$1" />
+              </PATH_ELEMENT>
+            </PATH>
           </tree_state>
         </projects_view>
       </state>
@@ -294,542 +172,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BlockBlackSmithsAnvil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockBlackSmithsAnvil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="112" column="58" selection-start-line="112" selection-start-column="58" selection-end-line="112" selection-end-column="58" />
-              <folding>
-                <marker date="1478123730766" expanded="false" signature="55:2090" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="villages_end.dat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run/saves/New World/DIM1/data/villages_end.dat">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="worldSettings.cfg" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/run/config/JEI/worldSettings.cfg">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="357">
+              <caret line="21" column="67" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlockFlowerPot.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.2.2103-PROJECT(Armory)-sources.jar!/net/minecraft/block/BlockFlowerPot.java">
+      <file leaf-file-name="sample-html.tpl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sample-html.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
-              <caret line="403" column="0" selection-start-line="403" selection-start-column="0" selection-end-line="423" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ItemStackHelper.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/deobf/com/smithsmodding/smithscore/smithscore/1.10.2-1.2.1-259/smithscore-1.10.2-1.2.1-259-sources.jar!/com/smithsmodding/smithscore/util/common/helper/ItemStackHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EntityItem.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.2.2103-PROJECT(Armory)-sources.jar!/net/minecraft/entity/item/EntityItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="66" column="10" selection-start-line="66" selection-start-column="10" selection-end-line="66" selection-end-column="10" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="docComment;field#age#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;field#health#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;field#hoverStart#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;field#lifespan#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;method#canTriggerWalking#0;class#EntityItem#0" expanded="false" />
-                <element signature="e#3163#3164#0" expanded="false" />
-                <element signature="e#3191#3192#0" expanded="false" />
-                <element signature="docComment;method#onUpdate#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;method#searchForOtherItemsNearby#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;method#combineItems#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;method#setAgeToCreativeDespawnTime#0;class#EntityItem#0" expanded="false" />
-                <element signature="e#10076#10077#0" expanded="false" />
-                <element signature="e#10107#10108#0" expanded="false" />
-                <element signature="docComment;method#handleWaterMovement#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;method#dealFireDamage#0;class#EntityItem#0" expanded="false" />
-                <element signature="e#10827#10828#0" expanded="false" />
-                <element signature="e#10900#10901#0" expanded="false" />
-                <element signature="docComment;method#attackEntityFrom#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;method#writeEntityToNBT#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;method#readEntityFromNBT#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;method#onCollideWithPlayer#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;method#getName#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;method#canBeAttackedWithItem#0;class#EntityItem#0" expanded="false" />
-                <element signature="e#16664#16665#0" expanded="false" />
-                <element signature="e#16692#16693#0" expanded="false" />
-                <element signature="docComment;method#getEntityItem#0;class#EntityItem#0" expanded="false" />
-                <element signature="docComment;method#setEntityItemStack#0;class#EntityItem#0" expanded="false" />
-                <element signature="e#17778#17779#0" expanded="false" />
-                <element signature="e#17811#17812#0" expanded="false" />
-                <element signature="e#17857#17858#0" expanded="false" />
-                <element signature="e#17891#17892#0" expanded="false" />
-                <element signature="e#17929#17930#0" expanded="false" />
-                <element signature="e#17964#17965#0" expanded="false" />
-                <element signature="e#18014#18015#0" expanded="false" />
-                <element signature="e#18052#18053#0" expanded="false" />
-                <element signature="e#18110#18111#0" expanded="false" />
-                <element signature="e#18141#18142#0" expanded="false" />
-                <element signature="e#18188#18189#0" expanded="false" />
-                <element signature="e#18234#18235#0" expanded="false" />
-                <element signature="e#18276#18277#0" expanded="false" />
-                <element signature="e#18321#18322#0" expanded="false" />
-                <element signature="e#18369#18370#0" expanded="false" />
-                <element signature="e#18418#18419#0" expanded="false" />
-                <element signature="e#18467#18468#0" expanded="false" />
-                <element signature="e#18516#18517#0" expanded="false" />
-                <element signature="e#18557#18558#0" expanded="false" />
-                <element signature="e#18609#18610#0" expanded="false" />
-                <element signature="e#18647#18648#0" expanded="false" />
-                <element signature="e#18679#18680#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Entity.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.2.2103-PROJECT(Armory)-sources.jar!/net/minecraft/entity/Entity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2261">
-              <caret line="218" column="11" selection-start-line="218" selection-start-column="11" selection-end-line="218" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="docComment;field#preventEntitySpawning#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#worldObj#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#posX#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#posY#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#posZ#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#motionX#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#motionY#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#motionZ#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#rotationYaw#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#rotationPitch#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#boundingBox#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#isCollidedHorizontally#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#isCollidedVertically#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#isCollided#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#isDead#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#width#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#height#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#prevDistanceWalkedModified#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#distanceWalkedModified#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#nextStepDistance#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#lastTickPosX#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#lastTickPosY#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#lastTickPosZ#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#stepHeight#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#noClip#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#entityCollisionReduction#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#ticksExisted#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#fireResistance#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#inWater#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#hurtResistantTime#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#addedToChunk#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#ignoreFrustumCheck#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#inPortal#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#dimension#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#lastPortalPos#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#lastPortalVec#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#teleportDirection#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#cmdResultStats#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;field#customEntityData#0;class#Entity#0" expanded="false" />
-                <element signature="e#11962#11963#0" expanded="false" />
-                <element signature="e#11998#11999#0" expanded="false" />
-                <element signature="e#12041#12042#0" expanded="false" />
-                <element signature="e#12075#12076#0" expanded="false" />
-                <element signature="e#12115#12116#0" expanded="false" />
-                <element signature="e#12147#12148#0" expanded="false" />
-                <element signature="e#12420#12421#0" expanded="false" />
-                <element signature="e#12464#12465#0" expanded="false" />
-                <element signature="docComment;method#onKillCommand#0;class#Entity#0" expanded="false" />
-                <element signature="e#12555#12556#0" expanded="false" />
-                <element signature="e#12585#12586#0" expanded="false" />
-                <element signature="e#12681#12682#0" expanded="false" />
-                <element signature="e#12720#12721#0" expanded="false" />
-                <element signature="e#12916#12917#0" expanded="false" />
-                <element signature="e#12952#12953#0" expanded="false" />
-                <element signature="docComment;method#preparePlayerToSpawn#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setDead#0;class#Entity#0" expanded="false" />
-                <element signature="e#13862#13863#0" expanded="false" />
-                <element signature="e#13896#13897#0" expanded="false" />
-                <element signature="docComment;method#setDropItemsWhenDead#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setSize#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setRotation#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setPosition#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setAngles#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#onUpdate#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#onEntityUpdate#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#decrementTimeUntilPortal#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getMaxInPortalTime#0;class#Entity#0" expanded="false" />
-                <element signature="e#20391#20392#0" expanded="false" />
-                <element signature="e#20415#20416#0" expanded="false" />
-                <element signature="docComment;method#setOnFireFromLava#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setFire#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#extinguish#0;class#Entity#0" expanded="false" />
-                <element signature="e#21188#21189#0" expanded="false" />
-                <element signature="e#21217#21218#0" expanded="false" />
-                <element signature="docComment;method#kill#0;class#Entity#0" expanded="false" />
-                <element signature="e#21341#21342#0" expanded="false" />
-                <element signature="e#21371#21372#0" expanded="false" />
-                <element signature="docComment;method#isOffsetPositionInLiquid#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#isLiquidPresentInAABB#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#moveEntity#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#resetPositionToBB#0;class#Entity#0" expanded="false" />
-                <element signature="e#35202#35203#0" expanded="false" />
-                <element signature="e#35256#35257#0" expanded="false" />
-                <element signature="e#35305#35306#0" expanded="false" />
-                <element signature="e#35361#35362#0" expanded="false" />
-                <element signature="docComment;method#isSilent#0;class#Entity#0" expanded="false" />
-                <element signature="e#38723#38724#0" expanded="false" />
-                <element signature="e#38800#38801#0" expanded="false" />
-                <element signature="docComment;method#setSilent#0;class#Entity#0" expanded="false" />
-                <element signature="e#38924#38925#0" expanded="false" />
-                <element signature="e#38995#38996#0" expanded="false" />
-                <element signature="e#39038#39039#0" expanded="false" />
-                <element signature="e#39124#39125#0" expanded="false" />
-                <element signature="docComment;method#canTriggerWalking#0;class#Entity#0" expanded="false" />
-                <element signature="e#39491#39492#0" expanded="false" />
-                <element signature="e#39518#39519#0" expanded="false" />
-                <element signature="docComment;method#getCollisionBoundingBox#0;class#Entity#0" expanded="false" />
-                <element signature="e#40139#40140#0" expanded="false" />
-                <element signature="e#40166#40167#0" expanded="false" />
-                <element signature="docComment;method#dealFireDamage#0;class#Entity#0" expanded="false" />
-                <element signature="e#40525#40526#0" expanded="false" />
-                <element signature="e#40567#40568#0" expanded="false" />
-                <element signature="docComment;method#isWet#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#isInWater#0;class#Entity#0" expanded="false" />
-                <element signature="e#41875#41876#0" expanded="false" />
-                <element signature="e#41910#41911#0" expanded="false" />
-                <element signature="docComment;method#handleWaterMovement#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#resetHeight#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#spawnRunningParticles#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#isInsideOfMaterial#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#moveRelative#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getBrightness#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setWorld#0;class#Entity#0" expanded="false" />
-                <element signature="e#48549#48550#0" expanded="false" />
-                <element signature="e#48588#48589#0" expanded="false" />
-                <element signature="docComment;method#setPositionAndRotation#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setLocationAndAngles#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getDistanceToEntity#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getDistanceSq#0;class#Entity#0" expanded="false" />
-                <element signature="e#51139#51140#0" expanded="false" />
-                <element signature="e#51209#51210#0" expanded="false" />
-                <element signature="docComment;method#getDistance#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getDistanceSqToEntity#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#onCollideWithPlayer#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#applyEntityCollision#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#addVelocity#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setBeenAttacked#0;class#Entity#0" expanded="false" />
-                <element signature="e#53975#53976#0" expanded="false" />
-                <element signature="e#54018#54019#0" expanded="false" />
-                <element signature="docComment;method#attackEntityFrom#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getLook#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getVectorForRotation#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#canBeCollidedWith#0;class#Entity#0" expanded="false" />
-                <element signature="e#56648#56649#0" expanded="false" />
-                <element signature="e#56676#56677#0" expanded="false" />
-                <element signature="docComment;method#canBePushed#0;class#Entity#0" expanded="false" />
-                <element signature="e#56827#56828#0" expanded="false" />
-                <element signature="e#56855#56856#0" expanded="false" />
-                <element signature="docComment;method#addToPlayerScore#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#isInRangeToRenderDist#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#writeToNBTAtomically#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#writeToNBTOptional#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#readFromNBT#0;class#Entity#0" expanded="false" />
-                <element signature="e#66680#66681#0" expanded="false" />
-                <element signature="e#66707#66708#0" expanded="false" />
-                <element signature="docComment;method#getEntityString#0;class#Entity#0" expanded="false" />
-                <element signature="e#66837#66838#0" expanded="false" />
-                <element signature="e#66892#66893#0" expanded="false" />
-                <element signature="docComment;method#readEntityFromNBT#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#writeEntityToNBT#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#newDoubleNBTList#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#newFloatNBTList#0;class#Entity#0" expanded="false" />
-                <element signature="e#67984#67985#0" expanded="false" />
-                <element signature="e#68050#68051#0" expanded="false" />
-                <element signature="docComment;method#entityDropItem#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#isEntityAlive#0;class#Entity#0" expanded="false" />
-                <element signature="e#68977#68978#0" expanded="false" />
-                <element signature="e#69012#69013#0" expanded="false" />
-                <element signature="docComment;method#isEntityInsideOpaqueBlock#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getCollisionBox#0;class#Entity#0" expanded="false" />
-                <element signature="e#70833#70834#0" expanded="false" />
-                <element signature="e#70860#70861#0" expanded="false" />
-                <element signature="docComment;method#updateRidden#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#applyOrientationToEntity#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getYOffset#0;class#Entity#0" expanded="false" />
-                <element signature="e#71973#71974#0" expanded="false" />
-                <element signature="e#72000#72001#0" expanded="false" />
-                <element signature="docComment;method#getMountedYOffset#0;class#Entity#0" expanded="false" />
-                <element signature="e#72148#72149#0" expanded="false" />
-                <element signature="e#72198#72199#0" expanded="false" />
-                <element signature="e#72253#72254#0" expanded="false" />
-                <element signature="e#72309#72310#0" expanded="false" />
-                <element signature="e#72937#72938#0" expanded="false" />
-                <element signature="e#72982#72983#0" expanded="false" />
-                <element signature="e#74535#74536#0" expanded="false" />
-                <element signature="e#74589#74590#0" expanded="false" />
-                <element signature="docComment;method#setPositionAndRotationDirect#0;class#Entity#0" expanded="false" />
-                <element signature="e#74986#74987#0" expanded="false" />
-                <element signature="e#75013#75014#0" expanded="false" />
-                <element signature="docComment;method#getLookVec#0;class#Entity#0" expanded="false" />
-                <element signature="e#75135#75136#0" expanded="false" />
-                <element signature="e#75162#75163#0" expanded="false" />
-                <element signature="e#75397#75398#0" expanded="false" />
-                <element signature="e#75462#75463#0" expanded="false" />
-                <element signature="docComment;method#setPortal#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getPortalCooldown#0;class#Entity#0" expanded="false" />
-                <element signature="e#77248#77249#0" expanded="false" />
-                <element signature="e#77274#77275#0" expanded="false" />
-                <element signature="docComment;method#setVelocity#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#performHurtAnimation#0;class#Entity#0" expanded="false" />
-                <element signature="e#77848#77849#0" expanded="false" />
-                <element signature="e#77894#77895#0" expanded="false" />
-                <element signature="e#77956#77957#0" expanded="false" />
-                <element signature="e#78002#78003#0" expanded="false" />
-                <element signature="docComment;method#isBurning#0;class#Entity#0" expanded="false" />
-                <element signature="e#78621#78622#0" expanded="false" />
-                <element signature="e#78674#78675#0" expanded="false" />
-                <element signature="docComment;method#isBeingRidden#0;class#Entity#0" expanded="false" />
-                <element signature="e#78779#78780#0" expanded="false" />
-                <element signature="e#78833#78834#0" expanded="false" />
-                <element signature="docComment;method#isSneaking#0;class#Entity#0" expanded="false" />
-                <element signature="e#78931#78932#0" expanded="false" />
-                <element signature="e#78969#78970#0" expanded="false" />
-                <element signature="docComment;method#setSneaking#0;class#Entity#0" expanded="false" />
-                <element signature="e#79069#79070#0" expanded="false" />
-                <element signature="e#79110#79111#0" expanded="false" />
-                <element signature="docComment;method#isSprinting#0;class#Entity#0" expanded="false" />
-                <element signature="e#79205#79206#0" expanded="false" />
-                <element signature="e#79243#79244#0" expanded="false" />
-                <element signature="docComment;method#setSprinting#0;class#Entity#0" expanded="false" />
-                <element signature="e#79354#79355#0" expanded="false" />
-                <element signature="e#79396#79397#0" expanded="false" />
-                <element signature="e#79434#79435#0" expanded="false" />
-                <element signature="e#79514#79515#0" expanded="false" />
-                <element signature="e#79748#79749#0" expanded="false" />
-                <element signature="e#79786#79787#0" expanded="false" />
-                <element signature="docComment;method#isInvisibleToPlayer#0;class#Entity#0" expanded="false" />
-                <element signature="e#80531#80532#0" expanded="false" />
-                <element signature="e#80630#80631#0" expanded="false" />
-                <element signature="docComment;method#isOnSameTeam#0;class#Entity#0" expanded="false" />
-                <element signature="e#80778#80779#0" expanded="false" />
-                <element signature="e#80844#80845#0" expanded="false" />
-                <element signature="docComment;method#isOnScoreboardTeam#0;class#Entity#0" expanded="false" />
-                <element signature="e#81130#81131#0" expanded="false" />
-                <element signature="e#81172#81173#0" expanded="false" />
-                <element signature="docComment;method#getFlag#0;class#Entity#0" expanded="false" />
-                <element signature="e#81398#81399#0" expanded="false" />
-                <element signature="e#81487#81488#0" expanded="false" />
-                <element signature="docComment;method#setFlag#0;class#Entity#0" expanded="false" />
-                <element signature="e#81978#81979#0" expanded="false" />
-                <element signature="e#82048#82049#0" expanded="false" />
-                <element signature="e#82087#82088#0" expanded="false" />
-                <element signature="e#82150#82151#0" expanded="false" />
-                <element signature="docComment;method#onStruckByLightning#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#onKillEntity#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setInWeb#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getName#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getParts#0;class#Entity#0" expanded="false" />
-                <element signature="e#85478#85479#0" expanded="false" />
-                <element signature="e#85505#85506#0" expanded="false" />
-                <element signature="docComment;method#isEntityEqual#0;class#Entity#0" expanded="false" />
-                <element signature="e#85641#85642#0" expanded="false" />
-                <element signature="e#85680#85681#0" expanded="false" />
-                <element signature="e#85725#85726#0" expanded="false" />
-                <element signature="e#85752#85753#0" expanded="false" />
-                <element signature="docComment;method#setRotationYawHead#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setRenderYawOffset#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#canBeAttackedWithItem#0;class#Entity#0" expanded="false" />
-                <element signature="e#86133#86134#0" expanded="false" />
-                <element signature="e#86160#86161#0" expanded="false" />
-                <element signature="docComment;method#hitByEntity#0;class#Entity#0" expanded="false" />
-                <element signature="e#86327#86328#0" expanded="false" />
-                <element signature="e#86355#86356#0" expanded="false" />
-                <element signature="docComment;method#isEntityInvulnerable#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setEntityInvulnerable#0;class#Entity#0" expanded="false" />
-                <element signature="e#87138#87139#0" expanded="false" />
-                <element signature="e#87188#87189#0" expanded="false" />
-                <element signature="docComment;method#copyLocationAndAnglesFrom#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#copyDataFromOld#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#isNonBoss#0;class#Entity#0" expanded="false" />
-                <element signature="e#92107#92108#0" expanded="false" />
-                <element signature="e#92134#92135#0" expanded="false" />
-                <element signature="docComment;method#getExplosionResistance#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getMaxFallHeight#0;class#Entity#0" expanded="false" />
-                <element signature="e#92750#92751#0" expanded="false" />
-                <element signature="e#92774#92775#0" expanded="false" />
-                <element signature="e#92817#92818#0" expanded="false" />
-                <element signature="e#92858#92859#0" expanded="false" />
-                <element signature="e#92910#92911#0" expanded="false" />
-                <element signature="e#92955#92956#0" expanded="false" />
-                <element signature="docComment;method#doesEntityNotTriggerPressurePlate#0;class#Entity#0" expanded="false" />
-                <element signature="e#93118#93119#0" expanded="false" />
-                <element signature="e#93146#93147#0" expanded="false" />
-                <element signature="docComment;method#canRenderOnFire#0;class#Entity#0" expanded="false" />
-                <element signature="e#95231#95232#0" expanded="false" />
-                <element signature="e#95270#95271#0" expanded="false" />
-                <element signature="e#95307#95308#0" expanded="false" />
-                <element signature="e#95349#95350#0" expanded="false" />
-                <element signature="e#95400#95401#0" expanded="false" />
-                <element signature="e#95448#95449#0" expanded="false" />
-                <element signature="e#95492#95493#0" expanded="false" />
-                <element signature="e#95519#95520#0" expanded="false" />
-                <element signature="e#95604#95605#0" expanded="false" />
-                <element signature="e#95647#95648#0" expanded="false" />
-                <element signature="e#95753#95754#0" expanded="false" />
-                <element signature="e#95808#95809#0" expanded="false" />
-                <element signature="docComment;method#getDisplayName#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#setCustomNameTag#0;class#Entity#0" expanded="false" />
-                <element signature="e#96426#96427#0" expanded="false" />
-                <element signature="e#96481#96482#0" expanded="false" />
-                <element signature="e#96525#96526#0" expanded="false" />
-                <element signature="e#96589#96590#0" expanded="false" />
-                <element signature="docComment;method#hasCustomName#0;class#Entity#0" expanded="false" />
-                <element signature="e#96690#96691#0" expanded="false" />
-                <element signature="e#96767#96768#0" expanded="false" />
-                <element signature="docComment;method#setPositionAndUpdate#0;class#Entity#0" expanded="false" />
-                <element signature="e#97593#97594#0" expanded="false" />
-                <element signature="e#97645#97646#0" expanded="false" />
-                <element signature="docComment;method#getHorizontalFacing#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getAdjustedHorizontalFacing#0;class#Entity#0" expanded="false" />
-                <element signature="e#98103#98104#0" expanded="false" />
-                <element signature="e#98152#98153#0" expanded="false" />
-                <element signature="e#98728#98729#0" expanded="false" />
-                <element signature="e#98755#98756#0" expanded="false" />
-                <element signature="e#98810#98811#0" expanded="false" />
-                <element signature="e#98849#98850#0" expanded="false" />
-                <element signature="docComment;method#getRenderBoundingBox#0;class#Entity#0" expanded="false" />
-                <element signature="e#99114#99115#0" expanded="false" />
-                <element signature="e#99164#99165#0" expanded="false" />
-                <element signature="e#99226#99227#0" expanded="false" />
-                <element signature="e#99263#99264#0" expanded="false" />
-                <element signature="e#99302#99303#0" expanded="false" />
-                <element signature="e#99344#99345#0" expanded="false" />
-                <element signature="e#99388#99389#0" expanded="false" />
-                <element signature="e#99431#99432#0" expanded="false" />
-                <element signature="e#99494#99495#0" expanded="false" />
-                <element signature="e#99546#99547#0" expanded="false" />
-                <element signature="e#99637#99638#0" expanded="false" />
-                <element signature="e#99665#99666#0" expanded="false" />
-                <element signature="docComment;method#addChatMessage#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#canCommandSenderUseCommand#0;class#Entity#0" expanded="false" />
-                <element signature="e#100008#100009#0" expanded="false" />
-                <element signature="e#100035#100036#0" expanded="false" />
-                <element signature="docComment;method#getPosition#0;class#Entity#0" expanded="false" />
-                <element signature="e#100243#100244#0" expanded="false" />
-                <element signature="e#100318#100319#0" expanded="false" />
-                <element signature="docComment;method#getPositionVector#0;class#Entity#0" expanded="false" />
-                <element signature="e#100516#100517#0" expanded="false" />
-                <element signature="e#100581#100582#0" expanded="false" />
-                <element signature="docComment;method#getEntityWorld#0;class#Entity#0" expanded="false" />
-                <element signature="e#100777#100778#0" expanded="false" />
-                <element signature="e#100813#100814#0" expanded="false" />
-                <element signature="docComment;method#getCommandSenderEntity#0;class#Entity#0" expanded="false" />
-                <element signature="e#100954#100955#0" expanded="false" />
-                <element signature="e#100981#100982#0" expanded="false" />
-                <element signature="docComment;method#sendCommandFeedback#0;class#Entity#0" expanded="false" />
-                <element signature="e#101135#101136#0" expanded="false" />
-                <element signature="e#101163#101164#0" expanded="false" />
-                <element signature="docComment;method#getServer#0;class#Entity#0" expanded="false" />
-                <element signature="e#101561#101562#0" expanded="false" />
-                <element signature="e#101618#101619#0" expanded="false" />
-                <element signature="e#101673#101674#0" expanded="false" />
-                <element signature="e#101715#101716#0" expanded="false" />
-                <element signature="docComment;method#setCommandStats#0;class#Entity#0" expanded="false" />
-                <element signature="e#101837#101838#0" expanded="false" />
-                <element signature="e#101912#101913#0" expanded="false" />
-                <element signature="docComment;method#applyPlayerInteraction#0;class#Entity#0" expanded="false" />
-                <element signature="e#102213#102214#0" expanded="false" />
-                <element signature="e#102241#102242#0" expanded="false" />
-                <element signature="docComment;method#getEntityData#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#shouldRiderSit#0;class#Entity#0" expanded="false" />
-                <element signature="e#103397#103398#0" expanded="false" />
-                <element signature="e#103424#103425#0" expanded="false" />
-                <element signature="docComment;method#getPickedResult#0;class#Entity#0" expanded="false" />
-                <element signature="e#105582#105583#0" expanded="false" />
-                <element signature="e#105619#105620#0" expanded="false" />
-                <element signature="docComment;method#resetEntityId#0;class#Entity#0" expanded="false" />
-                <element signature="e#105752#105753#0" expanded="false" />
-                <element signature="e#105798#105799#0" expanded="false" />
-                <element signature="e#105853#105854#0" expanded="false" />
-                <element signature="e#105885#105886#0" expanded="false" />
-                <element signature="docComment;method#isCreatureType#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#canRiderInteract#0;class#Entity#0" expanded="false" />
-                <element signature="e#106723#106724#0" expanded="false" />
-                <element signature="e#106751#106752#0" expanded="false" />
-                <element signature="docComment;method#shouldDismountInWater#0;class#Entity#0" expanded="false" />
-                <element signature="e#107039#107040#0" expanded="false" />
-                <element signature="e#107094#107095#0" expanded="false" />
-                <element signature="e#107715#107716#0" expanded="false" />
-                <element signature="e#107752#107753#0" expanded="false" />
-                <element signature="docComment;method#addTrackingPlayer#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#removeTrackingPlayer#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getRotatedYaw#0;class#Entity#0" expanded="false" />
-                <element signature="docComment;method#getMirroredYaw#0;class#Entity#0" expanded="false" />
-                <element signature="e#109636#109637#0" expanded="false" />
-                <element signature="e#109664#109665#0" expanded="false" />
-                <element signature="docComment;method#getControllingPassenger#0;class#Entity#0" expanded="false" />
-                <element signature="e#110107#110108#0" expanded="false" />
-                <element signature="e#110134#110135#0" expanded="false" />
-                <element signature="docComment;method#getRidingEntity#0;class#Entity#0" expanded="false" />
-                <element signature="e#112468#112469#0" expanded="false" />
-                <element signature="e#112508#112509#0" expanded="false" />
-                <element signature="e#112561#112562#0" expanded="false" />
-                <element signature="e#112607#112608#0" expanded="false" />
-                <element signature="e#112658#112659#0" expanded="false" />
-                <element signature="e#112702#112703#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlockArmoryTileEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockArmoryTileEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="34" column="67" selection-start-line="33" selection-start-column="20" selection-end-line="34" selection-end-column="67" />
+            <state relative-caret-position="153">
+              <caret line="9" column="96" selection-start-line="9" selection-start-column="96" selection-end-line="9" selection-end-column="96" />
               <folding />
             </state>
           </provider>
@@ -1550,8 +907,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/crafting/blacksmiths/component/StandardAnvilRecipeComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/util/armor/ArmorNBTHelper.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityBlackSmithsAnvil.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/BakedMultiLayeredArmorItemModel.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/HeatableItemRegistry.java" />
@@ -1601,6 +956,8 @@
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockArmoryTileEntity.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockBlackSmithsAnvil.java" />
         <option value="$PROJECT_DIR$/build.properties" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/sample-html.tpl" />
       </list>
     </option>
   </component>
@@ -1617,6 +974,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
@@ -1670,8 +1028,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1691,34 +1049,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Armory" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="run" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1748,7 +1078,7 @@
       <recent name="D:\Development\Minecraft\Armory\src\api\com\smithsmodding\armory\api\fluid" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Minecraft Client">
+  <component name="RunManager" selected="Gradle.Armory [build]">
     <configuration default="false" name="Armory [genIntellijRuns]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -1764,6 +1094,24 @@
           </list>
         </option>
         <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="false" name="Armory [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
       </ExternalSystemSettings>
       <method />
     </configuration>
@@ -2211,15 +1559,17 @@
       </ExternalSystemSettings>
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Minecraft Client" />
       <item index="1" class="java.lang.String" itemvalue="Application.Minecraft Server" />
       <item index="2" class="java.lang.String" itemvalue="Gradle.Armory [setupDecompWorkspace]" />
       <item index="3" class="java.lang.String" itemvalue="Gradle.Armory [genIntellijRuns]" />
+      <item index="4" class="java.lang.String" itemvalue="Gradle.Armory [build]" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Gradle.Armory [genIntellijRuns]" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Gradle.Armory [build]" />
+        <item index="1" class="java.lang.String" itemvalue="Gradle.Armory [genIntellijRuns]" />
       </list>
     </recent_temporary>
   </component>
@@ -2286,7 +1636,9 @@
       <workItem from="1476993554356" duration="8000" />
       <workItem from="1477218974917" duration="6316000" />
       <workItem from="1477643216401" duration="608000" />
-      <workItem from="1478122126212" duration="1825000" />
+      <workItem from="1478122126212" duration="2273000" />
+      <workItem from="1478201718847" duration="530000" />
+      <workItem from="1478202262862" duration="622000" />
     </task>
     <task id="LOCAL-00002" summary="Initial work on fluid rendering.">
       <created>1470483299948</created>
@@ -2323,19 +1675,26 @@
       <option name="project" value="LOCAL" />
       <updated>1474271154884</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Updating  to a new version of SmithsCore&#10;Fixes a bunch of blocks, including a bunch of bugs with the Anvil.&#10;&#10;Closes:&#10;  * SmithsGaming/SmithsCore#12&#10;  * SmithsGaming/Armory#38&#10;  * SmithsGaming/Armory#42">
+      <created>1478124042875</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1478124042875</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152720000" />
+    <option name="totallyTimeSpent" value="154320000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.317757" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.317757" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917964" sideWeight="0.5021322" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2400,7 +1759,8 @@
     <MESSAGE value="Working on conduits, fluids and other things.&#10;&#10;Fixing bugs with non fired Forges. Closes #36" />
     <MESSAGE value="Fixing fluids not checking for Null stacks and tags. Now returns default if a undefined metal is found.&#10;&#10;Fixes #37" />
     <MESSAGE value="Updating  to a new version of SmithsCore&#10;Fixes a bunch of blocks, including a bunch of bugs with the Anvil.&#10;&#10;Closes:&#10;  * SmithsGaming/SmithsCore#12&#10;  * SmithsGaming/Armory#38&#10;  * SmithsGaming/Armory#42" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating  to a new version of SmithsCore&#10;Fixes a bunch of blocks, including a bunch of bugs with the Anvil.&#10;&#10;Closes:&#10;  * SmithsGaming/SmithsCore#12&#10;  * SmithsGaming/Armory#38&#10;  * SmithsGaming/Armory#42" />
+    <MESSAGE value="Updated the build system to create better changelogs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the build system to create better changelogs." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -2438,27 +1798,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/ArmorTab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="24" column="49" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/creativetabs/HeatedItemTab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/ArmorRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.2.2103-PROJECT(Armory)-sources.jar!/net/minecraftforge/fml/common/FMLModContainer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="568">
@@ -2477,7 +1816,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2660,7 +1998,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="434">
           <caret line="1175" column="96" selection-start-line="1175" selection-start-column="96" selection-end-line="1175" selection-end-column="96" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2689,7 +2026,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3094">
           <caret line="236" column="22" selection-start-line="236" selection-start-column="22" selection-end-line="236" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2697,7 +2033,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2705,279 +2040,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39066">
           <caret line="2569" column="0" selection-start-line="2569" selection-start-column="0" selection-end-line="2569" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;field#MAX_ENTITY_RADIUS#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#scheduledUpdatesAreImmediate#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#skylightSubtracted#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#updateLCG#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#DIST_HASH_MAGIC#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#lastLightningBolt#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#rand#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#provider#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#chunkProvider#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#worldInfo#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#findingSpawnPoint#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#isRemote#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#spawnHostileMobs#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#spawnPeacefulMobs#0;class#World#0" expanded="false" />
-            <element signature="docComment;field#lightUpdateBlockList#0;class#World#0" expanded="false" />
-            <element signature="e#8008#8009#0" expanded="false" />
-            <element signature="e#8035#8036#0" expanded="false" />
-            <element signature="e#8100#8101#0" expanded="false" />
-            <element signature="e#8159#8160#0" expanded="false" />
-            <element signature="e#9294#9295#0" expanded="false" />
-            <element signature="e#9349#9350#0" expanded="false" />
-            <element signature="docComment;method#createChunkProvider#0;class#World#0" expanded="false" />
-            <element signature="e#9601#9602#0" expanded="false" />
-            <element signature="e#9658#9659#0" expanded="false" />
-            <element signature="e#9727#9728#0" expanded="false" />
-            <element signature="e#9754#9755#0" expanded="false" />
-            <element signature="docComment;method#setInitialSpawnLocation#0;class#World#0" expanded="false" />
-            <element signature="e#9950#9951#0" expanded="false" />
-            <element signature="e#10008#10009#0" expanded="false" />
-            <element signature="docComment;method#isValid#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#isAirBlock#0;class#World#0" expanded="false" />
-            <element signature="e#11195#11196#0" expanded="false" />
-            <element signature="e#11247#11248#0" expanded="false" />
-            <element signature="e#11476#11477#0" expanded="false" />
-            <element signature="e#11538#11539#0" expanded="false" />
-            <element signature="e#11889#11890#0" expanded="false" />
-            <element signature="e#11945#11946#0" expanded="false" />
-            <element signature="e#12221#12222#0" expanded="false" />
-            <element signature="e#12272#12273#0" expanded="false" />
-            <element signature="docComment;method#getChunkFromChunkCoords#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#setBlockState#0;class#World#0" expanded="false" />
-            <element signature="e#16762#16763#0" expanded="false" />
-            <element signature="e#16841#16842#0" expanded="false" />
-            <element signature="docComment;method#destroyBlock#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#setBlockState#1;class#World#0" expanded="false" />
-            <element signature="e#17691#17692#0" expanded="false" />
-            <element signature="e#17747#17748#0" expanded="false" />
-            <element signature="docComment;method#markBlocksDirtyVertical#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#markBlockRangeForRenderUpdate#1;class#World#0" expanded="false" />
-            <element signature="e#22828#22829#0" expanded="false" />
-            <element signature="e#22856#22857#0" expanded="false" />
-            <element signature="e#22906#22907#0" expanded="false" />
-            <element signature="e#22977#22978#0" expanded="false" />
-            <element signature="e#24306#24307#0" expanded="false" />
-            <element signature="e#24353#24354#0" expanded="false" />
-            <element signature="docComment;method#getHeight#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getChunksLowestHorizon#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#isDaytime#0;class#World#0" expanded="false" />
-            <element signature="e#31062#31063#0" expanded="false" />
-            <element signature="e#31110#31111#0" expanded="false" />
-            <element signature="docComment;method#rayTraceBlocks#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#rayTraceBlocks#2;class#World#0" expanded="false" />
-            <element signature="docComment;method#playSound#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#addWeatherEffect#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#spawnEntityInWorld#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#removeEntity#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#removeEntityDangerously#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#addEventListener#0;class#World#0" expanded="false" />
-            <element signature="e#44873#44874#0" expanded="false" />
-            <element signature="e#44922#44923#0" expanded="false" />
-            <element signature="docComment;method#removeEventListener#0;class#World#0" expanded="false" />
-            <element signature="e#51111#51112#0" expanded="false" />
-            <element signature="e#51163#51164#0" expanded="false" />
-            <element signature="docComment;method#collidesWithAnyBlock#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#calculateSkylightSubtracted#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getSunBrightnessFactor#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getSunBrightness#0;class#World#0" expanded="false" />
-            <element signature="e#54711#54712#0" expanded="false" />
-            <element signature="e#54776#54777#0" expanded="false" />
-            <element signature="docComment;method#getSkyColor#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getCelestialAngle#0;class#World#0" expanded="false" />
-            <element signature="e#57827#57828#0" expanded="false" />
-            <element signature="e#57907#57908#0" expanded="false" />
-            <element signature="docComment;method#getCurrentMoonPhaseFactor#0;class#World#0" expanded="false" />
-            <element signature="e#58078#58079#0" expanded="false" />
-            <element signature="e#58137#58138#0" expanded="false" />
-            <element signature="docComment;method#getCelestialAngleRadians#0;class#World#0" expanded="false" />
-            <element signature="e#58621#58622#0" expanded="false" />
-            <element signature="e#58685#58686#0" expanded="false" />
-            <element signature="docComment;method#getFogColor#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getTopSolidOrLiquidBlock#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getStarBrightness#0;class#World#0" expanded="false" />
-            <element signature="e#61282#61283#0" expanded="false" />
-            <element signature="e#61350#61351#0" expanded="false" />
-            <element signature="docComment;method#isUpdateScheduled#0;class#World#0" expanded="false" />
-            <element signature="e#61832#61833#0" expanded="false" />
-            <element signature="e#61859#61860#0" expanded="false" />
-            <element signature="docComment;method#updateEntities#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#updateEntity#0;class#World#0" expanded="false" />
-            <element signature="e#72190#72191#0" expanded="false" />
-            <element signature="e#72251#72252#0" expanded="false" />
-            <element signature="docComment;method#updateEntityWithOptionalForce#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#checkNoEntityCollision#0;class#World#0" expanded="false" />
-            <element signature="e#76258#76259#0" expanded="false" />
-            <element signature="e#76326#76327#0" expanded="false" />
-            <element signature="docComment;method#checkNoEntityCollision#1;class#World#0" expanded="false" />
-            <element signature="docComment;method#checkBlockCollision#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#containsAnyLiquid#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#handleMaterialAcceleration#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#isMaterialInBB#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#isAABBInMaterial#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#createExplosion#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#newExplosion#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getBlockDensity#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#extinguishFire#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getDebugLoadedEntities#0;class#World#0" expanded="false" />
-            <element signature="e#90024#90025#0" expanded="false" />
-            <element signature="e#90085#90086#0" expanded="false" />
-            <element signature="docComment;method#getProviderName#0;class#World#0" expanded="false" />
-            <element signature="e#90264#90265#0" expanded="false" />
-            <element signature="e#90318#90319#0" expanded="false" />
-            <element signature="docComment;method#markTileEntityForRemoval#0;class#World#0" expanded="false" />
-            <element signature="e#94153#94154#0" expanded="false" />
-            <element signature="e#94215#94216#0" expanded="false" />
-            <element signature="docComment;method#isBlockNormalCube#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#calculateInitialSkylight#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#setAllowedSpawnTypes#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#tick#0;class#World#0" expanded="false" />
-            <element signature="e#95896#95897#0" expanded="false" />
-            <element signature="e#95932#95933#0" expanded="false" />
-            <element signature="docComment;method#calculateInitialWeather#0;class#World#0" expanded="false" />
-            <element signature="e#96083#96084#0" expanded="false" />
-            <element signature="e#96138#96139#0" expanded="false" />
-            <element signature="docComment;method#updateWeather#0;class#World#0" expanded="false" />
-            <element signature="e#96515#96516#0" expanded="false" />
-            <element signature="e#96560#96561#0" expanded="false" />
-            <element signature="e#100171#100172#0" expanded="false" />
-            <element signature="e#100225#100226#0" expanded="false" />
-            <element signature="e#100287#100288#0" expanded="false" />
-            <element signature="e#100340#100341#0" expanded="false" />
-            <element signature="docComment;method#canBlockFreeze#0;class#World#0" expanded="false" />
-            <element signature="e#101762#101763#0" expanded="false" />
-            <element signature="e#101840#101841#0" expanded="false" />
-            <element signature="docComment;method#canSnowAt#0;class#World#0" expanded="false" />
-            <element signature="e#102000#102001#0" expanded="false" />
-            <element signature="e#102063#102064#0" expanded="false" />
-            <element signature="docComment;method#getRawLight#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#tickUpdates#0;class#World#0" expanded="false" />
-            <element signature="e#110918#110919#0" expanded="false" />
-            <element signature="e#110946#110947#0" expanded="false" />
-            <element signature="e#111060#111061#0" expanded="false" />
-            <element signature="e#111087#111088#0" expanded="false" />
-            <element signature="docComment;method#getEntityByID#0;class#World#0" expanded="false" />
-            <element signature="e#115252#115253#0" expanded="false" />
-            <element signature="e#115311#115312#0" expanded="false" />
-            <element signature="e#115391#115392#0" expanded="false" />
-            <element signature="e#115435#115436#0" expanded="false" />
-            <element signature="docComment;method#countEntities#0;class#World#0" expanded="false" />
-            <element signature="e#117361#117362#0" expanded="false" />
-            <element signature="e#117397#117398#0" expanded="false" />
-            <element signature="docComment;method#setSeaLevel#0;class#World#0" expanded="false" />
-            <element signature="e#117565#117566#0" expanded="false" />
-            <element signature="e#117607#117608#0" expanded="false" />
-            <element signature="e#117806#117807#0" expanded="false" />
-            <element signature="e#117860#117861#0" expanded="false" />
-            <element signature="docComment;method#getStrongPower#1;class#World#0" expanded="false" />
-            <element signature="e#119462#119463#0" expanded="false" />
-            <element signature="e#119521#119522#0" expanded="false" />
-            <element signature="docComment;method#isBlockIndirectlyGettingPowered#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getClosestPlayerToEntity#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getPlayerEntityByName#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#sendQuittingDisconnectingPacket#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#checkSessionLock#0;class#World#0" expanded="false" />
-            <element signature="e#126670#126671#0" expanded="false" />
-            <element signature="e#126729#126730#0" expanded="false" />
-            <element signature="docComment;method#getSeed#0;class#World#0" expanded="false" />
-            <element signature="e#126812#126813#0" expanded="false" />
-            <element signature="e#126858#126859#0" expanded="false" />
-            <element signature="e#126901#126902#0" expanded="false" />
-            <element signature="e#126958#126959#0" expanded="false" />
-            <element signature="e#126996#126997#0" expanded="false" />
-            <element signature="e#127047#127048#0" expanded="false" />
-            <element signature="docComment;method#setWorldTime#0;class#World#0" expanded="false" />
-            <element signature="e#127138#127139#0" expanded="false" />
-            <element signature="e#127186#127187#0" expanded="false" />
-            <element signature="docComment;method#getSpawnPoint#0;class#World#0" expanded="false" />
-            <element signature="e#127635#127636#0" expanded="false" />
-            <element signature="e#127683#127684#0" expanded="false" />
-            <element signature="docComment;method#joinEntityInSurroundings#0;class#World#0" expanded="false" />
-            <element signature="e#128682#128683#0" expanded="false" />
-            <element signature="e#128709#128710#0" expanded="false" />
-            <element signature="docComment;method#setEntityState#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getChunkProvider#0;class#World#0" expanded="false" />
-            <element signature="e#128984#128985#0" expanded="false" />
-            <element signature="e#129025#129026#0" expanded="false" />
-            <element signature="docComment;method#getSaveHandler#0;class#World#0" expanded="false" />
-            <element signature="e#129325#129326#0" expanded="false" />
-            <element signature="e#129364#129365#0" expanded="false" />
-            <element signature="docComment;method#getWorldInfo#0;class#World#0" expanded="false" />
-            <element signature="e#129467#129468#0" expanded="false" />
-            <element signature="e#129504#129505#0" expanded="false" />
-            <element signature="docComment;method#getGameRules#0;class#World#0" expanded="false" />
-            <element signature="e#129599#129600#0" expanded="false" />
-            <element signature="e#129659#129660#0" expanded="false" />
-            <element signature="docComment;method#updateAllPlayersSleepingFlag#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#setThunderStrength#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getRainStrength#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#setRainStrength#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#isThundering#0;class#World#0" expanded="false" />
-            <element signature="e#130869#130870#0" expanded="false" />
-            <element signature="e#130936#130937#0" expanded="false" />
-            <element signature="docComment;method#isRaining#0;class#World#0" expanded="false" />
-            <element signature="e#131059#131060#0" expanded="false" />
-            <element signature="e#131123#131124#0" expanded="false" />
-            <element signature="docComment;method#isRainingAt#0;class#World#0" expanded="false" />
-            <element signature="e#131869#131870#0" expanded="false" />
-            <element signature="e#131930#131931#0" expanded="false" />
-            <element signature="e#131989#131990#0" expanded="false" />
-            <element signature="e#132027#132028#0" expanded="false" />
-            <element signature="docComment;method#setItemData#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#loadItemData#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getUniqueDataId#0;class#World#0" expanded="false" />
-            <element signature="e#132910#132911#0" expanded="false" />
-            <element signature="e#132969#132970#0" expanded="false" />
-            <element signature="e#133290#133291#0" expanded="false" />
-            <element signature="e#133357#133358#0" expanded="false" />
-            <element signature="docComment;method#getHeight#1;class#World#0" expanded="false" />
-            <element signature="e#134453#134454#0" expanded="false" />
-            <element signature="e#134501#134502#0" expanded="false" />
-            <element signature="docComment;method#getActualHeight#0;class#World#0" expanded="false" />
-            <element signature="e#134594#134595#0" expanded="false" />
-            <element signature="e#134648#134649#0" expanded="false" />
-            <element signature="docComment;method#setRandomSeed#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#addWorldInfoToCrashReport#0;class#World#0" expanded="false" />
-            <element signature="e#135561#135562#0" expanded="false" />
-            <element signature="e#135673#135674#0" expanded="false" />
-            <element signature="e#135828#135829#0" expanded="false" />
-            <element signature="e#135904#135905#0" expanded="false" />
-            <element signature="docComment;method#getHorizon#0;class#World#0" expanded="false" />
-            <element signature="e#136351#136352#0" expanded="false" />
-            <element signature="e#136395#136396#0" expanded="false" />
-            <element signature="docComment;method#getCurrentDate#0;class#World#0" expanded="false" />
-            <element signature="e#137301#137302#0" expanded="false" />
-            <element signature="e#137344#137345#0" expanded="false" />
-            <element signature="e#138686#138687#0" expanded="false" />
-            <element signature="e#138744#138745#0" expanded="false" />
-            <element signature="e#138790#138791#0" expanded="false" />
-            <element signature="e#138836#138837#0" expanded="false" />
-            <element signature="e#138908#138909#0" expanded="false" />
-            <element signature="e#138971#138972#0" expanded="false" />
-            <element signature="e#139043#139044#0" expanded="false" />
-            <element signature="e#139088#139089#0" expanded="false" />
-            <element signature="e#139157#139158#0" expanded="false" />
-            <element signature="e#139217#139218#0" expanded="false" />
-            <element signature="e#139276#139277#0" expanded="false" />
-            <element signature="e#139324#139325#0" expanded="false" />
-            <element signature="e#139371#139372#0" expanded="false" />
-            <element signature="e#139410#139411#0" expanded="false" />
-            <element signature="docComment;method#isSpawnChunk#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#isSideSolid#0;class#World#0" expanded="false" />
-            <element signature="e#140193#140194#0" expanded="false" />
-            <element signature="e#140244#140245#0" expanded="false" />
-            <element signature="docComment;method#isSideSolid#1;class#World#0" expanded="false" />
-            <element signature="docComment;method#getPersistentChunks#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#getBlockLightOpacity#0;class#World#0" expanded="false" />
-            <element signature="docComment;method#countEntities#1;class#World#0" expanded="false" />
-            <element signature="e#143778#143779#0" expanded="false" />
-            <element signature="e#143816#143817#0" expanded="false" />
-            <element signature="e#144053#144054#0" expanded="false" />
-            <element signature="e#144090#144091#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2985,28 +2047,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1904">
           <caret line="294" column="0" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19830#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkArgument#0;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkArgument#1;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkArgument#2;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkState#0;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkState#1;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkState#2;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkNotNull#0;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkNotNull#1;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkNotNull#2;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkElementIndex#0;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkElementIndex#1;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkPositionIndex#0;class#Preconditions#0" expanded="false" />
-            <element signature="e#15351#15352#0" expanded="false" />
-            <element signature="e#15408#15409#0" expanded="false" />
-            <element signature="docComment;method#checkPositionIndex#1;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#checkPositionIndexes#0;class#Preconditions#0" expanded="false" />
-            <element signature="docComment;method#format#0;class#Preconditions#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3014,17 +2054,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#3001#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;class#RegularImmutableList#0" expanded="false" />
-            <element signature="e#1365#1366#0" expanded="false" />
-            <element signature="e#1403#1404#0" expanded="false" />
-            <element signature="e#1438#1439#0" expanded="false" />
-            <element signature="e#1459#1460#0" expanded="false" />
-            <element signature="e#1498#1499#0" expanded="false" />
-            <element signature="e#1535#1536#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3032,74 +2061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1649">
           <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2280#2281#0" expanded="false" />
-            <element signature="e#2327#2328#0" expanded="false" />
-            <element signature="e#5232#5233#0" expanded="false" />
-            <element signature="e#5271#5272#0" expanded="false" />
-            <element signature="e#5764#5765#0" expanded="false" />
-            <element signature="e#5797#5798#0" expanded="false" />
-            <element signature="e#5859#5860#0" expanded="false" />
-            <element signature="e#5906#5907#0" expanded="false" />
-            <element signature="e#6220#6221#0" expanded="false" />
-            <element signature="e#6287#6288#0" expanded="false" />
-            <element signature="e#9188#9189#0" expanded="false" />
-            <element signature="e#9242#9243#0" expanded="false" />
-            <element signature="e#9293#9294#0" expanded="false" />
-            <element signature="e#9342#9343#0" expanded="false" />
-            <element signature="e#9411#9412#0" expanded="false" />
-            <element signature="e#9469#9470#0" expanded="false" />
-            <element signature="e#9518#9519#0" expanded="false" />
-            <element signature="e#9583#9584#0" expanded="false" />
-            <element signature="e#11239#11240#0" expanded="false" />
-            <element signature="e#11306#11307#0" expanded="false" />
-            <element signature="e#11362#11363#0" expanded="false" />
-            <element signature="e#11429#11430#0" expanded="false" />
-            <element signature="e#11505#11506#0" expanded="false" />
-            <element signature="e#11587#11588#0" expanded="false" />
-            <element signature="e#11643#11644#0" expanded="false" />
-            <element signature="e#11714#11715#0" expanded="false" />
-            <element signature="e#11768#11769#0" expanded="false" />
-            <element signature="e#11837#11838#0" expanded="false" />
-            <element signature="e#11930#11931#0" expanded="false" />
-            <element signature="e#11999#12000#0" expanded="false" />
-            <element signature="e#12065#12066#0" expanded="false" />
-            <element signature="e#12145#12146#0" expanded="false" />
-            <element signature="e#12202#12203#0" expanded="false" />
-            <element signature="e#12269#12270#0" expanded="false" />
-            <element signature="docComment;method#withRotation#0;class#StateImplementation#0;class#BlockStateContainer#0" expanded="false" />
-            <element signature="e#12470#12471#0" expanded="false" />
-            <element signature="e#12543#12544#0" expanded="false" />
-            <element signature="docComment;method#withMirror#0;class#StateImplementation#0;class#BlockStateContainer#0" expanded="false" />
-            <element signature="e#12747#12748#0" expanded="false" />
-            <element signature="e#12823#12824#0" expanded="false" />
-            <element signature="e#12878#12879#0" expanded="false" />
-            <element signature="e#12944#12945#0" expanded="false" />
-            <element signature="e#13014#13015#0" expanded="false" />
-            <element signature="e#13083#13084#0" expanded="false" />
-            <element signature="e#13414#13415#0" expanded="false" />
-            <element signature="e#13499#13500#0" expanded="false" />
-            <element signature="e#13561#13562#0" expanded="false" />
-            <element signature="e#13634#13635#0" expanded="false" />
-            <element signature="e#13691#13692#0" expanded="false" />
-            <element signature="e#13759#13760#0" expanded="false" />
-            <element signature="e#13819#13820#0" expanded="false" />
-            <element signature="e#13890#13891#0" expanded="false" />
-            <element signature="e#14161#14162#0" expanded="false" />
-            <element signature="e#14243#14244#0" expanded="false" />
-            <element signature="e#15107#15108#0" expanded="false" />
-            <element signature="e#15178#15179#0" expanded="false" />
-            <element signature="e#15910#15911#0" expanded="false" />
-            <element signature="e#15978#15979#0" expanded="false" />
-            <element signature="e#16965#16966#0" expanded="false" />
-            <element signature="e#17034#17035#0" expanded="false" />
-            <element signature="docComment;method#onBlockEventReceived#0;class#StateImplementation#0;class#BlockStateContainer#0" expanded="false" />
-            <element signature="docComment;method#neighborChanged#0;class#StateImplementation#0;class#BlockStateContainer#0" expanded="false" />
-            <element signature="docComment;class#Builder#0;class#BlockStateContainer#0" expanded="false" />
-            <element signature="e#20177#20178#0" expanded="false" />
-            <element signature="e#20219#20220#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3107,7 +2068,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="34" column="67" selection-start-line="33" selection-start-column="20" selection-end-line="34" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3115,395 +2075,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2261">
           <caret line="218" column="11" selection-start-line="218" selection-start-column="11" selection-end-line="218" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;field#preventEntitySpawning#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#worldObj#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#posX#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#posY#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#posZ#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#motionX#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#motionY#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#motionZ#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#rotationYaw#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#rotationPitch#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#boundingBox#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#isCollidedHorizontally#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#isCollidedVertically#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#isCollided#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#isDead#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#width#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#height#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#prevDistanceWalkedModified#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#distanceWalkedModified#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#nextStepDistance#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#lastTickPosX#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#lastTickPosY#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#lastTickPosZ#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#stepHeight#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#noClip#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#entityCollisionReduction#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#ticksExisted#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#fireResistance#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#inWater#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#hurtResistantTime#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#addedToChunk#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#ignoreFrustumCheck#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#inPortal#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#dimension#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#lastPortalPos#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#lastPortalVec#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#teleportDirection#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#cmdResultStats#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;field#customEntityData#0;class#Entity#0" expanded="false" />
-            <element signature="e#11962#11963#0" expanded="false" />
-            <element signature="e#11998#11999#0" expanded="false" />
-            <element signature="e#12041#12042#0" expanded="false" />
-            <element signature="e#12075#12076#0" expanded="false" />
-            <element signature="e#12115#12116#0" expanded="false" />
-            <element signature="e#12147#12148#0" expanded="false" />
-            <element signature="e#12420#12421#0" expanded="false" />
-            <element signature="e#12464#12465#0" expanded="false" />
-            <element signature="docComment;method#onKillCommand#0;class#Entity#0" expanded="false" />
-            <element signature="e#12555#12556#0" expanded="false" />
-            <element signature="e#12585#12586#0" expanded="false" />
-            <element signature="e#12681#12682#0" expanded="false" />
-            <element signature="e#12720#12721#0" expanded="false" />
-            <element signature="e#12916#12917#0" expanded="false" />
-            <element signature="e#12952#12953#0" expanded="false" />
-            <element signature="docComment;method#preparePlayerToSpawn#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setDead#0;class#Entity#0" expanded="false" />
-            <element signature="e#13862#13863#0" expanded="false" />
-            <element signature="e#13896#13897#0" expanded="false" />
-            <element signature="docComment;method#setDropItemsWhenDead#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setSize#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setRotation#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setPosition#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setAngles#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#onUpdate#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#onEntityUpdate#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#decrementTimeUntilPortal#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getMaxInPortalTime#0;class#Entity#0" expanded="false" />
-            <element signature="e#20391#20392#0" expanded="false" />
-            <element signature="e#20415#20416#0" expanded="false" />
-            <element signature="docComment;method#setOnFireFromLava#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setFire#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#extinguish#0;class#Entity#0" expanded="false" />
-            <element signature="e#21188#21189#0" expanded="false" />
-            <element signature="e#21217#21218#0" expanded="false" />
-            <element signature="docComment;method#kill#0;class#Entity#0" expanded="false" />
-            <element signature="e#21341#21342#0" expanded="false" />
-            <element signature="e#21371#21372#0" expanded="false" />
-            <element signature="docComment;method#isOffsetPositionInLiquid#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#isLiquidPresentInAABB#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#moveEntity#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#resetPositionToBB#0;class#Entity#0" expanded="false" />
-            <element signature="e#35202#35203#0" expanded="false" />
-            <element signature="e#35256#35257#0" expanded="false" />
-            <element signature="e#35305#35306#0" expanded="false" />
-            <element signature="e#35361#35362#0" expanded="false" />
-            <element signature="docComment;method#isSilent#0;class#Entity#0" expanded="false" />
-            <element signature="e#38723#38724#0" expanded="false" />
-            <element signature="e#38800#38801#0" expanded="false" />
-            <element signature="docComment;method#setSilent#0;class#Entity#0" expanded="false" />
-            <element signature="e#38924#38925#0" expanded="false" />
-            <element signature="e#38995#38996#0" expanded="false" />
-            <element signature="e#39038#39039#0" expanded="false" />
-            <element signature="e#39124#39125#0" expanded="false" />
-            <element signature="docComment;method#canTriggerWalking#0;class#Entity#0" expanded="false" />
-            <element signature="e#39491#39492#0" expanded="false" />
-            <element signature="e#39518#39519#0" expanded="false" />
-            <element signature="docComment;method#getCollisionBoundingBox#0;class#Entity#0" expanded="false" />
-            <element signature="e#40139#40140#0" expanded="false" />
-            <element signature="e#40166#40167#0" expanded="false" />
-            <element signature="docComment;method#dealFireDamage#0;class#Entity#0" expanded="false" />
-            <element signature="e#40525#40526#0" expanded="false" />
-            <element signature="e#40567#40568#0" expanded="false" />
-            <element signature="docComment;method#isWet#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#isInWater#0;class#Entity#0" expanded="false" />
-            <element signature="e#41875#41876#0" expanded="false" />
-            <element signature="e#41910#41911#0" expanded="false" />
-            <element signature="docComment;method#handleWaterMovement#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#resetHeight#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#spawnRunningParticles#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#isInsideOfMaterial#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#moveRelative#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getBrightness#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setWorld#0;class#Entity#0" expanded="false" />
-            <element signature="e#48549#48550#0" expanded="false" />
-            <element signature="e#48588#48589#0" expanded="false" />
-            <element signature="docComment;method#setPositionAndRotation#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setLocationAndAngles#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getDistanceToEntity#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getDistanceSq#0;class#Entity#0" expanded="false" />
-            <element signature="e#51139#51140#0" expanded="false" />
-            <element signature="e#51209#51210#0" expanded="false" />
-            <element signature="docComment;method#getDistance#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getDistanceSqToEntity#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#onCollideWithPlayer#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#applyEntityCollision#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#addVelocity#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setBeenAttacked#0;class#Entity#0" expanded="false" />
-            <element signature="e#53975#53976#0" expanded="false" />
-            <element signature="e#54018#54019#0" expanded="false" />
-            <element signature="docComment;method#attackEntityFrom#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getLook#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getVectorForRotation#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#canBeCollidedWith#0;class#Entity#0" expanded="false" />
-            <element signature="e#56648#56649#0" expanded="false" />
-            <element signature="e#56676#56677#0" expanded="false" />
-            <element signature="docComment;method#canBePushed#0;class#Entity#0" expanded="false" />
-            <element signature="e#56827#56828#0" expanded="false" />
-            <element signature="e#56855#56856#0" expanded="false" />
-            <element signature="docComment;method#addToPlayerScore#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#isInRangeToRenderDist#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#writeToNBTAtomically#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#writeToNBTOptional#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#readFromNBT#0;class#Entity#0" expanded="false" />
-            <element signature="e#66680#66681#0" expanded="false" />
-            <element signature="e#66707#66708#0" expanded="false" />
-            <element signature="docComment;method#getEntityString#0;class#Entity#0" expanded="false" />
-            <element signature="e#66837#66838#0" expanded="false" />
-            <element signature="e#66892#66893#0" expanded="false" />
-            <element signature="docComment;method#readEntityFromNBT#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#writeEntityToNBT#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#newDoubleNBTList#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#newFloatNBTList#0;class#Entity#0" expanded="false" />
-            <element signature="e#67984#67985#0" expanded="false" />
-            <element signature="e#68050#68051#0" expanded="false" />
-            <element signature="docComment;method#entityDropItem#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#isEntityAlive#0;class#Entity#0" expanded="false" />
-            <element signature="e#68977#68978#0" expanded="false" />
-            <element signature="e#69012#69013#0" expanded="false" />
-            <element signature="docComment;method#isEntityInsideOpaqueBlock#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getCollisionBox#0;class#Entity#0" expanded="false" />
-            <element signature="e#70833#70834#0" expanded="false" />
-            <element signature="e#70860#70861#0" expanded="false" />
-            <element signature="docComment;method#updateRidden#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#applyOrientationToEntity#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getYOffset#0;class#Entity#0" expanded="false" />
-            <element signature="e#71973#71974#0" expanded="false" />
-            <element signature="e#72000#72001#0" expanded="false" />
-            <element signature="docComment;method#getMountedYOffset#0;class#Entity#0" expanded="false" />
-            <element signature="e#72148#72149#0" expanded="false" />
-            <element signature="e#72198#72199#0" expanded="false" />
-            <element signature="e#72253#72254#0" expanded="false" />
-            <element signature="e#72309#72310#0" expanded="false" />
-            <element signature="e#72937#72938#0" expanded="false" />
-            <element signature="e#72982#72983#0" expanded="false" />
-            <element signature="e#74535#74536#0" expanded="false" />
-            <element signature="e#74589#74590#0" expanded="false" />
-            <element signature="docComment;method#setPositionAndRotationDirect#0;class#Entity#0" expanded="false" />
-            <element signature="e#74986#74987#0" expanded="false" />
-            <element signature="e#75013#75014#0" expanded="false" />
-            <element signature="docComment;method#getLookVec#0;class#Entity#0" expanded="false" />
-            <element signature="e#75135#75136#0" expanded="false" />
-            <element signature="e#75162#75163#0" expanded="false" />
-            <element signature="e#75397#75398#0" expanded="false" />
-            <element signature="e#75462#75463#0" expanded="false" />
-            <element signature="docComment;method#setPortal#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getPortalCooldown#0;class#Entity#0" expanded="false" />
-            <element signature="e#77248#77249#0" expanded="false" />
-            <element signature="e#77274#77275#0" expanded="false" />
-            <element signature="docComment;method#setVelocity#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#performHurtAnimation#0;class#Entity#0" expanded="false" />
-            <element signature="e#77848#77849#0" expanded="false" />
-            <element signature="e#77894#77895#0" expanded="false" />
-            <element signature="e#77956#77957#0" expanded="false" />
-            <element signature="e#78002#78003#0" expanded="false" />
-            <element signature="docComment;method#isBurning#0;class#Entity#0" expanded="false" />
-            <element signature="e#78621#78622#0" expanded="false" />
-            <element signature="e#78674#78675#0" expanded="false" />
-            <element signature="docComment;method#isBeingRidden#0;class#Entity#0" expanded="false" />
-            <element signature="e#78779#78780#0" expanded="false" />
-            <element signature="e#78833#78834#0" expanded="false" />
-            <element signature="docComment;method#isSneaking#0;class#Entity#0" expanded="false" />
-            <element signature="e#78931#78932#0" expanded="false" />
-            <element signature="e#78969#78970#0" expanded="false" />
-            <element signature="docComment;method#setSneaking#0;class#Entity#0" expanded="false" />
-            <element signature="e#79069#79070#0" expanded="false" />
-            <element signature="e#79110#79111#0" expanded="false" />
-            <element signature="docComment;method#isSprinting#0;class#Entity#0" expanded="false" />
-            <element signature="e#79205#79206#0" expanded="false" />
-            <element signature="e#79243#79244#0" expanded="false" />
-            <element signature="docComment;method#setSprinting#0;class#Entity#0" expanded="false" />
-            <element signature="e#79354#79355#0" expanded="false" />
-            <element signature="e#79396#79397#0" expanded="false" />
-            <element signature="e#79434#79435#0" expanded="false" />
-            <element signature="e#79514#79515#0" expanded="false" />
-            <element signature="e#79748#79749#0" expanded="false" />
-            <element signature="e#79786#79787#0" expanded="false" />
-            <element signature="docComment;method#isInvisibleToPlayer#0;class#Entity#0" expanded="false" />
-            <element signature="e#80531#80532#0" expanded="false" />
-            <element signature="e#80630#80631#0" expanded="false" />
-            <element signature="docComment;method#isOnSameTeam#0;class#Entity#0" expanded="false" />
-            <element signature="e#80778#80779#0" expanded="false" />
-            <element signature="e#80844#80845#0" expanded="false" />
-            <element signature="docComment;method#isOnScoreboardTeam#0;class#Entity#0" expanded="false" />
-            <element signature="e#81130#81131#0" expanded="false" />
-            <element signature="e#81172#81173#0" expanded="false" />
-            <element signature="docComment;method#getFlag#0;class#Entity#0" expanded="false" />
-            <element signature="e#81398#81399#0" expanded="false" />
-            <element signature="e#81487#81488#0" expanded="false" />
-            <element signature="docComment;method#setFlag#0;class#Entity#0" expanded="false" />
-            <element signature="e#81978#81979#0" expanded="false" />
-            <element signature="e#82048#82049#0" expanded="false" />
-            <element signature="e#82087#82088#0" expanded="false" />
-            <element signature="e#82150#82151#0" expanded="false" />
-            <element signature="docComment;method#onStruckByLightning#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#onKillEntity#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setInWeb#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getName#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getParts#0;class#Entity#0" expanded="false" />
-            <element signature="e#85478#85479#0" expanded="false" />
-            <element signature="e#85505#85506#0" expanded="false" />
-            <element signature="docComment;method#isEntityEqual#0;class#Entity#0" expanded="false" />
-            <element signature="e#85641#85642#0" expanded="false" />
-            <element signature="e#85680#85681#0" expanded="false" />
-            <element signature="e#85725#85726#0" expanded="false" />
-            <element signature="e#85752#85753#0" expanded="false" />
-            <element signature="docComment;method#setRotationYawHead#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setRenderYawOffset#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#canBeAttackedWithItem#0;class#Entity#0" expanded="false" />
-            <element signature="e#86133#86134#0" expanded="false" />
-            <element signature="e#86160#86161#0" expanded="false" />
-            <element signature="docComment;method#hitByEntity#0;class#Entity#0" expanded="false" />
-            <element signature="e#86327#86328#0" expanded="false" />
-            <element signature="e#86355#86356#0" expanded="false" />
-            <element signature="docComment;method#isEntityInvulnerable#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setEntityInvulnerable#0;class#Entity#0" expanded="false" />
-            <element signature="e#87138#87139#0" expanded="false" />
-            <element signature="e#87188#87189#0" expanded="false" />
-            <element signature="docComment;method#copyLocationAndAnglesFrom#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#copyDataFromOld#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#isNonBoss#0;class#Entity#0" expanded="false" />
-            <element signature="e#92107#92108#0" expanded="false" />
-            <element signature="e#92134#92135#0" expanded="false" />
-            <element signature="docComment;method#getExplosionResistance#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getMaxFallHeight#0;class#Entity#0" expanded="false" />
-            <element signature="e#92750#92751#0" expanded="false" />
-            <element signature="e#92774#92775#0" expanded="false" />
-            <element signature="e#92817#92818#0" expanded="false" />
-            <element signature="e#92858#92859#0" expanded="false" />
-            <element signature="e#92910#92911#0" expanded="false" />
-            <element signature="e#92955#92956#0" expanded="false" />
-            <element signature="docComment;method#doesEntityNotTriggerPressurePlate#0;class#Entity#0" expanded="false" />
-            <element signature="e#93118#93119#0" expanded="false" />
-            <element signature="e#93146#93147#0" expanded="false" />
-            <element signature="docComment;method#canRenderOnFire#0;class#Entity#0" expanded="false" />
-            <element signature="e#95231#95232#0" expanded="false" />
-            <element signature="e#95270#95271#0" expanded="false" />
-            <element signature="e#95307#95308#0" expanded="false" />
-            <element signature="e#95349#95350#0" expanded="false" />
-            <element signature="e#95400#95401#0" expanded="false" />
-            <element signature="e#95448#95449#0" expanded="false" />
-            <element signature="e#95492#95493#0" expanded="false" />
-            <element signature="e#95519#95520#0" expanded="false" />
-            <element signature="e#95604#95605#0" expanded="false" />
-            <element signature="e#95647#95648#0" expanded="false" />
-            <element signature="e#95753#95754#0" expanded="false" />
-            <element signature="e#95808#95809#0" expanded="false" />
-            <element signature="docComment;method#getDisplayName#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#setCustomNameTag#0;class#Entity#0" expanded="false" />
-            <element signature="e#96426#96427#0" expanded="false" />
-            <element signature="e#96481#96482#0" expanded="false" />
-            <element signature="e#96525#96526#0" expanded="false" />
-            <element signature="e#96589#96590#0" expanded="false" />
-            <element signature="docComment;method#hasCustomName#0;class#Entity#0" expanded="false" />
-            <element signature="e#96690#96691#0" expanded="false" />
-            <element signature="e#96767#96768#0" expanded="false" />
-            <element signature="docComment;method#setPositionAndUpdate#0;class#Entity#0" expanded="false" />
-            <element signature="e#97593#97594#0" expanded="false" />
-            <element signature="e#97645#97646#0" expanded="false" />
-            <element signature="docComment;method#getHorizontalFacing#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getAdjustedHorizontalFacing#0;class#Entity#0" expanded="false" />
-            <element signature="e#98103#98104#0" expanded="false" />
-            <element signature="e#98152#98153#0" expanded="false" />
-            <element signature="e#98728#98729#0" expanded="false" />
-            <element signature="e#98755#98756#0" expanded="false" />
-            <element signature="e#98810#98811#0" expanded="false" />
-            <element signature="e#98849#98850#0" expanded="false" />
-            <element signature="docComment;method#getRenderBoundingBox#0;class#Entity#0" expanded="false" />
-            <element signature="e#99114#99115#0" expanded="false" />
-            <element signature="e#99164#99165#0" expanded="false" />
-            <element signature="e#99226#99227#0" expanded="false" />
-            <element signature="e#99263#99264#0" expanded="false" />
-            <element signature="e#99302#99303#0" expanded="false" />
-            <element signature="e#99344#99345#0" expanded="false" />
-            <element signature="e#99388#99389#0" expanded="false" />
-            <element signature="e#99431#99432#0" expanded="false" />
-            <element signature="e#99494#99495#0" expanded="false" />
-            <element signature="e#99546#99547#0" expanded="false" />
-            <element signature="e#99637#99638#0" expanded="false" />
-            <element signature="e#99665#99666#0" expanded="false" />
-            <element signature="docComment;method#addChatMessage#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#canCommandSenderUseCommand#0;class#Entity#0" expanded="false" />
-            <element signature="e#100008#100009#0" expanded="false" />
-            <element signature="e#100035#100036#0" expanded="false" />
-            <element signature="docComment;method#getPosition#0;class#Entity#0" expanded="false" />
-            <element signature="e#100243#100244#0" expanded="false" />
-            <element signature="e#100318#100319#0" expanded="false" />
-            <element signature="docComment;method#getPositionVector#0;class#Entity#0" expanded="false" />
-            <element signature="e#100516#100517#0" expanded="false" />
-            <element signature="e#100581#100582#0" expanded="false" />
-            <element signature="docComment;method#getEntityWorld#0;class#Entity#0" expanded="false" />
-            <element signature="e#100777#100778#0" expanded="false" />
-            <element signature="e#100813#100814#0" expanded="false" />
-            <element signature="docComment;method#getCommandSenderEntity#0;class#Entity#0" expanded="false" />
-            <element signature="e#100954#100955#0" expanded="false" />
-            <element signature="e#100981#100982#0" expanded="false" />
-            <element signature="docComment;method#sendCommandFeedback#0;class#Entity#0" expanded="false" />
-            <element signature="e#101135#101136#0" expanded="false" />
-            <element signature="e#101163#101164#0" expanded="false" />
-            <element signature="docComment;method#getServer#0;class#Entity#0" expanded="false" />
-            <element signature="e#101561#101562#0" expanded="false" />
-            <element signature="e#101618#101619#0" expanded="false" />
-            <element signature="e#101673#101674#0" expanded="false" />
-            <element signature="e#101715#101716#0" expanded="false" />
-            <element signature="docComment;method#setCommandStats#0;class#Entity#0" expanded="false" />
-            <element signature="e#101837#101838#0" expanded="false" />
-            <element signature="e#101912#101913#0" expanded="false" />
-            <element signature="docComment;method#applyPlayerInteraction#0;class#Entity#0" expanded="false" />
-            <element signature="e#102213#102214#0" expanded="false" />
-            <element signature="e#102241#102242#0" expanded="false" />
-            <element signature="docComment;method#getEntityData#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#shouldRiderSit#0;class#Entity#0" expanded="false" />
-            <element signature="e#103397#103398#0" expanded="false" />
-            <element signature="e#103424#103425#0" expanded="false" />
-            <element signature="docComment;method#getPickedResult#0;class#Entity#0" expanded="false" />
-            <element signature="e#105582#105583#0" expanded="false" />
-            <element signature="e#105619#105620#0" expanded="false" />
-            <element signature="docComment;method#resetEntityId#0;class#Entity#0" expanded="false" />
-            <element signature="e#105752#105753#0" expanded="false" />
-            <element signature="e#105798#105799#0" expanded="false" />
-            <element signature="e#105853#105854#0" expanded="false" />
-            <element signature="e#105885#105886#0" expanded="false" />
-            <element signature="docComment;method#isCreatureType#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#canRiderInteract#0;class#Entity#0" expanded="false" />
-            <element signature="e#106723#106724#0" expanded="false" />
-            <element signature="e#106751#106752#0" expanded="false" />
-            <element signature="docComment;method#shouldDismountInWater#0;class#Entity#0" expanded="false" />
-            <element signature="e#107039#107040#0" expanded="false" />
-            <element signature="e#107094#107095#0" expanded="false" />
-            <element signature="e#107715#107716#0" expanded="false" />
-            <element signature="e#107752#107753#0" expanded="false" />
-            <element signature="docComment;method#addTrackingPlayer#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#removeTrackingPlayer#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getRotatedYaw#0;class#Entity#0" expanded="false" />
-            <element signature="docComment;method#getMirroredYaw#0;class#Entity#0" expanded="false" />
-            <element signature="e#109636#109637#0" expanded="false" />
-            <element signature="e#109664#109665#0" expanded="false" />
-            <element signature="docComment;method#getControllingPassenger#0;class#Entity#0" expanded="false" />
-            <element signature="e#110107#110108#0" expanded="false" />
-            <element signature="e#110134#110135#0" expanded="false" />
-            <element signature="docComment;method#getRidingEntity#0;class#Entity#0" expanded="false" />
-            <element signature="e#112468#112469#0" expanded="false" />
-            <element signature="e#112508#112509#0" expanded="false" />
-            <element signature="e#112561#112562#0" expanded="false" />
-            <element signature="e#112607#112608#0" expanded="false" />
-            <element signature="e#112658#112659#0" expanded="false" />
-            <element signature="e#112702#112703#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3511,58 +2082,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="66" column="10" selection-start-line="66" selection-start-column="10" selection-end-line="66" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;field#age#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;field#health#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;field#hoverStart#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;field#lifespan#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;method#canTriggerWalking#0;class#EntityItem#0" expanded="false" />
-            <element signature="e#3163#3164#0" expanded="false" />
-            <element signature="e#3191#3192#0" expanded="false" />
-            <element signature="docComment;method#onUpdate#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;method#searchForOtherItemsNearby#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;method#combineItems#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;method#setAgeToCreativeDespawnTime#0;class#EntityItem#0" expanded="false" />
-            <element signature="e#10076#10077#0" expanded="false" />
-            <element signature="e#10107#10108#0" expanded="false" />
-            <element signature="docComment;method#handleWaterMovement#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;method#dealFireDamage#0;class#EntityItem#0" expanded="false" />
-            <element signature="e#10827#10828#0" expanded="false" />
-            <element signature="e#10900#10901#0" expanded="false" />
-            <element signature="docComment;method#attackEntityFrom#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;method#writeEntityToNBT#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;method#readEntityFromNBT#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;method#onCollideWithPlayer#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;method#getName#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;method#canBeAttackedWithItem#0;class#EntityItem#0" expanded="false" />
-            <element signature="e#16664#16665#0" expanded="false" />
-            <element signature="e#16692#16693#0" expanded="false" />
-            <element signature="docComment;method#getEntityItem#0;class#EntityItem#0" expanded="false" />
-            <element signature="docComment;method#setEntityItemStack#0;class#EntityItem#0" expanded="false" />
-            <element signature="e#17778#17779#0" expanded="false" />
-            <element signature="e#17811#17812#0" expanded="false" />
-            <element signature="e#17857#17858#0" expanded="false" />
-            <element signature="e#17891#17892#0" expanded="false" />
-            <element signature="e#17929#17930#0" expanded="false" />
-            <element signature="e#17964#17965#0" expanded="false" />
-            <element signature="e#18014#18015#0" expanded="false" />
-            <element signature="e#18052#18053#0" expanded="false" />
-            <element signature="e#18110#18111#0" expanded="false" />
-            <element signature="e#18141#18142#0" expanded="false" />
-            <element signature="e#18188#18189#0" expanded="false" />
-            <element signature="e#18234#18235#0" expanded="false" />
-            <element signature="e#18276#18277#0" expanded="false" />
-            <element signature="e#18321#18322#0" expanded="false" />
-            <element signature="e#18369#18370#0" expanded="false" />
-            <element signature="e#18418#18419#0" expanded="false" />
-            <element signature="e#18467#18468#0" expanded="false" />
-            <element signature="e#18516#18517#0" expanded="false" />
-            <element signature="e#18557#18558#0" expanded="false" />
-            <element signature="e#18609#18610#0" expanded="false" />
-            <element signature="e#18647#18648#0" expanded="false" />
-            <element signature="e#18679#18680#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3570,33 +2089,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.2.2103-PROJECT(Armory)-sources.jar!/net/minecraft/block/BlockFlowerPot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
+        <state relative-caret-position="5610">
           <caret line="403" column="0" selection-start-line="403" selection-start-column="0" selection-end-line="423" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockBlackSmithsAnvil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
+        <state relative-caret-position="935">
           <caret line="112" column="58" selection-start-line="112" selection-start-column="58" selection-end-line="112" selection-end-column="58" />
-          <folding>
-            <marker date="1478123730766" expanded="false" signature="55:2090" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3604,7 +2110,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3612,7 +2117,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3620,6 +2124,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="67" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/changelog.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample-html.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="96" selection-start-line="9" selection-start-column="96" selection-end-line="9" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/changelog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
