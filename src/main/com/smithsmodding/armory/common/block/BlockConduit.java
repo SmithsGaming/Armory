@@ -18,11 +18,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,7 +59,7 @@ public class BlockConduit extends BlockArmoryTileEntity {
         setCreativeTab(ModCreativeTabs.generalTab);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityConduit(EnumConduitType.byMetadata(meta));
@@ -75,14 +77,14 @@ public class BlockConduit extends BlockArmoryTileEntity {
     }
 
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
         list.add(new ItemStack(this, 1, 1));
         list.add(new ItemStack(this, 1, 2));
         list.add(new ItemStack(this, 1, 3));
     }
 
     @Override
-    public void onBlockPlacedBy(@NotNull World worldIn, @NotNull BlockPos pos, @NotNull IBlockState state, EntityLivingBase placer, @NotNull ItemStack stack) {
+    public void onBlockPlacedBy(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, EntityLivingBase placer, @Nonnull ItemStack stack) {
         if (stack.getMetadata() == 3) {
             worldIn.setBlockState(pos, state.withProperty(TYPE, EnumConduitType.VERTICAL));
         } else if (stack.getMetadata() == 2) {
@@ -92,29 +94,29 @@ public class BlockConduit extends BlockArmoryTileEntity {
         }
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(TYPE, EnumConduitType.byMetadata(meta));
     }
 
     @Override
-    public int getMetaFromState(@NotNull IBlockState state) {
+    public int getMetaFromState(@Nonnull IBlockState state) {
         return state.getValue(TYPE).getMetadata();
     }
 
-    @NotNull
+    @Nonnull
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, NORTH, EAST, SOUTH, WEST, UP, DOWN, TYPE);
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, @NotNull IBlockAccess world, @NotNull BlockPos pos) {
+    public IBlockState getActualState(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
         return handleEnvironmentChange(world, pos, state);
     }
 
-    private IBlockState handleEnvironmentChange(@NotNull IBlockAccess world, @NotNull BlockPos pos, IBlockState state) {
+    private IBlockState handleEnvironmentChange(@Nonnull IBlockAccess world, @Nonnull BlockPos pos, IBlockState state) {
         switch (state.getValue(TYPE)) {
             case LIGHT:
             case NORMAL:
@@ -127,7 +129,7 @@ public class BlockConduit extends BlockArmoryTileEntity {
 
     }
 
-    private IBlockState handleStandardEnvironmentChange(@NotNull IBlockAccess world, @NotNull BlockPos pos, IBlockState state) {
+    private IBlockState handleStandardEnvironmentChange(@Nonnull IBlockAccess world, @Nonnull BlockPos pos, IBlockState state) {
         ArrayList<EnumFacing> connectedSides = new ArrayList<>();
 
         TileEntityConduit conduit = (TileEntityConduit) world.getTileEntity(pos);
@@ -193,7 +195,7 @@ public class BlockConduit extends BlockArmoryTileEntity {
         return state;
     }
 
-    private IBlockState handleVerticalEnvironmentChange(@NotNull IBlockAccess world, @NotNull BlockPos pos, IBlockState state) {
+    private IBlockState handleVerticalEnvironmentChange(@Nonnull IBlockAccess world, @Nonnull BlockPos pos, IBlockState state) {
         ArrayList<EnumFacing> connectedSides = new ArrayList<>();
 
         TileEntityConduit conduit = (TileEntityConduit) world.getTileEntity(pos);

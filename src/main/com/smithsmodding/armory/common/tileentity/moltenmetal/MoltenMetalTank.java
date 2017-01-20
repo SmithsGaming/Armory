@@ -41,12 +41,12 @@ public class MoltenMetalTank extends MultiFluidTank {
     }
 
     //@Override
-    public boolean canFill(@NotNull FluidStack fluidStack, @Nonnull EnumFacing insertionDirection) {
+    public boolean canFill(@Nonnull FluidStack fluidStack, @Nonnull EnumFacing insertionDirection) {
         return fillNext(fluidStack, false, insertionDirection) > 0;
     }
 
     //@Override
-    public int fillNext(@NotNull FluidStack source, boolean doFill, @Nonnull EnumFacing insertionDirection) {
+    public int fillNext(@Nonnull FluidStack source, boolean doFill, @Nonnull EnumFacing insertionDirection) {
         return fill(source, doFill);
     }
 

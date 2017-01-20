@@ -5,11 +5,6 @@ package com.smithsmodding.armory.client.model.entity;
  *   Created on: 23-9-2014
  */
 
-import com.smithsmodding.armory.api.armor.MLAAddon;
-import com.smithsmodding.armory.api.armor.MaterialDependentMLAAddon;
-import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
-import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.client.Minecraft;
@@ -20,9 +15,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -100,7 +95,7 @@ public class ModelExtendedBiped extends ModelBiped {
         this.scaleFactor = pScaleFactor;
     }
 
-    private static void renderLayer(@NotNull Entity entity, float f, float f1, float f2, float f3, float f4, float f5, @NotNull ModelExtendedBiped layerModel, @NotNull MLAAddon layer, @NotNull MultiLayeredArmor armor) {
+    private static void renderLayer(@Nonnull Entity entity, float f, float f1, float f2, float f3, float f4, float f5, @Nonnull ModelExtendedBiped layerModel, @Nonnull MLAAddon layer, @Nonnull MultiLayeredArmor armor) {
         layerModel.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
         layerModel.isChild = ((EntityLivingBase) entity).isChild();
@@ -150,7 +145,7 @@ public class ModelExtendedBiped extends ModelBiped {
             MinecraftColor.resetOpenGLColoring();
     }
 
-    private static void handleArmorType(@NotNull EntityEquipmentSlot slot, @NotNull ModelExtendedBiped model) {
+    private static void handleArmorType(@Nonnull EntityEquipmentSlot slot, @Nonnull ModelExtendedBiped model) {
         switch (slot) {
             case HEAD:
                 model.bipedHead.showModel = true;
@@ -185,7 +180,7 @@ public class ModelExtendedBiped extends ModelBiped {
         }
     }
 
-    private void setRotation(@NotNull ModelRenderer model, float x, float y, float z) {
+    private void setRotation(@Nonnull ModelRenderer model, float x, float y, float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
@@ -235,7 +230,7 @@ public class ModelExtendedBiped extends ModelBiped {
         //Sort the list based on priority.
         Collections.sort(installedAddons, new Comparator<MLAAddon>() {
             @Override
-            public int compare(@NotNull MLAAddon o1, @NotNull MLAAddon o2) {
+            public int compare(@Nonnull MLAAddon o1, @Nonnull MLAAddon o2) {
                 return Integer.compare(o1.getLayerPriority(), o2.getLayerPriority());
             }
         });

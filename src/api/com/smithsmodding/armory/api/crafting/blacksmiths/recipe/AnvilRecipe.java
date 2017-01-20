@@ -4,9 +4,11 @@ import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeC
 import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.smithscore.common.tileentity.IWatchableTileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -18,48 +20,53 @@ import java.util.Iterator;
  *
  * Copyrighted according to Project specific license
  */
-public class AnvilRecipe {
+public class AnvilRecipe extends IForgeRegistryEntry.Impl<IAnvilRecipe> implements IAnvilRecipe {
+
     protected int resultAmount = 1;
+
+    @Nonnull
     protected ItemStack result;
+
     private int targetProgress;
     private int hammer;
     private int tongs;
     private boolean isShapeless = false;
+
     @NotNull
     private IAnvilRecipeComponent[] components = new IAnvilRecipeComponent[ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS];
     @NotNull
     private IAnvilRecipeComponent[] additionals = new IAnvilRecipeComponent[ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS];
-    private String Id;
 
     public AnvilRecipe() {
     }
 
-    public boolean matchesRecipe(@NotNull ItemStack[] pCraftingSlotContents, @NotNull ItemStack[] pAdditionalSlotContents, int pHammerUsagesLeft, int pTongsUsagesLeft) {
-        if (pHammerUsagesLeft == 0)
-            pHammerUsagesLeft = 150;
+    @Override
+    public boolean matchesRecipe(@NotNull ItemStack[] craftingSlotContents, @NotNull ItemStack[] additionalSlotContents, int hammerUsagesLeft, int tongsUsagesLeft) {
+        if (hammerUsagesLeft == 0)
+            hammerUsagesLeft = 150;
 
-        if (pTongsUsagesLeft == 0)
-            pTongsUsagesLeft = 150;
+        if (tongsUsagesLeft == 0)
+            tongsUsagesLeft = 150;
 
-        if ((hammer > 0) && (pHammerUsagesLeft) < hammer)
+        if ((hammer > 0) && (hammerUsagesLeft) < hammer)
             return false;
 
-        if ((tongs > 0) && (pTongsUsagesLeft < tongs))
+        if ((tongs > 0) && (tongsUsagesLeft < tongs))
             return false;
 
-        if (pCraftingSlotContents.length > ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
+        if (craftingSlotContents.length > ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
             return false;
         }
 
-        if (pAdditionalSlotContents.length > ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS) {
+        if (additionalSlotContents.length > ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS) {
             return false;
         }
 
         if (!isShapeless) {
             for (int tSlotID = 0; tSlotID < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS; tSlotID++) {
-                ItemStack tSlotContent = pCraftingSlotContents[tSlotID];
+                ItemStack tSlotContent = craftingSlotContents[tSlotID];
 
-                if (tSlotContent != null) {
+                if (!tSlotContent.isEmpty()) {
                     if (components[tSlotID] == null) {
                         return false;
                     } else if (!components[tSlotID].isValidComponentForSlot(tSlotContent)) {
@@ -71,7 +78,7 @@ public class AnvilRecipe {
             }
         } else {
             ArrayList<IAnvilRecipeComponent> tComponentList = new ArrayList<IAnvilRecipeComponent>(Arrays.asList(components.clone()));
-            for (ItemStack tStack : pCraftingSlotContents) {
+            for (ItemStack tStack : craftingSlotContents) {
                 boolean tFoundComponent = false;
 
                 if (tStack == null) {
@@ -105,9 +112,9 @@ public class AnvilRecipe {
         }
 
         for (int tSlotID = 0; tSlotID < ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS; tSlotID++) {
-            ItemStack tSlotContent = pAdditionalSlotContents[tSlotID];
+            ItemStack tSlotContent = additionalSlotContents[tSlotID];
 
-            if (tSlotContent != null) {
+            if (!tSlotContent.isEmpty()) {
                 if (additionals[tSlotID] == null) {
                     return false;
                 } else if (!additionals[tSlotID].isValidComponentForSlot(tSlotContent)) {
@@ -121,131 +128,139 @@ public class AnvilRecipe {
         return true;
     }
 
+    @Override
     public void onRecipeUsed(IWatchableTileEntity entity) {
     }
 
-    public String getInternalID() {
-        return Id;
-    }
-
+    @Override
     @Nullable
-    public IAnvilRecipeComponent getComponent(int pComponentIndex) {
-        if (pComponentIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
+    public IAnvilRecipeComponent getComponent(int componentIndex) {
+        if (componentIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
             return null;
         }
 
-        return components[pComponentIndex];
+        return components[componentIndex];
     }
 
+    @Override
     @Nullable
-    public IAnvilRecipeComponent getAdditionalComponent(int pComponentIndex) {
-        if (pComponentIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS) {
+    public IAnvilRecipeComponent getAdditionalComponent(int componentIndex) {
+        if (componentIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS) {
             return null;
         }
 
-        return additionals[pComponentIndex];
+        return additionals[componentIndex];
     }
 
-    @NotNull
-    public AnvilRecipe setInternalName(String pNewInternalID) {
-        this.Id = pNewInternalID;
-
-        return this;
-    }
-
+    @Override
     @Nullable
-    public AnvilRecipe setCraftingSlotContent(int pSlotIndex, IAnvilRecipeComponent pComponent) {
-        if (pSlotIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
+    public IAnvilRecipe setCraftingSlotContent(int slotIndex, IAnvilRecipeComponent component) {
+        if (slotIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
             return null;
         }
 
-        components[pSlotIndex] = pComponent;
+        components[slotIndex] = component;
 
         return this;
     }
 
+    @Override
     @Nullable
-    public AnvilRecipe setAdditionalCraftingSlotContent(int pSlotIndex, IAnvilRecipeComponent pComponent) {
-        if (pSlotIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS) {
+    public IAnvilRecipe setAdditionalCraftingSlotContent(int slotIndex, IAnvilRecipeComponent component) {
+        if (slotIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS) {
             return null;
         }
 
-        additionals[pSlotIndex] = pComponent;
+        additionals[slotIndex] = component;
 
         return this;
     }
 
+    @Override
     @NotNull
-    public AnvilRecipe setResult(@NotNull ItemStack pResult) {
-        resultAmount = pResult.stackSize;
-        result = pResult;
+    public IAnvilRecipe setResult(@NotNull ItemStack result) {
+        resultAmount = result.getCount();
+        this.result = result;
 
         return this;
     }
 
+    @Override
     @NotNull
-    public AnvilRecipe setProgress(int pNewProgress) {
-        targetProgress = pNewProgress;
+    public IAnvilRecipe setProgress(int newProgress) {
+        targetProgress = newProgress;
 
         return this;
     }
 
+    @Override
     @NotNull
-    public AnvilRecipe setTongUsage(int pNewUsage) {
-        tongs = pNewUsage;
+    public IAnvilRecipe setTongUsage(int newUsage) {
+        tongs = newUsage;
 
         return this;
     }
 
+    @Override
     @NotNull
-    public AnvilRecipe setShapeLess() {
+    public IAnvilRecipe setShapeLess() {
         isShapeless = true;
         return this;
     }
 
+    @Override
     @Nullable
-    public ItemStack getResult(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents) {
-        result.stackSize = resultAmount;
-        return result;
+    public ItemStack getResult(ItemStack[] craftingSlotContents, ItemStack[] additionalSlotContents) {
+        result.setCount(resultAmount);
+        return result.copy();
     }
 
+    @Override
     public boolean isShapeless() {
         return isShapeless;
     }
 
+    @Override
     @NotNull
     public IAnvilRecipeComponent[] getComponents() {
         return components;
     }
 
+    @Override
     @NotNull
     public IAnvilRecipeComponent[] getAdditionalComponents() {
         return additionals;
     }
 
-    public int getMinimumProgress() {
+    @Override
+    public int getProgress() {
         return targetProgress;
     }
 
+    @Override
     public int getHammerUsage() {
         return hammer;
     }
 
+    @Override
     @NotNull
-    public AnvilRecipe setHammerUsage(int pNewUsage) {
-        hammer = pNewUsage;
+    public IAnvilRecipe setHammerUsage(int newUsage) {
+        hammer = newUsage;
 
         return this;
     }
 
+    @Override
     public boolean getUsesHammer() {
         return hammer > 0;
     }
 
+    @Override
     public int getTongsUsage() {
         return tongs;
     }
 
+    @Override
     public boolean getUsesTongs() {
         return tongs > 0;
     }

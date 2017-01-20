@@ -7,6 +7,7 @@ import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import javax.vecmath.Matrix4f;
 import java.util.HashMap;
 
@@ -17,7 +18,7 @@ public class PerspectiveUnawareBakedHeatedItemItemModel extends BakedWrappedMode
 
     private boolean inventory = false;
 
-    @NotNull
+    @Nonnull
     private HashMap<ItemCameraTransforms.TransformType, IPerspectiveAwareModel> modelHashMap = new HashMap<ItemCameraTransforms.TransformType, IPerspectiveAwareModel>();
 
     public PerspectiveUnawareBakedHeatedItemItemModel(IBakedModel standard) {

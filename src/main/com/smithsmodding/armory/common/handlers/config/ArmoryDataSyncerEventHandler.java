@@ -8,6 +8,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
+
 /**
  * Created by Orion
  * Created on 10.06.2015
@@ -18,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 public class ArmoryDataSyncerEventHandler {
 
     @SubscribeEvent
-    public void HandlePlayerLoggedInEvent(@NotNull PlayerEvent.PlayerLoggedInEvent event) {
+    public void HandlePlayerLoggedInEvent(@Nonnull PlayerEvent.PlayerLoggedInEvent event) {
         ModLogger.getInstance().info("Started sending properties to the Client.");
         ArmorDataSynchronizer synchronizer = new ArmorDataSynchronizer();
 

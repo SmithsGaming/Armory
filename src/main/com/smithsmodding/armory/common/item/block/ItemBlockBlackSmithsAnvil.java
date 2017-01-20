@@ -1,24 +1,26 @@
 package com.smithsmodding.armory.common.item.block;
 
-import com.smithsmodding.armory.api.materials.IAnvilMaterial;
+import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
+import com.smithsmodding.armory.common.api.ArmoryAPI;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 
 /**
  * Created by Marc on 23.02.2016.
  */
 public class ItemBlockBlackSmithsAnvil extends ItemBlock {
 
-    public ItemBlockBlackSmithsAnvil(@NotNull Block block) {
+    public ItemBlockBlackSmithsAnvil(@Nonnull Block block) {
         super(block);
         this.setRegistryName(block.getRegistryName());
     }
@@ -38,8 +40,8 @@ public class ItemBlockBlackSmithsAnvil extends ItemBlock {
         if (pStack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
             return pStack.getTagCompound().getString(References.NBTTagCompoundData.CustomName);
 
-        IAnvilMaterial tMaterial = AnvilMaterialRegistry.getInstance().getAnvilMaterial(pStack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL));
+        IAnvilMaterial tMaterial = ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(References.NBTTagCompoundData.TE.Anvil.MATERIAL));
 
-        return tMaterial.translatedDisplayNameColor() + tMaterial.translatedDisplayName() + " " + TextFormatting.RESET + I18n.format(this.getUnlocalizedName() + ".name");
+        return tMaterial.getTextFormatting() + I18n.format(tMaterial.getTranslationKey()) + " " + TextFormatting.RESET + I18n.format(this.getUnlocalizedName() + ".name");
     }
 }

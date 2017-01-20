@@ -1,7 +1,6 @@
 package com.smithsmodding.armory.compatibility.recipes.anvil;
 
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
-import com.smithsmodding.armory.common.registry.AnvilRecipeRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.List;
  */
 public class BlackSmithsAnvilRecipeMaker {
 
-    @NotNull
+    @Nonnull
     public static List<BlackSmithsAnvilRecipeWrapper> getRecipes() {
         ArrayList<BlackSmithsAnvilRecipeWrapper> wrapperArrayList = new ArrayList<>();
 

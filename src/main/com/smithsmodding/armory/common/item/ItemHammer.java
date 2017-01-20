@@ -2,8 +2,8 @@ package com.smithsmodding.armory.common.item;
 
 import com.smithsmodding.armory.api.util.references.ModBlocks;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
+import com.smithsmodding.armory.api.util.references.ModMaterials;
 import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.smithscore.util.CoreReferences;
 import com.smithsmodding.smithscore.util.common.WorldUtil;
@@ -18,12 +18,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 /**
@@ -63,14 +64,25 @@ public class ItemHammer extends Item {
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item pHammer, CreativeTabs pCreativeTab, List pItemStacks) {
-        ItemStack tHammerStack = new ItemStack(pHammer, 1, 150);
-        pItemStacks.add(tHammerStack);
+    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
+        ItemStack hammerStack = new ItemStack(itemIn, 1, 150);
+        subItems.add(hammerStack);
     }
 
-    @NotNull
+    /**
+     * This is called when the item is used, before the block is activated.
+     *
+     * @param player The Player that used the item
+     * @param world  The Current World
+     * @param pos    Target position
+     * @param side   The side of the target hit
+     * @param hitX
+     * @param hitY
+     * @param hitZ
+     * @param hand   Which hand the item is being held in.  @return Return PASS to allow vanilla handling, any other to skip normal code.
+     */
     @Override
-    public EnumActionResult onItemUseFirst(ItemStack stack, EntityPlayer player, @NotNull World world, @NotNull BlockPos pos, @NotNull EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
+    public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
         if (!world.isRemote) {
             IBlockState blockState = world.getBlockState(pos);
 
@@ -128,16 +140,16 @@ public class ItemHammer extends Item {
                 centerPos = WorldUtil.getBlockPosForPerspective(centerPos, side, EnumFacing.NORTH);
             }
 
-            world.setBlockState(anvilPos, ModBlocks.blockBlackSmithsAnvil.onBlockPlaced(world, anvilPos, EnumFacing.UP, hitX, hitY, hitZ, 0, player));
+            world.setBlockState(anvilPos, ModBlocks.blockBlackSmithsAnvil.getStateForPlacement(world, anvilPos, EnumFacing.UP, hitX, hitY, hitZ, 0, player));
 
             TileEntityBlackSmithsAnvil tileEntityBlackSmithsAnvil = (TileEntityBlackSmithsAnvil) world.getTileEntity(anvilPos);
-            tileEntityBlackSmithsAnvil.getState().setMaterial(AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.STONE));
+            tileEntityBlackSmithsAnvil.getState().setMaterial(ModMaterials.Anvil.STONE);
 
             tileEntityBlackSmithsAnvil.markDirty();
 
             return EnumActionResult.SUCCESS;
         }
 
-        return super.onItemUseFirst(stack, player, world, pos, side, hitX, hitY, hitZ, hand);
+        return super.onItemUseFirst(player, world, pos, side, hitX, hitY, hitZ, hand);
     }
 }

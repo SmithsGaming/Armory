@@ -3,8 +3,6 @@ package com.smithsmodding.armory.common.config;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.events.common.config.MaterialPropertyValueEvent;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.smithscore.common.events.network.NetworkableEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -87,7 +85,7 @@ public class ArmorDataSynchronizer {
             sendMessage(new MaterialPropertyValueEvent(material.getUniqueID(), "setMeltingPoint", new String[]{"Float"}, new Object[]{material.getMeltingPoint()}), (EntityPlayerMP) connectingPlayer);
     }
 
-    public void sendMessage(@NotNull NetworkableEvent eventMessage, @Nullable EntityPlayerMP player) {
+    public void sendMessage(@Nonnull NetworkableEvent eventMessage, @Nullable EntityPlayerMP player) {
         if (player == null) {
             eventMessage.handleClientToServerSide();
             return;

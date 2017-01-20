@@ -13,10 +13,8 @@ import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.client.model.entity.ModelExtendedBiped;
 import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
-import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
+import com.smithsmodding.armory.common.factories.ArmorFactory;
 import com.smithsmodding.armory.common.material.ChainLayer;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.creativetab.CreativeTabs;
@@ -31,7 +29,6 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.jetbrains.annotations.NotNull;
 
 import java.security.InvalidParameterException;
 import java.util.HashMap;
@@ -39,7 +36,7 @@ import java.util.List;
 
 public class ArmorMedieval extends MultiLayeredArmor {
 
-    public ArmorMedieval(@NotNull String pInternalName, String baseLayerAddonPositionId, @NotNull EntityEquipmentSlot slotPart) {
+    public ArmorMedieval(@Nonnull String pInternalName, String baseLayerAddonPositionId, @Nonnull EntityEquipmentSlot slotPart) {
         super(pInternalName, baseLayerAddonPositionId, 1, slotPart);
         this.setUnlocalizedName(pInternalName);
         this.setMaxStackSize(1);
@@ -49,9 +46,9 @@ public class ArmorMedieval extends MultiLayeredArmor {
     }
 
     //Functions for ISpecialArmor. TODO: Needs to be implemented.
-    @NotNull
+    @Nonnull
     @Override
-    public ISpecialArmor.ArmorProperties getProperties(EntityLivingBase pEntity, @NotNull ItemStack pStack, DamageSource pSource, double pDamage, int pSlot) {
+    public ISpecialArmor.ArmorProperties getProperties(EntityLivingBase pEntity, @Nonnull ItemStack pStack, DamageSource pSource, double pDamage, int pSlot) {
         IArmorMaterial tBaseMaterial = ArmorNBTHelper.getBaseMaterialOfItemStack(pStack);
         float tDamageRatio = tBaseMaterial.getBaseDamageAbsorption(this.getUniqueID());
 
@@ -63,7 +60,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
     }
 
     @Override
-    public int getArmorDisplay(EntityPlayer pEntity, @NotNull ItemStack pStack, int pSlot) {
+    public int getArmorDisplay(EntityPlayer pEntity, @Nonnull ItemStack pStack, int pSlot) {
         IArmorMaterial tBaseMaterial = ArmorNBTHelper.getBaseMaterialOfItemStack(pStack);
         float tDamageRatio = tBaseMaterial.getBaseDamageAbsorption(this.getUniqueID());
 
@@ -75,11 +72,11 @@ public class ArmorMedieval extends MultiLayeredArmor {
     }
 
     @Override
-    public void damageArmor(@NotNull EntityLivingBase pEntity, @NotNull ItemStack pStack, DamageSource pSource, int pDamage, int pSlot) {
+    public void damageArmor(@Nonnull EntityLivingBase pEntity, @Nonnull ItemStack pStack, DamageSource pSource, int pDamage, int pSlot) {
         IArmorMaterial tArmorMaterial = ArmorNBTHelper.getBaseMaterialOfItemStack(pStack);
-        pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).setInteger(References.NBTTagCompoundData.Armor.CurrentDurability, pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.CurrentDurability) - pDamage);
+        pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).setInteger(References.NBTTagCompoundData.Armor.CURRENT_DURABILITY, pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.CURRENT_DURABILITY) - pDamage);
 
-        pStack.setItemDamage((int) ((float) pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.CurrentDurability) / pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.TotalDurability) * 100));
+        pStack.setItemDamage((int) ((float) pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.CURRENT_DURABILITY) / pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getInteger(References.NBTTagCompoundData.Armor.TOTAL_DURABILITY) * 100));
 
         ((EntityPlayer) pEntity).inventory.armorInventory[pSlot] = pStack;
     }
@@ -99,7 +96,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
             if (!tMaterial.getIsBaseArmorMaterial())
                 continue;
 
-            ItemStack tStandardArmor = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(this.getUniqueID()), tMaterial.getUniqueID());
+            ItemStack tStandardArmor = ArmorFactory.getInstance().buildNewMLAArmor(this, new HashMap<MLAAddon, Integer>(), tMaterial.getBaseDurability(this.getUniqueID()), tMaterial.getUniqueID());
 
             pItemStacks.add(tStandardArmor);
         }
@@ -110,7 +107,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
             tHelmetAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.RIGHT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
             tHelmetAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.LEFT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
 
-            ItemStack tAddonHelmet = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tHelmetAddons, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getUniqueID()), References.InternalNames.Materials.Vanilla.IRON);
+            ItemStack tAddonHelmet = ArmorFactory.getInstance().buildNewMLAArmor(this, tHelmetAddons, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getUniqueID()), References.InternalNames.Materials.Vanilla.IRON);
 
             pItemStacks.add(tAddonHelmet);
         } else if (this.getUniqueID().equals(References.InternalNames.Armor.MEDIEVALCHESTPLATE)) {
@@ -122,7 +119,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
             tChestplateAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.BACKLEFT + "-" + References.InternalNames.Materials.Vanilla.IRON), 1);
             tChestplateAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Chestplate.BACKRIGHT + "-" + References.InternalNames.Materials.Vanilla.IRON), 1);
 
-            ItemStack tAddonChestplate = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tChestplateAddons, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getUniqueID()), References.InternalNames.Materials.Vanilla.IRON);
+            ItemStack tAddonChestplate = ArmorFactory.getInstance().buildNewMLAArmor(this, tChestplateAddons, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getUniqueID()), References.InternalNames.Materials.Vanilla.IRON);
 
             pItemStacks.add(tAddonChestplate);
         } else if (this.getUniqueID().equals(References.InternalNames.Armor.MEDIEVALLEGGINGS)) {
@@ -132,7 +129,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
             tLeggingAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.BACKLEFT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
             tLeggingAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Leggings.BACKRIGHT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
 
-            ItemStack tAddonLeggins = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tLeggingAddons, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getUniqueID()), References.InternalNames.Materials.Vanilla.IRON);
+            ItemStack tAddonLeggins = ArmorFactory.getInstance().buildNewMLAArmor(this, tLeggingAddons, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getUniqueID()), References.InternalNames.Materials.Vanilla.IRON);
 
             pItemStacks.add(tAddonLeggins);
         } else if (this.getUniqueID().equals(References.InternalNames.Armor.MEDIEVALSHOES)) {
@@ -140,7 +137,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
             tShoesAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Shoes.LEFT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
             tShoesAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Shoes.RIGHT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
 
-            ItemStack tAddonShoes = MedievalArmorFactory.getInstance().buildNewMLAArmor(this, tShoesAddons, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getUniqueID()), References.InternalNames.Materials.Vanilla.IRON);
+            ItemStack tAddonShoes = ArmorFactory.getInstance().buildNewMLAArmor(this, tShoesAddons, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(this.getUniqueID()), References.InternalNames.Materials.Vanilla.IRON);
 
             pItemStacks.add(tAddonShoes);
         }
@@ -156,7 +153,7 @@ public class ArmorMedieval extends MultiLayeredArmor {
         super.registerAddon(pNewAddon);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public String getItemStackDisplayName(ItemStack pStack) {
         if (!pStack.hasTagCompound())
@@ -165,12 +162,12 @@ public class ArmorMedieval extends MultiLayeredArmor {
         if (pStack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
             return pStack.getTagCompound().getString(References.NBTTagCompoundData.CustomName);
 
-        IArmorMaterial tMaterial = MaterialRegistry.getInstance().getMaterial(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.MaterialID));
+        IArmorMaterial tMaterial = MaterialRegistry.getInstance().getMaterial(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.ArmorData).getString(References.NBTTagCompoundData.Armor.CORE_MATERIAL));
 
         return tMaterial.getNameColor() + I18n.translateToLocal(tMaterial.getTranslationKey()) + " " + TextFormatting.RESET + I18n.translateToLocal(this.getUnlocalizedName() + ".name");
     }
 
-    @NotNull
+    @Nonnull
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {

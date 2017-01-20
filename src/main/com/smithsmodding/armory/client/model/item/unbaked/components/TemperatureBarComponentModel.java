@@ -41,7 +41,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
      * @param bakedTextureGetter Function to get the Texture for the model.
      * @return A ItemStack depending model that is ready to be used.
      */
-    @NotNull
+    @Nonnull
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         return generateBackedComponentModel(state, format, bakedTextureGetter);
@@ -71,8 +71,8 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
      * @param bakedTextureGetter Function to get the baked textures.
      * @return A baked model containing all individual possible textures this model can have.
      */
-    @NotNull
-    public BakedTemperatureBarModel generateBackedComponentModel(@NotNull IModelState state, VertexFormat format, @NotNull Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+    @Nonnull
+    public BakedTemperatureBarModel generateBackedComponentModel(@Nonnull IModelState state, VertexFormat format, @Nonnull Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         // Get ourselfs a normal model to use.
         IBakedModel base = super.bake(state, DefaultVertexFormats.ITEM, bakedTextureGetter);
 

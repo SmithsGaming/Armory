@@ -13,14 +13,14 @@ public class ChainLayer extends MaterialDependentMLAAddon {
         super(pInternalName, pMaterialID, pParentName, pAddonPositionID, itemTextureWhole, modelTextureLocation, 0);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public String getDisplayName() {
         return "Base - Should not happen!";
     }
 
     @Override
-    public boolean validateCrafting(@NotNull String pAddonIDToCheckAgainst, boolean pInstalled) {
+    public boolean validateCrafting(@Nonnull String pAddonIDToCheckAgainst, boolean pInstalled) {
         return !pAddonIDToCheckAgainst.contains("base");
     }
 }

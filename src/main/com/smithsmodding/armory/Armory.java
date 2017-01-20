@@ -7,7 +7,6 @@ import com.smithsmodding.armory.common.ArmoryCommonProxy;
 import com.smithsmodding.armory.common.command.CommandArmory;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
-import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
@@ -36,7 +35,7 @@ public class Armory {
     public static Side side;
 
     @Mod.EventHandler
-    public void preInit(@NotNull FMLPreInitializationEvent event) {
+    public void preInit(@Nonnull FMLPreInitializationEvent event) {
         Stopwatch watch = Stopwatch.createStarted();
         ModLogger.getInstance().info("Starting pre init");
 
@@ -75,7 +74,7 @@ public class Armory {
     }
 
     @Mod.EventHandler
-    public void onIMCMessage(@NotNull FMLInterModComms.IMCEvent event) {
+    public void onIMCMessage(@Nonnull FMLInterModComms.IMCEvent event) {
         for (FMLInterModComms.IMCMessage message : event.getMessages()) {
             if (!message.isStringMessage())
                 continue;
@@ -95,7 +94,7 @@ public class Armory {
 
 
     @Mod.EventHandler
-    public void onServerStarting(@NotNull FMLServerStartingEvent event) {
+    public void onServerStarting(@Nonnull FMLServerStartingEvent event) {
         event.registerServerCommand(new CommandArmory());
     }
 }

@@ -1,26 +1,23 @@
 package com.smithsmodding.armory.common.crafting.blacksmiths.recipe;
 
-import com.smithsmodding.armory.api.armor.MLAAddon;
-import com.smithsmodding.armory.api.armor.MultiLayeredArmor;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmor;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtensionInformation;
+import com.smithsmodding.armory.api.capability.IArmorComponentStackCapability;
+import com.smithsmodding.armory.api.capability.IMultiComponentArmorCapability;
 import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeComponent;
 import com.smithsmodding.armory.api.crafting.blacksmiths.component.StandardAnvilRecipeComponent;
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
+import com.smithsmodding.armory.api.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.armory.api.util.references.ModItems;
-import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
-import com.smithsmodding.armory.common.factory.MedievalArmorFactory;
-import com.smithsmodding.armory.common.item.armor.tiermedieval.ArmorMedieval;
-import com.smithsmodding.armory.common.registry.ArmorRegistry;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
+import com.smithsmodding.armory.common.factories.ArmorFactory;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Orion
@@ -30,120 +27,100 @@ import java.util.HashMap;
  * Copyrighted according to Project specific license
  */
 public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
-    private String iArmorType;
-    private String iArmorMaterial;
-    @NotNull
-    private ArrayList<Integer> iUpgradeComponents = new ArrayList<Integer>(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS);
+    private IMultiComponentArmor armor;
+    private ICoreArmorMaterial coreArmorMaterial;
 
-    @NotNull
-    private String iTranslatedUpgrades = "";
+    @Nonnull
+    private ArrayList<Integer> upgradeComponents = new ArrayList<Integer>(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS);
 
-    public ArmorUpgradeAnvilRecipe(String pArmorType, String pArmorMaterial) {
-        iArmorType = pArmorType;
-        iArmorMaterial = pArmorMaterial;
+    public ArmorUpgradeAnvilRecipe(IMultiComponentArmor armor, ICoreArmorMaterial coreArmorMaterial) {
+        this.armor = armor;
+        this.coreArmorMaterial = coreArmorMaterial;
     }
 
     @Override
-    public boolean matchesRecipe(@NotNull ItemStack[] pCraftingSlotContents, @NotNull ItemStack[] pAdditionalSlotContents, int pHammerUsagesLeft, int pTongsUsagesLeft) {
-        if (pCraftingSlotContents[12] == null)
+    public boolean matchesRecipe(@Nonnull ItemStack[] craftingSlotContents, @Nonnull ItemStack[] additionalSlotContents, int hammerUsagesLeft, int tongsUsagesLeft) {
+        ItemStack armorStack = craftingSlotContents[12];
+
+        if (!armorStack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
             return false;
 
-        if (!(pCraftingSlotContents[12].getItem() instanceof ArmorMedieval))
+        IMultiComponentArmorCapability capability = armorStack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+
+        if (!capability.getArmorType().equals(armor))
             return false;
 
-        if (!((ArmorMedieval) pCraftingSlotContents[12].getItem()).getUniqueID().equals(iArmorType))
+        if (!capability.getMaterial().equals(coreArmorMaterial))
             return false;
 
-        if (!ArmorNBTHelper.getArmorBaseMaterialName(pCraftingSlotContents[12]).equals(iArmorMaterial))
+        if (hammerUsagesLeft == 0)
+            hammerUsagesLeft = 150;
+
+        if (tongsUsagesLeft == 0)
+            tongsUsagesLeft = 150;
+
+        if ((getUsesHammer()) && (hammerUsagesLeft) < getHammerUsage())
             return false;
 
-        if (pHammerUsagesLeft == 0)
-            pHammerUsagesLeft = 150;
-
-        if (pTongsUsagesLeft == 0)
-            pTongsUsagesLeft = 150;
-
-        if ((getUsesHammer()) && (pHammerUsagesLeft) < getHammerUsage())
+        if ((getUsesTongs()) && (tongsUsagesLeft < getTongsUsage()))
             return false;
 
-        if ((getUsesTongs()) && (pTongsUsagesLeft < getTongsUsage()))
-            return false;
-
-        if (pCraftingSlotContents.length > ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
-            return false;
-        }
-
-        if (pAdditionalSlotContents.length > ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS) {
+        if (craftingSlotContents.length > ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
             return false;
         }
 
-        for (int tSlotID = 0; tSlotID < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS; tSlotID++) {
-            if (tSlotID == 12)
+        if (additionalSlotContents.length > ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS) {
+            return false;
+        }
+
+        for (int slot = 0; slot < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS; slot++) {
+            if (slot == 12)
                 continue;
 
-            ItemStack tSlotContent = pCraftingSlotContents[tSlotID];
+            ItemStack slotContent = craftingSlotContents[slot];
 
-            if (tSlotContent != null) {
-                if (getComponents()[tSlotID] == null) {
+            if (slotContent != null) {
+                if (getComponents()[slot] == null) {
                     return false;
-                } else if (!getComponent(tSlotID).isValidComponentForSlot(tSlotContent)) {
-                    return false;
-                }
-            } else if (getComponents()[tSlotID] != null) {
-                return false;
-            }
-        }
-
-        for (int tSlotID = 0; tSlotID < ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS; tSlotID++) {
-            ItemStack tSlotContent = pAdditionalSlotContents[tSlotID];
-
-            if (tSlotContent != null) {
-                if (getAdditionalComponents()[tSlotID] == null) {
-                    return false;
-                } else if (!getAdditionalComponents()[tSlotID].isValidComponentForSlot(tSlotContent)) {
+                } else if (!getComponent(slot).isValidComponentForSlot(slotContent)) {
                     return false;
                 }
-            } else if (getAdditionalComponents()[tSlotID] != null) {
+            } else if (getComponents()[slot] != null) {
                 return false;
             }
         }
 
-        HashMap<MLAAddon, Integer> tNewAddons = new HashMap<MLAAddon, Integer>();
-        for (Integer tIndex : iUpgradeComponents) {
-            ItemStack tUpgradeStack = pCraftingSlotContents[tIndex];
-            MLAAddon tAddon = MedievalAddonRegistry.getInstance().getUpgrade(tUpgradeStack.getTagCompound().getString(References.NBTTagCompoundData.Addons.AddonID));
-            if (tAddon == null)
-                return false;
+        for (int slot = 0; slot < ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS; slot++) {
+            ItemStack slotContent = additionalSlotContents[slot];
 
-            if (tNewAddons.containsKey(tAddon)) {
-                Integer tNewValue = tNewAddons.get(tAddon) + tUpgradeStack.stackSize;
-                tNewAddons.remove(tAddon);
-                tNewAddons.put(tAddon, tNewValue);
-            } else {
-                tNewAddons.put(tAddon, tUpgradeStack.stackSize);
+            if (slotContent != null) {
+                if (getAdditionalComponents()[slot] == null) {
+                    return false;
+                } else if (!getAdditionalComponents()[slot].isValidComponentForSlot(slotContent)) {
+                    return false;
+                }
+            } else if (getAdditionalComponents()[slot] != null) {
+                return false;
             }
         }
 
-        Integer tNewMaxDamage = pCraftingSlotContents[12].getMaxDamage();
-        for (MLAAddon tAddon : tNewAddons.keySet()) {
-            ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) tAddon;
-            tNewMaxDamage += tUpgrade.getExtraDurability();
+        try {
+            ItemStack newArmorStack = buildItemStack(craftingSlotContents, additionalSlotContents);
+            return newArmorStack != null;
+        } catch (IllegalArgumentException argEx) {
+            return false;
         }
-
-        ItemStack tArmorStack = MedievalArmorFactory.getInstance().buildMLAArmor((MultiLayeredArmor) pCraftingSlotContents[12].getItem(), pCraftingSlotContents[12], tNewAddons, tNewMaxDamage, ArmorNBTHelper.getArmorBaseMaterialName(pCraftingSlotContents[12]), "");
-
-        return (!(tArmorStack == null));
     }
 
     @Nullable
     @Override
-    public IAnvilRecipeComponent getComponent(int pComponentIndex) {
-        if (pComponentIndex == 12) {
+    public IAnvilRecipeComponent getComponent(int componentIndex) {
+        if (componentIndex == 12) {
             return new StandardAnvilRecipeComponent(new ItemStack(ModItems.metalRing)) {
                 @Nullable
                 @Override
                 public ItemStack getComponentTargetStack() {
-                    return MedievalArmorFactory.getInstance().buildNewMLAArmor(ArmorRegistry.getInstance().getArmor(iArmorType), new HashMap<MLAAddon, Integer>(), MaterialRegistry.getInstance().getMaterial(iArmorMaterial).getBaseDurability(iArmorType), iArmorMaterial);
+                    return ArmorFactory.getInstance().buildNewMLAArmor(armor, new ArrayList<>(), coreArmorMaterial.getBaseDurabilityForArmor(armor), coreArmorMaterial);
                 }
 
                 @Override
@@ -153,24 +130,24 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
             };
         }
 
-        if (pComponentIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
+        if (componentIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
             return null;
         }
 
-        return getComponents()[pComponentIndex];
+        return getComponents()[componentIndex];
     }
 
     @Nullable
     @Override
-    public ArmorUpgradeAnvilRecipe setCraftingSlotContent(int pSlotIndex, IAnvilRecipeComponent pComponent) {
-        if (pSlotIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
+    public ArmorUpgradeAnvilRecipe setCraftingSlotContent(int slotIndex, IAnvilRecipeComponent component) {
+        if (slotIndex >= ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
             return null;
         }
 
-        if (pSlotIndex == 12)
+        if (slotIndex == 12)
             return null;
 
-        getComponents()[pSlotIndex] = pComponent;
+        getComponents()[slotIndex] = component;
 
         return this;
     }
@@ -184,37 +161,48 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
         if (pSlotIndex == 12)
             return null;
 
-        if (!iUpgradeComponents.contains(pSlotIndex))
-            iUpgradeComponents.add(pSlotIndex);
+        if (!upgradeComponents.contains(pSlotIndex))
+            upgradeComponents.add(pSlotIndex);
 
         return setCraftingSlotContent(pSlotIndex, pComponent);
     }
 
     @Nullable
     @Override
-    public ItemStack getResult(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents) {
-        HashMap<MLAAddon, Integer> tNewAddons = new HashMap<MLAAddon, Integer>();
-        for (Integer tIndex : iUpgradeComponents) {
-            ItemStack tUpgradeStack = pCraftingSlotContents[tIndex];
-            MLAAddon tAddon = MedievalAddonRegistry.getInstance().getUpgrade(tUpgradeStack.getTagCompound().getString(References.NBTTagCompoundData.Addons.AddonID) + "-" + tUpgradeStack.getTagCompound().getString(References.NBTTagCompoundData.Material));
-            if (tAddon == null)
-                return null;
+    public ItemStack getResult(ItemStack[] craftingSlotContents, ItemStack[] additionalSlotContents) {
+        return buildItemStack(craftingSlotContents, additionalSlotContents);
+    }
 
-            if (tNewAddons.containsKey(tAddon)) {
-                Integer tNewValue = tNewAddons.get(tAddon) + tUpgradeStack.stackSize;
-                tNewAddons.remove(tAddon);
-                tNewAddons.put(tAddon, tNewValue);
-            } else {
-                tNewAddons.put(tAddon, tUpgradeStack.stackSize);
-            }
+    private ItemStack buildItemStack(ItemStack[] craftingSlotContents, ItemStack[] additionalSlotContents) {
+        ItemStack armorStack = craftingSlotContents[12];
+
+        if (!armorStack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
+            throw new IllegalArgumentException("ArmorStack is not Armor");
+
+        IMultiComponentArmorCapability capability = armorStack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+
+        ArrayList<IMultiComponentArmorExtensionInformation> extensionInformationData = ArmorNBTHelper.getAddonMap(armorStack);
+        ArrayList<IMultiComponentArmorExtensionInformation> newExtensionInformationData = new ArrayList<>();
+
+        for (Integer index : upgradeComponents) {
+            ItemStack upgradeStack = craftingSlotContents[index];
+
+            if (!upgradeStack.hasCapability(ModCapabilities.MOD_ARMORCOMPONENT_CAPABILITY, null))
+                throw new IllegalArgumentException("ADDONS not a Addon");
+
+            IArmorComponentStackCapability upgradeCapability = upgradeStack.getCapability(ModCapabilities.MOD_ARMORCOMPONENT_CAPABILITY, null);
+            newExtensionInformationData.add(new IMultiComponentArmorExtensionInformation.Impl().setExtension(upgradeCapability.getExtension())
+                    .setPosition(upgradeCapability.getExtension().getPosition())
+                    .setCount(upgradeStack.getCount()));
         }
 
-        Integer tNewMaxDamage = pCraftingSlotContents[12].getMaxDamage();
-        for (MLAAddon tAddon : tNewAddons.keySet()) {
-            ArmorUpgradeMedieval tUpgrade = (ArmorUpgradeMedieval) tAddon;
-            tNewMaxDamage += tUpgrade.getExtraDurability();
+        ArrayList<IMultiComponentArmorExtensionInformation> compressedInformation = ArmorFactory.getInstance().compressInformation(extensionInformationData, newExtensionInformationData);
+
+        Integer newMaxDurability = capability.getMaximalDurability();
+        for (IMultiComponentArmorExtensionInformation extensionInformation : compressedInformation) {
+            newMaxDurability += extensionInformation.getExtension().getAdditionalDurability();
         }
 
-        return MedievalArmorFactory.getInstance().buildMLAArmor((MultiLayeredArmor) pCraftingSlotContents[12].getItem(), pCraftingSlotContents[12], tNewAddons, tNewMaxDamage, ArmorNBTHelper.getArmorBaseMaterialName(pCraftingSlotContents[12]));
+        return ArmorFactory.getInstance().buildMLAArmor(capability.getArmorType(), craftingSlotContents[12], newExtensionInformationData, newMaxDurability, capability.getMaterial(), "");
     }
 }

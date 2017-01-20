@@ -1,16 +1,17 @@
 package com.smithsmodding.armory.common.fluid;
 
-import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.client.Textures;
 import com.smithsmodding.armory.api.util.client.TranslationKeys;
 import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.armory.util.MaterialHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nonnull;
 
 /**
  * Created by Marc on 19.12.2015.
@@ -26,7 +27,7 @@ public class FluidMoltenMetal extends Fluid {
         if (stack == null || stack.tag == null)
             return getColor();
 
-        IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL));
+        IMaterial material = MaterialHelper.getMaterialFromRegistries(new ResourceLocation(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL)));
 
         if (material == null)
             return getColor();
@@ -39,22 +40,22 @@ public class FluidMoltenMetal extends Fluid {
         if (stack == null || stack.tag == null)
             return 20;
 
-        IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL));
+        IMaterial material = MaterialHelper.getMaterialFromRegistries(new ResourceLocation(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL)));
 
         if (material == null)
             return 20;
 
-        return (int) material.getMeltingPoint();
+        return Math.round(material.getMeltingPoint());
     }
 
 
-    @NotNull
+    @Nonnull
     @Override
     public String getLocalizedName(@Nullable FluidStack stack) {
         if (stack == null || stack.tag == null)
             return "Undefined molten Metal.";
 
-        IArmorMaterial material = MaterialRegistry.getInstance().getMaterial(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL));
+        IMaterial material = MaterialHelper.getMaterialFromRegistries(new ResourceLocation(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL)));
 
         if (material == null)
             return "Undefined molten Metal.";

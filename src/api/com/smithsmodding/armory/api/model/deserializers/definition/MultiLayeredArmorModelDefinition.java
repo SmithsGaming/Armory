@@ -15,11 +15,11 @@ public class MultiLayeredArmorModelDefinition {
 
     final ResourceLocation baseLocation;
     @NotNull
-    final Map<String, ResourceLocation> layerLocations;
-    final Map<String, ResourceLocation> brokenLocations;
+    final Map<ResourceLocation, ResourceLocation> layerLocations;
+    final Map<ResourceLocation, ResourceLocation> brokenLocations;
     final Map<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
 
-    public MultiLayeredArmorModelDefinition(ResourceLocation baseLocation, @NotNull Map<String, ResourceLocation> layerLocations, Map<String, ResourceLocation> brokenLocations, Map<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+    public MultiLayeredArmorModelDefinition(ResourceLocation baseLocation, @NotNull Map<ResourceLocation, ResourceLocation> layerLocations, Map<ResourceLocation, ResourceLocation> brokenLocations, Map<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
         this.baseLocation = baseLocation;
         this.layerLocations = layerLocations;
         this.brokenLocations = brokenLocations;
@@ -33,11 +33,11 @@ public class MultiLayeredArmorModelDefinition {
         return baseLocation;
     }
 
-    public ImmutableMap<String, ResourceLocation> getLayerLocations() {
+    public ImmutableMap<ResourceLocation, ResourceLocation> getLayerLocations() {
         return ImmutableMap.copyOf(layerLocations);
     }
 
-    public ImmutableMap<String, ResourceLocation> getBrokenLocations() {
+    public ImmutableMap<ResourceLocation, ResourceLocation> getBrokenLocations() {
         return ImmutableMap.copyOf(brokenLocations);
     }
 

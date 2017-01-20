@@ -1,8 +1,11 @@
 package com.smithsmodding.armory.common.block.properties;
 
-import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
+import com.smithsmodding.armory.common.api.ArmoryAPI;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 
 /**
  * Created by Marc on 22.02.2016.
@@ -22,10 +25,10 @@ public class PropertyAnvilMaterial implements IUnlistedProperty<String> {
 
     @Override
     public boolean isValid(String value) {
-        return AnvilMaterialRegistry.getInstance().getAnvilMaterial(value) != null;
+        return ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry().containsKey(new ResourceLocation(value));
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public Class<String> getType() {
         return String.class;

@@ -34,7 +34,7 @@ public class TileEntityFireplaceState extends TileEntityForgeBaseState<TileEntit
         cookingSpeedMultiplier = compound.getFloat(References.NBTTagCompoundData.TE.Fireplace.COOKINGSPEED);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public NBTBase writeToNBTTagCompound() {
         NBTTagCompound compound = (NBTTagCompound) super.writeToNBTTagCompound();

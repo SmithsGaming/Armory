@@ -13,13 +13,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 public abstract class BlockArmoryTileEntity extends BlockArmory implements ITileEntityProvider {
-    @NotNull Random rand = new Random();
+    @Nonnull
+    Random rand = new Random();
 
-    public BlockArmoryTileEntity(@NotNull String pBlockName, @NotNull Material pBlockMaterial) {
-        super(pBlockName, pBlockMaterial);
+    public BlockArmoryTileEntity(@Nonnull String blockName, @Nonnull Material blockMaterial) {
+        super(blockName, blockMaterial);
     }
 
     @Override
@@ -43,7 +45,7 @@ public abstract class BlockArmoryTileEntity extends BlockArmory implements ITile
                         }
 
                         tStack.stackSize -= j1;
-                        tEntity = new EntityItem(pWorld, (double) ((float) pX + f), (double) ((float) pY + f1), (double) ((float) pZ + f2), new ItemStack(tStack.getItem(), j1, tStack.getItemDamage()));
+                        tEntity = new EntityItem(pWorld, (double) ((float) pX + f), (double) ((float) pY + f1), (double) ((float) pZ + f2), new ItemStack(tStack.getObject(), j1, tStack.getItemDamage()));
                         float f3 = 0.05F;
                         tEntity.motionX = (double) ((float) this.rand.nextGaussian() * f3);
                         tEntity.motionY = (double) ((float) this.rand.nextGaussian() * f3 + 0.2F);

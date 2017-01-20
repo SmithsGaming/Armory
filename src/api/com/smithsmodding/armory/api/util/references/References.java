@@ -11,6 +11,8 @@ package com.smithsmodding.armory.api.util.references;
 *   Created on: 27-6-2014
 */
 
+import net.minecraft.util.ResourceLocation;
+
 public class References {
     public static final class GuiIDs {
         public static int FORGEID = 0;
@@ -19,7 +21,7 @@ public class References {
     }
 
     public static final class General {
-        public static final String MOD_ID = "Armory";
+        public static final String MOD_ID = "armory";
         public static final String VERSION = "@VERSION@";
         public static final String MC_VERSION = "@MCVERSION@";
         public static final String API_VERSION = "@APIVERSION@";
@@ -220,13 +222,13 @@ public class References {
             }
         }
 
-        public static final class HeatedItemTypes {
-            public static final String INGOT = "Ingot";
-            public static final String RING = "Ring";
-            public static final String CHAIN = "Chain";
-            public static final String NUGGET = "Nugget";
-            public static final String PLATE = "Plate";
-            public static final String BLOCK = "Block";
+        public static final class HeatedObjectTypeNames {
+            public static final ResourceLocation INGOT = new ResourceLocation(General.MOD_ID.toLowerCase(), "Ingot");
+            public static final ResourceLocation RING = new ResourceLocation(General.MOD_ID.toLowerCase(), "Ring");
+            public static final ResourceLocation CHAIN = new ResourceLocation(General.MOD_ID.toLowerCase(), "Chain");
+            public static final ResourceLocation NUGGET = new ResourceLocation(General.MOD_ID.toLowerCase(), "Nugget");
+            public static final ResourceLocation PLATE = new ResourceLocation(General.MOD_ID.toLowerCase(), "Plate");
+            public static final ResourceLocation BLOCK = new ResourceLocation(General.MOD_ID.toLowerCase(), "Block");
         }
 
         public static final class GUIComponents {
@@ -360,7 +362,7 @@ public class References {
         public static final String InstalledAddons = "InstalledAddons";
         public static final String ArmorData = "ArmorData";
         public static final String RenderCompound = "RenderCompound";
-        public static final String Material = "Material";
+        public static final String CoreMaterial = "CoreMaterial";
         public static final String CustomName = "Name";
 
         //Versioning used when there is a change in the NBT tag structure.
@@ -376,38 +378,41 @@ public class References {
             public static final String AddonPositionID = "AddonPositionID";
             public static final String AddonInstalledAmount = "AddonInstalledAmount";
             public static final String AddonMaxInstalledAmount = "AddonMaxInstalledAmount";
-            public static final String Addon = "InstalledAddon - ";
+            public static final String AddonMaterial = "AddonMaterial";
         }
 
         //Used when storing data from the armor
         public class Armor {
-            public static final String ArmorID = "ArmorID";
-            public static final String ArmorTier = "ArmorTier";
-            public static final String ArmorPart = "ArmorSlot";
-            public static final String MaterialID = "MaterialID";
-            public static final String Addons = "InstalledAddons";
-            public static final String CurrentDurability = "CurrentDurability";
-            public static final String TotalDurability = "TotalDurability";
-            public static final String IsBroken = "IsBroken";
+            public static final String NAME = "ArmorName";
+            public static final String CORE_MATERIAL = "Material";
+            public static final String ADDONS = "Addons";
+            public static final String CURRENT_DURABILITY = "CurrentDurability";
+            public static final String TOTAL_DURABILITY = "TotalDurability";
+            public static final String IS_BROKEN = "IsBroken";
+            public static final String CAPABILITY_DATA = "CapabilityData";
         }
 
         public class Item {
             public class ItemComponent {
-                public static final String MATERIAL = "Material";
-                public static final String TYPE = "AddonID";
+                public static final String MATERIAL = "CoreMaterial";
+                public static final String EXTENSION = "Extension";
             }
         }
 
-        public class HeatedIngot {
-            public static final String ORIGINALITEM = "ORIGINALITEM";
-            public static final String MATERIALID = "OriginalMaterial";
-            public static final String CURRENTTEMPERATURE = "CURRENTTEMPERATURE";
-            public static final String TYPE = "Type";
+        public class HeatedObject {
+            public static final String HEATEDTYPE = "Type";
+            public static final String HEATEDOBJECT = "Object";
+            public static final String HEATEDTEMP = "Temperature";
+            public static final String HEATEDSTACK = "Stack";
+        }
+
+        public class MaterializedStack {
+            public static final String MATERIAL = "Material";
         }
 
         public class Fluids {
             public class MoltenMetal {
-                public static final String MATERIAL = "MaterialID";
+                public static final String MATERIAL = "CORE_MATERIAL";
             }
         }
 
@@ -453,7 +458,7 @@ public class References {
 
             public class Anvil {
                 public static final String CRAFTINGPROGRESS = "CraftingProgress";
-                public static final String MATERIAL = "Material";
+                public static final String MATERIAL = "CoreMaterial";
                 public static final String ITEMNAME = "ItemName";
                 public static final String PROCESSING = "Processing";
             }

@@ -30,19 +30,19 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
         this.type = type;
     }
 
-    @NotNull
+    @Nonnull
     @Override
     protected TileStorageBasedGUIManager getInitialGuiManager() {
         return new TileStorageBasedGUIManager();
     }
 
-    @NotNull
+    @Nonnull
     @Override
     protected TileEntityConduitState getInitialState() {
         return new TileEntityConduitState();
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public String getContainerID() {
         return References.InternalNames.TileEntities.Conduit + "-" + getLocation().toString();
@@ -55,7 +55,7 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
         this.type = EnumConduitType.byMetadata(compound.getInteger(References.NBTTagCompoundData.TE.Conduit.Structure.TYPE));
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         compound = super.writeToNBT(compound);

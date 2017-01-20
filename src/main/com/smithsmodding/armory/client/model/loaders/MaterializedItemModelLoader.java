@@ -16,6 +16,8 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
+
 /**
  * Author Marc (Created on: 14.06.2016)
  */
@@ -24,7 +26,7 @@ public class MaterializedItemModelLoader implements ICustomModelLoader {
     public static final String EXTENSION = ".MIM-Armory";
 
     @Override
-    public boolean accepts(@NotNull ResourceLocation modelLocation) {
+    public boolean accepts(@Nonnull ResourceLocation modelLocation) {
         return modelLocation.getResourcePath().endsWith(EXTENSION);
     }
 

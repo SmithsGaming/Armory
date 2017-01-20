@@ -3,8 +3,6 @@ package com.smithsmodding.armory.common.config;
 import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.materials.IArmorConfigurator;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
@@ -28,9 +26,9 @@ public class ArmorDataConfigHandler implements IArmorConfigurator {
     @Override
     public void loadIDs() {
         for (IArmorMaterial material : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-            Configuration globalMaterialConfig = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/Material Configuration/" + material.getUniqueID() + "/Global.cfg"), true);
+            Configuration globalMaterialConfig = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/CoreMaterial Configuration/" + material.getUniqueID() + "/Global.cfg"), true);
 
-            material.setItemDamageMaterialIndex(globalMaterialConfig.getInt("MaterialID", "Global", material.getItemDamageMaterialIndex(), 0, Short.MAX_VALUE, "The internalID of the Material. NO TWO MATERIALS SHOULD HAVE THE SAME ID!."));
+            material.setItemDamageMaterialIndex(globalMaterialConfig.getInt("CORE_MATERIAL", "Global", material.getItemDamageMaterialIndex(), 0, Short.MAX_VALUE, "The internalID of the CoreMaterial. NO TWO MATERIALS SHOULD HAVE THE SAME ID!."));
 
             if (globalMaterialConfig.hasChanged())
                 globalMaterialConfig.save();
@@ -40,7 +38,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator {
     @Override
     public void loadIsBaseArmorMaterial() {
         for (IArmorMaterial material : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-            Configuration globalMaterialConfig = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/Material Configuration/" + material.getUniqueID() + "/Global.cfg"), true);
+            Configuration globalMaterialConfig = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/CoreMaterial Configuration/" + material.getUniqueID() + "/Global.cfg"), true);
 
             material.setIsBaseArmorMaterial(globalMaterialConfig.getBoolean("IsBaseArmorMaterial", "Armor", material.getIsBaseArmorMaterial(), "Marks this material as a material out of which the base layer can be crafted."));
 
@@ -52,7 +50,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator {
     @Override
     public void loadActiveParts() {
         for (IArmorMaterial material : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-            Configuration activePartConfiguration = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/Material Configuration/" + material.getUniqueID() + "/PartStates.cfg"), true);
+            Configuration activePartConfiguration = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/CoreMaterial Configuration/" + material.getUniqueID() + "/PartStates.cfg"), true);
 
             Iterator iter = MedievalAddonRegistry.getInstance().getPartStatesForMaterial(material).entrySet().iterator();
             while (iter.hasNext()) {
@@ -69,7 +67,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator {
     @Override
     public void loadBaseDamageAbsorptions() {
         for (IArmorMaterial material : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-            Configuration damageAbsorbtionConfiguration = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/Material Configuration/" + material.getUniqueID() + "/DamageAbsorption.cfg"), true);
+            Configuration damageAbsorbtionConfiguration = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/CoreMaterial Configuration/" + material.getUniqueID() + "/DamageAbsorption.cfg"), true);
 
             Iterator iter = material.getAllBaseDamageAbsorptionValues().entrySet().iterator();
             while (iter.hasNext()) {
@@ -86,7 +84,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator {
     @Override
     public void loadPartModifiers() {
         for (IArmorMaterial material : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-            Configuration tMaxModifiersPerPartConfig = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/Material Configuration/" + material.getUniqueID() + "/Modifiers.cfg"), true);
+            Configuration tMaxModifiersPerPartConfig = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/CoreMaterial Configuration/" + material.getUniqueID() + "/Modifiers.cfg"), true);
 
             Iterator tIter = material.getAllMaxModifiersAmounts().entrySet().iterator();
             while (tIter.hasNext()) {
@@ -103,7 +101,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator {
     @Override
     public void loadBaseDurability() {
         for (IArmorMaterial material : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-            Configuration baseDurabilityConfig = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/Material Configuration/" + material.getUniqueID() + "/Durability.cfg"), true);
+            Configuration baseDurabilityConfig = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/CoreMaterial Configuration/" + material.getUniqueID() + "/Durability.cfg"), true);
 
             Iterator iter = material.getAllBaseDurabilityValues().entrySet().iterator();
             while (iter.hasNext()) {
@@ -120,7 +118,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator {
     @Override
     public void loadTemperatureCoefficient() {
         for (IArmorMaterial material : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-            Configuration globalMaterialConfig = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/Material Configuration/" + material.getUniqueID() + "/Global.cfg"), true);
+            Configuration globalMaterialConfig = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/CoreMaterial Configuration/" + material.getUniqueID() + "/Global.cfg"), true);
 
             material.setHeatCoefficient(globalMaterialConfig.getFloat("HeatCoefficient", "Global", material.getHeatCoefficient(), -10F, 10F, "Determines how fast a metal can heat up. Higher is better."));
 
@@ -132,7 +130,7 @@ public class ArmorDataConfigHandler implements IArmorConfigurator {
     @Override
     public void loadMeltingPoint() {
         for (IArmorMaterial material : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-            Configuration globalMaterialConfig = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/Material Configuration/" + material.getUniqueID() + "/Global.cfg"), true);
+            Configuration globalMaterialConfig = new Configuration(new File(armoryConfigFile.getParentFile().getAbsolutePath() + "/CoreMaterial Configuration/" + material.getUniqueID() + "/Global.cfg"), true);
 
             material.setMeltingPoint(globalMaterialConfig.getFloat("MeltingPoint", "Global", material.getMeltingPoint(), 20F, 5000F, "Determines the melting point of the metal"));
 
