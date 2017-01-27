@@ -1,79 +1,143 @@
-[22:45:21] [Client thread/INFO]: Setting user: Player32
-[22:45:27] [Client thread/WARN]: Skipping bad option: lastServer:
-[22:45:27] [Client thread/INFO]: LWJGL Version: 2.9.4
-[22:45:34] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items, FMLFileResourcePack:ExtraUtils2
-[22:45:43] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[22:45:43] [Thread-8/INFO]: Initializing LWJGL OpenAL
-[22:45:43] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[22:45:44] [Thread-8/INFO]: OpenAL initialized.
-[22:45:44] [Sound Library Loader/INFO]: Sound engine started
-[22:45:49] [Client thread/INFO]: Created: 16x16 textures-atlas
-[22:45:51] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items, FMLFileResourcePack:ExtraUtils2
-[22:45:55] [Client thread/INFO]: SoundSystem shutting down...
-[22:45:55] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[22:45:55] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[22:45:55] [Thread-10/INFO]: Initializing LWJGL OpenAL
-[22:45:55] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[22:45:56] [Thread-10/INFO]: OpenAL initialized.
-[22:45:56] [Sound Library Loader/INFO]: Sound engine started
-[22:46:02] [Client thread/INFO]: Created: 2048x2048 textures-atlas
-[22:46:03] [Client thread/WARN]: Skipping bad option: lastServer:
-[22:46:04] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
-[22:46:11] [Server thread/INFO]: Starting integrated minecraft server version 1.10.2
-[22:46:11] [Server thread/INFO]: Generating keypair
-[22:46:12] [Server thread/INFO]: Preparing start region for level 0
-[22:46:12] [Server thread/WARN]: Keeping entity Pig that already exists with UUID b9ea75a5-29b5-4c76-a8e7-0edecd280c25
-[22:46:13] [Server thread/INFO]: Changing view distance to 12, from 10
-[22:46:14] [Server thread/INFO]: Player32[local:E:5f3e52fa] logged in with entity id 164 at (581.3268454051513, 4.0, -345.5954836034061)
-[22:46:14] [Server thread/INFO]: Player32 joined the game
-[22:46:15] [Server thread/INFO]: Saving and pausing game...
-[22:46:15] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[22:46:15] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[22:46:15] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[22:46:17] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@4b426360[id=cdc68907-d5a3-31ac-b4e8-b157ad0dd513,name=Player32,properties={},legacy=false]
-com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
-	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:65) ~[YggdrasilAuthenticationService.class:?]
-	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:175) [YggdrasilMinecraftSessionService.class:?]
-	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:59) [YggdrasilMinecraftSessionService$1.class:?]
-	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:56) [YggdrasilMinecraftSessionService$1.class:?]
-	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3524) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2317) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2280) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2195) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache.get(LocalCache.java:3934) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:3938) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:4821) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:4827) [guava-17.0.jar:?]
-	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:165) [YggdrasilMinecraftSessionService.class:?]
-	at net.minecraft.client.Minecraft.getProfileProperties(Minecraft.java:3060) [Minecraft.class:?]
-	at net.minecraft.client.resources.SkinManager$3.run(SkinManager.java:131) [SkinManager$3.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_65]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_65]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_65]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_65]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_65]
-[22:46:17] [Server thread/INFO]: Saving and pausing game...
-[22:46:17] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[22:46:17] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[22:46:17] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[22:46:25] [Server thread/INFO]: Player32 has just earned the achievement [Taking Inventory]
-[22:46:25] [Client thread/INFO]: [CHAT] Player32 has just earned the achievement [Taking Inventory]
-[22:46:36] [Server thread/INFO]: [Player32: Set own game mode to Survival Mode]
-[22:46:36] [Client thread/INFO]: [CHAT] Your game mode has been updated to Survival Mode
-[22:46:42] [Server thread/INFO]: Saving and pausing game...
-[22:46:42] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[22:46:42] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[22:46:42] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[22:47:41] [Server thread/INFO]: Saving and pausing game...
-[22:47:41] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[22:47:41] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[22:47:41] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[22:47:42] [Server thread/INFO]: Stopping server
-[22:47:42] [Server thread/INFO]: Saving players
-[22:47:42] [Server thread/INFO]: Saving worlds
-[22:47:42] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[22:47:42] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[22:47:42] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[22:47:43] [Client thread/INFO]: Stopping!
-[22:47:43] [Client thread/INFO]: SoundSystem shutting down...
-[22:47:44] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[20:29:11] [main/INFO]: Extra: []
+[20:29:12] [main/INFO]: Running with arguments: [--userProperties, {}, --assetsDir, C:/Users/marcf/.gradle/caches/minecraft/assets, --assetIndex, 1.11, --accessToken{REDACTED}, --version, 1.11, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, net.minecraftforge.gradle.tweakers.CoremodTweaker]
+[20:29:12] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[20:29:12] [main/INFO]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[20:29:12] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.CoremodTweaker
+[20:29:12] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[20:29:12] [main/INFO]: Forge Mod Loader version 13.19.1.2199 for Minecraft 1.11 loading
+[20:29:12] [main/INFO]: Java is Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_111, running on Windows 10:amd64:10.0, installed at C:\Program Files\Java\jdk1.8.0_111\jre
+[20:29:12] [main/INFO]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
+[20:29:12] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.CoremodTweaker
+[20:29:12] [main/INFO]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
+[20:29:12] [main/INFO]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
+[20:29:12] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[20:29:12] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[20:29:12] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[20:29:12] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[20:29:12] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[20:29:12] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[20:29:12] [main/ERROR]: The binary patch set is missing. Either you are in a development environment, or things are not going to work!
+[20:29:13] [main/ERROR]: FML appears to be missing any signature data. This is not a good thing
+[20:29:13] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[20:29:13] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[20:29:14] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[20:29:15] [main/INFO]: Remapping AccessTransformer rules...
+[20:29:15] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[20:29:15] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[20:29:15] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[20:29:16] [Client thread/INFO]: Setting user: Player334
+[20:29:20] [Client thread/WARN]: Skipping bad option: lastServer:
+[20:29:20] [Client thread/INFO]: LWJGL Version: 2.9.4
+[20:29:21] [Client thread/ERROR]: Couldn't set pixel format
+org.lwjgl.LWJGLException: Pixel format not accelerated
+	at org.lwjgl.opengl.WindowsPeerInfo.nChoosePixelFormat(Native Method) ~[lwjgl-2.9.4-nightly-20150209.jar:?]
+	at org.lwjgl.opengl.WindowsPeerInfo.choosePixelFormat(WindowsPeerInfo.java:52) ~[lwjgl-2.9.4-nightly-20150209.jar:?]
+	at org.lwjgl.opengl.WindowsDisplay.createWindow(WindowsDisplay.java:247) ~[lwjgl-2.9.4-nightly-20150209.jar:?]
+	at org.lwjgl.opengl.Display.createWindow(Display.java:306) ~[lwjgl-2.9.4-nightly-20150209.jar:?]
+	at org.lwjgl.opengl.Display.create(Display.java:848) ~[lwjgl-2.9.4-nightly-20150209.jar:?]
+	at org.lwjgl.opengl.Display.create(Display.java:757) ~[lwjgl-2.9.4-nightly-20150209.jar:?]
+	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:613) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.init(Minecraft.java:467) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:385) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_111]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_111]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_111]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_111]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_111]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_111]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_111]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_111]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+[20:29:22] [Client thread/INFO]: [net.minecraft.init.Bootstrap:printToSYSOUT:600]: ---- Minecraft Crash Report ----
+// Uh... Did I do that?
+
+Time: 1/26/17 8:29 PM
+Description: Initializing game
+
+org.lwjgl.LWJGLException: Pixel format not accelerated
+	at org.lwjgl.opengl.WindowsPeerInfo.nChoosePixelFormat(Native Method)
+	at org.lwjgl.opengl.WindowsPeerInfo.choosePixelFormat(WindowsPeerInfo.java:52)
+	at org.lwjgl.opengl.WindowsDisplay.createWindow(WindowsDisplay.java:247)
+	at org.lwjgl.opengl.Display.createWindow(Display.java:306)
+	at org.lwjgl.opengl.Display.create(Display.java:848)
+	at org.lwjgl.opengl.Display.create(Display.java:757)
+	at org.lwjgl.opengl.Display.create(Display.java:739)
+	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:633)
+	at net.minecraft.client.Minecraft.init(Minecraft.java:467)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:385)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:26)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at org.lwjgl.opengl.WindowsPeerInfo.nChoosePixelFormat(Native Method)
+	at org.lwjgl.opengl.WindowsPeerInfo.choosePixelFormat(WindowsPeerInfo.java:52)
+	at org.lwjgl.opengl.WindowsDisplay.createWindow(WindowsDisplay.java:247)
+	at org.lwjgl.opengl.Display.createWindow(Display.java:306)
+	at org.lwjgl.opengl.Display.create(Display.java:848)
+	at org.lwjgl.opengl.Display.create(Display.java:757)
+	at org.lwjgl.opengl.Display.create(Display.java:739)
+	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:633)
+	at net.minecraft.client.Minecraft.init(Minecraft.java:467)
+
+-- Initialization --
+Details:
+Stacktrace:
+	at net.minecraft.client.Minecraft.run(Minecraft.java:385)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:26)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.11
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_111, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 332518408 bytes (317 MB) / 830472192 bytes (792 MB) up to 7621050368 bytes (7268 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: 
+	Loaded coremods (and transformers): 
+	Launched Version: 1.11
+	LWJGL: 2.9.4
+	OpenGL: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	GL Caps: 
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: ~~ERROR~~ NullPointerException: null
+	Profiler Position: N/A (disabled)
+	CPU: <unknown>
+[20:29:22] [Client thread/INFO]: [net.minecraft.init.Bootstrap:printToSYSOUT:600]: #@!@# Game crashed! Crash report saved to: #@!@# E:\Development\Minecraft\1.11\Armory\run\.\crash-reports\crash-2017-01-26_20.29.22-client.txt
