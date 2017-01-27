@@ -6,13 +6,11 @@ package com.smithsmodding.armory.common.inventory.slots;
  */
 
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
-import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -28,7 +26,7 @@ public class SlotHeatable extends SlotSmithsCore {
 
     @Override
     public boolean isItemValid(@Nonnull ItemStack pItemStack) {
-        return pItemStack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILIT, null);
+        return pItemStack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null);
     }
 
     @Override

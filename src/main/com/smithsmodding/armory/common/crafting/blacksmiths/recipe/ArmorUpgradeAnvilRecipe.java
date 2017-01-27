@@ -1,13 +1,13 @@
 package com.smithsmodding.armory.common.crafting.blacksmiths.recipe;
 
-import com.smithsmodding.armory.api.armor.IMultiComponentArmor;
-import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtensionInformation;
-import com.smithsmodding.armory.api.capability.IArmorComponentStackCapability;
-import com.smithsmodding.armory.api.capability.IMultiComponentArmorCapability;
-import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeComponent;
-import com.smithsmodding.armory.api.crafting.blacksmiths.component.StandardAnvilRecipeComponent;
-import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
-import com.smithsmodding.armory.api.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
+import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionInformation;
+import com.smithsmodding.armory.api.common.capability.IArmorComponentStackCapability;
+import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapability;
+import com.smithsmodding.armory.api.common.crafting.blacksmiths.component.IAnvilRecipeComponent;
+import com.smithsmodding.armory.api.common.crafting.blacksmiths.component.StandardAnvilRecipeComponent;
+import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.AnvilRecipe;
+import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.armory.api.util.references.ModItems;
@@ -116,7 +116,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
     @Override
     public IAnvilRecipeComponent getComponent(int componentIndex) {
         if (componentIndex == 12) {
-            return new StandardAnvilRecipeComponent(new ItemStack(ModItems.metalRing)) {
+            return new StandardAnvilRecipeComponent(new ItemStack(ModItems.IT_RING)) {
                 @Nullable
                 @Override
                 public ItemStack getComponentTargetStack() {

@@ -1,11 +1,9 @@
 package com.smithsmodding.armory.common.item;
 
-import com.smithsmodding.armory.api.heatable.IHeatableObjectType;
+import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.ModHeatedObjectTypes;
 import com.smithsmodding.armory.api.util.references.References;
-
-import java.util.List;
 
 /**
  * Created by Orion
@@ -19,12 +17,12 @@ public class ItemHeatableNugget extends ItemHeatableResource {
     public ItemHeatableNugget() {
         this.setMaxStackSize(64);
         this.setCreativeTab(ModCreativeTabs.componentsTab);
-        this.setUnlocalizedName(References.InternalNames.Items.ItemMetalNugget);
-        this.setRegistryName(References.InternalNames.Items.ItemMetalNugget);
+        this.setUnlocalizedName(References.InternalNames.Items.IN_METALNUGGET);
+        this.setRegistryName(References.InternalNames.Items.IN_METALNUGGET);
     }
 
     @Override
-    public IHeatableObjectType getHeatableObjectType() {
+    public IHeatedObjectType getHeatableObjectType() {
         return ModHeatedObjectTypes.NUGGET;
     }
 

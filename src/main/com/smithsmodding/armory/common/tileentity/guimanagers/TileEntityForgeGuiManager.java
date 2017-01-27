@@ -8,8 +8,8 @@ import com.smithsmodding.smithscore.common.fluid.MultiFluidTank;
 import com.smithsmodding.smithscore.util.client.TranslationKeys;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fluids.FluidStack;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 /**
@@ -40,7 +40,7 @@ public class TileEntityForgeGuiManager extends TileEntityForgeBaseGuiManager<Til
         if (component.getID().toLowerCase().contains("mixingprogress")) {
             Float mixingprogress = getTileEntity().getState().getMixingProgress();
 
-            if (component.getID().endsWith("In.Left.Horizontal") || component.getID().endsWith("In.Right.Horizontal")) {
+            if (component.getID().endsWith("In.TK_LACESLEFT.Horizontal") || component.getID().endsWith("In.TK_LACESRIGHT.Horizontal")) {
                 if (mixingprogress <= 0F)
                     return 0F;
 
@@ -50,7 +50,7 @@ public class TileEntityForgeGuiManager extends TileEntityForgeBaseGuiManager<Til
                 return mixingprogress;
             }
 
-            if (component.getID().endsWith("In.Left.Vertical") || component.getID().endsWith("In.Right.Vertical")) {
+            if (component.getID().endsWith("In.TK_LACESLEFT.Vertical") || component.getID().endsWith("In.TK_LACESRIGHT.Vertical")) {
                 if (mixingprogress <= 1F)
                     return 0F;
 
@@ -60,7 +60,7 @@ public class TileEntityForgeGuiManager extends TileEntityForgeBaseGuiManager<Til
                 return mixingprogress - 1F;
             }
 
-            if (component.getID().endsWith("Out.Left.Vertical") || component.getID().endsWith("Out.Right.Vertical")) {
+            if (component.getID().endsWith("Out.TK_LACESLEFT.Vertical") || component.getID().endsWith("Out.TK_LACESRIGHT.Vertical")) {
                 if (mixingprogress <= 2F)
                     return 0F;
 
@@ -70,7 +70,7 @@ public class TileEntityForgeGuiManager extends TileEntityForgeBaseGuiManager<Til
                 return mixingprogress - 2F;
             }
 
-            if (component.getID().endsWith("Out.Left.Horizontal") || component.getID().endsWith("Out.Right.Horizontal")) {
+            if (component.getID().endsWith("Out.TK_LACESLEFT.Horizontal") || component.getID().endsWith("Out.TK_LACESRIGHT.Horizontal")) {
                 if (mixingprogress <= 3F)
                     return 0F;
 

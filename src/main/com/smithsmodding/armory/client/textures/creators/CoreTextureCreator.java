@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.client.textures.creators;
 
-import com.smithsmodding.armory.api.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.api.textures.creation.ICreationController;
+import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.client.textures.creation.ICreationController;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
 import com.smithsmodding.armory.util.client.texture.TextureCreationHelper;

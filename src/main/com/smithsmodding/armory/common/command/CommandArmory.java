@@ -13,7 +13,6 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -29,7 +28,7 @@ public class CommandArmory extends CommandBase {
     private static List<String> commands = new ArrayList<String>();
 
     static {
-        modCommands.add(new CommandGiveHeated());
+        //modCommands.add(new CommandGiveHeated());
 
         modCommands.add(new CommandEnableTempDecay());
 

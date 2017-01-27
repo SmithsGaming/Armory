@@ -5,12 +5,12 @@ package com.smithsmodding.armory.common.factories;
 /  Created on : 03/10/2014
 */
 
-import com.smithsmodding.armory.api.capability.IHeatableObjectCapability;
-import com.smithsmodding.armory.api.capability.IHeatedObjectCapability;
-import com.smithsmodding.armory.api.factories.IHeatedItemFactory;
-import com.smithsmodding.armory.api.heatable.IHeatableObject;
-import com.smithsmodding.armory.api.heatable.IHeatableObjectType;
-import com.smithsmodding.armory.api.material.core.IMaterial;
+import com.smithsmodding.armory.api.common.capability.IHeatableObjectCapability;
+import com.smithsmodding.armory.api.common.capability.IHeatedObjectCapability;
+import com.smithsmodding.armory.api.common.factories.IHeatedItemFactory;
+import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
+import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
+import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModItems;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
@@ -34,7 +34,7 @@ public class HeatedItemFactory implements IHeatedItemFactory {
 
     @Override
     @Nullable
-    public ItemStack generateHeatedItemFromMaterial(IMaterial material, IHeatableObject object, IHeatableObjectType type, float temp) {
+    public ItemStack generateHeatedItemFromMaterial(IMaterial material, IHeatableObject object, IHeatedObjectType type, float temp) {
         ItemStack originalStack = type.generateItemStackForMaterial(material);
         SmithsCoreCapabilityDispatcher originalCapDispatcher = originalStack.getCapability(SmithsCoreCapabilityDispatcher.INSTANCE_CAPABILITY, null).getDispatcher();
 
@@ -42,7 +42,7 @@ public class HeatedItemFactory implements IHeatedItemFactory {
                 .setObject(object)
                 .setMaterial(material)
                 .setType(type);
-        originalCapDispatcher.registerCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILIT, heatableObjectCapability);
+        originalCapDispatcher.registerCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, heatableObjectCapability);
 
         return convertToHeatedIngot(originalStack, temp);
     }
@@ -56,13 +56,13 @@ public class HeatedItemFactory implements IHeatedItemFactory {
     @Override
     @Nonnull
     public ItemStack convertToHeatedIngot(@Nonnull ItemStack originalStack, float temp) {
-        if (!originalStack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILIT, null))
+        if (!originalStack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null))
             throw new IllegalArgumentException("cooledStack is not Heatable");
 
-        ItemStack createdStack = new ItemStack(ModItems.heatedItem, 1);
+        ItemStack createdStack = new ItemStack(ModItems.IT_HEATEDITEM, 1);
         SmithsCoreCapabilityDispatcher createdStackCapDispatcher = createdStack.getCapability(SmithsCoreCapabilityDispatcher.INSTANCE_CAPABILITY, null).getDispatcher();
 
-        IHeatedObjectCapability heatedObjectCapability = wrapHeatableData(originalStack.getCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILIT, null))
+        IHeatedObjectCapability heatedObjectCapability = wrapHeatableData(originalStack.getCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null))
                 .setTemperatur(temp)
                 .setOriginalStack(originalStack);
         createdStackCapDispatcher.registerCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, heatedObjectCapability);

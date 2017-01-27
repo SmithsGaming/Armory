@@ -5,9 +5,9 @@ package com.smithsmodding.armory.util.armor;
  *   Created on: 14-9-2014
  */
 
-import com.smithsmodding.armory.api.armor.IMultiComponentArmor;
-import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtensionInformation;
-import com.smithsmodding.armory.api.capability.IMultiComponentArmorCapability;
+import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
+import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionInformation;
+import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapability;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.api.ArmoryAPI;

@@ -1,22 +1,18 @@
 package com.smithsmodding.armory.api.util.references;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.capability.*;
-import com.smithsmodding.armory.api.fluid.IMoltenMetalAcceptor;
-import com.smithsmodding.armory.api.fluid.IMoltenMetalProvider;
-import com.smithsmodding.armory.common.api.ArmoryAPI;
-import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
+import com.smithsmodding.armory.api.common.capability.*;
+import com.smithsmodding.armory.api.common.fluid.IMoltenMetalAcceptor;
+import com.smithsmodding.armory.api.common.fluid.IMoltenMetalProvider;
 import com.smithsmodding.smithscore.util.common.capabilities.NullFactory;
 import com.smithsmodding.smithscore.util.common.capabilities.NullStorage;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.util.Constants;
 
 
 /**
@@ -40,7 +36,7 @@ public class ModCapabilities {
     public static Capability<IHeatedObjectCapability> MOD_HEATEDOBJECT_CAPABILITY;
 
     @CapabilityInject(IHeatableObjectCapability.class)
-    public static Capability<IHeatableObjectCapability> MOD_HEATABLEOBJECT_CAPABILIT;
+    public static Capability<IHeatableObjectCapability> MOD_HEATABLEOBJECT_CAPABILITY;
 
     @CapabilityInject(IArmorComponentStackCapability.class)
     public static Capability<IArmorComponentStackCapability> MOD_ARMORCOMPONENT_CAPABILITY;

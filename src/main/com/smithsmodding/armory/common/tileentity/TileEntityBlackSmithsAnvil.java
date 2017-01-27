@@ -1,7 +1,8 @@
 package com.smithsmodding.armory.common.tileentity;
 
-import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeComponent;
-import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
+import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.common.crafting.blacksmiths.component.IAnvilRecipeComponent;
+import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
 import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.api.util.references.References;
@@ -17,9 +18,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 
 /**
@@ -41,6 +42,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
     private ItemStack[] coolingStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_COOLSLOTS];
 
     public TileEntityBlackSmithsAnvil() {
+        clearInventory();
     }
 
     @Nonnull
@@ -64,6 +66,20 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
     @Override
     public int getSizeInventory() {
         return ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_TONGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_BLUEPRINTLIBRARYSLOTS;
+    }
+
+    /**
+     * Returns true if the Inventory is Empty.
+     */
+    @Override
+    public boolean isEmpty() {
+        for(int i = 0; i < getSizeInventory(); i++) {
+            if (!getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Nullable
@@ -100,22 +116,22 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
         pSlotID -= ModInventories.TileEntityBlackSmithsAnvil.MAX_COOLSLOTS;
 
 
-        return null;
+        return ItemStack.EMPTY;
     }
 
-    @Nullable
+    @Nonnull
     @Override
     public ItemStack decrStackSize(int pSlotIndex, int pDecrAmount) {
         ItemStack tItemStack = getStackInSlot(pSlotIndex);
-        if (tItemStack == null) {
+        if (tItemStack.isEmpty()) {
             return tItemStack;
         }
-        if (tItemStack.stackSize < pDecrAmount) {
-            setInventorySlotContents(pSlotIndex, null);
+        if (tItemStack.getCount() < pDecrAmount) {
+            setInventorySlotContents(pSlotIndex, ItemStack.EMPTY);
         } else {
             tItemStack = tItemStack.splitStack(pDecrAmount);
-            if (tItemStack.stackSize == 0) {
-                setInventorySlotContents(pSlotIndex, null);
+            if (tItemStack.getCount() == 0 || tItemStack.isEmpty()) {
+                setInventorySlotContents(pSlotIndex, ItemStack.EMPTY);
             }
         }
 
@@ -124,18 +140,21 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
 
     @Override
     public void clearInventory() {
-        craftingStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS];
-        outputStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS];
-        hammerStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS];
-        tongStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_TONGSLOTS];
-        additionalCraftingStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS];
-        coolingStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_COOLSLOTS];
+        com.smithsmodding.armory.util.ItemStackHelper.InitializeItemStackArray(craftingStacks);
+        com.smithsmodding.armory.util.ItemStackHelper.InitializeItemStackArray(outputStacks);
+        com.smithsmodding.armory.util.ItemStackHelper.InitializeItemStackArray(hammerStacks);
+        com.smithsmodding.armory.util.ItemStackHelper.InitializeItemStackArray(tongStacks);
+        com.smithsmodding.armory.util.ItemStackHelper.InitializeItemStackArray(additionalCraftingStacks);
+        com.smithsmodding.armory.util.ItemStackHelper.InitializeItemStackArray(coolingStacks);
     }
 
     @Override
     public void setInventorySlotContents(int pSlotID, ItemStack pNewItemStack) {
         if (pSlotID < 0)
             return;
+
+        if (pNewItemStack == null)
+            pNewItemStack = ItemStack.EMPTY;
 
         if (pSlotID < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS) {
             craftingStacks[pSlotID] = pNewItemStack;
@@ -263,9 +282,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
         if (getCurrentRecipe() != null) {
             (getState()).setCraftingprogress((getState()).getCraftingprogress() + (1f / 20f));
 
-            if (((getState()).getCraftingprogress() >= getCurrentRecipe().getMinimumProgress()) && !worldObj.isRemote) {
-                if (outputStacks[0] != null) {
-                    outputStacks[0].stackSize += getCurrentRecipe().getResult(craftingStacks, additionalCraftingStacks).stackSize;
+            if (((getState()).getCraftingprogress() >= getCurrentRecipe().getProgress()) && !getWorld().isRemote) {
+                if (outputStacks[0].isEmpty()) {
+                    outputStacks[0].grow(getCurrentRecipe().getResult(craftingStacks, additionalCraftingStacks).getCount());
                 } else {
                     outputStacks[0] = getCurrentRecipe().getResult(craftingStacks, additionalCraftingStacks);
                     if (!(getState()).getItemName().equals("")) {
@@ -282,7 +301,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
             }
         }
 
-        if (!worldObj.isRemote) {
+        if (!getWorld().isRemote) {
             markDirty();
         }
     }
@@ -310,7 +329,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
         if (tongStacks[0] != null)
             tTongUsagesLeft = tongStacks[0].getItemDamage();
 
-        for (AnvilRecipe tRecipe : AnvilRecipeRegistry.getInstance().getRecipes().values()) {
+        for (IAnvilRecipe tRecipe : IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry()) {
             if (tRecipe.matchesRecipe(craftingStacks, additionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft)) {
                 if (outputStacks[0] != null) {
                     ItemStack tResultStack = tRecipe.getResult(craftingStacks, additionalCraftingStacks);
@@ -318,7 +337,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
                     if (!ItemStackHelper.equalsIgnoreStackSize(tResultStack, outputStacks[0]))
                         continue;
 
-                    if ((tResultStack.stackSize + outputStacks[0].stackSize) <= outputStacks[0].getMaxStackSize()) {
+                    if ((tResultStack.getCount() + outputStacks[0].getCount()) <= outputStacks[0].getMaxStackSize()) {
                         setCurrentRecipe(tRecipe);
                         return;
                     }
@@ -329,20 +348,20 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
             }
         }
 
-        if (craftingStacks[11] != null) {
+        if (!craftingStacks[11].isEmpty()) {
             for (int tCraftingStack = 0; tCraftingStack < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS; tCraftingStack++) {
                 if (tCraftingStack == 11 || tCraftingStack == 13) {
                     continue;
                 }
 
-                if (craftingStacks[tCraftingStack] != null) {
+                if (!craftingStacks[tCraftingStack].isEmpty()) {
                     setCurrentRecipe(null);
                     return;
                 }
             }
 
             for (ItemStack tStack : additionalCraftingStacks) {
-                if (tStack != null) {
+                if (!tStack.isEmpty()) {
                     setCurrentRecipe(null);
                     return;
                 }
@@ -360,11 +379,11 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
     }
 
     @Nullable
-    public AnvilRecipe getCurrentRecipe() {
+    public IAnvilRecipe getCurrentRecipe() {
         return (getState()).getRecipe();
     }
 
-    public void setCurrentRecipe(AnvilRecipe recipe) {
+    public void setCurrentRecipe(IAnvilRecipe recipe) {
         (getState()).setRecipe(recipe);
     }
 
@@ -388,9 +407,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
                         IAnvilRecipeComponent tComponent = tIter.next();
 
                         if (tComponent != null) {
-                            craftingStacks[tSlotIndex].stackSize = tComponent.getResultingStackSizeForComponent(craftingStacks[tSlotIndex]);
-                            if (craftingStacks[tSlotIndex].stackSize == 0) {
-                                craftingStacks[tSlotIndex] = null;
+                            craftingStacks[tSlotIndex].setCount(tComponent.getResultingStackSizeForComponent(craftingStacks[tSlotIndex]));
+                            if (craftingStacks[tSlotIndex].getCount() == 0 || craftingStacks[tSlotIndex].isEmpty()) {
+                                craftingStacks[tSlotIndex] = ItemStack.EMPTY;
                             }
 
                             tProcessedStack = true;
@@ -400,30 +419,30 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
             }
         } else {
             for (int tSlotIndex = 0; tSlotIndex < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS; tSlotIndex++) {
-                if (craftingStacks[tSlotIndex] == null)
+                if (craftingStacks[tSlotIndex].isEmpty())
                     continue;
 
                 IAnvilRecipeComponent tTargetComponent = getCurrentRecipe().getComponent(tSlotIndex);
                 if (tTargetComponent == null)
                     continue;
 
-                craftingStacks[tSlotIndex].stackSize = tTargetComponent.getResultingStackSizeForComponent(craftingStacks[tSlotIndex]);
-                if (craftingStacks[tSlotIndex].stackSize < 1)
-                    craftingStacks[tSlotIndex] = null;
+                craftingStacks[tSlotIndex].setCount(tTargetComponent.getResultingStackSizeForComponent(craftingStacks[tSlotIndex]));
+                if (craftingStacks[tSlotIndex].getCount() < 1 || craftingStacks[tSlotIndex].isEmpty())
+                    craftingStacks[tSlotIndex] = ItemStack.EMPTY;
             }
         }
 
         for (int tSlotIndex = 0; tSlotIndex < ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS; tSlotIndex++) {
-            if (additionalCraftingStacks[tSlotIndex] == null)
+            if (additionalCraftingStacks[tSlotIndex].isEmpty())
                 continue;
 
             IAnvilRecipeComponent tTargetComponent = getCurrentRecipe().getAdditionalComponent(tSlotIndex);
             if (tTargetComponent == null)
                 continue;
 
-            additionalCraftingStacks[tSlotIndex].stackSize = tTargetComponent.getResultingStackSizeForComponent(additionalCraftingStacks[tSlotIndex]);
-            if (additionalCraftingStacks[tSlotIndex].stackSize < 1)
-                additionalCraftingStacks[tSlotIndex] = null;
+            additionalCraftingStacks[tSlotIndex].setCount(tTargetComponent.getResultingStackSizeForComponent(additionalCraftingStacks[tSlotIndex]));
+            if (additionalCraftingStacks[tSlotIndex].getCount() < 1 || additionalCraftingStacks[tSlotIndex].isEmpty())
+                additionalCraftingStacks[tSlotIndex] = ItemStack.EMPTY;
         }
 
         if (getCurrentRecipe().getUsesHammer()) {
@@ -432,7 +451,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
             }
             hammerStacks[0].setItemDamage(hammerStacks[0].getItemDamage() - getCurrentRecipe().getHammerUsage());
             if (hammerStacks[0].getItemDamage() == 0) {
-                hammerStacks[0] = null;
+                hammerStacks[0] = ItemStack.EMPTY;
             }
         }
 
@@ -442,7 +461,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
             }
             tongStacks[0].setItemDamage(tongStacks[0].getItemDamage() - getCurrentRecipe().getTongsUsage());
             if (tongStacks[0].getItemDamage() == 0) {
-                tongStacks[0] = null;
+                tongStacks[0] = ItemStack.EMPTY;
             }
         }
 
@@ -460,8 +479,8 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
         boolean tFoundCoolingBasin = false;
         boolean tFoundHelperRack = false;
         if (getWorld().getBlockState(getPos()).getValue(BlockBlackSmithsAnvil.FACING) == EnumFacing.NORTH || getWorld().getBlockState(getPos()).getValue(BlockBlackSmithsAnvil.FACING) == EnumFacing.SOUTH) {
-            TileEntity tLeftTE = worldObj.getTileEntity(getPos().offset(EnumFacing.EAST));
-            TileEntity tRightTE = worldObj.getTileEntity(getPos().offset(EnumFacing.WEST));
+            TileEntity tLeftTE = getWorld().getTileEntity(getPos().offset(EnumFacing.EAST));
+            TileEntity tRightTE = getWorld().getTileEntity(getPos().offset(EnumFacing.WEST));
 
             /*
             TODO: When the updgrade system for the Anviul comes into play uncomment this.
@@ -486,8 +505,8 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
             }
             */
         } else {
-            TileEntity tLeftTE = worldObj.getTileEntity(getPos().offset(EnumFacing.NORTH));
-            TileEntity tRightTE = worldObj.getTileEntity(getPos().offset(EnumFacing.SOUTH));
+            TileEntity tLeftTE = getWorld().getTileEntity(getPos().offset(EnumFacing.NORTH));
+            TileEntity tRightTE = getWorld().getTileEntity(getPos().offset(EnumFacing.SOUTH));
 
             /*
             TODO: When the updgrade system for the Anviul comes into play uncomment this.

@@ -8,19 +8,25 @@ import javax.annotation.Nonnull;
  * Author Orion (Created on: 07.07.2016)
  */
 public class ModItems {
-    public static Item heatedItem;
+    public static Item IT_HEATEDITEM;
+    public static Item IT_GUIDE;
+    public static Item IT_TONGS;
+    public static Item IT_HAMMER;
+    public static Item IT_RING;
+    public static Item IT_CHAIN;
+    public static Item IT_NUGGET;
+    public static Item IT_PLATE;
+    public static Item IT_COMPONENT;
+    public static Item IT_INGOT;
 
-    public static Item guide;
-    public static Item tongs;
-    public static Item hammer;
-    public static Item metalRing;
-    public static Item metalChain;
-    public static Item metalNugget;
-    public static Item metalPlate;
-
-    @Nonnull
-    public static Item ARMOR;
-
-    @Nonnull
-    public static Item COMPONENT;
+    public static final class Armor{
+        @Nonnull
+        public static Item IT_HELMET;
+        @Nonnull
+        public static Item IT_CHESTPLATE;
+        @Nonnull
+        public static Item IT_LEGGINGS;
+        @Nonnull
+        public static Item IT_SHOES;
+    }
 }

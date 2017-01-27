@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.util;
 
-import com.smithsmodding.armory.api.material.core.IMaterial;
+import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
 import net.minecraft.util.ResourceLocation;
 
@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 public final class MaterialHelper {
 
     /**
-     * Method to get a Material from a given name.
+     * Method to getCreationRecipe a Material from a given name.
      * Checks all Armory Registries and retrieves it from the correct one of it is registered.
      *
      * @param name The name of the material.

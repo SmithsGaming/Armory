@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.api.util.references;
 
-import com.smithsmodding.armory.api.heatable.IHeatableObject;
+import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
 
 import javax.annotation.Nonnull;
 

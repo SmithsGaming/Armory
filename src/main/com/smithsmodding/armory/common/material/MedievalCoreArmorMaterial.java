@@ -1,29 +1,77 @@
 package com.smithsmodding.armory.common.material;
 
-import com.smithsmodding.armory.api.armor.IMultiComponentArmor;
-import com.smithsmodding.armory.api.capability.armor.IArmorCapability;
-import com.smithsmodding.armory.api.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.smithscore.client.textures.ITextureController;
-import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashMap;
 
 /**
  * Created by marcf on 1/2/2017.
  */
-public class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<ICoreArmorMaterial> implements ICoreArmorMaterial {
+public abstract class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<ICoreArmorMaterial> implements ICoreArmorMaterial {
+
+    private final String translationKey;
+    private final String textFormatting;
+    private final String oreDictionaryIdentifier;
+
+    private final Float meltingPoint;
+    private final Float vaporizingPoint;
+    private final Integer meltingTime;
+    private final Integer vaporizingTime;
+    private final Float heatCoefficient;
+
+    private final String textureOverrideIdentifier;
+
+    private ITextureController renderInfo;
+
+    public MedievalCoreArmorMaterial(String translationKey, String textFormatting, String oreDictionaryIdentifier, Float meltingPoint, Float vaporizingPoint, Integer meltingTime, Integer vaporizingTime, Float heatCoefficient) {
+        this.translationKey = translationKey;
+        this.textFormatting = textFormatting;
+        this.oreDictionaryIdentifier = oreDictionaryIdentifier;
+        this.meltingPoint = meltingPoint;
+        this.vaporizingPoint = vaporizingPoint;
+        this.meltingTime = meltingTime;
+        this.vaporizingTime = vaporizingTime;
+        this.heatCoefficient = heatCoefficient;
+
+        this.textureOverrideIdentifier = oreDictionaryIdentifier;
+    }
+
 
     /**
-     * Method to get the translation Key.
+     * Method to getCreationRecipe the translation Key.
      *
      * @return The key to translate.
      */
     @Nonnull
     @Override
     public String getTranslationKey() {
-        return null;
+        return translationKey;
+    }
+
+    /**
+     * Method to getCreationRecipe the markup.
+     *
+     * @return The markup. Default is TextFormatting.Reset
+     */
+    @Nonnull
+    @Override
+    public String getTextFormatting() {
+        return textFormatting;
+    }
+
+    /**
+     * Method to getCreationRecipe the Identifier inside the OreDictionary for a Material.
+     *
+     * @return The String that identifies this material in the OreDictionary. IE: TK_ANVIL_IRON, TK_ANVIL_STONE etc.
+     */
+    @Nullable
+    @Override
+    public String getOreDictionaryIdentifier() {
+        return oreDictionaryIdentifier;
     }
 
     /**
@@ -34,8 +82,9 @@ public class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<ICoreArmo
      */
     @Nonnull
     @Override
+    @SideOnly(Side.CLIENT)
     public ITextureController getRenderInfo() {
-        return null;
+        return renderInfo;
     }
 
     /**
@@ -45,12 +94,15 @@ public class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<ICoreArmo
      * @implNote This method only exists on the Client Side.
      */
     @Override
+    @Nonnull
+    @SideOnly(Side.CLIENT)
     public ICoreArmorMaterial setRenderInfo(@Nonnull ITextureController renderInfo) {
-        return null;
+        this.renderInfo = renderInfo;
+        return this;
     }
 
     /**
-     * Method to get the Override for the texture.
+     * Method to getCreationRecipe the Override for the texture.
      * Has to be supplied so that resourcepack makers can override the behaviour if they fell the need to do it.
      *
      * @return The override identifier for overloading the programmatic behaviour of the RenderInfo.
@@ -59,19 +111,9 @@ public class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<ICoreArmo
     @Nonnull
     @Override
     public String getTextureOverrideIdentifier() {
-        return null;
+        return textureOverrideIdentifier;
     }
 
-    /**
-     * Method to get the Identifier inside the OreDictionary for a Material.
-     *
-     * @return The String that identifies this material in the OreDictionary. IE: Iron, Stone etc.
-     */
-    @Nullable
-    @Override
-    public String getOreDictionaryIdentifier() {
-        return null;
-    }
 
     /**
      * Getter for the Melting Point of this material.
@@ -81,7 +123,7 @@ public class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<ICoreArmo
     @Nonnull
     @Override
     public Float getMeltingPoint() {
-        return null;
+        return meltingPoint;
     }
 
     /**
@@ -92,30 +134,34 @@ public class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<ICoreArmo
     @Nonnull
     @Override
     public Float getVaporizingPoint() {
-        return null;
+        return vaporizingPoint;
     }
 
     /**
-     * Method to get the BaseDurability of a piece of armor made out of this material.
+     * Getter for the melting time of this Material
      *
-     * @param armor The armor to get the base durability for.
-     * @return The durability of a piece of armor made out of this material.
+     * @return The melting time of this material
      */
     @Nonnull
     @Override
-    public Integer getBaseDurabilityForArmor(@Nonnull IMultiComponentArmor armor) {
-        return null;
+    public Integer getMeltingTime() {
+        return meltingTime;
     }
 
     /**
-     * Method to get all the default capabilities this ArmorMaterial provides.
+     * Getter for the vaporizing time of this Material
      *
-     * @param armor
-     * @return All the default capabilities this ArmorMaterial provides.
+     * @return The vaporizing time of this material
      */
     @Nonnull
     @Override
-    public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideCoreMaterialCapabilities(IMultiComponentArmor armor) {
-        return null;
+    public Integer getVaporizingTime() {
+        return vaporizingTime;
+    }
+
+    @Nonnull
+    @Override
+    public Float getHeatCoefficient() {
+        return heatCoefficient;
     }
 }

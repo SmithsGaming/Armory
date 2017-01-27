@@ -1,8 +1,8 @@
 package com.smithsmodding.armory.common.factories;
 
-import com.smithsmodding.armory.api.factories.IFactoryController;
-import com.smithsmodding.armory.api.factories.IHeatedItemFactory;
-import com.smithsmodding.armory.api.factories.IMLAFactory;
+import com.smithsmodding.armory.api.common.factories.IFactoryController;
+import com.smithsmodding.armory.api.common.factories.IHeatedItemFactory;
+import com.smithsmodding.armory.api.common.factories.IMLAFactory;
 
 /**
  * Created by marcf on 1/12/2017.

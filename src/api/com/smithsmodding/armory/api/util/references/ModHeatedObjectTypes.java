@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.api.util.references;
 
-import com.smithsmodding.armory.api.heatable.IHeatableObjectType;
+import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
 
 import javax.annotation.Nonnull;
 
@@ -10,20 +10,20 @@ import javax.annotation.Nonnull;
 public final class ModHeatedObjectTypes {
 
     @Nonnull
-    public static IHeatableObjectType INGOT;
+    public static IHeatedObjectType INGOT;
 
     @Nonnull
-    public static IHeatableObjectType PLATE;
+    public static IHeatedObjectType PLATE;
 
     @Nonnull
-    public static IHeatableObjectType NUGGET;
+    public static IHeatedObjectType NUGGET;
 
     @Nonnull
-    public static IHeatableObjectType BLOCK;
+    public static IHeatedObjectType BLOCK;
 
     @Nonnull
-    public static IHeatableObjectType CHAIN;
+    public static IHeatedObjectType CHAIN;
 
     @Nonnull
-    public static IHeatableObjectType RING;
+    public static IHeatedObjectType RING;
 }

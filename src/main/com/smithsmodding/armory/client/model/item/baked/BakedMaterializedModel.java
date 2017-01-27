@@ -1,10 +1,8 @@
 package com.smithsmodding.armory.client.model.item.baked;
 
 import com.google.common.collect.ImmutableMap;
-import com.smithsmodding.armory.api.capability.IMaterializedStackCapability;
-import com.smithsmodding.armory.api.material.armor.IAddonArmorMaterial;
-import com.smithsmodding.armory.api.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.api.material.core.IMaterial;
+import com.smithsmodding.armory.api.common.capability.IMaterializedStackCapability;
+import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
 import net.minecraft.client.renderer.block.model.IBakedModel;

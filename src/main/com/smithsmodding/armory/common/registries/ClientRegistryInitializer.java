@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.common.registries;
 
-import com.smithsmodding.armory.api.textures.creation.ICreationController;
+import com.smithsmodding.armory.api.client.textures.creation.ICreationController;
 import com.smithsmodding.armory.api.util.references.ModRegistries;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
 

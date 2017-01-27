@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.common.fluid;
 
-import com.smithsmodding.armory.api.material.core.IMaterial;
+import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.client.Textures;
 import com.smithsmodding.armory.api.util.client.TranslationKeys;
 import com.smithsmodding.armory.api.util.references.References;

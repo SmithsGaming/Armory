@@ -1,9 +1,9 @@
 package com.smithsmodding.armory.common.helpers;
 
-import com.smithsmodding.armory.api.factories.IFactoryController;
-import com.smithsmodding.armory.api.helpers.IArmoryHelpers;
-import com.smithsmodding.armory.api.helpers.IMaterialConstructionHelper;
-import com.smithsmodding.armory.api.helpers.IMedievalUpgradeConstructionHelper;
+import com.smithsmodding.armory.api.common.factories.IFactoryController;
+import com.smithsmodding.armory.api.common.helpers.IArmoryHelpers;
+import com.smithsmodding.armory.api.common.helpers.IMaterialConstructionHelper;
+import com.smithsmodding.armory.api.common.helpers.IMedievalUpgradeConstructionHelper;
 import com.smithsmodding.armory.common.factories.FactoryController;
 
 import javax.annotation.Nonnull;

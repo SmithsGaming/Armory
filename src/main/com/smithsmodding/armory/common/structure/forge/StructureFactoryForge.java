@@ -7,8 +7,8 @@ import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.LinkedHashSet;
 
 /**

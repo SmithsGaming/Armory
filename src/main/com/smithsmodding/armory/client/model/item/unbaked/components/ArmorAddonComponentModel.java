@@ -3,7 +3,7 @@ package com.smithsmodding.armory.client.model.item.unbaked.components;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.smithsmodding.armory.api.material.armor.IAddonArmorMaterial;
+import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedAddonComponentModel;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
@@ -51,11 +51,11 @@ public class ArmorAddonComponentModel extends ArmorSubComponentModel {
     }
 
     /**
-     * Function get the baked end model.
+     * Function getCreationRecipe the baked end model.
      *
      * @param state              The modelstate you want a model for.
      * @param format             The format the vertexes are stored in.
-     * @param bakedTextureGetter Function to get the Texture for the model.
+     * @param bakedTextureGetter Function to getCreationRecipe the Texture for the model.
      * @return A ItemStack depending model that is ready to be used.
      */
     @Nonnull
@@ -65,7 +65,7 @@ public class ArmorAddonComponentModel extends ArmorSubComponentModel {
     }
 
     /**
-     * Function to get the grayscale texture location of this model faster.
+     * Function to getCreationRecipe the grayscale texture location of this model faster.
      *
      * @return The location of the grayscale texture.
      */
@@ -81,11 +81,11 @@ public class ArmorAddonComponentModel extends ArmorSubComponentModel {
     }
 
     /**
-     * Function to get a baked model from outside of the baking proces.
+     * Function to getCreationRecipe a baked model from outside of the baking proces.
      *
      * @param state              The model state to retrieve a model for.
      * @param format             The format of storing the individual vertexes in memory
-     * @param bakedTextureGetter Function to get the baked textures.
+     * @param bakedTextureGetter Function to getCreationRecipe the baked textures.
      * @return A baked model containing all individual possible textures this model can have.
      */
     @Nonnull
@@ -111,17 +111,17 @@ public class ArmorAddonComponentModel extends ArmorSubComponentModel {
             //We grab the material now, that way we know the material exists before continuing.
             IAddonArmorMaterial material = ArmoryAPI.getInstance().getRegistryManager().getAddonArmorMaterialRegistry().getValue(entry.getKey());
 
-            //We retexture this model with the newly colored textured from ther creator and get a Copy of this model
+            //We retexture this model with the newly colored textured from ther creator and getCreationRecipe a Copy of this model
             //But then colored instead of grayscaled.
             IModel model2 = this.retexture(ImmutableMap.of("layer0", entry.getValue().getIconName()));
 
-            //We bake the new model to get a ready to use textured and ready to be colored baked model.
+            //We bake the new model to getCreationRecipe a ready to use textured and ready to be colored baked model.
             IBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
 
             // We check if a special texture for that item exists in our textures collection.
             // If not we check if the material needs coloring and color the vertexes individually.
             if (material.getRenderInfo().useVertexColoring() && !ResourceHelper.exists(baseTexture + "_" + material.getTextureOverrideIdentifier())) {
-                //We get the color for the material.
+                //We getCreationRecipe the color for the material.
                 MinecraftColor color = (material.getRenderInfo()).getVertexColor();
 
                 //We create a new list of Quads.

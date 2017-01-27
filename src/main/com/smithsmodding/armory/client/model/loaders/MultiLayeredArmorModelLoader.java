@@ -2,12 +2,12 @@ package com.smithsmodding.armory.client.model.loaders;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.smithsmodding.armory.api.armor.IMaterialDependantMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.armor.IMultiComponentArmor;
-import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.events.client.model.item.MultiLayeredArmorModelTextureLoadEvent;
-import com.smithsmodding.armory.api.model.deserializers.MultiLayeredArmorModelDeserializer;
-import com.smithsmodding.armory.api.model.deserializers.definition.MultiLayeredArmorModelDefinition;
+import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
+import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.common.events.client.model.item.MultiLayeredArmorModelTextureLoadEvent;
+import com.smithsmodding.armory.api.client.model.deserializers.MultiLayeredArmorModelDeserializer;
+import com.smithsmodding.armory.api.client.model.deserializers.definition.MultiLayeredArmorModelDefinition;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.unbaked.MultiLayeredArmorItemModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorAddonComponentModel;
@@ -35,7 +35,7 @@ import java.util.function.BiConsumer;
  * Created by Marc on 06.12.2015.
  */
 public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
-    public static final String EXTENSION = ".MLA-Armory";
+    public static final String EXTENSION = ".mla-armory";
 
     @Override
     public boolean accepts(@Nonnull ResourceLocation modelLocation) {

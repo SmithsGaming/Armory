@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.common.tileentity.state;
 
-import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
-import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
+import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.util.references.ModMaterials;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
@@ -9,11 +9,9 @@ import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.smithscore.common.tileentity.IWatchableTileEntity;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import com.smithsmodding.smithscore.common.tileentity.state.ITileEntityState;
-import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -27,13 +25,13 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
     private IAnvilMaterial material;
     private TileEntityBlackSmithsAnvil anvil;
     @Nullable
-    private AnvilRecipe recipe = null;
+    private IAnvilRecipe recipe = null;
 
     private String itemName = "";
     private boolean processingCraftingResult = false;
 
     /**
-     * Method called when this state get attached to a TE. Allows it to store a reference or modify values of the TE.
+     * Method called when this state getCreationRecipe attached to a TE. Allows it to store a reference or modify values of the TE.
      *
      * @param tileEntitySmithsCore The TE this state got attached to.
      */
@@ -189,11 +187,11 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
     }
 
     @Nullable
-    public AnvilRecipe getRecipe() {
+    public IAnvilRecipe getRecipe() {
         return recipe;
     }
 
-    public void setRecipe(AnvilRecipe recipe) {
+    public void setRecipe(IAnvilRecipe recipe) {
         this.recipe = recipe;
     }
 }

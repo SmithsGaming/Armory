@@ -2,7 +2,7 @@ package com.smithsmodding.armory.client.model.item.baked.heateditem;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.smithsmodding.armory.api.capability.IHeatedObjectCapability;
+import com.smithsmodding.armory.api.common.capability.IHeatedObjectCapability;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedTemperatureBarModel;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
@@ -74,7 +74,7 @@ public class BakedHeatedItemModel extends BakedWrappedModel {
         @Nonnull
         @Override
         public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
-            // get the texture for each part
+            // getCreationRecipe the texture for each part
             ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
 
             if (!stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null)) {

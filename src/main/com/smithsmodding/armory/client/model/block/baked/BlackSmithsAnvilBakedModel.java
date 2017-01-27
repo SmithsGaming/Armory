@@ -1,6 +1,8 @@
 package com.smithsmodding.armory.client.model.block.baked;
 
-import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.util.references.ModMaterials;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
@@ -11,9 +13,9 @@ import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -44,7 +46,9 @@ public class BlackSmithsAnvilBakedModel extends BakedWrappedModel {
         if (((IExtendedBlockState) state).getValue(BlockBlackSmithsAnvil.PROPERTY_ANVIL_MATERIAL) == null)
             return getParentModel().getQuads(state, side, rand);
 
-        return bakedModelHashMap.get(((IExtendedBlockState) state).getValue(BlockBlackSmithsAnvil.PROPERTY_ANVIL_MATERIAL)).getQuads(state, side, rand);
+        IAnvilMaterial material = IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(((IExtendedBlockState) state).getValue(BlockBlackSmithsAnvil.PROPERTY_ANVIL_MATERIAL)));
+
+        return bakedModelHashMap.get(material).getQuads(state, side, rand);
     }
 
     @Nonnull
@@ -65,9 +69,11 @@ public class BlackSmithsAnvilBakedModel extends BakedWrappedModel {
         @Override
         public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
             if (stack.getTagCompound() == null)
-                return parent.bakedModelHashMap.get(References.InternalNames.Materials.Anvil.IRON);
+                return parent.bakedModelHashMap.get(ModMaterials.Anvil.IRON);
 
-            return parent.bakedModelHashMap.get(stack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL));
+            IAnvilMaterial material = IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(stack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL)));
+
+            return parent.bakedModelHashMap.get(material);
         }
     }
 }

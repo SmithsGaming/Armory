@@ -1,31 +1,29 @@
 package com.smithsmodding.armory.client;
 
+import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
 import com.smithsmodding.armory.api.util.references.ModLogger;
-import com.smithsmodding.armory.client.handler.ClientDisconnectedFromServerEventHandler;
-import com.smithsmodding.armory.client.logic.ArmoryClientInitializer;
-import com.smithsmodding.armory.client.model.loaders.*;
-import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
+import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.armory.client.logic.initialization.*;
+import com.smithsmodding.armory.client.model.loaders.ArmorComponentModelLoader;
+import com.smithsmodding.armory.client.model.loaders.HeatedItemModelLoader;
+import com.smithsmodding.armory.client.model.loaders.MaterializedItemModelLoader;
+import com.smithsmodding.armory.client.model.loaders.MultiLayeredArmorModelLoader;
 import com.smithsmodding.armory.common.ArmoryCommonProxy;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
-import com.smithsmodding.armory.common.structure.forge.StructureFactoryForge;
-import com.smithsmodding.smithscore.common.structures.StructureRegistry;
 import com.smithsmodding.smithscore.util.client.ResourceHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.jetbrains.annotations.NotNull;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
 import javax.annotation.Nonnull;
 
@@ -34,16 +32,7 @@ import javax.annotation.Nonnull;
  */
 public class ArmoryClientProxy extends ArmoryCommonProxy {
 
-    @Nonnull
-    private static ArmorComponentModelLoader armorComponentModelLoader = new ArmorComponentModelLoader();
-    @Nonnull
-    private static MultiLayeredArmorModelLoader multiLayeredArmorModelLoader = new MultiLayeredArmorModelLoader();
-    @Nonnull
-    private static HeatedItemModelLoader heatedItemModelLoader = new HeatedItemModelLoader();
-    @Nonnull
-    private static AnvilModelLoader anvilBlockModelLoader = new AnvilModelLoader();
-    @Nonnull
-    private static MaterializedItemModelLoader materializedItemModelLoader = new MaterializedItemModelLoader();
+
 
     public static void registerBlockModel(@Nonnull Block block) {
         Item blockItem = Item.getItemFromBlock(block);
@@ -163,42 +152,18 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
     }
 
     @Override
-    public void preInitializeArmory() {
-        ModelLoaderRegistry.registerLoader(multiLayeredArmorModelLoader);
-        ModelLoaderRegistry.registerLoader(heatedItemModelLoader);
-        ModelLoaderRegistry.registerLoader(anvilBlockModelLoader);
-        ModelLoaderRegistry.registerLoader(armorComponentModelLoader);
-        ModelLoaderRegistry.registerLoader(materializedItemModelLoader);
-
-        ArmoryClientInitializer.InitializeClient();
-    }
-
-    @Override
-    public void initializeArmory() {
-
-    }
-
-    @Override
-    public void initializeStructures() {
-        super.initializeStructures();
-        StructureRegistry.getClientInstance().registerStructureFactory(new StructureFactoryForge());
-    }
-
-    @Override
     public EntityPlayer getPlayer(MessageContext pContext) {
         return Minecraft.getMinecraft().player;
     }
 
     @Override
-    public void registerEventHandlers() {
-        super.registerEventHandlers();
+    public void registerInitializationComponents(IForgeRegistry<IInitializationComponent> registry) {
+        super.registerInitializationComponents(registry);
 
-        MaterializedTextureCreator materializedTextureCreator = new MaterializedTextureCreator();
-        MinecraftForge.EVENT_BUS.register(materializedTextureCreator);
-        ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(materializedTextureCreator);
-
-        MinecraftForge.EVENT_BUS.register(new com.smithsmodding.armory.api.util.client.Textures());
-        MinecraftForge.EVENT_BUS.register(new ClientDisconnectedFromServerEventHandler());
-
+        registry.register(ClientEventHandlerInitialization.getInstance().setRegistryName(References.InternalNames.InitializationComponents.Client.EVENTHANDLER));
+        registry.register(ClientModelLoaderInitializer.getInstance().setRegistryName(References.InternalNames.InitializationComponents.Client.MODELLOADER));
+        registry.register(ClientStructureInitializer.getInstance().setRegistryName(References.InternalNames.InitializationComponents.Client.STRUCTURE));
+        registry.register(ClientSystemInitializer.getInstance().setRegistryName(References.InternalNames.InitializationComponents.Client.SYSTEM));
+        registry.register(ClientMedievalInitializer.getInstance().setRegistryName(References.InternalNames.InitializationComponents.Client.MEDIEVAL));
     }
 }

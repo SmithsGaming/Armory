@@ -1,8 +1,9 @@
 package com.smithsmodding.armory.common.api;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.helpers.IArmoryHelpers;
-import com.smithsmodding.armory.api.registries.IRegistryManager;
+import com.smithsmodding.armory.api.common.helpers.IArmoryHelpers;
+import com.smithsmodding.armory.api.common.registries.IRegistryManager;
+import com.smithsmodding.armory.common.helpers.ArmoryHelpers;
 import com.smithsmodding.armory.common.registries.RegistryManager;
 
 import javax.annotation.Nonnull;
@@ -19,7 +20,7 @@ public class ArmoryAPI implements IArmoryAPI {
         return INSTANCE;
     }
 
-    public void initialize() {
+    public static void initialize() {
         IArmoryAPI.Holder.setInstance(getInstance());
     }
 
@@ -37,6 +38,6 @@ public class ArmoryAPI implements IArmoryAPI {
     @Nonnull
     @Override
     public IArmoryHelpers getHelpers() {
-        return null;
+        return ArmoryHelpers.getInstance();
     }
 }

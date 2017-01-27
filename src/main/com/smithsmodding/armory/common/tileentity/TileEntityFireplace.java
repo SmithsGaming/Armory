@@ -1,15 +1,18 @@
 package com.smithsmodding.armory.common.tileentity;
 
+import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityFireplaceGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityFireplaceState;
+import com.smithsmodding.armory.util.ItemStackHelper;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nonnull;
 
 /**
  * Created by Marc on 27.02.2016.
@@ -46,6 +49,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
     private float heatedProcentage;
 
     public TileEntityFireplace() {
+        clearInventory();
     }
 
     @Nonnull
@@ -71,6 +75,20 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
     @Override
     public String getContainerID() {
         return References.InternalNames.TileEntities.FireplaceContainer + "-" + getLocation().toString();
+    }
+
+    /**
+     * Returns true if the Inventory is Empty.
+     */
+    @Override
+    public boolean isEmpty() {
+        for(int i = 0; i < getSizeInventory(); i++) {
+            if (!getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -113,15 +131,15 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
 
         //index -= FUELSLOTCOUNT;
 
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
     public void clearInventory() {
-        ingotStacks = new ItemStack[INGOTSLOTCOUNT];
-        foodInputStacks = new ItemStack[FOODCOOKINPUTCOUNT];
-        foodOutputStacks = new ItemStack[FOODCOOKOUTPUTCOUNT];
-        fuelStacks = new ItemStack[FUELSLOTCOUNT];
+        ItemStackHelper.InitializeItemStackArray(ingotStacks);
+        ItemStackHelper.InitializeItemStackArray(foodInputStacks);
+        ItemStackHelper.InitializeItemStackArray(foodOutputStacks);
+        ItemStackHelper.InitializeItemStackArray(fuelStacks);
     }
 
     /**
@@ -131,7 +149,10 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
      * @param stack
      */
     @Override
-    public void setInventorySlotContents(int index, @Nullable ItemStack stack) {
+    public void setInventorySlotContents(int index, @Nonnull ItemStack stack) {
+        if (stack == null)
+            stack = ItemStack.EMPTY;
+
         if (index < INGOTSLOTCOUNT) {
             ingotStacks[index] = stack;
             return;
@@ -142,7 +163,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
         if (index < FOODCOOKINPUTCOUNT) {
             foodInputStacks[index] = stack;
 
-            if (stack == null)
+            if (stack.isEmpty())
                 (getState()).setCookingProgress(0);
 
             return;
@@ -196,14 +217,14 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
                 return true;
             }
 
-            return HeatableItemRegistry.getInstance().isHeatable(stack);
+            return stack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null) || stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
         }
 
         index -= INGOTSLOTCOUNT;
 
         if (index < FOODCOOKINPUTCOUNT) {
             for (int i = 0; i < INGOTSLOTCOUNT; i++) {
-                if (getStackInSlot(i) != null)
+                if (!getStackInSlot(i).isEmpty())
                     return false;
             }
 
@@ -250,7 +271,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
 
         localData.setLastChange(localData.getCurrentTemp() - localData.getLastTemp());
 
-        if (!worldObj.isRemote) {
+        if (!getWorld().isRemote) {
             this.markDirty();
         }
     }
@@ -330,7 +351,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
 
 
         for (int i = 0; i < INGOTSLOTCOUNT; i++) {
-            if (getStackInSlot(i) != null)
+            if (!getStackInSlot(i).isEmpty())
                 return false;
         }
 
@@ -357,17 +378,17 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
 
             ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.foodInputStacks[0]);
 
-            if (this.foodOutputStacks[targetSlot] == null) {
+            if (this.foodOutputStacks[targetSlot].isEmpty()) {
                 this.foodOutputStacks[targetSlot] = itemstack.copy();
             } else if (this.foodOutputStacks[targetSlot].getItem() == itemstack.getItem()) {
-                this.foodOutputStacks[targetSlot].stackSize += itemstack.stackSize; // Forge BugFix: Results may have multiple items
+                this.foodOutputStacks[targetSlot].grow(itemstack.getCount()); // Forge BugFix: Results may have multiple items
             }
         }
 
-        --this.foodInputStacks[0].stackSize;
+        this.foodInputStacks[0].shrink(1);
 
-        if (this.foodInputStacks[0].stackSize <= 0) {
-            this.foodInputStacks[0] = null;
+        if (this.foodInputStacks[0].getCount() <= 0 || this.foodInputStacks[0].isEmpty()) {
+            this.foodInputStacks[0] = ItemStack.EMPTY;
         }
 
         getState().setCookingProgress(0);
@@ -376,28 +397,28 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
     }
 
     private int canCook() {
-        if (this.foodInputStacks[0] == null) {
+        if (this.foodInputStacks[0].isEmpty()) {
             return -1;
         } else {
             ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.foodInputStacks[0]);
-            if (itemstack == null) return -1;
+            if (itemstack.isEmpty()) return -1;
             if (!(itemstack.getItem() instanceof ItemFood)) return -1;
-            if (this.foodOutputStacks[0] == null) return 0;
+            if (this.foodOutputStacks[0].isEmpty()) return 0;
             if (!this.foodOutputStacks[0].isItemEqual(itemstack)) {
-                if (this.foodOutputStacks[1] == null) return 1;
+                if (this.foodOutputStacks[1].isEmpty()) return 1;
                 if (!this.foodOutputStacks[1].isItemEqual(itemstack)) return -1;
-                int result = foodOutputStacks[1].stackSize + itemstack.stackSize;
+                int result = foodOutputStacks[1].getCount() + itemstack.getCount();
                 if (!(result <= getInventoryStackLimit() && result <= this.foodOutputStacks[0].getMaxStackSize())) {
                     return -1;
                 }
 
                 return 1;
             }
-            int result = foodOutputStacks[0].stackSize + itemstack.stackSize;
+            int result = foodOutputStacks[0].getCount() + itemstack.getCount();
             if (!(result <= getInventoryStackLimit() && result <= this.foodOutputStacks[0].getMaxStackSize())) {
                 if (this.foodOutputStacks[1] == null) return 1;
                 if (!this.foodOutputStacks[1].isItemEqual(itemstack)) return -1;
-                result = foodOutputStacks[1].stackSize + itemstack.stackSize;
+                result = foodOutputStacks[1].getCount() + itemstack.getCount();
                 if (!(result <= getInventoryStackLimit() && result <= this.foodOutputStacks[0].getMaxStackSize())) {
                     return -1;
                 }
@@ -413,7 +434,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
         int foodAmount = 0;
 
         for (int foodIndex = 0; foodIndex < FOODCOOKINPUTCOUNT; foodIndex++) {
-            if (foodInputStacks[foodIndex] == null) {
+            if (foodInputStacks[foodIndex].isEmpty()) {
                 continue;
             }
 

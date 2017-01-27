@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.api;
 
-import com.smithsmodding.armory.api.helpers.IArmoryHelpers;
-import com.smithsmodding.armory.api.registries.*;
+import com.smithsmodding.armory.api.common.helpers.IArmoryHelpers;
+import com.smithsmodding.armory.api.common.registries.IRegistryManager;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

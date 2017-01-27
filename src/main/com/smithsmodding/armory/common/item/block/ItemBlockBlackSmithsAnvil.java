@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.common.item.block;
 
-import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
 import net.minecraft.block.Block;
@@ -40,7 +40,9 @@ public class ItemBlockBlackSmithsAnvil extends ItemBlock {
         if (pStack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
             return pStack.getTagCompound().getString(References.NBTTagCompoundData.CustomName);
 
-        IAnvilMaterial tMaterial = ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(References.NBTTagCompoundData.TE.Anvil.MATERIAL));
+        IAnvilMaterial tMaterial = ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(pStack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL)));
+
+
 
         return tMaterial.getTextFormatting() + I18n.format(tMaterial.getTranslationKey()) + " " + TextFormatting.RESET + I18n.format(this.getUnlocalizedName() + ".name");
     }

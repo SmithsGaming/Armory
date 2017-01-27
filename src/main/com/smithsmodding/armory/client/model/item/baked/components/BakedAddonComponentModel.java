@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.client.model.item.baked.components;
 
 import com.google.common.collect.ImmutableMap;
-import com.smithsmodding.armory.api.material.armor.IAddonArmorMaterial;
+import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -59,9 +59,9 @@ public class BakedAddonComponentModel extends BakedSubComponentModel {
     }
 
     /**
-     * Function to get a model from a Material.
+     * Function to getCreationRecipe a model from a Material.
      *
-     * @param identifier The Material to get the model for.
+     * @param identifier The Material to getCreationRecipe the model for.
      * @return If registered it will return the prebaked model that is registered to that material id, if not it will return this instance of a BakedComponent model.
      */
     @Override
