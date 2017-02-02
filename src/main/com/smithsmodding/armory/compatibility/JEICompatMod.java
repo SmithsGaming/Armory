@@ -38,7 +38,7 @@ public class JEICompatMod extends BlankModPlugin {
         registry.addRecipeClickArea(GuiBlacksmithsAnvil.class, 17, 7, 30, 30, References.Compatibility.JEI.RecipeTypes.ANVIL);
 
         NonNullList<ItemStack> anvils = NonNullList.create();
-        ModBlocks.blockBlackSmithsAnvil.getSubBlocks(Item.getItemFromBlock(ModBlocks.blockBlackSmithsAnvil), null, anvils);
+        ModBlocks.BL_ANVIL.getSubBlocks(Item.getItemFromBlock(ModBlocks.BL_ANVIL), null, anvils);
 
         for (ItemStack stack : anvils)
             registry.addRecipeCategoryCraftingItem(stack, References.Compatibility.JEI.RecipeTypes.ANVIL);

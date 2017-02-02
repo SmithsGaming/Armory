@@ -29,7 +29,7 @@ public class TextureCreationHelper {
      */
     public static TextureAtlasSprite createTexture(@Nonnull IRenderInfoProvider renderInfoProvider, @Nonnull String textureIdentifier, @Nonnull ResourceLocation baseTexture, @Nonnull TextureAtlasSprite base, @Nonnull TextureMap map, @Nullable String creationIdentifier) {
         creationIdentifier = creationIdentifier == null ? "" : "_" + creationIdentifier;
-        String location = baseTexture.toString() + creationIdentifier + "_" + textureIdentifier;
+        String location = (baseTexture.toString() + creationIdentifier + "_" + textureIdentifier).toLowerCase();
         TextureAtlasSprite sprite;
 
         if (ResourceHelper.exists(location)) {

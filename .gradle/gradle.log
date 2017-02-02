@@ -3,7 +3,7 @@ Cannot run the CurseUpload sequence. No API-Key was available.Cannot run the Cur
 The sync of the branches is not being executed, because we are not releasing a new version.The sync of the branches is not being executed, because we are not releasing a new version.
 
 #################################################
-         ForgeGradle 2.2-SNAPSHOT-e77786c        
+         ForgeGradle 2.2-SNAPSHOT-59eb824        
   https://github.com/MinecraftForge/ForgeGradle  
 #################################################
                Powered by MCP unknown               
@@ -14,13 +14,14 @@ The sync of the branches is not being executed, because we are not releasing a n
 Found AccessTransformer: jei_at.cfg_jei_1.11-4.1.1.208_at.cfg
 Found AccessTransformer: SmithsCore_at.cfg_smithscore-1.11-1.3.0-268-SNAPSHOT_at.cfg
 Found AccessTransformer: Armory_at.cfg
-Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.11-1.3.0-271-SNAPSHOT/smithscore-1.11-1.3.0-271-20170110.210732-1.jar
-Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.11-1.3.0-271-SNAPSHOT/smithscore-1.11-1.3.0-271-20170110.210732-1-sources.jar
+Download http://dvs1.progwml6.com/files/maven/mezz/jei/jei_1.11/4.0.1.193/jei_1.11-4.0.1.193.pom
+Download http://dvs1.progwml6.com/files/maven/mezz/jei/jei_1.11/4.0.1.193/jei_1.11-4.0.1.193.jar
+Download http://dvs1.progwml6.com/files/maven/mezz/jei/jei_1.11/4.0.1.193/jei_1.11-4.0.1.193-sources.jar
 :extractMcpMappings SKIPPED
-:deobfCompileDeobfDepTask0
-:deobfCompileDeobfDepTask1 SKIPPED
-:deobfCompileRemapDepSourcesTask2
-:deobfCompileRemapDepSourcesTask3 SKIPPED
+:deobfCompileDeobfDepTask0 SKIPPED
+:deobfCompileDeobfDepTask1
+:deobfCompileRemapDepSourcesTask2 SKIPPED
+:deobfCompileRemapDepSourcesTask3
 :deobfCompileDummyTask
 :deobfProvidedDummyTask
 :getVersionJson
@@ -35,13 +36,12 @@ Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smiths
 :deobfMcSRG SKIPPED
 :decompileMc SKIPPED
 :fixMcSources SKIPPED
-:applySourcePatches
+:applySourcePatches SKIPPED
 :remapMcSources SKIPPED
 :recompileMc SKIPPED
 :extractNatives SKIPPED
 :getAssetIndex UP-TO-DATE
 :getAssets
-Current status: 811/1196   67%
 :makeStart
 :setupDecompWorkspace
 :ideaModule
@@ -51,4 +51,4 @@ Current status: 811/1196   67%
 
 BUILD SUCCESSFUL
 
-Total time: 56.839 secs
+Total time: 29.33 secs

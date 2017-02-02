@@ -10,6 +10,7 @@ import com.smithsmodding.armory.common.heatable.HeatedObjectType;
 import com.smithsmodding.armory.common.item.*;
 import com.smithsmodding.armory.common.item.armor.ItemMultiComponentArmor;
 import com.smithsmodding.armory.common.item.block.ItemBlockBlackSmithsAnvil;
+import com.smithsmodding.armory.common.item.block.ItemBlockHeatbableResource;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -23,26 +24,28 @@ import javax.annotation.Nonnull;
 /**
  * Created by marcf on 1/25/2017.
  */
-@Mod.EventBusSubscriber(modid = References.General.MOD_ID)
+@Mod.EventBusSubscriber()  //modid = (References.General.MOD_ID)
 public class CommonSystemRegistrationInitializer {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> registerBlockEvent) {
         IForgeRegistry<Block> blockRegistry = registerBlockEvent.getRegistry();
 
-        ModBlocks.blockForge = new BlockForge();
-        ModBlocks.blockBlackSmithsAnvil = new BlockBlackSmithsAnvil();
-        ModBlocks.blockFirePlace = new BlockFirePlace();
-        ModBlocks.blockConduit = new BlockConduit();
-        ModBlocks.blockMoltenMetalTank = new BlockMoltenMetalTank();
-        ModBlocks.blockMoltenMetalPump = new BlockPump();
+        ModBlocks.BL_FORGE = new BlockForge();
+        ModBlocks.BL_ANVIL = new BlockBlackSmithsAnvil();
+        ModBlocks.BL_FIREPLACE = new BlockFirePlace();
+        ModBlocks.BL_CONDUIT = new BlockConduit();
+        ModBlocks.BL_TANK = new BlockMoltenMetalTank();
+        ModBlocks.BL_PUMP = new BlockPump();
+        ModBlocks.BL_RESOURCE = new BlockHeatableResource();
 
-        blockRegistry.register(ModBlocks.blockForge);
-        blockRegistry.register(ModBlocks.blockBlackSmithsAnvil);
-        blockRegistry.register(ModBlocks.blockFirePlace);
-        blockRegistry.register(ModBlocks.blockConduit);
-        blockRegistry.register(ModBlocks.blockMoltenMetalTank);
-        blockRegistry.register(ModBlocks.blockMoltenMetalPump);
+        blockRegistry.register(ModBlocks.BL_FORGE);
+        blockRegistry.register(ModBlocks.BL_ANVIL);
+        blockRegistry.register(ModBlocks.BL_FIREPLACE);
+        blockRegistry.register(ModBlocks.BL_CONDUIT);
+        blockRegistry.register(ModBlocks.BL_TANK);
+        blockRegistry.register(ModBlocks.BL_PUMP);
+        blockRegistry.register(ModBlocks.BL_RESOURCE);
     }
 
     @SubscribeEvent
@@ -81,12 +84,13 @@ public class CommonSystemRegistrationInitializer {
         itemRegistry.register(ModItems.Armor.IT_LEGGINGS);
         itemRegistry.register(ModItems.Armor.IT_SHOES);
 
-        itemRegistry.register(new ItemBlock(ModBlocks.blockForge).setRegistryName(ModBlocks.blockForge.getRegistryName()));
-        itemRegistry.register(new ItemBlockBlackSmithsAnvil(ModBlocks.blockBlackSmithsAnvil));
-        itemRegistry.register(new ItemBlock(ModBlocks.blockFirePlace).setRegistryName(ModBlocks.blockFirePlace.getRegistryName()));
-        itemRegistry.register(new ItemBlock(ModBlocks.blockConduit).setRegistryName(ModBlocks.blockConduit.getRegistryName()));
-        itemRegistry.register(new ItemBlock(ModBlocks.blockMoltenMetalTank).setRegistryName(ModBlocks.blockMoltenMetalTank.getRegistryName()));
-        itemRegistry.register(new ItemBlock(ModBlocks.blockMoltenMetalPump).setRegistryName(ModBlocks.blockMoltenMetalPump.getRegistryName()));
+        itemRegistry.register(new ItemBlock(ModBlocks.BL_FORGE).setRegistryName(ModBlocks.BL_FORGE.getRegistryName()));
+        itemRegistry.register(new ItemBlockBlackSmithsAnvil(ModBlocks.BL_ANVIL));
+        itemRegistry.register(new ItemBlock(ModBlocks.BL_FIREPLACE).setRegistryName(ModBlocks.BL_FIREPLACE.getRegistryName()));
+        itemRegistry.register(new ItemBlock(ModBlocks.BL_CONDUIT).setRegistryName(ModBlocks.BL_CONDUIT.getRegistryName()));
+        itemRegistry.register(new ItemBlock(ModBlocks.BL_TANK).setRegistryName(ModBlocks.BL_TANK.getRegistryName()));
+        itemRegistry.register(new ItemBlock(ModBlocks.BL_PUMP).setRegistryName(ModBlocks.BL_PUMP.getRegistryName()));
+        itemRegistry.register(new ItemBlockHeatbableResource(ModBlocks.BL_RESOURCE));
     }
 
     @SubscribeEvent

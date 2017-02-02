@@ -109,7 +109,7 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
                 continue;
             }
 
-            if ((localData.getCurrentTemp() > 20F) && !(getIngotStack(ingotStackIndex).getItem() instanceof ItemHeatedItem) && (getIngotStack(ingotStackIndex).hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null)) || getIngotStack(ingotStackIndex).hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null)) {
+            if ((localData.getCurrentTemp() > 20F) && (((!(getIngotStack(ingotStackIndex).getItem() instanceof ItemHeatedItem) && getIngotStack(ingotStackIndex).hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null))) || getIngotStack(ingotStackIndex).hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null))) {
                 setIngotStack(ingotStackIndex, HeatedItemFactory.getInstance().convertToHeatedIngot(getIngotStack(ingotStackIndex)));
             }
 

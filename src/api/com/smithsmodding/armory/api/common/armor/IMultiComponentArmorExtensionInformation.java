@@ -87,6 +87,7 @@ public interface IMultiComponentArmorExtensionInformation {
          */
         @Override
         public IMultiComponentArmorExtensionInformation setExtension(@Nonnull IMultiComponentArmorExtension extension) {
+            this.setPosition(extension.getPosition());
             this.extension = extension;
             return this;
         }

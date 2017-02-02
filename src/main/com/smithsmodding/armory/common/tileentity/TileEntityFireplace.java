@@ -1,8 +1,7 @@
 package com.smithsmodding.armory.common.tileentity;
 
-import com.smithsmodding.armory.api.util.references.ModCapabilities;
+import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityFireplaceGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityFireplaceState;
 import com.smithsmodding.armory.util.ItemStackHelper;
@@ -213,11 +212,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
                     return false;
             }
 
-            if (stack.getItem() instanceof ItemHeatedItem) {
-                return true;
-            }
-
-            return stack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null) || stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
+            return IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().isHeatable(stack);
         }
 
         index -= INGOTSLOTCOUNT;

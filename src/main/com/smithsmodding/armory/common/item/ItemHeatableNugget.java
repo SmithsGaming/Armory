@@ -16,7 +16,7 @@ public class ItemHeatableNugget extends ItemHeatableResource {
 
     public ItemHeatableNugget() {
         this.setMaxStackSize(64);
-        this.setCreativeTab(ModCreativeTabs.componentsTab);
+        this.setCreativeTab(ModCreativeTabs.COMPONENTS);
         this.setUnlocalizedName(References.InternalNames.Items.IN_METALNUGGET);
         this.setRegistryName(References.InternalNames.Items.IN_METALNUGGET);
     }

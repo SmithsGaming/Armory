@@ -5,6 +5,7 @@ package com.smithsmodding.armory.common.factories;
 /  Created on : 03/10/2014
 */
 
+import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.capability.IHeatableObjectCapability;
 import com.smithsmodding.armory.api.common.capability.IHeatedObjectCapability;
 import com.smithsmodding.armory.api.common.factories.IHeatedItemFactory;
@@ -56,8 +57,9 @@ public class HeatedItemFactory implements IHeatedItemFactory {
     @Override
     @Nonnull
     public ItemStack convertToHeatedIngot(@Nonnull ItemStack originalStack, float temp) {
-        if (!originalStack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null))
-            throw new IllegalArgumentException("cooledStack is not Heatable");
+        if (!originalStack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null) ||
+                IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().isOverride(originalStack))
+            return originalStack;
 
         ItemStack createdStack = new ItemStack(ModItems.IT_HEATEDITEM, 1);
         SmithsCoreCapabilityDispatcher createdStackCapDispatcher = createdStack.getCapability(SmithsCoreCapabilityDispatcher.INSTANCE_CAPABILITY, null).getDispatcher();

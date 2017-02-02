@@ -1,44 +1,408 @@
-[20:29:11] [main/INFO]: Extra: []
-[20:29:12] [main/INFO]: Running with arguments: [--userProperties, {}, --assetsDir, C:/Users/marcf/.gradle/caches/minecraft/assets, --assetIndex, 1.11, --accessToken{REDACTED}, --version, 1.11, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, net.minecraftforge.gradle.tweakers.CoremodTweaker]
-[20:29:12] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
-[20:29:12] [main/INFO]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
-[20:29:12] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.CoremodTweaker
-[20:29:12] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
-[20:29:12] [main/INFO]: Forge Mod Loader version 13.19.1.2199 for Minecraft 1.11 loading
-[20:29:12] [main/INFO]: Java is Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_111, running on Windows 10:amd64:10.0, installed at C:\Program Files\Java\jdk1.8.0_111\jre
-[20:29:12] [main/INFO]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
-[20:29:12] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.CoremodTweaker
-[20:29:12] [main/INFO]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
-[20:29:12] [main/INFO]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
-[20:29:12] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[20:29:12] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
-[20:29:12] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
-[20:29:12] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[20:29:12] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[20:29:12] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[20:29:12] [main/ERROR]: The binary patch set is missing. Either you are in a development environment, or things are not going to work!
-[20:29:13] [main/ERROR]: FML appears to be missing any signature data. This is not a good thing
-[20:29:13] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[20:29:13] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
-[20:29:14] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
-[20:29:15] [main/INFO]: Remapping AccessTransformer rules...
-[20:29:15] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
-[20:29:15] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
-[20:29:15] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
-[20:29:16] [Client thread/INFO]: Setting user: Player334
-[20:29:20] [Client thread/WARN]: Skipping bad option: lastServer:
-[20:29:20] [Client thread/INFO]: LWJGL Version: 2.9.4
-[20:29:21] [Client thread/ERROR]: Couldn't set pixel format
-org.lwjgl.LWJGLException: Pixel format not accelerated
-	at org.lwjgl.opengl.WindowsPeerInfo.nChoosePixelFormat(Native Method) ~[lwjgl-2.9.4-nightly-20150209.jar:?]
-	at org.lwjgl.opengl.WindowsPeerInfo.choosePixelFormat(WindowsPeerInfo.java:52) ~[lwjgl-2.9.4-nightly-20150209.jar:?]
-	at org.lwjgl.opengl.WindowsDisplay.createWindow(WindowsDisplay.java:247) ~[lwjgl-2.9.4-nightly-20150209.jar:?]
-	at org.lwjgl.opengl.Display.createWindow(Display.java:306) ~[lwjgl-2.9.4-nightly-20150209.jar:?]
-	at org.lwjgl.opengl.Display.create(Display.java:848) ~[lwjgl-2.9.4-nightly-20150209.jar:?]
-	at org.lwjgl.opengl.Display.create(Display.java:757) ~[lwjgl-2.9.4-nightly-20150209.jar:?]
-	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:613) [Minecraft.class:?]
-	at net.minecraft.client.Minecraft.init(Minecraft.java:467) [Minecraft.class:?]
-	at net.minecraft.client.Minecraft.run(Minecraft.java:385) [Minecraft.class:?]
+[16:38:35] [main/INFO]: Extra: []
+[16:38:35] [main/INFO]: Running with arguments: [--userProperties, {}, --assetsDir, C:/Users/marcf/.gradle/caches/minecraft/assets, --assetIndex, 1.11, --accessToken{REDACTED}, --version, 1.11, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, net.minecraftforge.gradle.tweakers.CoremodTweaker]
+[16:38:36] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[16:38:36] [main/INFO]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[16:38:36] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.CoremodTweaker
+[16:38:36] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[16:38:36] [main/INFO]: Forge Mod Loader version 13.19.0.2177 for Minecraft 1.11 loading
+[16:38:36] [main/INFO]: Java is Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_111, running on Windows 10:amd64:10.0, installed at C:\Program Files\Java\jdk1.8.0_111\jre
+[16:38:36] [main/INFO]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
+[16:38:36] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.CoremodTweaker
+[16:38:36] [main/INFO]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
+[16:38:36] [main/INFO]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
+[16:38:36] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[16:38:36] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[16:38:36] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[16:38:36] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[16:38:36] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[16:38:36] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[16:38:36] [main/ERROR]: The binary patch set is missing. Either you are in a development environment, or things are not going to work!
+[16:38:37] [main/ERROR]: FML appears to be missing any signature data. This is not a good thing
+[16:38:37] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[16:38:37] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[16:38:38] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[16:38:39] [main/INFO]: Remapping AccessTransformer rules...
+[16:38:39] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[16:38:39] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[16:38:39] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[16:38:40] [Client thread/INFO]: Setting user: Player508
+[16:38:44] [Client thread/WARN]: Skipping bad option: lastServer:
+[16:38:44] [Client thread/INFO]: LWJGL Version: 2.9.4
+[16:38:46] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
+// I just don't know what went wrong :(
+
+Time: 2/2/17 4:38 PM
+Description: Loading screen debug info
+
+This is just a prompt for computer specs to be printed. THIS IS NOT A ERROR
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- System Details --
+Details:
+	Minecraft Version: 1.11
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_111, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 657038336 bytes (626 MB) / 966787072 bytes (922 MB) up to 7621050368 bytes (7268 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: 
+	Loaded coremods (and transformers): 
+	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.5.0 NVIDIA 376.53' Renderer: 'GeForce GTX 770/PCIe/SSE2'
+[16:38:46] [Client thread/INFO]: MinecraftForge v13.19.0.2177 Initialized
+[16:38:46] [Client thread/INFO]: Replaced 232 ore recipes
+[16:38:46] [Client thread/INFO]: Found 0 mods from the command line. Injecting into mod discoverer
+[16:38:46] [Client thread/INFO]: Searching E:\Development\Minecraft\1.11\Armory\run\mods for mods
+[16:38:50] [Client thread/INFO]: Forge Mod Loader has identified 6 mods to load
+[16:38:51] [Client thread/INFO]: Attempting connection with missing mods [mcp, FML, forge, armory, smithscore, jei] at CLIENT
+[16:38:51] [Client thread/INFO]: Attempting connection with missing mods [mcp, FML, forge, armory, smithscore, jei] at SERVER
+[16:38:52] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[16:38:52] [Client thread/INFO]: Processing ObjectHolder annotations
+[16:38:52] [Client thread/INFO]: Found 443 ObjectHolder annotations
+[16:38:52] [Client thread/INFO]: Identifying ItemStackHolder annotations
+[16:38:52] [Client thread/INFO]: Found 0 ItemStackHolder annotations
+[16:38:52] [Client thread/INFO]: Applying holder lookups
+[16:38:52] [Client thread/INFO]: Holder lookups applied
+[16:38:52] [Client thread/INFO]: Applying holder lookups
+[16:38:52] [Client thread/INFO]: Holder lookups applied
+[16:38:53] [Client thread/INFO]: Applying holder lookups
+[16:38:53] [Client thread/INFO]: Holder lookups applied
+[16:38:53] [Client thread/INFO]: Configured a dormant chunk cache size of 0
+[16:38:53] [Forge Version Check/INFO]: [forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
+[16:38:53] [Client thread/INFO]: SmithsCore starting in Normal mode.
+[16:38:53] [Client thread/INFO]: Initializing event handlers.
+[16:38:53] [Client thread/INFO]: SmithsCore Pre-Init completed after: 278 mS.
+[16:38:53] [Client thread/INFO]: Starting "PreInit"-Phase
+[16:38:53] [Forge Version Check/INFO]: [forge] Found status: OUTDATED Target: 13.19.1.2189
+[16:38:54] [Client thread/INFO]: Added model definition for: item.item.Armory.MultiArmor.Armor.Helmet add: armor/armory.items.armor.medieval.helmet.mla-armory in the Domain: armory
+[16:38:54] [Client thread/INFO]: Added model definition for: item.iten.Armory.MultiArmor.Armor.ChestPlate add: armor/armory.items.armor.medieval.chestplate.mla-armory in the Domain: armory
+[16:38:54] [Client thread/INFO]: Added model definition for: item.item.Armory.MultiArmor.Armor.Leggings add: armor/armory.items.armor.medieval.leggings.mla-armory in the Domain: armory
+[16:38:54] [Client thread/INFO]: Added model definition for: item.item.Armory.MultiArmor.Armor.Shoes add: armor/armory.items.armor.medieval.shoes.mla-armory in the Domain: armory
+[16:38:54] [Client thread/INFO]: Added model definition for: item.armory.items.components.heatedingots add: heateditem/armory.items.components.heatedingots.hi-armory in the Domain: armory
+[16:38:54] [Client thread/INFO]: Added model definition for: item.armory.items.armorcomponent add: component/armory.items.armorcomponent.ac-armory in the Domain: armory
+[16:38:54] [Client thread/INFO]: Added model definition for: item.armory.items.components.metalchain add: materialized/armory.items.components.metalchain.mim-armory in the Domain: armory
+[16:38:54] [Client thread/INFO]: Added model definition for: item.armory.items.components.metalplate add: materialized/armory.items.components.metalplate.mim-armory in the Domain: armory
+[16:38:54] [Client thread/INFO]: Added model definition for: item.armory.items.components.metalring add: materialized/armory.items.components.metalring.mim-armory in the Domain: armory
+[16:38:54] [Client thread/INFO]: Added model definition for: item.armory.items.components.metalnugget add: materialized/armory.items.components.metalnugget.mim-armory in the Domain: armory
+[16:38:54] [Client thread/INFO]: Added model definition for: item.armory.items.components.metalingot add: materialized/armory.items.components.metalingot.mim-armory in the Domain: armory
+[16:38:54] [Client thread/INFO]: Added: armory to the SmitshCore OBJ Loader.
+[16:38:54] [Client thread/INFO]: Added model definition for: item.armory.items.tongs add: armory.resources.mcm-smithscore in the Domain: armory
+[16:38:54] [Client thread/INFO]: Added model definition for: item.armory.items.itemhammer add: armory.resources.mcm-smithscore in the Domain: armory
+[16:38:54] [Client thread/INFO]: Finished "PreInit"-Phase after: 454 ms!
+[16:38:54] [Client thread/INFO]: Applying holder lookups
+[16:38:54] [Client thread/INFO]: Holder lookups applied
+[16:38:54] [Client thread/INFO]: Injecting itemstacks
+[16:38:54] [Client thread/INFO]: Itemstack injection complete
+[16:39:01] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[16:39:01] [Thread-8/INFO]: Initializing LWJGL OpenAL
+[16:39:01] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[16:39:01] [Thread-8/INFO]: OpenAL initialized.
+[16:39:01] [Client thread/INFO]: OBJLoader.Parser: command '%s' (model: '%s') is not currently supported, skipping. Line: %d '%s'
+[16:39:01] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
+[16:39:01] [Client thread/INFO]: OBJLoader.Parser: command '%s' (model: '%s') is not currently supported, skipping. Line: %d '%s'
+[16:39:01] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
+[16:39:02] [Sound Library Loader/INFO]: Sound engine started
+[16:39:06] [Client thread/INFO]: Max texture size: 16384
+[16:39:06] [Client thread/INFO]: Created: 16x16 textures-atlas
+[16:39:07] [Client thread/INFO]: SmithsCore Init completed after: 3 ms.
+[16:39:07] [Client thread/INFO]: Starting "Init"-Phase
+[16:39:07] [Client thread/INFO]: Finished "Init"-Phase after: 0 ms!
+[16:39:07] [Client thread/INFO]: Starting "IMCCallback"-Phase
+[16:39:07] [Client thread/INFO]: Finished "IMCCallback"-Phase after: 0 ms!
+[16:39:07] [Client thread/INFO]: Injecting itemstacks
+[16:39:07] [Client thread/INFO]: Itemstack injection complete
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:void, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_plains, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_desert, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_extreme_hills, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_forest, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_taiga, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_swampland, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_ice_flats, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_jungle, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_jungle_edge, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_birch_forest, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_birch_forest_hills, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_roofed_forest, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_taiga_cold, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_redwood_taiga, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_redwood_taiga_hills, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_extreme_hills_with_trees, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_savanna, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_savanna_rock, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_mesa, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_mesa_rock, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_mesa_clear_rock, types will be assigned on a best-effort guess.
+[16:39:07] [Client thread/INFO]: SmithsCore Post-Init completed after: 0 ms.
+[16:39:07] [Client thread/INFO]: Starting "PostInit"-Phase
+[16:39:07] [Client thread/INFO]: Finished "PostInit"-Phase after: 33 ms!
+[16:39:07] [Client thread/INFO]: Starting "Load Complete"-Phase
+[16:39:07] [Client thread/INFO]: Notifying requesters of API init completion.
+[16:39:07] [Client thread/INFO]: Finished "Load Complete"-Phase after: 151 ms!
+[16:39:07] [Client thread/INFO]: Starting JEI...
+[16:39:07] [Client thread/WARN]: Found an empty subItem of net.minecraft.item.ItemAir@a55b4f9
+[16:39:07] [Client thread/INFO]: Registering plugin: mezz.jei.plugins.vanilla.VanillaPlugin ...
+[16:39:08] [Client thread/INFO]: Registered  plugin: mezz.jei.plugins.vanilla.VanillaPlugin in 178 ms
+[16:39:08] [Client thread/INFO]: Registering plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat ...
+[16:39:08] [Client thread/INFO]: Registered  plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat in 6 ms
+[16:39:08] [Client thread/INFO]: Registering plugin: com.smithsmodding.armory.compatibility.JEICompatMod ...
+[16:39:08] [Client thread/INFO]: Registered  plugin: com.smithsmodding.armory.compatibility.JEICompatMod in 77 ms
+[16:39:08] [Client thread/INFO]: Registering plugin: mezz.jei.plugins.jei.JEIInternalPlugin ...
+[16:39:08] [Client thread/INFO]: Registered  plugin: mezz.jei.plugins.jei.JEIInternalPlugin in 6 ms
+[16:39:08] [Client thread/INFO]: Building recipe registry...
+[16:39:08] [Client thread/INFO]: Built    recipe registry in 102 ms
+[16:39:08] [Client thread/INFO]: Building item filter...
+[16:39:10] [Client thread/INFO]: Built    item filter in 2253 ms
+[16:39:10] [Client thread/INFO]: Building runtime...
+[16:39:10] [Client thread/INFO]: Built    runtime in 46 ms
+[16:39:10] [Client thread/INFO]: Sending runtime to plugin: mezz.jei.plugins.vanilla.VanillaPlugin ...
+[16:39:10] [Client thread/INFO]: Sending runtime to plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat ...
+[16:39:10] [Client thread/INFO]: Sending runtime to plugin: com.smithsmodding.armory.compatibility.JEICompatMod ...
+[16:39:10] [Client thread/INFO]: Sending runtime to plugin: mezz.jei.plugins.jei.JEIInternalPlugin ...
+[16:39:10] [Client thread/INFO]: Finished Starting JEI in 2869 ms
+[16:39:10] [Client thread/INFO]: Forge Mod Loader has successfully loaded 6 mods
+[16:39:10] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[16:39:13] [Client thread/INFO]: SoundSystem shutting down...
+[16:39:13] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[16:39:13] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[16:39:13] [Client thread/INFO]: OBJLoader.Parser: command 's' (model: 'armory:models/block/anvil/blockmodel.obj') is not currently supported, skipping. Line: 76 's off'
+[16:39:13] [Client thread/INFO]: OBJLoader.Parser: command 'l' (model: 'armory:models/block/anvil/blockmodel.obj') is not currently supported, skipping. Line: 94 'l 29 30'
+[16:39:13] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
+[16:39:13] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
+[16:39:13] [Thread-10/INFO]: Initializing LWJGL OpenAL
+[16:39:13] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[16:39:13] [Thread-10/INFO]: OpenAL initialized.
+[16:39:13] [Sound Library Loader/INFO]: Sound engine started
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:blocks/iron_block with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:blocks/iron_block with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:blocks/iron_block with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/base/armory.chestplate_base with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/base/armory.chestplate_base with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/base/armory.chestplate_base with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/base/armory.helmet_base with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/base/armory.helmet_base with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/base/armory.helmet_base with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_tophead with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_tophead with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_tophead with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/base/armory.leggins_base with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/base/armory.leggins_base with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/base/armory.leggins_base with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/base/armory.shoes_base with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/base/armory.shoes_base with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/base/armory.shoes_base with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_tophead with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_tophead with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_tophead with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_left with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_left with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_left with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_right with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_right with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_right with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x chain with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x chain with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x chain with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x ingot with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x ingot with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x ingot with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x nugget with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x nugget with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x nugget with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x plate with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x plate with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x plate with: armory:anvil
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x ring with: armory:core
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x ring with: armory:addon
+[16:39:16] [Client thread/INFO]: Creating textures for: armory:items/basic/16x ring with: armory:anvil
+[16:39:16] [Client thread/INFO]: Max texture size: 16384
+[16:39:17] [Client thread/INFO]: Created: 2048x1024 textures-atlas
+[16:39:18] [Client thread/WARN]: Skipping bad option: lastServer:
+[16:39:18] [Client thread/ERROR]: +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+[16:39:18] [Client thread/ERROR]: The following texture errors were found.
+[16:39:18] [Client thread/ERROR]: ==================================================
+[16:39:18] [Client thread/ERROR]:   DOMAIN smithscore
+[16:39:18] [Client thread/ERROR]: --------------------------------------------------
+[16:39:18] [Client thread/ERROR]:   domain smithscore is missing 1 texture
+[16:39:18] [Client thread/ERROR]:     domain smithscore has 1 location:
+[16:39:18] [Client thread/ERROR]:       unknown resourcepack type net.minecraft.client.resources.LegacyV2Adapter : FMLFileResourcePack:smithscore
+[16:39:18] [Client thread/ERROR]: -------------------------
+[16:39:18] [Client thread/ERROR]:     The missing resources for domain smithscore are:
+[16:39:18] [Client thread/ERROR]:       textures/gui/icons/16x info icon.png
+[16:39:18] [Client thread/ERROR]: -------------------------
+[16:39:18] [Client thread/ERROR]:     No other errors exist for domain smithscore
+[16:39:18] [Client thread/ERROR]: ==================================================
+[16:39:18] [Client thread/ERROR]: +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+[16:39:19] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[16:41:03] [Client thread/INFO]: Deleting level Copy of Copy of New World
+[16:41:03] [Client thread/INFO]: Attempt 1...
+[16:41:05] [Client thread/INFO]: Deleting level Copy of New World
+[16:41:05] [Client thread/INFO]: Attempt 1...
+[16:41:12] [Server thread/INFO]: Starting integrated minecraft server version 1.11
+[16:41:12] [Server thread/INFO]: Generating keypair
+[16:41:12] [Server thread/INFO]: Injecting existing block and item data into this server instance
+[16:41:12] [Server thread/INFO]: Applying holder lookups
+[16:41:12] [Server thread/INFO]: Holder lookups applied
+[16:41:12] [Server thread/INFO]: Loading dimension 0 (Copy of New World) (net.minecraft.server.integrated.IntegratedServer@16b7311f)
+[16:41:13] [Server thread/INFO]: Loading dimension 1 (Copy of New World) (net.minecraft.server.integrated.IntegratedServer@16b7311f)
+[16:41:13] [Server thread/INFO]: Loading dimension -1 (Copy of New World) (net.minecraft.server.integrated.IntegratedServer@16b7311f)
+[16:41:13] [Server thread/INFO]: Preparing start region for level 0
+[16:41:14] [Server thread/INFO]: Preparing spawn area: 8%
+[16:41:15] [Server thread/INFO]: Preparing spawn area: 15%
+[16:41:16] [Server thread/INFO]: Preparing spawn area: 25%
+[16:41:17] [Server thread/INFO]: Preparing spawn area: 38%
+[16:41:18] [Server thread/INFO]: Preparing spawn area: 49%
+[16:41:19] [Server thread/INFO]: Preparing spawn area: 62%
+[16:41:20] [Server thread/INFO]: Preparing spawn area: 75%
+[16:41:21] [Server thread/INFO]: Preparing spawn area: 87%
+[16:41:22] [Server thread/INFO]: Preparing spawn area: 99%
+[16:41:22] [Server thread/INFO]: Starting "Starting Server"-Phase
+[16:41:22] [Server thread/INFO]: Finished "Starting Server"-Phase after: 5 ms!
+[16:41:22] [Server thread/INFO]: Starting "Server Started"-Phase
+[16:41:22] [Server thread/INFO]: Finished "Server Started"-Phase after: 0 ms!
+[16:41:22] [Server thread/INFO]: Changing view distance to 12, from 10
+[16:41:23] [Netty Local Client IO #0/INFO]: Server protocol version 2
+[16:41:23] [Netty Server IO #1/INFO]: Client protocol version 2
+[16:41:23] [Netty Server IO #1/INFO]: Client attempting to join with 6 mods : FML@8.0.99.99,smithscore@1.11-1.3.0-281-SNAPSHOT,armory@@VERSION@,forge@13.19.0.2177,mcp@9.19,jei@4.0.1.193
+[16:41:23] [Netty Local Client IO #0/INFO]: [Netty Local Client IO #0] Client side modded connection established
+[16:41:23] [Server thread/INFO]: [Server thread] Server side modded connection established
+[16:41:23] [Server thread/INFO]: Player508[local:E:3e3be98b] logged in with entity id 1653 at (153.5, 75.0, 248.5)
+[16:41:23] [Server thread/INFO]: Player508 joined the game
+[16:41:23] [Server thread/INFO]: Updating player UUID list
+[16:41:25] [Server thread/INFO]: Saving and pausing game...
+[16:41:25] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[16:41:25] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@580cc6da[id=69715e5e-1775-3a6c-8b64-1d82bcbbe688,name=Player508,properties={},legacy=false]
+com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:79) ~[YggdrasilAuthenticationService.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) [YggdrasilMinecraftSessionService.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:60) [YggdrasilMinecraftSessionService$1.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:57) [YggdrasilMinecraftSessionService$1.class:?]
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3524) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2317) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2280) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2195) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache.get(LocalCache.java:3934) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:3938) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:4821) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:4827) [guava-17.0.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:170) [YggdrasilMinecraftSessionService.class:?]
+	at net.minecraft.client.Minecraft.getProfileProperties(Minecraft.java:3054) [Minecraft.class:?]
+	at net.minecraft.client.resources.SkinManager$3.run(SkinManager.java:138) [SkinManager$3.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+[16:41:26] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[16:41:26] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[16:41:26] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 3001ms behind, skipping 60 tick(s)
+[16:42:08] [Server thread/INFO]: Player508 has just earned the achievement [Taking Inventory]
+[16:42:09] [Client thread/INFO]: [CHAT] Player508 has just earned the achievement [Taking Inventory]
+[16:42:32] [Client thread/WARN]: Failed to load texture: smithscore:textures/gui/basic/border/outwartscornerbig.png
+java.io.FileNotFoundException: smithscore:textures/gui/basic/border/outwartscornerbig.png
+	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:69) ~[FallbackResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:65) ~[SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.renderer.texture.SimpleTexture.loadTexture(SimpleTexture.java:34) ~[SimpleTexture.class:?]
+	at net.minecraft.client.renderer.texture.TextureManager.loadTexture(TextureManager.java:67) [TextureManager.class:?]
+	at net.minecraft.client.renderer.texture.TextureManager.bindTexture(TextureManager.java:42) [TextureManager.class:?]
+	at com.smithsmodding.smithscore.util.client.gui.GuiHelper.bindTexture(GuiHelper.java:457) [GuiHelper.class:?]
+	at com.smithsmodding.smithscore.util.client.gui.GuiHelper.bindTexture(GuiHelper.java:448) [GuiHelper.class:?]
+	at com.smithsmodding.smithscore.util.client.gui.GuiHelper.renderCorner(GuiHelper.java:237) [GuiHelper.class:?]
+	at com.smithsmodding.smithscore.util.client.gui.GuiHelper.drawRectangleStretched(GuiHelper.java:104) [GuiHelper.class:?]
+	at com.smithsmodding.smithscore.client.gui.components.implementations.ComponentBorder.renderWithDependentCorner(ComponentBorder.java:88) [ComponentBorder.class:?]
+	at com.smithsmodding.smithscore.client.gui.components.implementations.ComponentBorder.drawBackground(ComponentBorder.java:58) [ComponentBorder.class:?]
+	at com.smithsmodding.smithscore.client.gui.management.StandardRenderManager.renderBackgroundComponent(StandardRenderManager.java:152) [StandardRenderManager.class:?]
+	at com.smithsmodding.smithscore.client.gui.tabs.implementations.CoreTab.drawBackground(CoreTab.java:339) [CoreTab.class:?]
+	at com.smithsmodding.smithscore.client.gui.management.StandardRenderManager.renderBackgroundComponent(StandardRenderManager.java:152) [StandardRenderManager.class:?]
+	at com.smithsmodding.smithscore.client.gui.management.StandardRenderManager.renderBackgroundComponent(StandardRenderManager.java:169) [StandardRenderManager.class:?]
+	at com.smithsmodding.smithscore.client.gui.GuiContainerSmithsCore.drawBackground(GuiContainerSmithsCore.java:103) [GuiContainerSmithsCore.class:?]
+	at com.smithsmodding.smithscore.client.gui.GuiContainerSmithsCore.drawGuiContainerBackgroundLayer(GuiContainerSmithsCore.java:469) [GuiContainerSmithsCore.class:?]
+	at net.minecraft.client.gui.inventory.GuiContainer.drawScreen(GuiContainer.java:94) [GuiContainer.class:?]
+	at net.minecraftforge.client.ForgeHooksClient.drawScreen(ForgeHooksClient.java:382) [ForgeHooksClient.class:?]
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1164) [EntityRenderer.class:?]
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1138) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:405) [Minecraft.class:?]
 	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_111]
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_111]
@@ -52,36 +416,75 @@ org.lwjgl.LWJGLException: Pixel format not accelerated
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_111]
 	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
 	at GradleStart.main(GradleStart.java:26) [start/:?]
-[20:29:22] [Client thread/INFO]: [net.minecraft.init.Bootstrap:printToSYSOUT:600]: ---- Minecraft Crash Report ----
-// Uh... Did I do that?
+[16:42:32] [Client thread/WARN]: Failed to load texture: smithscore:textures/gui/components/progressbars.png
+java.io.FileNotFoundException: smithscore:textures/gui/components/progressbars.png
+	at net.minecraft.client.resources.FallbackResourceManager.getResource(FallbackResourceManager.java:69) ~[FallbackResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.getResource(SimpleReloadableResourceManager.java:65) ~[SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.renderer.texture.SimpleTexture.loadTexture(SimpleTexture.java:34) ~[SimpleTexture.class:?]
+	at net.minecraft.client.renderer.texture.TextureManager.loadTexture(TextureManager.java:67) [TextureManager.class:?]
+	at net.minecraft.client.renderer.texture.TextureManager.bindTexture(TextureManager.java:42) [TextureManager.class:?]
+	at com.smithsmodding.smithscore.util.client.gui.GuiHelper.bindTexture(GuiHelper.java:457) [GuiHelper.class:?]
+	at com.smithsmodding.smithscore.util.client.gui.GuiHelper.bindTexture(GuiHelper.java:448) [GuiHelper.class:?]
+	at com.smithsmodding.smithscore.util.client.gui.GuiHelper.drawResource(GuiHelper.java:49) [GuiHelper.class:?]
+	at com.smithsmodding.smithscore.client.gui.components.implementations.ComponentProgressBar.drawBackground(ComponentProgressBar.java:60) [ComponentProgressBar.class:?]
+	at com.smithsmodding.smithscore.client.gui.management.StandardRenderManager.renderBackgroundComponent(StandardRenderManager.java:152) [StandardRenderManager.class:?]
+	at com.smithsmodding.smithscore.client.gui.management.StandardRenderManager.renderBackgroundComponent(StandardRenderManager.java:169) [StandardRenderManager.class:?]
+	at com.smithsmodding.smithscore.client.gui.management.StandardRenderManager.renderBackgroundComponent(StandardRenderManager.java:169) [StandardRenderManager.class:?]
+	at com.smithsmodding.smithscore.client.gui.GuiContainerSmithsCore.drawBackground(GuiContainerSmithsCore.java:103) [GuiContainerSmithsCore.class:?]
+	at com.smithsmodding.smithscore.client.gui.GuiContainerSmithsCore.drawGuiContainerBackgroundLayer(GuiContainerSmithsCore.java:469) [GuiContainerSmithsCore.class:?]
+	at net.minecraft.client.gui.inventory.GuiContainer.drawScreen(GuiContainer.java:94) [GuiContainer.class:?]
+	at net.minecraftforge.client.ForgeHooksClient.drawScreen(ForgeHooksClient.java:382) [ForgeHooksClient.class:?]
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1164) [EntityRenderer.class:?]
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1138) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:405) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_111]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_111]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_111]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_111]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_111]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_111]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_111]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_111]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+[16:42:46] [Server thread/ERROR]: Encountered an unexpected exception
+net.minecraft.util.ReportedException: Ticking block entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:800) ~[MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) ~[MinecraftServer.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) ~[IntegratedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.lang.NullPointerException
+	at com.smithsmodding.armory.common.tileentity.TileEntityForgeBase.heatIngots(TileEntityForgeBase.java:119) ~[TileEntityForgeBase.class:?]
+	at com.smithsmodding.armory.common.tileentity.TileEntityForgeBase.update(TileEntityForgeBase.java:42) ~[TileEntityForgeBase.class:?]
+	at com.smithsmodding.armory.common.tileentity.TileEntityForge.update(TileEntityForge.java:71) ~[TileEntityForge.class:?]
+	at net.minecraft.world.World.updateEntities(World.java:1968) ~[World.class:?]
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:646) ~[WorldServer.class:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:794) ~[MinecraftServer.class:?]
+	... 4 more
+[16:42:46] [Server thread/ERROR]: This crash report has been saved to: E:\Development\Minecraft\1.11\Armory\run\.\crash-reports\crash-2017-02-02_16.42.46-server.txt
+[16:42:46] [Server thread/INFO]: Stopping server
+[16:42:46] [Server thread/INFO]: Saving players
+[16:42:46] [Client thread/INFO]: [net.minecraft.init.Bootstrap:printToSYSOUT:600]: ---- Minecraft Crash Report ----
+// Everything's going to plan. No, really, that was supposed to happen.
 
-Time: 1/26/17 8:29 PM
-Description: Initializing game
+Time: 2/2/17 4:42 PM
+Description: Ticking block entity
 
-org.lwjgl.LWJGLException: Pixel format not accelerated
-	at org.lwjgl.opengl.WindowsPeerInfo.nChoosePixelFormat(Native Method)
-	at org.lwjgl.opengl.WindowsPeerInfo.choosePixelFormat(WindowsPeerInfo.java:52)
-	at org.lwjgl.opengl.WindowsDisplay.createWindow(WindowsDisplay.java:247)
-	at org.lwjgl.opengl.Display.createWindow(Display.java:306)
-	at org.lwjgl.opengl.Display.create(Display.java:848)
-	at org.lwjgl.opengl.Display.create(Display.java:757)
-	at org.lwjgl.opengl.Display.create(Display.java:739)
-	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:633)
-	at net.minecraft.client.Minecraft.init(Minecraft.java:467)
-	at net.minecraft.client.Minecraft.run(Minecraft.java:385)
-	at net.minecraft.client.main.Main.main(Main.java:118)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
-	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
-	at GradleStart.main(GradleStart.java:26)
+java.lang.NullPointerException: Ticking block entity
+	at com.smithsmodding.armory.common.tileentity.TileEntityForgeBase.heatIngots(TileEntityForgeBase.java:119)
+	at com.smithsmodding.armory.common.tileentity.TileEntityForgeBase.update(TileEntityForgeBase.java:42)
+	at com.smithsmodding.armory.common.tileentity.TileEntityForge.update(TileEntityForge.java:71)
+	at net.minecraft.world.World.updateEntities(World.java:1968)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:646)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:794)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547)
+	at java.lang.Thread.run(Thread.java:745)
 
 
 A detailed walkthrough of the error, its code path and all known details is as follows:
@@ -90,33 +493,42 @@ A detailed walkthrough of the error, its code path and all known details is as f
 -- Head --
 Thread: Client thread
 Stacktrace:
-	at org.lwjgl.opengl.WindowsPeerInfo.nChoosePixelFormat(Native Method)
-	at org.lwjgl.opengl.WindowsPeerInfo.choosePixelFormat(WindowsPeerInfo.java:52)
-	at org.lwjgl.opengl.WindowsDisplay.createWindow(WindowsDisplay.java:247)
-	at org.lwjgl.opengl.Display.createWindow(Display.java:306)
-	at org.lwjgl.opengl.Display.create(Display.java:848)
-	at org.lwjgl.opengl.Display.create(Display.java:757)
-	at org.lwjgl.opengl.Display.create(Display.java:739)
-	at net.minecraft.client.Minecraft.createDisplay(Minecraft.java:633)
-	at net.minecraft.client.Minecraft.init(Minecraft.java:467)
+	at com.smithsmodding.armory.common.tileentity.TileEntityForgeBase.heatIngots(TileEntityForgeBase.java:119)
+	at com.smithsmodding.armory.common.tileentity.TileEntityForgeBase.update(TileEntityForgeBase.java:42)
+	at com.smithsmodding.armory.common.tileentity.TileEntityForge.update(TileEntityForge.java:71)
 
--- Initialization --
+-- Block entity being ticked --
 Details:
+	Name: minecraft:container.armory.forge // com.smithsmodding.armory.common.tileentity.TileEntityForge
+	Block type: ID #235 (tile.armory.blocks.forge // com.smithsmodding.armory.common.block.BlockForge)
+	Block data value: 0 / 0x0 / 0b0000
+	Block location: World: (154,75,250), Chunk: (at 10,4,10 in 9,15; contains blocks 144,0,240 to 159,255,255), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Actual block type: ID #235 (tile.armory.blocks.forge // com.smithsmodding.armory.common.block.BlockForge)
+	Actual block data value: 0 / 0x0 / 0b0000
 Stacktrace:
-	at net.minecraft.client.Minecraft.run(Minecraft.java:385)
-	at net.minecraft.client.main.Main.main(Main.java:118)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
-	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
-	at GradleStart.main(GradleStart.java:26)
+	at net.minecraft.world.World.updateEntities(World.java:1968)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:646)
+
+-- Affected level --
+Details:
+	Level name: Copy of New World
+	All players: 1 total; [EntityPlayerMP['Player508'/1653, l='Copy of New World', x=154.64, y=76.00, z=249.90]]
+	Chunk stats: ServerChunkCache: 631 Drop: 0
+	Level seed: 4448185359510500240
+	Level generator: ID 00 - default, ver 1. Features enabled: true
+	Level generator options: 
+	Level spawn location: World: (160,64,256), Chunk: (at 0,4,0 in 10,16; contains blocks 160,0,256 to 175,255,271), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 792 game time, 792 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 133401 (now: false), thunder time: 120833 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:794)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547)
+	at java.lang.Thread.run(Thread.java:745)
 
 -- System Details --
 Details:
@@ -124,20 +536,38 @@ Details:
 	Operating System: Windows 10 (amd64) version 10.0
 	Java Version: 1.8.0_111, Oracle Corporation
 	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
-	Memory: 332518408 bytes (317 MB) / 830472192 bytes (792 MB) up to 7621050368 bytes (7268 MB)
+	Memory: 718172944 bytes (684 MB) / 3029860352 bytes (2889 MB) up to 7621050368 bytes (7268 MB)
 	JVM Flags: 0 total; 
-	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
-	FML: 
+	IntCache: cache: 2, tcache: 0, allocated: 13, tallocated: 95
+	FML: MCP 9.35 Powered by Forge 13.19.0.2177 6 mods loaded, 6 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+	UCHIJAAAA	mcp{9.19} [Minecraft Coder Pack] (minecraft.jar) 
+	UCHIJAAAA	FML{8.0.99.99} [Forge Mod Loader] (forgeSrc-1.11-13.19.0.2177-PROJECT(Armory).jar) 
+	UCHIJAAAA	forge{13.19.0.2177} [Minecraft Forge] (forgeSrc-1.11-13.19.0.2177-PROJECT(Armory).jar) 
+	UCHIJAAAA	smithscore{1.11-1.3.0-281-SNAPSHOT} [smithscore] (smithscore-1.11-1.3.0-281-SNAPSHOT.jar) 
+	UCHIJAAAA	armory{@VERSION@} [Armory] (Armory) 
+	UCHIJAAAA	jei{4.0.1.193} [Just Enough Items] (jei_1.11-4.0.1.193.jar) 
 	Loaded coremods (and transformers): 
-	Launched Version: 1.11
-	LWJGL: 2.9.4
-	OpenGL: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
-	GL Caps: 
-	Using VBOs: Yes
-	Is Modded: Definitely; Client brand changed to 'fml,forge'
-	Type: Client (map_client.txt)
-	Resource Packs: 
-	Current Language: ~~ERROR~~ NullPointerException: null
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
 	Profiler Position: N/A (disabled)
-	CPU: <unknown>
-[20:29:22] [Client thread/INFO]: [net.minecraft.init.Bootstrap:printToSYSOUT:600]: #@!@# Game crashed! Crash report saved to: #@!@# E:\Development\Minecraft\1.11\Armory\run\.\crash-reports\crash-2017-01-26_20.29.22-client.txt
+	Player Count: 1 / 8; [EntityPlayerMP['Player508'/1653, l='Copy of New World', x=154.64, y=76.00, z=249.90]]
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+[16:42:46] [Client thread/INFO]: [net.minecraft.init.Bootstrap:printToSYSOUT:600]: #@!@# Game crashed! Crash report saved to: #@!@# .\crash-reports\crash-2017-02-02_16.42.46-server.txt
+[16:42:46] [Client thread/INFO]: Waiting for the server to terminate/save.
+[16:42:46] [Server thread/INFO]: Saving worlds
+[16:42:46] [Netty Local Client IO #0/INFO]: Disconnect: Clearing cached connected player list.
+[16:42:46] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[16:42:47] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[16:42:47] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[16:42:47] [Server thread/INFO]: Unloading dimension 0
+[16:42:47] [Server thread/INFO]: Unloading dimension -1
+[16:42:47] [Server thread/INFO]: Unloading dimension 1
+[16:42:47] [Server thread/INFO]: Applying holder lookups
+[16:42:47] [Server thread/INFO]: Holder lookups applied
+[16:42:47] [Server thread/INFO]: Starting "Server Stopped"-Phase
+[16:42:47] [Server thread/INFO]: Finished "Server Stopped"-Phase after: 0 ms!
+[16:42:47] [Server thread/INFO]: The state engine was in incorrect state SERVER_STOPPING and forced into state SERVER_STOPPED. Errors may have been discarded.
+[16:42:47] [Client thread/INFO]: Server terminated.
+[16:42:47] [Client Shutdown Thread/INFO]: Stopping server
+[16:42:47] [Client Shutdown Thread/INFO]: Saving players

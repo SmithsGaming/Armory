@@ -62,7 +62,7 @@ public class Textures {
 
         public static class Basic {
             @Nonnull
-            private static String BASICTEXTUREPATH = GUITEXTUREPATH + "Basic/";
+            private static String BASICTEXTUREPATH = GUITEXTUREPATH + "basic/";
 
             public static class Slots {
                 @Nonnull
@@ -78,7 +78,7 @@ public class Textures {
             }
 
             public static class Components {
-                protected static final String RANDOMTEXTUREFILE = GUITEXTUREPATH + "components/RandomElements.png";
+                protected static final String RANDOMTEXTUREFILE = GUITEXTUREPATH + "components/randomelements.png";
 
                 public static final CustomResource HORIZONTALTAILLEFTTORIGHTEMPTY = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Tail.LTR.Empty", RANDOMTEXTUREFILE, 32, 3, 50, 4);
                 public static final CustomResource HORIZONTALTAILLEFTTORIGHTFULL = new CustomResource("Gui.Components.ProgressBars.HorizontalCornered.Tail.LTR.Full", RANDOMTEXTUREFILE, 32, 0, 50, 3);
@@ -111,13 +111,13 @@ public class Textures {
                 private static String IMAGETEXTUREPATH = GUITEXTUREPATH + "images/";
 
                 @Nonnull
-                public static CustomResource HAMMER = new CustomResource("Gui.Anvil.Image.Hammer", Basic.Images.IMAGETEXTUREPATH + "AnvilHammer", Colors.DEFAULT, 0, 0, 30, 30);
+                public static CustomResource HAMMER = new CustomResource("Gui.Anvil.Image.Hammer", Basic.Images.IMAGETEXTUREPATH + "anvilhammer", Colors.DEFAULT, 0, 0, 30, 30);
             }
         }
 
         public static class FirePit {
             @Nonnull
-            public static CustomResource THERMOMETERICON = new CustomResource("Gui.Forge.Thermometer", "armory:gui/images/16x ThermoALT", Colors.DEFAULT, 0, 0, 16, 16);
+            public static CustomResource THERMOMETERICON = new CustomResource("Gui.Forge.Thermometer", "armory:gui/images/16x thermoalt", Colors.DEFAULT, 0, 0, 16, 16);
             @Nonnull
             public static CustomResource DROPEMPTY = new CustomResource("Gui.Anvil.ProgressBars.Drop.Empty", Basic.Components.RANDOMTEXTUREFILE, Colors.DEFAULT, 16, 32, 8, 12);
             @Nonnull
@@ -126,17 +126,17 @@ public class Textures {
 
         public static class Anvil {
             @Nonnull
-            public static CustomResource LOGO = new CustomResource("Gui.Anvil.Image.Logo", "armory:gui/images/AnvilHammer", Colors.DEFAULT, 0, 0, 15, 15);
+            public static CustomResource LOGO = new CustomResource("Gui.Anvil.Image.Logo", "armory:gui/images/anvilhammer", Colors.DEFAULT, 0, 0, 15, 15);
             @Nonnull
-            public static CustomResource EXPERIENCEORB = new CustomResource("Gui.Anvil.Image.ExperienceOrb", GUITEXTUREPATH + "components/RandomElements.png", Colors.DEFAULT, 16, 0, 16, 16);
+            public static CustomResource EXPERIENCEORB = new CustomResource("Gui.Anvil.Image.ExperienceOrb", GUITEXTUREPATH + "components/randomelements.png", Colors.DEFAULT, 16, 0, 16, 16);
             @Nonnull
             public static CustomResource HOLOWPICKAXE = new CustomResource("Gui.Anvil.SlotHolo.Pickaxe", "minecraft:items/iron_pickaxe", Colors.DEFAULT, 0, 0, 16, 16);
             @Nonnull
-            public static CustomResource HOLOWBOOK = new CustomResource("Gui.Anvil.SlotHolo.Book", "minecraft:items/Book_Normal", Colors.DEFAULT, 0,0, 16, 16);
+            public static CustomResource HOLOWBOOK = new CustomResource("Gui.Anvil.SlotHolo.Book", "minecraft:items/book_normal", Colors.DEFAULT, 0,0, 16, 16);
             @Nonnull
-            public static CustomResource HOLOWHAMMER = new CustomResource("Gui.Anvil.SlotHolo.Hammer", "armory:items/basic/16x Work Hammer", Colors.DEFAULT, 0,0,16,16);
+            public static CustomResource HOLOWHAMMER = new CustomResource("Gui.Anvil.SlotHolo.Hammer", "armory:items/basic/16x work hammer", Colors.DEFAULT, 0,0,16,16);
             @Nonnull
-            public static CustomResource HOLOWTONGS = new CustomResource("Gui.Anvil.SlotHolo.Tongs", "armory:items/basic/16x Tongs", Colors.DEFAULT, 0,0,16,16);
+            public static CustomResource HOLOWTONGS = new CustomResource("Gui.Anvil.SlotHolo.Tongs", "armory:items/basic/16x tongs", Colors.DEFAULT, 0,0,16,16);
         }
 
         public static class Compatibility {

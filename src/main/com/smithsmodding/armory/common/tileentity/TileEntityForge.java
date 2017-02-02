@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.common.tileentity;
 
+import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.capability.IHeatedObjectCapability;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
@@ -370,7 +371,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     @Override
     public boolean isItemValidForSlot(int slotIndex, @Nonnull ItemStack stack) {
         if (slotIndex < INGOTSTACKS_AMOUNT) {
-            return stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null) || stack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null);
+            return IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().isHeatable(stack);
         } else if (slotIndex < INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT) {
             return TileEntityFurnace.isItemFuel(stack);
         }
@@ -469,7 +470,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         return StructureForge.class;
     }
 
-    @Nonnull
+    @Nullable
     @Override
     public StructureForge getStructure() {
         return (StructureForge) StructureRegistry.getInstance().getStructure(getWorld().provider.getDimension(), masterCoordinate);
@@ -485,7 +486,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         return getWorld();
     }
 
-    @org.jetbrains.annotations.Nullable
+    @Nullable
     @Override
     public IFluidTank getTankForSide(@Nullable EnumFacing side) {
         if (getStructure() == null)

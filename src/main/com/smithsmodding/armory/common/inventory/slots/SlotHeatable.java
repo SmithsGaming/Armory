@@ -5,7 +5,7 @@ package com.smithsmodding.armory.common.inventory.slots;
  *   Created on: 18-1-2015
  */
 
-import com.smithsmodding.armory.api.util.references.ModCapabilities;
+import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
@@ -26,7 +26,7 @@ public class SlotHeatable extends SlotSmithsCore {
 
     @Override
     public boolean isItemValid(@Nonnull ItemStack pItemStack) {
-        return pItemStack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null);
+        return IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().isHeatable(pItemStack);
     }
 
     @Override

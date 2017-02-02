@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class CoreTextureCreator extends IForgeRegistryEntry.Impl<ICreationController>  implements ICreationController {
 
-    public static final String CORETEXTUREIDENTIFIER = "Core";
+    public static final String CORETEXTUREIDENTIFIER = "core";
 
     /**
      * Method to create a materialized texture. It is called from the MaterializedTextureCreator to create the texture in the Map

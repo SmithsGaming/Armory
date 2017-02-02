@@ -22,11 +22,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Author Orion (Created on: 26.07.2016)
@@ -52,7 +50,7 @@ public class BlockMoltenMetalTank extends BlockArmoryTileEntity {
     public BlockMoltenMetalTank() {
         super(References.InternalNames.Blocks.Tank, Material.IRON);
         this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(TYPE, EnumTankType.NORMAL));
-        setCreativeTab(ModCreativeTabs.generalTab);
+        setCreativeTab(ModCreativeTabs.GENERAL);
     }
 
     @Nonnull

@@ -21,6 +21,8 @@ import static com.smithsmodding.armory.api.util.references.References.InternalNa
  */
 public class ArmorTab extends CreativeTabs {
 
+    private static ItemStack TABSTACK = ItemStack.EMPTY;
+
     public ArmorTab() {
         super(TranslationKeys.CreativeTabs.Armor);
     }
@@ -33,18 +35,20 @@ public class ArmorTab extends CreativeTabs {
 
     @Override
     public ItemStack getTabIconItem() {
-        //TODO: UPDATE
-        ArrayList<IMultiComponentArmorExtensionInformation> components = new ArrayList<>();
-        components.add(new IMultiComponentArmorExtensionInformation.Impl().setCount(1)
-            .setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID, UN_TOP.getResourcePath() + ModMaterials.Armor.Addon.OBSIDIAN.getRegistryName().getResourcePath()))));
+        if (TABSTACK.isEmpty()) {
+            ArrayList<IMultiComponentArmorExtensionInformation> components = new ArrayList<>();
+            components.add(new IMultiComponentArmorExtensionInformation.Impl().setCount(1)
+                    .setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID, UN_TOP.getResourcePath() + "-" + ModMaterials.Armor.Addon.OBSIDIAN.getRegistryName().getResourcePath()))));
 
-        components.add(new IMultiComponentArmorExtensionInformation.Impl().setCount(1)
-                .setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID, UN_RIGHT.getResourcePath() + ModMaterials.Armor.Addon.GOLD.getRegistryName().getResourcePath()))));
+            components.add(new IMultiComponentArmorExtensionInformation.Impl().setCount(1)
+                    .setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID, UN_RIGHT.getResourcePath() + "-" + ModMaterials.Armor.Addon.GOLD.getRegistryName().getResourcePath()))));
 
-        components.add(new IMultiComponentArmorExtensionInformation.Impl().setCount(1)
-                .setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID, UN_LEFT.getResourcePath() + ModMaterials.Armor.Addon.GOLD.getRegistryName().getResourcePath()))));
+            components.add(new IMultiComponentArmorExtensionInformation.Impl().setCount(1)
+                    .setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID, UN_LEFT.getResourcePath() + "-" + ModMaterials.Armor.Addon.GOLD.getRegistryName().getResourcePath()))));
 
-        ItemStack stack = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.HELMET, components, ModMaterials.Armor.Core.IRON.getBaseDurabilityForArmor(ModArmor.Medieval.HELMET), ModMaterials.Armor.Core.IRON);
-        return stack;
+            TABSTACK = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.HELMET, components, ModMaterials.Armor.Core.IRON.getBaseDurabilityForArmor(ModArmor.Medieval.HELMET), ModMaterials.Armor.Core.IRON);
+        }
+
+        return TABSTACK;
     }
 }

@@ -2,9 +2,9 @@ package com.smithsmodding.armory.common.creativetabs;
 
 import com.smithsmodding.armory.api.common.capability.IArmorComponentStackCapability;
 import com.smithsmodding.armory.api.util.client.TranslationKeys;
-import com.smithsmodding.armory.api.util.references.ModItems;
-import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
+import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -31,12 +31,10 @@ public class ComponentsTab extends CreativeTabs {
     public ItemStack getTabIconItem() {
         ItemStack stack = new ItemStack(ModItems.IT_COMPONENT);
 
-        //TODO!
-
         IArmorComponentStackCapability capability = new IArmorComponentStackCapability.Impl()
-                .setExtension(ArmoryAPI.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID.toLowerCase())));
+                .setExtension(ArmoryAPI.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID.toLowerCase(), ModExtensions.Medieval.ChestPlate.STOMACHLEFT.getRegistryName().getResourcePath() + "-" + ModMaterials.Armor.Addon.GOLD.getRegistryName().getResourcePath())));
 
-
+        stack.getCapability(SmithsCoreCapabilityDispatcher.INSTANCE_CAPABILITY, null).getDispatcher().registerCapability(ModCapabilities.MOD_ARMORCOMPONENT_CAPABILITY, capability);
 
         return stack;
     }

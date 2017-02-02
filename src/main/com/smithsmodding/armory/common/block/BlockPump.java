@@ -19,10 +19,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
 /**
  * Author Orion (Created on: 11.10.2016)
@@ -35,7 +33,7 @@ public class BlockPump extends BlockArmoryTileEntity {
     public BlockPump() {
         super(References.InternalNames.Blocks.ConduitPump, Material.IRON);
         this.setDefaultState(this.blockState.getBaseState().withProperty(DIRECTION, EnumFacing.NORTH).withProperty(TYPE, EnumPumpType.HORIZONTAL));
-        setCreativeTab(ModCreativeTabs.generalTab);
+        setCreativeTab(ModCreativeTabs.GENERAL);
     }
 
     @Override

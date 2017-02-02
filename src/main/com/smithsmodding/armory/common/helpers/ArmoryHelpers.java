@@ -1,10 +1,12 @@
 package com.smithsmodding.armory.common.helpers;
 
 import com.smithsmodding.armory.api.common.factories.IFactoryController;
+import com.smithsmodding.armory.api.common.heatable.IHeatedObjectOverrideManager;
 import com.smithsmodding.armory.api.common.helpers.IArmoryHelpers;
 import com.smithsmodding.armory.api.common.helpers.IMaterialConstructionHelper;
 import com.smithsmodding.armory.api.common.helpers.IMedievalUpgradeConstructionHelper;
 import com.smithsmodding.armory.common.factories.FactoryController;
+import com.smithsmodding.armory.common.heatable.HeatedObjectOverrideManager;
 
 import javax.annotation.Nonnull;
 
@@ -39,5 +41,10 @@ public class ArmoryHelpers implements IArmoryHelpers {
     @Override
     public IFactoryController getFactories() {
         return FactoryController.getInstance();
+    }
+
+    @Override
+    public IHeatedObjectOverrideManager getHeatableOverrideManager() {
+        return HeatedObjectOverrideManager.getInstance();
     }
 }

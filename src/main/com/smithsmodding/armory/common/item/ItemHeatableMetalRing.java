@@ -15,7 +15,7 @@ public class ItemHeatableMetalRing extends ItemHeatableResource {
 
     public ItemHeatableMetalRing() {
         this.setMaxStackSize(64);
-        this.setCreativeTab(ModCreativeTabs.componentsTab);
+        this.setCreativeTab(ModCreativeTabs.COMPONENTS);
         this.setUnlocalizedName(References.InternalNames.Items.IN_METALRING);
         this.setRegistryName(References.InternalNames.Items.IN_METALRING);
     }
