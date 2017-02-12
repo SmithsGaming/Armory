@@ -6,8 +6,9 @@ import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionIn
 import com.smithsmodding.armory.api.common.capability.armor.ArmorCapabilityManager;
 import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.api.util.common.armor.ArmorNBTHelper;
 import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.armory.common.api.ArmoryAPI;
+import com.smithsmodding.armory.api.util.common.armor.ArmorNBTHelper;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -143,7 +144,7 @@ public interface IMultiComponentArmorCapability {
         private Boolean broken = Boolean.FALSE;
 
         @Nonnull
-        private ICoreArmorMaterial coreArmorMaterial = IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry()
+        private ICoreArmorMaterial coreArmorMaterial = ArmoryAPI.getInstance().getRegistryManager().getCoreMaterialRegistry()
                 .getValue(References.InternalNames.Materials.Core.CMN_IRON);
 
         @Nonnull
@@ -364,7 +365,7 @@ public interface IMultiComponentArmorCapability {
         public void readNBT(Capability<IMultiComponentArmorCapability> capability, IMultiComponentArmorCapability instance, EnumFacing side, NBTBase nbt) {
             NBTTagCompound compound = (NBTTagCompound) nbt;
 
-            instance.setArmorType(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Armor.NAME))));
+            instance.setArmorType(ArmoryAPI.getInstance().getRegistryManager().getMultiComponentArmorRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Armor.NAME))));
             instance.setInstalledExtensions(ArmorNBTHelper.getExtensionMap(compound.getTagList(References.NBTTagCompoundData.Armor.ADDONS, Constants.NBT.TAG_STRING)));
             instance.setBroken(compound.getBoolean(References.NBTTagCompoundData.Armor.IS_BROKEN));
             instance.setMaterial(IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Armor.CORE_MATERIAL))));
