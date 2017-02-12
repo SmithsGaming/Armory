@@ -1,7 +1,6 @@
 package com.smithsmodding.armory.common.tileentity;
 
-import com.smithsmodding.armory.api.common.capability.IHeatedObjectCapability;
-import com.smithsmodding.armory.api.util.references.ModCapabilities;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.common.factories.HeatedItemFactory;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityForgeBaseGuiManager;
@@ -13,8 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ITickable;
 import org.jetbrains.annotations.Nullable;
-
-import javax.annotation.Nonnull;
 
 /**
  * Author Orion (Created on: 23.06.2016)
@@ -43,7 +40,7 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
 
         localData.setLastChange(localData.getCurrentTemp() - localData.getLastTemp());
 
-        if (!getWorld().isRemote) {
+        if (!worldObj.isRemote) {
             this.markDirty();
         }
     }
@@ -66,19 +63,19 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
 
             for (int fuelStackIndex = 0; fuelStackIndex < getFuelStackAmount(); fuelStackIndex++) {
 
-                if (getFuelStack(fuelStackIndex).isEmpty()) {
+                if (getFuelStack(fuelStackIndex) == null) {
                     continue;
                 }
 
                 ItemStack fuelStack = getFuelStack(fuelStackIndex);
 
                 //Check if the stack is a valid Fuel in the Furnace
-                if ((!fuelStack.isEmpty()) && (TileEntityFurnace.isItemFuel(fuelStack))) {
-                    fuelStack.shrink(1);
+                if ((fuelStack != null) && (TileEntityFurnace.isItemFuel(fuelStack))) {
+                    --fuelStack.stackSize;
 
                     fuelData.changeTotalBurningTicksOnCurrentFuel(TileEntityFurnace.getItemBurnTime(fuelStack));
 
-                    if (fuelStack.getCount() == 0 || fuelStack.isEmpty()) {
+                    if (fuelStack.stackSize == 0) {
                         setFuelStack(fuelStackIndex, fuelStack.getItem().getContainerItem(fuelStack));
                     }
 
@@ -105,32 +102,32 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
         }
 
         for (int ingotStackIndex = 0; ingotStackIndex < getTotalPossibleIngotAmount(); ingotStackIndex++) {
-            if (getIngotStack(ingotStackIndex).isEmpty()) {
+            if (getIngotStack(ingotStackIndex) == null) {
                 continue;
             }
 
-            if ((localData.getCurrentTemp() > 20F) && !(getIngotStack(ingotStackIndex).getItem() instanceof ItemHeatedItem) && (getIngotStack(ingotStackIndex).hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null)) || getIngotStack(ingotStackIndex).hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null)) {
+            if ((localData.getCurrentTemp() > 20F) && !(getIngotStack(ingotStackIndex).getItem() instanceof ItemHeatedItem) && HeatableItemRegistry.getInstance().isHeatable(getIngotStack(ingotStackIndex))) {
                 setIngotStack(ingotStackIndex, HeatedItemFactory.getInstance().convertToHeatedIngot(getIngotStack(ingotStackIndex)));
             }
 
             ItemStack stack = getIngotStack(ingotStackIndex);
-            IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
+            IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromHeatedStack(stack);
 
-            float currentStackTemp = capability.getTemperature();
-            float currentStackCoefficient = capability.getMaterial().getHeatCoefficient();
+            float tCurrentStackTemp = HeatableItemRegistry.getInstance().getItemTemperature(stack);
+            float tCurrentStackCoefficient = material.getHeatCoefficient();
 
-            float sourceDifference = (localData.getLastNegativeTerm() / getSourceEfficiencyIndex()) - currentStackCoefficient;
-            float targetDifference = currentStackCoefficient;
+            float tSourceDifference = (localData.getLastNegativeTerm() / getSourceEfficiencyIndex()) - tCurrentStackCoefficient;
+            float tTargetDifference = tCurrentStackCoefficient;
 
 
-            if (currentStackTemp < 20F) {
+            if (tCurrentStackTemp < 20F) {
                 setIngotStack(ingotStackIndex, HeatedItemFactory.getInstance().convertToCooledIngot(stack));
-            } else if (currentStackTemp <= localData.getCurrentTemp()) {
-                localData.setCurrentTemp(localData.getCurrentTemp() + sourceDifference);
-                capability.setTemperatur(capability.getTemperature() + targetDifference);
-            } else if (capability.getTemperature() > localData.getCurrentTemp()) {
-                localData.setCurrentTemp(localData.getCurrentTemp() + targetDifference);
-                capability.setTemperatur(capability.getTemperature() + sourceDifference);
+            } else if (tCurrentStackTemp <= localData.getCurrentTemp()) {
+                localData.setCurrentTemp(localData.getCurrentTemp() + tSourceDifference);
+                HeatableItemRegistry.getInstance().setItemTemperature(stack, HeatableItemRegistry.getInstance().getItemTemperature(stack) + tTargetDifference);
+            } else if (HeatableItemRegistry.getInstance().getItemTemperature(stack) > localData.getCurrentTemp()) {
+                localData.setCurrentTemp(localData.getCurrentTemp() + tTargetDifference);
+                HeatableItemRegistry.getInstance().setItemTemperature(stack, HeatableItemRegistry.getInstance().getItemTemperature(stack) + tSourceDifference);
             }
 
         }
@@ -142,7 +139,7 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
         int amount = 0;
 
         for (int index = 0; index < getTotalPossibleIngotAmount(); index++) {
-            if (getIngotStack(index).isEmpty()) {
+            if (getIngotStack(index) == null) {
                 continue;
             }
 
@@ -177,17 +174,17 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
     @Override
     public ItemStack decrStackSize(int index, int amount) {
         ItemStack stack = getStackInSlot(index);
-        if (stack.isEmpty()) {
+        if (stack == null) {
             return stack;
         }
 
-        if (stack.getCount() < amount) {
-            setInventorySlotContents(index, ItemStack.EMPTY);
+        if (stack.stackSize < amount) {
+            setInventorySlotContents(index, null);
         } else {
             ItemStack returnStack = stack.splitStack(amount);
 
-            if (stack.getCount() == 0 || stack.isEmpty()) {
-                setInventorySlotContents(index, ItemStack.EMPTY);
+            if (stack.stackSize == 0) {
+                setInventorySlotContents(index, null);
             }
 
             return returnStack;

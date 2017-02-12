@@ -15,6 +15,7 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
@@ -24,7 +25,7 @@ import java.util.Map;
  * Created by Marc on 06.12.2015.
  */
 public class HeatedItemModelLoader implements ICustomModelLoader {
-    public static final String EXTENSION = ".hi-armory";
+    public static final String EXTENSION = ".HI-Armory";
 
     @Override
     public boolean accepts(@Nonnull ResourceLocation modelLocation) {

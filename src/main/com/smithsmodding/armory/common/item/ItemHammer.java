@@ -24,6 +24,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+
 /**
  * Created by Orion
  * Created on 16.05.2015
@@ -36,12 +39,12 @@ public class ItemHammer extends Item {
         setMaxStackSize(1);
         setMaxDamage(150);
         setCreativeTab(ModCreativeTabs.generalTab);
-        setUnlocalizedName(References.InternalNames.Items.IN_HAMMER);
-        setRegistryName(References.InternalNames.Items.IN_HAMMER.toLowerCase());
+        setUnlocalizedName(References.InternalNames.Items.ItemHammer);
+        setRegistryName(References.InternalNames.Items.ItemHammer.toLowerCase());
         addPropertyOverride(CoreReferences.IItemProperties.MODELTYPE, new IItemPropertyGetter() {
             @Override
             public float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn) {
-                return stack.getTagCompound().getString(CoreReferences.NBT.IItemProperties.TARGET).equals(References.InternalNames.Items.IN_HAMMER) ? 1f : 0f;
+                return stack.getTagCompound().getString(CoreReferences.NBT.IItemProperties.TARGET).equals(References.InternalNames.Items.ItemHammer) ? 1f : 0f;
             }
         });
     }

@@ -4,6 +4,7 @@ import com.smithsmodding.armory.Armory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.relauncher.Side;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.io.File;
@@ -33,6 +34,8 @@ public class ArmoryConfig {
 
         public static void init(@Nonnull File configFile) {
             config = new Configuration(new File(configFile.getParentFile().getAbsolutePath() + "/Armory/Global.cfg"), true);
+
+            ArmorDataConfigHandler.init(config.getConfigFile());
             loadConfig();
         }
 

@@ -1,13 +1,13 @@
 package com.smithsmodding.armory.common.item;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.common.capability.IArmorComponentStackCapability;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.capability.IArmorComponentStackCapability;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.util.CapabilityHelper;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
+import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -18,6 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 /**
  * Author Marc (Created on: 11.06.2016)
@@ -27,8 +28,8 @@ public class ItemArmorComponent extends Item {
     public ItemArmorComponent() {
         this.setMaxStackSize(1);
         this.setCreativeTab(ModCreativeTabs.componentsTab);
-        this.setUnlocalizedName(References.InternalNames.Items.IN_ARMOR_COMPONENT);
-        this.setRegistryName(References.General.MOD_ID.toLowerCase(), References.InternalNames.Items.IN_ARMOR_COMPONENT);
+        this.setUnlocalizedName(References.InternalNames.Items.ItemArmorComponent);
+        this.setRegistryName(References.General.MOD_ID.toLowerCase(), References.InternalNames.Items.ItemArmorComponent);
     }
 
     @Override
@@ -56,11 +57,16 @@ public class ItemArmorComponent extends Item {
 
     @Override
     public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-        for (IMultiComponentArmorExtension extension : IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry()) {
-            if (!extension.hasItemStack())
-                continue;
+        for (IMultiComponentArmorExtension addon : IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry()) {
+            ItemStack stack = new ItemStack(itemIn);
 
-            subItems.add(CapabilityHelper.generateArmorComponentStack(itemIn, extension));
+            IArmorComponentStackCapability capability = new IArmorComponentStackCapability.Impl()
+                    .setExtension(addon);
+
+            stack.getCapability(SmithsCoreCapabilityDispatcher.INSTANCE_CAPABILITY, null).getDispatcher()
+                    .registerCapability(ModCapabilities.MOD_ARMORCOMPONENT_CAPABILITY, capability);
+
+            subItems.add(stack);
         }
     }
 }

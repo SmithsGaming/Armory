@@ -33,40 +33,33 @@ public class TranslationKeys {
         }
 
         public class MultiArmor {
-            public class Armor {
-                public static final String TK_HELMET = "item.Armory.MultiArmor.Armor.Helmet";
-                public static final String TK_CHESTPLATE = "iten.Armory.MultiArmor.Armor.ChestPlate";
-                public static final String TK_LEGGINGS = "item.Armory.MultiArmor.Armor.Leggings";
-                public static final String TK_SHOES = "item.Armory.MultiArmor.Armor.Shoes";
-            }
-
             public class Upgrades {
                 public class Helmet {
-                    public static final String TK_TOP = "item.Armory.MultiArmor.Upgrade.Helmet.Top";
-                    public static final String TK_RIGHT = "item.Armory.MultiArmor.Upgrade.Helmet.Right";
-                    public static final String TK_LEFT = "item.Armory.MultiArmor.Upgrade.Helmet.Left";
+                    public static final String TopHead = "item.Armory.MultiArmor.Upgrade.Helmet.Top";
+                    public static final String RightEar = "item.Armory.MultiArmor.Upgrade.Helmet.RightEar";
+                    public static final String LeftEar = "item.Armory.MultiArmor.Upgrade.Helmet.LeftEar";
                 }
 
                 public class Chestplate {
-                    public static final String TK_SHOULDERLEFT = "item.Armory.MultiArmor.Upgrade.ChestPlate.ShoulderLeft";
-                    public static final String TK_SHOULDERRIGHT = "item.Armory.MultiArmor.Upgrade.ChestPlate.ShoulderRight";
-                    public static final String TK_STOMACHLEFT = "item.Armory.MultiArmor.Upgrade.ChestPlate.StomachLeft";
-                    public static final String TK_STOMACHRIGHT = "item.Armory.MultiArmor.Upgrade.ChestPlate.StomachRight";
-                    public static final String TK_BACKLEFT = "item.Armory.MultiArmor.Upgrade.ChestPlate.BackLeft";
-                    public static final String TK_BACKRIGHT = "item.Armory.MultiArmor.Upgrade.ChestPlate.BackRight";
+                    public static final String ShoulderLeft = "item.Armory.MultiArmor.Upgrade.ChestPlate.ShoulderLeft";
+                    public static final String ShoulderRight = "item.Armory.MultiArmor.Upgrade.ChestPlate.ShoulderRight";
+                    public static final String FrontLeft = "item.Armory.MultiArmor.Upgrade.ChestPlate.FrontLeft";
+                    public static final String FrontRight = "item.Armory.MultiArmor.Upgrade.ChestPlate.FrontRight";
+                    public static final String BackLeft = "item.Armory.MultiArmor.Upgrade.ChestPlate.BackLeft";
+                    public static final String BackRight = "item.Armory.MultiArmor.Upgrade.ChestPlate.BackRight";
 
                 }
 
                 public class Leggings {
-                    public static final String TK_SHINLEFT = "item.Armory.MultiArmor.Upgrade.Leggings.ShinLeft";
-                    public static final String TK_SHINRIGHT = "item.Armory.MultiArmor.Upgrade.Leggings.ShinRight";
-                    public static final String TK_CALFLEFT = "item.Armory.MultiArmor.Upgrade.Leggings.CalfLeft";
-                    public static final String TK_CALFRIGHT = "item.Armory.MultiArmor.Upgrade.Leggings.CalfRight";
+                    public static final String FrontLeft = "item.Armory.MultiArmor.Upgrade.Leggings.FrontLeft";
+                    public static final String FrontRight = "item.Armory.MultiArmor.Upgrade.Leggings.FrontRight";
+                    public static final String BackLeft = "item.Armory.MultiArmor.Upgrade.Leggings.BackLeft";
+                    public static final String BackRight = "item.Armory.MultiArmor.Upgrade.Leggings.BackRight";
                 }
 
                 public class Shoes {
-                    public static final String TK_LACESLEFT = "item.Armory.MultiArmor.Upgrade.Shoes.LacesLeft";
-                    public static final String TK_LACESRIGHT = "item.Armory.MultiArmor.Upgrade.Shoes.LacesRight";
+                    public static final String Left = "item.Armory.MultiArmor.Upgrade.Shoes.Left";
+                    public static final String Right = "item.Armory.MultiArmor.Upgrade.Shoes.Right";
                 }
 
             }
@@ -75,19 +68,15 @@ public class TranslationKeys {
 
     public class Materials {
         public class Anvil {
-            public static final String TK_ANVIL_STONE = "Armory.Materials.AnvilOnly.Vanilla.Stone";
-            public static final String TK_ANVIL_IRON = "Armory.Materials.Vanilla.Iron";
-            public static final String TK_ANVIL_OBSIDIAN = "Armory.Materials.Vanilla.Obsidian";
+            public static final String Stone = "Armory.Materials.AnvilOnly.Vanilla.Stone";
+            public static final String Iron = "Armory.Materials.Vanilla.Iron";
+            public static final String Obsidian = "Armory.Materials.Vanilla.Obsidian";
         }
 
-
-        public class Armor {
-            public static final String TK_ARMOR_IRON = "Armory.Materials.Vanilla.Iron";
-            public static final String TK_ARMOR_OBSIDIAN = "Armory.Materials.Vanilla.Obsidian";
-            public static final String TK_ARMOR_GOLD = "Armory.Materials.Vanilla.Gold";
-            public static final String TK_ARMOR_STEEL = "Armory.Materials.Armory.Steel";
+        public class VisibleNames {
+            public static final String Iron = "Armory.Materials.Vanilla.Iron";
+            public static final String Obsidian = "Armory.Materials.Vanilla.Obsidian";
         }
-
     }
 
     public class Fluids {

@@ -6,15 +6,12 @@ package com.smithsmodding.armory.common.item;
 */
 
 import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.common.capability.IHeatedObjectCapability;
-import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
-import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
-import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.capability.IHeatedObjectCapability;
+import com.smithsmodding.armory.api.heatable.IHeatableObject;
+import com.smithsmodding.armory.api.heatable.IHeatableObjectType;
+import com.smithsmodding.armory.api.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.client.TranslationKeys;
-import com.smithsmodding.armory.api.util.references.ModCapabilities;
-import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
-import com.smithsmodding.armory.api.util.references.ModHeatableObjects;
-import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
 import com.smithsmodding.armory.common.factories.HeatedItemFactory;
 import net.minecraft.client.gui.FontRenderer;
@@ -26,8 +23,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -41,8 +36,8 @@ public class ItemHeatedItem extends Item {
     public ItemHeatedItem() {
         setMaxStackSize(1);
         setCreativeTab(ModCreativeTabs.heatedItemTab);
-        setUnlocalizedName(References.InternalNames.Items.IN_HEATEDINGOT);
-        this.setRegistryName(References.General.MOD_ID.toLowerCase(), References.InternalNames.Items.IN_HEATEDINGOT);
+        setUnlocalizedName(References.InternalNames.Items.ItemHeatedIngot);
+        this.setRegistryName(References.General.MOD_ID.toLowerCase(), References.InternalNames.Items.ItemHeatedIngot);
     }
 
     @Override
@@ -93,12 +88,9 @@ public class ItemHeatedItem extends Item {
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(Item item, CreativeTabs tabs, NonNullList<ItemStack> list) {
-        if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION))
-            return;
-
         HashMap<String, ItemStack> heatedItems = new HashMap<>();
 
-        for (IHeatedObjectType type : IArmoryAPI.Holder.getInstance().getRegistryManager().getHeatableObjectTypeRegistry()) {
+        for (IHeatableObjectType type : IArmoryAPI.Holder.getInstance().getRegistryManager().getHeatableObjectTypeRegistry()) {
             IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry().forEach(new MaterialItemStackConstructionConsumer(type, heatedItems));
             IArmoryAPI.Holder.getInstance().getRegistryManager().getAddonArmorMaterialRegistry().forEach(new MaterialItemStackConstructionConsumer(type, heatedItems));
             IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry().forEach(new MaterialItemStackConstructionConsumer(type, heatedItems));
@@ -147,10 +139,10 @@ public class ItemHeatedItem extends Item {
 
     private class MaterialItemStackConstructionConsumer implements Consumer<IMaterial> {
 
-        private final IHeatedObjectType type;
+        private final IHeatableObjectType type;
         private final HashMap<String, ItemStack> heatedStacks;
 
-        private MaterialItemStackConstructionConsumer(IHeatedObjectType type, HashMap<String, ItemStack> heatedStacks) {
+        private MaterialItemStackConstructionConsumer(IHeatableObjectType type, HashMap<String, ItemStack> heatedStacks) {
             this.type = type;
             this.heatedStacks = heatedStacks;
         }

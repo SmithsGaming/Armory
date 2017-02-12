@@ -3,11 +3,11 @@ package com.smithsmodding.armory.client.model.item.baked;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionInformation;
-import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapability;
-import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.armor.IMaterialDependantMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtensionInformation;
+import com.smithsmodding.armory.api.capability.IMultiComponentArmorCapability;
+import com.smithsmodding.armory.api.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedCoreComponentModel;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
@@ -101,7 +101,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
                 }
             });
 
-            // getCreationRecipe the texture for each part
+            // get the texture for each part
             ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
 
             boolean broken = ArmorNBTHelper.checkIfStackIsBroken(stack);

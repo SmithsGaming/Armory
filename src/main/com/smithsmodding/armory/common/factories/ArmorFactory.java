@@ -5,13 +5,14 @@ package com.smithsmodding.armory.common.factories;
 /  Created on : 04/07/2014
 */
 
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionInformation;
-import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapability;
-import com.smithsmodding.armory.api.common.factories.IMLAFactory;
-import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmor;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtensionInformation;
+import com.smithsmodding.armory.api.capability.IMultiComponentArmorCapability;
+import com.smithsmodding.armory.api.factories.IMLAFactory;
+import com.smithsmodding.armory.api.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
+import com.smithsmodding.armory.api.util.references.ModItems;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import net.minecraft.item.ItemStack;
@@ -78,7 +79,7 @@ public class ArmorFactory implements IMLAFactory {
         if (!validateNewAgainstNewAddons(addons))
             throw new IllegalArgumentException("ADDONS not compatible");
 
-        ItemStack armorStack =  new ItemStack(armor.getItem(), 1);
+        ItemStack armorStack =  new ItemStack(ModItems.ARMOR, 1);
         IMultiComponentArmorCapability capability = new IMultiComponentArmorCapability.Impl()
                 .setArmorType(armor)
                 .setMaterial(coreMaterial)

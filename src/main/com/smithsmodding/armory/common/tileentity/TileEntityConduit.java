@@ -8,8 +8,8 @@ import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 /**

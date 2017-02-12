@@ -1,22 +1,19 @@
 package com.smithsmodding.armory.client.textures;
 
 import com.google.common.collect.Maps;
-import com.smithsmodding.armory.api.client.textures.creation.ICreationController;
-import com.smithsmodding.armory.api.client.textures.types.GuiOutlineTexture;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
-import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
-import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.api.common.material.client.MaterialRenderControllers;
+import com.smithsmodding.armory.api.material.client.MaterialRenderControllers;
+import com.smithsmodding.armory.api.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.textures.creation.ICreationController;
+import com.smithsmodding.armory.api.textures.types.GuiOutlineTexture;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
-import com.smithsmodding.armory.common.material.MedievalCoreArmorMaterial;
+import com.smithsmodding.armory.common.material.ArmorMaterial;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -24,10 +21,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Marc on 06.12.2015.
@@ -48,31 +42,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
 
     //Initializes the dummy gui material with a proper set of render info.
     static {
-        guiMaterial = (ICoreArmorMaterial) new MedievalCoreArmorMaterial("", "", "", 0F,0F,0,0,0F) {
-            /**
-             * Method to getCreationRecipe the BaseDurability of a piece of armor made out of this material.
-             *
-             * @param armor The armor to getCreationRecipe the base durability for.
-             * @return The durability of a piece of armor made out of this material.
-             */
-            @Nonnull
-            @Override
-            public Integer getBaseDurabilityForArmor(@Nonnull IMultiComponentArmor armor) {
-                return 0;
-            }
-
-            /**
-             * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
-             *
-             * @param armor
-             * @return All the default capabilities this ArmorMaterial provides.
-             */
-            @Nonnull
-            @Override
-            public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideCoreMaterialCapabilities(IMultiComponentArmor armor) {
-                return new HashMap<>();
-            }
-        };
+        guiMaterial = (ICoreArmorMaterial) new ArmorMaterial();
         guiMaterial.setRenderInfo(new MaterialRenderControllers.AbstractMaterialTextureController() {
             @Nonnull
             @Override
@@ -101,7 +71,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     }
 
     /**
-     * method to getCreationRecipe the builded textures.
+     * method to get the builded textures.
      *
      * @return A map containing all the colored textures using the base texture and the materialname as keys.
      */

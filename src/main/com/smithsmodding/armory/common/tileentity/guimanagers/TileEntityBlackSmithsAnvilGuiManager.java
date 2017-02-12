@@ -6,8 +6,7 @@ import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.smithscore.client.events.gui.GuiInputEvent;
 import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIManager;
-
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Marc on 14.02.2016.
@@ -49,7 +48,7 @@ public class TileEntityBlackSmithsAnvilGuiManager extends TileStorageBasedGUIMan
                 return 0F;
             }
 
-            return ((anvil.getState()).getCraftingprogress() / (float) anvil.getCurrentRecipe().getProgress());
+            return ((anvil.getState()).getCraftingprogress() / (float) anvil.getCurrentRecipe().getMinimumProgress());
         }
 
         return 0f;

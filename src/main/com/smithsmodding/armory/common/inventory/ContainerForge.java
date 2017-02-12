@@ -14,6 +14,7 @@ import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
 import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 

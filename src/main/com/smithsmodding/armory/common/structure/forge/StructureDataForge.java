@@ -6,8 +6,8 @@ import com.smithsmodding.armory.common.tileentity.moltenmetal.MoltenMetalTank;
 import com.smithsmodding.smithscore.common.structures.IStructureData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 /**

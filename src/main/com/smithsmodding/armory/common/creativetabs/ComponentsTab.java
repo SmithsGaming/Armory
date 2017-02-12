@@ -1,13 +1,16 @@
 package com.smithsmodding.armory.common.creativetabs;
 
-import com.smithsmodding.armory.api.common.capability.IArmorComponentStackCapability;
+import com.smithsmodding.armory.api.capability.IArmorComponentStackCapability;
 import com.smithsmodding.armory.api.util.client.TranslationKeys;
 import com.smithsmodding.armory.api.util.references.ModItems;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -29,7 +32,7 @@ public class ComponentsTab extends CreativeTabs {
 
     @Override
     public ItemStack getTabIconItem() {
-        ItemStack stack = new ItemStack(ModItems.IT_COMPONENT);
+        ItemStack stack = new ItemStack(ModItems.COMPONENT);
 
         //TODO!
 

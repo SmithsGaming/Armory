@@ -10,7 +10,7 @@ Armory.GUI.InfoTitel=Information
 #Firepit specific information
 Armory.GUI.Fireplace.Ledger.InfoLine1=The Fireplace is both your first heat source and an efficient furnace.
 Armory.GUI.Fireplace.Ledger.InfoLine2=It will slowly heat up most of your metals, yet it can not heat up all of them to their melting point.
-Armory.GUI.Fireplace.Ledger.InfoLine3=Keep your eye on it though as it can meld ingots that getCreationRecipe to hot.
+Armory.GUI.Fireplace.Ledger.InfoLine3=Keep your eye on it though as it can meld ingots that get to hot.
 Armory.GUI.Fireplace.Ledger.TempTitel=Fireplace - Temperature
 Armory.GUI.Fireplace.Ledger.TempMax=Maximum
 Armory.GUI.Fireplace.Ledger.TempCurrent=Current

@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.common.entity;
 
-import com.smithsmodding.armory.api.common.capability.IHeatedObjectCapability;
-import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
+import com.smithsmodding.armory.api.capability.IHeatedObjectCapability;
+import com.smithsmodding.armory.api.heatable.IHeatableObject;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
 import net.minecraft.entity.Entity;

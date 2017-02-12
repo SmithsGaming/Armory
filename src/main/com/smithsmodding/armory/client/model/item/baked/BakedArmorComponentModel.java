@@ -1,8 +1,8 @@
 package com.smithsmodding.armory.client.model.item.baked;
 
 import com.google.common.collect.ImmutableMap;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.common.capability.IArmorComponentStackCapability;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.capability.IArmorComponentStackCapability;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedComponentModel;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;

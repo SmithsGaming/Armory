@@ -1,22 +1,20 @@
 package com.smithsmodding.armory.common.registries;
 
 import com.google.common.collect.BiMap;
-import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.client.textures.creation.ICreationController;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionPosition;
-import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
-import com.smithsmodding.armory.api.common.events.common.material.RegisterMaterialEvent;
-import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
-import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
-import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
-import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
-import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
-import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper;
-import com.smithsmodding.armory.api.common.registries.IRegistryManager;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmor;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtensionPosition;
+import com.smithsmodding.armory.api.events.common.material.RegisterMaterialEvent;
+import com.smithsmodding.armory.api.heatable.IHeatableObject;
+import com.smithsmodding.armory.api.heatable.IHeatableObjectType;
+import com.smithsmodding.armory.api.material.armor.IAddonArmorMaterial;
+import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.material.core.IMaterial;
+import com.smithsmodding.armory.api.material.core.RegistryMaterialWrapper;
+import com.smithsmodding.armory.api.registries.IRegistryManager;
+import com.smithsmodding.armory.api.textures.creation.ICreationController;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.smithscore.common.events.SmithsCoreRegistryEvent;
 import net.minecraft.util.ResourceLocation;
@@ -64,13 +62,7 @@ public final class RegistryManager implements IRegistryManager {
     protected IForgeRegistry<IHeatableObject> heatableObjectRegistry;
 
     @Nonnull
-    protected IForgeRegistry<IHeatedObjectType> heatableObjectTypeRegistry;
-
-    @Nonnull
-    protected IForgeRegistry<IAnvilRecipe> anvilRecipeRegistry;
-
-    @Nonnull
-    protected IForgeRegistry<IInitializationComponent> initializationComponentRegistry;
+    protected IForgeRegistry<IHeatableObjectType> heatableObjectTypeRegistry;
 
     @Nonnull
     protected IForgeRegistry<ICreationController> textureCreationControllerRegistry;
@@ -132,6 +124,17 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
+     * Getter for the @code{IMultiComponentArmor} Registry. Holds all registered @code{IMultiComponentArmor}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     *
+     * @return The @code{IMultiComponentArmor} Registry.
+     */
+    @Nonnull
+    @Override
+    public IForgeRegistry<IMultiComponentArmor> getMultiComponentArmorRegistry() {
+        return multiComponentArmorRegistry;
+    }
+
+    /**
      * Getter for the @code{IMultiComponentArmorExtensionPosition} Registry. Holds all registered @code{IMultiComponentArmorExtensionPosition}. Managed by FML, as it is an instance of @code{IForgeRegistry}
      *
      * @return The @code{IMultiComponentArmorExtensionPosition} Registry.
@@ -154,18 +157,6 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{IMultiComponentArmor} Registry. Holds all registered @code{IMultiComponentArmor}. Managed by FML, as it is an instance of @code{IForgeRegistry}
-     *
-     * @return The @code{IMultiComponentArmor} Registry.
-     */
-    @Nonnull
-    @Override
-    public IForgeRegistry<IMultiComponentArmor> getMultiComponentArmorRegistry() {
-        return multiComponentArmorRegistry;
-    }
-
-
-    /**
      * Getter for the @code{IHeatableObject} Registry. Holds all registered @code{IHeatableObject}. Managed by FML, as it is an instance of @code{IForgeRegistry}
      *
      * @return The @code{IHeatableObject} Registry.
@@ -183,28 +174,8 @@ public final class RegistryManager implements IRegistryManager {
      */
     @Nonnull
     @Override
-    public IForgeRegistry<IHeatedObjectType> getHeatableObjectTypeRegistry() {
+    public IForgeRegistry<IHeatableObjectType> getHeatableObjectTypeRegistry() {
         return heatableObjectTypeRegistry;
-    }
-
-    /**
-     * Getter for the @code{IAnvilRecipe} Registry. Holds all registered @code{IAnvilRecipe}. Managed by FML, as it is an instance of @code{IForgeRegistry}
-     *
-     * @return The @code{IAnvilRecipe} Registry.
-     */
-    @Nonnull
-    @Override
-    public IForgeRegistry<IAnvilRecipe> getAnvilRecipeRegistry() {
-        return anvilRecipeRegistry;
-    }
-
-    /**
-     * Getter for the @code{IInitializationComponent} Registry. Holds all registered @code{IInitializationComponent}. Managed by FML, as it is an instance of @code{IForgeRegistry}
-     * @return The @code{IInitializationComponent} Registry.
-     */
-    @Nonnull
-    public IForgeRegistry<IInitializationComponent> getInitializationComponentRegistry() {
-        return initializationComponentRegistry;
     }
 
     /**
@@ -231,7 +202,7 @@ public final class RegistryManager implements IRegistryManager {
          */
         @SubscribeEvent
         public static void handle(RegistryEvent.NewRegistry registerEvent) {
-            Armory.registryInitializer.initialize();
+
         }
     }
 
@@ -243,36 +214,33 @@ public final class RegistryManager implements IRegistryManager {
         @SubscribeEvent
         public static void handleCore(RegistryEvent.Register<ICoreArmorMaterial> event) {
             new RegisterMaterialEvent<>(event.getRegistry()).PostCommon();
+
+            for (IMaterial material : event.getRegistry()) {
+                IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry().register(new RegistryMaterialWrapper(material));
+            }
         }
 
         @SubscribeEvent
         public static void handleAddon(RegistryEvent.Register<IAddonArmorMaterial> event) {
             new RegisterMaterialEvent<>(event.getRegistry()).PostCommon();
+
+            for (IMaterial material : event.getRegistry()) {
+                IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry().register(new RegistryMaterialWrapper(material));
+            }
         }
 
         @SubscribeEvent
         public static void handleAnvil(RegistryEvent.Register<IAnvilMaterial> event) {
             new RegisterMaterialEvent<>(event.getRegistry()).PostCommon();
-        }
 
-        @SubscribeEvent
-        public static void handleCombined(RegistryEvent.Register<RegistryMaterialWrapper> event) {
-            for (ICoreArmorMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry()) {
-                event.getRegistry().register(new RegistryMaterialWrapper(material));
-            }
-
-            for (IAddonArmorMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getAddonArmorMaterialRegistry()) {
-                event.getRegistry().register(new RegistryMaterialWrapper(material));
-            }
-
-            for (IAnvilMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry()) {
-                event.getRegistry().register(new RegistryMaterialWrapper(material));
+            for (IMaterial material : event.getRegistry()) {
+                IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry().register(new RegistryMaterialWrapper(material));
             }
         }
     }
 
     /**
-     * Class used to convert callback, coming from the individual Registries, into Events posted on the SC Common bus-
+     * Class used to convert callbacks, coming from the individual Registries, into Events posted on the SC Common bus-
      * @param <V> The Registry Entry type.
      */
     public static final class RegistryCallbackToEventConverter<V extends IForgeRegistryEntry<V>> implements

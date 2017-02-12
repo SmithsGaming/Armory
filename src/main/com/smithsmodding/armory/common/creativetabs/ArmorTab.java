@@ -1,20 +1,14 @@
 package com.smithsmodding.armory.common.creativetabs;
 
-import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionInformation;
+import com.smithsmodding.armory.api.armor.MLAAddon;
 import com.smithsmodding.armory.api.util.client.TranslationKeys;
-import com.smithsmodding.armory.api.util.references.ModArmor;
-import com.smithsmodding.armory.api.util.references.ModMaterials;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.factories.ArmorFactory;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-
-import static com.smithsmodding.armory.api.util.references.References.InternalNames.Upgrades.Helmet.*;
+import java.util.HashMap;
 
 /**
  * Author Marc (Created on: 14.06.2016)
@@ -34,17 +28,12 @@ public class ArmorTab extends CreativeTabs {
     @Override
     public ItemStack getTabIconItem() {
         //TODO: UPDATE
-        ArrayList<IMultiComponentArmorExtensionInformation> components = new ArrayList<>();
-        components.add(new IMultiComponentArmorExtensionInformation.Impl().setCount(1)
-            .setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID, UN_TOP.getResourcePath() + ModMaterials.Armor.Addon.OBSIDIAN.getRegistryName().getResourcePath()))));
+        HashMap<MLAAddon, Integer> tHelmetAddons = new HashMap<MLAAddon, Integer>();
+        tHelmetAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.TOP + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
+        tHelmetAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.RIGHT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
+        tHelmetAddons.put(MedievalAddonRegistry.getInstance().getUpgrade(References.InternalNames.Upgrades.Helmet.LEFT + "-" + References.InternalNames.Materials.Vanilla.OBSIDIAN), 1);
 
-        components.add(new IMultiComponentArmorExtensionInformation.Impl().setCount(1)
-                .setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID, UN_RIGHT.getResourcePath() + ModMaterials.Armor.Addon.GOLD.getRegistryName().getResourcePath()))));
-
-        components.add(new IMultiComponentArmorExtensionInformation.Impl().setCount(1)
-                .setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID, UN_LEFT.getResourcePath() + ModMaterials.Armor.Addon.GOLD.getRegistryName().getResourcePath()))));
-
-        ItemStack stack = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.HELMET, components, ModMaterials.Armor.Core.IRON.getBaseDurabilityForArmor(ModArmor.Medieval.HELMET), ModMaterials.Armor.Core.IRON);
+        ItemStack stack = ArmorFactory.getInstance().buildNewMLAArmor(ArmorRegistry.getInstance().getArmor(References.InternalNames.Armor.MEDIEVALHELMET), tHelmetAddons, MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).getBaseDurability(References.InternalNames.Armor.MEDIEVALHELMET), References.InternalNames.Materials.Vanilla.IRON);
         return stack;
     }
 }

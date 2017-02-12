@@ -1,21 +1,12 @@
 package com.smithsmodding.armory.common.helpers;
 
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
-import com.smithsmodding.armory.api.common.helpers.IMaterialConstructionHelper;
-import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
-import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
-import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterialDataCallback;
-import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterialDataCallback;
-import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.common.material.MedievalAddonArmorMaterial;
-import com.smithsmodding.armory.common.material.MedievalAnvilMaterial;
-import com.smithsmodding.armory.common.material.MedievalCoreArmorMaterial;
-import net.minecraftforge.common.capabilities.Capability;
+import com.smithsmodding.armory.api.helpers.IMaterialConstructionHelper;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.common.material.ArmorMaterial;
+import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import java.util.HashMap;
 
 /**
  * Author Orion (Created on: 07.07.2016)
@@ -35,37 +26,7 @@ public class MaterialConstructionHelper implements IMaterialConstructionHelper {
 
     @Nonnull
     @Override
-    public IAnvilMaterial createMedievalAnvilMaterial(String translationKey, String textFormatting, String oreDictionaryIdentifier, Float meltingPoint, Float vaporizingPoint, Integer meltingTime, Integer vaporizingTime, Float heatCoefficient, Integer durability) {
-        return new MedievalAnvilMaterial(translationKey, textFormatting, oreDictionaryIdentifier, meltingPoint, vaporizingPoint, meltingTime, vaporizingTime, heatCoefficient, durability);
-    }
-
-    @Nonnull
-    @Override
-    public ICoreArmorMaterial createMedievalCoreArmorMaterial(String translationKey, String textFormatting, String oreDictionaryIdentifier, Float meltingPoint, Float vaporizingPoint, Integer meltingTime, Integer vaporizingTime, Float heatCoefficient, ICoreArmorMaterialDataCallback callback) {
-        return new MedievalCoreArmorMaterial(translationKey, textFormatting, oreDictionaryIdentifier, meltingPoint, vaporizingPoint, meltingTime, vaporizingTime, heatCoefficient) {
-            @Nonnull
-            @Override
-            public Integer getBaseDurabilityForArmor(@Nonnull IMultiComponentArmor armor) {
-                return callback.getBaseDurabilityForArmor(armor);
-            }
-
-            @Nonnull
-            @Override
-            public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideCoreMaterialCapabilities(IMultiComponentArmor armor) {
-                return callback.getOverrideCoreMaterialCapabilities(armor);
-            }
-        };
-    }
-
-    @Nonnull
-    @Override
-    public IAddonArmorMaterial createMedievalAddonArmorMaterial(String translationKey, String textFormatting, String oreDictionaryIdentifier, Float meltingPoint, Float vaporizingPoint, Integer meltingTime, Integer vaporizingTime, Float heatCoefficient, IAddonArmorMaterialDataCallback callback) {
-        return new MedievalAddonArmorMaterial(translationKey, textFormatting, oreDictionaryIdentifier, meltingPoint, vaporizingPoint, meltingTime, vaporizingTime, heatCoefficient) {
-            @Nonnull
-            @Override
-            public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideAddonMaterialCapabilities(IMultiComponentArmorExtension extension) {
-                return callback.getOverrideAddonMaterialCapabilities(extension);
-            }
-        };
+    public IArmorMaterial generateArmorMaterial(String uniqueIdentifier, String oreDictionaryIdentifier, boolean isBaseMaterial, float meltingPoint, int meltingTime, float heatCoefficient, ItemStack baseStack) {
+        return new ArmorMaterial(uniqueIdentifier, oreDictionaryIdentifier, isBaseMaterial, meltingPoint, meltingTime, heatCoefficient, baseStack);
     }
 }

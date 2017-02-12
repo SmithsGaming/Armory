@@ -1,9 +1,9 @@
 package com.smithsmodding.armory.client.model.loaders;
 
 import com.google.common.collect.ImmutableMap;
-import com.smithsmodding.armory.api.common.events.client.model.block.BlackSmithsAnvilModelTextureLoadEvent;
-import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
-import com.smithsmodding.armory.api.client.model.deserializers.definition.AnvilModelDefinition;
+import com.smithsmodding.armory.api.events.client.model.block.BlackSmithsAnvilModelTextureLoadEvent;
+import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.model.deserializers.definition.AnvilModelDefinition;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.block.unbaked.BlackSmithsAnvilModel;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
@@ -28,7 +28,7 @@ import java.io.IOException;
  */
 public class AnvilModelLoader implements ICustomModelLoader {
 
-    public static final String EXTENSION = ".anvil-armory";
+    public static final String EXTENSION = ".Anvil-Armory";
 
     @Override
     public boolean accepts(@NotNull ResourceLocation modelLocation) {

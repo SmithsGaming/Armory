@@ -3,9 +3,9 @@ package com.smithsmodding.armory.client.model.item.unbaked;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.armor.IMaterialDependantMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmor;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedCoreComponentModel;
@@ -67,8 +67,8 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
                 mappedParts.put(extension, parts.get(extension).generateBackedComponentModel(state, format, bakedTextureGetter));
 
                 //If a part was found, also check for its broken counterpart.
-                if (brokenParts.containsKey(extension)) {
-                    mappedBrokenParts.put(extension, parts.get(extension).generateBackedComponentModel(state, format, bakedTextureGetter));
+                if (brokenParts.containsKey(extension.getItemTextureBrokenLocation())) {
+                    mappedBrokenParts.put(extension, parts.get(extension.getItemTextureBrokenLocation()).generateBackedComponentModel(state, format, bakedTextureGetter));
                 }
             } else {
                 //For a given MLAAddon on the armor was no texture found.

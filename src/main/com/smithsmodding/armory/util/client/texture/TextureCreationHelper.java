@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.util.client.texture;
 
-import com.smithsmodding.armory.api.client.model.renderinfo.IRenderInfoProvider;
+import com.smithsmodding.armory.api.model.renderinfo.IRenderInfoProvider;
 import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
 import com.smithsmodding.smithscore.util.client.ResourceHelper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;

@@ -14,9 +14,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.common.model.IModelPart;
 import net.minecraftforge.common.model.IModelState;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 /**
@@ -34,11 +34,11 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
     }
 
     /**
-     * Function getCreationRecipe the baked end model.
+     * Function get the baked end model.
      *
      * @param state              The modelstate you want a model for.
      * @param format             The format the vertexes are stored in.
-     * @param bakedTextureGetter Function to getCreationRecipe the Texture for the model.
+     * @param bakedTextureGetter Function to get the Texture for the model.
      * @return A ItemStack depending model that is ready to be used.
      */
     @Nonnull
@@ -48,7 +48,7 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
     }
 
     /**
-     * Function to getCreationRecipe the grayscale texture location of this model faster.
+     * Function to get the grayscale texture location of this model faster.
      *
      * @return The location of the grayscale texture.
      */
@@ -64,11 +64,11 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
     }
 
     /**
-     * Function to getCreationRecipe a baked model from outside of the baking proces.
+     * Function to get a baked model from outside of the baking proces.
      *
      * @param state              The model state to retrieve a model for.
      * @param format             The format of storing the individual vertexes in memory
-     * @param bakedTextureGetter Function to getCreationRecipe the baked textures.
+     * @param bakedTextureGetter Function to get the baked textures.
      * @return A baked model containing all individual possible textures this model can have.
      */
     @Nonnull
@@ -83,10 +83,10 @@ public class TemperatureBarComponentModel extends ItemLayerModel implements IMod
         for (ResourceLocation textureLocation : this.getTextures()) {
             TextureAtlasSprite sprite = bakedTextureGetter.apply(textureLocation);
 
-            //We retexture this model with the newly colored textured from ther creator and getCreationRecipe a Copy of this model
+            //We retexture this model with the newly colored textured from ther creator and get a Copy of this model
             IModel model2 = ItemLayerModel.INSTANCE.retexture(ImmutableMap.of("layer0", sprite.getIconName()));
 
-            //We bake the new model to getCreationRecipe a ready to use textured and ready to be colored baked model.
+            //We bake the new model to get a ready to use textured and ready to be colored baked model.
             IBakedModel bakedModel2 = model2.bake(state, DefaultVertexFormats.ITEM, bakedTextureGetter);
 
             //Set normals to ignore lighting.

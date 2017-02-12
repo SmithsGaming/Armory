@@ -1,16 +1,14 @@
 package com.smithsmodding.armory.common.registries;
 
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionPosition;
-import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
-import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
-import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
-import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
-import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
-import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
-import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmor;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtensionPosition;
+import com.smithsmodding.armory.api.heatable.IHeatableObject;
+import com.smithsmodding.armory.api.heatable.IHeatableObjectType;
+import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.material.armor.IAddonArmorMaterial;
+import com.smithsmodding.armory.api.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.material.core.RegistryMaterialWrapper;
 import com.smithsmodding.armory.api.util.references.ModRegistries;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
@@ -76,25 +74,11 @@ public class CommonRegistryInitializer {
                 .addCallback(new RegistryManager.RegistryCallbackToEventConverter<IHeatableObject>())
                 .create();
 
-        RegistryManager.getInstance().heatableObjectTypeRegistry = new RegistryBuilder<IHeatedObjectType>()
+        RegistryManager.getInstance().heatableObjectTypeRegistry = new RegistryBuilder<IHeatableObjectType>()
                 .setName(ModRegistries.HEATABLEOJBECTTYPE)
-                .setType(IHeatedObjectType.class)
+                .setType(IHeatableObjectType.class)
                 .setIDRange(0,255)
-                .addCallback(new RegistryManager.RegistryCallbackToEventConverter<IHeatedObjectType>())
-                .create();
-
-        RegistryManager.getInstance().anvilRecipeRegistry = new RegistryBuilder<IAnvilRecipe>()
-                .setName(ModRegistries.ANVILRECIPE)
-                .setType(IAnvilRecipe.class)
-                .setIDRange(0,9999)
-                .addCallback(new RegistryManager.RegistryCallbackToEventConverter<>())
-                .create();
-
-        RegistryManager.getInstance().initializationComponentRegistry = new RegistryBuilder<IInitializationComponent>()
-                .setName(ModRegistries.INITIALIZATIONCOMPONENTS)
-                .setType(IInitializationComponent.class)
-                .setIDRange(0,255)
-                .addCallback(new RegistryManager.RegistryCallbackToEventConverter<>())
+                .addCallback(new RegistryManager.RegistryCallbackToEventConverter<IHeatableObjectType>())
                 .create();
     }
 }

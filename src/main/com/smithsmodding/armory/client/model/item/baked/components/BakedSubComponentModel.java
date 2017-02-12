@@ -16,9 +16,9 @@ public class BakedSubComponentModel extends BakedWrappedModel.PerspectiveAware {
     }
 
     /**
-     * Function to getCreationRecipe a model from a Material.
+     * Function to get a model from a Material.
      *
-     * @param identifier The Material to getCreationRecipe the model for.
+     * @param identifier The Material to get the model for.
      * @return If registered it will return the prebaked model that is registered to that material id, if not it will return this instance of a BakedComponent model.
      */
     public IBakedModel getModelByIdentifier(ResourceLocation identifier) {

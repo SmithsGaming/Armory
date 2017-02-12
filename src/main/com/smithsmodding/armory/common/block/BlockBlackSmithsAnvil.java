@@ -2,7 +2,7 @@ package com.smithsmodding.armory.common.block;
 
 import com.google.common.collect.Lists;
 import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.ModMaterials;
 import com.smithsmodding.armory.api.util.references.References;
@@ -35,10 +35,12 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Marc on 14.02.2016.
@@ -284,9 +286,9 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
 
         TileEntityBlackSmithsAnvil blackSmithsAnvil = (TileEntityBlackSmithsAnvil) tileEntity;
         if (blackSmithsAnvil.getState().getMaterial() == null) {
-            event.getRight().add("AnvilMaterial: UNKNOWN");
+            event.getRight().add("CoreMaterial: UNKNOWN");
         } else {
-            event.getRight().add("AnvilMaterial: " + blackSmithsAnvil.getState().getMaterial().getRegistryName().toString());
+            event.getRight().add("CoreMaterial: " + blackSmithsAnvil.getState().getMaterial().getRegistryName().toString());
         }
     }
 

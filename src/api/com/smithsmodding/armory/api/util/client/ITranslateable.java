@@ -10,14 +10,14 @@ import javax.annotation.Nonnull;
 public interface ITranslateable {
 
     /**
-     * Method to getCreationRecipe the translation Key.
+     * Method to get the translation Key.
      * @return The key to translate.
      */
     @Nonnull
     String getTranslationKey();
 
     /**
-     * Method to getCreationRecipe the markup.
+     * Method to get the markup.
      * @return The markup. Default is TextFormatting.Reset
      */
     @Nonnull

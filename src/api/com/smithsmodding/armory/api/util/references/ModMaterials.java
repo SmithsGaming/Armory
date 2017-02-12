@@ -1,8 +1,7 @@
 package com.smithsmodding.armory.api.util.references;
 
-import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
-import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
-import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.material.armor.ICoreArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -28,30 +27,6 @@ public class ModMaterials {
 
             @Nonnull
             public static ICoreArmorMaterial IRON;
-
-            @Nonnull
-            public static ICoreArmorMaterial OBSIDIAN;
-
-            @Nonnull
-            public static ICoreArmorMaterial STEEL;
-
-            @Nonnull
-            public static ICoreArmorMaterial GOLD;
-        }
-
-        public static final class Addon {
-
-            @Nonnull
-            public static IAddonArmorMaterial IRON;
-
-            @Nonnull
-            public static IAddonArmorMaterial OBSIDIAN;
-
-            @Nonnull
-            public static IAddonArmorMaterial STEEL;
-
-            @Nonnull
-            public static IAddonArmorMaterial GOLD;
         }
     }
 

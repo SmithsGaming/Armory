@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.common.item;
 
-import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
+import com.smithsmodding.armory.api.heatable.IHeatableObjectType;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.ModHeatedObjectTypes;
 import com.smithsmodding.armory.api.util.references.References;
@@ -17,12 +17,12 @@ public class ItemHeatablePlate extends ItemHeatableResource{
     public ItemHeatablePlate() {
         this.setMaxStackSize(64);
         this.setCreativeTab(ModCreativeTabs.componentsTab);
-        this.setUnlocalizedName(References.InternalNames.Items.IN_METALPLATE);
-        this.setRegistryName(References.InternalNames.Items.IN_METALPLATE);
+        this.setUnlocalizedName(References.InternalNames.Items.ItemMetalPlate);
+        this.setRegistryName(References.InternalNames.Items.ItemMetalPlate);
     }
 
     @Override
-    public IHeatedObjectType getHeatableObjectType() {
+    public IHeatableObjectType getHeatableObjectType() {
         return ModHeatedObjectTypes.PLATE;
     }
 }

@@ -1,9 +1,8 @@
 package com.smithsmodding.armory.compatibility.recipes.anvil;
 
-import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
+import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class BlackSmithsAnvilRecipeMaker {
     public static List<BlackSmithsAnvilRecipeWrapper> getRecipes() {
         ArrayList<BlackSmithsAnvilRecipeWrapper> wrapperArrayList = new ArrayList<>();
 
-        for (IAnvilRecipe recipe : IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry())
+        for (AnvilRecipe recipe : AnvilRecipeRegistry.getInstance().getRecipes().values())
             wrapperArrayList.add(new BlackSmithsAnvilRecipeWrapper(recipe));
 
         return wrapperArrayList;
