@@ -24,8 +24,6 @@ public interface IAnvilMaterial extends IMaterial<IAnvilMaterial> {
     /**
      * Method used to getCreationRecipe the RenderInfo used to change the Texture of the Model if need be.
      * @return The RenderInfo used to modify the Texture of the model.
-     *
-     * @implNote This method only exists on the client side.
      */
     @SideOnly(Side.CLIENT)
     @Nonnull
@@ -35,8 +33,6 @@ public interface IAnvilMaterial extends IMaterial<IAnvilMaterial> {
      * Setter for the RenderInfo used to change the Texture of the Model if need be.
      * @param info The RenderInfo used to modify the Texture of the Model.
      * @return The instance this method was called on.
-     *
-     * @implNote This method only exists on the client side.
      */
     @SideOnly(Side.CLIENT)
     @Nonnull
