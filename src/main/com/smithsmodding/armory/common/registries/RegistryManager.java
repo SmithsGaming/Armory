@@ -120,7 +120,7 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{RegistryWrapper} Registry. Holds all registered @code{RegistryWrapper<>}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the @code{RegistryWrapper} Registry. Holds all registered @code{RegistryWrapper}. Managed by FML, as it is an instance of @code{IForgeRegistry}
      *
      * @return The @code{RegistryWrapper} Registry.
      */
