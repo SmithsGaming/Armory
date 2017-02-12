@@ -39,7 +39,12 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
 
         fuelData.setBurning(fuelData.getBurningTicksLeftOnCurrentFuel() >= 1F);
 
-        heatIngots(fuelData, localData);
+        if (!heatIngots(fuelData, localData)) {
+            if (localData.getCurrentTemp() >= 20F) {
+                localData.setCurrentTemp(localData.getCurrentTemp() + (localData.getLastPositiveTerm() * (1 - localData.getHeatedPercentage())));
+                localData.setCurrentTemp(localData.getCurrentTemp() + (localData.getLastNegativeTerm() * localData.getHeatedPercentage()));
+            }
+        }
 
         localData.setLastChange(localData.getCurrentTemp() - localData.getLastTemp());
 
@@ -93,9 +98,8 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
     }
 
     public boolean heatIngots(IForgeFuelDataContainer fuelData, @Nonnull S localData) {
-
         if ((localData.getLastChange() == 0F) && (localData.getCurrentTemp() <= 20F) || (getInsertedIngotAmount() == 0)) {
-            return true;
+            return false;
         }
 
         localData.addLastChangeToCurrentTemp();
@@ -109,12 +113,15 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
                 continue;
             }
 
-            if ((localData.getCurrentTemp() > 20F) && (((!(getIngotStack(ingotStackIndex).getItem() instanceof ItemHeatedItem) && getIngotStack(ingotStackIndex).hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null))) || getIngotStack(ingotStackIndex).hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null))) {
+            if ((localData.getCurrentTemp() > 20F) && (!(((getIngotStack(ingotStackIndex).getItem() instanceof ItemHeatedItem) && getIngotStack(ingotStackIndex).hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null))) || getIngotStack(ingotStackIndex).hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null))) {
                 setIngotStack(ingotStackIndex, HeatedItemFactory.getInstance().convertToHeatedIngot(getIngotStack(ingotStackIndex)));
             }
 
             ItemStack stack = getIngotStack(ingotStackIndex);
             IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
+
+            if (capability == null)
+                continue;
 
             float currentStackTemp = capability.getTemperature();
             float currentStackCoefficient = capability.getMaterial().getHeatCoefficient();

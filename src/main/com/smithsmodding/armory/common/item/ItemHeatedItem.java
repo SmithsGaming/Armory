@@ -170,8 +170,10 @@ public class ItemHeatedItem extends Item {
          */
         @Override
         public void accept(IMaterial material) {
-            if (!heatedStacks.containsKey(material.getOreDictionaryIdentifier() + "-" + type.getRegistryName().toString()))
-                heatedStacks.put(material.getOreDictionaryIdentifier() + "-" + type.getRegistryName().toString(), IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getHeatedItemFactory().generateHeatedItemFromMaterial(material, ModHeatableObjects.ITEMSTACK, type, material.getMeltingPoint() / 3));
+            if (!heatedStacks.containsKey(material.getOreDictionaryIdentifier() + "-" + type.getRegistryName().toString() + "-Low")) {
+                heatedStacks.put(material.getOreDictionaryIdentifier() + "-" + type.getRegistryName().toString() + "-Low", IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getHeatedItemFactory().generateHeatedItemFromMaterial(material, ModHeatableObjects.ITEMSTACK, type, material.getMeltingPoint() / 3));
+                heatedStacks.put(material.getOreDictionaryIdentifier() + "-" + type.getRegistryName().toString() + "-High", IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getHeatedItemFactory().generateHeatedItemFromMaterial(material, ModHeatableObjects.ITEMSTACK, type, material.getMeltingPoint() - 1));
+            }
         }
     }
 

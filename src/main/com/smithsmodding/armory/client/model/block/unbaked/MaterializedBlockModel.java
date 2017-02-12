@@ -1,69 +1,98 @@
-package com.smithsmodding.armory.client.model.item.unbaked;
+package com.smithsmodding.armory.client.model.block.unbaked;
 
 import com.google.common.base.Function;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
-import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
-import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
-import com.smithsmodding.armory.client.model.item.baked.BakedMaterializedModel;
+import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper;
+import com.smithsmodding.armory.client.model.block.baked.MaterializedBlockBakedModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
-import com.smithsmodding.armory.common.api.ArmoryAPI;
-import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.IModel;
+import net.minecraftforge.client.model.IRetexturableModel;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 
-import javax.annotation.Nonnull;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 
 /**
  * Author Marc (Created on: 14.06.2016)
  */
-public class MaterializedItemModel extends ItemLayerModel {
+public class MaterializedBlockModel implements IModel {
 
-    @Nonnull
-    private final ResourceLocation coreTexture;
-    private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
+    private final IRetexturableModel parent;
+    private final ResourceLocation materializableTexture;
+    private final Map<ResourceLocation, ResourceLocation> materialOverrides;
+    private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transformations;
 
-    public MaterializedItemModel(@Nonnull ResourceLocation coreTexture, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
-        super(ImmutableList.of(coreTexture));
-        this.coreTexture = coreTexture;
-        this.transforms = transforms;
+    public MaterializedBlockModel(IRetexturableModel parent, ResourceLocation materializableTexture, Map<ResourceLocation, ResourceLocation> materialOverrides, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transformations) {
+        this.parent = parent;
+        this.materializableTexture = materializableTexture;
+        this.materialOverrides = materialOverrides;
+        this.transformations = transformations;
     }
 
-    @Nonnull
+    @Override
+    public Collection<ResourceLocation> getDependencies() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public Collection<ResourceLocation> getTextures() {
+        return Collections.singleton(materializableTexture);
+    }
+
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
-        IBakedModel parent = super.bake(state, format, bakedTextureGetter);
+        ImmutableMap.Builder<IMaterial, IBakedModel> subModelBuilder = new ImmutableMap.Builder<>();
 
-        ImmutableMap.Builder<IMaterial, IBakedModel> modelBuilder = new ImmutableMap.Builder<>();
+        Map<ResourceLocation, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(materializableTexture);
 
-        Map<ResourceLocation, TextureAtlasSprite> materializedTextures = MaterializedTextureCreator.getBuildSprites().get(new ResourceLocation(parent.getParticleTexture().getIconName()));
+        for(RegistryMaterialWrapper materialWrapper : IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry()) {
+            if (!sprites.containsKey(materialWrapper.getRegistryName()) && !materialOverrides.containsKey(materialWrapper.getRegistryName())) {
+                continue;
+            }
 
-        for (ICoreArmorMaterial material : ArmoryAPI.getInstance().getRegistryManager().getCoreMaterialRegistry()) {
-            modelBuilder.put(material, this.retexture(ImmutableMap.of("layer0", materializedTextures.get(material.getRegistryName()).getIconName())).bake(state, format, bakedTextureGetter));
+            TextureAtlasSprite retexturedSprite;
+            if (!materialOverrides.containsKey(materialWrapper.getRegistryName())) {
+                retexturedSprite = sprites.get(materialWrapper.getRegistryName());
+            } else {
+                retexturedSprite = bakedTextureGetter.apply(materialOverrides.get(materialWrapper.getRegistryName()));
+            }
+
+            if (retexturedSprite == null)
+                retexturedSprite = bakedTextureGetter.apply(TextureMap.LOCATION_MISSING_TEXTURE);
+
+            subModelBuilder.put(materialWrapper.getWrapped(), parent.retexture(getRetextureMap(retexturedSprite.getIconName())).bake(state, format, bakedTextureGetter));
         }
 
-        for (IAddonArmorMaterial material : ArmoryAPI.getInstance().getRegistryManager().getAddonArmorMaterialRegistry()) {
-            modelBuilder.put(material, this.retexture(ImmutableMap.of("layer0", materializedTextures.get(material.getRegistryName()).getIconName())).bake(state, format, bakedTextureGetter));
-        }
+        return new MaterializedBlockBakedModel(parent.retexture(getRetextureMap(bakedTextureGetter.apply(materializableTexture).getIconName())).bake(state, format, bakedTextureGetter), transformations, subModelBuilder.build());
+    }
 
-        for (IAnvilMaterial material : ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry()) {
-            modelBuilder.put(material, this.retexture(ImmutableMap.of("layer0", materializedTextures.get(material.getRegistryName()).getIconName())).bake(state, format, bakedTextureGetter));
-        }
+    private ImmutableMap<String, String> getRetextureMap(String newTexture) {
+        ImmutableMap.Builder<String, String> builder = new ImmutableMap.Builder<>();
 
-        return new BakedMaterializedModel(parent, modelBuilder.build(), transforms);
+        builder.put("all", newTexture);
+        builder.put("up", newTexture);
+        builder.put("down", newTexture);
+        builder.put("north", newTexture);
+        builder.put("south", newTexture);
+        builder.put("west", newTexture);
+        builder.put("east", newTexture);
+
+        return builder.build();
     }
 
     @Override
     public IModelState getDefaultState() {
-        return ModelHelper.DEFAULT_ITEM_STATE;
+        return ModelHelper.DEFAULT_BLOCK_STATE;
     }
 }

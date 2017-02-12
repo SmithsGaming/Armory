@@ -4,11 +4,11 @@
  * Copyrighted by SmithsModding according to the project License
  */
 
-package com.smithsmodding.armory.common.tileentity;
+package com.smithsmodding.armory.api.common.forge;
 
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;
 
-public interface IFirePitComponent {
+public interface IForgeComponent {
 
     float getPositiveInflunce();
 

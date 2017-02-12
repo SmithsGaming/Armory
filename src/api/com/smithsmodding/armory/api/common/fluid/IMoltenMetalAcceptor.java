@@ -7,5 +7,5 @@ import net.minecraftforge.fluids.FluidStack;
  */
 public interface IMoltenMetalAcceptor {
 
-    FluidStack acceptMetal(FluidStack metel, boolean simulate);
+    FluidStack acceptMetal(FluidStack metal, boolean simulate);
 }

@@ -1,24 +1,18 @@
 package com.smithsmodding.armory.client.render.tileentity;
 
 import com.smithsmodding.armory.client.render.tileentity.conduit.ConduitRenderComponents;
-import com.smithsmodding.armory.common.block.types.EnumConduitType;
-import com.smithsmodding.armory.common.tileentity.TileEntityConduit;
+import com.smithsmodding.armory.common.tileentity.TileEntityPump;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidStack;
 
 /**
- * Author Orion (Created on: 25.07.2016)
+ * Created by marcf on 2/8/2017.
  */
-public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEntityConduit> {
-
+public class TileEntityRendererPump extends TileEntitySpecialRenderer<TileEntityPump> {
 
     @Override
-    public void renderTileEntityAt(TileEntityConduit te, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void renderTileEntityAt(TileEntityPump te, double x, double y, double z, float partialTicks, int destroyStage) {
         if (te == null)
-            return;
-
-        if (te.getType() == EnumConduitType.VERTICAL)
             return;
 
         if (te.getTotalTankSizeOnSide(null) == 0)
@@ -30,9 +24,7 @@ public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEnt
             return;
 
         ConduitRenderComponents.getRenderer(null).render(stack, te.getPos(), x,y,z, height);
-
-        for(EnumFacing facing : EnumFacing.HORIZONTALS)
-            if (te.getConnectedSides().contains(facing))
-                ConduitRenderComponents.getRenderer(facing).render(stack, te.getPos(), x, y, z, height);
+        ConduitRenderComponents.getRenderer(te.getFacing()).render(stack, te.getPos(), x,y,z, height);
+        ConduitRenderComponents.getRenderer(te.getFacing().getOpposite()).render(stack, te.getPos(), x, y, z, height);
     }
 }

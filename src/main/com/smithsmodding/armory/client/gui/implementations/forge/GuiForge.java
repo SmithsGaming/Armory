@@ -24,7 +24,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -112,7 +111,7 @@ public class GuiForge extends GuiContainerSmithsCore {
         public void registerComponents(IGUIBasedComponentHost host) {
             super.registerComponents(host);
 
-            currentTemperatureLabel = I18n.format(TranslationKeys.Gui.Forge.TempCurrent) + ": 10000C";
+            currentTemperatureLabel = I18n.format(TranslationKeys.Gui.Forge.TempCurrent.toLowerCase()) + ": 10000C";
             maxTemperatureLabel = I18n.format(TranslationKeys.Gui.Forge.TempMax) + ": 10000C";
             lastAddedLabel = I18n.format(TranslationKeys.Gui.Forge.LastAdded) + ": 10000C";
 

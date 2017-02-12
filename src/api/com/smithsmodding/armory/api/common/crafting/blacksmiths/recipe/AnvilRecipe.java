@@ -78,14 +78,14 @@ public class AnvilRecipe extends IForgeRegistryEntry.Impl<IAnvilRecipe> implemen
             }
         } else {
             ArrayList<IAnvilRecipeComponent> tComponentList = new ArrayList<IAnvilRecipeComponent>(Arrays.asList(components.clone()));
+            Iterator<IAnvilRecipeComponent> tIter = tComponentList.iterator();
             for (ItemStack tStack : craftingSlotContents) {
                 boolean tFoundComponent = false;
 
-                if (tStack == null) {
+                if (tStack.isEmpty()) {
                     continue;
                 }
 
-                Iterator<IAnvilRecipeComponent> tIter = tComponentList.iterator();
                 while (tIter.hasNext() && !tFoundComponent) {
                     IAnvilRecipeComponent tComponent = tIter.next();
 

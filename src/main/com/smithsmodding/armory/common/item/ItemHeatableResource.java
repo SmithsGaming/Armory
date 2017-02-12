@@ -66,6 +66,8 @@ public abstract class ItemHeatableResource extends Item implements IHeatableObje
             ItemStack stack = CapabilityHelper.generateMaterializedStack(this, wrapper.getWrapped(), 1);
 
             mappedOreDictionaryStacks.put(wrapper.getWrapped().getOreDictionaryIdentifier(), stack);
+
+
         }
 
         subItems.addAll(mappedOreDictionaryStacks.values());
