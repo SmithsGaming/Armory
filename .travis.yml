@@ -1,7 +1,3 @@
-branches:
-  only:
-    - /^Development-.*$/
-    - /^Minecraft-.*$/
 language: java
 sudo: false
 jdk:
