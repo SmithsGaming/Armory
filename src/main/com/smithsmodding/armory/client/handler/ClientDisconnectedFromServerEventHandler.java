@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.client.handler;
 
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
+import com.smithsmodding.armory.common.registry.AnvilRecipeRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 

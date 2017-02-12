@@ -10,8 +10,6 @@ import net.minecraft.command.WrongUsageException;
 import net.minecraft.server.MinecraftServer;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-
 /**
  * Created by marcf on 9/28/2015.
  */
@@ -21,15 +19,15 @@ public class CommandEnableTempDecay extends CommandBase {
         return 2;
     }
 
-    @Nonnull
+    @NotNull
     @Override
-    public String getName() {
+    public String getCommandName() {
         return References.InternalNames.Commands.ENABLEDECAY;
     }
 
-    @Nonnull
+    @NotNull
     @Override
-    public String getUsage(ICommandSender pSender) {
+    public String getCommandUsage(ICommandSender pSender) {
         return TranslationKeys.Messages.Commands.TEMPDECAYUSAGE;
     }
 

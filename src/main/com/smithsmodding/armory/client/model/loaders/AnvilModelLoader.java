@@ -2,11 +2,11 @@ package com.smithsmodding.armory.client.model.loaders;
 
 import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.events.client.model.block.BlackSmithsAnvilModelTextureLoadEvent;
-import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.materials.IAnvilMaterial;
 import com.smithsmodding.armory.api.model.deserializers.definition.AnvilModelDefinition;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.block.unbaked.BlackSmithsAnvilModel;
-import com.smithsmodding.armory.common.api.ArmoryAPI;
+import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import com.smithsmodding.smithscore.client.model.unbaked.SmithsCoreOBJModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
@@ -54,18 +54,18 @@ public class AnvilModelLoader implements ICustomModelLoader {
 
             BlackSmithsAnvilModel model = new BlackSmithsAnvilModel(objModel);
 
-            for (IAnvilMaterial material : ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry()) {
-                if (modelDefinition.getTextureTopPaths().containsKey(material.getRegistryName()) || modelDefinition.getTextureBottomPaths().containsKey(material.getRegistryName())) {
+            for (IAnvilMaterial material : AnvilMaterialRegistry.getInstance().getAllRegisteredAnvilMaterials().values()) {
+                if (modelDefinition.getTextureTopPaths().containsKey(material.getID()) || modelDefinition.getTextureBottomPaths().containsKey(material.getID())) {
                     ImmutableMap.Builder<String, String> builder = new ImmutableMap.Builder<>();
 
-                    if (modelDefinition.getTextureTopPaths().containsKey(material.getRegistryName()))
-                        builder.put("#Anvil", modelDefinition.getTextureTopPaths().get(material.getRegistryName()));
+                    if (modelDefinition.getTextureTopPaths().containsKey(material.getID()))
+                        builder.put("#Anvil", modelDefinition.getTextureTopPaths().get(material.getID()));
 
-                    if (modelDefinition.getTextureBottomPaths().containsKey(material.getRegistryName()))
-                        builder.put("#Bottom", modelDefinition.getTextureBottomPaths().get(material.getRegistryName()));
+                    if (modelDefinition.getTextureBottomPaths().containsKey(material.getID()))
+                        builder.put("#Bottom", modelDefinition.getTextureBottomPaths().get(material.getID()));
 
 
-                    model.registerNewMaterializedModel(material, ((SmithsCoreOBJModel) objModel).retexture(builder.build()));
+                    model.registerNewMaterializedModel(((SmithsCoreOBJModel) objModel).retexture(builder.build()), material.getID());
                 } else {
                     OBJModel newModel = (OBJModel) ModelHelper.forceLoadOBJModel(new ResourceLocation(modelDefinition.getModelPath()));
 
@@ -79,7 +79,7 @@ public class AnvilModelLoader implements ICustomModelLoader {
 
                     materialOBJ.setColor(colorVec);
 
-                    model.registerNewMaterializedModel(material, newModel);
+                    model.registerNewMaterializedModel(newModel, material.getID());
                 }
             }
 

@@ -18,13 +18,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,7 +53,7 @@ public class BlockMoltenMetalTank extends BlockArmoryTileEntity {
         setCreativeTab(ModCreativeTabs.generalTab);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityMoltenMetalTank(EnumTankType.byMetadata(meta));
@@ -82,18 +80,18 @@ public class BlockMoltenMetalTank extends BlockArmoryTileEntity {
     }
 
     @Override
-    public boolean isFullyOpaque(IBlockState state) {
+    public boolean isVisuallyOpaque() {
         return false;
     }
 
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
         list.add(new ItemStack(this, 1, 1));
         list.add(new ItemStack(this, 1, 2));
     }
 
     @Override
-    public void onBlockPlacedBy(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, EntityLivingBase placer, @Nonnull ItemStack stack) {
+    public void onBlockPlacedBy(@NotNull World worldIn, @NotNull BlockPos pos, @NotNull IBlockState state, EntityLivingBase placer, @NotNull ItemStack stack) {
         if (stack.getMetadata() == 1) {
             worldIn.setBlockState(pos, state.withProperty(TYPE, EnumTankType.NORMAL));
         } else {
@@ -101,29 +99,29 @@ public class BlockMoltenMetalTank extends BlockArmoryTileEntity {
         }
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(TYPE, EnumTankType.byMetadata(meta));
     }
 
     @Override
-    public int getMetaFromState(@Nonnull IBlockState state) {
+    public int getMetaFromState(@NotNull IBlockState state) {
         return state.getValue(TYPE).getMetadata();
     }
 
-    @Nonnull
+    @NotNull
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, NORTH, EAST, SOUTH, WEST, TYPE);
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
+    public IBlockState getActualState(IBlockState state, @NotNull IBlockAccess world, @NotNull BlockPos pos) {
         return handleEnvironmentChange(world, pos, state);
     }
 
-    private IBlockState handleEnvironmentChange(@Nonnull IBlockAccess world, @Nonnull BlockPos pos, IBlockState state) {
+    private IBlockState handleEnvironmentChange(@NotNull IBlockAccess world, @NotNull BlockPos pos, IBlockState state) {
         for (EnumFacing facing : EnumFacing.HORIZONTALS) {
             BlockPos target = pos.add(facing.getDirectionVec());
 

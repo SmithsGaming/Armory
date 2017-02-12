@@ -8,7 +8,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -53,7 +52,7 @@ public class ItemTongs extends Item {
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item pTongs, CreativeTabs pCreativeTab, NonNullList<ItemStack> pItemStacks) {
+    public void getSubItems(Item pTongs, CreativeTabs pCreativeTab, List pItemStacks) {
         ItemStack tTongsStack = new ItemStack(pTongs, 1, 150);
         pItemStacks.add(tTongsStack);
     }

@@ -2,12 +2,11 @@ package com.smithsmodding.armory.common.block;
 
 import com.google.common.collect.Lists;
 import com.smithsmodding.armory.Armory;
-import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.materials.IAnvilMaterial;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
-import com.smithsmodding.armory.api.util.references.ModMaterials;
 import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.common.api.ArmoryAPI;
 import com.smithsmodding.armory.common.block.properties.PropertyAnvilMaterial;
+import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;
@@ -24,7 +23,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
@@ -38,7 +40,6 @@ import net.minecraftforge.common.property.IUnlistedProperty;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,10 +48,10 @@ import java.util.List;
  */
 public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICustomDebugInformationBlock {
 
-    public static final PropertyAnvilMaterial PROPERTY_ANVIL_MATERIAL = new PropertyAnvilMaterial("CoreMaterial");
+    public static final PropertyAnvilMaterial PROPERTY_ANVIL_MATERIAL = new PropertyAnvilMaterial("Material");
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    @Nonnull
+    @NotNull
     private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE, PROPERTY_ANVIL_MATERIAL});
 
 
@@ -60,13 +61,13 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityBlackSmithsAnvil();
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
@@ -95,28 +96,15 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
     /**
      * Gets the localized name of this block. Used for the statistics page.
      */
-    @Nonnull
+    @NotNull
     @Override
     public String getLocalizedName() {
         return super.getLocalizedName();
     }
 
-    /**
-     * Gets the {@link IBlockState} to place
-     *
-     * @param world  The world the block is being placed in
-     * @param pos    The position the block is being placed at
-     * @param facing The side the block is being placed on
-     * @param hitX   The X coordinate of the hit vector
-     * @param hitY   The Y coordinate of the hit vector
-     * @param hitZ   The Z coordinate of the hit vector
-     * @param meta   The metadata of {@link ItemStack} as processed by {@link Item#getMetadata(int)}
-     * @param placer The entity placing the block
-     * @param hand   The player hand used to place this block
-     * @return The state to be placed in the world
-     */
+    @NotNull
     @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, @NotNull EntityLivingBase placer) {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
     }
 
@@ -151,10 +139,10 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
      * @param stack
      */
     @Override
-    public void onBlockPlacedBy(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull EntityLivingBase placer, @Nonnull ItemStack stack) {
+    public void onBlockPlacedBy(@NotNull World worldIn, @NotNull BlockPos pos, @NotNull IBlockState state, @NotNull EntityLivingBase placer, @NotNull ItemStack stack) {
         String materialID = stack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL);
 
-        ((TileEntityBlackSmithsAnvil) worldIn.getTileEntity(pos)).getState().setMaterial(ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(materialID)));
+        ((TileEntityBlackSmithsAnvil) worldIn.getTileEntity(pos)).getState().setMaterial(AnvilMaterialRegistry.getInstance().getAnvilMaterial(materialID));
 
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
 
@@ -175,12 +163,12 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
      * @param list
      */
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
-        for (IAnvilMaterial material : ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry()) {
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
+        for (IAnvilMaterial material : AnvilMaterialRegistry.getInstance().getAllRegisteredAnvilMaterials().values()) {
             ItemStack stack = new ItemStack(Item.getItemFromBlock(this));
 
             NBTTagCompound compound = new NBTTagCompound();
-            compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, material.getRegistryName().toString());
+            compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, material.getID());
 
             stack.setTagCompound(compound);
 
@@ -197,7 +185,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
      * @param pos
      */
     @Override
-    public IBlockState getExtendedState(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
+    public IBlockState getExtendedState(IBlockState state, @NotNull IBlockAccess world, @NotNull BlockPos pos) {
         if (world.getTileEntity(pos) == null) return this.state.getBaseState();
 
         EnumFacing facing = state.getValue(FACING);
@@ -207,36 +195,18 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
 
         IAnvilMaterial material = ((TileEntityBlackSmithsAnvil) world.getTileEntity(pos)).getState().getMaterial();
         if (material == null)
-            material = ModMaterials.Anvil.IRON;
+            material = AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.IRON);
 
-        return ((IExtendedBlockState) state).withProperty(PROPERTY_ANVIL_MATERIAL, material.getRegistryName().toString()).withProperty(OBJModel.OBJProperty.INSTANCE, objState);
+        return ((IExtendedBlockState) state).withProperty(PROPERTY_ANVIL_MATERIAL, material.getID()).withProperty(OBJModel.OBJProperty.INSTANCE, objState);
     }
 
-    /**
-     * Checks if an IBlockState represents a block that is opaque and a full cube.
-     *
-     * @param state
-     */
     @Override
-    public boolean isFullyOpaque(IBlockState state) {
+    public boolean isVisuallyOpaque() {
         return false;
     }
 
-    /**
-     * Called when the block is right clicked by a player.
-     *
-     * @param worldIn
-     * @param pos
-     * @param state
-     * @param playerIn
-     * @param hand
-     * @param facing
-     * @param hitX
-     * @param hitY
-     * @param hitZ
-     */
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(@NotNull World worldIn, @NotNull BlockPos pos, IBlockState state, @NotNull EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (playerIn.isSneaking()) {
             return false;
         } else {
@@ -252,7 +222,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
     /**
      * Convert the given metadata into a BlockState for this Block
      */
-    @Nonnull
+    @NotNull
     public IBlockState getStateFromMeta(int meta) {
         EnumFacing enumfacing = EnumFacing.getFront(meta);
 
@@ -266,17 +236,17 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
     /**
      * Convert the BlockState into the correct metadata value
      */
-    public int getMetaFromState(@Nonnull IBlockState state) {
+    public int getMetaFromState(@NotNull IBlockState state) {
         return state.getValue(FACING).getIndex();
     }
 
-    @Nonnull
+    @NotNull
     protected BlockStateContainer createBlockState() {
         return new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE, PROPERTY_ANVIL_MATERIAL});
     }
 
     @Override
-    public void handleDebugInformation(@Nonnull RenderGameOverlayEvent.Text event, @Nonnull World worldIn, @Nonnull BlockPos pos) {
+    public void handleDebugInformation(@NotNull RenderGameOverlayEvent.Text event, @NotNull World worldIn, @NotNull BlockPos pos) {
         if (!SmithsCore.isInDevenvironment() && !Minecraft.getMinecraft().gameSettings.showDebugInfo)
             return;
 
@@ -286,9 +256,9 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
 
         TileEntityBlackSmithsAnvil blackSmithsAnvil = (TileEntityBlackSmithsAnvil) tileEntity;
         if (blackSmithsAnvil.getState().getMaterial() == null) {
-            event.getRight().add("CoreMaterial: UNKNOWN");
+            event.getRight().add("Material: UNKNOWN");
         } else {
-            event.getRight().add("CoreMaterial: " + blackSmithsAnvil.getState().getMaterial().getRegistryName().toString());
+            event.getRight().add("Material: " + blackSmithsAnvil.getState().getMaterial().getID());
         }
     }
 

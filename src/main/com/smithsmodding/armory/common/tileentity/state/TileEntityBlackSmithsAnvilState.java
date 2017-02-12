@@ -1,22 +1,17 @@
 package com.smithsmodding.armory.common.tileentity.state;
 
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
-import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
-import com.smithsmodding.armory.api.util.references.ModMaterials;
+import com.smithsmodding.armory.api.materials.IAnvilMaterial;
 import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.common.api.ArmoryAPI;
+import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.smithscore.common.tileentity.IWatchableTileEntity;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import com.smithsmodding.smithscore.common.tileentity.state.ITileEntityState;
-import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import javax.annotation.Nonnull;
 
 /**
  * Created by Marc on 14.02.2016.
@@ -77,16 +72,16 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
      * @param stateData The stored data of this state.
      */
     @Override
-    public void readFromNBTTagCompound(@Nonnull NBTBase stateData) {
+    public void readFromNBTTagCompound(@NotNull NBTBase stateData) {
         try {
             boolean updateModel = false;
             if (material == null) {
                 updateModel = true;
-            } else if (!((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL).equals(material.getRegistryName().toString())) {
+            } else if (!((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL).equals(material.getID())) {
                 updateModel = true;
             }
 
-            this.material = ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL)));
+            this.material = AnvilMaterialRegistry.getInstance().getAnvilMaterial(((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL));
             this.craftingprogress = ((NBTTagCompound) stateData).getFloat(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS);
             this.itemName = ((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.ITEMNAME);
             this.processingCraftingResult = ((NBTTagCompound) stateData).getBoolean(References.NBTTagCompoundData.TE.Anvil.PROCESSING);
@@ -94,7 +89,7 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
             if (updateModel && anvil.getWorld() != null)
                 anvil.getWorld().markChunkDirty(anvil.getPos(), anvil);
         } catch (Exception ex) {
-            this.material = ModMaterials.Anvil.IRON;
+            this.material = AnvilMaterialRegistry.getInstance().getAnvilMaterial(References.InternalNames.Materials.Anvil.IRON);
             this.craftingprogress = 0F;
             this.itemName = "";
             this.processingCraftingResult = false;
@@ -106,12 +101,12 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
      *
      * @return A NBTBase that describes this state.
      */
-    @Nonnull
+    @NotNull
     @Override
     public NBTBase writeToNBTTagCompound() {
         NBTTagCompound compound = new NBTTagCompound();
 
-        compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, material.getRegistryName().toString());
+        compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, material.getID());
         compound.setFloat(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS, craftingprogress);
         compound.setString(References.NBTTagCompoundData.TE.Anvil.ITEMNAME, itemName);
         compound.setBoolean(References.NBTTagCompoundData.TE.Anvil.PROCESSING, processingCraftingResult);
@@ -140,7 +135,7 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
      * @param stateData The stored data of this state.
      */
     @Override
-    public void readFromSynchronizationCompound(@Nonnull NBTBase stateData) {
+    public void readFromSynchronizationCompound(@NotNull NBTBase stateData) {
         readFromNBTTagCompound(stateData);
     }
 
@@ -149,7 +144,7 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
      *
      * @return A NBTBase that describes this state.
      */
-    @Nonnull
+    @NotNull
     @Override
     public NBTBase writeToSynchronizationCompound() {
         return writeToNBTTagCompound();

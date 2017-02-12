@@ -15,7 +15,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,9 +22,9 @@ import java.util.List;
 
 public class CommandArmory extends CommandBase {
 
-    @Nonnull
+    @NotNull
     private static List<CommandBase> modCommands = new ArrayList<CommandBase>();
-    @Nonnull
+    @NotNull
     private static List<String> commands = new ArrayList<String>();
 
     static {
@@ -34,46 +33,46 @@ public class CommandArmory extends CommandBase {
         modCommands.add(new CommandEnableTempDecay());
 
         for (CommandBase commandBase : modCommands) {
-            commands.add(commandBase.getName());
+            commands.add(commandBase.getCommandName());
         }
     }
 
-    @Nonnull
+    @NotNull
     @Override
-    public String getName() {
+    public String getCommandName() {
         return References.InternalNames.Commands.BASECOMMAND;
     }
 
-    @Nonnull
+    @NotNull
     @Override
-    public String getUsage(ICommandSender pCommandSender) {
+    public String getCommandUsage(ICommandSender pCommandSender) {
         return TranslationKeys.Messages.Commands.BASEUSAGE;
     }
-
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (args.length >= 1) {
             for (CommandBase command : modCommands) {
-                if (command.getName().equalsIgnoreCase(args[0]) && command.checkPermission(server, sender)) {
+                if (command.getCommandName().equalsIgnoreCase(args[0]) && command.checkPermission(server, sender)) {
                     command.execute(server, sender, Arrays.copyOfRange(args, 1, args.length));
                 }
             }
         }
     }
 
+    @org.jetbrains.annotations.Nullable
     @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
+    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
         if (args.length == 1) {
             return getListOfStringsMatchingLastWord(args, commands);
         } else if (args.length >= 2) {
             for (CommandBase command : modCommands) {
-                if (command.getName().equalsIgnoreCase(args[0])) {
-                    return command.getTabCompletions(server, sender, Arrays.copyOfRange(args, 1, args.length), targetPos);
+                if (command.getCommandName().equalsIgnoreCase(args[0])) {
+                    return command.getTabCompletionOptions(server, sender, Arrays.copyOfRange(args, 1, args.length), pos);
                 }
             }
         }
 
-        return new ArrayList<>();
+        return null;
     }
 }

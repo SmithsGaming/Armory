@@ -21,8 +21,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-
 
 /**
  * Created by Marc on 24.01.2016.
@@ -43,7 +41,7 @@ public class TabForgeMeltingMetal extends CoreTab {
      * @param host This ComponentHosts host. For the Root GUIObject a reference to itself will be passed in..
      */
     @Override
-    public void registerComponents(@Nonnull IGUIBasedComponentHost host) {
+    public void registerComponents(@NotNull IGUIBasedComponentHost host) {
         host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.Forge.BACKGROUND, host, new Coordinate2D(0, 0), GuiForge.GUI.getWidth(), GuiForge.GUI.getHeigth() - (ComponentPlayerInventory.HEIGHT - 3), com.smithsmodding.armory.api.util.client.Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
         host.registerNewComponent(new ComponentPlayerInventory(References.InternalNames.GUIComponents.Forge.INVENTORY, host, new Coordinate2D(0, 80), com.smithsmodding.armory.api.util.client.Colors.DEFAULT, ((ContainerSmithsCore) firePit.inventorySlots).getPlayerInventory(), ComponentConnectionType.BELOWDIRECTCONNECT));
 
@@ -59,10 +57,10 @@ public class TabForgeMeltingMetal extends CoreTab {
             Slot slot = firePit.inventorySlots.inventorySlots.get(tSlotIndex);
 
             if (tSlotIndex < TileEntityForge.INGOTSTACKS_AMOUNT) {
-                host.registerNewComponent(new ComponentProgressBar(References.InternalNames.GUIComponents.Forge.MELT + "." + tSlotIndex, host, new CoreComponentState(null), new Coordinate2D(slot.xPos + 4, slot.yPos + 19 - getTabManager().getDisplayAreaVerticalOffset()), ComponentOrientation.VERTICALTOPTOBOTTOM, Textures.Gui.FirePit.DROPEMPTY, Textures.Gui.FirePit.DROPFULL));
+                host.registerNewComponent(new ComponentProgressBar(References.InternalNames.GUIComponents.Forge.MELT + "." + tSlotIndex, host, new CoreComponentState(null), new Coordinate2D(slot.xDisplayPosition + 4, slot.yDisplayPosition + 19 - getTabManager().getDisplayAreaVerticalOffset()), ComponentOrientation.VERTICALTOPTOBOTTOM, Textures.Gui.FirePit.DROPEMPTY, Textures.Gui.FirePit.DROPFULL));
             }
 
-            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Forge.SLOT + tSlotIndex, new SlotComponentState(null, tSlotIndex, ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, new Coordinate2D(slot.xPos - 1, slot.yPos - getTabManager().getDisplayAreaVerticalOffset() - 1), com.smithsmodding.armory.api.util.client.Colors.DEFAULT));
+            host.registerNewComponent(new ComponentSlot(References.InternalNames.GUIComponents.Forge.SLOT + tSlotIndex, new SlotComponentState(null, tSlotIndex, ((ContainerSmithsCore) firePit.inventorySlots).getContainerInventory(), null), host, new Coordinate2D(slot.xDisplayPosition - 1, slot.yDisplayPosition - getTabManager().getDisplayAreaVerticalOffset() - 1), com.smithsmodding.armory.api.util.client.Colors.DEFAULT));
         }
     }
 }

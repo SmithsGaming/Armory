@@ -39,7 +39,7 @@ public class TileEntityFireplaceGuiManager extends TileEntityForgeBaseGuiManager
     }
 
     @Override
-    public String getLabelContents(@Nonnull IGUIComponent component) {
+    public String getLabelContents(@NotNull IGUIComponent component) {
         if (component.getID().endsWith(".CurrentTemperature")) {
             return laf.format(getTileEntity().getState().getCurrentTemp()) + " C";
         } else if (component.getID().endsWith(".MaxTemperature")) {

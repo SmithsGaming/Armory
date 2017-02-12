@@ -15,15 +15,15 @@ import java.util.LinkedHashSet;
  * Author Orion (Created on: 25.06.2016)
  */
 public class StructureFactoryForge implements IStructureFactory<StructureForge, TileEntityForge> {
-    @Nonnull
+    @NotNull
     @Override
-    public StructureForge generateNewStructure(@Nonnull TileEntityForge initialPart) {
+    public StructureForge generateNewStructure(@NotNull TileEntityForge initialPart) {
         return new StructureForge(initialPart);
     }
 
-    @Nonnull
+    @NotNull
     @Override
-    public StructureForge loadStructureFromNBT(@Nonnull NBTTagCompound compound) {
+    public StructureForge loadStructureFromNBT(@NotNull NBTTagCompound compound) {
         StructureDataForge dataForge = new StructureDataForge();
 
         LinkedHashSet<Coordinate3D> parts = new LinkedHashSet<>();
@@ -39,9 +39,9 @@ public class StructureFactoryForge implements IStructureFactory<StructureForge, 
         return forge;
     }
 
-    @Nonnull
+    @NotNull
     @Override
-    public NBTTagCompound generateNBTFromStructure(@Nonnull StructureForge structure) {
+    public NBTTagCompound generateNBTFromStructure(@NotNull StructureForge structure) {
         NBTTagCompound compound = new NBTTagCompound();
         compound.setTag(References.NBTTagCompoundData.TE.Forge.Structure.DATA, structure.getData().writeToNBT());
 
@@ -55,7 +55,7 @@ public class StructureFactoryForge implements IStructureFactory<StructureForge, 
         return compound;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public Class<StructureForge> getStructureType() {
         return StructureForge.class;

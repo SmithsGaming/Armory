@@ -37,7 +37,7 @@ public class ComponentBlackSmithsAnvilCraftingGrid extends Component5X5CraftingG
             }
 
             Slot slot = crafter.getSlot(slotIndex);
-            Coordinate2D slotLocation = new Coordinate2D(slot.xPos - 1, slot.yPos - 1).getTranslatedCoordinate(getLocalCoordinate().getInvertedCoordinate());
+            Coordinate2D slotLocation = new Coordinate2D(slot.xDisplayPosition - 1, slot.yDisplayPosition - 1).getTranslatedCoordinate(getLocalCoordinate().getInvertedCoordinate());
 
             registerNewComponent(new ComponentSlot(getID() + ".Grid.Slot." + (slotIndex - startSlotIndexCraftingGrid), new SlotComponentState(null, slot, crafter.getContainerInventory(), holoSprite), host, slotLocation, Colors.DEFAULT));
         }
@@ -45,7 +45,7 @@ public class ComponentBlackSmithsAnvilCraftingGrid extends Component5X5CraftingG
         registerNewComponent(new ComponentProgressBar(getID() + ".Progress", host, new CoreComponentState(), new Coordinate2D(105, 45), ComponentOrientation.HORIZONTALLEFTTORIGHT, Textures.Gui.Basic.Components.ARROWEMPTY, Textures.Gui.Basic.Components.ARROWFULL));
 
         Slot slot = crafter.getSlot(craftingProductionSlotIndex);
-        Coordinate2D slotLocation = new Coordinate2D(slot.xPos - 1, slot.yPos - 1).getTranslatedCoordinate(getLocalCoordinate().getInvertedCoordinate());
+        Coordinate2D slotLocation = new Coordinate2D(slot.xDisplayPosition - 1, slot.yDisplayPosition - 1).getTranslatedCoordinate(getLocalCoordinate().getInvertedCoordinate());
         registerNewComponent(new ComponentSlot(getID() + ".Out", new SlotComponentState(null, slot, crafter.getContainerInventory(), null), host, slotLocation, Colors.DEFAULT));
     }
 

@@ -3,6 +3,7 @@ package com.smithsmodding.armory.common.handlers.config;
 import com.smithsmodding.armory.api.events.common.config.ConfigSyncCompletedEvent;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
+import com.smithsmodding.armory.common.registry.AnvilRecipeRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**

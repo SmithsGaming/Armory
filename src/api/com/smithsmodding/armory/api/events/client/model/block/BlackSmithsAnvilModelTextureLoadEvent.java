@@ -16,16 +16,16 @@ import java.util.Map;
 public class BlackSmithsAnvilModelTextureLoadEvent extends SmithsCoreEvent
 {
 
-    @NotNull Map<ResourceLocation, String> additionalTopTextureLayers = new HashMap<>();
-    @NotNull Map<ResourceLocation, String> additionalBottomTextureLayers = new HashMap<>();
+    @NotNull Map<String, String> additionalTopTextureLayers = new HashMap<>();
+    @NotNull Map<String, String> additionalBottomTextureLayers = new HashMap<>();
 
     @NotNull
-    public Map<ResourceLocation, String> getAdditionalTopTextureLayers () {
+    public Map<String, String> getAdditionalTopTextureLayers () {
         return additionalTopTextureLayers;
     }
 
     @NotNull
-    public Map<ResourceLocation, String> getAdditionalBottomTextureLayers () {
+    public Map<String, String> getAdditionalBottomTextureLayers () {
         return additionalBottomTextureLayers;
     }
 

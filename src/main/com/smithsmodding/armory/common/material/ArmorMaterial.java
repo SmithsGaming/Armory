@@ -11,6 +11,8 @@ import com.smithsmodding.armory.api.materials.MaterialRenderControllers;
 import com.smithsmodding.armory.api.registries.IArmorPartRegistry;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
+import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.smithscore.client.textures.ITextureController;
 import com.smithsmodding.smithscore.util.client.color.ColorSampler;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
@@ -30,11 +32,11 @@ public class ArmorMaterial implements IArmorMaterial {
     private boolean isBaseMaterial;
     private int meltingTime;
 
-    @Nonnull
+    @NotNull
     private HashMap<String, Float> partAbsorptionRatios = new HashMap<String, Float>();
-    @Nonnull
+    @NotNull
     private HashMap<String, Integer> partDurabilities = new HashMap<String, Integer>();
-    @Nonnull
+    @NotNull
     private HashMap<String, Integer> partModifierCounts = new HashMap<String, Integer>();
 
     private float meltingPoint;
@@ -47,33 +49,33 @@ public class ArmorMaterial implements IArmorMaterial {
 
 
     //Constructor
-//    public ArmorMaterial(String uniqueIdentifier, String oreDictionaryIdentifier, boolean isBaseMaterial, float meltingPoint, int meltingTime, float heatCoefficient, @Nullable ItemStack baseStack) {
-//        this.oreDictionaryIdentifier = oreDictionaryIdentifier;
-//        this.uniqueIdentifier = uniqueIdentifier;
-//
-//        if (Armory.side == Side.CLIENT && baseStack != null) {
-//            MinecraftColor metalColor = ColorSampler.getColorSampleFromItemStack(baseStack);
-//
-//            renderInfo = new MaterialRenderControllers.Metal(metalColor.getRGB());
-//        } else if (Armory.side == Side.CLIENT) {
-//            renderInfo = new MaterialRenderControllers.Metal(MinecraftColor.WHITE.getRGB());
-//        }
-//
-//        this.isBaseMaterial = isBaseMaterial;
-//        this.meltingPoint = meltingPoint;
-//        this.heatCoefficient = heatCoefficient;
-//        this.meltingTime = meltingTime;
-//
-//        this.baseStack = baseStack;
-//        if (baseStack != null && !HeatableItemRegistry.getInstance().isHeatable(baseStack)) {
-//            HeatableItemRegistry.getInstance().addBaseStack(this, baseStack);
-//        }
-//
-//        materialIndex = LASTUSEDID;
-//        LASTUSEDID++;
-//
-//        ModLogger.getInstance().info("Initialized material: " + this.uniqueIdentifier);
-//    }
+    public ArmorMaterial(String uniqueIdentifier, String oreDictionaryIdentifier, boolean isBaseMaterial, float meltingPoint, int meltingTime, float heatCoefficient, @Nullable ItemStack baseStack) {
+        this.oreDictionaryIdentifier = oreDictionaryIdentifier;
+        this.uniqueIdentifier = uniqueIdentifier;
+
+        if (Armory.side == Side.CLIENT && baseStack != null) {
+            MinecraftColor metalColor = ColorSampler.getColorSampleFromItemStack(baseStack);
+
+            renderInfo = new MaterialRenderControllers.Metal(metalColor.getRGB());
+        } else if (Armory.side == Side.CLIENT) {
+            renderInfo = new MaterialRenderControllers.Metal(MinecraftColor.WHITE.getRGB());
+        }
+
+        this.isBaseMaterial = isBaseMaterial;
+        this.meltingPoint = meltingPoint;
+        this.heatCoefficient = heatCoefficient;
+        this.meltingTime = meltingTime;
+
+        this.baseStack = baseStack;
+        if (baseStack != null && !HeatableItemRegistry.getInstance().isHeatable(baseStack)) {
+            HeatableItemRegistry.getInstance().addBaseStack(this, baseStack);
+        }
+
+        materialIndex = LASTUSEDID;
+        LASTUSEDID++;
+
+        ModLogger.getInstance().info("Initialized material: " + this.uniqueIdentifier);
+    }
 
 
     @Override
@@ -102,7 +104,7 @@ public class ArmorMaterial implements IArmorMaterial {
         return oreDictionaryIdentifier;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public String getType() {
         return References.InternalNames.Tiers.MEDIEVAL;
@@ -121,7 +123,7 @@ public class ArmorMaterial implements IArmorMaterial {
         return partAbsorptionRatios.get(pTargetArmorInternalName);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public HashMap<String, Float> getAllBaseDamageAbsorptionValues() {
         return partAbsorptionRatios;
@@ -139,7 +141,7 @@ public class ArmorMaterial implements IArmorMaterial {
         return 100;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public HashMap<String, Integer> getAllBaseDurabilityValues() {
         return partDurabilities;
@@ -154,7 +156,7 @@ public class ArmorMaterial implements IArmorMaterial {
         return partModifierCounts.get(pTargetArmorInternalName);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public HashMap<String, Integer> getAllMaxModifiersAmounts() {
         return partModifierCounts;
@@ -191,7 +193,7 @@ public class ArmorMaterial implements IArmorMaterial {
         this.heatCoefficient = heatCoefficient;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public IArmorPartRegistry getPartRegistry() {
         return MedievalAddonRegistry.getInstance();
@@ -207,7 +209,7 @@ public class ArmorMaterial implements IArmorMaterial {
         return renderInfo;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public IArmorMaterial setRenderInfo(ITextureController newInfo) {
         renderInfo = newInfo;
@@ -219,7 +221,7 @@ public class ArmorMaterial implements IArmorMaterial {
         return translationKey;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public IArmorMaterial setTranslationKey(String key) {
         translationKey = key;

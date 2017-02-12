@@ -5,6 +5,7 @@ import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.BlockForge;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
+import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.common.structure.forge.StructureForge;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityForgeGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.IForgeFuelDataContainer;
@@ -47,9 +48,9 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     public static int STRUCTURECOMPONENTADDITION = 1750;
     public static int TANKINGOTCAPACITY = 6;
 
-    @Nonnull
+    @NotNull
     private ItemStack[] ingotStacks = new ItemStack[INGOTSTACKS_AMOUNT];
-    @Nonnull
+    @NotNull
     private ItemStack[] fuelStacks = new ItemStack[FUELSTACK_AMOUNT];
 
     private Coordinate3D masterCoordinate = new Coordinate3D(0, 0, 0);
@@ -179,7 +180,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
-    public boolean canInfluenceTE(@Nonnull Coordinate3D coordinate) {
+    public boolean canInfluenceTE(@NotNull Coordinate3D coordinate) {
         return (getPos().getY() == coordinate.getYComponent());
     }
 
@@ -193,7 +194,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
-    protected void calculateHeatTerms(@Nonnull TileEntityForgeState localData) {
+    protected void calculateHeatTerms(@NotNull TileEntityForgeState localData) {
         localData.setMaxTemp(2750);
         localData.setLastPositiveTerm(POSITIVEHEAT);
         localData.setLastNegativeTerm(NEGATIVEHEAT);
@@ -277,7 +278,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
 
-    @Nonnull
+    @NotNull
     @Override
     protected NBTBase writeFluidsToCompound() {
         return new NBTTagCompound();
@@ -288,7 +289,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         return;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public String getContainerID() {
         return References.InternalNames.TileEntities.ForgeContainer + "-" + getLocation().toString();
@@ -348,7 +349,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
-    public boolean isItemValidForSlot(int slotIndex, @Nonnull ItemStack stack) {
+    public boolean isItemValidForSlot(int slotIndex, @NotNull ItemStack stack) {
         if (slotIndex < INGOTSTACKS_AMOUNT) {
             if (stack.getItem() instanceof ItemHeatedItem) {
                 return true;
@@ -374,7 +375,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         return super.getCapability(capability, facing);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public ArrayList<IPathComponent> getValidPathableNeighborComponents() {
         ArrayList<IPathComponent> pathComponentArrayList = new ArrayList<>();
@@ -435,32 +436,32 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         new BlockModelUpdateEvent(this).PostCommon();
     }
 
-    @Nonnull
+    @NotNull
     @Override
     protected TileEntityForgeGuiManager getInitialGuiManager() {
         return new TileEntityForgeGuiManager(this);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     protected TileEntityForgeState getInitialState() {
         return new TileEntityForgeState();
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public Class<StructureForge> getStructureType() {
         return StructureForge.class;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public StructureForge getStructure() {
         return (StructureForge) StructureRegistry.getInstance().getStructure(getWorld().provider.getDimension(), masterCoordinate);
     }
 
     @Override
-    public void setStructure(@Nonnull StructureForge structure) {
+    public void setStructure(@NotNull StructureForge structure) {
         this.masterCoordinate = structure.getMasterLocation();
     }
 

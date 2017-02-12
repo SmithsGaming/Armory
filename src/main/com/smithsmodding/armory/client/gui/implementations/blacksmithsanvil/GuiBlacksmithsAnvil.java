@@ -23,7 +23,6 @@ import com.smithsmodding.smithscore.util.common.positioning.Coordinate2D;
 import net.minecraft.client.resources.I18n;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +30,7 @@ import java.util.ArrayList;
  */
 public class GuiBlacksmithsAnvil extends GuiContainerSmithsCore {
 
-    public GuiBlacksmithsAnvil(@Nonnull ContainerSmithsCore container) {
+    public GuiBlacksmithsAnvil(@NotNull ContainerSmithsCore container) {
         super(container);
     }
 
@@ -46,7 +45,7 @@ public class GuiBlacksmithsAnvil extends GuiContainerSmithsCore {
     }
 
     @Override
-    public void registerComponents(@Nonnull IGUIBasedComponentHost host) {
+    public void registerComponents(@NotNull IGUIBasedComponentHost host) {
         host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.Anvil.BACKGROUND, host, new Coordinate2D(0, 0), 215, 175, Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
         host.registerNewComponent(new ComponentPlayerInventory(References.InternalNames.GUIComponents.Anvil.PLAYERINVENTORY, host, new Coordinate2D(20, 172), Colors.DEFAULT, ((ContainerSmithsCore) inventorySlots).getPlayerInventory(), ComponentConnectionType.BELOWSMALLER));
         host.registerNewComponent(new ComponentBlackSmithsAnvilCraftingGrid(References.InternalNames.GUIComponents.Anvil.EXTENDEDCRAFTING, host, new CoreComponentState(), new Coordinate2D(10, 51), 0, ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS, ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS, (ContainerSmithsCore) inventorySlots));

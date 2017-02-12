@@ -12,13 +12,11 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-
 /**
  * Author Marc (Created on: 16.06.2016)
  */
 public class ContainerBlacksmithsAnvil extends ContainerSmithsCore {
-    public ContainerBlacksmithsAnvil(@Nonnull EntityPlayer player, TileEntityBlackSmithsAnvil te) {
+    public ContainerBlacksmithsAnvil(@NotNull EntityPlayer player, TileEntityBlackSmithsAnvil te) {
         super(References.InternalNames.TileEntities.ArmorsAnvil, te, te, player);
 
         for (int tSlotIndex = 0; tSlotIndex < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS; tSlotIndex++) {
@@ -38,7 +36,7 @@ public class ContainerBlacksmithsAnvil extends ContainerSmithsCore {
         addSlotToContainer(new SlotSmithsCore(te, ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS, 185, 110) {
 
             @Override
-            public boolean isItemValid(@Nonnull ItemStack pItemStack) {
+            public boolean isItemValid(@NotNull ItemStack pItemStack) {
                 return (pItemStack.getItem() instanceof ItemHammer);
             }
         });
@@ -46,7 +44,7 @@ public class ContainerBlacksmithsAnvil extends ContainerSmithsCore {
         addSlotToContainer(new SlotSmithsCore(te, ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS, 185, 132) {
 
             @Override
-            public boolean isItemValid(@Nonnull ItemStack pItemStack) {
+            public boolean isItemValid(@NotNull ItemStack pItemStack) {
                 return (pItemStack.getItem() instanceof ItemTongs);
             }
         });

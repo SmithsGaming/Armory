@@ -40,7 +40,7 @@ public class HeatedItemItemModel extends ItemLayerModel {
         return ImmutableList.of();
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         //Get ourselfs the base model to use.

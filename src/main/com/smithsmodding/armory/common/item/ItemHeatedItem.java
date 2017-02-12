@@ -5,15 +5,16 @@ package com.smithsmodding.armory.common.item;
 /  Created on : 03/10/2014
 */
 
-import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.capability.IHeatedObjectCapability;
-import com.smithsmodding.armory.api.heatable.IHeatableObject;
-import com.smithsmodding.armory.api.heatable.IHeatableObjectType;
-import com.smithsmodding.armory.api.material.core.IMaterial;
+import com.smithsmodding.armory.api.materials.IArmorMaterial;
 import com.smithsmodding.armory.api.util.client.TranslationKeys;
-import com.smithsmodding.armory.api.util.references.*;
+import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
+import com.smithsmodding.armory.api.util.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
-import com.smithsmodding.armory.common.factories.HeatedItemFactory;
+import com.smithsmodding.armory.common.factory.HeatedItemFactory;
+import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
+import com.smithsmodding.armory.common.registry.MaterialRegistry;
+import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,15 +22,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class ItemHeatedItem extends Item {
 
@@ -40,44 +39,49 @@ public class ItemHeatedItem extends Item {
         this.setRegistryName(References.General.MOD_ID.toLowerCase(), References.InternalNames.Items.ItemHeatedIngot);
     }
 
+    public boolean areStacksEqualExceptTemp(@NotNull ItemStack pFirstStack, @NotNull ItemStack pSecondStack) {
+        if (!(pFirstStack.getItem() instanceof ItemHeatedItem)) {
+            return false;
+        }
+
+        if (!(pSecondStack.getItem() instanceof ItemHeatedItem)) {
+            return false;
+        }
+
+        if (!pFirstStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.TYPE).equals(pSecondStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.TYPE)))
+            return false;
+
+        return pFirstStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID).equals(pSecondStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID));
+
+    }
+
     @Override
-    public boolean showDurabilityBar(ItemStack stack) {
+    public boolean showDurabilityBar(ItemStack pStack) {
         return false;
     }
 
     @Override
-    public double getDurabilityForDisplay(ItemStack stack) {
-        if (!stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null))
-            return 0d;
-
-        IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
-
-        return (capability.getTemperature() / capability.getMaterial().getMeltingPoint());
+    public double getDurabilityForDisplay(ItemStack pStack) {
+        return (pStack.getTagCompound().getFloat(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE)) / (MaterialRegistry.getInstance().getMaterial(pStack.getTagCompound().getString(References.NBTTagCompoundData.HeatedIngot.MATERIALID)).getMeltingPoint());
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public FontRenderer getFontRenderer(@Nonnull ItemStack stack) {
-        if (!stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null))
-            return super.getFontRenderer(stack);
+    public FontRenderer getFontRenderer(@NotNull ItemStack stack) {
+        if (!stack.hasTagCompound())
+            return CoreClientProxy.getMultiColoredFontRenderer();
 
-        IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
-
-        return capability.getOriginalStack().getItem().getFontRenderer(capability.getOriginalStack());
+        ItemStack tOriginalItemStack = ItemStack.loadItemStackFromNBT(stack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.HeatedIngot.ORIGINALITEM));
+        return tOriginalItemStack.getItem().getFontRenderer(tOriginalItemStack);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, @Nonnull List<String> tooltip, boolean extraInformation) {
-        if (!stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null))
-            return;
+    public void addInformation(ItemStack pStack, EntityPlayer pPlayer, @NotNull List pTooltipList, boolean pBoolean) {
+        String tTemperatureLine = I18n.format(TranslationKeys.Items.HeatedIngot.TemperatureTag);
+        tTemperatureLine = tTemperatureLine + ": " + Math.round(HeatableItemRegistry.getInstance().getItemTemperature(pStack));
 
-        IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
-
-        String temperatureLine = I18n.format(TranslationKeys.Items.HeatedIngot.TemperatureTag);
-        temperatureLine = temperatureLine + ": " + Math.round(capability.getTemperature());
-
-        tooltip.add(temperatureLine);
+        pTooltipList.add(tTemperatureLine);
     }
 
     @Override
@@ -87,75 +91,65 @@ public class ItemHeatedItem extends Item {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs tabs, NonNullList<ItemStack> list) {
-        HashMap<String, ItemStack> heatedItems = new HashMap<>();
+    public void getSubItems(Item pItem, CreativeTabs pCreativeTab, List pItemStacks) {
+        Iterator<ItemStack> tStackIter = HeatableItemRegistry.getInstance().getAllMappedItems().iterator();
 
-        for (IHeatableObjectType type : IArmoryAPI.Holder.getInstance().getRegistryManager().getHeatableObjectTypeRegistry()) {
-            IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry().forEach(new MaterialItemStackConstructionConsumer(type, heatedItems));
-            IArmoryAPI.Holder.getInstance().getRegistryManager().getAddonArmorMaterialRegistry().forEach(new MaterialItemStackConstructionConsumer(type, heatedItems));
-            IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry().forEach(new MaterialItemStackConstructionConsumer(type, heatedItems));
+        while (tStackIter.hasNext()) {
+            ItemStack tCooledStack = tStackIter.next();
+            ItemStack tHeatedStack = HeatedItemFactory.getInstance().convertToHeatedIngot(tCooledStack);
+
+            if (tHeatedStack != null) {
+                pItemStacks.add(tHeatedStack);
+
+                ItemStack highTempStack = tHeatedStack.copy();
+                IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromHeatedStack(highTempStack);
+                HeatableItemRegistry.getInstance().setItemTemperature(highTempStack, material.getMeltingPoint() - 10);
+
+                pItemStacks.add(highTempStack);
+            } else {
+                ModLogger.getInstance().info("Tried to create a HeatedIngot from: " + HeatableItemRegistry.getInstance().getMaterialFromCooledStack(tCooledStack).getUniqueID() + " and failed!");
+            }
         }
     }
 
-    @Nonnull
+    @NotNull
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
-        if (!stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null))
-            return "";
+    public String getItemStackDisplayName(ItemStack pStack) {
+        if (!pStack.hasTagCompound())
+            return net.minecraft.util.text.translation.I18n.translateToLocal(this.getUnlocalizedName() + ".name");
 
-        IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
-        return capability.getOriginalStack().getItem().getItemStackDisplayName(capability.getOriginalStack());
+        ItemStack tOriginalItemStack = ItemStack.loadItemStackFromNBT(pStack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.HeatedIngot.ORIGINALITEM));
+        return tOriginalItemStack.getItem().getItemStackDisplayName(tOriginalItemStack);
     }
 
     @Override
-    public void onUpdate(@Nonnull ItemStack stack, World worldObj, Entity entity, int slotIndex, boolean selected) {
+    public void onUpdate(@NotNull ItemStack pStack, World pWorldObj, Entity pEntity, int pSlotIndex, boolean pSelected) {
 
-        if (!(entity instanceof EntityPlayer))
+        if (!(pEntity instanceof EntityPlayer))
             return;
 
         if (!ArmoryConfig.enableTemperatureDecay)
             return;
 
-        EntityPlayer player = (EntityPlayer) entity;
-        IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
-        IHeatableObject object = capability.getObject();
+        EntityPlayer tPlayer = (EntityPlayer) pEntity;
 
-        capability.increaseTemperatur(object.getChangeFactorForEntity(player, capability));
+        float tCurrentTemp = HeatableItemRegistry.getInstance().getItemTemperature(pStack);
+        float tNewTemp = tCurrentTemp - 0.2F;
 
-        if (capability.getTemperature() < 20F) {
-            player.inventory.mainInventory.set(slotIndex, HeatedItemFactory.getInstance().convertToCooledIngot(stack));
+        HeatableItemRegistry.getInstance().setItemTemperature(pStack, tNewTemp);
+
+        if (tNewTemp < 20F) {
+            tPlayer.inventory.mainInventory[pSlotIndex] = HeatedItemFactory.getInstance().convertToCooledIngot(pStack);
         } else {
-            for (ItemStack inventoryStack : player.inventory.mainInventory) {
-                if (inventoryStack.isEmpty())
+            for (ItemStack tStack : tPlayer.inventory.mainInventory) {
+                if (tStack == null)
                     continue;
 
-                if (inventoryStack.getItem() instanceof ItemTongs)
+                if (tStack.getItem() instanceof ItemTongs)
                     return;
             }
 
-            player.setFire(1);
-        }
-    }
-
-    private class MaterialItemStackConstructionConsumer implements Consumer<IMaterial> {
-
-        private final IHeatableObjectType type;
-        private final HashMap<String, ItemStack> heatedStacks;
-
-        private MaterialItemStackConstructionConsumer(IHeatableObjectType type, HashMap<String, ItemStack> heatedStacks) {
-            this.type = type;
-            this.heatedStacks = heatedStacks;
-        }
-
-        /**
-         * Performs this operation on the given argument.
-         *
-         * @param material the input argument
-         */
-        @Override
-        public void accept(IMaterial material) {
-            if (!heatedStacks.containsKey(material.getOreDictionaryIdentifier()))
-                heatedStacks.put(material.getOreDictionaryIdentifier(), IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getHeatedItemFactory().generateHeatedItemFromMaterial(material, ModHeatableObjects.ITEMSTACK, type, material.getMeltingPoint() / 3));
+            tPlayer.setFire(1);
         }
     }
 }

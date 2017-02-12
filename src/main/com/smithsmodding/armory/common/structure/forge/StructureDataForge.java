@@ -19,10 +19,10 @@ public class StructureDataForge implements IStructureData<StructureForge>, com.s
     int totalBurningTicksOnCurrentFuel;
     int burningTicksLeftOnCurrentFuel;
     private StructureForge structureForge;
-    @Nonnull
+    @NotNull
     private MoltenMetalTank moltenMetals = new MoltenMetalTank(0, Integer.MAX_VALUE);
 
-    public void onAssignToForge(@Nonnull StructureForge forge) {
+    public void onAssignToForge(@NotNull StructureForge forge) {
         this.structureForge = forge;
         this.moltenMetals = new MoltenMetalTank(forge.getPartLocations().size() * References.General.FLUID_INGOT * TileEntityForge.TANKINGOTCAPACITY, Integer.MAX_VALUE);
     }
@@ -31,7 +31,7 @@ public class StructureDataForge implements IStructureData<StructureForge>, com.s
         return structureForge;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public NBTTagCompound writeToNBT() {
         NBTTagCompound compound = new NBTTagCompound();
@@ -48,7 +48,7 @@ public class StructureDataForge implements IStructureData<StructureForge>, com.s
     }
 
     @Override
-    public void readFromNBT(@Nonnull NBTTagCompound compound) {
+    public void readFromNBT(@NotNull NBTTagCompound compound) {
         setBurning(compound.getBoolean(References.NBTTagCompoundData.TE.ForgeBase.CURRENTLYBURNING));
         setTotalBurningTicksOnCurrentFuel(compound.getInteger(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKFUELAMOUNT));
         setBurningTicksLeftOnCurrentFuel(compound.getInteger(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKBURNINGTIME));
@@ -118,7 +118,7 @@ public class StructureDataForge implements IStructureData<StructureForge>, com.s
         setBurningTicksLeftOnCurrentFuel(getTotalBurningTicksOnCurrentFuel());
     }
 
-    @Nonnull
+    @NotNull
     public MoltenMetalTank getMoltenMetals() {
         return moltenMetals;
     }

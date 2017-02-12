@@ -52,15 +52,15 @@ public class MultiLayeredArmorModelDeserializer implements JsonDeserializer<Mult
         JsonObject layers = jsonObject.get("layers").getAsJsonObject();
         JsonObject broken = jsonObject.get("broken").getAsJsonObject();
 
-        HashMap<ResourceLocation, ResourceLocation> layersLocations = new HashMap<>();
-        HashMap<ResourceLocation, ResourceLocation> brokenLocations = new HashMap<>();
+        HashMap<String, ResourceLocation> layersLocations = new HashMap<>();
+        HashMap<String, ResourceLocation> brokenLocations = new HashMap<>();
 
         for (Map.Entry<String, JsonElement> entry : layers.entrySet()) {
-            layersLocations.put(new ResourceLocation(entry.getKey()), new ResourceLocation(entry.getValue().getAsString()));
+            layersLocations.put(entry.getKey(), new ResourceLocation(entry.getValue().getAsString()));
         }
 
         for (Map.Entry<String, JsonElement> entry : broken.entrySet()) {
-            brokenLocations.put(new ResourceLocation(entry.getKey()), new ResourceLocation(entry.getValue().getAsString()));
+            brokenLocations.put(entry.getKey(), new ResourceLocation(entry.getValue().getAsString()));
         }
 
         ResourceLocation baseLocation = null;

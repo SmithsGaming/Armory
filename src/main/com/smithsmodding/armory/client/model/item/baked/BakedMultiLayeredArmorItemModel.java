@@ -3,29 +3,26 @@ package com.smithsmodding.armory.client.model.item.baked;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-import com.smithsmodding.armory.api.armor.IMaterialDependantMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtensionInformation;
-import com.smithsmodding.armory.api.capability.IMultiComponentArmorCapability;
-import com.smithsmodding.armory.api.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.client.model.item.baked.components.BakedCoreComponentModel;
+import com.smithsmodding.armory.api.armor.MLAAddon;
+import com.smithsmodding.armory.api.armor.MaterialDependentMLAAddon;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
-import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
+import com.smithsmodding.smithscore.util.common.Pair;
+import com.smithsmodding.smithscore.util.common.helper.NBTHelper;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.*;
 
 /**
@@ -33,9 +30,9 @@ import java.util.*;
  */
 public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.PerspectiveAware {
 
-    @Nonnull
+    @NotNull
     private static final List<List<BakedQuad>> empty_face_quads;
-    @Nonnull
+    @NotNull
     private static final List<BakedQuad> empty_list;
 
     static {
@@ -46,18 +43,18 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
         }
     }
 
-    @Nonnull
+    @NotNull
     protected final Overrides overrides;
     protected final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
-    protected BakedCoreComponentModel baseLayer;
-    protected HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> parts;
-    protected HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> brokenParts;
+    protected Pair<String, BakedSubComponentModel> baseLayer;
+    protected HashMap<String, BakedSubComponentModel> parts;
+    protected HashMap<String, BakedSubComponentModel> brokenParts;
 
     /**
      * The length of brokenParts has to match the length of parts. If a part does not have a broken texture, the entry in
      * the array simply is null.
      */
-    public BakedMultiLayeredArmorItemModel(IBakedModel parent, BakedCoreComponentModel baseLayer, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> parts, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> brokenParts, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+    public BakedMultiLayeredArmorItemModel(IBakedModel parent, Pair baseLayer, HashMap parts, HashMap brokenParts, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
         super(parent, transforms);
 
         this.parts = parts;
@@ -67,7 +64,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
         this.transforms = transforms;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public ItemOverrideList getOverrides() {
         return overrides;
@@ -85,19 +82,20 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
         @Nullable
         @Override
         public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
-            IMultiComponentArmorCapability capability = ArmorNBTHelper.getArmorDataFromStack(stack);
-            if (capability == null)
-                return DummyModel.BAKED_MODEL;
+            NBTTagCompound baseTag = NBTHelper.getTagCompound(stack);
 
-            ICoreArmorMaterial coreArmorMaterial = capability.getMaterial();
+            if (baseTag.hasNoTags()) {
+                return originalModel;
+            }
 
-            ArrayList<IMultiComponentArmorExtensionInformation> installedExtensions = new ArrayList<>();
+            ArrayList<MLAAddon> installedAddons = new ArrayList<MLAAddon>();
+            installedAddons.addAll(ArmorNBTHelper.getAddonMap(stack).keySet());
 
             //Sort the list based on priority.
-            Collections.sort(installedExtensions, new Comparator<IMultiComponentArmorExtensionInformation>() {
+            Collections.sort(installedAddons, new Comparator<MLAAddon>() {
                 @Override
-                public int compare(@Nonnull IMultiComponentArmorExtensionInformation o1, @Nonnull IMultiComponentArmorExtensionInformation o2) {
-                    return Integer.compare(o1.getPosition().getArmorLayer(), o2.getPosition().getArmorLayer());
+                public int compare(@NotNull MLAAddon o1, @NotNull MLAAddon o2) {
+                    return Integer.compare(o1.getLayerPriority(), o2.getLayerPriority());
                 }
             });
 
@@ -106,20 +104,21 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
 
             boolean broken = ArmorNBTHelper.checkIfStackIsBroken(stack);
 
-            quads.addAll(parent.baseLayer.getModelByIdentifier(coreArmorMaterial.getRegistryName()).getQuads(null, null, 0));
-
-            for (IMultiComponentArmorExtensionInformation extensionInformation : installedExtensions) {
-                IMultiComponentArmorExtension extension = extensionInformation.getExtension();
+            for (MLAAddon addon : installedAddons) {
+                String addonID = addon.getUniqueID();
+                String modelID = addonID;
+                if (addon.isMaterialDependent()) {
+                    addonID = ((MaterialDependentMLAAddon) addon).getMaterialIndependentID();
+                    modelID = ((MaterialDependentMLAAddon) addon).getUniqueMaterialID();
+                }
 
                 IBakedModel partModel;
-                ResourceLocation addonArmorMaterialName = null;
-                if (extension instanceof IMaterialDependantMultiComponentArmorExtension)
-                    addonArmorMaterialName = ((IMaterialDependantMultiComponentArmorExtension) extension).getMaterial().getRegistryName();
-
-                if (broken && parent.brokenParts.containsKey(extension) && parent.brokenParts.get(extension) != null) {
-                    partModel = parent.brokenParts.get(extension).getModelByIdentifier(addonArmorMaterialName);
-                } else if (parent.parts.containsKey(extension) && parent.parts.get(extension) != null) {
-                    partModel = parent.parts.get(extension).getModelByIdentifier(addonArmorMaterialName);
+                if (parent.baseLayer.getKey().equals(addonID)) {
+                    partModel = parent.baseLayer.getValue().getModelByIdentifier(modelID);
+                } else if (broken && parent.brokenParts.containsKey(addonID) && parent.brokenParts.get(addonID) != null) {
+                    partModel = parent.brokenParts.get(addonID).getModelByIdentifier(modelID);
+                } else if (parent.parts.containsKey(addonID) && parent.parts.get(addonID) != null) {
+                    partModel = parent.parts.get(addonID).getModelByIdentifier(modelID);
                 } else {
                     continue;
                 }

@@ -9,6 +9,7 @@ import com.smithsmodding.armory.common.handlers.config.ArmoryDataSyncerEventHand
 import com.smithsmodding.armory.common.handlers.config.ConfigSyncCompletedEventHandler;
 import com.smithsmodding.armory.common.handlers.config.MaterialPropertyValueEventHandler;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
+import com.smithsmodding.armory.common.registry.GeneralRegistry;
 import com.smithsmodding.armory.common.structure.forge.StructureFactoryForge;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.common.structures.StructureRegistry;
@@ -53,7 +54,7 @@ public class ArmoryCommonProxy {
 
     }
 
-    public EntityPlayer getPlayer(@Nonnull MessageContext pContext) {
+    public EntityPlayer getPlayer(@NotNull MessageContext pContext) {
         return pContext.getServerHandler().playerEntity;
     }
 
@@ -64,7 +65,7 @@ public class ArmoryCommonProxy {
         }
     }
 
-    private void callbackRegistration(@Nonnull String method, String modname) {
+    private void callbackRegistration(@NotNull String method, String modname) {
         String[] splitName = method.split("\\.");
         String methodName = splitName[splitName.length - 1];
         String className = method.substring(0, method.length() - methodName.length() - 1);

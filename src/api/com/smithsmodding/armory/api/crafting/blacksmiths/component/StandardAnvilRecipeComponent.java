@@ -43,11 +43,11 @@ public class StandardAnvilRecipeComponent implements IAnvilRecipeComponent {
     @Override
     public int getResultingStackSizeForComponent(@NotNull ItemStack pComponentStack) {
         if (ItemStackHelper.equalsIgnoreStackSize(pComponentStack, iTargetItemStack)) {
-            return pComponentStack.getCount() - iComponentUsage;
+            return pComponentStack.stackSize - iComponentUsage;
         }
 
 
-        return pComponentStack.getCount();
+        return pComponentStack.stackSize;
     }
 
     @NotNull

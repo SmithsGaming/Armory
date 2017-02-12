@@ -4,8 +4,8 @@ import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.common.structures.IStructure;
 import com.smithsmodding.smithscore.common.structures.IStructurePart;
 import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.LinkedHashSet;
 
 /**
@@ -18,7 +18,7 @@ public class StructureForge implements IStructure<StructureDataForge, StructureC
     private final LinkedHashSet<Coordinate3D> parts;
     private Coordinate3D masterLocation;
 
-    public StructureForge(@Nonnull TileEntityForge master) {
+    public StructureForge(@NotNull TileEntityForge master) {
         masterLocation = master.getLocation();
         dataForge = new StructureDataForge();
         parts = new LinkedHashSet<>();
@@ -33,7 +33,7 @@ public class StructureForge implements IStructure<StructureDataForge, StructureC
         this.dataForge.onAssignToForge(this);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public StructureControllerForge getController() {
         return controller;
@@ -55,13 +55,13 @@ public class StructureForge implements IStructure<StructureDataForge, StructureC
     }
 
     @Override
-    public void registerPart(@Nonnull TileEntityForge part) {
+    public void registerPart(@NotNull TileEntityForge part) {
         parts.add(part.getLocation());
         getData().updateTank();
     }
 
     @Override
-    public void removePart(@Nonnull TileEntityForge part) {
+    public void removePart(@NotNull TileEntityForge part) {
         parts.remove(part.getLocation());
         getData().updateTank();
     }

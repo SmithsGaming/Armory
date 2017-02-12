@@ -44,8 +44,8 @@ public class JEICompatMod extends BlankModPlugin {
         for (ItemStack stack : anvils)
             registry.addRecipeCategoryCraftingItem(stack, References.Compatibility.JEI.RecipeTypes.ANVIL);
 
-        getJeiHelpers().getNbtIgnoreList().ignoreNbtTagNames(References.NBTTagCompoundData.HeatedObject.CURRENTTEMPERATURE);
-        getJeiHelpers().getNbtIgnoreList().ignoreNbtTagNames(References.NBTTagCompoundData.HeatedObject.ORIGINALITEM);
+        getJeiHelpers().getNbtIgnoreList().ignoreNbtTagNames(References.NBTTagCompoundData.HeatedIngot.CURRENTTEMPERATURE);
+        getJeiHelpers().getNbtIgnoreList().ignoreNbtTagNames(References.NBTTagCompoundData.HeatedIngot.ORIGINALITEM);
         getJeiHelpers().getNbtIgnoreList().ignoreNbtTagNames(CoreReferences.NBT.IItemProperties.TARGET);
     }
 }

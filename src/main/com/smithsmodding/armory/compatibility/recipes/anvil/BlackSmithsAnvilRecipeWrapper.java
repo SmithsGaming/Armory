@@ -2,11 +2,12 @@ package com.smithsmodding.armory.compatibility.recipes.anvil;
 
 import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeComponent;
 import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
-import com.smithsmodding.armory.api.heatable.IHeatableItem;
+import com.smithsmodding.armory.api.item.IHeatableItem;
 import com.smithsmodding.armory.api.util.references.ModInventories;
-import com.smithsmodding.armory.common.factories.HeatedItemFactory;
+import com.smithsmodding.armory.common.factory.HeatedItemFactory;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class BlackSmithsAnvilRecipeWrapper extends BlankRecipeWrapper {
     private ItemStack[] additionalStacks;
     private ArrayList<ItemStack> output;
 
-    public BlackSmithsAnvilRecipeWrapper(@Nonnull AnvilRecipe recipe) {
+    public BlackSmithsAnvilRecipeWrapper(@NotNull AnvilRecipe recipe) {
         inputs = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS];
         for (int i = 0; i < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS; i++) {
             IAnvilRecipeComponent component = recipe.getComponent(i);
@@ -76,7 +77,7 @@ public class BlackSmithsAnvilRecipeWrapper extends BlankRecipeWrapper {
         return output;
     }
 
-    @Nonnull
+    @NotNull
     public List<ItemStack> getAdditionalStacks() {
         return Arrays.asList(additionalStacks);
     }

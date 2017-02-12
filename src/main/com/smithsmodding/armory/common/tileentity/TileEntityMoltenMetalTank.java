@@ -25,23 +25,23 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
     public TileEntityMoltenMetalTank() {
     }
 
-    public TileEntityMoltenMetalTank(@Nonnull EnumTankType type) {
+    public TileEntityMoltenMetalTank(@NotNull EnumTankType type) {
         this.type = type;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     protected TileEntityMoltenMetalTankGuiManager getInitialGuiManager() {
         return new TileEntityMoltenMetalTankGuiManager();
     }
 
-    @Nonnull
+    @NotNull
     @Override
     protected TileEntityMoltenMetalTankState getInitialState() {
         return new TileEntityMoltenMetalTankState();
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public String getContainerID() {
         return References.InternalNames.TileEntities.Tank + "-" + getLocation().toString();

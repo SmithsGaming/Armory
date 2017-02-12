@@ -4,11 +4,8 @@ import com.smithsmodding.armory.api.util.client.TranslationKeys;
 import com.smithsmodding.armory.api.util.references.ModBlocks;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import javax.annotation.Nonnull;
 
 /**
  * Author Marc (Created on: 14.06.2016)
@@ -18,7 +15,7 @@ public class GeneralTabs extends CreativeTabs {
         super(TranslationKeys.CreativeTabs.General);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public String getTranslatedTabLabel() {
         return getTabLabel();
@@ -26,7 +23,7 @@ public class GeneralTabs extends CreativeTabs {
 
     @Nullable
     @Override
-    public ItemStack getTabIconItem() {
-        return new ItemStack(ModBlocks.blockForge);
+    public Item getTabIconItem() {
+        return Item.getItemFromBlock(ModBlocks.blockForge);
     }
 }

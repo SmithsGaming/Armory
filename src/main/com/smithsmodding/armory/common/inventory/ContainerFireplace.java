@@ -15,12 +15,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-
 public class ContainerFireplace extends ContainerSmithsCore {
     private TileEntityFireplace tileEntityFireplace;
 
-    public ContainerFireplace(@Nonnull EntityPlayer playerMP, TileEntityFireplace tileEntityFireplace) {
+    public ContainerFireplace(@NotNull EntityPlayer playerMP, TileEntityFireplace tileEntityFireplace) {
         super(References.InternalNames.TileEntities.FireplaceContainer, tileEntityFireplace, tileEntityFireplace, playerMP);
 
         this.tileEntityFireplace = tileEntityFireplace;
@@ -38,7 +36,7 @@ public class ContainerFireplace extends ContainerSmithsCore {
     }
 
     @Override
-    public void onTabChanged(@Nonnull String newActiveTabID) {
+    public void onTabChanged(@NotNull String newActiveTabID) {
         super.onTabChanged(newActiveTabID);
 
         inventorySlots.clear();

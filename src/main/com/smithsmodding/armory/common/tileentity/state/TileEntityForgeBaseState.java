@@ -67,7 +67,7 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
         }
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public NBTBase writeToNBTTagCompound() {
         NBTTagCompound compound = new NBTTagCompound();
@@ -93,7 +93,7 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
         readFromNBTTagCompound(stateData);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public NBTBase writeToSynchronizationCompound() {
         return writeToNBTTagCompound();

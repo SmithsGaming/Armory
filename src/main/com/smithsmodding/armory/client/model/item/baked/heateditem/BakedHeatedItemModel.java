@@ -2,9 +2,9 @@ package com.smithsmodding.armory.client.model.item.baked.heateditem;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.smithsmodding.armory.api.capability.IHeatedObjectCapability;
-import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedTemperatureBarModel;
+import com.smithsmodding.armory.common.factory.HeatedItemFactory;
+import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -15,8 +15,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,9 +25,9 @@ import java.util.List;
  * Created by Marc on 08.12.2015.
  */
 public class BakedHeatedItemModel extends BakedWrappedModel {
-    @Nonnull
+    @NotNull
     private static final List<List<BakedQuad>> empty_face_quads;
-    @Nonnull
+    @NotNull
     private static final List<BakedQuad> empty_list;
 
     static {
@@ -38,7 +38,7 @@ public class BakedHeatedItemModel extends BakedWrappedModel {
         }
     }
 
-    @Nonnull
+    @NotNull
     private final Overrides overrides;
     protected BakedTemperatureBarModel gaugeDisplay;
     protected BakedTemperatureBarModel gaugeDisplayTurned;
@@ -56,7 +56,7 @@ public class BakedHeatedItemModel extends BakedWrappedModel {
         overrides = new Overrides(this);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public ItemOverrideList getOverrides() {
         return overrides;
@@ -71,24 +71,22 @@ public class BakedHeatedItemModel extends BakedWrappedModel {
             this.parent = parent;
         }
 
-        @Nonnull
+        @NotNull
         @Override
         public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
             // get the texture for each part
             ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
 
-            if (!stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null)) {
+            if (!(stack.getItem() instanceof ItemHeatedItem)) {
                 return Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(stack);
             }
 
-            IHeatedObjectCapability heatedObjectCapability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
-
-            ItemStack cooledStack = heatedObjectCapability.getOriginalStack();
+            ItemStack cooledStack = HeatedItemFactory.getInstance().convertToCooledIngot(stack);
             IBakedModel original = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(cooledStack);
-
             original = original.getOverrides().handleItemState(original, cooledStack, world, entity);
 
-            int barIndex = (int) ((heatedObjectCapability.getTemperature() / heatedObjectCapability.getMaterial().getMeltingPoint()) * (parent.gaugeDisplay.getModelCount() - 1));
+            ItemHeatedItem item = (ItemHeatedItem) stack.getItem();
+            int barIndex = (int) (item.getDurabilityForDisplay(stack) * (parent.gaugeDisplay.getModelCount() - 1));
 
             if (cooledStack.getItem() instanceof ItemBlock) {
                 quads.addAll(new ArrayList<>(parent.gaugeDisplayTurned.getModel(barIndex).getQuads(null, null, 0)));

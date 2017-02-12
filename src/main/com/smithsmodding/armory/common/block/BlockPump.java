@@ -16,12 +16,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 /**
@@ -55,13 +53,13 @@ public class BlockPump extends BlockArmoryTileEntity {
     }
 
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
         list.add(new ItemStack(this, 1, 1));
         list.add(new ItemStack(this, 1, 2));
     }
 
     @Override
-    public void onBlockPlacedBy(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, EntityLivingBase placer, @Nonnull ItemStack stack) {
+    public void onBlockPlacedBy(@NotNull World worldIn, @NotNull BlockPos pos, @NotNull IBlockState state, EntityLivingBase placer, @NotNull ItemStack stack) {
         state = state.withProperty(TYPE, EnumPumpType.byMetadata(stack.getItemDamage() - 1));
 
         state = state.withProperty(DIRECTION, placer.getHorizontalFacing().getOpposite());
@@ -69,18 +67,18 @@ public class BlockPump extends BlockArmoryTileEntity {
         worldIn.setBlockState(pos, state, 2);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(TYPE, EnumPumpType.byMetadata(meta));
     }
 
     @Override
-    public int getMetaFromState(@Nonnull IBlockState state) {
+    public int getMetaFromState(@NotNull IBlockState state) {
         return state.getValue(TYPE).getMetadata();
     }
 
-    @Nonnull
+    @NotNull
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, DIRECTION, TYPE);

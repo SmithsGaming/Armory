@@ -29,7 +29,7 @@ public class TranslationKeys {
 
     public class Items {
         public class HeatedIngot {
-            public static final String TemperatureTag = "Armory.Items.HeatedObject.Tooltip.Temperature";
+            public static final String TemperatureTag = "Armory.Items.HeatedIngot.Tooltip.Temperature";
         }
 
         public class MultiArmor {

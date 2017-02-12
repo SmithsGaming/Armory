@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class TileEntityForgeState extends TileEntityForgeBaseState<TileEntityForge> {
 
     private float mixingProgress = 0;
-    @Nonnull
+    @NotNull
     private ArrayList<Float> meltingProgress = new ArrayList<Float>();
 
     @Override
@@ -42,7 +42,7 @@ public class TileEntityForgeState extends TileEntityForgeBaseState<TileEntityFor
         }
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public NBTBase writeToNBTTagCompound() {
         NBTTagCompound compound = (NBTTagCompound) super.writeToNBTTagCompound();

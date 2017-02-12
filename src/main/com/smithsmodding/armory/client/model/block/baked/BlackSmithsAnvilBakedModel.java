@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.client.model.block.baked;
 
-import com.smithsmodding.armory.api.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
@@ -15,7 +14,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,30 +22,30 @@ import java.util.List;
  * Created by Marc on 22.02.2016.
  */
 public class BlackSmithsAnvilBakedModel extends BakedWrappedModel {
-    @Nonnull
+    @NotNull
     private final Overrides overrides;
-    @Nonnull
-    private HashMap<IAnvilMaterial, IBakedModel> bakedModelHashMap = new HashMap<>();
+    @NotNull
+    private HashMap<String, IBakedModel> bakedModelHashMap = new HashMap<>();
 
     public BlackSmithsAnvilBakedModel(IBakedModel parent) {
         super(parent);
         overrides = new Overrides(this);
     }
 
-    public void registerBakedModel(IAnvilMaterial material, IBakedModel model) {
-        bakedModelHashMap.put(material, model);
+    public void registerBakedModel(IBakedModel model, String materialID) {
+        bakedModelHashMap.put(materialID, model);
     }
 
-    @Nonnull
+    @NotNull
     @Override
-    public List<BakedQuad> getQuads(@Nonnull IBlockState state, EnumFacing side, long rand) {
+    public List<BakedQuad> getQuads(@NotNull IBlockState state, EnumFacing side, long rand) {
         if (((IExtendedBlockState) state).getValue(BlockBlackSmithsAnvil.PROPERTY_ANVIL_MATERIAL) == null)
             return getParentModel().getQuads(state, side, rand);
 
         return bakedModelHashMap.get(((IExtendedBlockState) state).getValue(BlockBlackSmithsAnvil.PROPERTY_ANVIL_MATERIAL)).getQuads(state, side, rand);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public ItemOverrideList getOverrides() {
         return overrides;

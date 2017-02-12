@@ -19,7 +19,7 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
-        classpath "gradle.plugin.com.selesse:gradle-git-changelog:0.4.0-SNAPSHOT"
+        classpath 'com.selesse:gradle-git-changelog:0.3.0-SNAPSHOT'
     }
 }
 
@@ -93,7 +93,7 @@ minecraft {
     version = config.minecraft_version + "-" + config.forge_version
     runDir = "run"
 
-    mappings = "snapshot_20161220"
+    mappings = "snapshot_20160518"
 
     useDepAts = true
 
@@ -110,7 +110,9 @@ dependencies {
 
     //Maven uploader
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.8'
-    compile 'org.jetbrains:annotations:15.0'
+
+    //NotNull analyzer
+    compile group: 'org.jetbrains', name: 'annotations', version: config.jetbrains_annotations_version
 }
 
 sourceSets {

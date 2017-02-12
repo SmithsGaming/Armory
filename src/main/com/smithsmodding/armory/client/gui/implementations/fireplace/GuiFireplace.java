@@ -26,7 +26,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 /**
@@ -34,10 +33,10 @@ import java.util.ArrayList;
  */
 public class GuiFireplace extends GuiContainerSmithsCore {
 
-    @Nonnull
+    @NotNull
     public static Plane GUI = new Plane(0, 0, ComponentPlayerInventory.WIDTH, 245);
 
-    public GuiFireplace(@Nonnull ContainerSmithsCore container) {
+    public GuiFireplace(@NotNull ContainerSmithsCore container) {
         super(container);
     }
 
@@ -72,16 +71,16 @@ public class GuiFireplace extends GuiContainerSmithsCore {
     public class TemperatureLedger extends CoreLedger {
 
         Plane maxArea;
-        @Nonnull
+        @NotNull
         private String currentTemperatureLabel = "";
-        @Nonnull
+        @NotNull
         private String maxTemperatureLabel = "";
-        @Nonnull
+        @NotNull
         private String lastAddedLabel = "";
-        @Nonnull
+        @NotNull
         private String cookingMultiplayerLabel = "";
 
-        public TemperatureLedger(String uniqueID, IGUIBasedLedgerHost root, LedgerConnectionSide side, @Nonnull CustomResource ledgerIcon, String translatedLedgerHeader, MinecraftColor color) {
+        public TemperatureLedger(String uniqueID, IGUIBasedLedgerHost root, LedgerConnectionSide side, @NotNull CustomResource ledgerIcon, String translatedLedgerHeader, MinecraftColor color) {
             super(uniqueID, new LedgerComponentState(), root, side, ledgerIcon, translatedLedgerHeader, color);
         }
 

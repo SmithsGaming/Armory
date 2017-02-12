@@ -2,6 +2,7 @@ package com.smithsmodding.armory.common.handlers.config;
 
 import com.smithsmodding.armory.api.events.common.config.MaterialPropertyValueEvent;
 import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,7 +19,7 @@ import java.lang.reflect.Method;
 public class MaterialPropertyValueEventHandler {
 
     @SubscribeEvent
-    public void onMessage(@Nonnull MaterialPropertyValueEvent event) {
+    public void onMessage(@NotNull MaterialPropertyValueEvent event) {
         IArmorMaterial tMaterial = MaterialRegistry.getInstance().getMaterial(event.getMaterialName());
         if (tMaterial == null)
             return;

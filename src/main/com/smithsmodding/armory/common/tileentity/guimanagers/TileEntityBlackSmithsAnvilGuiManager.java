@@ -27,7 +27,7 @@ public class TileEntityBlackSmithsAnvilGuiManager extends TileStorageBasedGUIMan
     }
 
     @Override
-    public String getLabelContents(@Nonnull IGUIComponent component) {
+    public String getLabelContents(@NotNull IGUIComponent component) {
         if (component.getID().equals(References.InternalNames.GUIComponents.Anvil.TEXTBOX))
             return (anvil.getState()).getItemName();
 
@@ -42,7 +42,7 @@ public class TileEntityBlackSmithsAnvilGuiManager extends TileStorageBasedGUIMan
     }
 
     @Override
-    public float getProgressBarValue(@Nonnull IGUIComponent component) {
+    public float getProgressBarValue(@NotNull IGUIComponent component) {
         if (component.getID().equals(References.InternalNames.GUIComponents.Anvil.EXTENDEDCRAFTING + ".Progress")) {
             if (anvil.getCurrentRecipe() == null) {
                 return 0F;

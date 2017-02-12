@@ -1,11 +1,10 @@
 package com.smithsmodding.armory.client.model.item.baked;
 
 import com.google.common.collect.ImmutableMap;
-import com.smithsmodding.armory.api.armor.IMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.capability.IArmorComponentStackCapability;
-import com.smithsmodding.armory.api.util.references.ModCapabilities;
-import com.smithsmodding.armory.client.model.item.baked.components.BakedComponentModel;
+import com.smithsmodding.armory.api.armor.ISingleComponentItem;
+import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
+import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
@@ -13,8 +12,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 /**
@@ -22,18 +21,18 @@ import java.util.ArrayList;
  */
 public class BakedArmorComponentModel extends BakedWrappedModel.PerspectiveAware {
 
-    private final ImmutableMap<IMultiComponentArmorExtension, BakedComponentModel> typeModels;
+    private final ImmutableMap<String, BakedSubComponentModel> typeModels;
 
-    @Nonnull
+    @NotNull
     private final Override overrides;
 
-    public BakedArmorComponentModel(IBakedModel parentModel, ImmutableMap<IMultiComponentArmorExtension, BakedComponentModel> typeModels, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+    public BakedArmorComponentModel(IBakedModel parentModel, ImmutableMap<String, BakedSubComponentModel> typeModels, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
         super(parentModel, transforms);
         this.typeModels = typeModels;
         overrides = new Override(this);
     }
 
-    @Nonnull
+    @NotNull
     @java.lang.Override
     public ItemOverrideList getOverrides() {
         return overrides;
@@ -50,15 +49,13 @@ public class BakedArmorComponentModel extends BakedWrappedModel.PerspectiveAware
 
         @java.lang.Override
         public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
-            if (!stack.hasCapability(ModCapabilities.MOD_ARMORCOMPONENT_CAPABILITY, null))
-                return originalModel;
+            if (stack.getItem() instanceof ISingleComponentItem) {
+                String id = ((ISingleComponentItem) stack.getItem()).getComponentTypeFromItemStack(stack);
+                if (parent.typeModels.containsKey(id))
+                    return parent.typeModels.get(id).getOverrides().handleItemState(originalModel, stack, world, entity);
 
-            IArmorComponentStackCapability extensionCapability = stack.getCapability(ModCapabilities.MOD_ARMORCOMPONENT_CAPABILITY, null);
-
-            if (parent.typeModels.containsKey(extensionCapability.getExtension())) {
-                return parent.typeModels.get(extensionCapability.getExtension());
+                return DummyModel.BAKED_MODEL;
             }
-
             return originalModel;
         }
     }

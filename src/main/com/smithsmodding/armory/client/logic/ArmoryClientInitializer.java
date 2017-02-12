@@ -23,6 +23,9 @@ import com.smithsmodding.armory.common.block.BlockPump;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.logic.ArmoryInitializer;
+import com.smithsmodding.armory.common.registry.AnvilMaterialRegistry;
+import com.smithsmodding.armory.common.registry.ArmorRegistry;
+import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.armory.common.tileentity.TileEntityConduit;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.armory.common.tileentity.TileEntityMoltenMetalTank;
@@ -60,7 +63,7 @@ public class ArmoryClientInitializer extends ArmoryInitializer {
     public static class MedievalClientInitialization {
         public static void registerMaterialResources() {
             MaterialRegistry.getInstance().getMaterial(References.InternalNames.Materials.Vanilla.IRON).setRenderInfo(new MaterialRenderControllers.Metal(0xcacaca, 0f, 0.3f, 0f) {
-                @Nonnull
+                @NotNull
                 @Override
                 public MinecraftColor getLiquidColor() {
                     return new MinecraftColor(MinecraftColor.RED);

@@ -23,13 +23,11 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-
 public class GuiHandler implements IGuiHandler {
 
     @Nullable
     @Override
-    public Object getServerGuiElement(int pID, @Nonnull EntityPlayer pPlayer, @Nonnull World pWorld, int pX, int pY, int pZ) {
+    public Object getServerGuiElement(int pID, @NotNull EntityPlayer pPlayer, @NotNull World pWorld, int pX, int pY, int pZ) {
         if (pID == References.GuiIDs.FORGEID) {
             return new ContainerForge(pPlayer, (TileEntityForge) pWorld.getTileEntity(new BlockPos(pX, pY, pZ)));
         }
@@ -47,7 +45,7 @@ public class GuiHandler implements IGuiHandler {
 
     @Nullable
     @Override
-    public Object getClientGuiElement(int pID, @Nonnull EntityPlayer pPlayer, @Nonnull World pWorld, int pX, int pY, int pZ) {
+    public Object getClientGuiElement(int pID, @NotNull EntityPlayer pPlayer, @NotNull World pWorld, int pX, int pY, int pZ) {
         if (pID == References.GuiIDs.FORGEID) {
             return new GuiForge(new ContainerForge(pPlayer, (TileEntityForge) pWorld.getTileEntity(new BlockPos(pX, pY, pZ))));
         }

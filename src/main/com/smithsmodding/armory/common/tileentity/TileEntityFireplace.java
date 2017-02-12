@@ -2,6 +2,7 @@ package com.smithsmodding.armory.common.tileentity;
 
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
+import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityFireplaceGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityFireplaceState;
 import net.minecraft.item.ItemFood;
@@ -34,13 +35,13 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
     public static float NEGATIVEHEAT = -0.15F;
     private boolean cookingShouldUpdateHeat = false;
 
-    @Nonnull
+    @NotNull
     private ItemStack[] ingotStacks = new ItemStack[INGOTSLOTCOUNT];
-    @Nonnull
+    @NotNull
     private ItemStack[] foodInputStacks = new ItemStack[FOODCOOKINPUTCOUNT];
-    @Nonnull
+    @NotNull
     private ItemStack[] foodOutputStacks = new ItemStack[FOODCOOKOUTPUTCOUNT];
-    @Nonnull
+    @NotNull
     private ItemStack[] fuelStacks = new ItemStack[FUELSLOTCOUNT];
 
     private float heatedProcentage;
@@ -48,13 +49,13 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
     public TileEntityFireplace() {
     }
 
-    @Nonnull
+    @NotNull
     @Override
     protected TileEntityFireplaceGuiManager getInitialGuiManager() {
         return new TileEntityFireplaceGuiManager(this);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     protected TileEntityFireplaceState getInitialState() {
         return new TileEntityFireplaceState();
@@ -67,7 +68,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
      *
      * @return The ID of this Container Instance.
      */
-    @Nonnull
+    @NotNull
     @Override
     public String getContainerID() {
         return References.InternalNames.TileEntities.FireplaceContainer + "-" + getLocation().toString();
@@ -185,7 +186,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
      * @param stack
      */
     @Override
-    public boolean isItemValidForSlot(int index, @Nonnull ItemStack stack) {
+    public boolean isItemValidForSlot(int index, @NotNull ItemStack stack) {
         if (index < INGOTSLOTCOUNT) {
             for (int i = 0; i < FOODCOOKINPUTCOUNT; i++) {
                 if (getStackInSlot(i + INGOTSLOTCOUNT) != null)
@@ -261,7 +262,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
     }
 
     @Override
-    protected void calculateHeatTerms(@Nonnull TileEntityFireplaceState localData) {
+    protected void calculateHeatTerms(@NotNull TileEntityFireplaceState localData) {
         localData.setMaxTemp(2150f);
         localData.setLastNegativeTerm(NEGATIVEHEAT);
         localData.setLastPositiveTerm(POSITIVEHEAT);
