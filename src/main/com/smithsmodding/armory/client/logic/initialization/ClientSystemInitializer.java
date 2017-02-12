@@ -10,7 +10,6 @@ import com.smithsmodding.armory.client.ArmoryClientProxy;
 import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererConduit;
 import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererForge;
 import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererMoltenMetalTank;
-import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererPump;
 import com.smithsmodding.armory.common.block.BlockConduit;
 import com.smithsmodding.armory.common.block.BlockMoltenMetalTank;
 import com.smithsmodding.armory.common.block.BlockPump;
@@ -19,7 +18,6 @@ import com.smithsmodding.armory.common.item.ItemHeatedItem;
 import com.smithsmodding.armory.common.tileentity.TileEntityConduit;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.armory.common.tileentity.TileEntityMoltenMetalTank;
-import com.smithsmodding.armory.common.tileentity.TileEntityPump;
 import com.smithsmodding.smithscore.client.block.statemap.ExtendedStateMap;
 import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
 import com.smithsmodding.smithscore.client.model.loader.SmithsCoreOBJLoader;
@@ -158,6 +156,5 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityForge.class, new TileEntityRendererForge());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConduit.class, new TileEntityRendererConduit());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMoltenMetalTank.class, new TileEntityRendererMoltenMetalTank());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPump.class, new TileEntityRendererPump());
     }
 }

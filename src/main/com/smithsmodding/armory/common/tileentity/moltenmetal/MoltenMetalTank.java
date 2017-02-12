@@ -1,12 +1,9 @@
 package com.smithsmodding.armory.common.tileentity.moltenmetal;
 
-import com.smithsmodding.armory.api.common.fluid.IMoltenMetalAcceptor;
-import com.smithsmodding.armory.api.common.fluid.IMoltenMetalProvider;
-import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.smithscore.common.fluid.MultiFluidTank;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -15,9 +12,9 @@ import java.util.List;
 /**
  * Author Orion (Created on: 26.07.2016)
  */
-public class MoltenMetalTank extends MultiFluidTank implements IMoltenMetalAcceptor, IMoltenMetalProvider {
+public class MoltenMetalTank extends MultiFluidTank {
 
-    private Integer maxLiquidCount;
+    private final Integer maxLiquidCount;
 
     public MoltenMetalTank(int capacity, Integer maxLiquidCount) {
         super(capacity);
@@ -69,30 +66,5 @@ public class MoltenMetalTank extends MultiFluidTank implements IMoltenMetalAccep
         }
 
         return super.fill(resource, doFill);
-    }
-
-    @Override
-    public FluidStack acceptMetal(FluidStack metal, boolean simulate) {
-        return new FluidStack(metal.getFluid(), fill(metal, !simulate), metal.tag);
-    }
-
-    @Override
-    public FluidStack provideMetal(int amount, boolean simulate) {
-        return drain(amount, !simulate);
-    }
-
-    @Nonnull
-    @Override
-    public NBTTagCompound serializeNBT() {
-        NBTTagCompound superCompound = super.serializeNBT();
-
-        superCompound.setInteger(References.NBTTagCompoundData.Fluids.MoltenMetalTank.MAXLIQUIDCOUNT, maxLiquidCount);
-        return superCompound;
-    }
-
-    @Override
-    public void deserializeNBT(@Nonnull NBTTagCompound nbt) {
-        super.deserializeNBT(nbt);
-        maxLiquidCount = nbt.getInteger(References.NBTTagCompoundData.Fluids.MoltenMetalTank.MAXLIQUIDCOUNT);
     }
 }

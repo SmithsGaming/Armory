@@ -25,7 +25,7 @@ public class ItemTongs extends Item {
     public ItemTongs() {
         setMaxStackSize(1);
         setMaxDamage(150);
-        setCreativeTab(ModCreativeTabs.GENERAL);
+        setCreativeTab(ModCreativeTabs.generalTab);
         setUnlocalizedName(References.InternalNames.Items.IN_TONGS);
         setRegistryName(References.InternalNames.Items.IN_TONGS.toLowerCase());
         addPropertyOverride(CoreReferences.IItemProperties.MODELTYPE, new IItemPropertyGetter() {

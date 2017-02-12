@@ -16,7 +16,7 @@ public class ItemHeatablePlate extends ItemHeatableResource{
 
     public ItemHeatablePlate() {
         this.setMaxStackSize(64);
-        this.setCreativeTab(ModCreativeTabs.COMPONENTS);
+        this.setCreativeTab(ModCreativeTabs.componentsTab);
         this.setUnlocalizedName(References.InternalNames.Items.IN_METALPLATE);
         this.setRegistryName(References.InternalNames.Items.IN_METALPLATE);
     }

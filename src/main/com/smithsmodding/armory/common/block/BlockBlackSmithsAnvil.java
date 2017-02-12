@@ -54,7 +54,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
 
     public BlockBlackSmithsAnvil() {
         super(References.InternalNames.Blocks.ArmorsAnvil, Material.ANVIL);
-        setCreativeTab(ModCreativeTabs.GENERAL);
+        setCreativeTab(ModCreativeTabs.generalTab);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 

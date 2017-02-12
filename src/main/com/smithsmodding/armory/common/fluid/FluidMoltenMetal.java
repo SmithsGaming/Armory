@@ -1,10 +1,10 @@
 package com.smithsmodding.armory.common.fluid;
 
-import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.client.Textures;
 import com.smithsmodding.armory.api.util.client.TranslationKeys;
 import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.armory.util.MaterialHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
@@ -27,7 +27,8 @@ public class FluidMoltenMetal extends Fluid {
         if (stack == null || stack.tag == null)
             return getColor();
 
-        IMaterial material = IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry().getValue(new ResourceLocation(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL))).getWrapped();
+        IMaterial material = MaterialHelper.getMaterialFromRegistries(new ResourceLocation(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL)));
+
         if (material == null)
             return getColor();
 
@@ -39,7 +40,8 @@ public class FluidMoltenMetal extends Fluid {
         if (stack == null || stack.tag == null)
             return 20;
 
-        IMaterial material = IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry().getValue(new ResourceLocation(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL))).getWrapped();
+        IMaterial material = MaterialHelper.getMaterialFromRegistries(new ResourceLocation(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL)));
+
         if (material == null)
             return 20;
 
@@ -53,7 +55,8 @@ public class FluidMoltenMetal extends Fluid {
         if (stack == null || stack.tag == null)
             return "Undefined molten Metal.";
 
-        IMaterial material = IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry().getValue(new ResourceLocation(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL))).getWrapped();
+        IMaterial material = MaterialHelper.getMaterialFromRegistries(new ResourceLocation(stack.tag.getString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL)));
+
         if (material == null)
             return "Undefined molten Metal.";
 

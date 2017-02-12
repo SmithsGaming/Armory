@@ -30,17 +30,6 @@ public class MedievalMaterialDependantArmorExtension extends MedievalArmorExtens
     }
 
     /**
-     * Getter for the MultiComponentArmor that this Extension can be installed on.
-     *
-     * @return The Armor that this Extension can be installed on.
-     */
-    @Nonnull
-    @Override
-    public IMultiComponentArmor getArmor() {
-        return getMaterialIndependentExtension().getArmor();
-    }
-
-    /**
      * Getter for the material independent extension.
      *
      * @return The material independent extension.

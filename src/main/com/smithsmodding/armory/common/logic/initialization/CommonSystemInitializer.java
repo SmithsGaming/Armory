@@ -177,9 +177,9 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
         NonNullList<ItemStack> blocks = NonNullList.create();
 
         ModItems.IT_CHAIN.getSubItems(ModItems.IT_CHAIN, null, chains);
-        ModItems.IT_NUGGET.getSubItems(ModItems.IT_NUGGET, null, nuggets);
+        ModItems.IT_NUGGET.getSubItems(ModItems.IT_NUGGET, null, rings);
         ModItems.IT_PLATE.getSubItems(ModItems.IT_PLATE, null, plates);
-        ModItems.IT_RING.getSubItems(ModItems.IT_RING, null, rings);
+        ModItems.IT_RING.getSubItems(ModItems.IT_RING, null, nuggets);
         ModItems.IT_INGOT.getSubItems(ModItems.IT_INGOT, null, ingots);
         ModBlocks.BL_RESOURCE.getSubBlocks(Item.getItemFromBlock(ModBlocks.BL_RESOURCE), null, blocks);
 
