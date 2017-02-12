@@ -185,7 +185,6 @@ changelog {
     title = "${project.name} - Changelog"
     outputDirectory = file("$projectDir")
     fileName = "changelog.html"
-    since = 'last_tag'
     formats = ['html', 'markdown']
     commitFormat = '%s (%an)'
     includeLines {
