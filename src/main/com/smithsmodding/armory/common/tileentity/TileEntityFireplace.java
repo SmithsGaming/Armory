@@ -248,6 +248,9 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
      */
     @Override
     public void update() {
+        if (getWorld().isRemote)
+            return;
+
         TileEntityFireplaceState localData = getState();
 
         localData.setLastTemp(localData.getCurrentTemp());
@@ -319,10 +322,6 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
     }
 
     public boolean cookFood() {
-        if ((getState().getLastChange() == 0F) && (getState().getCurrentTemp() <= 20F) && (getFoodAmount() == 0)) {
-            return false;
-        }
-
         if (cookingShouldUpdateHeat) {
             getState().addLastChangeToCurrentTemp();
 
@@ -331,15 +330,19 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
             }
         }
 
+        if ((getState().getLastChange() == 0F) && (getState().getCurrentTemp() <= 20F) && (getFoodAmount() == 0)) {
+            return cookingShouldUpdateHeat;
+        }
+
         if (getState().getCurrentTemp() < STARTCOOKINGTEMP) {
             getState().setCookingSpeedMultiplier(0);
-            return false;
+            return cookingShouldUpdateHeat;
         }
 
         getState().setCookingSpeedMultiplier((getState().getCurrentTemp() - STARTCOOKINGTEMP) * MULTIPLIERPERDEGREE + 1);
 
         if (getState().getCookingSpeedMultiplier() < BASEMULTIPLIER)
-            return false;
+            return cookingShouldUpdateHeat;
 
         if (getState().getCookingSpeedMultiplier() > MAXMULTIPLIER)
             getState().setCookingSpeedMultiplier(MAXMULTIPLIER);
@@ -347,12 +350,12 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
 
         for (int i = 0; i < INGOTSLOTCOUNT; i++) {
             if (!getStackInSlot(i).isEmpty())
-                return false;
+                return cookingShouldUpdateHeat;
         }
 
         int targetSlot = canCook();
         if (targetSlot == -1) {
-            return true;
+            return cookingShouldUpdateHeat;
         }
 
         getState().setCookingProgress(getState().getCookingProgress() + (1f / 200f) * getState().getCookingSpeedMultiplier());
@@ -362,7 +365,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
         }
 
         if (getState().getCookingProgress() < 1f)
-            return true;
+            return cookingShouldUpdateHeat;
 
         //Add the items twice.
         for (int i = 0; i < 2; i++) {
@@ -388,7 +391,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
 
         getState().setCookingProgress(0);
 
-        return false;
+        return cookingShouldUpdateHeat;
     }
 
     private int canCook() {

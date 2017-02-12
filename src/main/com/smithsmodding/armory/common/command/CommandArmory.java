@@ -28,8 +28,7 @@ public class CommandArmory extends CommandBase {
     private static List<String> commands = new ArrayList<String>();
 
     static {
-        //modCommands.add(new CommandGiveHeated());
-
+        modCommands.add(new CommandGiveHeated());
         modCommands.add(new CommandEnableTempDecay());
 
         for (CommandBase commandBase : modCommands) {

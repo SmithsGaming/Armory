@@ -1,23 +1,35 @@
-# Blender MTL File: 'Horizontal.blend'
-# Material Count: 9
+# Blender MTL File: 'None'
+# Material Count: 3
 
-newmtl Connector
-Kd 0.640000 0.640000 0.640000
-map_Kd armory:blocks/forge/LightSheet
-
-newmtl Dark-Metal
+newmtl Default
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
 Kd 0.409600 0.409600 0.409600
-map_Kd armory:blocks/forge/DarkSheet
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd armory:blocks/moltenmetalpump/default
 
 newmtl FloorPlate
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
-map_Kd armory:blocks/forge/LightSheet
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd armory:blocks/moltenmetalpump/floorplate
 
 newmtl Gold
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
 map_Kd minecraft:blocks/gold_block
-
-newmtl Light-Metal
-Kd 0.409600 0.409600 0.409600
-map_Kd armory:blocks/forge/LightSheet
-

@@ -2,6 +2,7 @@ package com.smithsmodding.armory.common.tileentity;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.capability.IHeatedObjectCapability;
+import com.smithsmodding.armory.api.common.forge.IForgeComponent;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModFluids;
@@ -40,7 +41,7 @@ import java.util.Iterator;
 /**
  * Author Orion (Created on: 23.06.2016)
  */
-public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, TileEntityForgeGuiManager> implements IFirePitComponent, IStructurePart<StructureForge>, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
+public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, TileEntityForgeGuiManager> implements IForgeComponent, IStructurePart<StructureForge>, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
 
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
@@ -72,7 +73,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
         meltIngots();
 
-        markDirty();
+        //markDirty();
     }
 
     @Override
@@ -207,12 +208,12 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
         for (EnumFacing direction : EnumFacing.values()) {
             TileEntity entity = getWorld().getTileEntity(getPos().add(direction.getDirectionVec()));
-            if (entity instanceof IFirePitComponent) {
-                if (((IFirePitComponent) entity).canInfluenceTE(getLocation())) {
-                    localData.changeLastPositiveTerm(((IFirePitComponent) entity).getPositiveInflunce());
-                    localData.changeLastNegativeTerm(((IFirePitComponent) entity).getNegativeInfluece());
+            if (entity instanceof IForgeComponent) {
+                if (((IForgeComponent) entity).canInfluenceTE(getLocation())) {
+                    localData.changeLastPositiveTerm(((IForgeComponent) entity).getPositiveInflunce());
+                    localData.changeLastNegativeTerm(((IForgeComponent) entity).getNegativeInfluece());
 
-                    localData.changeMaxTemp(((IFirePitComponent) entity).getMaxTempInfluence());
+                    localData.changeMaxTemp(((IForgeComponent) entity).getMaxTempInfluence());
                 }
             }
         }
@@ -381,12 +382,16 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-
+        if (capability == ModCapabilities.MOD_MOLTENMETAL_PROVIDER_CAPABILITY) {
+            return getStructure() != null;
+        }
         return super.hasCapability(capability, facing);
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == ModCapabilities.MOD_MOLTENMETAL_PROVIDER_CAPABILITY)
+            return (T) getTankForSide(facing);
 
         return super.getCapability(capability, facing);
     }
@@ -477,7 +482,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
-    public void setStructure(@Nonnull StructureForge structure) {
+    public void setStructure(@Nullable StructureForge structure) {
         this.masterCoordinate = structure.getMasterLocation();
     }
 

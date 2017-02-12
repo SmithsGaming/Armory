@@ -3,10 +3,9 @@ package com.smithsmodding.armory.client.model.item.unbaked.components;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.smithsmodding.armory.api.client.model.renderinfo.IRenderInfoProvider;
 import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.api.client.model.renderinfo.IRenderInfoProvider;
-import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
@@ -122,7 +121,7 @@ public class ArmorComponentModel extends ItemLayerModel implements IModel {
                 bakedModel2 = retextureIfRequired(state, format, bakedTextureGetter, entry.getValue(), addonArmorMaterial, baseTexture, addonArmorMaterial.getTextureOverrideIdentifier());
                 bakedMaterialModel.addAddonMaterialModel(addonArmorMaterial, bakedModel2);
             } else {
-                ModLogger.getInstance().error("A ArmorItemComponentModel has a sprite without a CoreMaterial: " + entry.getKey().toString());
+                //ModLogger.getInstance().error("A ArmorItemComponentModel has a sprite without a CoreMaterial: " + entry.getKey().toString());
                 continue;
             }
         }
