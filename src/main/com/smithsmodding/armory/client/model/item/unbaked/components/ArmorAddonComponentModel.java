@@ -91,7 +91,7 @@ public class ArmorAddonComponentModel extends ArmorSubComponentModel {
     @Nonnull
     public BakedSubComponentModel generateBackedComponentModel(@Nonnull IModelState state, VertexFormat format, @Nonnull Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         // Get ourselfs a normal model to use.
-        IBakedModel base = super.generateBackedComponentModel(state, format, bakedTextureGetter);
+        IBakedModel base = super.bake(state, format, bakedTextureGetter);
 
         // Use it as our base for the BakedComponentModel.
         BakedAddonComponentModel bakedMaterialModel = new BakedAddonComponentModel(base);
@@ -99,7 +99,7 @@ public class ArmorAddonComponentModel extends ArmorSubComponentModel {
         //In between the loading of the model from the JSON and the baking the MaterializedTextureCreator was able to
         // generate all the necessary textures for the models.
         //We retrieve those now and register them to the BakedModel later.
-        ResourceLocation baseTexture = new ResourceLocation(base.getParticleTexture().getIconName());
+        String baseTexture = base.getParticleTexture().getIconName();
         Map<ResourceLocation, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(baseTexture);
 
         //Construct individual models for each of the sprites.

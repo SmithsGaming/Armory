@@ -33,7 +33,7 @@ public class BlackSmithsAnvilModelTextureLoadEvent extends SmithsCoreEvent
         try {
             additionalTopTextureLayers.putAll(AnvilModelDefinition.loadModelTexturesForTop(modelDefinitionLocation));
         } catch (Exception ex) {
-            ModLogger.getInstance().error("Error while attempting to add: " + modelDefinitionLocation.toString() + " to the model definition of: " + ModBlocks.BL_ANVIL.getUnlocalizedName());
+            ModLogger.getInstance().error("Error while attempting to add: " + modelDefinitionLocation.toString() + " to the model definition of: " + ModBlocks.blockBlackSmithsAnvil.getUnlocalizedName());
         }
     }
 
@@ -41,7 +41,7 @@ public class BlackSmithsAnvilModelTextureLoadEvent extends SmithsCoreEvent
         try {
             additionalBottomTextureLayers.putAll(AnvilModelDefinition.loadModelTexturesForBottom(modelDefinitionLocation));
         } catch (Exception ex) {
-            ModLogger.getInstance().error("Error while attempting to add: " + modelDefinitionLocation.toString() + " to the model definition of: " + ModBlocks.BL_ANVIL.getUnlocalizedName());
+            ModLogger.getInstance().error("Error while attempting to add: " + modelDefinitionLocation.toString() + " to the model definition of: " + ModBlocks.blockBlackSmithsAnvil.getUnlocalizedName());
         }
     }
 

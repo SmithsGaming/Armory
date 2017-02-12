@@ -81,7 +81,7 @@ public class ArmorCoreComponentModel extends ArmorSubComponentModel {
         //In between the loading of the model from the JSON and the baking the MaterializedTextureCreator was able to
         // generate all the necessary textures for the models.
         //We retrieve those now and register them to the BakedModel later.
-        ResourceLocation baseTexture = new ResourceLocation(base.getParticleTexture().getIconName());
+        String baseTexture = base.getParticleTexture().getIconName();
         Map<ResourceLocation, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(baseTexture);
 
         //Construct individual models for each of the sprites.

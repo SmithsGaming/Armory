@@ -14,7 +14,7 @@ public class ItemHeatableMetalChain extends ItemHeatableResource {
 
     public ItemHeatableMetalChain() {
         this.setMaxStackSize(16);
-        this.setCreativeTab(ModCreativeTabs.COMPONENTS);
+        this.setCreativeTab(ModCreativeTabs.componentsTab);
         this.setUnlocalizedName(References.InternalNames.Items.IN_METALCHAIN);
         this.setRegistryName(References.InternalNames.Items.IN_METALCHAIN);
     }

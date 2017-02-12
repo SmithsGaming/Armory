@@ -187,7 +187,7 @@ public interface IMultiComponentArmorCapability {
         @Nonnull
         @Override
         public ArrayList<IMultiComponentArmorExtensionInformation> getInstalledExtensions() {
-            return new ArrayList<>(this.installedExtensions);
+            return this.installedExtensions;
         }
 
         /**

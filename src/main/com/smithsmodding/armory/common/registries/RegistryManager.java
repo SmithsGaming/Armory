@@ -17,6 +17,7 @@ import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper;
 import com.smithsmodding.armory.api.common.registries.IRegistryManager;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.smithscore.common.events.SmithsCoreRegistryEvent;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -219,7 +220,7 @@ public final class RegistryManager implements IRegistryManager {
         return textureCreationControllerRegistry;
     }
 
-    @Mod.EventBusSubscriber() //modid = (References.General.MOD_ID)
+    @Mod.EventBusSubscriber(modid = (References.General.MOD_ID))
     public static final class RegistryManagerRegistryRegistrationHandler {
 
         private RegistryManagerRegistryRegistrationHandler() {}
@@ -234,7 +235,7 @@ public final class RegistryManager implements IRegistryManager {
         }
     }
 
-    @Mod.EventBusSubscriber() //modid = (References.General.MOD_ID)
+    @Mod.EventBusSubscriber(modid = (References.General.MOD_ID))
     public static final class RegistryManagerRegisterObjectsHandler {
 
         private RegistryManagerRegisterObjectsHandler(){}

@@ -1,20 +1,20 @@
 {
   "parent": "item/generated",
   "textures": {
-    "armory:BackLeft": "armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left",
-    "armory:BackRight": "armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right",
-    "armory:StomachLeft": "armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left",
-    "armory:StomachRight": "armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right",
-    "armory:ShoulderLeft": "armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left",
-    "armory:ShoulderRight": "armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right",
-    "armory:Top": "armory:items/multiarmor/upgrades/armory.helmet_tophead",
-    "armory:Left": "armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left",
-    "armory:Right": "armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right",
-    "armory:CalfLeft": "armory:items/multiarmor/upgrades/armory.leggings_protection_back_left",
-    "armory:CalfRight": "armory:items/multiarmor/upgrades/armory.leggings_protection_back_right",
-    "armory:ShinLeft": "armory:items/multiarmor/upgrades/armory.leggings_protection_front_left",
-    "armory:ShinRight": "armory:items/multiarmor/upgrades/armory.leggings_protection_front_right",
-    "armory:LacesLeft": "armory:items/multiarmor/upgrades/armory.shoes_protection_left",
-    "armory:LacesRight": "armory:items/multiarmor/upgrades/armory.shoes_protection_right"
+    "Armory.BackLeftChestplate": "armory:items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Left",
+    "Armory.BackrightChestplate": "armory:items/multiarmor/upgrades/armory.Chestplate_Protection_Back_Right",
+    "Armory.FrontLeftChestplate": "armory:items/multiarmor/upgrades/armory.Chestplate_Protection_Front_Left",
+    "Armory.FrontRightChestplate": "armory:items/multiarmor/upgrades/armory.Chestplate_Protection_Front_Right",
+    "Armory.ShoulderLeftChestplate": "armory:items/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Left",
+    "Armory.ShoulderRightChestplate": "armory:items/multiarmor/upgrades/armory.Chestplate_ShoulderPad_Right",
+    "Armory.TopHelmet": "armory:items/multiarmor/upgrades/armory.Helmet_TopHead",
+    "Armory.LeftHelmet": "armory:items/multiarmor/upgrades/armory.Helmet_Protection_Ear_Left",
+    "Armory.RightHelmet": "armory:items/multiarmor/upgrades/armory.Helmet_Protection_Ear_Right",
+    "Armory.BackLeftLeggings": "armory:items/multiarmor/upgrades/armory.Leggins_Protection_Back_Left",
+    "Armory.BackRightLeggings": "armory:items/multiarmor/upgrades/armory.Leggins_Protection_Back_Right",
+    "Armory.FrontLeftLeggings": "armory:items/multiarmor/upgrades/armory.Leggins_Protection_Front_Left",
+    "Armory.FrontRightLeggings": "armory:items/multiarmor/upgrades/armory.Leggins_Protection_Front_Right",
+    "Armory.LeftShoes": "armory:items/multiarmor/upgrades/armory.Shoes_Protection_Left",
+    "Armory.RightShoes": "armory:items/multiarmor/upgrades/armory.Shoes_Protection_Right"
   }
 }

@@ -22,10 +22,12 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Author Orion (Created on: 24.07.2016)
@@ -54,7 +56,7 @@ public class BlockConduit extends BlockArmoryTileEntity {
     public BlockConduit() {
         super(References.InternalNames.Blocks.Conduit, Material.IRON);
         this.setDefaultState(this.blockState.getBaseState().withProperty(DOWN, Boolean.valueOf(false)).withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(TYPE, EnumConduitType.NORMAL));
-        setCreativeTab(ModCreativeTabs.GENERAL);
+        setCreativeTab(ModCreativeTabs.generalTab);
     }
 
     @Nonnull

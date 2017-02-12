@@ -77,7 +77,7 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
         CoreClientProxy.registerMultiComponentItemModel(ModItems.IT_TONGS, new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Resources." + MultiComponentModelLoader.EXTENSION));
         CoreClientProxy.registerMultiComponentItemModel(ModItems.IT_HAMMER, new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Resources." + MultiComponentModelLoader.EXTENSION));
 
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.BL_CONDUIT), new ItemMeshDefinition() {
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.blockConduit), new ItemMeshDefinition() {
             @Nullable
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
@@ -94,11 +94,11 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
             }
         });
 
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.BL_CONDUIT), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Normal"), "inventory"),
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.blockConduit), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Normal"), "inventory"),
                 new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Light"), "inventory"),
                 new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Vertical"), "inventory"));
 
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.BL_TANK), new ItemMeshDefinition() {
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.blockMoltenMetalTank), new ItemMeshDefinition() {
             @Nullable
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
@@ -112,10 +112,10 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
             }
         });
 
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.BL_TANK), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Tank.Normal"), "inventory"),
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.blockMoltenMetalTank), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Tank.Normal"), "inventory"),
                 new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Tank.Light"), "inventory"));
 
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.BL_PUMP), new ItemMeshDefinition() {
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.blockMoltenMetalPump), new ItemMeshDefinition() {
             @Nullable
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
@@ -129,29 +129,19 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
             }
         });
 
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.BL_PUMP), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Pump.Horizontal"), "inventory"),
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.blockMoltenMetalPump), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Pump.Horizontal"), "inventory"),
                 new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Pump.Vertical"), "inventory"));
-
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(ModBlocks.BL_RESOURCE), new ItemMeshDefinition() {
-            @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack) {
-                return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID, "Armory.Blocks.Resource"), "inventory");
-            }
-        });
-
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(ModBlocks.BL_RESOURCE), new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID, "Armory.Blocks.Resource"), "inventory"));
     }
 
 
     public static void registerTESR() {
-        ArmoryClientProxy.registerBlockModel(ModBlocks.BL_FORGE);
-        ArmoryClientProxy.registerBlockModel(ModBlocks.BL_ANVIL);
-        ArmoryClientProxy.registerBlockModel(ModBlocks.BL_FIREPLACE);
-        ArmoryClientProxy.registerBlockModel(ModBlocks.BL_RESOURCE);
+        ArmoryClientProxy.registerBlockModel(ModBlocks.blockForge);
+        ArmoryClientProxy.registerBlockModel(ModBlocks.blockBlackSmithsAnvil);
+        ArmoryClientProxy.registerBlockModel(ModBlocks.blockFirePlace);
 
-        ModelLoader.setCustomStateMapper(ModBlocks.BL_CONDUIT, new ExtendedStateMap.Builder().withName(BlockConduit.TYPE).withCamelCase(new char[]{'.'}).withPrefix("Armory.Blocks.Conduit.").build());
-        ModelLoader.setCustomStateMapper(ModBlocks.BL_TANK, new ExtendedStateMap.Builder().withName(BlockMoltenMetalTank.TYPE).withCamelCase(new char[]{'.'}).withPrefix("Armory.Blocks.Tank.").build());
-        ModelLoader.setCustomStateMapper(ModBlocks.BL_PUMP, new ExtendedStateMap.Builder().withName(BlockPump.TYPE).withCamelCase(new char[]{'.'}).withPrefix("Armory.Blocks.Pump.").build());
+        ModelLoader.setCustomStateMapper(ModBlocks.blockConduit, new ExtendedStateMap.Builder().withName(BlockConduit.TYPE).withCamelCase(new char[]{'.'}).withPrefix("Armory.Blocks.Conduit.").build());
+        ModelLoader.setCustomStateMapper(ModBlocks.blockMoltenMetalTank, new ExtendedStateMap.Builder().withName(BlockMoltenMetalTank.TYPE).withCamelCase(new char[]{'.'}).withPrefix("Armory.Blocks.Tank.").build());
+        ModelLoader.setCustomStateMapper(ModBlocks.blockMoltenMetalPump, new ExtendedStateMap.Builder().withName(BlockPump.TYPE).withCamelCase(new char[]{'.'}).withPrefix("Armory.Blocks.Pump.").build());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityForge.class, new TileEntityRendererForge());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConduit.class, new TileEntityRendererConduit());

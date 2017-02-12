@@ -195,7 +195,7 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
     @Nullable
     @Override
     public IAnvilRecipe getRecipeForAnvil() {
-        ItemStack stack = new ItemStack(Item.getItemFromBlock(ModBlocks.BL_ANVIL));
+        ItemStack stack = new ItemStack(Item.getItemFromBlock(ModBlocks.blockBlackSmithsAnvil));
 
         NBTTagCompound compound = new NBTTagCompound();
         compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, getRegistryName().toString());

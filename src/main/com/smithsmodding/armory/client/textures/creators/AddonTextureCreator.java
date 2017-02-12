@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class AddonTextureCreator extends IForgeRegistryEntry.Impl<ICreationController> implements ICreationController {
 
-    public static final String ADDONTEXTUREIDENTIFIER = "addon";
+    public static final String ADDONTEXTUREIDENTIFIER = "Addon";
 
     /**
      * Method to create a materialized texture. It is called from the MaterializedTextureCreator to create the texture in the Map

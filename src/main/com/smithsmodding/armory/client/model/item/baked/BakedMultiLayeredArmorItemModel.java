@@ -91,7 +91,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
 
             ICoreArmorMaterial coreArmorMaterial = capability.getMaterial();
 
-            ArrayList<IMultiComponentArmorExtensionInformation> installedExtensions = capability.getInstalledExtensions();
+            ArrayList<IMultiComponentArmorExtensionInformation> installedExtensions = new ArrayList<>();
 
             //Sort the list based on priority.
             Collections.sort(installedExtensions, new Comparator<IMultiComponentArmorExtensionInformation>() {
@@ -113,10 +113,8 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
 
                 IBakedModel partModel;
                 ResourceLocation addonArmorMaterialName = null;
-                if (extension instanceof IMaterialDependantMultiComponentArmorExtension) {
+                if (extension instanceof IMaterialDependantMultiComponentArmorExtension)
                     addonArmorMaterialName = ((IMaterialDependantMultiComponentArmorExtension) extension).getMaterial().getRegistryName();
-                    extension = ((IMaterialDependantMultiComponentArmorExtension)extension).getMaterialIndependentExtension();
-                }
 
                 if (broken && parent.brokenParts.containsKey(extension) && parent.brokenParts.get(extension) != null) {
                     partModel = parent.brokenParts.get(extension).getModelByIdentifier(addonArmorMaterialName);

@@ -16,7 +16,6 @@ import com.smithsmodding.armory.common.tileentity.*;
 import com.smithsmodding.armory.util.CapabilityHelper;
 import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -74,36 +73,10 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
     }
 
     private static void registerCreativeTabs() {
-        ModCreativeTabs.GENERAL = new GeneralTabs();
-        ModCreativeTabs.COMPONENTS = new ComponentsTab();
-        ModCreativeTabs.HEATEDITEM = new HeatedItemTab();
-        ModCreativeTabs.ARMOR = new ArmorTab();
-
-        ModItems.IT_CHAIN.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_GUIDE.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_HAMMER.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_INGOT.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_NUGGET.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_PLATE.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_RING.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_TONGS.setCreativeTab(ModCreativeTabs.GENERAL);
-
-        ModItems.IT_COMPONENT.setCreativeTab(ModCreativeTabs.COMPONENTS);
-
-        ModItems.IT_HEATEDITEM.setCreativeTab(ModCreativeTabs.HEATEDITEM);
-
-        ModItems.Armor.IT_CHESTPLATE.setCreativeTab(ModCreativeTabs.ARMOR);
-        ModItems.Armor.IT_HELMET.setCreativeTab(ModCreativeTabs.ARMOR);
-        ModItems.Armor.IT_LEGGINGS.setCreativeTab(ModCreativeTabs.ARMOR);
-        ModItems.Armor.IT_SHOES.setCreativeTab(ModCreativeTabs.ARMOR);
-
-        ModBlocks.BL_ANVIL.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModBlocks.BL_CONDUIT.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModBlocks.BL_FIREPLACE.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModBlocks.BL_FORGE.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModBlocks.BL_PUMP.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModBlocks.BL_TANK.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModBlocks.BL_RESOURCE.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModCreativeTabs.generalTab = new GeneralTabs();
+        ModCreativeTabs.componentsTab = new ComponentsTab();
+        ModCreativeTabs.heatedItemTab = new HeatedItemTab();
+        ModCreativeTabs.armorTab = new ArmorTab();
     }
 
     private static void removeRecipes() {
@@ -174,14 +147,12 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
         NonNullList<ItemStack> plates = NonNullList.create();
         NonNullList<ItemStack> nuggets = NonNullList.create();
         NonNullList<ItemStack> ingots = NonNullList.create();
-        NonNullList<ItemStack> blocks = NonNullList.create();
 
         ModItems.IT_CHAIN.getSubItems(ModItems.IT_CHAIN, null, chains);
         ModItems.IT_NUGGET.getSubItems(ModItems.IT_NUGGET, null, rings);
         ModItems.IT_PLATE.getSubItems(ModItems.IT_PLATE, null, plates);
         ModItems.IT_RING.getSubItems(ModItems.IT_RING, null, nuggets);
         ModItems.IT_INGOT.getSubItems(ModItems.IT_INGOT, null, ingots);
-        ModBlocks.BL_RESOURCE.getSubBlocks(Item.getItemFromBlock(ModBlocks.BL_RESOURCE), null, blocks);
 
         for (ItemStack chain : chains) {
             OreDictionary.registerOre("chain" + CapabilityHelper.getMaterialFromMaterializedStack(chain).getOreDictionaryIdentifier(), chain);
@@ -201,10 +172,6 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
 
         for (ItemStack ingot : ingots) {
             OreDictionary.registerOre("ingot" + CapabilityHelper.getMaterialFromMaterializedStack(ingot).getOreDictionaryIdentifier(), ingot);
-        }
-
-        for (ItemStack block : blocks) {
-            OreDictionary.registerOre("block" + CapabilityHelper.getMaterialFromMaterializedStack(block).getOreDictionaryIdentifier(), block);
         }
 
         OreDictionary.registerOre("blockObsidian", Blocks.OBSIDIAN);

@@ -85,7 +85,7 @@ import static com.smithsmodding.armory.api.util.references.References.InternalNa
  * Created by marcf on 1/25/2017.
  */
 @AutomaticEventBusSubscriber(types = {AutomaticEventBusSubscriber.BusType.SERVER}, modid = References.General.MOD_ID)
-@Mod.EventBusSubscriber() //modid = (References.General.MOD_ID)
+@Mod.EventBusSubscriber(modid = References.General.MOD_ID)
 public class CommonMedievalRegistrationInitializer {
 
     //Events
@@ -190,7 +190,7 @@ public class CommonMedievalRegistrationInitializer {
                             @Override
                             public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideCoreMaterialCapabilities(IMultiComponentArmor armor) {
                                 //TODO: Add capabilities for core material,
-                                return new HashMap<>();
+                                return null;
                             }
                         }).setRegistryName(CMN_IRON);
 
@@ -208,7 +208,7 @@ public class CommonMedievalRegistrationInitializer {
                             @Override
                             public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideCoreMaterialCapabilities(IMultiComponentArmor armor) {
                                 //TODO: Add capabilities for core material,
-                                return new HashMap<>();
+                                return null;
                             }
                         }).setRegistryName(CMN_STEEL);
 
@@ -226,7 +226,7 @@ public class CommonMedievalRegistrationInitializer {
                             @Override
                             public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideCoreMaterialCapabilities(IMultiComponentArmor armor) {
                                 //TODO: Add capabilities for core material,
-                                return new HashMap<>();
+                                return null;
                             }
                         }).setRegistryName(CMN_GOLD);
 
@@ -244,7 +244,7 @@ public class CommonMedievalRegistrationInitializer {
                             @Override
                             public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideCoreMaterialCapabilities(IMultiComponentArmor armor) {
                                 //TODO: Add capabilities for core material,
-                                return new HashMap<>();
+                                return null;
                             }
                         }).setRegistryName(CMN_OBSIDIAN);
 
@@ -272,7 +272,7 @@ public class CommonMedievalRegistrationInitializer {
                             @Nonnull
                             @Override
                             public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideAddonMaterialCapabilities(IMultiComponentArmorExtension extension) {
-                                return new HashMap<>();
+                                return null;
                             }
                         }).setRegistryName(AMN_IRON);
 
@@ -289,7 +289,7 @@ public class CommonMedievalRegistrationInitializer {
                             @Nonnull
                             @Override
                             public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideAddonMaterialCapabilities(IMultiComponentArmorExtension extension) {
-                                return new HashMap<>();
+                                return null;
                             }
                         }).setRegistryName(AMN_STEEL);
 
@@ -306,7 +306,7 @@ public class CommonMedievalRegistrationInitializer {
                             @Nonnull
                             @Override
                             public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideAddonMaterialCapabilities(IMultiComponentArmorExtension extension) {
-                                return new HashMap<>();
+                                return null;
                             }
                         }).setRegistryName(AMN_GOLD);
 
@@ -323,7 +323,7 @@ public class CommonMedievalRegistrationInitializer {
                             @Nonnull
                             @Override
                             public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideAddonMaterialCapabilities(IMultiComponentArmorExtension extension) {
-                                return new HashMap<>();
+                                return null;
                             }
                         }).setRegistryName(AMN_OBSIDIAN);
 
@@ -1205,10 +1205,6 @@ public class CommonMedievalRegistrationInitializer {
         extensionRegistry.register(STOMACHRIGHT);
         extensionRegistry.register(BACKLEFT);
         extensionRegistry.register(BACKRIGHT);
-        extensionRegistry.register(SHINLEFT);
-        extensionRegistry.register(SHINRIGHT);
-        extensionRegistry.register(CALFLEFT);
-        extensionRegistry.register(CALFRIGHT);
         extensionRegistry.register(LACESLEFT);
         extensionRegistry.register(LACESRIGHT);
 

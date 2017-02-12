@@ -21,7 +21,6 @@ import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
@@ -43,14 +42,12 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
 
     @Override
     public void onLoadCompleted(@Nonnull FMLLoadCompleteEvent event) {
-        IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().getValues().clear();
         initializeAnvilRecipes();
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.IT_HAMMER, 1, 150), "  B", " S ", "S  ", 'B', new ItemStack(Blocks.IRON_BLOCK), 'S', new ItemStack(Items.STICK));
-        registerHeatableOverrides();
     }
 
-    private static void initializeAnvilRecipes() {
-        ItemStack fireplaceStack = new ItemStack(ModBlocks.BL_FIREPLACE);
+    public static void initializeAnvilRecipes() {
+        ItemStack fireplaceStack = new ItemStack(ModBlocks.blockFirePlace);
         IAnvilRecipe fireplaceRecipe = new AnvilRecipe()
                 .setCraftingSlotContent(0, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
                 .setCraftingSlotContent(1, new OreDicAnvilRecipeComponent(new ItemStack(Blocks.COBBLESTONE)))
@@ -76,7 +73,7 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
                 .setHammerUsage(0).setTongUsage(0).setResult(fireplaceStack).setProgress(10).setRegistryName(RN_FIREPLACE);
         IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(fireplaceRecipe);
 
-        ItemStack forgeStack = new ItemStack(ModBlocks.BL_FORGE);
+        ItemStack forgeStack = new ItemStack(ModBlocks.blockForge);
         IAnvilRecipe forgeRecipe = new AnvilRecipe()
                 .setCraftingSlotContent(0, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.INGOT, ModHeatableObjects.ITEMSTACK, ModMaterials.Armor.Core.IRON, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.85F, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.95F))
                 .setCraftingSlotContent(4, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.INGOT, ModHeatableObjects.ITEMSTACK, ModMaterials.Armor.Core.IRON, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.85F, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.95F))
@@ -133,7 +130,7 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
         initializeUpgradeRecipeSystem();
     }
 
-    private static void initializeAnvilCreationAnvilRecipes() {
+    public static void initializeAnvilCreationAnvilRecipes() {
         for (IAnvilMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry()) {
             IAnvilRecipe recipe = material.getRecipeForAnvil();
 
@@ -150,7 +147,7 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
         IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry().forEach(new MaterializedResourceRecipeCreationHandler());
     }
 
-    private static void initializeMedievalArmorAnvilRecipes() {
+    public static void initializeMedievalArmorAnvilRecipes() {
         for (ICoreArmorMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry()) {
             ItemStack chestPlateStack = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.CHESTPLATE, new ArrayList<>(), material.getBaseDurabilityForArmor(ModArmor.Medieval.CHESTPLATE), material);
             IAnvilRecipe chestPlateRecipe = new AnvilRecipe()
@@ -249,15 +246,12 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
 
             IAnvilRecipe recipe = extension.getRecipeCallback().getCreationRecipe(extension);
 
-            if (IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().containsKey(recipe.getRegistryName()))
-                continue;
-
             if (recipe != null)
                 IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(recipe);
         }
     }
 
-    private static void initializeUpgradeRecipeSystem() {
+    public static void initializeUpgradeRecipeSystem() {
         IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorRegistry().forEach(iMultiComponentArmor -> {
             IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry().forEach(iCoreArmorMaterial -> {
                 IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().forEach(extension -> {
@@ -266,72 +260,11 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
 
                     IAnvilRecipe upgradeRecipe = extension.getRecipeCallback().getAttachingRecipe(extension, iMultiComponentArmor, iCoreArmorMaterial);
 
-                    if (IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().containsKey(upgradeRecipe.getRegistryName()))
-                        return;
-
                     if (upgradeRecipe != null)
                         IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(upgradeRecipe);
                 });
             });
         });
-    }
-
-    private static void registerHeatableOverrides() {
-        registerHeatableOverrideForItems(ModMaterials.Armor.Core.IRON, new ItemStack(Items.IRON_INGOT), null, new ItemStack(Blocks.IRON_BLOCK), null, null, null);
-        registerHeatableOverrideForItems(ModMaterials.Armor.Addon.IRON, new ItemStack(Items.IRON_INGOT), null, new ItemStack(Blocks.IRON_BLOCK), null, null, null);
-        registerHeatableOverrideForItems(ModMaterials.Anvil.IRON, new ItemStack(Items.IRON_INGOT), null, new ItemStack(Blocks.IRON_BLOCK), null, null, null);
-
-        registerHeatableOverrideForItems(ModMaterials.Armor.Core.OBSIDIAN, null, null, new ItemStack(Blocks.OBSIDIAN), null, null, null);
-        registerHeatableOverrideForItems(ModMaterials.Armor.Addon.OBSIDIAN, null, null, new ItemStack(Blocks.OBSIDIAN), null, null, null);
-        registerHeatableOverrideForItems(ModMaterials.Anvil.OBSIDIAN, null, null, new ItemStack(Blocks.OBSIDIAN), null, null, null);
-
-        registerHeatableOverrideForItems(ModMaterials.Armor.Core.GOLD, new ItemStack(Items.GOLD_INGOT), new ItemStack(Items.GOLD_NUGGET), new ItemStack(Blocks.GOLD_BLOCK), null, null, null);
-        registerHeatableOverrideForItems(ModMaterials.Armor.Addon.GOLD, new ItemStack(Items.GOLD_INGOT), new ItemStack(Items.GOLD_NUGGET), new ItemStack(Blocks.GOLD_BLOCK), null, null, null);
-    }
-
-    private static void registerHeatableOverrideForItems(@Nonnull IMaterial material
-            , @Nullable ItemStack ingotItem
-            , @Nullable ItemStack nuggetItem
-            , @Nullable ItemStack blockItem
-            , @Nullable ItemStack chainItem
-            , @Nullable ItemStack ringItem
-            , @Nullable ItemStack plateItem) {
-
-        if (ingotItem != null)
-            IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(ModHeatableObjects.ITEMSTACK
-                , ModHeatedObjectTypes.INGOT
-                , material
-                , ingotItem);
-
-        if (nuggetItem != null)
-            IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(ModHeatableObjects.ITEMSTACK
-                , ModHeatedObjectTypes.NUGGET
-                , material
-                , nuggetItem);
-
-        if (blockItem != null)
-            IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(ModHeatableObjects.ITEMSTACK
-                , ModHeatedObjectTypes.BLOCK
-                , material
-                , blockItem);
-
-        if (chainItem != null)
-            IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(ModHeatableObjects.ITEMSTACK
-                    , ModHeatedObjectTypes.CHAIN
-                    , material
-                    , chainItem);
-
-        if (ringItem != null)
-            IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(ModHeatableObjects.ITEMSTACK
-                    , ModHeatedObjectTypes.RING
-                    , material
-                    , ringItem);
-
-        if (plateItem != null)
-            IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(ModHeatableObjects.ITEMSTACK
-                    , ModHeatedObjectTypes.PLATE
-                    , material
-                    , plateItem);
     }
 
     private static class MaterializedResourceRecipeCreationHandler implements Consumer<IMaterial> {

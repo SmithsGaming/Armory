@@ -1,8 +1,6 @@
 package com.smithsmodding.armory.client.model.item.baked;
 
 import com.google.common.collect.ImmutableMap;
-import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponentArmorExtension;
-import com.smithsmodding.armory.api.common.armor.IMaterializableMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.capability.IArmorComponentStackCapability;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
@@ -57,19 +55,8 @@ public class BakedArmorComponentModel extends BakedWrappedModel.PerspectiveAware
 
             IArmorComponentStackCapability extensionCapability = stack.getCapability(ModCapabilities.MOD_ARMORCOMPONENT_CAPABILITY, null);
 
-            IMultiComponentArmorExtension extension = extensionCapability.getExtension();
-            if (extension instanceof IMaterialDependantMultiComponentArmorExtension) {
-                extension = ((IMaterialDependantMultiComponentArmorExtension) extension).getMaterialIndependentExtension();
-            }
-
-            if (parent.typeModels.containsKey(extension)) {
-                IBakedModel returnModel = parent.typeModels.get(extension);
-
-                if (extension instanceof IMaterializableMultiComponentArmorExtension) {
-                    returnModel = ((BakedComponentModel) returnModel).getModelByIdentifier(((IMaterialDependantMultiComponentArmorExtension) extensionCapability.getExtension()).getMaterial().getRegistryName());
-                }
-
-                return returnModel;
+            if (parent.typeModels.containsKey(extensionCapability.getExtension())) {
+                return parent.typeModels.get(extensionCapability.getExtension());
             }
 
             return originalModel;

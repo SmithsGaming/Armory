@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.unbaked.HeatedItemItemModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.TemperatureBarComponentModel;
+import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.resources.IResourceManager;
@@ -79,9 +80,12 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
             //Construct the new unbaked model from the collected data.
             IModel output = new HeatedItemItemModel(builder.build());
 
+            // Load all textures we need in to the creator.
+            MaterializedTextureCreator.registerBaseTexture(builder.build());
+
             return output;
         } catch (IOException e) {
-            ModLogger.getInstance().error(String.format("Could not load HeatedItemModel {}", modelLocation.toString()));
+            ModLogger.getInstance().error(String.format("Could not load multimodel {}", modelLocation.toString()));
         }
 
         //If all fails return a Missing model.

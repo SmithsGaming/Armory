@@ -2,12 +2,12 @@ package com.smithsmodding.armory.client.model.loaders;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.smithsmodding.armory.api.client.model.deserializers.MultiLayeredArmorModelDeserializer;
-import com.smithsmodding.armory.api.client.model.deserializers.definition.MultiLayeredArmorModelDefinition;
-import com.smithsmodding.armory.api.common.armor.IMaterializableMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.events.client.model.item.MultiLayeredArmorModelTextureLoadEvent;
+import com.smithsmodding.armory.api.client.model.deserializers.MultiLayeredArmorModelDeserializer;
+import com.smithsmodding.armory.api.client.model.deserializers.definition.MultiLayeredArmorModelDefinition;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.unbaked.MultiLayeredArmorItemModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorAddonComponentModel;
@@ -15,7 +15,6 @@ import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorCoreCo
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorSubComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
-import com.smithsmodding.armory.util.armor.ArmorHelper;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.resources.IResourceManager;
@@ -52,7 +51,7 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
         try {
             //Retrieve the Name of the armor.
             //The file name without the extension has to be equal to the Name used in Armories registry.
-            IMultiComponentArmor armor = ArmorHelper.getArmorForModel(modelLocation);
+            IMultiComponentArmor armor = ArmoryAPI.getInstance().getRegistryManager().getMultiComponentArmorRegistry().getValue(modelLocation);
 
             //If none is registered return missing model and print out an error.
             if (armor == null) {
@@ -174,7 +173,7 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
             }
 
             ArmorSubComponentModel componentModel;
-            if (extension instanceof IMaterializableMultiComponentArmorExtension) {
+            if (extension instanceof IMaterialDependantMultiComponentArmorExtension) {
                 componentModel = new ArmorAddonComponentModel(ImmutableList.of(texture));
             } else {
                 componentModel = new ArmorSubComponentModel(ImmutableList.of(texture));

@@ -12,7 +12,7 @@ public class ItemHeatableMetalIngot extends ItemHeatableResource {
 
     public ItemHeatableMetalIngot() {
         this.setMaxStackSize(64);
-        this.setCreativeTab(ModCreativeTabs.COMPONENTS);
+        this.setCreativeTab(ModCreativeTabs.componentsTab);
         this.setUnlocalizedName(References.InternalNames.Items.IN_METALINGOT);
         this.setRegistryName(References.InternalNames.Items.IN_METALINGOT);
     }
