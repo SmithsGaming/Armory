@@ -5,6 +5,7 @@ import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.smithsmodding.armory.api.item.IHeatableItem;
 import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.armory.common.factory.HeatedItemFactory;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -88,5 +89,17 @@ public class BlackSmithsAnvilRecipeWrapper extends BlankRecipeWrapper {
 
     public int getTongUsage() {
         return tongUsage;
+    }
+
+    /**
+     * Gets all the recipe's ingredients by filling out an instance of {@link IIngredients}.
+     *
+     * @param ingredients
+     * @since JEI 3.11.0
+     */
+    @Override
+    public void getIngredients(IIngredients ingredients) {
+        ingredients.setInputs(ItemStack.class, getInputs());
+        ingredients.setOutputs(ItemStack.class, getOutputs());
     }
 }

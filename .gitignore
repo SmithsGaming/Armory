@@ -31,4 +31,4 @@ out
 *.db
 .gradle/
 classes/
-.idea/
+.idea

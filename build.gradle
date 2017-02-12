@@ -19,7 +19,7 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
-        classpath 'com.selesse:gradle-git-changelog:0.3.0-SNAPSHOT'
+        classpath 'com.selesse:gradle-git-changelog:0.4.0-SNAPSHOT'
     }
 }
 
