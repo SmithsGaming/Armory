@@ -50,7 +50,7 @@ public class BlacksmithsAnvilRecipeCategory implements IRecipeCategory {
 
     /**
      * Optional icon for the category tab.
-     * If no icon is defined here, JEI will use first item registered with ModRegistry#addRecipeCategoryCraftingItem(ItemStack, String...)
+     * If no icon is defined here, JEI will use first item registered with {@link IModRegistry#addRecipeCategoryCraftingItem(ItemStack, String...)}
      *
      * @return icon to draw on the category tab, max size is 16x16 pixels.
      * @since 3.13.1
