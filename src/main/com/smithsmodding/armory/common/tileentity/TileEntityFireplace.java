@@ -4,7 +4,7 @@ import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityFireplaceGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityFireplaceState;
-import com.smithsmodding.armory.api.util.common.ItemStackHelper;
+import com.smithsmodding.armory.util.ItemStackHelper;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;

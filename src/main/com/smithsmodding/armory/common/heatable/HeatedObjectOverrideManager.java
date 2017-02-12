@@ -7,7 +7,7 @@ import com.smithsmodding.armory.api.common.heatable.IHeatedObjectOverrideManager
 import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
-import com.smithsmodding.armory.api.util.common.Triple;
+import com.smithsmodding.armory.util.Triple;
 import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import gnu.trove.map.hash.TCustomHashMap;
 import gnu.trove.strategy.HashingStrategy;

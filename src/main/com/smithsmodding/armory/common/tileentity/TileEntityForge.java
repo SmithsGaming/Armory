@@ -12,7 +12,7 @@ import com.smithsmodding.armory.common.structure.forge.StructureForge;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityForgeGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.IForgeFuelDataContainer;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityForgeState;
-import com.smithsmodding.armory.api.util.common.ItemStackHelper;
+import com.smithsmodding.armory.util.ItemStackHelper;
 import com.smithsmodding.smithscore.client.events.models.block.BlockModelUpdateEvent;
 import com.smithsmodding.smithscore.common.events.structure.StructureEvent;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;

@@ -10,7 +10,7 @@ import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapabi
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedCoreComponentModel;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
-import com.smithsmodding.armory.api.util.common.armor.ArmorNBTHelper;
+import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;

@@ -12,7 +12,7 @@ import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.common.factories.ArmorFactory;
-import com.smithsmodding.armory.api.util.common.CapabilityHelper;
+import com.smithsmodding.armory.util.CapabilityHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

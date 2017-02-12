@@ -11,7 +11,7 @@ import com.smithsmodding.armory.api.common.capability.IMaterializedStackCapabili
 import com.smithsmodding.armory.api.common.heatable.IHeatableObjectWrapper;
 import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
-import com.smithsmodding.armory.api.util.common.CapabilityHelper;
+import com.smithsmodding.armory.util.CapabilityHelper;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;

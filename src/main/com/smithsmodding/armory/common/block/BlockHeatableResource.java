@@ -8,7 +8,7 @@ import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper
 import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.common.block.properties.PropertyHeatableMaterial;
 import com.smithsmodding.armory.common.tileentity.TileEntityHeatableBlock;
-import com.smithsmodding.armory.api.util.common.CapabilityHelper;
+import com.smithsmodding.armory.util.CapabilityHelper;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;
 import net.minecraft.block.material.Material;

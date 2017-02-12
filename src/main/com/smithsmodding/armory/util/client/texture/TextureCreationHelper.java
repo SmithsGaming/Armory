@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.api.util.client;
+package com.smithsmodding.armory.util.client.texture;
 
 import com.smithsmodding.armory.api.client.model.renderinfo.IRenderInfoProvider;
 import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;

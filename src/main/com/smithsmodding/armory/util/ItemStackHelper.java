@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.api.util.common;
+package com.smithsmodding.armory.util;
 
 import net.minecraft.item.ItemStack;
 

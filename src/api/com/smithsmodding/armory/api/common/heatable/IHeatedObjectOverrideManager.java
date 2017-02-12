@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.api.common.heatable;
 
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
-import com.smithsmodding.armory.api.util.common.Triple;
+import com.smithsmodding.armory.util.Triple;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
