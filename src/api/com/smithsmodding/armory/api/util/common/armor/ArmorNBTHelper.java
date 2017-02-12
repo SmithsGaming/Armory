@@ -5,12 +5,12 @@ package com.smithsmodding.armory.api.util.common.armor;
  *   Created on: 14-9-2014
  */
 
-import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionInformation;
 import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapability;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.armory.common.api.ArmoryAPI;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -33,7 +33,7 @@ public class ArmorNBTHelper {
     @Nonnull
     public static IMultiComponentArmor getArmorFromStack(@Nonnull ItemStack stack) {
         if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
-            return IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorRegistry().getValue(new ResourceLocation(References.General.MOD_ID.toLowerCase(), References.InternalNames.Armor.MEDIEVALCHESTPLATE));
+            return ArmoryAPI.getInstance().getRegistryManager().getMultiComponentArmorRegistry().getValue(new ResourceLocation(References.General.MOD_ID.toLowerCase(), References.InternalNames.Armor.MEDIEVALCHESTPLATE));
 
         return stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null).getArmorType();
     }
@@ -70,8 +70,8 @@ public class ArmorNBTHelper {
             NBTTagCompound compound = extensionList.getCompoundTagAt(i);
 
             extensions.add(new IMultiComponentArmorExtensionInformation.Impl()
-                    .setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Addons.AddonID))))
-                    .setPosition(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionPositionRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Addons.AddonPositionID))))
+                    .setExtension(ArmoryAPI.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Addons.AddonID))))
+                    .setPosition(ArmoryAPI.getInstance().getRegistryManager().getMultiComponentArmorExtensionPositionRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Addons.AddonPositionID))))
                     .setCount(compound.getInteger(References.NBTTagCompoundData.Addons.AddonInstalledAmount)));
         }
 
