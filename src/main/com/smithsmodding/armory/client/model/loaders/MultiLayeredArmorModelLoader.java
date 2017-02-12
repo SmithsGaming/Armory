@@ -15,7 +15,7 @@ import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorCoreCo
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorSubComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
-import com.smithsmodding.armory.util.armor.ArmorHelper;
+import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.resources.IResourceManager;

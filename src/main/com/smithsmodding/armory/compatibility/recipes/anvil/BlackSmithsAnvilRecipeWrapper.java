@@ -5,7 +5,7 @@ import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRec
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.armory.common.factories.HeatedItemFactory;
-import com.smithsmodding.armory.util.ItemStackHelper;
+import com.smithsmodding.armory.api.util.common.ItemStackHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.item.ItemStack;

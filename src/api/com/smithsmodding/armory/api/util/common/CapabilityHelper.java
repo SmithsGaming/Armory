@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.util;
+package com.smithsmodding.armory.api.util.common;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;

@@ -23,7 +23,7 @@ import com.smithsmodding.armory.common.armor.extension.MedievalArmorExtension;
 import com.smithsmodding.armory.common.armor.extension.MedievalArmorExtensionPosition;
 import com.smithsmodding.armory.common.armor.extension.MedievalMaterialDependantArmorExtension;
 import com.smithsmodding.armory.common.crafting.blacksmiths.recipe.ArmorUpgradeAnvilRecipe;
-import com.smithsmodding.armory.util.CapabilityHelper;
+import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import com.smithsmodding.smithscore.common.events.AutomaticEventBusSubscriber;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;

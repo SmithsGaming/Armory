@@ -13,7 +13,7 @@ import com.smithsmodding.armory.common.creativetabs.GeneralTabs;
 import com.smithsmodding.armory.common.creativetabs.HeatedItemTab;
 import com.smithsmodding.armory.common.fluid.FluidMoltenMetal;
 import com.smithsmodding.armory.common.tileentity.*;
-import com.smithsmodding.armory.util.CapabilityHelper;
+import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;

@@ -7,7 +7,7 @@ package com.smithsmodding.armory.common.handlers;
 import com.smithsmodding.armory.api.util.references.ModBlocks;
 import com.smithsmodding.armory.api.util.references.ModHeatedObjectTypes;
 import com.smithsmodding.armory.api.util.references.ModMaterials;
-import com.smithsmodding.armory.util.CapabilityHelper;
+import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;

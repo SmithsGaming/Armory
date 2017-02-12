@@ -140,12 +140,12 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
 
     @Override
     public void clearInventory() {
-        com.smithsmodding.armory.util.ItemStackHelper.InitializeItemStackArray(craftingStacks);
-        com.smithsmodding.armory.util.ItemStackHelper.InitializeItemStackArray(outputStacks);
-        com.smithsmodding.armory.util.ItemStackHelper.InitializeItemStackArray(hammerStacks);
-        com.smithsmodding.armory.util.ItemStackHelper.InitializeItemStackArray(tongStacks);
-        com.smithsmodding.armory.util.ItemStackHelper.InitializeItemStackArray(additionalCraftingStacks);
-        com.smithsmodding.armory.util.ItemStackHelper.InitializeItemStackArray(coolingStacks);
+        com.smithsmodding.armory.api.util.common.ItemStackHelper.InitializeItemStackArray(craftingStacks);
+        com.smithsmodding.armory.api.util.common.ItemStackHelper.InitializeItemStackArray(outputStacks);
+        com.smithsmodding.armory.api.util.common.ItemStackHelper.InitializeItemStackArray(hammerStacks);
+        com.smithsmodding.armory.api.util.common.ItemStackHelper.InitializeItemStackArray(tongStacks);
+        com.smithsmodding.armory.api.util.common.ItemStackHelper.InitializeItemStackArray(additionalCraftingStacks);
+        com.smithsmodding.armory.api.util.common.ItemStackHelper.InitializeItemStackArray(coolingStacks);
     }
 
     @Override

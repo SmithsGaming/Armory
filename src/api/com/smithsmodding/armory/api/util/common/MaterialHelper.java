@@ -1,7 +1,7 @@
-package com.smithsmodding.armory.util;
+package com.smithsmodding.armory.api.util.common;
 
+import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
-import com.smithsmodding.armory.common.api.ArmoryAPI;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
@@ -20,12 +20,6 @@ public final class MaterialHelper {
      */
     @Nullable
     public static IMaterial getMaterialFromRegistries(ResourceLocation name) {
-        if (ArmoryAPI.getInstance().getRegistryManager().getCoreMaterialRegistry().containsKey(name))
-            return ArmoryAPI.getInstance().getRegistryManager().getCoreMaterialRegistry().getValue(name);
-
-        if (ArmoryAPI.getInstance().getRegistryManager().getAddonArmorMaterialRegistry().containsKey(name))
-            return ArmoryAPI.getInstance().getRegistryManager().getAddonArmorMaterialRegistry().getValue(name);
-
-        return ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(name);
+        return IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry().getValue(name).getWrapped();
     }
 }

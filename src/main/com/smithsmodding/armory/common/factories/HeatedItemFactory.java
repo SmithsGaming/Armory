@@ -14,7 +14,7 @@ import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModItems;
-import com.smithsmodding.armory.util.Triple;
+import com.smithsmodding.armory.api.util.common.Triple;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import net.minecraft.item.ItemStack;
 

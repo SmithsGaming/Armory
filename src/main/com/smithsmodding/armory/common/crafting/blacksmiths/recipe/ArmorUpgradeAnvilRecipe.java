@@ -12,7 +12,7 @@ import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.armory.api.util.references.ModItems;
 import com.smithsmodding.armory.common.factories.ArmorFactory;
-import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
+import com.smithsmodding.armory.api.util.common.armor.ArmorNBTHelper;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;

@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.util;
+package com.smithsmodding.armory.api.util.common;
 
 import javax.annotation.Nonnull;
 

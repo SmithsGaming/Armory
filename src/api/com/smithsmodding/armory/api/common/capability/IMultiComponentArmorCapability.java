@@ -8,7 +8,7 @@ import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
-import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
+import com.smithsmodding.armory.api.util.common.armor.ArmorNBTHelper;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -134,7 +134,7 @@ public interface IMultiComponentArmorCapability {
     class Impl implements IMultiComponentArmorCapability {
 
         @Nonnull
-        private IMultiComponentArmor armor = ArmoryAPI.getInstance().getRegistryManager()
+        private IMultiComponentArmor armor = IArmoryAPI.Holder.getInstance().getRegistryManager()
                 .getMultiComponentArmorRegistry().getValue(new ResourceLocation(References.General.MOD_ID.toLowerCase(), References.InternalNames.Armor.MEDIEVALCHESTPLATE));
 
         @Nonnull

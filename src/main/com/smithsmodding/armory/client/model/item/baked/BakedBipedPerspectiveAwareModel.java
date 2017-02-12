@@ -1,23 +1,18 @@
 package com.smithsmodding.armory.client.model.item.baked;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.client.render.armor.BodyArmorPartRenderer;
 import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionInformation;
 import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapability;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.util.armor.ArmorNBTHelper;
+import com.smithsmodding.armory.api.util.common.armor.ArmorNBTHelper;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.model.TRSRTransformation;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;

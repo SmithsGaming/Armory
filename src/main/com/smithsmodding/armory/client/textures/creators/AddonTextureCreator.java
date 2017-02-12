@@ -4,7 +4,7 @@ import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.client.textures.creation.ICreationController;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
-import com.smithsmodding.armory.util.client.texture.TextureCreationHelper;
+import com.smithsmodding.armory.api.util.client.TextureCreationHelper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
