@@ -45,8 +45,8 @@ public interface IRegistryManager {
     IForgeRegistry<IAnvilMaterial> getAnvilMaterialRegistry();
 
     /**
-     * Getter for the @code{RegistryWrapper} Registry. Holds all registered @code{RegistryWrapper}. Managed by FML, as it is an instance of @code{IForgeRegistry}
-     * @return The @code{RegistryWrapper} Registry.
+     * Getter for the @code{RegistryWrapper<>} Registry. Holds all registered @code{RegistryWrapper<>}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * @return The @code{RegistryWrapper<>} Registry.
      */
     @Nonnull
     IForgeRegistry<RegistryMaterialWrapper> getCombinedMaterialRegistry();
