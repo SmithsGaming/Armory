@@ -11,44 +11,8 @@ The sync of the branches is not being executed, because we are not releasing a n
          by: Searge, ProfMobius, Fesh0r,         
          R4wk, ZeuX, IngisKahn, bspkrs           
 #################################################
-Found AccessTransformer: jei_at.cfg_jei_1.11-4.1.1.208_at.cfg
-Found AccessTransformer: SmithsCore_at.cfg_smithscore-1.11-1.3.0-268-SNAPSHOT_at.cfg
 Found AccessTransformer: Armory_at.cfg
-Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.11-1.3.0-297-SNAPSHOT/smithscore-1.11-1.3.0-297-20170210.225330-1.jar
-Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.11-1.3.0-297-SNAPSHOT/smithscore-1.11-1.3.0-297-20170210.225330-1-sources.jar
-:extractMcpMappings SKIPPED
-:deobfCompileDeobfDepTask0
-:deobfCompileDeobfDepTask1 SKIPPED
-:deobfCompileRemapDepSourcesTask2 SKIPPED
-:deobfCompileRemapDepSourcesTask3
-:deobfCompileDummyTask
-:deobfProvidedDummyTask
-:getVersionJson
-:extractUserdev UP-TO-DATE
-:extractDependencyATs UP-TO-DATE
-:extractMcpData SKIPPED
-:genSrgs SKIPPED
-:downloadClient SKIPPED
-:downloadServer SKIPPED
-:splitServerJar SKIPPED
-:mergeJars SKIPPED
-:deobfMcSRG SKIPPED
-:decompileMc SKIPPED
-:fixMcSources SKIPPED
-:applySourcePatches SKIPPED
-:remapMcSources SKIPPED
-:recompileMc SKIPPED
-:extractNatives SKIPPED
-:getAssetIndex UP-TO-DATE
-:getAssets
-Current status: 1194/1196   99%
-:makeStart
-:setupDecompWorkspace
-:ideaModule
-:ideaProject
-:ideaWorkspace
-:idea
 
 BUILD SUCCESSFUL
 
-Total time: 42.469 secs
+Total time: 17.51 secs
