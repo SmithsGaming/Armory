@@ -56,7 +56,7 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
      * Method to getCreationRecipe the TranslationKey.
      *
      * @return The translation key of the Material.
-     * medieval.
+     * @implNote This method only exists on the client side.
      */
     @Nonnull
     @Override
@@ -146,7 +146,7 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
      * Method used to getCreationRecipe the RenderInfo used to change the Texture of the Model if need be.
      *
      * @return The RenderInfo used to modify the Texture of the model.
-     * medieval.
+     * @implNote This method only exists on the client side.
      */
     @Nonnull
     @Override
@@ -159,7 +159,7 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
      *
      * @param info The RenderInfo used to modify the Texture of the Model.
      * @return The instance this method was called on.
-     * medieval.
+     * @implNote This method only exists on the client side.
      */
     @Nonnull
     @Override

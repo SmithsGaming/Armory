@@ -67,7 +67,7 @@ public abstract class MedievalAddonArmorMaterial extends IAddonArmorMaterial.Imp
      * Getter for the RenderInfo of the current Provider.
      *
      * @return The current renderinfo.
-     * medieval.
+     * @implNote This method only exist on the Client Side.
      */
     @SideOnly(Side.CLIENT)
     @Nonnull

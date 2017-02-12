@@ -78,7 +78,7 @@ public abstract class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<
      * Getter for the RenderInfo of the current Provider.
      *
      * @return The current renderinfo.
-     * medieval.
+     * @implNote This method only exist on the Client Side.
      */
     @Nonnull
     @Override
