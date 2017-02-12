@@ -8,7 +8,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
@@ -16,7 +15,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 
 /**
  * Created by Marc on 27.02.2016.
@@ -25,7 +25,7 @@ public class BlockFirePlace extends BlockArmoryTileEntity {
 
     public BlockFirePlace() {
         super(References.InternalNames.Blocks.Fireplace, Material.ROCK);
-        setCreativeTab(ModCreativeTabs.generalTab);
+        setCreativeTab(ModCreativeTabs.GENERAL);
         this.setDefaultState(this.blockState.getBaseState());
     }
 
@@ -36,19 +36,19 @@ public class BlockFirePlace extends BlockArmoryTileEntity {
      * @param worldIn
      * @param meta
      */
-    @NotNull
+    @Nonnull
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityFireplace();
     }
 
-    @NotNull
+    @Nonnull
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
@@ -75,12 +75,25 @@ public class BlockFirePlace extends BlockArmoryTileEntity {
     }
 
     @Override
-    public boolean isVisuallyOpaque() {
+    public boolean isFullyOpaque(IBlockState state) {
         return false;
     }
 
+    /**
+     * Called when the block is right clicked by a player.
+     *
+     * @param worldIn
+     * @param pos
+     * @param state
+     * @param playerIn
+     * @param hand
+     * @param facing
+     * @param hitX
+     * @param hitY
+     * @param hitZ
+     */
     @Override
-    public boolean onBlockActivated(@NotNull World worldIn, @NotNull BlockPos pos, IBlockState state, @NotNull EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (playerIn.isSneaking()) {
             return false;
         } else {

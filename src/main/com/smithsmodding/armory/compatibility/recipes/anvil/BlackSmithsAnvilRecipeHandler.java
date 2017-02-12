@@ -18,12 +18,6 @@ public class BlackSmithsAnvilRecipeHandler implements IRecipeHandler<BlackSmiths
 
     @Nonnull
     @Override
-    public String getRecipeCategoryUid() {
-        return References.Compatibility.JEI.RecipeTypes.ANVIL;
-    }
-
-    @Nonnull
-    @Override
     public String getRecipeCategoryUid(@Nonnull BlackSmithsAnvilRecipeWrapper recipe) {
         return References.Compatibility.JEI.RecipeTypes.ANVIL;
     }

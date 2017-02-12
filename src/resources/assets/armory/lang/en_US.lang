@@ -10,7 +10,7 @@ Armory.GUI.InfoTitel=Information
 #Firepit specific information
 Armory.GUI.Fireplace.Ledger.InfoLine1=The Fireplace is both your first heat source and an efficient furnace.
 Armory.GUI.Fireplace.Ledger.InfoLine2=It will slowly heat up most of your metals, yet it can not heat up all of them to their melting point.
-Armory.GUI.Fireplace.Ledger.InfoLine3=Keep your eye on it though as it can meld ingots that get to hot.
+Armory.GUI.Fireplace.Ledger.InfoLine3=Keep your eye on it though as it can meld ingots that get too hot.
 Armory.GUI.Fireplace.Ledger.TempTitel=Fireplace - Temperature
 Armory.GUI.Fireplace.Ledger.TempMax=Maximum
 Armory.GUI.Fireplace.Ledger.TempCurrent=Current
@@ -21,7 +21,7 @@ Armory.GUI.Fireplace.Ledger.CookingMultiplier=Speed multiplier
 Armory.GUI.Forge.Ledger.InfoLine1=The Forge is your basic heat source.
 Armory.GUI.Forge.Ledger.InfoLine2=It can heat up most of the basic materials and cook your food at twice the efficiency of a normal furnace.
 Armory.GUI.Forge.Ledger.InfoLine3=The hotter it gets the faster it cooks your food.
-Armory.GUI.Forge.Ledger.TempTitel=Fireplace - Temperature
+Armory.GUI.Forge.Ledger.TempTitel=Forge - Temperature
 Armory.GUI.Forge.Ledger.TempMax=Maximum
 Armory.GUI.Forge.Ledger.TempCurrent=Current
 Armory.GUI.Forge.Ledger.LastAdded=Last added
@@ -35,58 +35,52 @@ Armory.GUI.Anvil.Ledger.InfoLine2=It takes some time to process and sometimes a 
 Armory.NEI.Compatibility.ArmorsAnvilRecipe=Blacksmiths Anvil
 #
 #Blocks
-tile.Armory.Blocks.Forge.name=Forge
-tile.Armory.Blocks.Fireplace.name=Fireplace
-tile.Armory.Blocks.Heater.name=FirePit - Heater Extension
-tile.Armory.Blocks.Anvil.name=Blacksmiths Anvil
-tile.Armory.Blocks.Binder.name=Book binder
+tile.armory.blocks.forge.name=Forge
+tile.armory.blocks.fireplace.name=Fireplace
+tile.armory.blocks.heater.name=FirePit - Heater Extension
+tile.armory.blocks.anvil.name=Blacksmiths Anvil
+tile.armory.blocks.binder.name=Book binder
 #
 #Items
-item.Armory.Items.HeatedFan.name=Heater extension Fan
-item.Armory.Items.Components.MetalRing.name=Ring
-item.Armory.Items.Components.MetalChain.name=Chain
-item.Armory.Helmet.Medieval.name=Medieval Helmet
-item.Armory.Chestplate.Medieval.name=Medieval Chestplate
-item.Armory.Leggings.Medieval.name=Medieval Leggings
-item.Armory.Shoes.Medieval.name=Medieval Shoes
-item.Armory.Items.ItemHammer.name=Smith's Hammer
-item.Armory.Items.Tongs.name=Smith's Tongs
-item.Armory.Items.Components.MetalNugget.name=Nugget
-item.Armory.Items.Components.MetalPlate.name=Plate
-item.Armory.Items.SmithingsGuide.name=Smithing's Guide
-item.Armory.Items.Blueprint.name=Blacksmiths's Blueprint
-item.Armory.Items.Tab.name=Guide label
+item.armory.items.components.metalring.name=Ring
+item.armory.items.components.metalchain.name=Chain
+item.armory.multiarmor.armor.helmet=Medieval Helmet
+item.armory.multiarmor.armor.chestplate=Medieval Chestplate
+item.armory.multiarmor.armor.leggings=Medieval Leggings
+item.armory.multiarmor.armor.shoes=Medieval Shoes
+item.armory.items.itemhammer.name=Smith's Hammer
+item.armory.items.tongs.name=Smith's Tongs
+item.armory.items.components.metalnugget.name=Nugget
+item.armory.items.components.metalplate.name=Plate
+item.armory.items.smithingsguide.name=Smithing's Guide
+item.armory.items.components.metalingot.name=Ingot
 #
 #HeatedIngot Specific
-Armory.Items.HeatedIngot.Tooltip.Temperature=Current Temperature
+Armory.Items.HeatedObject.Tooltip.Temperature=Current Temperature
 #
 #Materials
-Armory.Materials.AnvilOnly.Vanilla.Stone=Stone
+Armory.Materials.Vanilla.Stone=Stone
 Armory.Materials.Vanilla.Iron=Iron
-Armory.Materials.Vanilla.Chain=Steel
+Armory.Materials.Armory.Steel=Steel
+Armory.Materials.Vanilla.Gold=Gold
 Armory.Materials.Vanilla.Obsidian=Obsidian
-Armory.Materials.TConstruct.Alumite=Alumite
-Armory.Materials.TConstruct.Ardite=Ardite
-Armory.Materials.TConstruct.Cobalt=Cobalt
-Armory.Materials.TConstruct.Manyullun=Manyullun
-Armory.Materials.Common.Bronze=Bronze
 #
 #MultiArmor Tier 1 Upgrades
 item.Armory.MultiArmor.Upgrade.Helmet.Top=Head Protector
-item.Armory.MultiArmor.Upgrade.Helmet.RightEar=Right ear Protector
-item.Armory.MultiArmor.Upgrade.Helmet.LeftEar=Left ear Protector
+item.Armory.MultiArmor.Upgrade.Helmet.Right=Right ear Protector
+item.Armory.MultiArmor.Upgrade.Helmet.Left=Left ear Protector
 item.Armory.MultiArmor.Upgrade.ChestPlate.ShoulderLeft=Left shoulder Protector Pad
 item.Armory.MultiArmor.Upgrade.ChestPlate.ShoulderRight=Right shoulder Protector Pad
-item.Armory.MultiArmor.Upgrade.ChestPlate.FrontLeft=Left stomach Protector
-item.Armory.MultiArmor.Upgrade.ChestPlate.FrontRight=Right stomach Protector
+item.Armory.MultiArmor.Upgrade.ChestPlate.StomachLeft=Left stomach Protector
+item.Armory.MultiArmor.Upgrade.ChestPlate.StomachRight=Right stomach Protector
 item.Armory.MultiArmor.Upgrade.ChestPlate.BackLeft=Left back Protector
 item.Armory.MultiArmor.Upgrade.ChestPlate.BackRight=Right back Protector
-item.Armory.MultiArmor.Upgrade.Leggings.FrontLeft=Left front leg Protector
-item.Armory.MultiArmor.Upgrade.Leggings.FrontRight=Right front leg Protector
-item.Armory.MultiArmor.Upgrade.Leggings.BackLeft=Left calf Protector
-item.Armory.MultiArmor.Upgrade.Leggings.BackRight=Right calf Protector
-item.Armory.MultiArmor.Upgrade.Shoes.Left=Left foot Protector
-item.Armory.MultiArmor.Upgrade.Shoes.Right=Right foot Protector
+item.Armory.MultiArmor.Upgrade.Leggings.ShinLeft=Left shin Protector
+item.Armory.MultiArmor.Upgrade.Leggings.ShinRight=Right shin Protector
+item.Armory.MultiArmor.Upgrade.Leggings.CalfLeft=Left calf Protector
+item.Armory.MultiArmor.Upgrade.Leggings.CalfRight=Right calf Protector
+item.Armory.MultiArmor.Upgrade.Shoes.LacesLeft=Left laces Protector
+item.Armory.MultiArmor.Upgrade.Shoes.LacesRight=Right laces Protector
 #
 #Commands
 armory.usage=/armory

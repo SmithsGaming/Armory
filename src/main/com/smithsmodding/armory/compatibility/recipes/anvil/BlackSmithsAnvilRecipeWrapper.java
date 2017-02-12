@@ -1,13 +1,14 @@
 package com.smithsmodding.armory.compatibility.recipes.anvil;
 
-import com.smithsmodding.armory.api.crafting.blacksmiths.component.IAnvilRecipeComponent;
-import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
-import com.smithsmodding.armory.api.item.IHeatableItem;
+import com.smithsmodding.armory.api.common.crafting.blacksmiths.component.IAnvilRecipeComponent;
+import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
+import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModInventories;
-import com.smithsmodding.armory.common.factory.HeatedItemFactory;
+import com.smithsmodding.armory.common.factories.HeatedItemFactory;
+import com.smithsmodding.armory.api.util.common.ItemStackHelper;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -25,8 +26,10 @@ public class BlackSmithsAnvilRecipeWrapper extends BlankRecipeWrapper {
     private ItemStack[] additionalStacks;
     private ArrayList<ItemStack> output;
 
-    public BlackSmithsAnvilRecipeWrapper(@NotNull AnvilRecipe recipe) {
+    public BlackSmithsAnvilRecipeWrapper(@Nonnull IAnvilRecipe recipe) {
         inputs = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS];
+
+        ItemStackHelper.InitializeItemStackArray(inputs);
         for (int i = 0; i < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS; i++) {
             IAnvilRecipeComponent component = recipe.getComponent(i);
             if (component == null)
@@ -36,6 +39,7 @@ public class BlackSmithsAnvilRecipeWrapper extends BlankRecipeWrapper {
         }
 
         additionalStacks = new ItemStack[ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS];
+        ItemStackHelper.InitializeItemStackArray(additionalStacks);
         for (int i = 0; i < ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS; i++) {
             IAnvilRecipeComponent component = recipe.getAdditionalComponent(i);
             if (component == null)
@@ -49,7 +53,7 @@ public class BlackSmithsAnvilRecipeWrapper extends BlankRecipeWrapper {
         if (recipeResult != null) {
             output.add(recipeResult);
 
-            if (recipeResult.getItem() instanceof IHeatableItem) {
+            if (recipeResult.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null)) {
                 ItemStack heatedVariant = HeatedItemFactory.getInstance().convertToHeatedIngot(recipeResult);
                 output.add(heatedVariant);
             }
@@ -66,18 +70,16 @@ public class BlackSmithsAnvilRecipeWrapper extends BlankRecipeWrapper {
     }
 
     @Nonnull
-    @Override
     public List<ItemStack> getInputs() {
         return Arrays.asList(inputs);
     }
 
     @Nonnull
-    @Override
     public List<ItemStack> getOutputs() {
         return output;
     }
 
-    @NotNull
+    @Nonnull
     public List<ItemStack> getAdditionalStacks() {
         return Arrays.asList(additionalStacks);
     }
@@ -88,5 +90,17 @@ public class BlackSmithsAnvilRecipeWrapper extends BlankRecipeWrapper {
 
     public int getTongUsage() {
         return tongUsage;
+    }
+
+    /**
+     * Gets all the recipe's ingredients by filling out an instance of {@link IIngredients}.
+     *
+     * @param ingredients
+     * @since JEI 3.11.0
+     */
+    @Override
+    public void getIngredients(IIngredients ingredients) {
+        ingredients.setInputs(ItemStack.class, getInputs());
+        ingredients.setOutputs(ItemStack.class, getOutputs());
     }
 }

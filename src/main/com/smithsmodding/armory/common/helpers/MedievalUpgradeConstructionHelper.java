@@ -1,39 +1,56 @@
 package com.smithsmodding.armory.common.helpers;
 
-import com.smithsmodding.armory.api.armor.MLAAddon;
-import com.smithsmodding.armory.api.helpers.IMedievalUpgradeConstructionHelper;
-import com.smithsmodding.armory.common.addons.ArmorUpgradeMedieval;
-import com.smithsmodding.armory.common.material.ChainLayer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
-import org.jetbrains.annotations.NotNull;
+import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.common.armor.IMaterializableMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionPosition;
+import com.smithsmodding.armory.api.common.armor.callback.IDefaultCapabilitiesRetrievalCallback;
+import com.smithsmodding.armory.api.common.armor.callback.IExtensionRecipeRetrievalCallback;
+import com.smithsmodding.armory.api.common.helpers.IMedievalUpgradeConstructionHelper;
+import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
+import com.smithsmodding.armory.common.armor.extension.MedievalArmorExtension;
+import com.smithsmodding.armory.common.armor.extension.MedievalMaterialDependantArmorExtension;
+
+import javax.annotation.Nonnull;
 
 /**
  * Author Orion (Created on: 07.07.2016)
  */
-public class MedievalUpgradeConstructionHelper implements IMedievalUpgradeConstructionHelper {
+public final class MedievalUpgradeConstructionHelper implements IMedievalUpgradeConstructionHelper {
 
-    @NotNull
+    @Nonnull
     private static MedievalUpgradeConstructionHelper instance = new MedievalUpgradeConstructionHelper();
 
     private MedievalUpgradeConstructionHelper() {
         super();
     }
 
-    @NotNull
+    @Nonnull
     public static MedievalUpgradeConstructionHelper getInstance() {
         return instance;
     }
 
-    @NotNull
+
+    /**
+     * Method to build an armor extension that has no real special properties.
+     *
+     * @return A completely setup extension. However the caller will need to set the RegistryName and register it.
+     */
+    @Nonnull
     @Override
-    public MLAAddon generateBaseChainLayer(String internalName, String parentName, String addonPositionId, String materialId, ResourceLocation itemTextureWhole, ResourceLocation modelTextureLocation) {
-        return new ChainLayer(internalName, parentName, addonPositionId, materialId, itemTextureWhole, modelTextureLocation);
+    public IMultiComponentArmorExtension buildStandardExtension(String translationKey, String textFormatting, IMultiComponentArmorExtensionPosition position, Integer additionalDurability, IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback, IExtensionRecipeRetrievalCallback extensionRecipeRetrievalCallback) {
+        return new MedievalArmorExtension.Builder(translationKey, textFormatting, position, additionalDurability, capabilitiesRetrievalCallback, extensionRecipeRetrievalCallback).build();
     }
 
-    @NotNull
+    /**
+     * Method to build an armor extension that wraps an existing combination and a material.
+     * Making the new extension material based. And setting the hasItemStack method to false on the depending extension.
+     *
+     * @return A completely setup extension that wraps the existing extension and a material. However the caller will need to set the RegistryNam and register it.
+     */
+    @Nonnull
     @Override
-    public MLAAddon generateMedievalUpdate(String internalName, String parentID, String armorPositionID, String materialInternalName, String visibleName, TextFormatting visibleNameColor, float protection, int extraDurability, int maxUpgrades, ResourceLocation itemTextureWhole, ResourceLocation modelTextureLocation) {
-        return new ArmorUpgradeMedieval(internalName, parentID, armorPositionID, materialInternalName, visibleName, visibleNameColor, protection, extraDurability, maxUpgrades, itemTextureWhole, modelTextureLocation);
+    public IMaterialDependantMultiComponentArmorExtension buildMaterialDependantExtension(String translationKey, String textFormatting, IMultiComponentArmorExtensionPosition position, Integer additionalDurability, IMaterializableMultiComponentArmorExtension materialIndependentArmorExtension, IAddonArmorMaterial material, IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback) {
+        return new MedievalMaterialDependantArmorExtension.Builder(translationKey, textFormatting, position, additionalDurability, materialIndependentArmorExtension, material, capabilitiesRetrievalCallback).build();
     }
 }

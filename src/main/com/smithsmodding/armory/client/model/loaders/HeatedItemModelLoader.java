@@ -5,7 +5,6 @@ import com.google.common.collect.ImmutableList;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.unbaked.HeatedItemItemModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.TemperatureBarComponentModel;
-import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.resources.IResourceManager;
@@ -15,8 +14,8 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.util.Map;
 
@@ -24,15 +23,15 @@ import java.util.Map;
  * Created by Marc on 06.12.2015.
  */
 public class HeatedItemModelLoader implements ICustomModelLoader {
-    public static final String EXTENSION = ".HI-Armory";
+    public static final String EXTENSION = ".hi-armory";
 
     @Override
-    public boolean accepts(@NotNull ResourceLocation modelLocation) {
+    public boolean accepts(@Nonnull ResourceLocation modelLocation) {
         return modelLocation.getResourcePath().endsWith(EXTENSION); // HeatedItem armory extension. Foo.HI-armory.json
     }
 
     @Override
-    public IModel loadModel(@NotNull ResourceLocation modelLocation) throws IOException {
+    public IModel loadModel(@Nonnull ResourceLocation modelLocation) throws IOException {
         if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
             return DummyModel.INSTANCE;
         }
@@ -80,12 +79,9 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
             //Construct the new unbaked model from the collected data.
             IModel output = new HeatedItemItemModel(builder.build());
 
-            // Load all textures we need in to the creator.
-            MaterializedTextureCreator.registerBaseTexture(builder.build());
-
             return output;
         } catch (IOException e) {
-            ModLogger.getInstance().error(String.format("Could not load multimodel {}", modelLocation.toString()));
+            ModLogger.getInstance().error(String.format("Could not load HeatedItemModel {}", modelLocation.toString()));
         }
 
         //If all fails return a Missing model.

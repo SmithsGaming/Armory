@@ -21,6 +21,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.inventory.Slot;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -29,7 +30,7 @@ import java.util.List;
  */
 public class Component5X5CraftingGrid extends CoreComponent implements IGUIBasedComponentHost {
 
-    @NotNull
+    @Nonnull
     protected final LinkedHashMap<String, IGUIComponent> componentHashMap;
     protected final int startSlotIndexCraftingGrid;
     protected final int endSlotIndexCraftingGrid;
@@ -70,7 +71,7 @@ public class Component5X5CraftingGrid extends CoreComponent implements IGUIBased
             TextureAtlasSprite holoSprite = null;
 
             Slot slot = crafter.getSlot(slotIndex);
-            Coordinate2D slotLocation = new Coordinate2D(slot.xDisplayPosition - 1, slot.yDisplayPosition - 1).getTranslatedCoordinate(getLocalCoordinate().getInvertedCoordinate());
+            Coordinate2D slotLocation = new Coordinate2D(slot.xPos - 1, slot.yPos - 1).getTranslatedCoordinate(getLocalCoordinate().getInvertedCoordinate());
 
             registerNewComponent(new ComponentSlot(getID() + ".Grid.Slot." + (slotIndex - startSlotIndexCraftingGrid), new SlotComponentState(null, slot, crafter.getContainerInventory(), holoSprite), host, slotLocation, Colors.DEFAULT));
         }
@@ -78,12 +79,12 @@ public class Component5X5CraftingGrid extends CoreComponent implements IGUIBased
         registerNewComponent(new ComponentProgressBar(getID() + ".Progress", host, new CoreComponentState(), new Coordinate2D(105, 45), ComponentOrientation.HORIZONTALLEFTTORIGHT, Textures.Gui.Basic.Components.ARROWEMPTY, Textures.Gui.Basic.Components.ARROWFULL));
 
         Slot slot = crafter.getSlot(craftingProductionSlotIndex);
-        Coordinate2D slotLocation = new Coordinate2D(slot.xDisplayPosition - 1, slot.yDisplayPosition - 1).getTranslatedCoordinate(getLocalCoordinate().getInvertedCoordinate());
+        Coordinate2D slotLocation = new Coordinate2D(slot.xPos - 1, slot.yPos - 1).getTranslatedCoordinate(getLocalCoordinate().getInvertedCoordinate());
         registerNewComponent(new ComponentSlot(getID() + ".Out", new SlotComponentState(null, slot, crafter.getContainerInventory(), null), host, slotLocation, Colors.DEFAULT));
     }
 
     @Override
-    public void registerNewComponent(@NotNull IGUIComponent component) {
+    public void registerNewComponent(@Nonnull IGUIComponent component) {
         componentHashMap.put(component.getID(), component);
 
         if (component instanceof IGUIBasedComponentHost)
@@ -100,7 +101,7 @@ public class Component5X5CraftingGrid extends CoreComponent implements IGUIBased
         return parent.getRootManager();
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public LinkedHashMap<String, IGUIComponent> getAllComponents() {
         return componentHashMap;

@@ -6,8 +6,9 @@
 
 package com.smithsmodding.armory.common.crafting.blacksmiths.recipe;
 
-import com.smithsmodding.armory.api.crafting.blacksmiths.recipe.AnvilRecipe;
+import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.smithsmodding.armory.api.util.references.ModInventories;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.smithscore.common.player.management.PlayerManager;
 import com.smithsmodding.smithscore.common.tileentity.IWatchableTileEntity;
@@ -17,12 +18,13 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemEnchantedBook;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.UUID;
 
@@ -30,7 +32,8 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
     int iStackSizeToBeUsedInRepair;
     int iMaximumCost;
     TileEntityBlackSmithsAnvil iEntity;
-    @Nullable ItemStack iLeftInputStack;
+    @Nullable
+    ItemStack iLeftInputStack;
     @Nullable ItemStack iRightInputStack;
     @Nullable ItemStack iOutputStack;
 
@@ -48,27 +51,23 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
 
         int tExperience = XPUtil.getExperienceForLevel(iMaximumCost);
         iLevelPerPlayer = XPUtil.getLevelForExperience((int) Math.ceil(tExperience / (float) iEntity.getConnectedPlayerCount()));
+
+        setRegistryName(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "VanillaRecipe"));
     }
 
     @Override
-    public int getMinimumProgress() {
+    public int getProgress() {
         return 3;
     }
 
     @Nullable
     @Override
-    public ItemStack getResult(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents) {
+    public ItemStack getResult(ItemStack[] craftingSlotContents, ItemStack[] additionalSlotContents) {
         return iOutputStack;
     }
 
-    @NotNull
     @Override
-    public String getInternalID() {
-        return "VanillaRepair";
-    }
-
-    @Override
-    public boolean matchesRecipe(ItemStack[] pCraftingSlotContents, ItemStack[] pAdditionalSlotContents, int pHammerUsagesLeft, int pTongsUsagesLeft) {
+    public boolean matchesRecipe(ItemStack[] craftingSlotContents, ItemStack[] additionalSlotContents, int hammerUsagesLeft, int tongsUsagesLeft) {
         boolean tCreativePlayerConnected = false;
 
         for (UUID playerId : iEntity.getWatchingPlayers()) {
@@ -104,7 +103,7 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
     }
 
     @Override
-    public void onRecipeUsed(@NotNull IWatchableTileEntity pEntity) {
+    public void onRecipeUsed(@Nonnull IWatchableTileEntity pEntity) {
         boolean tCreativePlayerConnected = false;
 
         for (UUID playerId : iEntity.getWatchingPlayers()) {
@@ -129,8 +128,8 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
             if (iRightInputStack.getItem() instanceof ItemEnchantedBook) {
                 iRightInputStack = null;
             } else {
-                iRightInputStack.stackSize -= iStackSizeToBeUsedInRepair;
-                if (iRightInputStack.stackSize <= 0) {
+                iRightInputStack.shrink(iStackSizeToBeUsedInRepair);
+                if (iRightInputStack.getCount() <= 0) {
                     iRightInputStack = null;
                 }
             }
@@ -195,7 +194,7 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
                         return;
                     }
 
-                    for (l = 0; tRepairAmount > 0 && l < iRightInputStack.stackSize; ++l) {
+                    for (l = 0; tRepairAmount > 0 && l < iRightInputStack.getCount(); ++l) {
                         tEnchantmentID = tEventStack.getItem().getDamage(tEventStack) - tRepairAmount;
                         tEventStack.setItemDamage(tEnchantmentID);
                         i += Math.max(1, tRepairAmount / 100) + tEnchantmentsMap.size();

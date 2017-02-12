@@ -9,6 +9,7 @@ import com.smithsmodding.armory.compatibility.JEICompatMod;
 import com.smithsmodding.smithscore.util.client.CustomResource;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
@@ -17,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Author Orion (Created on: 21.06.2016)
@@ -46,18 +48,34 @@ public class BlacksmithsAnvilRecipeCategory implements IRecipeCategory {
         return BACKGROUND;
     }
 
+    /**
+     * Optional icon for the category tab.
+     * If no icon is defined here, JEI will use first item registered with ModRegistry#addRecipeCategoryCraftingItem(ItemStack, String...)
+     *
+     * @return icon to draw on the category tab, max size is 16x16 pixels.
+     * @since 3.13.1
+     */
+    @Nullable
+    @Override
+    public IDrawable getIcon() {
+        return null;
+    }
+
     @Override
     public void drawExtras(@Nonnull Minecraft minecraft) {
 
     }
 
+    /**
+     * Set the {@link IRecipeLayout} properties from the {@link IRecipeWrapper} and {@link IIngredients}.
+     *
+     * @param recipeLayout  the layout that needs its properties set.
+     * @param recipeWrapper the recipeWrapper, for extra information.
+     * @param ingredients   the ingredients, already set by the recipeWrapper
+     * @since JEI 3.11.0
+     */
     @Override
-    public void drawAnimations(@Nonnull Minecraft minecraft) {
-
-    }
-
-    @Override
-    public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull IRecipeWrapper recipeWrapper) {
+    public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
         for (int i = 0; i < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS; i++) {
             int row = i / 5;
             int column = i % 5;
@@ -83,10 +101,10 @@ public class BlacksmithsAnvilRecipeCategory implements IRecipeCategory {
             recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS, wrapper.getOutputs().get(0));
 
             if (wrapper.hammerUsage > 0)
-                recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS, new ItemStack(ModItems.hammer, wrapper.getHammerUsage()));
+                recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS, new ItemStack(ModItems.IT_HAMMER, wrapper.getHammerUsage()));
 
             if (wrapper.tongUsage > 0)
-                recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS, new ItemStack(ModItems.tongs, wrapper.getTongUsage()));
+                recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS, new ItemStack(ModItems.IT_TONGS, wrapper.getTongUsage()));
 
             for (int i = 0; i < ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS; i++) {
                 recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_TONGSLOTS + i, wrapper.getAdditionalStacks().get(i));

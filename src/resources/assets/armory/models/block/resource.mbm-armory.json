@@ -1,0 +1,12 @@
+{
+  "parent":"minecraft:block/cube_all",
+  "texture":"armory:blocks/iron_block",
+  "overrides":{
+    "armory:obsidian.core":"minecraft:blocks/obsidian",
+    "armory:obsidian.addon":"minecraft:blocks/obsidian",
+    "armory:obsidian.anvil":"minecraft:blocks/obsidian",
+    "armory:gold.core":"minecraft:blocks/gold_block",
+    "armory:gold.addon":"minecraft:blocks/gold_block",
+    "armory:stone.anvil":"minecraft:blocks/stone"
+  }
+}

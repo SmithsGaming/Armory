@@ -8,11 +8,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.List;
 
 /**
  * Created by Orion
@@ -26,13 +25,13 @@ public class ItemTongs extends Item {
     public ItemTongs() {
         setMaxStackSize(1);
         setMaxDamage(150);
-        setCreativeTab(ModCreativeTabs.generalTab);
-        setUnlocalizedName(References.InternalNames.Items.ItemTongs);
-        setRegistryName(References.InternalNames.Items.ItemTongs.toLowerCase());
+        setCreativeTab(ModCreativeTabs.GENERAL);
+        setUnlocalizedName(References.InternalNames.Items.IN_TONGS);
+        setRegistryName(References.InternalNames.Items.IN_TONGS.toLowerCase());
         addPropertyOverride(CoreReferences.IItemProperties.MODELTYPE, new IItemPropertyGetter() {
             @Override
             public float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn) {
-                return stack.getTagCompound().getString(CoreReferences.NBT.IItemProperties.TARGET).equals(References.InternalNames.Items.ItemTongs) ? 1f : 0f;
+                return stack.getTagCompound().getString(CoreReferences.NBT.IItemProperties.TARGET).equals(References.InternalNames.Items.IN_TONGS) ? 1f : 0f;
             }
         });
     }
@@ -52,7 +51,7 @@ public class ItemTongs extends Item {
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item pTongs, CreativeTabs pCreativeTab, List pItemStacks) {
+    public void getSubItems(Item pTongs, CreativeTabs pCreativeTab, NonNullList<ItemStack> pItemStacks) {
         ItemStack tTongsStack = new ItemStack(pTongs, 1, 150);
         pItemStacks.add(tTongsStack);
     }

@@ -1,17 +1,12 @@
-/*
- * Copyright (c) 2015.
- *
- * Copyrighted by SmithsModding according to the project License
- */
-
 package com.smithsmodding.armory.common.command;
 
-import com.smithsmodding.armory.api.materials.IArmorMaterial;
+import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
+import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
+import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.client.TranslationKeys;
+import com.smithsmodding.armory.api.util.references.ModHeatableObjects;
 import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.common.factory.HeatedItemFactory;
-import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
-import com.smithsmodding.armory.common.registry.MaterialRegistry;
 import com.smithsmodding.smithscore.common.player.management.PlayerManager;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -21,28 +16,32 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by marcf on 2/7/2017.
+ */
 public class CommandGiveHeated extends CommandBase {
-    @NotNull
+    /**
+     * Gets the name of the command
+     */
     @Override
-    public String getCommandName() {
+    public String getName() {
         return References.InternalNames.Commands.GIVEHEATED;
     }
 
+    /**
+     * Gets the usage string for the command.
+     *
+     * @param sender The ICommandSender who is requesting usage details
+     */
     @Override
-    public int getRequiredPermissionLevel() {
-        return 2;
-    }
-
-    @NotNull
-    @Override
-    public String getCommandUsage(ICommandSender pCommandSender) {
+    public String getUsage(ICommandSender sender) {
         return TranslationKeys.Messages.Commands.GIVEHEATEDUSAGE;
     }
 
@@ -52,7 +51,15 @@ public class CommandGiveHeated extends CommandBase {
             throw new WrongUsageException(TranslationKeys.Messages.Commands.GIVEHEATEDUSAGE);
         } else {
             try {
-                ItemStack stack = HeatedItemFactory.getInstance().generateHeatedItem(MaterialRegistry.getInstance().getMaterial(args[1]), args[2], Float.parseFloat(args[3]));
+                IHeatableObject object = ModHeatableObjects.ITEMSTACK;
+                IHeatedObjectType type = IArmoryAPI.Holder.getInstance().getRegistryManager().getHeatableObjectTypeRegistry().getValue(new ResourceLocation(args[2]));
+                IMaterial material = IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry().getValue(new ResourceLocation(args[1])).getWrapped();
+                Float temperature = Float.parseFloat(args[3]);
+
+                if (type == null || material == null || temperature == null)
+                    throw new WrongUsageException(TranslationKeys.Messages.Commands.GIVEHEATEDUSAGE);
+
+                ItemStack stack = IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getHeatedItemFactory().generateHeatedItemFromMaterial(material, object, type, temperature);
 
                 if (stack == null) {
                     throw new WrongUsageException(TranslationKeys.Messages.Commands.GIVEHEATEDUSAGE);
@@ -69,19 +76,18 @@ public class CommandGiveHeated extends CommandBase {
         }
     }
 
-    @org.jetbrains.annotations.Nullable
     @Override
-    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
         if (args.length == 1) {
             return getListOfStringsMatchingLastWord(args, PlayerManager.getInstance().getCommonSidedJoinedMap().values());
         }
         if (args.length == 2) {
-            if (!MaterialRegistry.getInstance().getArmorMaterials().containsKey(args[1]))
+            if (!IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry().containsKey(new ResourceLocation(args[1])))
                 return getMaterialCompletionOptions(args[1]);
 
             return getTypeCompletionOptions("");
         } else if (args.length == 3) {
-            if (!HeatableItemRegistry.getInstance().getAllHeatableItemTypes().contains(args[2]))
+            if (!IArmoryAPI.Holder.getInstance().getRegistryManager().getHeatableObjectTypeRegistry().containsKey(new ResourceLocation(args[2])))
                 return getTypeCompletionOptions(args[2]);
 
             return null;
@@ -90,29 +96,27 @@ public class CommandGiveHeated extends CommandBase {
         return null;
     }
 
-    @NotNull
-    private List getMaterialCompletionOptions(@NotNull String pMaterialStart) {
-        ArrayList<String> tTabCompletionOptions = new ArrayList<String>();
+    private List getMaterialCompletionOptions(String start) {
+        ArrayList<String> tabCompletionOptions = new ArrayList<>();
 
-        for (IArmorMaterial tMaterial : MaterialRegistry.getInstance().getArmorMaterials().values()) {
-            if ((pMaterialStart.equals("")) || (tMaterial.getUniqueID().contains(pMaterialStart))) {
-                tTabCompletionOptions.add(tMaterial.getUniqueID());
+        IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry().forEach(registryMaterialWrapper ->  {
+            if ((start.equals("")) || (registryMaterialWrapper.getRegistryName().toString().contains(start))) {
+                tabCompletionOptions.add(registryMaterialWrapper.getRegistryName().toString());
             }
-        }
+        });
 
-        return tTabCompletionOptions;
+        return tabCompletionOptions;
     }
 
-    @NotNull
-    private List getTypeCompletionOptions(@NotNull String pTypeStart) {
-        ArrayList<String> tTabCompletionOptions = new ArrayList<String>();
+    private List getTypeCompletionOptions(String start) {
+        ArrayList<String> tabCompletionOptions = new ArrayList<>();
 
-        for (String tType : HeatableItemRegistry.getInstance().getAllHeatableItemTypes()) {
-            if (((pTypeStart.equals("")) || (tType.contains(pTypeStart))) && !tTabCompletionOptions.contains(tType)) {
-                tTabCompletionOptions.add(tType);
+        IArmoryAPI.Holder.getInstance().getRegistryManager().getHeatableObjectTypeRegistry().forEach(iHeatedObjectType -> {
+            if ((start.equals("")) || (iHeatedObjectType.getRegistryName().toString().contains(start))) {
+                tabCompletionOptions.add(iHeatedObjectType.getRegistryName().toString());
             }
-        }
+        });
 
-        return tTabCompletionOptions;
+        return tabCompletionOptions;
     }
 }

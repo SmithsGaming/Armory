@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.client.model.loaders;
 
-import com.smithsmodding.armory.api.model.deserializers.MaterializedItemModelDeserializer;
-import com.smithsmodding.armory.api.model.deserializers.definition.MaterializedItemModelDefinition;
+import com.smithsmodding.armory.api.client.model.deserializers.MaterializedItemModelDeserializer;
+import com.smithsmodding.armory.api.client.model.deserializers.definition.MaterializedItemModelDefinition;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.unbaked.MaterializedItemModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
@@ -14,17 +14,18 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
-import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 
 /**
  * Author Marc (Created on: 14.06.2016)
  */
 public class MaterializedItemModelLoader implements ICustomModelLoader {
 
-    public static final String EXTENSION = ".MIM-Armory";
+    public static final String EXTENSION = ".mim-armory";
 
     @Override
-    public boolean accepts(@NotNull ResourceLocation modelLocation) {
+    public boolean accepts(@Nonnull ResourceLocation modelLocation) {
         return modelLocation.getResourcePath().endsWith(EXTENSION);
     }
 

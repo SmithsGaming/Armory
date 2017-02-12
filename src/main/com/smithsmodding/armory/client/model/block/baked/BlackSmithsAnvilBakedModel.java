@@ -1,5 +1,8 @@
 package com.smithsmodding.armory.client.model.block.baked;
 
+import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.util.references.ModMaterials;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.BlockBlackSmithsAnvil;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
@@ -10,10 +13,11 @@ import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,30 +26,32 @@ import java.util.List;
  * Created by Marc on 22.02.2016.
  */
 public class BlackSmithsAnvilBakedModel extends BakedWrappedModel {
-    @NotNull
+    @Nonnull
     private final Overrides overrides;
-    @NotNull
-    private HashMap<String, IBakedModel> bakedModelHashMap = new HashMap<>();
+    @Nonnull
+    private HashMap<IAnvilMaterial, IBakedModel> bakedModelHashMap = new HashMap<>();
 
     public BlackSmithsAnvilBakedModel(IBakedModel parent) {
         super(parent);
         overrides = new Overrides(this);
     }
 
-    public void registerBakedModel(IBakedModel model, String materialID) {
-        bakedModelHashMap.put(materialID, model);
+    public void registerBakedModel(IAnvilMaterial material, IBakedModel model) {
+        bakedModelHashMap.put(material, model);
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public List<BakedQuad> getQuads(@NotNull IBlockState state, EnumFacing side, long rand) {
+    public List<BakedQuad> getQuads(@Nonnull IBlockState state, EnumFacing side, long rand) {
         if (((IExtendedBlockState) state).getValue(BlockBlackSmithsAnvil.PROPERTY_ANVIL_MATERIAL) == null)
             return getParentModel().getQuads(state, side, rand);
 
-        return bakedModelHashMap.get(((IExtendedBlockState) state).getValue(BlockBlackSmithsAnvil.PROPERTY_ANVIL_MATERIAL)).getQuads(state, side, rand);
+        IAnvilMaterial material = IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(((IExtendedBlockState) state).getValue(BlockBlackSmithsAnvil.PROPERTY_ANVIL_MATERIAL)));
+
+        return bakedModelHashMap.get(material).getQuads(state, side, rand);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public ItemOverrideList getOverrides() {
         return overrides;
@@ -63,9 +69,11 @@ public class BlackSmithsAnvilBakedModel extends BakedWrappedModel {
         @Override
         public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
             if (stack.getTagCompound() == null)
-                return parent.bakedModelHashMap.get(References.InternalNames.Materials.Anvil.IRON);
+                return parent.bakedModelHashMap.get(ModMaterials.Anvil.IRON);
 
-            return parent.bakedModelHashMap.get(stack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL));
+            IAnvilMaterial material = IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(stack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL)));
+
+            return parent.bakedModelHashMap.get(material);
         }
     }
 }

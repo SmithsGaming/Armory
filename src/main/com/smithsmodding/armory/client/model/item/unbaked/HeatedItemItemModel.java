@@ -17,8 +17,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import javax.vecmath.Vector3f;
 import java.util.Collection;
 
@@ -40,7 +40,7 @@ public class HeatedItemItemModel extends ItemLayerModel {
         return ImmutableList.of();
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         //Get ourselfs the base model to use.

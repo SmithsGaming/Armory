@@ -7,23 +7,23 @@ import com.smithsmodding.smithscore.util.common.positioning.Coordinate3D;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.LinkedHashSet;
 
 /**
  * Author Orion (Created on: 25.06.2016)
  */
 public class StructureFactoryForge implements IStructureFactory<StructureForge, TileEntityForge> {
-    @NotNull
+    @Nonnull
     @Override
-    public StructureForge generateNewStructure(@NotNull TileEntityForge initialPart) {
+    public StructureForge generateNewStructure(@Nonnull TileEntityForge initialPart) {
         return new StructureForge(initialPart);
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public StructureForge loadStructureFromNBT(@NotNull NBTTagCompound compound) {
+    public StructureForge loadStructureFromNBT(@Nonnull NBTTagCompound compound) {
         StructureDataForge dataForge = new StructureDataForge();
 
         LinkedHashSet<Coordinate3D> parts = new LinkedHashSet<>();
@@ -39,9 +39,9 @@ public class StructureFactoryForge implements IStructureFactory<StructureForge, 
         return forge;
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    public NBTTagCompound generateNBTFromStructure(@NotNull StructureForge structure) {
+    public NBTTagCompound generateNBTFromStructure(@Nonnull StructureForge structure) {
         NBTTagCompound compound = new NBTTagCompound();
         compound.setTag(References.NBTTagCompoundData.TE.Forge.Structure.DATA, structure.getData().writeToNBT());
 
@@ -55,7 +55,7 @@ public class StructureFactoryForge implements IStructureFactory<StructureForge, 
         return compound;
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public Class<StructureForge> getStructureType() {
         return StructureForge.class;

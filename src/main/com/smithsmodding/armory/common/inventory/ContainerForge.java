@@ -14,12 +14,13 @@ import com.smithsmodding.smithscore.common.inventory.ContainerSmithsCore;
 import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
-import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 
 public class ContainerForge extends ContainerSmithsCore {
     private TileEntityForge tileEntityForge;
 
-    public ContainerForge(@NotNull EntityPlayer playerMP, TileEntityForge tileEntityForge) {
+    public ContainerForge(@Nonnull EntityPlayer playerMP, TileEntityForge tileEntityForge) {
         super(References.InternalNames.TileEntities.ForgeContainer, tileEntityForge, tileEntityForge, playerMP);
 
         this.tileEntityForge = tileEntityForge;
@@ -37,7 +38,7 @@ public class ContainerForge extends ContainerSmithsCore {
     }
 
     @Override
-    public void onTabChanged(@NotNull String newActiveTabID) {
+    public void onTabChanged(@Nonnull String newActiveTabID) {
         super.onTabChanged(newActiveTabID);
 
         inventorySlots.clear();

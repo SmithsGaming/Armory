@@ -1,15 +1,18 @@
 package com.smithsmodding.armory.common.tileentity;
 
-import com.smithsmodding.armory.api.materials.IArmorMaterial;
-import com.smithsmodding.armory.api.util.references.ModLogger;
+import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.common.capability.IHeatedObjectCapability;
+import com.smithsmodding.armory.api.common.forge.IForgeComponent;
+import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.util.references.ModCapabilities;
+import com.smithsmodding.armory.api.util.references.ModFluids;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.BlockForge;
-import com.smithsmodding.armory.common.item.ItemHeatedItem;
-import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
 import com.smithsmodding.armory.common.structure.forge.StructureForge;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityForgeGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.IForgeFuelDataContainer;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityForgeState;
+import com.smithsmodding.armory.api.util.common.ItemStackHelper;
 import com.smithsmodding.smithscore.client.events.models.block.BlockModelUpdateEvent;
 import com.smithsmodding.smithscore.common.events.structure.StructureEvent;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
@@ -29,8 +32,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -38,7 +41,7 @@ import java.util.Iterator;
 /**
  * Author Orion (Created on: 23.06.2016)
  */
-public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, TileEntityForgeGuiManager> implements IFirePitComponent, IStructurePart<StructureForge>, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
+public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, TileEntityForgeGuiManager> implements IForgeComponent, IStructurePart<StructureForge>, IFluidContainingEntity, IBlockModelUpdatingTileEntity {
 
     public static int INGOTSTACKS_AMOUNT = 5;
     public static int FUELSTACK_AMOUNT = 5;
@@ -48,14 +51,18 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     public static int STRUCTURECOMPONENTADDITION = 1750;
     public static int TANKINGOTCAPACITY = 6;
 
-    @NotNull
+    @Nonnull
     private ItemStack[] ingotStacks = new ItemStack[INGOTSTACKS_AMOUNT];
-    @NotNull
+    @Nonnull
     private ItemStack[] fuelStacks = new ItemStack[FUELSTACK_AMOUNT];
 
     private Coordinate3D masterCoordinate = new Coordinate3D(0, 0, 0);
 
     private boolean shouldTriggerUpdate = true;
+
+    public TileEntityForge() {
+        clearInventory();
+    }
 
     @Override
     public void update() {
@@ -66,7 +73,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
         meltIngots();
 
-        markDirty();
+        //markDirty();
     }
 
     @Override
@@ -89,24 +96,24 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         for (int i = 0; i < INGOTSTACKS_AMOUNT; i++) {
             ItemStack stack = ingotStacks[i];
 
-            if (stack == null)
+            if (stack.isEmpty())
                 continue;
 
-            if (!(stack.getItem() instanceof ItemHeatedItem))
+            if (!(stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null)))
                 continue;
 
-            IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromHeatedStack(stack);
-            float stackTemp = HeatableItemRegistry.getInstance().getItemTemperature(stack);
+            IMaterial material = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null).getMaterial();
+            float stackTemp = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null).getTemperature();
 
             if (getState().getCurrentTemp() < stackTemp * 0.95 && getState().getMeltingProgess(i) > 0) {
                 getState().setMeltingProgress(i, 0);
-                ingotStacks[i] = null;
+                ingotStacks[i] = ItemStack.EMPTY;
                 continue;
             }
 
             if (stackTemp >= material.getMeltingPoint()) {
                 if (material.getMeltingTime() <= 0 || material.getMeltingPoint() <= 0) {
-                    ingotStacks[i] = null;
+                    ingotStacks[i] = ItemStack.EMPTY;
                     continue;
                 }
 
@@ -120,7 +127,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
                 getState().setMeltingProgress(i, (getState().getMeltingProgess(i) + 1F / material.getMeltingTime()));
 
-                HeatableItemRegistry.getInstance().setItemTemperature(stack, material.getMeltingPoint());
+                stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null).setTemperatur(material.getMeltingPoint());
             }
 
             if (getState().getMeltingProgess(i) > 1F) {
@@ -137,31 +144,31 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         while (iterator.hasNext()) {
             FluidStack fluidStack = iterator.next();
 
-            IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromMoltenStack(fluidStack);
-
-            if (material == null) {
+            /*if (material == null) {
                 ModLogger.getInstance().error("FAILED TO RETRIEVE MATERIAL OF FLUIDSTACK: " + fluidStack.getFluid().getUnlocalizedName(fluidStack) + " - " + fluidStack.amount + " - " + fluidStack.tag.toString());
                 ModLogger.getInstance().error("Could not check the temperature for the given stack and this is a bug?");
                 ModLogger.getInstance().error("Removing!");
                 iterator.remove();
                 continue;
-            }
+            }*/
 
-            if (getState().getCurrentTemp() < material.getMeltingPoint() * 0.95F)
+            if (getState().getCurrentTemp() < fluidStack.getFluid().getTemperature() * 0.95F)
                 iterator.remove();
         }
     }
 
     private void meltIngot(int stackIndex) {
         ItemStack stack = ingotStacks[stackIndex];
-        IArmorMaterial material = HeatableItemRegistry.getInstance().getMaterialFromHeatedStack(stack);
+        IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
+        IMaterial material = capability.getMaterial();
 
-        ingotStacks[stackIndex] = null;
+        ingotStacks[stackIndex] = ItemStack.EMPTY;
 
         NBTTagCompound fluidCompound = new NBTTagCompound();
-        fluidCompound.setString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL, material.getUniqueID());
+        fluidCompound.setString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL, material.getRegistryName().toString());
+        FluidStack fluidStack = new FluidStack(ModFluids.moltenMetal, capability.getType().getMoltenAmount(), fluidCompound);
 
-        getTankForSide(null).fill(HeatableItemRegistry.getInstance().getMoltenStack(stack), true);
+        getTankForSide(null).fill(fluidStack, true);
     }
 
     @Override
@@ -180,11 +187,11 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
-    public boolean canInfluenceTE(@NotNull Coordinate3D coordinate) {
+    public boolean canInfluenceTE(@Nonnull Coordinate3D coordinate) {
         return (getPos().getY() == coordinate.getYComponent());
     }
 
-    @org.jetbrains.annotations.Nullable
+    @Nullable
     @Override
     public IForgeFuelDataContainer getFuelData() {
         if (getStructure() == null)
@@ -194,19 +201,19 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
-    protected void calculateHeatTerms(@NotNull TileEntityForgeState localData) {
+    protected void calculateHeatTerms(@Nonnull TileEntityForgeState localData) {
         localData.setMaxTemp(2750);
         localData.setLastPositiveTerm(POSITIVEHEAT);
         localData.setLastNegativeTerm(NEGATIVEHEAT);
 
         for (EnumFacing direction : EnumFacing.values()) {
-            TileEntity entity = worldObj.getTileEntity(getPos().add(direction.getDirectionVec()));
-            if (entity instanceof IFirePitComponent) {
-                if (((IFirePitComponent) entity).canInfluenceTE(getLocation())) {
-                    localData.changeLastPositiveTerm(((IFirePitComponent) entity).getPositiveInflunce());
-                    localData.changeLastNegativeTerm(((IFirePitComponent) entity).getNegativeInfluece());
+            TileEntity entity = getWorld().getTileEntity(getPos().add(direction.getDirectionVec()));
+            if (entity instanceof IForgeComponent) {
+                if (((IForgeComponent) entity).canInfluenceTE(getLocation())) {
+                    localData.changeLastPositiveTerm(((IForgeComponent) entity).getPositiveInflunce());
+                    localData.changeLastNegativeTerm(((IForgeComponent) entity).getNegativeInfluece());
 
-                    localData.changeMaxTemp(((IFirePitComponent) entity).getMaxTempInfluence());
+                    localData.changeMaxTemp(((IForgeComponent) entity).getMaxTempInfluence());
                 }
             }
         }
@@ -278,7 +285,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
 
-    @NotNull
+    @Nonnull
     @Override
     protected NBTBase writeFluidsToCompound() {
         return new NBTTagCompound();
@@ -289,10 +296,24 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         return;
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public String getContainerID() {
         return References.InternalNames.TileEntities.ForgeContainer + "-" + getLocation().toString();
+    }
+
+    /**
+     * Returns true if the Inventory is Empty.
+     */
+    @Override
+    public boolean isEmpty() {
+        for(int i = 0; i < getSizeInventory(); i++) {
+            if (!getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override
@@ -300,7 +321,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
         return INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT;
     }
 
-    @org.jetbrains.annotations.Nullable
+    @Nullable
     @Override
     public ItemStack getStackInSlot(int slotIndex) {
         if (slotIndex < INGOTSTACKS_AMOUNT) {
@@ -311,27 +332,27 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
             return fuelStacks[slotIndex - INGOTSTACKS_AMOUNT];
         }
 
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
     public void clearInventory() {
-        ingotStacks = new ItemStack[INGOTSTACKS_AMOUNT];
-        fuelStacks = new ItemStack[FUELSTACK_AMOUNT];
+        ItemStackHelper.InitializeItemStackArray(ingotStacks);
+        ItemStackHelper.InitializeItemStackArray(fuelStacks);
     }
 
     @Override
-    public void setInventorySlotContents(int slotIndex, @org.jetbrains.annotations.Nullable ItemStack stack) {
+    public void setInventorySlotContents(int slotIndex, @Nullable ItemStack stack) {
         if (slotIndex < INGOTSTACKS_AMOUNT) {
             ItemStack settingStack = null;
             if (stack != null) {
                 settingStack = stack.copy();
-                settingStack.stackSize = 1;
+                settingStack.setCount(1);
             }
 
             ingotStacks[slotIndex] = settingStack;
-            if (stack != null && stack.stackSize > 1) {
-                --stack.stackSize;
+            if (!stack.isEmpty() && stack.getCount() > 1) {
+                stack.shrink(1);
             }
         } else if (slotIndex < INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT) {
             fuelStacks[slotIndex - INGOTSTACKS_AMOUNT] = stack;
@@ -349,13 +370,9 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
     }
 
     @Override
-    public boolean isItemValidForSlot(int slotIndex, @NotNull ItemStack stack) {
+    public boolean isItemValidForSlot(int slotIndex, @Nonnull ItemStack stack) {
         if (slotIndex < INGOTSTACKS_AMOUNT) {
-            if (stack.getItem() instanceof ItemHeatedItem) {
-                return true;
-            }
-
-            return HeatableItemRegistry.getInstance().isHeatable(stack);
+            return IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().isHeatable(stack);
         } else if (slotIndex < INGOTSTACKS_AMOUNT + FUELSTACK_AMOUNT) {
             return TileEntityFurnace.isItemFuel(stack);
         }
@@ -365,17 +382,21 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-
+        if (capability == ModCapabilities.MOD_MOLTENMETAL_PROVIDER_CAPABILITY) {
+            return getStructure() != null;
+        }
         return super.hasCapability(capability, facing);
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == ModCapabilities.MOD_MOLTENMETAL_PROVIDER_CAPABILITY)
+            return (T) getTankForSide(facing);
 
         return super.getCapability(capability, facing);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public ArrayList<IPathComponent> getValidPathableNeighborComponents() {
         ArrayList<IPathComponent> pathComponentArrayList = new ArrayList<>();
@@ -429,48 +450,48 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
     @Override
     public void onUpdateBlock() {
-        if (worldObj.isRemote) {
+        if (getWorld().isRemote) {
             return;
         }
 
         new BlockModelUpdateEvent(this).PostCommon();
     }
 
-    @NotNull
+    @Nonnull
     @Override
     protected TileEntityForgeGuiManager getInitialGuiManager() {
         return new TileEntityForgeGuiManager(this);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     protected TileEntityForgeState getInitialState() {
         return new TileEntityForgeState();
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public Class<StructureForge> getStructureType() {
         return StructureForge.class;
     }
 
-    @NotNull
+    @Nullable
     @Override
     public StructureForge getStructure() {
         return (StructureForge) StructureRegistry.getInstance().getStructure(getWorld().provider.getDimension(), masterCoordinate);
     }
 
     @Override
-    public void setStructure(@NotNull StructureForge structure) {
+    public void setStructure(@Nullable StructureForge structure) {
         this.masterCoordinate = structure.getMasterLocation();
     }
 
     @Override
     public World getEnvironment() {
-        return worldObj;
+        return getWorld();
     }
 
-    @org.jetbrains.annotations.Nullable
+    @Nullable
     @Override
     public IFluidTank getTankForSide(@Nullable EnumFacing side) {
         if (getStructure() == null)

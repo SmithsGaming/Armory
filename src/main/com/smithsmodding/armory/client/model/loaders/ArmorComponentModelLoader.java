@@ -2,10 +2,8 @@ package com.smithsmodding.armory.client.model.loaders;
 
 import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.util.references.ModLogger;
-import com.smithsmodding.armory.client.model.item.unbaked.ArmorComponentModel;
-import com.smithsmodding.armory.client.model.item.unbaked.components.TemperatureBarComponentModel;
+import com.smithsmodding.armory.client.model.item.unbaked.ArmorItemComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
-import com.smithsmodding.armory.common.registry.MedievalAddonRegistry;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -17,8 +15,8 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.util.Map;
 
@@ -26,15 +24,15 @@ import java.util.Map;
  * Author Marc (Created on: 12.06.2016)
  */
 public class ArmorComponentModelLoader implements ICustomModelLoader {
-    public static final String EXTENSION = ".AC-Armory";
+    public static final String EXTENSION = ".ac-armory";
 
     @Override
-    public boolean accepts(@NotNull ResourceLocation modelLocation) {
+    public boolean accepts(@Nonnull ResourceLocation modelLocation) {
         return modelLocation.getResourcePath().endsWith(EXTENSION); // HeatedItem armory extension. Foo.AC-armory.json
     }
 
     @Override
-    public IModel loadModel(@NotNull ResourceLocation modelLocation) throws IOException {
+    public IModel loadModel(@Nonnull ResourceLocation modelLocation) throws IOException {
         if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
             return DummyModel.INSTANCE;
         }
@@ -45,50 +43,33 @@ public class ArmorComponentModelLoader implements ICustomModelLoader {
             ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms = ModelHelper.loadTransformFromJson(modelLocation);
 
             //Create the final list builder.
-            ImmutableMap.Builder<String, ResourceLocation> pairBuilder = new ImmutableMap.Builder<>();
+            ImmutableMap.Builder<ResourceLocation, ResourceLocation> pairBuilder = new ImmutableMap.Builder<>();
 
             //Iterate over all entries to define what they are
             //At least required is a layer if type base for the model to load succesfully.
             //Possible layer types:
             //    * AddonID (Component texture used when the armor is not broken)
             for (Map.Entry<String, String> entry : textures.entrySet()) {
-                String name = entry.getKey();
+                ResourceLocation name = new ResourceLocation(entry.getKey());
+                ResourceLocation location = new ResourceLocation(entry.getValue());
 
-                ResourceLocation location = null;
-                TemperatureBarComponentModel partModel = null;
-
-                try {
-                    if (MedievalAddonRegistry.getInstance().getAddonForMaterialIndependantName(name) != null) {
-                        //Standard Layer
-                        location = new ResourceLocation(entry.getValue());
-                    } else {
-                        //Unknown layer, warning and skipping.
-                        ModLogger.getInstance().warn(String.format("ArmorComponentModel {} has invalid texture entry {}; Skipping layer.", modelLocation, name));
-                        continue;
-                    }
-                    //If the texture was added to any layer, add it to the list of used textures.
-                    if (location != null) {
-                        pairBuilder.put(name, location);
-                    }
-                } catch (NumberFormatException e) {
-                    ModLogger.getInstance().error(String.format("ArmorComponentModel{} has invalid texture entry {}; Skipping layer.", modelLocation, name));
-                }
+                pairBuilder.put(name, location);
             }
 
             if (pairBuilder.build().size() == 0) {
-                ModLogger.getInstance().error("A given model definition for an ArmorComponentModel did not contain any Components.");
+                ModLogger.getInstance().error("A given model definition for an ArmorItemComponentModel did not contain any Components.");
                 return ModelLoaderRegistry.getMissingModel();
             }
 
             //Construct the new unbaked model from the collected data.
-            IModel output = new ArmorComponentModel(pairBuilder.build(), transforms);
+            IModel output = new ArmorItemComponentModel(pairBuilder.build(), transforms);
 
             // Load all textures we need in to the creator.
             MaterializedTextureCreator.registerBaseTexture(pairBuilder.build().values());
 
             return output;
         } catch (IOException e) {
-            ModLogger.getInstance().error(String.format("Could not load ArmorComponentModel {}", modelLocation.toString()));
+            ModLogger.getInstance().error(String.format("Could not load ArmorItemComponentModel {}", modelLocation.toString()));
         }
 
         //If all fails return a Missing model.

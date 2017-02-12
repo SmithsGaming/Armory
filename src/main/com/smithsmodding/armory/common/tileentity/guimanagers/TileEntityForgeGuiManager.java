@@ -8,8 +8,8 @@ import com.smithsmodding.smithscore.common.fluid.MultiFluidTank;
 import com.smithsmodding.smithscore.util.client.TranslationKeys;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fluids.FluidStack;
-import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
 /**
@@ -84,7 +84,7 @@ public class TileEntityForgeGuiManager extends TileEntityForgeBaseGuiManager<Til
         return 0F;
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public String getCustomToolTipDisplayString(IGUIComponent component) {
         if (!(component instanceof ComponentProgressBar))
@@ -111,7 +111,7 @@ public class TileEntityForgeGuiManager extends TileEntityForgeBaseGuiManager<Til
     }
 
     @Override
-    public String getLabelContents(@NotNull IGUIComponent component) {
+    public String getLabelContents(@Nonnull IGUIComponent component) {
         if (component.getID().endsWith(".CurrentTemperature")) {
             //ModLogger.getInstance().error(getTileEntity().getState().getCurrentTemp());
             return laf.format(getTileEntity().getState().getCurrentTemp()) + " C";
@@ -124,7 +124,7 @@ public class TileEntityForgeGuiManager extends TileEntityForgeBaseGuiManager<Til
         return super.getLabelContents(component);
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public ArrayList<FluidStack> getTankContents(IGUIComponent component) {
         return new ArrayList<FluidStack>(((MultiFluidTank) getTileEntity().getTankForSide(null)).getFluidStacks());

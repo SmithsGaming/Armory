@@ -1,0 +1,13 @@
+{
+  "parent": "item/generated",
+  "base": "armory:items/multiarmor/base/armory.chestplate_base",
+  "layers": {
+    "armory:BackLeft": "armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left",
+    "armory:BackRight": "armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right",
+    "armory:StomachLeft": "armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left",
+    "armory:StomachRight": "armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right",
+    "armory:ShoulderLeft": "armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left",
+    "armory:ShoulderRight": "armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right"
+  },
+  "broken": {}
+}

@@ -5,14 +5,14 @@ package com.smithsmodding.armory.common.inventory.slots;
  *   Created on: 18-1-2015
  */
 
-import com.smithsmodding.armory.common.item.ItemHeatedItem;
-import com.smithsmodding.armory.common.registry.HeatableItemRegistry;
+import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
 import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.inventory.slot.SlotSmithsCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 
 public class SlotHeatable extends SlotSmithsCore {
 
@@ -25,11 +25,8 @@ public class SlotHeatable extends SlotSmithsCore {
     }
 
     @Override
-    public boolean isItemValid(@NotNull ItemStack pItemStack) {
-        if (pItemStack.getItem() instanceof ItemHeatedItem) {
-            return true;
-        }
-        return HeatableItemRegistry.getInstance().isHeatable(pItemStack);
+    public boolean isItemValid(@Nonnull ItemStack pItemStack) {
+        return IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().isHeatable(pItemStack);
     }
 
     @Override
