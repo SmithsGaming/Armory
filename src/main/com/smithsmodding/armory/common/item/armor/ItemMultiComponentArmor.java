@@ -1,22 +1,38 @@
 package com.smithsmodding.armory.common.item.armor;
 
+import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
+import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapability;
+import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
+import com.smithsmodding.armory.util.armor.ArmorHelper;
+import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
+import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.ISpecialArmor;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 
 /**
  * Created by marcf on 1/25/2017.
@@ -28,7 +44,7 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
         this.setRegistryName(internalName);
         this.setUnlocalizedName(translationKey);
         this.setMaxStackSize(1);
-        this.setCreativeTab(ModCreativeTabs.armorTab);
+        this.setCreativeTab(ModCreativeTabs.ARMOR);
     }
 
     /**
@@ -100,5 +116,68 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
             return (ModelBiped) bakedModel;
         }
         return _default;
+    }
+
+    @Override
+    public boolean getHasSubtypes() {
+        return true;
+    }
+
+    /**
+     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
+     *
+     * @param itemIn
+     * @param tab
+     * @param subItems
+     */
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
+        IMultiComponentArmor armorType = ArmorHelper.getArmorForItem(itemIn);
+
+        for(ICoreArmorMaterial coreArmorMaterial : IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry()) {
+            subItems.add(IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getMLAFactory().buildNewMLAArmor(armorType, new ArrayList<>(), coreArmorMaterial.getBaseDurabilityForArmor(armorType), coreArmorMaterial));
+        }
+    }
+
+    /**
+     * Called from ItemStack.setItem, will hold extra data for the life of this ItemStack.
+     * Can be retrieved from stack.getCapabilities()
+     * The NBT can be null if this is not called from readNBT or if the item the stack is
+     * changing FROM is different then this item, or the previous item had no capabilities.
+     * <p>
+     * This is called BEFORE the stacks item is set so you can use stack.getItem() to see the OLD item.
+     * Remember that getItem CAN return null.
+     *
+     * @param stack The ItemStack
+     * @param nbt   NBT of this item serialized, or null.
+     * @return A holder instance associated with this ItemStack where you can hold capabilities for the life of this item.
+     */
+    @Nullable
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
+        if (nbt == null || stack.getItem() == null)
+            return null;
+
+        NBTTagCompound parentCompound = nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
+
+        SmithsCoreCapabilityDispatcher internalParentDispatcher = new SmithsCoreCapabilityDispatcher();
+        internalParentDispatcher.registerNewInstance(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY);
+
+        internalParentDispatcher.deserializeNBT(parentCompound);
+
+        return internalParentDispatcher;
+    }
+
+    @Override
+    public String getItemStackDisplayName(ItemStack stack) {
+        if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
+            return "Stack has No Data!";
+
+        IMultiComponentArmorCapability capability = stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+        IMultiComponentArmor armorType = capability.getArmorType();
+        IMaterial material = capability.getMaterial();
+
+        return material.getTextFormatting() + I18n.format(material.getTranslationKey()) + TextFormatting.RESET + " " + I18n.format(armorType.getTranslationKey());
     }
 }

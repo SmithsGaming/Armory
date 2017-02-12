@@ -35,7 +35,7 @@ public class ItemHammer extends Item {
     public ItemHammer() {
         setMaxStackSize(1);
         setMaxDamage(150);
-        setCreativeTab(ModCreativeTabs.generalTab);
+        setCreativeTab(ModCreativeTabs.GENERAL);
         setUnlocalizedName(References.InternalNames.Items.IN_HAMMER);
         setRegistryName(References.InternalNames.Items.IN_HAMMER.toLowerCase());
         addPropertyOverride(CoreReferences.IItemProperties.MODELTYPE, new IItemPropertyGetter() {
@@ -137,7 +137,7 @@ public class ItemHammer extends Item {
                 centerPos = WorldUtil.getBlockPosForPerspective(centerPos, side, EnumFacing.NORTH);
             }
 
-            world.setBlockState(anvilPos, ModBlocks.blockBlackSmithsAnvil.getStateForPlacement(world, anvilPos, EnumFacing.UP, hitX, hitY, hitZ, 0, player));
+            world.setBlockState(anvilPos, ModBlocks.BL_ANVIL.getStateForPlacement(world, anvilPos, EnumFacing.UP, hitX, hitY, hitZ, 0, player));
 
             TileEntityBlackSmithsAnvil tileEntityBlackSmithsAnvil = (TileEntityBlackSmithsAnvil) world.getTileEntity(anvilPos);
             tileEntityBlackSmithsAnvil.getState().setMaterial(ModMaterials.Anvil.STONE);

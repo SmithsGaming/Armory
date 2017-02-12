@@ -34,10 +34,10 @@ public class TranslationKeys {
 
         public class MultiArmor {
             public class Armor {
-                public static final String TK_HELMET = "item.Armory.MultiArmor.Armor.Helmet";
-                public static final String TK_CHESTPLATE = "iten.Armory.MultiArmor.Armor.ChestPlate";
-                public static final String TK_LEGGINGS = "item.Armory.MultiArmor.Armor.Leggings";
-                public static final String TK_SHOES = "item.Armory.MultiArmor.Armor.Shoes";
+                public static final String TK_HELMET = "item.armory.multiarmor.armor.helmet";
+                public static final String TK_CHESTPLATE = "item.armory.multiarmor.armor.chestplate";
+                public static final String TK_LEGGINGS = "item.armory.multiarmor.armor.leggings";
+                public static final String TK_SHOES = "item.armory.multiarmor.armor.shoes";
             }
 
             public class Upgrades {
@@ -75,7 +75,7 @@ public class TranslationKeys {
 
     public class Materials {
         public class Anvil {
-            public static final String TK_ANVIL_STONE = "Armory.Materials.AnvilOnly.Vanilla.Stone";
+            public static final String TK_ANVIL_STONE = "Armory.Materials.Vanilla.Stone";
             public static final String TK_ANVIL_IRON = "Armory.Materials.Vanilla.Iron";
             public static final String TK_ANVIL_OBSIDIAN = "Armory.Materials.Vanilla.Obsidian";
         }

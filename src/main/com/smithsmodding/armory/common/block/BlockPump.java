@@ -38,7 +38,7 @@ public class BlockPump extends BlockArmoryTileEntity {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityPump(EnumPumpType.byMetadata(meta));
+        return new TileEntityPump();
     }
 
     public boolean isFullCube(IBlockState state) {

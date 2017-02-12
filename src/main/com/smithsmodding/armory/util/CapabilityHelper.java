@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.util;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.capability.IArmorComponentStackCapability;
 import com.smithsmodding.armory.api.common.capability.IHeatableObjectCapability;
@@ -27,6 +28,12 @@ public class CapabilityHelper {
 
         IHeatableObjectWrapper wrapperItem = (IHeatableObjectWrapper) item;
 
+        if (IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().hasOverride(ModHeatableObjects.ITEMSTACK, wrapperItem.getHeatableObjectType(), material)) {
+            ItemStack copy = IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().getHeatedOverride(ModHeatableObjects.ITEMSTACK, wrapperItem.getHeatableObjectType(), material);
+            copy.setCount(count);
+            return copy;
+        }
+
         return forceGenerateMaterializedStack(item, material, count, wrapperItem.getHeatableObjectType());
     }
 
@@ -35,6 +42,12 @@ public class CapabilityHelper {
             throw new IllegalArgumentException("Not a wrapper block");
 
         IHeatableObjectWrapper wrapperBlock = (IHeatableObjectWrapper) block;
+
+        if (IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().hasOverride(ModHeatableObjects.ITEMSTACK, wrapperBlock.getHeatableObjectType(), material)) {
+            ItemStack copy = IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().getHeatedOverride(ModHeatableObjects.ITEMSTACK, wrapperBlock.getHeatableObjectType(), material);
+            copy.setCount(count);
+            return copy;
+        }
 
         return forceGenerateMaterializedStack(block, material, count, wrapperBlock.getHeatableObjectType());
     }
@@ -99,5 +112,13 @@ public class CapabilityHelper {
             return null;
 
         return stack.getCapability(ModCapabilities.MOD_ARMORCOMPONENT_CAPABILITY, null).getExtension();
+    }
+
+    public static IMultiComponentArmor getArmorFromStack(ItemStack stack) {
+        if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null)) {
+            return null;
+        }
+
+        return stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null).getArmorType();
     }
 }

@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.common.logic.initialization;
 
 import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
+import com.smithsmodding.armory.common.structure.conduit.StructureFactoryConduit;
 import com.smithsmodding.armory.common.structure.forge.StructureFactoryForge;
 import com.smithsmodding.smithscore.common.structures.StructureRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -24,5 +25,6 @@ public class CommonStructureInitializer extends IInitializationComponent.Impl {
     @Override
     public void onPreInit(@Nonnull FMLPreInitializationEvent preInitializationEvent) {
         StructureRegistry.getServerInstance().registerStructureFactory(new StructureFactoryForge());
+        StructureRegistry.getServerInstance().registerStructureFactory(new StructureFactoryConduit());
     }
 }

@@ -3,7 +3,7 @@ Cannot run the CurseUpload sequence. No API-Key was available.Cannot run the Cur
 The sync of the branches is not being executed, because we are not releasing a new version.The sync of the branches is not being executed, because we are not releasing a new version.
 
 #################################################
-         ForgeGradle 2.2-SNAPSHOT-59eb824        
+         ForgeGradle 2.2-SNAPSHOT-2112b0a        
   https://github.com/MinecraftForge/ForgeGradle  
 #################################################
                Powered by MCP unknown               
@@ -14,12 +14,11 @@ The sync of the branches is not being executed, because we are not releasing a n
 Found AccessTransformer: jei_at.cfg_jei_1.11-4.1.1.208_at.cfg
 Found AccessTransformer: SmithsCore_at.cfg_smithscore-1.11-1.3.0-268-SNAPSHOT_at.cfg
 Found AccessTransformer: Armory_at.cfg
-Download http://dvs1.progwml6.com/files/maven/mezz/jei/jei_1.11/4.0.1.193/jei_1.11-4.0.1.193.pom
-Download http://dvs1.progwml6.com/files/maven/mezz/jei/jei_1.11/4.0.1.193/jei_1.11-4.0.1.193.jar
-Download http://dvs1.progwml6.com/files/maven/mezz/jei/jei_1.11/4.0.1.193/jei_1.11-4.0.1.193-sources.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.11-1.3.0-297-SNAPSHOT/smithscore-1.11-1.3.0-297-20170210.225330-1.jar
+Download http://mavenrepo.smithscore.orionminecraft.com/com/smithsmodding/smithscore/smithscore/1.11-1.3.0-297-SNAPSHOT/smithscore-1.11-1.3.0-297-20170210.225330-1-sources.jar
 :extractMcpMappings SKIPPED
-:deobfCompileDeobfDepTask0 SKIPPED
-:deobfCompileDeobfDepTask1
+:deobfCompileDeobfDepTask0
+:deobfCompileDeobfDepTask1 SKIPPED
 :deobfCompileRemapDepSourcesTask2 SKIPPED
 :deobfCompileRemapDepSourcesTask3
 :deobfCompileDummyTask
@@ -42,6 +41,7 @@ Download http://dvs1.progwml6.com/files/maven/mezz/jei/jei_1.11/4.0.1.193/jei_1.
 :extractNatives SKIPPED
 :getAssetIndex UP-TO-DATE
 :getAssets
+Current status: 1194/1196   99%
 :makeStart
 :setupDecompWorkspace
 :ideaModule
@@ -51,4 +51,4 @@ Download http://dvs1.progwml6.com/files/maven/mezz/jei/jei_1.11/4.0.1.193/jei_1.
 
 BUILD SUCCESSFUL
 
-Total time: 29.33 secs
+Total time: 42.469 secs

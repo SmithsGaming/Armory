@@ -93,6 +93,7 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
                 .setCraftingSlotContent(21, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.INGOT, ModHeatableObjects.ITEMSTACK, ModMaterials.Armor.Core.IRON, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.85F, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.95F))
                 .setCraftingSlotContent(22, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.INGOT, ModHeatableObjects.ITEMSTACK, ModMaterials.Armor.Core.IRON, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.85F, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.95F))
                 .setCraftingSlotContent(22, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.INGOT, ModHeatableObjects.ITEMSTACK, ModMaterials.Armor.Core.IRON, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.85F, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.95F))
+                .setCraftingSlotContent(23, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.INGOT, ModHeatableObjects.ITEMSTACK, ModMaterials.Armor.Core.IRON, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.85F, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.95F))
                 .setCraftingSlotContent(24, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.INGOT, ModHeatableObjects.ITEMSTACK, ModMaterials.Armor.Core.IRON, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.85F, ModMaterials.Armor.Core.IRON.getMeltingPoint() * 0.65F * 0.95F))
                 .setHammerUsage(15).setTongUsage(25).setResult(forgeStack).setProgress(60).setRegistryName(RN_FORGE);
         IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(forgeRecipe);
@@ -264,13 +265,18 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
                     if (!extension.hasItemStack())
                         return;
 
+                    if (extension.getArmor() != iMultiComponentArmor)
+                        return;
+
                     IAnvilRecipe upgradeRecipe = extension.getRecipeCallback().getAttachingRecipe(extension, iMultiComponentArmor, iCoreArmorMaterial);
+
+                    if (upgradeRecipe == null)
+                        return;
 
                     if (IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().containsKey(upgradeRecipe.getRegistryName()))
                         return;
 
-                    if (upgradeRecipe != null)
-                        IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(upgradeRecipe);
+                    IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(upgradeRecipe);
                 });
             });
         });
@@ -287,6 +293,8 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
 
         registerHeatableOverrideForItems(ModMaterials.Armor.Core.GOLD, new ItemStack(Items.GOLD_INGOT), new ItemStack(Items.GOLD_NUGGET), new ItemStack(Blocks.GOLD_BLOCK), null, null, null);
         registerHeatableOverrideForItems(ModMaterials.Armor.Addon.GOLD, new ItemStack(Items.GOLD_INGOT), new ItemStack(Items.GOLD_NUGGET), new ItemStack(Blocks.GOLD_BLOCK), null, null, null);
+
+        registerHeatableOverrideForItems(ModMaterials.Anvil.STONE, null, null, new ItemStack(Blocks.STONE), null, null, null);
     }
 
     private static void registerHeatableOverrideForItems(@Nonnull IMaterial material
@@ -347,27 +355,32 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
             IAnvilRecipe ringRecipe = new AnvilRecipe()
                     .setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.65F, material.getMeltingPoint() * 0.75F)))
                     .setProgress(9).setResult(ringStack).setHammerUsage(4).setTongUsage(0).setShapeLess()
-                    .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_RING.getResourcePath() + "-" + material.getRegistryName().getResourcePath()));
+                    .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_RING.getResourcePath() + "-" + material.getOreDictionaryIdentifier()));
 
-            IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(ringRecipe);
+            if (!IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().containsKey(ringRecipe.getRegistryName()))
+                IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(ringRecipe);
 
-            ItemStack plateStack = CapabilityHelper.generateMaterializedStack(ModItems.IT_RING, material, 1);
+            ItemStack plateStack = CapabilityHelper.generateMaterializedStack(ModItems.IT_PLATE, material, 1);
 
-            IAnvilRecipe plateRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.INGOT, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.65F, material.getMeltingPoint() * 0.75F)))
+            IAnvilRecipe plateRecipe = new AnvilRecipe()
+                    .setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.INGOT, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.65F, material.getMeltingPoint() * 0.75F)))
                     .setProgress(15).setResult(plateStack).setHammerUsage(15).setTongUsage(2).setShapeLess()
-                    .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_PLATE.getResourcePath() + "-" + material.getRegistryName().getResourcePath()));
+                    .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_PLATE.getResourcePath() + "-" + material.getOreDictionaryIdentifier()));
 
-            IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(plateRecipe);
+            if (!IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().containsKey(plateRecipe.getRegistryName()))
+                IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(plateRecipe);
 
-            ItemStack nuggetStack = CapabilityHelper.generateMaterializedStack(ModItems.IT_RING, material, 1);
+            ItemStack nuggetStack = CapabilityHelper.generateMaterializedStack(ModItems.IT_NUGGET, material, 9);
 
-            IAnvilRecipe nuggetRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.INGOT, ModHeatableObjects.ITEMSTACK, material, (material.getMeltingPoint() * 0.5F) * 0.65F, (material.getMeltingPoint() * 0.5F) * 0.75F)))
+            IAnvilRecipe nuggetRecipe = new AnvilRecipe()
+                    .setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.INGOT, ModHeatableObjects.ITEMSTACK, material, (material.getMeltingPoint() * 0.5F) * 0.65F, (material.getMeltingPoint() * 0.5F) * 0.75F)))
                     .setProgress(6).setResult(nuggetStack).setHammerUsage(4).setTongUsage(0).setShapeLess()
-                    .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_NUGGET.getResourcePath() + "-" + material.getRegistryName().getResourcePath()));
+                    .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_NUGGET.getResourcePath() + "-" + material.getOreDictionaryIdentifier()));
 
-            IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(nuggetRecipe);
+            if (!IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().containsKey(nuggetRecipe.getRegistryName()))
+                IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(nuggetRecipe);
 
-            ItemStack chainStack = CapabilityHelper.generateMaterializedStack(ModItems.IT_RING, material, 1);
+            ItemStack chainStack = CapabilityHelper.generateMaterializedStack(ModItems.IT_CHAIN, material, 1);
 
             IAnvilRecipe chainRecipe = new AnvilRecipe().setCraftingSlotContent(2, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, material, (material.getMeltingPoint() * 0.35F) * 0.65F, (material.getMeltingPoint() * 0.35F) * 0.75F)))
                     .setCraftingSlotContent(6, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, material, (material.getMeltingPoint() * 0.35F) * 0.65F, (material.getMeltingPoint() * 0.35F) * 0.75F)))
@@ -379,9 +392,10 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
                     .setCraftingSlotContent(18, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, material, (material.getMeltingPoint() * 0.35F) * 0.65F, (material.getMeltingPoint() * 0.35F) * 0.75F)))
                     .setCraftingSlotContent(22, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, material, (material.getMeltingPoint() * 0.35F) * 0.65F, (material.getMeltingPoint() * 0.35F) * 0.75F)))
                     .setProgress(10).setResult(chainStack).setHammerUsage(16).setTongUsage(16)
-                    .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHAIN.getResourcePath() + "-" + material.getRegistryName().getResourcePath()));
+                    .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHAIN.getResourcePath() + "-" + material.getOreDictionaryIdentifier()));
 
-            IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(chainRecipe);
+            if (!IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().containsKey(chainRecipe.getRegistryName()))
+                IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(chainRecipe);
         }
     }
 
