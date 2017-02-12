@@ -1,0 +1,101 @@
+---- Minecraft Crash Report ----
+// Don't do that.
+
+Time: 2/6/17 9:05 PM
+Description: Initializing game
+
+java.lang.IllegalStateException: Function is not supported
+	at org.lwjgl.BufferChecks.checkFunctionAddress(BufferChecks.java:58)
+	at org.lwjgl.opengl.GL13.glClientActiveTexture(GL13.java:128)
+	at net.minecraft.client.renderer.OpenGlHelper.setClientActiveTexture(OpenGlHelper.java:870)
+	at net.minecraftforge.client.ForgeHooksClient.preDraw(ForgeHooksClient.java:504)
+	at net.minecraft.client.renderer.vertex.VertexFormatElement$EnumUsage.preDraw(VertexFormatElement.java:153)
+	at net.minecraft.client.renderer.WorldVertexBufferUploader.draw(WorldVertexBufferUploader.java:32)
+	at net.minecraft.client.renderer.Tessellator.draw(Tessellator.java:31)
+	at net.minecraft.client.Minecraft.drawSplashScreen(Minecraft.java:928)
+	at net.minecraftforge.fml.client.SplashProgress.drawVanillaScreen(SplashProgress.java:815)
+	at net.minecraft.client.Minecraft.init(Minecraft.java:479)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:385)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:26)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at org.lwjgl.BufferChecks.checkFunctionAddress(BufferChecks.java:58)
+	at org.lwjgl.opengl.GL13.glClientActiveTexture(GL13.java:128)
+	at net.minecraft.client.renderer.OpenGlHelper.setClientActiveTexture(OpenGlHelper.java:870)
+	at net.minecraftforge.client.ForgeHooksClient.preDraw(ForgeHooksClient.java:504)
+	at net.minecraft.client.renderer.vertex.VertexFormatElement$EnumUsage.preDraw(VertexFormatElement.java:153)
+	at net.minecraft.client.renderer.WorldVertexBufferUploader.draw(WorldVertexBufferUploader.java:32)
+	at net.minecraft.client.renderer.Tessellator.draw(Tessellator.java:31)
+	at net.minecraft.client.Minecraft.drawSplashScreen(Minecraft.java:928)
+	at net.minecraftforge.fml.client.SplashProgress.drawVanillaScreen(SplashProgress.java:815)
+	at net.minecraft.client.Minecraft.init(Minecraft.java:479)
+
+-- Initialization --
+Details:
+Stacktrace:
+	at net.minecraft.client.Minecraft.run(Minecraft.java:385)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:26)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.11
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_111, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 925758040 bytes (882 MB) / 1413480448 bytes (1348 MB) up to 7621050368 bytes (7268 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.35 Powered by Forge 13.19.0.2177 6 mods loaded, 6 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+	UCH	mcp{9.19} [Minecraft Coder Pack] (minecraft.jar) 
+	UCH	FML{8.0.99.99} [Forge Mod Loader] (forgeSrc-1.11-13.19.0.2177-PROJECT(Armory).jar) 
+	UCH	forge{13.19.0.2177} [Minecraft Forge] (forgeSrc-1.11-13.19.0.2177-PROJECT(Armory).jar) 
+	UCH	smithscore{1.11-1.3.0-290-SNAPSHOT} [smithscore] (smithscore-1.11-1.3.0-290-SNAPSHOT.jar) 
+	UCH	armory{@VERSION@} [Armory] (Armory) 
+	UCH	jei{4.0.1.193} [Just Enough Items] (jei_1.11-4.0.1.193.jar) 
+	Loaded coremods (and transformers): 
+	Launched Version: 1.11
+	LWJGL: 2.9.4
+	OpenGL: GDI Generic GL version 1.1.0, Microsoft Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Not using framebuffer objects because OpenGL 1.4 is not supported, EXT_blend_func_separate is not supported, OpenGL 3.0 is not supported, ARB_framebuffer_object is not supported, and EXT_framebuffer_object is not supported.
+Shaders are not available because OpenGL 2.1 is not supported, ARB_shader_objects is not supported, ARB_vertex_shader is not supported, and ARB_fragment_shader is not supported.
+VBOs are not available because 
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 8x Intel(R) Xeon(R) CPU E3-1230 v3 @ 3.30GHz

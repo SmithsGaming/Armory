@@ -1,0 +1,85 @@
+---- Minecraft Crash Report ----
+// I blame Dinnerbone.
+
+Time: 2/7/17 8:19 PM
+Description: Ticking block entity
+
+java.lang.NullPointerException: Ticking block entity
+	at com.smithsmodding.armory.common.tileentity.TileEntityPump.updateOutput(TileEntityPump.java:138)
+	at com.smithsmodding.armory.common.tileentity.TileEntityPump.updateHorizontal(TileEntityPump.java:104)
+	at com.smithsmodding.armory.common.tileentity.TileEntityPump.update(TileEntityPump.java:85)
+	at net.minecraft.world.World.updateEntities(World.java:1968)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:646)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:794)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at com.smithsmodding.armory.common.tileentity.TileEntityPump.updateOutput(TileEntityPump.java:138)
+	at com.smithsmodding.armory.common.tileentity.TileEntityPump.updateHorizontal(TileEntityPump.java:104)
+	at com.smithsmodding.armory.common.tileentity.TileEntityPump.update(TileEntityPump.java:85)
+
+-- Block entity being ticked --
+Details:
+	Name: minecraft:container.armory.pump // com.smithsmodding.armory.common.tileentity.TileEntityPump
+	Block type: ID #240 (tile.armory.blocks.pump // com.smithsmodding.armory.common.block.BlockPump)
+	Block data value: 0 / 0x0 / 0b0000
+	Block location: World: (-935,56,-777), Chunk: (at 9,3,7 in -59,-49; contains blocks -944,0,-784 to -929,255,-769), Region: (-2,-2; contains chunks -64,-64 to -33,-33, blocks -1024,0,-1024 to -513,255,-513)
+	Actual block type: ID #240 (tile.armory.blocks.pump // com.smithsmodding.armory.common.block.BlockPump)
+	Actual block data value: 0 / 0x0 / 0b0000
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:1968)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:646)
+
+-- Affected level --
+Details:
+	Level name: Copy of New World
+	All players: 1 total; [EntityPlayerMP['Player651'/3120, l='Copy of New World', x=-936.56, y=56.00, z=-774.76]]
+	Chunk stats: ServerChunkCache: 625 Drop: 0
+	Level seed: 4378122348654992971
+	Level generator: ID 01 - flat, ver 0. Features enabled: false
+	Level generator options: 3;minecraft:bedrock,3*minecraft:stone,52*minecraft:sandstone;2;
+	Level spawn location: World: (-927,4,-769), Chunk: (at 1,0,15 in -58,-49; contains blocks -928,0,-784 to -913,255,-769), Region: (-2,-2; contains chunks -64,-64 to -33,-33, blocks -1024,0,-1024 to -513,255,-513)
+	Level time: 2219 game time, 2219 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 39019 (now: false), thunder time: 95553 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:794)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547)
+	at java.lang.Thread.run(Thread.java:745)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.11
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_111, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 2170246504 bytes (2069 MB) / 2666004480 bytes (2542 MB) up to 7621050368 bytes (7268 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.35 Powered by Forge 13.19.0.2177 6 mods loaded, 6 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+	UCHIJAAAAAAAAA	mcp{9.19} [Minecraft Coder Pack] (minecraft.jar) 
+	UCHIJAAAAAAAAA	FML{8.0.99.99} [Forge Mod Loader] (forgeSrc-1.11-13.19.0.2177-PROJECT(Armory).jar) 
+	UCHIJAAAAAAAAA	forge{13.19.0.2177} [Minecraft Forge] (forgeSrc-1.11-13.19.0.2177-PROJECT(Armory).jar) 
+	UCHIJAAAAAAAAA	smithscore{1.11-1.3.0-295-SNAPSHOT} [smithscore] (smithscore-1.11-1.3.0-295-SNAPSHOT.jar) 
+	UCHIJAAAAAAAAA	armory{@VERSION@} [Armory] (Armory) 
+	UCHIJAAAAAAAAA	jei{4.0.1.193} [Just Enough Items] (jei_1.11-4.0.1.193.jar) 
+	Loaded coremods (and transformers): 
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	Profiler Position: N/A (disabled)
+	Player Count: 1 / 8; [EntityPlayerMP['Player651'/3120, l='Copy of New World', x=-936.56, y=56.00, z=-774.76]]
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'

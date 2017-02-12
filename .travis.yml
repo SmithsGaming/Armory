@@ -12,6 +12,6 @@ install: ./gradlew setupCIWorkspace -S
 script: ./gradlew build -S
 after_success:
   - ./gradlew uploadJars -S
-  - ./gradlew curseforge -S
+  - ./gradlew makeChangelog curseforge -S
   - ./gradlew createGithubBranches -S
 
