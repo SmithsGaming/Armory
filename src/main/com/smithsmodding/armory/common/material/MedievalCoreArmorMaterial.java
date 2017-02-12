@@ -91,7 +91,7 @@ public abstract class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<
      * Setter for the RenderInfo of the current Provider.
      *
      * @param renderInfo The new renderinfo.
-     *
+     * @implNote This method only exists on the Client Side.
      */
     @Override
     @Nonnull
@@ -106,7 +106,7 @@ public abstract class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<
      * Has to be supplied so that resourcepack makers can override the behaviour if they fell the need to do it.
      *
      * @return The override identifier for overloading the programmatic behaviour of the RenderInfo.
-     *
+     * @implNote This method only exists on the Client Side.
      */
     @Nonnull
     @Override
