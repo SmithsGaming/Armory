@@ -1,0 +1,119 @@
+---- Minecraft Crash Report ----
+// This is a token for 1 free hug. Redeem at your nearest Mojangsta: [~~HUG~~]
+
+Time: 2/2/17 10:47 AM
+Description: Unexpected error
+
+java.lang.IllegalArgumentException: The given stack cannot set the Material! No Capability available!
+	at com.smithsmodding.armory.common.block.BlockHeatableResource.onBlockPlacedBy(BlockHeatableResource.java:146)
+	at net.minecraft.item.ItemBlock.placeBlockAt(ItemBlock.java:195)
+	at net.minecraft.item.ItemBlock.onItemUse(ItemBlock.java:54)
+	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:180)
+	at net.minecraft.client.multiplayer.PlayerControllerMP.processRightClickBlock(PlayerControllerMP.java:486)
+	at net.minecraft.client.Minecraft.rightClickMouse(Minecraft.java:1604)
+	at net.minecraft.client.Minecraft.processKeyBinds(Minecraft.java:2274)
+	at net.minecraft.client.Minecraft.runTickKeyboard(Minecraft.java:2051)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1839)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1117)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:405)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:26)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at com.smithsmodding.armory.common.block.BlockHeatableResource.onBlockPlacedBy(BlockHeatableResource.java:146)
+	at net.minecraft.item.ItemBlock.placeBlockAt(ItemBlock.java:195)
+	at net.minecraft.item.ItemBlock.onItemUse(ItemBlock.java:54)
+	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:180)
+	at net.minecraft.client.multiplayer.PlayerControllerMP.processRightClickBlock(PlayerControllerMP.java:486)
+	at net.minecraft.client.Minecraft.rightClickMouse(Minecraft.java:1604)
+	at net.minecraft.client.Minecraft.processKeyBinds(Minecraft.java:2274)
+	at net.minecraft.client.Minecraft.runTickKeyboard(Minecraft.java:2051)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player913'/106, l='MpServer', x=57.50, y=4.00, z=-296.50]]
+	Chunk stats: MultiplayerChunkCache: 554, 554
+	Level seed: 0
+	Level generator: ID 01 - flat, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: World: (65,4,-291), Chunk: (at 1,0,13 in 4,-19; contains blocks 64,0,-304 to 79,255,-289), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,0,-512 to 511,255,-1)
+	Level time: 1401 game time, 1401 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 65 total; [EntitySlime['Slime'/42631, l='MpServer', x=29.48, y=4.00, z=-238.85], EntitySlime['Slime'/18, l='MpServer', x=-11.13, y=4.42, z=-245.47], EntitySlime['Slime'/19, l='MpServer', x=9.23, y=4.00, z=-369.50], EntitySlime['Slime'/21, l='MpServer', x=-18.80, y=5.25, z=-288.10], EntitySlime['Slime'/82452, l='MpServer', x=126.87, y=4.00, z=-312.53], EntitySlime['Slime'/22, l='MpServer', x=5.11, y=4.42, z=-254.85], EntitySlime['Slime'/65175, l='MpServer', x=30.05, y=4.00, z=-288.11], EntitySlime['Slime'/62104, l='MpServer', x=33.11, y=4.17, z=-374.09], EntitySlime['Slime'/25, l='MpServer', x=23.39, y=4.00, z=-370.87], EntitySheep['Sheep'/27, l='MpServer', x=18.84, y=4.00, z=-309.31], EntitySheep['Sheep'/28, l='MpServer', x=22.74, y=4.00, z=-293.78], EntitySlime['Slime'/27676, l='MpServer', x=105.54, y=5.18, z=-323.00], EntitySheep['Sheep'/29, l='MpServer', x=22.48, y=4.00, z=-297.99], EntitySheep['Sheep'/30, l='MpServer', x=22.96, y=4.00, z=-296.87], EntitySlime['Slime'/31, l='MpServer', x=23.92, y=5.17, z=-239.00], EntitySlime['Slime'/32, l='MpServer', x=25.60, y=5.02, z=-228.62], EntitySlime['Slime'/33, l='MpServer', x=20.65, y=4.00, z=-242.80], EntitySlime['Slime'/34, l='MpServer', x=8.11, y=4.00, z=-244.52], EntityPig['Pig'/35, l='MpServer', x=31.77, y=4.00, z=-264.55], EntityPig['Pig'/36, l='MpServer', x=41.50, y=4.00, z=-264.50], EntitySlime['Slime'/37, l='MpServer', x=37.68, y=4.00, z=-274.39], EntitySlime['Slime'/40, l='MpServer', x=59.91, y=4.00, z=-346.76], EntitySlime['Slime'/41, l='MpServer', x=66.92, y=4.00, z=-326.33], EntityPig['Pig'/42, l='MpServer', x=52.68, y=4.00, z=-260.93], EntityPig['Pig'/43, l='MpServer', x=51.67, y=4.00, z=-259.88], EntitySlime['Slime'/81066, l='MpServer', x=30.14, y=4.00, z=-227.43], EntitySlime['Slime'/47, l='MpServer', x=68.62, y=4.00, z=-260.72], EntitySlime['Slime'/48, l='MpServer', x=111.19, y=4.12, z=-339.26], EntityPig['Pig'/49, l='MpServer', x=93.50, y=4.00, z=-284.50], EntityPig['Pig'/50, l='MpServer', x=90.50, y=4.00, z=-285.50], EntityPig['Pig'/51, l='MpServer', x=95.50, y=4.00, z=-281.50], EntitySlime['Slime'/52, l='MpServer', x=88.97, y=4.00, z=-256.40], EntitySlime['Slime'/53, l='MpServer', x=76.37, y=5.17, z=-252.39], EntitySlime['Slime'/54, l='MpServer', x=87.81, y=4.00, z=-259.32], EntityChicken['Chicken'/55, l='MpServer', x=94.40, y=4.00, z=-223.67], EntityChicken['Chicken'/56, l='MpServer', x=91.54, y=4.00, z=-226.76], EntityPig['Pig'/57, l='MpServer', x=90.43, y=4.00, z=-227.32], EntityPig['Pig'/58, l='MpServer', x=89.40, y=4.00, z=-227.51], EntitySlime['Slime'/59, l='MpServer', x=102.64, y=4.00, z=-368.55], EntitySlime['Slime'/61, l='MpServer', x=107.35, y=4.00, z=-333.45], EntitySlime['Slime'/62, l='MpServer', x=77.32, y=4.00, z=-340.86], EntitySlime['Slime'/63, l='MpServer', x=114.74, y=5.25, z=-306.06], EntitySlime['Slime'/65, l='MpServer', x=109.09, y=4.42, z=-372.36], EntitySlime['Slime'/66, l='MpServer', x=109.42, y=4.80, z=-343.53], EntitySlime['Slime'/67, l='MpServer', x=117.12, y=5.02, z=-332.66], EntitySlime['Slime'/68, l='MpServer', x=115.42, y=4.42, z=-323.24], EntitySlime['Slime'/69, l='MpServer', x=128.82, y=4.00, z=-328.86], EntitySlime['Slime'/70, l='MpServer', x=117.33, y=4.75, z=-312.53], EntitySlime['Slime'/71, l='MpServer', x=115.05, y=5.02, z=-311.00], EntitySlime['Slime'/72, l='MpServer', x=129.23, y=4.00, z=-305.18], EntitySlime['Slime'/73, l='MpServer', x=121.84, y=4.28, z=-312.23], EntitySheep['Sheep'/78, l='MpServer', x=133.68, y=4.00, z=-337.18], EntitySlime['Slime'/52431, l='MpServer', x=-19.25, y=4.00, z=-232.52], EntityPlayerSP['Player913'/106, l='MpServer', x=57.50, y=4.00, z=-296.50], EntitySlime['Slime'/81, l='MpServer', x=133.04, y=4.00, z=-318.95], EntitySlime['Slime'/82, l='MpServer', x=118.48, y=4.12, z=-269.52], EntitySlime['Slime'/86482, l='MpServer', x=108.13, y=4.00, z=-259.55], EntitySlime['Slime'/10709, l='MpServer', x=86.63, y=4.95, z=-365.09], EntitySlime['Slime'/82516, l='MpServer', x=114.31, y=4.75, z=-325.52], EntitySlime['Slime'/88, l='MpServer', x=136.75, y=4.28, z=-348.23], EntitySlime['Slime'/41178, l='MpServer', x=8.73, y=4.00, z=-235.70], EntitySlime['Slime'/39132, l='MpServer', x=15.44, y=4.00, z=-287.69], EntitySlime['Slime'/99, l='MpServer', x=133.01, y=4.80, z=-256.10], EntitySlime['Slime'/86777, l='MpServer', x=53.23, y=4.00, z=-375.30], EntitySlime['Slime'/38655, l='MpServer', x=99.64, y=4.67, z=-342.86]]
+	Retry entities: 0 total; []
+	Server brand: fml,forge
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:451)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2772)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:434)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:26)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.11
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_111, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 1049116776 bytes (1000 MB) / 2842689536 bytes (2711 MB) up to 7621050368 bytes (7268 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.35 Powered by Forge 13.19.0.2177 6 mods loaded, 6 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+	UCHIJAAAA	mcp{9.19} [Minecraft Coder Pack] (minecraft.jar) 
+	UCHIJAAAA	FML{8.0.99.99} [Forge Mod Loader] (forgeSrc-1.11-13.19.0.2177-PROJECT(Armory).jar) 
+	UCHIJAAAA	forge{13.19.0.2177} [Minecraft Forge] (forgeSrc-1.11-13.19.0.2177-PROJECT(Armory).jar) 
+	UCHIJAAAA	smithscore{1.11-1.3.0-281-SNAPSHOT} [smithscore] (smithscore-1.11-1.3.0-281-SNAPSHOT.jar) 
+	UCHIJAAAA	armory{@VERSION@} [Armory] (Armory) 
+	UCHIJAAAA	jei{4.0.1.193} [Just Enough Items] (jei_1.11-4.0.1.193.jar) 
+	Loaded coremods (and transformers): 
+	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.5.0 NVIDIA 376.53' Renderer: 'GeForce GTX 770/PCIe/SSE2'
+	Launched Version: 1.11
+	LWJGL: 2.9.4
+	OpenGL: GeForce GTX 770/PCIe/SSE2 GL version 4.5.0 NVIDIA 376.53, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 8x Intel(R) Xeon(R) CPU E3-1230 v3 @ 3.30GHz

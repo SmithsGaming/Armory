@@ -1,0 +1,89 @@
+---- Minecraft Crash Report ----
+// I let you down. Sorry :(
+
+Time: 2/2/17 3:00 PM
+Description: Ticking block entity
+
+java.lang.IllegalArgumentException: cooledStack is not Heatable
+	at com.smithsmodding.armory.common.factories.HeatedItemFactory.convertToHeatedIngot(HeatedItemFactory.java:60)
+	at com.smithsmodding.armory.common.factories.HeatedItemFactory.convertToHeatedIngot(HeatedItemFactory.java:53)
+	at com.smithsmodding.armory.common.tileentity.TileEntityForgeBase.heatIngots(TileEntityForgeBase.java:113)
+	at com.smithsmodding.armory.common.tileentity.TileEntityForgeBase.update(TileEntityForgeBase.java:42)
+	at com.smithsmodding.armory.common.tileentity.TileEntityForge.update(TileEntityForge.java:70)
+	at net.minecraft.world.World.updateEntities(World.java:1968)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:646)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:794)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at com.smithsmodding.armory.common.factories.HeatedItemFactory.convertToHeatedIngot(HeatedItemFactory.java:60)
+	at com.smithsmodding.armory.common.factories.HeatedItemFactory.convertToHeatedIngot(HeatedItemFactory.java:53)
+	at com.smithsmodding.armory.common.tileentity.TileEntityForgeBase.heatIngots(TileEntityForgeBase.java:113)
+	at com.smithsmodding.armory.common.tileentity.TileEntityForgeBase.update(TileEntityForgeBase.java:42)
+	at com.smithsmodding.armory.common.tileentity.TileEntityForge.update(TileEntityForge.java:70)
+
+-- Block entity being ticked --
+Details:
+	Name: minecraft:container.armory.forge // com.smithsmodding.armory.common.tileentity.TileEntityForge
+	Block type: ID #235 (tile.armory.blocks.forge // com.smithsmodding.armory.common.block.BlockForge)
+	Block data value: 0 / 0x0 / 0b0000
+	Block location: World: (53,4,-289), Chunk: (at 5,0,15 in 3,-19; contains blocks 48,0,-304 to 63,255,-289), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,0,-512 to 511,255,-1)
+	Actual block type: ID #235 (tile.armory.blocks.forge // com.smithsmodding.armory.common.block.BlockForge)
+	Actual block data value: 0 / 0x0 / 0b0000
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:1968)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:646)
+
+-- Affected level --
+Details:
+	Level name: Copy of Copy of New World
+	All players: 1 total; [EntityPlayerMP['Player140'/106, l='Copy of Copy of New World', x=51.70, y=4.00, z=-288.69]]
+	Chunk stats: ServerChunkCache: 625 Drop: 0
+	Level seed: 7297052567891782244
+	Level generator: ID 01 - flat, ver 0. Features enabled: true
+	Level generator options: 
+	Level spawn location: World: (65,4,-291), Chunk: (at 1,0,13 in 4,-19; contains blocks 64,0,-304 to 79,255,-289), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,0,-512 to 511,255,-1)
+	Level time: 9740 game time, 9740 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 104697 (now: false), thunder time: 40651 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:794)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547)
+	at java.lang.Thread.run(Thread.java:745)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.11
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_111, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 945232800 bytes (901 MB) / 1521483776 bytes (1451 MB) up to 7621050368 bytes (7268 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.35 Powered by Forge 13.19.0.2177 6 mods loaded, 6 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+	UCHIJAAAA	mcp{9.19} [Minecraft Coder Pack] (minecraft.jar) 
+	UCHIJAAAA	FML{8.0.99.99} [Forge Mod Loader] (forgeSrc-1.11-13.19.0.2177-PROJECT(Armory).jar) 
+	UCHIJAAAA	forge{13.19.0.2177} [Minecraft Forge] (forgeSrc-1.11-13.19.0.2177-PROJECT(Armory).jar) 
+	UCHIJAAAA	smithscore{1.11-1.3.0-281-SNAPSHOT} [smithscore] (smithscore-1.11-1.3.0-281-SNAPSHOT.jar) 
+	UCHIJAAAA	armory{@VERSION@} [Armory] (Armory) 
+	UCHIJAAAA	jei{4.0.1.193} [Just Enough Items] (jei_1.11-4.0.1.193.jar) 
+	Loaded coremods (and transformers): 
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	Profiler Position: N/A (disabled)
+	Player Count: 1 / 8; [EntityPlayerMP['Player140'/106, l='Copy of Copy of New World', x=51.70, y=4.00, z=-288.69]]
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'

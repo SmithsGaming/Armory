@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="74002fd1-8a4c-40a4-8318-25b111c6ed5d" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.properties" afterPath="$PROJECT_DIR$/build.properties" />
+=======
+    <list default="true" id="74002fd1-8a4c-40a4-8318-25b111c6ed5d" name="Default" comment="Updated the build system to create better changelogs.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sample-html.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/gradle.log" afterPath="$PROJECT_DIR$/.gradle/gradle.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+>>>>>>> parent of bff3700... Updated Travis commands.
     </list>
     <ignored path="Armory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -96,7 +104,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sample-html.tpl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sample-html.tpl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sample-html.tpl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
@@ -106,6 +114,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="build.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build.properties">
           <provider selected="true" editor-type-id="text-editor">
@@ -126,6 +135,8 @@
           </provider>
         </entry>
       </file>
+=======
+>>>>>>> parent of bff3700... Updated Travis commands.
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -841,6 +852,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/tileentity/TileEntityBlackSmithsAnvil.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/client/model/item/baked/BakedMultiLayeredArmorItemModel.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/registry/HeatableItemRegistry.java" />
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/crafting/blacksmiths/component/HeatedAnvilRecipeComponent.java" />
@@ -890,8 +902,11 @@
         <option value="$PROJECT_DIR$/src/main/com/smithsmodding/armory/common/block/BlockBlackSmithsAnvil.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/sample-html.tpl" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/build.properties" />
+=======
+>>>>>>> parent of bff3700... Updated Travis commands.
       </list>
     </option>
   </component>
@@ -1571,8 +1586,12 @@
       <workItem from="1477643216401" duration="608000" />
       <workItem from="1478122126212" duration="2273000" />
       <workItem from="1478201718847" duration="530000" />
+<<<<<<< HEAD
       <workItem from="1478202262862" duration="1476000" />
       <workItem from="1483354130869" duration="110000" />
+=======
+      <workItem from="1478202262862" duration="622000" />
+>>>>>>> parent of bff3700... Updated Travis commands.
     </task>
     <task id="LOCAL-00002" summary="Initial work on fluid rendering.">
       <created>1470483299948</created>
@@ -1616,26 +1635,27 @@
       <option name="project" value="LOCAL" />
       <updated>1478124042875</updated>
     </task>
-    <task id="LOCAL-00008" summary="Updated the build system to create better changelogs.">
-      <created>1478203128298</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1478203128298</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="155284000" />
+=======
+    <option name="totallyTimeSpent" value="154320000" />
+>>>>>>> parent of bff3700... Updated Travis commands.
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.317757" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+>>>>>>> parent of bff3700... Updated Travis commands.
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -1753,7 +1773,24 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.2.2103-PROJECT(Armory)-sources.jar!/net/minecraft/inventory/EntityEquipmentSlot.java" />
+=======
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.2.2103-PROJECT(Armory)-sources.jar!/net/minecraftforge/fml/common/FMLModContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="606" column="0" selection-start-line="606" selection-start-column="0" selection-end-line="606" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/.gradle/minecraft/forgeSrc-1.10.2-12.18.2.2103-PROJECT(Armory)-sources.jar!/net/minecraft/inventory/EntityEquipmentSlot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> parent of bff3700... Updated Travis commands.
     <entry file="file://$PROJECT_DIR$/src/api/com/smithsmodding/armory/api/util/references/References.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1952,6 +1989,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/run/saves/New World/DIM1/data/villages_end.dat">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1984,6 +2028,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -2000,6 +2045,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> parent of bff3700... Updated Travis commands.
   </component>
   <component name="masterDetails">
     <states>
