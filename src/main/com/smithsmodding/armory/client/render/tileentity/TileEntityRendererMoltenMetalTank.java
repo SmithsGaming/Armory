@@ -5,6 +5,7 @@ import com.smithsmodding.smithscore.util.client.RenderHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -15,10 +16,10 @@ public class TileEntityRendererMoltenMetalTank extends TileEntitySpecialRenderer
 
     @Override
     public void renderTileEntityAt(TileEntityMoltenMetalTank te, double x, double y, double z, float partialTicks, int destroyStage) {
-        if (te == null)
+        if (true)
             return;
 
-        if (te.getTotalTankSizeOnSide(null) == 0)
+        if (te == null)
             return;
 
         double height = te.getTankContentsVolumeOnSide(null) / ((double) te.getTotalTankSizeOnSide(null)) * 0.7;

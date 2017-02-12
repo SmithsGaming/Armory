@@ -80,7 +80,7 @@ public interface IMaterializedStackCapability {
         }
 
         public void read(NBTTagCompound compound, IMaterializedStackCapability instance) {
-            instance.setMaterial(IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.MaterializedStack.MATERIAL))).getWrapped());
+            instance.setMaterial(IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.MaterializedStack.MATERIAL))));
         }
     }
 }

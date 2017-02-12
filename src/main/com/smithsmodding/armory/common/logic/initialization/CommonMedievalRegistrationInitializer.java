@@ -482,11 +482,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(6, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(8, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(6, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(8, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(2, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(8).setHammerUsage(5).setTongUsage(4)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_HELMETUPGRADETOP.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_HELMETUPGRADETOP.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_TOP);
@@ -530,11 +530,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(6, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(16, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(6, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(16, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(10, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(8).setHammerUsage(5).setTongUsage(4)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_HELMETUPGRADELEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_HELMETUPGRADELEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_LEFT);
@@ -578,11 +578,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(8, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(18, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(8, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(18, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(14, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(8).setHammerUsage(5).setTongUsage(4)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_HELMETUPGRADERIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_HELMETUPGRADERIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_RIGHT);
@@ -628,11 +628,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(6, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(8)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEUPGRADESHOULDERLEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEUPGRADESHOULDERLEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_SHOULDERLEFT);
@@ -677,11 +677,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(8, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(8)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEUPGRADESHOULDERRIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEUPGRADESHOULDERRIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_SHOULDERRIGHT);
@@ -728,11 +728,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(16, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(8)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEUPGRADESTOMACHLEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEUPGRADESTOMACHLEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_STOMACHLEFT);
@@ -779,11 +779,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(18, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(8)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEUPGRADESTOMACHRIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEUPGRADESTOMACHRIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_STOMACHRIGHT);
@@ -830,11 +830,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(16, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(8)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEUPGRADEBACKLEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEUPGRADEBACKLEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_BACKLEFT);
@@ -869,7 +869,7 @@ public class CommonMedievalRegistrationInitializer {
                                 .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.5F * 0.85F, material.getMeltingPoint() * 0.5F * 0.95F))
                                 .setCraftingSlotContent(14, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.5F * 0.85F, material.getMeltingPoint() * 0.5F * 0.95F))
                                 .setCraftingSlotContent(18, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.5F * 0.85F, material.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(19, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.5F * 0.85F, material.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(16, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.5F * 0.85F, material.getMeltingPoint() * 0.5F * 0.95F))
                                 .setCraftingSlotContent(24, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.5F * 0.85F, material.getMeltingPoint() * 0.5F * 0.95F))
                                 .setResult(upgradeStack).setHammerUsage(Math.round(material.getMeltingPoint()) / 300).setTongUsage((int) (material.getMeltingPoint() - 1000) / 300).setProgress(Math.round(material.getMeltingPoint()) / 100)
                                 .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEBACKRIGHT.getResourcePath() + "-" + material.getRegistryName().getResourcePath()));
@@ -881,11 +881,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(18, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(8)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEUPGRADEBACKRIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATEUPGRADEBACKRIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_BACKRIGHT);
@@ -934,11 +934,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(6, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(6)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_LEGGINGSUPGRADESHINLEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_LEGGINGSUPGRADESHINLEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_SHINLEFT);
@@ -985,11 +985,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(8, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(6)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_LEGGINGSUPGRADESHINRIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_LEGGINGSUPGRADESHINRIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_SHINRIGHT);
@@ -1035,11 +1035,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(16, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(6)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_LEGGINGSUPGRADECALFLEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_LEGGINGSUPGRADECALFLEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_CALFLEFT);
@@ -1085,11 +1085,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(17, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(18, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(12).setHammerUsage(7).setTongUsage(6)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_LEGGINGSUPGRADECALFRIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_LEGGINGSUPGRADECALFRIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_CALFRIGHT);
@@ -1137,11 +1137,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(11, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(6, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(8).setHammerUsage(4).setTongUsage(5)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_SHOESUPGRADELACESLEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_SHOESUPGRADELACESLEFT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_LACESLEFT);
@@ -1187,11 +1187,11 @@ public class CommonMedievalRegistrationInitializer {
                         ItemStack upgradeStack = CapabilityHelper.generateArmorComponentStack(ModItems.IT_COMPONENT, extension);
 
                         return new ArmorUpgradeAnvilRecipe(armor, coreMaterial)
-                                .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
-                                .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.RING, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(13, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
+                                .setCraftingSlotContent(7, new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.NUGGET, ModHeatableObjects.ITEMSTACK, coreMaterial, coreMaterial.getMeltingPoint() * 0.5F * 0.85F, coreMaterial.getMeltingPoint() * 0.5F * 0.95F))
                                 .setUpgradeCraftingSlotComponent(8, new StandardAnvilRecipeComponent(upgradeStack))
                                 .setProgress(8).setHammerUsage(4).setTongUsage(5)
-                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_SHOESUPGRADELACESRIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath() + "-" + extension.getRegistryName().getResourcePath()));
+                                .setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_SHOESUPGRADELACESRIGHT.getResourcePath() + "-" + coreMaterial.getRegistryName().getResourcePath()));
                     }
                 }
         ).build().setRegistryName(UN_LACESRIGHT);

@@ -50,6 +50,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -78,7 +79,7 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
 
     public BlockForge() {
         super(References.InternalNames.Blocks.Forge, Material.IRON);
-        setCreativeTab(ModCreativeTabs.GENERAL);
+        setCreativeTab(ModCreativeTabs.generalTab);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BURNING, false).withProperty(ISMASTER, false));
     }
 
@@ -86,7 +87,7 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
         IBlockState original = worldIn.getBlockState(pos);
 
         if (original == null)
-            original = ModBlocks.BL_FORGE.getDefaultState();
+            original = ModBlocks.blockForge.getDefaultState();
 
         original = original.withProperty(BURNING, burning);
 
@@ -97,7 +98,7 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
         IBlockState original = worldIn.getBlockState(pos);
 
         if (original == null)
-            original = ModBlocks.BL_FORGE.getDefaultState();
+            original = ModBlocks.blockForge.getDefaultState();
 
         original = original.withProperty(ISMASTER, isMaster);
 
@@ -112,6 +113,8 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        TileEntityForge forge = (TileEntityForge) worldIn.getTileEntity(pos);
+
         if (!worldIn.isRemote) {
             if (worldIn.getTileEntity(pos) instanceof TileEntityForge) {
                 TileEntityForge tileEntityForge = (TileEntityForge) worldIn.getTileEntity(pos);
