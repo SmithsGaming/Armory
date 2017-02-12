@@ -22,8 +22,6 @@ public class ClientModelLoaderInitializer extends IInitializationComponent.Impl 
     private static AnvilModelLoader anvilBlockModelLoader = new AnvilModelLoader();
     @Nonnull
     private static MaterializedItemModelLoader materializedItemModelLoader = new MaterializedItemModelLoader();
-    @Nonnull
-    private static MaterializedBlockModelLoader materializedBlockModelLoader = new MaterializedBlockModelLoader();
 
     private static final ClientModelLoaderInitializer INSTANCE = new ClientModelLoaderInitializer();
 
@@ -41,6 +39,5 @@ public class ClientModelLoaderInitializer extends IInitializationComponent.Impl 
         ModelLoaderRegistry.registerLoader(anvilBlockModelLoader);
         ModelLoaderRegistry.registerLoader(armorComponentModelLoader);
         ModelLoaderRegistry.registerLoader(materializedItemModelLoader);
-        ModelLoaderRegistry.registerLoader(materializedBlockModelLoader);
     }
 }

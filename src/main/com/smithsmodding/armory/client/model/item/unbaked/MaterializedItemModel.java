@@ -45,7 +45,7 @@ public class MaterializedItemModel extends ItemLayerModel {
 
         ImmutableMap.Builder<IMaterial, IBakedModel> modelBuilder = new ImmutableMap.Builder<>();
 
-        Map<ResourceLocation, TextureAtlasSprite> materializedTextures = MaterializedTextureCreator.getBuildSprites().get(new ResourceLocation(parent.getParticleTexture().getIconName()));
+        Map<ResourceLocation, TextureAtlasSprite> materializedTextures = MaterializedTextureCreator.getBuildSprites().get(parent.getParticleTexture().getIconName());
 
         for (ICoreArmorMaterial material : ArmoryAPI.getInstance().getRegistryManager().getCoreMaterialRegistry()) {
             modelBuilder.put(material, this.retexture(ImmutableMap.of("layer0", materializedTextures.get(material.getRegistryName()).getIconName())).bake(state, format, bakedTextureGetter));

@@ -231,7 +231,6 @@ public class References {
             public static final String Tank = "armory.blocks.tank";
             public static final String ConduitPump = "armory.blocks.pump";
             public static final String RedstonePumpGenerator = "armory.blocks.redstonegenerator";
-            public static final String Resource = "armory.blocks.resource";
         }
 
         public static final class TileEntities {
@@ -377,8 +376,8 @@ public class References {
                 public static final ResourceLocation RN_CHESTPLATESTOMACHRIGHT = new ResourceLocation(General.MOD_ID, "Recipes.Anvil.Armor.ChestPlate.Protection.Stomach.Right");
 
                 public static final ResourceLocation RN_LEGGINGSCALFLEFT = new ResourceLocation(General.MOD_ID, "Recipes.Anvil.Armor.Leggings.Protection.Calf.Left");
-                public static final ResourceLocation RN_LEGGINGSCALFRIGHT = new ResourceLocation(General.MOD_ID, "Recipes.Anvil.Armor.Leggings.Protection.Calf.Right");
-                public static final ResourceLocation RN_LEGGINGSSHINLEFT = new ResourceLocation(General.MOD_ID, "Recipes.Anvil.Armor.Leggings.Protection.Shin.Left");
+                public static final ResourceLocation RN_LEGGINGSCALFRIGHT = new ResourceLocation(General.MOD_ID, "Recipes.Anvil.Armor.Leggings.Protection.Calf.Left");
+                public static final ResourceLocation RN_LEGGINGSSHINLEFT = new ResourceLocation(General.MOD_ID, "Recipes.Anvil.Armor.Leggings.Protection.Shin.Right");
                 public static final ResourceLocation RN_LEGGINGSSHINRIGHT = new ResourceLocation(General.MOD_ID, "Recipes.Anvil.Armor.Leggings.Protection.Shin.Right");
 
                 public static final ResourceLocation RN_SHOESLACESLEFT = new ResourceLocation(General.MOD_ID, "Recipes.Anvil.Armor.Shoes.Protection.Laces.Left");
@@ -403,13 +402,6 @@ public class References {
                 public static final ResourceLocation RN_SHOESUPGRADELACESLEFT = new ResourceLocation(General.MOD_ID, "Recipes.Anvil.Armor.Shoes.Upgrade.Laces.Left");
                 public static final ResourceLocation RN_SHOESUPGRADELACESRIGHT = new ResourceLocation(General.MOD_ID, "Recipes.Anvil.Armor.Shoes.Upgrade.Laces.Right");
             }
-        }
-
-        public static class TextureCreation {
-            public static final ResourceLocation TCN_CORE = new ResourceLocation(General.MOD_ID, "Core");
-            public static final ResourceLocation TCN_ADDON = new ResourceLocation(General.MOD_ID, "Addon");
-            public static final ResourceLocation TCN_ANVIL = new ResourceLocation(General.MOD_ID, "Anvil");
-
         }
     }
 
@@ -470,10 +462,6 @@ public class References {
             public class MoltenMetal {
                 public static final String MATERIAL = "CORE_MATERIAL";
             }
-
-            public class MoltenMetalTank {
-                public static final String MAXLIQUIDCOUNT = "MAX";
-            }
         }
 
         public class TE {
@@ -530,7 +518,6 @@ public class References {
                     public static final String DATA = "Data";
                     public static final String PARTS = "Parts";
                     public static final String FLUIDS = "Fluids";
-                    public static final String FLUIDSIZE = "Size";
                     public static final String TYPE = "Type";
                     public static final String OUTPUTCONNECTIONS = "Outputs";
                     public static final String INPUTCONNECTIONS = "Inputs";
@@ -542,14 +529,8 @@ public class References {
                 }
             }
 
-            public class Pump {
-                public static final String FLUIDS = "Fluids";
-                public static final String DELAY = "Delay";
-            }
-
             public class MoltenMetalTank {
                 public static final String TYPE = "Type";
-                public static final String CONTENTS = "Contents";
             }
         }
     }

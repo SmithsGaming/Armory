@@ -283,7 +283,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
             (getState()).setCraftingprogress((getState()).getCraftingprogress() + (1f / 20f));
 
             if (((getState()).getCraftingprogress() >= getCurrentRecipe().getProgress()) && !getWorld().isRemote) {
-                if (!outputStacks[0].isEmpty()) {
+                if (outputStacks[0].isEmpty()) {
                     outputStacks[0].grow(getCurrentRecipe().getResult(craftingStacks, additionalCraftingStacks).getCount());
                 } else {
                     outputStacks[0] = getCurrentRecipe().getResult(craftingStacks, additionalCraftingStacks);
@@ -323,15 +323,15 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
         int tHammerUsagesLeft = -1;
         int tTongUsagesLeft = -1;
 
-        if (!hammerStacks[0].isEmpty())
+        if (hammerStacks[0] != null)
             tHammerUsagesLeft = hammerStacks[0].getItemDamage();
 
-        if (!tongStacks[0].isEmpty())
+        if (tongStacks[0] != null)
             tTongUsagesLeft = tongStacks[0].getItemDamage();
 
         for (IAnvilRecipe tRecipe : IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry()) {
             if (tRecipe.matchesRecipe(craftingStacks, additionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft)) {
-                if (!outputStacks[0].isEmpty()) {
+                if (outputStacks[0] != null) {
                     ItemStack tResultStack = tRecipe.getResult(craftingStacks, additionalCraftingStacks);
 
                     if (!ItemStackHelper.equalsIgnoreStackSize(tResultStack, outputStacks[0]))

@@ -11,13 +11,11 @@ import static com.smithsmodding.armory.api.util.references.References.General;
  */
 public final class ModLogger {
 
-    private static final ModLogger instance = new ModLogger(General.MOD_ID, "Armory-Main");
-    private final String loggerName;
+    private static final ModLogger instance = new ModLogger(General.MOD_ID);
     private final String modId;
 
-    public ModLogger(String modId, String loggerName) {
+    public ModLogger(String modId) {
         this.modId = modId;
-        this.loggerName = loggerName;
     }
 
     @NotNull
@@ -26,7 +24,7 @@ public final class ModLogger {
     }
 
     public void log(Level logLevel, Object object) {
-        FMLLog.log(modId, logLevel,"[" + loggerName +"]-" + String.valueOf(object));
+        FMLLog.log(modId, logLevel, String.valueOf(object));
     }
 
     public void all(Object object) {
@@ -64,7 +62,7 @@ public final class ModLogger {
     //String based logging
 
     public void log(Level logLevel, @NotNull String message) {
-        FMLLog.log(modId, logLevel,"[" + loggerName +"]-" + message);
+        FMLLog.log(modId, logLevel, message);
     }
 
     public void all(@NotNull String object) {

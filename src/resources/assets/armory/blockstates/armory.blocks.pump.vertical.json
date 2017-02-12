@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "armory:pump/vertical.obj",
+    "model": "armory:pump/Vertical.obj",
     "custom": {
       "flip-v": true,
       "gui3d": false
