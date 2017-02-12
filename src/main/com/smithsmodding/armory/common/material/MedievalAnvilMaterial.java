@@ -173,7 +173,7 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
      * Has to be supplied so that resourcepack makers can override the behaviour if they fell the need to do it.
      *
      * @return The override identifier for overloading the programmatic behaviour of the RenderInfo.
-     * @implNote This method only exists on the Client Side.
+     *
      */
     @Nonnull
     @Override

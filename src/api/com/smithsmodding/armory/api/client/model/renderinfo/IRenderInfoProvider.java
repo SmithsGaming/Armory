@@ -25,7 +25,7 @@ public interface IRenderInfoProvider<T> {
      * Setter for the RenderInfo of the current Provider.
      * @param renderInfo The new renderinfo.
      *
-     * @implNote This method only exists on the Client Side.
+     *
      */
     @SideOnly(Side.CLIENT)
     T setRenderInfo(@Nonnull ITextureController renderInfo);
@@ -35,7 +35,7 @@ public interface IRenderInfoProvider<T> {
      * Has to be supplied so that resourcepack makers can override the behaviour if they fell the need to do it.
      * @return The override identifier for overloading the programmatic behaviour of the RenderInfo.
      *
-     * @implNote This method only exists on the Client Side.
+     *
      */
     @SideOnly(Side.CLIENT)
     @Nonnull
