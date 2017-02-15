@@ -18,7 +18,7 @@ public class TileEntityRendererPump extends TileEntitySpecialRenderer<TileEntity
         if (te.getTotalTankSizeOnSide(null) == 0)
             return;
 
-        double height = te.getTankContentsVolumeOnSide(null) / ((double) te.getTotalTankSizeOnSide(null)) * 0.7;
+        double height = te.getTankContentsVolumeOnSide(null) / ((double) te.getTotalTankSizeOnSide(null)) * 0.05;
         FluidStack stack = te.getTankForSide(null).getFluid();
         if (stack == null)
             return;

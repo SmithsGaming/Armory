@@ -1,37 +1,10 @@
-[15:38:21] [main/INFO]: Extra: []
-[15:38:21] [main/INFO]: Running with arguments: [--userProperties, {}, --assetsDir, C:/Users/marcf/.gradle/caches/minecraft/assets, --assetIndex, 1.11, --accessToken{REDACTED}, --version, 1.11, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, net.minecraftforge.gradle.tweakers.CoremodTweaker]
-[15:38:21] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
-[15:38:21] [main/INFO]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
-[15:38:21] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.CoremodTweaker
-[15:38:21] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
-[15:38:21] [main/INFO]: Forge Mod Loader version 13.19.0.2177 for Minecraft 1.11 loading
-[15:38:21] [main/INFO]: Java is Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_111, running on Windows 10:amd64:10.0, installed at C:\Program Files\Java\jdk1.8.0_111\jre
-[15:38:21] [main/INFO]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
-[15:38:21] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.CoremodTweaker
-[15:38:21] [main/INFO]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
-[15:38:21] [main/INFO]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
-[15:38:21] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[15:38:21] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
-[15:38:21] [main/INFO]: Loading tweak class name net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
-[15:38:21] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[15:38:21] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[15:38:21] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[15:38:22] [main/ERROR]: The binary patch set is missing. Either you are in a development environment, or things are not going to work!
-[15:38:23] [main/ERROR]: FML appears to be missing any signature data. This is not a good thing
-[15:38:23] [main/INFO]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[15:38:23] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
-[15:38:23] [main/INFO]: Calling tweak class net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
-[15:38:24] [main/INFO]: Remapping AccessTransformer rules...
-[15:38:24] [main/INFO]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
-[15:38:24] [main/INFO]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
-[15:38:24] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
-[15:38:25] [Client thread/INFO]: Setting user: Player980
-[15:38:30] [Client thread/WARN]: Skipping bad option: lastServer:
-[15:38:30] [Client thread/INFO]: LWJGL Version: 2.9.4
-[15:38:31] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
-// Oh - I know what I did wrong!
+[22:59:35] [Client thread/INFO]: Setting user: Player692
+[22:59:39] [Client thread/WARN]: Skipping bad option: lastServer:
+[22:59:39] [Client thread/INFO]: LWJGL Version: 2.9.4
+[22:59:40] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
+// Hey, that tickles! Hehehe!
 
-Time: 2/11/17 3:38 PM
+Time: 2/15/17 10:59 PM
 Description: Loading screen debug info
 
 This is just a prompt for computer specs to be printed. THIS IS NOT A ERROR
@@ -46,584 +19,41 @@ Details:
 	Operating System: Windows 10 (amd64) version 10.0
 	Java Version: 1.8.0_111, Oracle Corporation
 	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
-	Memory: 529270128 bytes (504 MB) / 913309696 bytes (871 MB) up to 7621050368 bytes (7268 MB)
+	Memory: 580720544 bytes (553 MB) / 944242688 bytes (900 MB) up to 7621050368 bytes (7268 MB)
 	JVM Flags: 0 total; 
 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
 	FML: 
 	Loaded coremods (and transformers): 
 	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.5.0 NVIDIA 376.53' Renderer: 'GeForce GTX 770/PCIe/SSE2'
-[15:38:31] [Client thread/INFO]: MinecraftForge v13.19.0.2177 Initialized
-[15:38:31] [Client thread/INFO]: Replaced 232 ore recipes
-[15:38:31] [Client thread/INFO]: Found 0 mods from the command line. Injecting into mod discoverer
-[15:38:31] [Client thread/INFO]: Searching E:\Development\Minecraft\1.11\Armory\run\mods for mods
-[15:38:34] [Client thread/INFO]: Forge Mod Loader has identified 6 mods to load
-[15:38:34] [Client thread/INFO]: Attempting connection with missing mods [mcp, FML, forge, armory, smithscore, jei] at CLIENT
-[15:38:34] [Client thread/INFO]: Attempting connection with missing mods [mcp, FML, forge, armory, smithscore, jei] at SERVER
-[15:38:35] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[15:38:35] [Client thread/INFO]: Processing ObjectHolder annotations
-[15:38:35] [Client thread/INFO]: Found 443 ObjectHolder annotations
-[15:38:35] [Client thread/INFO]: Identifying ItemStackHolder annotations
-[15:38:35] [Client thread/INFO]: Found 0 ItemStackHolder annotations
-[15:38:35] [Client thread/INFO]: Applying holder lookups
-[15:38:35] [Client thread/INFO]: Holder lookups applied
-[15:38:35] [Client thread/INFO]: Applying holder lookups
-[15:38:35] [Client thread/INFO]: Holder lookups applied
-[15:38:36] [Client thread/INFO]: Applying holder lookups
-[15:38:36] [Client thread/INFO]: Holder lookups applied
-[15:38:36] [Client thread/INFO]: Configured a dormant chunk cache size of 0
-[15:38:36] [Client thread/INFO]: SmithsCore starting in Normal mode.
-[15:38:36] [Forge Version Check/INFO]: [forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
-[15:38:36] [Client thread/INFO]: Initializing event handlers.
-[15:38:36] [Client thread/INFO]: SmithsCore Pre-Init completed after: 251 mS.
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Starting "PreInit"-Phase
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Added model definition for: item.item.armory.multiarmor.armor.helmet add: armor/armory.items.armor.medieval.helmet.mla-armory in the Domain: armory
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Added model definition for: item.item.armory.multiarmor.armor.chestplate add: armor/armory.items.armor.medieval.chestplate.mla-armory in the Domain: armory
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Added model definition for: item.item.armory.multiarmor.armor.leggings add: armor/armory.items.armor.medieval.leggings.mla-armory in the Domain: armory
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Added model definition for: item.item.armory.multiarmor.armor.shoes add: armor/armory.items.armor.medieval.shoes.mla-armory in the Domain: armory
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Added model definition for: item.armory.items.components.heatedingots add: heateditem/armory.items.components.heatedingots.hi-armory in the Domain: armory
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Added model definition for: item.armory.items.armorcomponent add: component/armory.items.armorcomponent.ac-armory in the Domain: armory
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Added model definition for: item.armory.items.components.metalchain add: materialized/armory.items.components.metalchain.mim-armory in the Domain: armory
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Added model definition for: item.armory.items.components.metalplate add: materialized/armory.items.components.metalplate.mim-armory in the Domain: armory
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Added model definition for: item.armory.items.components.metalring add: materialized/armory.items.components.metalring.mim-armory in the Domain: armory
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Added model definition for: item.armory.items.components.metalnugget add: materialized/armory.items.components.metalnugget.mim-armory in the Domain: armory
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Added model definition for: item.armory.items.components.metalingot add: materialized/armory.items.components.metalingot.mim-armory in the Domain: armory
-[15:38:36] [Client thread/INFO]: Added: armory to the SmitshCore OBJ Loader.
-[15:38:36] [Client thread/INFO]: Added model definition for: item.armory.items.tongs add: armory.resources.mcm-smithscore in the Domain: armory
-[15:38:36] [Client thread/INFO]: Added model definition for: item.armory.items.itemhammer add: armory.resources.mcm-smithscore in the Domain: armory
-[15:38:36] [Client thread/INFO]: [Armory-Main]-Finished "PreInit"-Phase after: 356 ms!
-[15:38:37] [Client thread/INFO]: Applying holder lookups
-[15:38:37] [Client thread/INFO]: Holder lookups applied
-[15:38:37] [Client thread/INFO]: Injecting itemstacks
-[15:38:37] [Client thread/INFO]: Itemstack injection complete
-[15:38:39] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[15:38:40] [Thread-8/INFO]: Initializing LWJGL OpenAL
-[15:38:40] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[15:38:40] [Thread-8/INFO]: OpenAL initialized.
-[15:38:40] [Client thread/INFO]: OBJLoader.Parser: command '%s' (model: '%s') is not currently supported, skipping. Line: %d '%s'
-[15:38:40] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
-[15:38:40] [Client thread/INFO]: OBJLoader.Parser: command '%s' (model: '%s') is not currently supported, skipping. Line: %d '%s'
-[15:38:40] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
-[15:38:40] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:40] [Client thread/INFO]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[15:38:40] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:40] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:40] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:40] [Client thread/INFO]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[15:38:40] [Client thread/INFO]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[15:38:40] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:40] [Client thread/INFO]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[15:38:40] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:40] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:40] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:40] [Client thread/INFO]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[15:38:40] [Client thread/INFO]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[15:38:40] [Sound Library Loader/INFO]: Sound engine started
-[15:38:43] [Client thread/INFO]: Max texture size: 16384
-[15:38:44] [Client thread/INFO]: Created: 16x16 textures-atlas
-[15:38:45] [Client thread/INFO]: SmithsCore Init completed after: 4 ms.
-[15:38:45] [Client thread/INFO]: [Armory-Main]-Starting "Init"-Phase
-[15:38:45] [Client thread/INFO]: [Armory-Main]-Finished "Init"-Phase after: 1 ms!
-[15:38:45] [Client thread/INFO]: [Armory-Main]-Starting "IMCCallback"-Phase
-[15:38:45] [Client thread/INFO]: [Armory-Main]-Finished "IMCCallback"-Phase after: 0 ms!
-[15:38:45] [Client thread/INFO]: Injecting itemstacks
-[15:38:45] [Client thread/INFO]: Itemstack injection complete
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:void, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_plains, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_desert, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_extreme_hills, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_forest, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_taiga, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_swampland, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_ice_flats, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_jungle, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_jungle_edge, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_birch_forest, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_birch_forest_hills, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_roofed_forest, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_taiga_cold, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_redwood_taiga, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_redwood_taiga_hills, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_extreme_hills_with_trees, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_savanna, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_savanna_rock, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_mesa, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_mesa_rock, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/WARN]: No types have been added to Biome minecraft:mutated_mesa_clear_rock, types will be assigned on a best-effort guess.
-[15:38:45] [Client thread/INFO]: SmithsCore Post-Init completed after: 0 ms.
-[15:38:45] [Client thread/INFO]: [Armory-Main]-Starting "PostInit"-Phase
-[15:38:45] [Client thread/INFO]: [Armory-Main]-Finished "PostInit"-Phase after: 48 ms!
-[15:38:45] [Client thread/INFO]: [Armory-Main]-Starting "Load Complete"-Phase
-[15:38:45] [Client thread/INFO]: [Armory-Main]-Notifying requesters of API init completion.
-[15:38:45] [Client thread/INFO]: [Armory-Main]-Finished "Load Complete"-Phase after: 64 ms!
-[15:38:45] [Client thread/INFO]: Starting JEI...
-[15:38:45] [Client thread/WARN]: Found an empty subItem of net.minecraft.item.ItemAir@2afe263
-[15:38:45] [Forge Version Check/INFO]: [forge] Found status: OUTDATED Target: 13.19.1.2189
-[15:38:45] [Client thread/INFO]: Registering plugin: mezz.jei.plugins.vanilla.VanillaPlugin ...
-[15:38:45] [Client thread/INFO]: Registered  plugin: mezz.jei.plugins.vanilla.VanillaPlugin in 141 ms
-[15:38:45] [Client thread/INFO]: Registering plugin: com.smithsmodding.armory.compatibility.JEICompatMod ...
-[15:38:45] [Client thread/INFO]: Registered  plugin: com.smithsmodding.armory.compatibility.JEICompatMod in 86 ms
-[15:38:45] [Client thread/INFO]: Registering plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat ...
-[15:38:45] [Client thread/INFO]: Registered  plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat in 3 ms
-[15:38:45] [Client thread/INFO]: Registering plugin: mezz.jei.plugins.jei.JEIInternalPlugin ...
-[15:38:45] [Client thread/INFO]: Registered  plugin: mezz.jei.plugins.jei.JEIInternalPlugin in 4 ms
-[15:38:45] [Client thread/INFO]: Building recipe registry...
-[15:38:45] [Client thread/INFO]: Built    recipe registry in 116 ms
-[15:38:46] [Client thread/INFO]: Building item filter...
-[15:38:48] [Client thread/INFO]: Built    item filter in 2250 ms
-[15:38:48] [Client thread/INFO]: Building runtime...
-[15:38:48] [Client thread/INFO]: Built    runtime in 53 ms
-[15:38:48] [Client thread/INFO]: Sending runtime to plugin: mezz.jei.plugins.vanilla.VanillaPlugin ...
-[15:38:48] [Client thread/INFO]: Sending runtime to plugin: com.smithsmodding.armory.compatibility.JEICompatMod ...
-[15:38:48] [Client thread/INFO]: Sending runtime to plugin: com.smithsmodding.smithscore.compatibility.JEIGuiCompat ...
-[15:38:48] [Client thread/INFO]: Sending runtime to plugin: mezz.jei.plugins.jei.JEIInternalPlugin ...
-[15:38:48] [Client thread/INFO]: Finished Starting JEI in 2847 ms
-[15:38:48] [Client thread/INFO]: Forge Mod Loader has successfully loaded 6 mods
-[15:38:48] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[15:38:50] [Client thread/INFO]: SoundSystem shutting down...
-[15:38:50] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[15:38:50] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[15:38:50] [Client thread/INFO]: OBJLoader.Parser: command 's' (model: 'armory:models/block/anvil/blockmodel.obj') is not currently supported, skipping. Line: 76 's off'
-[15:38:50] [Client thread/INFO]: OBJLoader.Parser: command 'l' (model: 'armory:models/block/anvil/blockmodel.obj') is not currently supported, skipping. Line: 94 'l 29 30'
-[15:38:50] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
-[15:38:50] [Client thread/WARN]: OBJModel.Parser: found a face ('f') with more than 4 vertices, only the first 4 of these vertices will be rendered!
-[15:38:50] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:50] [Client thread/INFO]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[15:38:50] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:50] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:50] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:50] [Client thread/INFO]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[15:38:50] [Client thread/INFO]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[15:38:50] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:50] [Client thread/INFO]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[15:38:50] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:50] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:50] [Client thread/INFO]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[15:38:50] [Client thread/INFO]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[15:38:50] [Client thread/INFO]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[15:38:50] [Thread-10/INFO]: Initializing LWJGL OpenAL
-[15:38:50] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[15:38:50] [Thread-10/INFO]: OpenAL initialized.
-[15:38:51] [Sound Library Loader/INFO]: Sound engine started
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:blocks/iron_block with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:blocks/iron_block with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:blocks/iron_block with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/base/armory.chestplate_base with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/base/armory.chestplate_base with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/base/armory.chestplate_base with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/base/armory.helmet_base with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/base/armory.helmet_base with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/base/armory.helmet_base with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_tophead with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_tophead with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_tophead with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/base/armory.leggins_base with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/base/armory.leggins_base with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/base/armory.leggins_base with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/base/armory.shoes_base with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/base/armory.shoes_base with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/base/armory.shoes_base with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_back_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_protection_front_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.chestplate_shoulderpad_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_tophead with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_tophead with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_tophead with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_back_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.leggings_protection_front_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_left with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_left with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_left with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_right with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_right with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/multiarmor/upgrades/armory.shoes_protection_right with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x chain with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x chain with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x chain with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x ingot with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x ingot with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x ingot with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x nugget with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x nugget with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x nugget with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x plate with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x plate with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x plate with: armory:anvil
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x ring with: armory:core
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x ring with: armory:addon
-[15:38:54] [Client thread/INFO]: [Armory-Main]-Creating textures for: armory:items/basic/16x ring with: armory:anvil
-[15:38:54] [Client thread/INFO]: Max texture size: 16384
-[15:38:54] [Client thread/INFO]: Created: 2048x1024 textures-atlas
-[15:38:55] [Client thread/WARN]: Skipping bad option: lastServer:
-[15:38:56] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
-[15:39:42] [Server thread/INFO]: Starting integrated minecraft server version 1.11
-[15:39:42] [Server thread/INFO]: Generating keypair
-[15:39:42] [Server thread/INFO]: Injecting existing block and item data into this server instance
-[15:39:42] [Server thread/INFO]: Applying holder lookups
-[15:39:42] [Server thread/INFO]: Holder lookups applied
-[15:39:42] [Server thread/INFO]: Loading dimension 0 (Copy of New World) (net.minecraft.server.integrated.IntegratedServer@791492fa)
-[15:39:42] [Server thread/INFO]: Loading dimension 1 (Copy of New World) (net.minecraft.server.integrated.IntegratedServer@791492fa)
-[15:39:42] [Server thread/INFO]: Loading dimension -1 (Copy of New World) (net.minecraft.server.integrated.IntegratedServer@791492fa)
-[15:39:42] [Server thread/INFO]: Preparing start region for level 0
-[15:39:43] [Server thread/ERROR]: Failed to load data for block entity minecraft:container.armory.conduit
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: A TileEntity minecraft:container.armory.conduit(com.smithsmodding.armory.common.tileentity.TileEntityConduit) has thrown an exception during loading, its state cannot be restored. Report this to the mod author
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: Failed to load data for block entity minecraft:container.armory.conduit
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: A TileEntity minecraft:container.armory.conduit(com.smithsmodding.armory.common.tileentity.TileEntityConduit) has thrown an exception during loading, its state cannot be restored. Report this to the mod author
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: Failed to load data for block entity minecraft:container.armory.conduit
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: A TileEntity minecraft:container.armory.conduit(com.smithsmodding.armory.common.tileentity.TileEntityConduit) has thrown an exception during loading, its state cannot be restored. Report this to the mod author
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: Failed to load data for block entity minecraft:container.armory.conduit
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: A TileEntity minecraft:container.armory.conduit(com.smithsmodding.armory.common.tileentity.TileEntityConduit) has thrown an exception during loading, its state cannot be restored. Report this to the mod author
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: Failed to load data for block entity minecraft:container.armory.conduit
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: A TileEntity minecraft:container.armory.conduit(com.smithsmodding.armory.common.tileentity.TileEntityConduit) has thrown an exception during loading, its state cannot be restored. Report this to the mod author
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: Failed to load data for block entity minecraft:container.armory.conduit
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: A TileEntity minecraft:container.armory.conduit(com.smithsmodding.armory.common.tileentity.TileEntityConduit) has thrown an exception during loading, its state cannot be restored. Report this to the mod author
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: Failed to load data for block entity minecraft:container.armory.conduit
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/ERROR]: A TileEntity minecraft:container.armory.conduit(com.smithsmodding.armory.common.tileentity.TileEntityConduit) has thrown an exception during loading, its state cannot be restored. Report this to the mod author
-java.lang.NullPointerException
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getStructure(TileEntityConduit.java:276) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.getTankForSide(TileEntityConduit.java:353) ~[TileEntityConduit.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFluidsFromCompound(TileEntitySmithsCore.java:332) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore.readFromNBT(TileEntitySmithsCore.java:100) ~[TileEntitySmithsCore.class:?]
-	at com.smithsmodding.armory.common.tileentity.TileEntityConduit.readFromNBT(TileEntityConduit.java:70) ~[TileEntityConduit.class:?]
-	at net.minecraft.tileentity.TileEntity.create(TileEntity.java:132) [TileEntity.class:?]
-	at net.minecraft.world.chunk.storage.AnvilChunkLoader.loadEntities(AnvilChunkLoader.java:519) [AnvilChunkLoader.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOProvider.syncCallback(ChunkIOProvider.java:96) [ChunkIOProvider.class:?]
-	at net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(ChunkIOExecutor.java:94) [ChunkIOExecutor.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:125) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.loadChunk(ChunkProviderServer.java:96) [ChunkProviderServer.class:?]
-	at net.minecraft.world.gen.ChunkProviderServer.provideChunk(ChunkProviderServer.java:142) [ChunkProviderServer.class:?]
-	at net.minecraft.server.MinecraftServer.initialWorldChunkLoad(MinecraftServer.java:340) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:107) [IntegratedServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:124) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:507) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:43] [Server thread/INFO]: Adding player UUID to list
-[15:39:43] [Server thread/INFO]: Adding player UUID to list
-[15:39:43] [Server thread/INFO]: Adding player UUID to list
-[15:39:43] [Server thread/INFO]: [Armory-Main]-Starting "Starting Server"-Phase
-[15:39:43] [Server thread/INFO]: [Armory-Main]-Finished "Starting Server"-Phase after: 7 ms!
-[15:39:43] [Server thread/INFO]: [Armory-Main]-Starting "Server Started"-Phase
-[15:39:43] [Server thread/INFO]: [Armory-Main]-Finished "Server Started"-Phase after: 0 ms!
-[15:39:43] [Server thread/INFO]: Changing view distance to 12, from 10
-[15:39:44] [Netty Local Client IO #0/INFO]: Server protocol version 2
-[15:39:44] [Netty Server IO #1/INFO]: Client protocol version 2
-[15:39:44] [Netty Server IO #1/INFO]: Client attempting to join with 6 mods : FML@8.0.99.99,smithscore@1.11-1.3.0-297-SNAPSHOT,armory@@VERSION@,forge@13.19.0.2177,mcp@9.19,jei@4.0.1.193
-[15:39:44] [Netty Local Client IO #0/INFO]: [Netty Local Client IO #0] Client side modded connection established
-[15:39:44] [Server thread/INFO]: [Server thread] Server side modded connection established
-[15:39:44] [Server thread/INFO]: Player980[local:E:37a7fac0] logged in with entity id 1 at (1223.193873163843, 56.0, -337.8079285419115)
-[15:39:44] [Server thread/INFO]: Player980 joined the game
-[15:39:44] [Server thread/INFO]: Updating player UUID list
-[15:39:45] [Server thread/INFO]: Saving and pausing game...
-[15:39:45] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
-[15:39:45] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
-[15:39:45] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
-[15:39:46] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@7d204bb6[id=d1b650bf-5f9c-37d3-a469-4d66d1968f90,name=Player980,properties={},legacy=false]
+[22:59:44] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[22:59:49] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[22:59:49] [Thread-8/INFO]: Initializing LWJGL OpenAL
+[22:59:49] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:59:49] [Thread-8/INFO]: OpenAL initialized.
+[22:59:50] [Sound Library Loader/INFO]: Sound engine started
+[22:59:54] [Client thread/INFO]: Created: 16x16 textures-atlas
+[22:59:58] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[23:00:01] [Client thread/INFO]: SoundSystem shutting down...
+[23:00:01] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[23:00:01] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[23:00:01] [Thread-10/INFO]: Initializing LWJGL OpenAL
+[23:00:01] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[23:00:01] [Thread-10/INFO]: OpenAL initialized.
+[23:00:02] [Sound Library Loader/INFO]: Sound engine started
+[23:00:05] [Client thread/INFO]: Created: 2048x1024 textures-atlas
+[23:00:06] [Client thread/WARN]: Skipping bad option: lastServer:
+[23:00:07] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[23:00:44] [Server thread/INFO]: Starting integrated minecraft server version 1.11
+[23:00:44] [Server thread/INFO]: Generating keypair
+[23:00:44] [Server thread/INFO]: Preparing start region for level 0
+[23:00:45] [Server thread/INFO]: Changing view distance to 12, from 10
+[23:00:46] [Server thread/INFO]: Player692[local:E:feb1f8de] logged in with entity id 1 at (1221.6202543524453, 56.0, -341.2275043248332)
+[23:00:46] [Server thread/INFO]: Player692 joined the game
+[23:00:47] [Server thread/INFO]: Saving and pausing game...
+[23:00:47] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[23:00:48] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[23:00:48] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[23:00:48] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@35d30f7f[id=a2831e23-8b0f-3ec4-8539-58e8d4db780a,name=Player692,properties={},legacy=false]
 com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
 	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:79) ~[YggdrasilAuthenticationService.class:?]
 	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) [YggdrasilMinecraftSessionService.class:?]
@@ -645,11 +75,7 @@ com.mojang.authlib.exceptions.AuthenticationException: The client has sent too m
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
 	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[15:39:46] [Server thread/INFO]: Saving and pausing game...
-[15:39:46] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
-[15:39:46] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
-[15:39:46] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
-[15:40:06] [Server thread/FATAL]: Error executing task
+[23:00:51] [Server thread/FATAL]: Error executing task
 java.util.concurrent.ExecutionException: java.lang.NullPointerException
 	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
 	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
@@ -676,7 +102,7 @@ Caused by: java.lang.NullPointerException
 	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
 	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
 	... 5 more
-[15:40:06] [Server thread/FATAL]: Error executing task
+[23:00:52] [Server thread/FATAL]: Error executing task
 java.util.concurrent.ExecutionException: java.lang.NullPointerException
 	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
 	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
@@ -703,30 +129,205 @@ Caused by: java.lang.NullPointerException
 	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
 	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
 	... 5 more
-[15:40:09] [Server thread/INFO]: Saving and pausing game...
-[15:40:09] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
-[15:40:09] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
-[15:40:10] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
-[15:41:18] [Server thread/INFO]: Saving and pausing game...
-[15:41:18] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
-[15:41:18] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
-[15:41:18] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
-[15:41:20] [Client thread/INFO]: Stopping!
-[15:41:20] [Server thread/INFO]: [Armory-Main]-Starting "Server Stopping"-Phase
-[15:41:20] [Server thread/INFO]: [Armory-Main]-Finished "Server Stopping"-Phase after: 0 ms!
-[15:41:20] [Server thread/INFO]: Stopping server
-[15:41:20] [Server thread/INFO]: Saving players
-[15:41:20] [Server thread/INFO]: Saving worlds
-[15:41:20] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
-[15:41:20] [Netty Local Client IO #0/INFO]: Disconnect: Clearing cached connected player list.
-[15:41:20] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
-[15:41:20] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
-[15:41:20] [Server thread/INFO]: Unloading dimension 0
-[15:41:20] [Server thread/INFO]: Unloading dimension -1
-[15:41:20] [Server thread/INFO]: Unloading dimension 1
-[15:41:20] [Client thread/INFO]: SoundSystem shutting down...
-[15:41:20] [Server thread/INFO]: Applying holder lookups
-[15:41:20] [Server thread/INFO]: Holder lookups applied
-[15:41:20] [Server thread/INFO]: [Armory-Main]-Starting "Server Stopped"-Phase
-[15:41:20] [Server thread/INFO]: [Armory-Main]-Finished "Server Stopped"-Phase after: 0 ms!
-[15:41:20] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[23:00:52] [Server thread/FATAL]: Error executing task
+java.util.concurrent.ExecutionException: java.lang.NullPointerException
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.lang.NullPointerException
+	at com.smithsmodding.armory.common.block.BlockConduit.breakBlock(BlockConduit.java:119) ~[BlockConduit.class:?]
+	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:610) ~[Chunk.class:?]
+	at net.minecraft.world.World.setBlockState(World.java:388) ~[World.class:?]
+	at net.minecraft.block.Block.removedByPlayer(Block.java:1344) ~[Block.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:297) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:291) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.tryHarvestBlock(PlayerInteractionManager.java:338) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.onBlockClicked(PlayerInteractionManager.java:174) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.network.NetHandlerPlayServer.processPlayerDigging(NetHandlerPlayServer.java:653) ~[NetHandlerPlayServer.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:56) ~[CPacketPlayerDigging.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:12) ~[CPacketPlayerDigging.class:?]
+	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
+	... 5 more
+[23:00:56] [Server thread/INFO]: Saving and pausing game...
+[23:00:56] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[23:00:56] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[23:00:56] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[23:01:01] [Server thread/INFO]: Player692 has just earned the achievement [Taking Inventory]
+[23:01:01] [Client thread/INFO]: [CHAT] Player692 has just earned the achievement [Taking Inventory]
+[23:02:15] [Server thread/FATAL]: Error executing task
+java.util.concurrent.ExecutionException: java.lang.NullPointerException
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.lang.NullPointerException
+	at com.smithsmodding.smithscore.common.structures.IStructureController.onPartPlaced(IStructureController.java:85) ~[IStructureController.class:?]
+	at com.smithsmodding.smithscore.common.structures.StructureRegistry.onStructurePartPlaced(StructureRegistry.java:94) ~[StructureRegistry.class:?]
+	at com.smithsmodding.armory.common.block.BlockConduit.onBlockPlacedBy(BlockConduit.java:106) ~[BlockConduit.class:?]
+	at net.minecraft.item.ItemBlock.placeBlockAt(ItemBlock.java:195) ~[ItemBlock.class:?]
+	at net.minecraft.item.ItemBlock.onItemUse(ItemBlock.java:54) ~[ItemBlock.class:?]
+	at net.minecraftforge.common.ForgeHooks.onPlaceItemIntoWorld(ForgeHooks.java:812) ~[ForgeHooks.class:?]
+	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:179) ~[ItemStack.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.processRightClickBlock(PlayerInteractionManager.java:506) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.network.NetHandlerPlayServer.processTryUseItemOnBlock(NetHandlerPlayServer.java:701) ~[NetHandlerPlayServer.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:68) ~[CPacketPlayerTryUseItemOnBlock.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:13) ~[CPacketPlayerTryUseItemOnBlock.class:?]
+	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
+	... 5 more
+[23:02:16] [Server thread/FATAL]: Error executing task
+java.util.concurrent.ExecutionException: java.lang.NullPointerException
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.lang.NullPointerException
+	at com.smithsmodding.smithscore.common.structures.IStructureController.onPartPlaced(IStructureController.java:85) ~[IStructureController.class:?]
+	at com.smithsmodding.smithscore.common.structures.StructureRegistry.onStructurePartPlaced(StructureRegistry.java:94) ~[StructureRegistry.class:?]
+	at com.smithsmodding.armory.common.block.BlockConduit.onBlockPlacedBy(BlockConduit.java:106) ~[BlockConduit.class:?]
+	at net.minecraft.item.ItemBlock.placeBlockAt(ItemBlock.java:195) ~[ItemBlock.class:?]
+	at net.minecraft.item.ItemBlock.onItemUse(ItemBlock.java:54) ~[ItemBlock.class:?]
+	at net.minecraftforge.common.ForgeHooks.onPlaceItemIntoWorld(ForgeHooks.java:812) ~[ForgeHooks.class:?]
+	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:179) ~[ItemStack.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.processRightClickBlock(PlayerInteractionManager.java:506) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.network.NetHandlerPlayServer.processTryUseItemOnBlock(NetHandlerPlayServer.java:701) ~[NetHandlerPlayServer.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:68) ~[CPacketPlayerTryUseItemOnBlock.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:13) ~[CPacketPlayerTryUseItemOnBlock.class:?]
+	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
+	... 5 more
+[23:02:16] [Server thread/FATAL]: Error executing task
+java.util.concurrent.ExecutionException: java.lang.NullPointerException
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.lang.NullPointerException
+	at com.smithsmodding.smithscore.common.structures.IStructureController.onPartPlaced(IStructureController.java:85) ~[IStructureController.class:?]
+	at com.smithsmodding.smithscore.common.structures.StructureRegistry.onStructurePartPlaced(StructureRegistry.java:94) ~[StructureRegistry.class:?]
+	at com.smithsmodding.armory.common.block.BlockConduit.onBlockPlacedBy(BlockConduit.java:106) ~[BlockConduit.class:?]
+	at net.minecraft.item.ItemBlock.placeBlockAt(ItemBlock.java:195) ~[ItemBlock.class:?]
+	at net.minecraft.item.ItemBlock.onItemUse(ItemBlock.java:54) ~[ItemBlock.class:?]
+	at net.minecraftforge.common.ForgeHooks.onPlaceItemIntoWorld(ForgeHooks.java:812) ~[ForgeHooks.class:?]
+	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:179) ~[ItemStack.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.processRightClickBlock(PlayerInteractionManager.java:506) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.network.NetHandlerPlayServer.processTryUseItemOnBlock(NetHandlerPlayServer.java:701) ~[NetHandlerPlayServer.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:68) ~[CPacketPlayerTryUseItemOnBlock.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:13) ~[CPacketPlayerTryUseItemOnBlock.class:?]
+	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
+	... 5 more
+[23:02:21] [Server thread/FATAL]: Error executing task
+java.util.concurrent.ExecutionException: java.util.NoSuchElementException
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedHashMap$LinkedHashIterator.nextNode(LinkedHashMap.java:721) ~[?:1.8.0_111]
+	at java.util.LinkedHashMap$LinkedKeyIterator.next(LinkedHashMap.java:742) ~[?:1.8.0_111]
+	at com.smithsmodding.smithscore.common.structures.IStructureController.onPartDestroyed(IStructureController.java:127) ~[IStructureController.class:?]
+	at com.smithsmodding.armory.common.block.BlockConduit.breakBlock(BlockConduit.java:119) ~[BlockConduit.class:?]
+	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:610) ~[Chunk.class:?]
+	at net.minecraft.world.World.setBlockState(World.java:388) ~[World.class:?]
+	at net.minecraft.block.Block.removedByPlayer(Block.java:1344) ~[Block.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:297) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:291) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.tryHarvestBlock(PlayerInteractionManager.java:338) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.onBlockClicked(PlayerInteractionManager.java:174) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.network.NetHandlerPlayServer.processPlayerDigging(NetHandlerPlayServer.java:653) ~[NetHandlerPlayServer.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:56) ~[CPacketPlayerDigging.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:12) ~[CPacketPlayerDigging.class:?]
+	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
+	... 5 more
+[23:02:28] [Server thread/FATAL]: Error executing task
+java.util.concurrent.ExecutionException: java.lang.NullPointerException
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.lang.NullPointerException
+	at com.smithsmodding.armory.common.block.BlockConduit.breakBlock(BlockConduit.java:119) ~[BlockConduit.class:?]
+	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:610) ~[Chunk.class:?]
+	at net.minecraft.world.World.setBlockState(World.java:388) ~[World.class:?]
+	at net.minecraft.block.Block.removedByPlayer(Block.java:1344) ~[Block.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:297) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:291) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.tryHarvestBlock(PlayerInteractionManager.java:338) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.onBlockClicked(PlayerInteractionManager.java:174) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.network.NetHandlerPlayServer.processPlayerDigging(NetHandlerPlayServer.java:653) ~[NetHandlerPlayServer.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:56) ~[CPacketPlayerDigging.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:12) ~[CPacketPlayerDigging.class:?]
+	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
+	... 5 more
+[23:02:29] [Server thread/FATAL]: Error executing task
+java.util.concurrent.ExecutionException: java.lang.NullPointerException
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.lang.NullPointerException
+	at com.smithsmodding.armory.common.block.BlockConduit.breakBlock(BlockConduit.java:119) ~[BlockConduit.class:?]
+	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:610) ~[Chunk.class:?]
+	at net.minecraft.world.World.setBlockState(World.java:388) ~[World.class:?]
+	at net.minecraft.block.Block.removedByPlayer(Block.java:1344) ~[Block.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:297) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:291) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.tryHarvestBlock(PlayerInteractionManager.java:338) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.onBlockClicked(PlayerInteractionManager.java:174) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.network.NetHandlerPlayServer.processPlayerDigging(NetHandlerPlayServer.java:653) ~[NetHandlerPlayServer.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:56) ~[CPacketPlayerDigging.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:12) ~[CPacketPlayerDigging.class:?]
+	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
+	... 5 more
+[23:02:29] [Server thread/INFO]: Saving and pausing game...
+[23:02:29] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[23:02:29] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[23:02:29] [Server thread/INFO]: Saving chunks for level 'New World'/The End

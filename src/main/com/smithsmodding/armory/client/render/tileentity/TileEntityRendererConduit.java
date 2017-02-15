@@ -24,10 +24,14 @@ public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEnt
         if (te.getTotalTankSizeOnSide(null) == 0)
             return;
 
-        double height = te.getTankContentsVolumeOnSide(null) / ((double) te.getTotalTankSizeOnSide(null)) * 0.7;
+        double height = te.getTankContentsVolumeOnSide(null) / ((double) te.getTotalTankSizeOnSide(null)) * 0.05;
         FluidStack stack = te.getTankForSide(null).getFluid();
         if (stack == null)
             return;
+
+/*        GlStateManager.pushMatrix();
+        RenderHelper.renderFluidCuboid(stack, te.getPos(), x, y, z, 0.1, 0.53750, 0.1, 0.9, 0.53750 + height, 0.9);
+        GlStateManager.popMatrix();*/
 
         ConduitRenderComponents.getRenderer(null).render(stack, te.getPos(), x,y,z, height);
 

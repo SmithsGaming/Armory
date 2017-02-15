@@ -33,7 +33,7 @@ public class ConduitRenderComponents {
 
         @Override
         public void render(@Nonnull FluidStack fluidStack, BlockPos pos, double x, double y, double z, double height) {
-            ConduitRenderComponents.renderFluidSide(fluidStack, pos, x, y, z, 0.60620, 0.53755 + height, 0.60620, 0.39380, 0.53755 + height, 0.39380, EnumFacing.UP);
+            ConduitRenderComponents.renderFluidSide(fluidStack, pos, x, y, z, 0.60620, 0.53755, 0.60620, 0.39380, 0.53755 + height, 0.39380, EnumFacing.UP);
         }
     }
 
@@ -41,7 +41,7 @@ public class ConduitRenderComponents {
 
         @Override
         public void render(@Nonnull FluidStack fluidStack, BlockPos pos, double x, double y, double z, double height) {
-            ConduitRenderComponents.renderFluidSide(fluidStack, pos, x, y, z, 0.60620, 0.53755 + height, 0.39380, 0.39380, 0.53755 + height, 0, EnumFacing.UP);
+            ConduitRenderComponents.renderFluidSide(fluidStack, pos, x, y, z, 0.60620, 0.53755, 0.39380, 0.39380, 0.53755 + height, 0, EnumFacing.UP);
         }
     }
 
@@ -49,7 +49,7 @@ public class ConduitRenderComponents {
 
         @Override
         public void render(@Nonnull FluidStack fluidStack, BlockPos pos, double x, double y, double z, double height) {
-            ConduitRenderComponents.renderFluidSide(fluidStack, pos, x, y, z, 0.39380, 0.53755 + height, 0.60620, 0.60620, 0.53755 + height, 1, EnumFacing.UP);
+            ConduitRenderComponents.renderFluidSide(fluidStack, pos, x, y, z, 0.39380, 0.53755, 0.60620, 0.60620, 0.53755 + height, 1, EnumFacing.UP);
         }
     }
 
@@ -57,7 +57,7 @@ public class ConduitRenderComponents {
 
         @Override
         public void render(@Nonnull FluidStack fluidStack, BlockPos pos, double x, double y, double z, double height) {
-            ConduitRenderComponents.renderFluidSide(fluidStack, pos, x, y, z, 0, 0.53755 + height, 0.39380, 0.39380, 0.53755 + height, 0.60620, EnumFacing.UP);
+            ConduitRenderComponents.renderFluidSide(fluidStack, pos, x, y, z, 0, 0.53755, 0.39380, 0.39380, 0.53755 + height, 0.60620, EnumFacing.UP);
         }
     }
 
@@ -65,21 +65,11 @@ public class ConduitRenderComponents {
 
         @Override
         public void render(@Nonnull FluidStack fluidStack, BlockPos pos, double x, double y, double z, double height) {
-            ConduitRenderComponents.renderFluidSide(fluidStack, pos, x, y, z, 0.60620, 0.53755 + height, 0.39380, 1, 0.53755 + height, 0.60620, EnumFacing.UP);
+            ConduitRenderComponents.renderFluidSide(fluidStack, pos, x, y, z, 0.60620, 0.53755, 0.39380, 1, 0.53755 + height, 0.60620, EnumFacing.UP);
         }
     }
 
     private static void renderFluidSide(@Nonnull FluidStack fluid, BlockPos pos, double x, double y, double z, double x1, double y1, double z1, double x2, double y2, double z2, @Nonnull EnumFacing facing) {
-        final double yDelta = 0.66;
-
-        x1 += (x);
-        y1 += (y - yDelta);
-        z1 += (z);
-        x2 += (x);
-        y2 += (y - yDelta);
-        z2 += (z);
-
-
-        RenderHelper.renderFluidSide(fluid, pos, 0, 0, 0, x1, y1, z1, x2, y2, z2, facing);
+        RenderHelper.renderFluidCuboid(fluid, pos, x, y, z, x1, y1, z1, x2, y2, z2);
     }
 }
