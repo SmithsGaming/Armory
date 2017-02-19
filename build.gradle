@@ -153,10 +153,6 @@ processResources
         }
 
 jar {
-    manifest {
-        attributes 'FMLAT': 'Armory_at.cfg'
-    }
-
     from sourceSets.main.output
     from sourceSets.api.output
 }
