@@ -176,9 +176,15 @@ task apiJar(type: Jar) {
     classifier = 'api'
 }
 
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    appendix = 'deobf'
+}
+
 artifacts {
     archives javadocJar
     archives apiJar
+    archives deobfJar
 }
 
 changelog {

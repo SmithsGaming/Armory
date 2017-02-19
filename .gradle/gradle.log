@@ -4,20 +4,10 @@ Cannot run the CurseUpload sequence. No API-Key was available.Cannot run the Cur
 
 The sync of the branches is not being executed, because we are not releasing a new version.The sync of the branches is not being executed, because we are not releasing a new version.
 
-#################################################
-         ForgeGradle 2.2-SNAPSHOT-2112b0a        
-  https://github.com/MinecraftForge/ForgeGradle  
-#################################################
-               Powered by MCP unknown               
-             http://modcoderpack.com             
-         by: Searge, ProfMobius, Fesh0r,         
-         R4wk, ZeuX, IngisKahn, bspkrs           
-#################################################
 Found AccessTransformer: jei_at.cfg_jei_1.10.2-3.7.12.239_at.cfg
 Found AccessTransformer: SmithsCore_at.cfg_smithscore-1.10.2-1.2.1-259_at.cfg
 Found AccessTransformer: Armory_at.cfg
-:generateChangelog UP-TO-DATE
 
 BUILD SUCCESSFUL
 
-Total time: 7.606 secs
+Total time: 0.574 secs
