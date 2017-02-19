@@ -178,7 +178,7 @@ task apiJar(type: Jar) {
 
 task deobfJar(type: Jar) {
     from sourceSets.main.output
-    appendix = 'deobf'
+    classifier = 'deobf'
 }
 
 artifacts {
