@@ -10,6 +10,7 @@ import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.IFluidTank;
 
@@ -19,7 +20,7 @@ import javax.annotation.Nullable;
 /**
  * Author Orion (Created on: 26.07.2016)
  */
-public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMoltenMetalTankState, TileEntityMoltenMetalTankGuiManager> implements IFluidContainingEntity {
+public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMoltenMetalTankState, TileEntityMoltenMetalTankGuiManager> implements IFluidContainingEntity, ITickable {
 
     private EnumTankType type;
     private MoltenMetalTank internalTank = new MoltenMetalTank(0,0);
@@ -95,5 +96,13 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
     @Override
     public int getTankContentsVolumeOnSide(@Nullable EnumFacing side) {
         return getTankForSide(side).getFluidAmount();
+    }
+
+    /**
+     * Like the old updateEntity(), except more generic.
+     */
+    @Override
+    public void update() {
+
     }
 }

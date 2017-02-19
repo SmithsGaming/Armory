@@ -69,7 +69,11 @@ public class TileEntityPump extends TileEntitySmithsCore<TileEntityPumpState, Ti
     @Nonnull
     @Override
     public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
-        return super.writeToNBT(compound);
+        super.writeToNBT(compound);
+
+        compound.setTag(References.NBTTagCompoundData.TE.Pump.FLUIDS, internalTank.writeToNBT(new NBTTagCompound()));
+
+        return compound;
     }
 
     /**
@@ -126,6 +130,8 @@ public class TileEntityPump extends TileEntitySmithsCore<TileEntityPumpState, Ti
             return;
 
         provider.provideMetal(usedDrain, false);
+
+        inputEntity.markDirty();
     }
 
     private void updateOutput(TileEntity outputEntity, EnumFacing outputFacing) {
@@ -146,6 +152,8 @@ public class TileEntityPump extends TileEntitySmithsCore<TileEntityPumpState, Ti
             return;
 
         internalTank.drain(usedDrain, true);
+
+        outputEntity.markDirty();
     }
 
     @Nonnull

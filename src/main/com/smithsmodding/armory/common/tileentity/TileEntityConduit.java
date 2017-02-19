@@ -8,6 +8,7 @@ import com.smithsmodding.armory.common.structure.conduit.StructureConduitNetwork
 import com.smithsmodding.armory.common.tileentity.moltenmetal.MoltenMetalTank;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityConduitState;
 import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIManager;
+import com.smithsmodding.smithscore.common.events.structure.StructureEvent;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.pathfinding.IPathComponent;
 import com.smithsmodding.smithscore.common.structures.IStructurePart;
@@ -110,7 +111,6 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
         final MoltenMetalTank internalTank = getStructure().getData().getNetworkTank();
 
         if (internalTank.getFluidAmount() == 0) {
-            this.markDirty();
             return;
         }
 
@@ -118,7 +118,6 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
             TileEntity tileEntityAbove = getWorld().getTileEntity(getPos().offset(EnumFacing.UP));
 
             if (tileEntityAbove == null){
-                this.markDirty();
                 return;
             }
 
@@ -129,17 +128,16 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
 
                     FluidStack drain = internalTank.drain(Integer.MAX_VALUE, false);
                     if (drain == null || drain.amount == 0){
-                        this.markDirty();
                         return;
                     }
 
                     int drained = tankAbove.fill(drain, true);
                     if (drained == 0){
-                        this.markDirty();
                         return;
                     }
 
                     internalTank.drain(drained, true);
+                    conduit.markDirty();
                 }
             } else {
                 if (tileEntityAbove.hasCapability(ModCapabilities.MOD_MOLTENMETAL_ACCEPTOR_CAPABILITY, EnumFacing.DOWN)) {
@@ -147,17 +145,16 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
 
                     FluidStack drain = internalTank.drain(Integer.MAX_VALUE, false);
                     if (drain == null || drain.amount == 0){
-                        this.markDirty();
                         return;
                     }
 
                     FluidStack drained = acceptor.acceptMetal(drain, false);
                     if (drained == null || drained.amount == 0){
-                        this.markDirty();
                         return;
                     }
 
                     internalTank.drain(drained, true);
+                    tileEntityAbove.markDirty();
                 }
             }
         } else {
@@ -183,6 +180,7 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
 
                     internalTank.drain(drained, true);
 
+                    tileEntity.markDirty();
                 }
             }
 
@@ -195,17 +193,16 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
 
                     FluidStack drain = internalTank.drain(Integer.MAX_VALUE, false);
                     if (drain == null || drain.amount == 0){
-                        this.markDirty();
                         return;
                     }
 
                     int drained = tankBelow.fill(drain, true);
                     if (drained == 0){
-                        this.markDirty();
                         return;
                     }
 
                     internalTank.drain(drained, true);
+                    conduit.markDirty();
                 }
             } else if (tileEntityBelow != null) {
                 if (tileEntityBelow.hasCapability(ModCapabilities.MOD_MOLTENMETAL_ACCEPTOR_CAPABILITY, EnumFacing.DOWN)) {
@@ -213,22 +210,30 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
 
                     FluidStack drain = internalTank.drain(Integer.MAX_VALUE, false);
                     if (drain == null || drain.amount == 0){
-                        this.markDirty();
                         return;
                     }
 
                     FluidStack drained = acceptor.acceptMetal(drain, false);
                     if (drained == null || drained.amount == 0){
-                        this.markDirty();
                         return;
                     }
 
                     internalTank.drain(drained, true);
+                    tileEntityBelow.markDirty();
                 }
             }
         }
 
         this.markDirty();
+    }
+
+    /**
+     * Method to indicate that this TE has changed its data.
+     */
+    @Override
+    public void markDirty() {
+        new StructureEvent.Updated(getStructure(), getWorld().provider.getDimension()).PostCommon();
+        super.markDirty();
     }
 
     @Override
@@ -345,6 +350,12 @@ public class TileEntityConduit extends TileEntitySmithsCore<TileEntityConduitSta
         }
 
         return pathComponentArrayList;
+    }
+
+
+    @Override
+    public boolean requiresNBTStorage(EnumFacing side) {
+        return false;
     }
 
     @Nonnull

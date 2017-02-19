@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.client.render.tileentity;
 
 import com.smithsmodding.armory.client.render.tileentity.conduit.ConduitRenderComponents;
+import com.smithsmodding.armory.common.block.types.EnumPumpType;
 import com.smithsmodding.armory.common.tileentity.TileEntityPump;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraftforge.fluids.FluidStack;
@@ -25,6 +26,8 @@ public class TileEntityRendererPump extends TileEntitySpecialRenderer<TileEntity
 
         ConduitRenderComponents.getRenderer(null).render(stack, te.getPos(), x,y,z, height);
         ConduitRenderComponents.getRenderer(te.getFacing()).render(stack, te.getPos(), x,y,z, height);
-        ConduitRenderComponents.getRenderer(te.getFacing().getOpposite()).render(stack, te.getPos(), x, y, z, height);
+
+        if (te.getType() != EnumPumpType.VERTICAL)
+            ConduitRenderComponents.getRenderer(te.getFacing().getOpposite()).render(stack, te.getPos(), x, y, z, height);
     }
 }

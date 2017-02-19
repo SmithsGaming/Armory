@@ -1,10 +1,10 @@
-[22:59:35] [Client thread/INFO]: Setting user: Player692
-[22:59:39] [Client thread/WARN]: Skipping bad option: lastServer:
-[22:59:39] [Client thread/INFO]: LWJGL Version: 2.9.4
-[22:59:40] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
-// Hey, that tickles! Hehehe!
+[12:40:59] [Client thread/INFO]: Setting user: Player586
+[12:41:04] [Client thread/WARN]: Skipping bad option: lastServer:
+[12:41:04] [Client thread/INFO]: LWJGL Version: 2.9.4
+[12:41:05] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
+// There are four lights!
 
-Time: 2/15/17 10:59 PM
+Time: 2/16/17 12:41 PM
 Description: Loading screen debug info
 
 This is just a prompt for computer specs to be printed. THIS IS NOT A ERROR
@@ -19,41 +19,43 @@ Details:
 	Operating System: Windows 10 (amd64) version 10.0
 	Java Version: 1.8.0_111, Oracle Corporation
 	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
-	Memory: 580720544 bytes (553 MB) / 944242688 bytes (900 MB) up to 7621050368 bytes (7268 MB)
+	Memory: 711803896 bytes (678 MB) / 1032847360 bytes (985 MB) up to 7621050368 bytes (7268 MB)
 	JVM Flags: 0 total; 
 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
 	FML: 
 	Loaded coremods (and transformers): 
 	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.5.0 NVIDIA 376.53' Renderer: 'GeForce GTX 770/PCIe/SSE2'
-[22:59:44] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[22:59:49] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[22:59:49] [Thread-8/INFO]: Initializing LWJGL OpenAL
-[22:59:49] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[22:59:49] [Thread-8/INFO]: OpenAL initialized.
-[22:59:50] [Sound Library Loader/INFO]: Sound engine started
-[22:59:54] [Client thread/INFO]: Created: 16x16 textures-atlas
-[22:59:58] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[23:00:01] [Client thread/INFO]: SoundSystem shutting down...
-[23:00:01] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[23:00:01] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[23:00:01] [Thread-10/INFO]: Initializing LWJGL OpenAL
-[23:00:01] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[23:00:01] [Thread-10/INFO]: OpenAL initialized.
-[23:00:02] [Sound Library Loader/INFO]: Sound engine started
-[23:00:05] [Client thread/INFO]: Created: 2048x1024 textures-atlas
-[23:00:06] [Client thread/WARN]: Skipping bad option: lastServer:
-[23:00:07] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
-[23:00:44] [Server thread/INFO]: Starting integrated minecraft server version 1.11
-[23:00:44] [Server thread/INFO]: Generating keypair
-[23:00:44] [Server thread/INFO]: Preparing start region for level 0
-[23:00:45] [Server thread/INFO]: Changing view distance to 12, from 10
-[23:00:46] [Server thread/INFO]: Player692[local:E:feb1f8de] logged in with entity id 1 at (1221.6202543524453, 56.0, -341.2275043248332)
-[23:00:46] [Server thread/INFO]: Player692 joined the game
-[23:00:47] [Server thread/INFO]: Saving and pausing game...
-[23:00:47] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[23:00:48] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[23:00:48] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[23:00:48] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@35d30f7f[id=a2831e23-8b0f-3ec4-8539-58e8d4db780a,name=Player692,properties={},legacy=false]
+[12:41:09] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[12:41:14] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[12:41:14] [Thread-8/INFO]: Initializing LWJGL OpenAL
+[12:41:14] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[12:41:14] [Thread-8/INFO]: OpenAL initialized.
+[12:41:15] [Sound Library Loader/INFO]: Sound engine started
+[12:41:19] [Client thread/INFO]: Created: 16x16 textures-atlas
+[12:41:24] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[12:41:27] [Client thread/INFO]: SoundSystem shutting down...
+[12:41:27] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[12:41:27] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[12:41:27] [Thread-10/INFO]: Initializing LWJGL OpenAL
+[12:41:27] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[12:41:27] [Thread-10/INFO]: OpenAL initialized.
+[12:41:27] [Sound Library Loader/INFO]: Sound engine started
+[12:41:31] [Client thread/INFO]: Created: 2048x1024 textures-atlas
+[12:41:32] [Client thread/WARN]: Skipping bad option: lastServer:
+[12:41:33] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[12:44:37] [Server thread/INFO]: Starting integrated minecraft server version 1.11
+[12:44:37] [Server thread/INFO]: Generating keypair
+[12:44:38] [Server thread/INFO]: Preparing start region for level 0
+[12:44:38] [Server thread/INFO]: Changing view distance to 12, from 10
+[12:44:39] [Server thread/INFO]: Player586[local:E:7060d9e1] logged in with entity id 1 at (1321.8532722904697, 56.0, -295.5144824511536)
+[12:44:39] [Server thread/INFO]: Player586 joined the game
+[12:44:41] [Server thread/INFO]: Saving and pausing game...
+[12:44:41] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:44:41] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:44:41] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:44:42] [Server thread/INFO]: Saving and pausing game...
+[12:44:42] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:44:42] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@56b49edb[id=4ebb02a4-f60f-3bbd-8cd6-a4ac4ed3f510,name=Player586,properties={},legacy=false]
 com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
 	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:79) ~[YggdrasilAuthenticationService.class:?]
 	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) [YggdrasilMinecraftSessionService.class:?]
@@ -75,259 +77,97 @@ com.mojang.authlib.exceptions.AuthenticationException: The client has sent too m
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
 	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[23:00:51] [Server thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.NullPointerException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
-	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
-	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-Caused by: java.lang.NullPointerException
-	at com.smithsmodding.armory.common.block.BlockConduit.breakBlock(BlockConduit.java:119) ~[BlockConduit.class:?]
-	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:610) ~[Chunk.class:?]
-	at net.minecraft.world.World.setBlockState(World.java:388) ~[World.class:?]
-	at net.minecraft.block.Block.removedByPlayer(Block.java:1344) ~[Block.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:297) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:291) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.tryHarvestBlock(PlayerInteractionManager.java:338) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.onBlockClicked(PlayerInteractionManager.java:174) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.network.NetHandlerPlayServer.processPlayerDigging(NetHandlerPlayServer.java:653) ~[NetHandlerPlayServer.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:56) ~[CPacketPlayerDigging.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:12) ~[CPacketPlayerDigging.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
-	... 5 more
-[23:00:52] [Server thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.NullPointerException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
-	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
-	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-Caused by: java.lang.NullPointerException
-	at com.smithsmodding.armory.common.block.BlockConduit.breakBlock(BlockConduit.java:119) ~[BlockConduit.class:?]
-	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:610) ~[Chunk.class:?]
-	at net.minecraft.world.World.setBlockState(World.java:388) ~[World.class:?]
-	at net.minecraft.block.Block.removedByPlayer(Block.java:1344) ~[Block.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:297) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:291) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.tryHarvestBlock(PlayerInteractionManager.java:338) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.onBlockClicked(PlayerInteractionManager.java:174) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.network.NetHandlerPlayServer.processPlayerDigging(NetHandlerPlayServer.java:653) ~[NetHandlerPlayServer.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:56) ~[CPacketPlayerDigging.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:12) ~[CPacketPlayerDigging.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
-	... 5 more
-[23:00:52] [Server thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.NullPointerException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
-	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
-	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-Caused by: java.lang.NullPointerException
-	at com.smithsmodding.armory.common.block.BlockConduit.breakBlock(BlockConduit.java:119) ~[BlockConduit.class:?]
-	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:610) ~[Chunk.class:?]
-	at net.minecraft.world.World.setBlockState(World.java:388) ~[World.class:?]
-	at net.minecraft.block.Block.removedByPlayer(Block.java:1344) ~[Block.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:297) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:291) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.tryHarvestBlock(PlayerInteractionManager.java:338) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.onBlockClicked(PlayerInteractionManager.java:174) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.network.NetHandlerPlayServer.processPlayerDigging(NetHandlerPlayServer.java:653) ~[NetHandlerPlayServer.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:56) ~[CPacketPlayerDigging.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:12) ~[CPacketPlayerDigging.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
-	... 5 more
-[23:00:56] [Server thread/INFO]: Saving and pausing game...
-[23:00:56] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[23:00:56] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[23:00:56] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[23:01:01] [Server thread/INFO]: Player692 has just earned the achievement [Taking Inventory]
-[23:01:01] [Client thread/INFO]: [CHAT] Player692 has just earned the achievement [Taking Inventory]
-[23:02:15] [Server thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.NullPointerException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
-	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
-	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-Caused by: java.lang.NullPointerException
-	at com.smithsmodding.smithscore.common.structures.IStructureController.onPartPlaced(IStructureController.java:85) ~[IStructureController.class:?]
-	at com.smithsmodding.smithscore.common.structures.StructureRegistry.onStructurePartPlaced(StructureRegistry.java:94) ~[StructureRegistry.class:?]
-	at com.smithsmodding.armory.common.block.BlockConduit.onBlockPlacedBy(BlockConduit.java:106) ~[BlockConduit.class:?]
-	at net.minecraft.item.ItemBlock.placeBlockAt(ItemBlock.java:195) ~[ItemBlock.class:?]
-	at net.minecraft.item.ItemBlock.onItemUse(ItemBlock.java:54) ~[ItemBlock.class:?]
-	at net.minecraftforge.common.ForgeHooks.onPlaceItemIntoWorld(ForgeHooks.java:812) ~[ForgeHooks.class:?]
-	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:179) ~[ItemStack.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.processRightClickBlock(PlayerInteractionManager.java:506) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.network.NetHandlerPlayServer.processTryUseItemOnBlock(NetHandlerPlayServer.java:701) ~[NetHandlerPlayServer.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:68) ~[CPacketPlayerTryUseItemOnBlock.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:13) ~[CPacketPlayerTryUseItemOnBlock.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
-	... 5 more
-[23:02:16] [Server thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.NullPointerException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
-	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
-	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-Caused by: java.lang.NullPointerException
-	at com.smithsmodding.smithscore.common.structures.IStructureController.onPartPlaced(IStructureController.java:85) ~[IStructureController.class:?]
-	at com.smithsmodding.smithscore.common.structures.StructureRegistry.onStructurePartPlaced(StructureRegistry.java:94) ~[StructureRegistry.class:?]
-	at com.smithsmodding.armory.common.block.BlockConduit.onBlockPlacedBy(BlockConduit.java:106) ~[BlockConduit.class:?]
-	at net.minecraft.item.ItemBlock.placeBlockAt(ItemBlock.java:195) ~[ItemBlock.class:?]
-	at net.minecraft.item.ItemBlock.onItemUse(ItemBlock.java:54) ~[ItemBlock.class:?]
-	at net.minecraftforge.common.ForgeHooks.onPlaceItemIntoWorld(ForgeHooks.java:812) ~[ForgeHooks.class:?]
-	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:179) ~[ItemStack.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.processRightClickBlock(PlayerInteractionManager.java:506) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.network.NetHandlerPlayServer.processTryUseItemOnBlock(NetHandlerPlayServer.java:701) ~[NetHandlerPlayServer.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:68) ~[CPacketPlayerTryUseItemOnBlock.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:13) ~[CPacketPlayerTryUseItemOnBlock.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
-	... 5 more
-[23:02:16] [Server thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.NullPointerException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
-	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
-	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-Caused by: java.lang.NullPointerException
-	at com.smithsmodding.smithscore.common.structures.IStructureController.onPartPlaced(IStructureController.java:85) ~[IStructureController.class:?]
-	at com.smithsmodding.smithscore.common.structures.StructureRegistry.onStructurePartPlaced(StructureRegistry.java:94) ~[StructureRegistry.class:?]
-	at com.smithsmodding.armory.common.block.BlockConduit.onBlockPlacedBy(BlockConduit.java:106) ~[BlockConduit.class:?]
-	at net.minecraft.item.ItemBlock.placeBlockAt(ItemBlock.java:195) ~[ItemBlock.class:?]
-	at net.minecraft.item.ItemBlock.onItemUse(ItemBlock.java:54) ~[ItemBlock.class:?]
-	at net.minecraftforge.common.ForgeHooks.onPlaceItemIntoWorld(ForgeHooks.java:812) ~[ForgeHooks.class:?]
-	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:179) ~[ItemStack.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.processRightClickBlock(PlayerInteractionManager.java:506) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.network.NetHandlerPlayServer.processTryUseItemOnBlock(NetHandlerPlayServer.java:701) ~[NetHandlerPlayServer.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:68) ~[CPacketPlayerTryUseItemOnBlock.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:13) ~[CPacketPlayerTryUseItemOnBlock.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
-	... 5 more
-[23:02:21] [Server thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.util.NoSuchElementException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
-	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
-	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-Caused by: java.util.NoSuchElementException
-	at java.util.LinkedHashMap$LinkedHashIterator.nextNode(LinkedHashMap.java:721) ~[?:1.8.0_111]
-	at java.util.LinkedHashMap$LinkedKeyIterator.next(LinkedHashMap.java:742) ~[?:1.8.0_111]
-	at com.smithsmodding.smithscore.common.structures.IStructureController.onPartDestroyed(IStructureController.java:127) ~[IStructureController.class:?]
-	at com.smithsmodding.armory.common.block.BlockConduit.breakBlock(BlockConduit.java:119) ~[BlockConduit.class:?]
-	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:610) ~[Chunk.class:?]
-	at net.minecraft.world.World.setBlockState(World.java:388) ~[World.class:?]
-	at net.minecraft.block.Block.removedByPlayer(Block.java:1344) ~[Block.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:297) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:291) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.tryHarvestBlock(PlayerInteractionManager.java:338) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.onBlockClicked(PlayerInteractionManager.java:174) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.network.NetHandlerPlayServer.processPlayerDigging(NetHandlerPlayServer.java:653) ~[NetHandlerPlayServer.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:56) ~[CPacketPlayerDigging.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:12) ~[CPacketPlayerDigging.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
-	... 5 more
-[23:02:28] [Server thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.NullPointerException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
-	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
-	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-Caused by: java.lang.NullPointerException
-	at com.smithsmodding.armory.common.block.BlockConduit.breakBlock(BlockConduit.java:119) ~[BlockConduit.class:?]
-	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:610) ~[Chunk.class:?]
-	at net.minecraft.world.World.setBlockState(World.java:388) ~[World.class:?]
-	at net.minecraft.block.Block.removedByPlayer(Block.java:1344) ~[Block.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:297) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:291) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.tryHarvestBlock(PlayerInteractionManager.java:338) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.onBlockClicked(PlayerInteractionManager.java:174) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.network.NetHandlerPlayServer.processPlayerDigging(NetHandlerPlayServer.java:653) ~[NetHandlerPlayServer.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:56) ~[CPacketPlayerDigging.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:12) ~[CPacketPlayerDigging.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
-	... 5 more
-[23:02:29] [Server thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.NullPointerException
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:27) [Util.class:?]
-	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:753) [MinecraftServer.class:?]
-	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:698) [MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) [IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:547) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-Caused by: java.lang.NullPointerException
-	at com.smithsmodding.armory.common.block.BlockConduit.breakBlock(BlockConduit.java:119) ~[BlockConduit.class:?]
-	at net.minecraft.world.chunk.Chunk.setBlockState(Chunk.java:610) ~[Chunk.class:?]
-	at net.minecraft.world.World.setBlockState(World.java:388) ~[World.class:?]
-	at net.minecraft.block.Block.removedByPlayer(Block.java:1344) ~[Block.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:297) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.removeBlock(PlayerInteractionManager.java:291) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.tryHarvestBlock(PlayerInteractionManager.java:338) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.server.management.PlayerInteractionManager.onBlockClicked(PlayerInteractionManager.java:174) ~[PlayerInteractionManager.class:?]
-	at net.minecraft.network.NetHandlerPlayServer.processPlayerDigging(NetHandlerPlayServer.java:653) ~[NetHandlerPlayServer.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:56) ~[CPacketPlayerDigging.class:?]
-	at net.minecraft.network.play.client.CPacketPlayerDigging.processPacket(CPacketPlayerDigging.java:12) ~[CPacketPlayerDigging.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
-	at net.minecraft.util.Util.runTask(Util.java:26) ~[Util.class:?]
-	... 5 more
-[23:02:29] [Server thread/INFO]: Saving and pausing game...
-[23:02:29] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[23:02:29] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[23:02:29] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:44:42] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:44:42] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:44:47] [Server thread/INFO]: Saving and pausing game...
+[12:44:47] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:44:47] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:44:47] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:44:59] [Server thread/INFO]: Saving and pausing game...
+[12:44:59] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:44:59] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:44:59] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:45:13] [Server thread/INFO]: Saving and pausing game...
+[12:45:13] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:45:13] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:45:13] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:45:22] [Server thread/INFO]: Saving and pausing game...
+[12:45:22] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:45:22] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:45:22] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:46:10] [Server thread/INFO]: [Player586: Set the time to 0]
+[12:46:10] [Client thread/INFO]: [CHAT] Set the time to 0
+[12:46:16] [Server thread/INFO]: [Player586: Set the time to 2000]
+[12:46:16] [Client thread/INFO]: [CHAT] Set the time to 2000
+[12:49:14] [Server thread/INFO]: Saving and pausing game...
+[12:49:14] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:49:14] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:49:14] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:56:30] [Server thread/INFO]: [Player586: Set the time to 2000]
+[12:56:30] [Client thread/INFO]: [CHAT] Set the time to 2000
+[12:56:41] [Client thread/INFO]: [CHAT] Saved screenshot as 2017-02-16_12.56.41.png
+[12:56:42] [Server thread/INFO]: Saving and pausing game...
+[12:56:42] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:56:42] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:56:42] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:00:14] [Server thread/INFO]: Player586 has just earned the achievement [Taking Inventory]
+[13:00:14] [Client thread/INFO]: [CHAT] Player586 has just earned the achievement [Taking Inventory]
+[13:00:30] [Server thread/INFO]: Saving and pausing game...
+[13:00:30] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:00:30] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:00:30] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:01:59] [Server thread/INFO]: Saving and pausing game...
+[13:01:59] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:01:59] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:01:59] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:01:59] [Server thread/INFO]: Stopping server
+[13:01:59] [Server thread/INFO]: Saving players
+[13:01:59] [Server thread/INFO]: Player586 lost connection: TextComponent{text='Disconnected', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[13:01:59] [Server thread/INFO]: Player586 left the game
+[13:01:59] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[13:01:59] [Server thread/INFO]: Saving worlds
+[13:01:59] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:01:59] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:01:59] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:02:06] [Server thread/INFO]: Starting integrated minecraft server version 1.11
+[13:02:06] [Server thread/INFO]: Generating keypair
+[13:02:06] [Server thread/INFO]: Preparing start region for level 0
+[13:02:07] [Server thread/INFO]: Changing view distance to 12, from 10
+[13:02:07] [Server thread/INFO]: Player586[local:E:f94fd584] logged in with entity id 692645 at (1317.3893711455585, 56.0, -296.3173833667772)
+[13:02:07] [Server thread/INFO]: Player586 joined the game
+[13:02:08] [Server thread/INFO]: Saving and pausing game...
+[13:02:08] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:02:08] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:02:08] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:03:03] [Server thread/INFO]: Saving and pausing game...
+[13:03:03] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:03:03] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:03:03] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:04:08] [Server thread/INFO]: Saving and pausing game...
+[13:04:08] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:04:08] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:04:08] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:05:43] [Server thread/INFO]: Saving and pausing game...
+[13:05:43] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:05:43] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:05:43] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:23:30] [Server thread/INFO]: Saving and pausing game...
+[13:23:30] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:23:30] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:23:30] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:47:41] [Server thread/INFO]: Saving and pausing game...
+[13:47:41] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:47:42] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:47:42] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:47:42] [Server thread/INFO]: Stopping server
+[13:47:42] [Server thread/INFO]: Saving players
+[13:47:42] [Server thread/INFO]: Player586 lost connection: TextComponent{text='Disconnected', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[13:47:42] [Server thread/INFO]: Player586 left the game
+[13:47:42] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[13:47:42] [Server thread/INFO]: Saving worlds
+[13:47:42] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:47:42] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:47:42] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:47:44] [Client thread/INFO]: Stopping!
+[13:47:44] [Client thread/INFO]: SoundSystem shutting down...
+[13:47:44] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com

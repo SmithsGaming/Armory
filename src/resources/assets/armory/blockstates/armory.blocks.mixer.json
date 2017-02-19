@@ -1,0 +1,27 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {},
+    "model": "armory:moltenmetalmixer/mixer.obj",
+    "custom": {
+      "flip-v": true,
+      "gui3d": false
+    }
+  },
+  "variants": {
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {
+        "model": "armory:moltenmetalmixer/mixer.obj",
+        "custom": {
+          "flip-v": true,
+          "gui3d": false
+        },
+        "transform": "forge:default-block"
+      }
+    ]
+  }
+}
+
