@@ -11,7 +11,7 @@ import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityForgeGui
 import com.smithsmodding.armory.common.tileentity.state.IForgeFuelDataContainer;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityForgeState;
 import com.smithsmodding.smithscore.client.events.models.block.BlockModelUpdateEvent;
-import com.smithsmodding.smithscore.common.events.structure.StructureUpdatedEvent;
+import com.smithsmodding.smithscore.common.events.structure.StructureEvent;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
 import com.smithsmodding.smithscore.common.pathfinding.IPathComponent;
 import com.smithsmodding.smithscore.common.structures.IStructurePart;
@@ -76,7 +76,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
         super.markDirty();
 
-        new StructureUpdatedEvent(getStructure(), getWorld().provider.getDimension()).PostCommon();
+        new StructureEvent.Updated(getStructure(), getWorld().provider.getDimension()).PostCommon();
 
         if (getStructure().getData().getTotalBurningTicksOnCurrentFuel() > 0)
             onFuelFound();
