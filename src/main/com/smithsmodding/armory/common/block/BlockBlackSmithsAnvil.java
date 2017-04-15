@@ -263,12 +263,14 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
     }
 
     private ItemStack generateItemStackFromWorldPos(IBlockAccess world, BlockPos pos, IBlockState state) {
-        state = getExtendedState(state, world, pos);
+        IAnvilMaterial material = ((TileEntityBlackSmithsAnvil) world.getTileEntity(pos)).getState().getMaterial();
+        if (material == null)
+            return null;
 
         ItemStack stack = new ItemStack(Item.getItemFromBlock(state.getBlock()));
         NBTTagCompound compound = new NBTTagCompound();
 
-        compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, ((IExtendedBlockState) state).getValue(PROPERTY_ANVIL_MATERIAL));
+        compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, material.getID());
         stack.setTagCompound(compound);
 
         return stack;

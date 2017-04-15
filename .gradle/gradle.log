@@ -6,8 +6,7 @@ The sync of the branches is not being executed, because we are not releasing a n
 
 Found AccessTransformer: jei_at.cfg_jei_1.10.2-3.7.12.239_at.cfg
 Found AccessTransformer: SmithsCore_at.cfg_smithscore-1.10.2-1.2.1-259_at.cfg
-Found AccessTransformer: Armory_at.cfg
 
 BUILD SUCCESSFUL
 
-Total time: 0.629 secs
+Total time: 1.214 secs

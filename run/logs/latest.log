@@ -1,24 +1,183 @@
-[23:26:21] [Client thread/INFO]: Setting user: Player794
-[23:26:27] [Client thread/WARN]: Skipping bad option: lastServer:
-[23:26:27] [Client thread/INFO]: LWJGL Version: 2.9.4
-[23:26:39] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items, FMLFileResourcePack:armory-weaponry, FMLFileResourcePack:AppleSkin, FMLFileResourcePack:AutoRegLib, FMLFileResourcePack:Bed Bugs, FMLFileResourcePack:Better Achievements, FMLFileResourcePack:Block Drops, FMLFileResourcePack:Chisel, FMLFileResourcePack:Chisels & Bits, FMLFileResourcePack:Cooking for Blockheads, FMLFileResourcePack:Custom Main Menu, FMLFileResourcePack:Ding, FMLFileResourcePack:Dynamic Surroundings, FMLFileResourcePack:Iron Chest, FMLFileResourcePack:JourneyMap, FMLFileResourcePack:Just Enough Resources, FMLFileResourcePack:Light Level Overlay Reloaded, FMLFileResourcePack:Mantle, FMLFileResourcePack:MineColonies, FMLFileResourcePack:MineMenu, FMLFileResourcePack:Morpheus, FMLFileResourcePack:Neat, FMLFileResourcePack:Nether Portal Fix, FMLFileResourcePack:Pam's HarvestCraft, FMLFileResourcePack:Ping, FMLFileResourcePack:Quark, FMLFileResourcePack:Railcraft, FMLFileResourcePack:Realistic Terrain Generation, FMLFileResourcePack:Simple Barrels, FMLFileResourcePack:Tinkers' Construct, FMLFileResourcePack:The One Probe, FMLFileResourcePack:Tinkers Tool Leveling, FMLFileResourcePack:vending
-[23:26:54] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[23:26:54] [Thread-9/INFO]: Initializing LWJGL OpenAL
-[23:26:54] [Thread-9/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[23:26:54] [Thread-9/INFO]: OpenAL initialized.
-[23:26:54] [Sound Library Loader/INFO]: Sound engine started
-[23:27:02] [Client thread/INFO]: Created: 16x16 textures-atlas
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_n
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_n
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_n
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_n
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_ne
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_ne
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_ne
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_ne
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_ns
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_ns
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_nse
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_nse
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_nse
-[23:27:03] [Client thread/WARN]: Unable to resolve texture due to upward reference: #pane in chisel:models/block/pane/pane_nse
+[22:02:01] [Server thread/INFO]: Starting minecraft server version 1.10.2
+[22:02:08] [Server thread/INFO]: Loading properties
+[22:02:08] [Server thread/INFO]: Default game type: SURVIVAL
+[22:02:08] [Server thread/INFO]: Generating keypair
+[22:02:08] [Server thread/INFO]: Starting Minecraft server on *:25565
+[22:02:09] [Server thread/INFO]: Using default channel type
+[22:02:09] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[22:02:09] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[22:02:09] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[22:02:09] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[22:02:10] [Server thread/INFO]: Preparing level "world"
+[22:02:12] [Server thread/INFO]: Preparing start region for level 0
+[22:02:13] [Server thread/INFO]: Preparing spawn area: 0%
+[22:02:14] [Server thread/INFO]: Preparing spawn area: 34%
+[22:02:15] [Server thread/INFO]: Done (5.148s)! For help, type "help" or "?"
+[22:03:28] [Server thread/INFO]: Player283[/127.0.0.1:62487] logged in with entity id 264 at (147.5, 70.0, 253.5)
+[22:03:28] [Server thread/INFO]: Player283 joined the game
+[22:03:33] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 3111ms behind, skipping 62 tick(s)
+[22:03:58] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 9552ms behind, skipping 191 tick(s)
+[22:04:08] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2904ms behind, skipping 58 tick(s)
+[22:04:25] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 3029ms behind, skipping 60 tick(s)
+[22:04:41] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2670ms behind, skipping 53 tick(s)
+[22:06:32] [Server thread/INFO]: Player283 lost connection: TextComponent{text='Disconnected', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[22:06:32] [Server thread/INFO]: Player283 left the game
+er/INFO]: Starting up SoundSystem...
+[22:02:59] [Thread-9/INFO]: Initializing LWJGL OpenAL
+[22:02:59] [Thread-9/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:02:59] [Thread-9/INFO]: OpenAL initialized.
+[22:02:59] [Sound Library Loader/INFO]: Sound engine started
+[22:03:04] [Client thread/INFO]: Created: 2048x1024 textures-atlas
+[22:03:05] [Client thread/WARN]: Skipping bad option: lastServer:
+[22:03:06] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[22:03:27] [Client thread/INFO]: Connecting to localhost, 25565
+[22:06:33] [Client thread/INFO]: Stopping!
+[22:06:33] [Client thread/INFO]: SoundSystem shutting down...
+[22:06:33] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[23:12:58] [Client thread/INFO]: Setting user: Player976
+[23:13:09] [Client thread/WARN]: Skipping bad option: lastServer:
+[23:13:09] [Client thread/INFO]: LWJGL Version: 2.9.4
+[23:13:18] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFil[23:13:22] [Server thread/INFO]: Loading properties
+[23:13:22] [Server thread/INFO]: Default game type: SURVIVAL
+[23:13:22] [Server thread/INFO]: Generating keypair
+[[23:13:27] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[23:13:27] [Thread-7/INFO]: Initializing LWJGL OpenAL
+[23:13:27] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[23:13:27] [Thread-7/INFO]: OpenAL initialized.
+[23:13:27] [Sound Library Loader/INFO]: Sound engine started
+[23:13:36] [Client thread/INFO]: Created: 16x16 textures-atlas
+[23:13:40] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
+[23:13:44] [Client thread/INFO]: SoundSystem shutting down...
+[23:13:45] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[23:13:45] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[23:13:45] [Thread-9/INFO]: Initializing LWJGL OpenAL
+[23:13:45] [Thread-9/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[23:13:45] [Thread-9/INFO]: OpenAL ini[23:14:05] [Server thread/INFO]: Player976[/127.0.0.1:50263] logged in with entity id 371 at (150.5, 70.0, 254.5)
+[23:14:05] [Server thread/INFO]: Player976 joined the game
+[23:14:08] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 3037ms behind, skipping 60 tick(s)
+[23:16:24] [Server thread/INFO]: Set the time to 1000
+[23:16:38] [Server threa[23:16:38] [Client thread/[23:16:41] [Server thread/INFO]: Player97[23:16:41] [Client thread/INFO]: [CHAT] Player976 has [23:16:58] [Server thread/INFO]: [Player976: Giv[23:16:58] [Client thread/INFO][23:16:59] [Server thread/FATAL]: Error ex[23:19:10] [Client thread/INFO]: Connecting to localhost, 25565
+[23:19:26] [Client thread/INFO]: [CHAT] Player976 has just earned the achievement [Taking Inventory]
+[23:19:27] [Client thread/INFO]: [CHAT] Given [Forge] * 64 to Player976
+[23:23:49] [Client thread/INFO]: Stopping!
+[23:23:49] [Client thread/INFO]: SoundSystem shutting down...
+[23:23:49] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+lass:?]
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:408) [DedicatedServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:687) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:536) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.lang.NullPointerException
+	at com.smithsmodding.smithscore.common.structures.StructureRegistry.onStructurePartPlaced(StructureRegistry.java:82) ~[StructureRegistry.class:?]
+	at com.smithsmodding.armory.common.block.BlockForge.onBlockPlacedBy(BlockForge.java:142) ~[BlockForge.class:?]
+	at net.minecraft.item.ItemBlock.placeBlockAt(ItemBlock.java:190) ~[ItemBlock.class:?]
+	at net.minecraft.item.ItemBlock.onItemUse(ItemBlock.java:60) ~[ItemBlock.class:?]
+	at net.minecraftforge.common.ForgeHooks.onPlaceItemIntoWorld(ForgeHooks.java:780) ~[ForgeHooks.class:?]
+	at net.minecraft.item.ItemStack.onItemUse(ItemStack.java:158) ~[ItemStack.class:?]
+	at net.minecraft.server.management.PlayerInteractionManager.processRightClickBlock(PlayerInteractionManager.java:519) ~[PlayerInteractionManager.class:?]
+	at net.minecraft.network.NetHandlerPlayServer.processRightClickBlock(NetHandlerPlayServer.java:706) ~[NetHandlerPlayServer.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:68) ~[CPacketPlayerTryUseItemOnBlock.class:?]
+	at net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock.processPacket(CPacketPlayerTryUseItemOnBlock.java:13) ~[CPacketPlayerTryUseItemOnBlock.class:?]
+	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:15) ~[PacketThreadUtil$1.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_111]
+	at net.minecraft.util.Util.runTask(Util.java:25) ~[Util.class:?]
+	... 5 more
+[23:16:59] [Server thread/ERROR]: Encountered an unexpected exception
+net.minecraft.util.ReportedException: Ticking block entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:789) ~[MinecraftServer.class:?]
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:408) ~[DedicatedServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:687) ~[MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:536) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.lang.NullPointerException
+	at com.smithsmodding.armory.common.tileentity.TileEntityForge.markDirty(TileEntityForge.java:81) ~[TileEntityForge.class:?]
+	at com.smithsmodding.armory.common.tileentity.TileEntityForge.update(TileEntityForge.java:69) ~[TileEntityForge.class:?]
+	at net.minecraft.world.World.updateEntities(World.java:1942) ~[World.class:?]
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:646) ~[WorldServer.class:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:783) ~[MinecraftServer.class:?]
+	... 4 more
+[23:16:59] [Server thread/ERROR]: This crash report has been saved to: E:\Development\Minecraft\1.10\Armory\run\.\crash-reports\crash-2017-04-15_23.16.59-server.txt
+[23:16:59] [Server thread/INFO]: Stopping server
+[23:16:59] [Server thread/INFO]: Saving players
+[23:16:59] [Server thread/INFO]: Saving worlds
+[23:16:59] [Server thread/INFO]: Saving chunks for level 'world'/Overworld
+[23:17:00] [Server thread/INFO]: Saving chunks for level 'world'/Nether
+[23:17:00] [Server thread/INFO]: Saving chunks for level 'world'/The End
+[23:17:01] [Server Shutdown Thread/INFO]: Stopping server
+[23:17:01] [Server Shutdown Thread/INFO]: Saving players
+[23:17:53] [Server thread/INFO]: Starting minecraft server version 1.10.2
+[23:18:01] [Server thread/INFO]: Loading properties
+[23:18:01] [Server thread/INFO]: Default game type: SURVIVAL
+[23:18:01] [Server thread/INFO]: Generating keypair
+[23:18:01] [Server thread/INFO]: Starting Minecraft server on *:25565
+[23:18:01] [Server thread/INFO]: Using default channel type
+[23:18:02] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[23:18:02] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[23:18:02] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[23:18:02] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[23:18:02] [Server thread/INFO]: Preparing level "world"
+[23:18:05] [Server thread/INFO]: Preparing start region for level 0
+[23:18:06] [Server thread/INFO]: Preparing spawn area: 2%
+[23:18:07] [Server thread/INFO]: Preparing spawn area: 41%
+[23:18:08] [Server thread/INFO]: Preparing spawn area: 92%
+[23:18:08] [Server thread/INFO]: Done (5.509s)! For help, type "help" or "?"
+[23:18:08] [Server thread/ERROR]: Encountered an unexpected exception
+net.minecraft.util.ReportedException: Ticking block entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:789) ~[MinecraftServer.class:?]
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:408) ~[DedicatedServer.class:?]
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:687) ~[MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:536) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.lang.NullPointerException
+	at com.smithsmodding.armory.common.tileentity.TileEntityForge.markDirty(TileEntityForge.java:81) ~[TileEntityForge.class:?]
+	at com.smithsmodding.armory.common.tileentity.TileEntityForge.update(TileEntityForge.java:69) ~[TileEntityForge.class:?]
+	at net.minecraft.world.World.updateEntities(World.java:1942) ~[World.class:?]
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:646) ~[WorldServer.class:?]
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:783) ~[MinecraftServer.class:?]
+	... 4 more
+[23:18:08] [Server thread/ERROR]: This crash report has been saved to: E:\Development\Minecraft\1.10\Armory\run\.\crash-reports\crash-2017-04-15_23.18.08-server.txt
+[23:18:08] [Server thread/INFO]: Stopping server
+[23:18:08] [Server thread/INFO]: Saving players
+[23:18:08] [Server thread/INFO]: Saving worlds
+[23:18:08] [Server thread/INFO]: Saving chunks for level 'world'/Overworld
+[23:18:09] [Server thread/INFO]: Saving chunks for level 'world'/Nether
+[23:18:09] [Server thread/INFO]: Saving chunks for level 'world'/The End
+[23:18:09] [Server Shutdown Thread/INFO]: Stopping server
+[23:18:09] [Server Shutdown Thread/INFO]: Saving players
+[23:18:09] [Server Shutdown Thread/INFO]: Saving worlds
+[23:18:37] [Server thread/INFO]: Starting minecraft server version 1.10.2
+[23:18:45] [Server thread/INFO]: Loading properties
+[23:18:45] [Server thread/INFO]: Default game type: SURVIVAL
+[23:18:45] [Server thread/INFO]: Generating keypair
+[23:18:45] [Server thread/INFO]: Starting Minecraft server on *:25565
+[23:18:46] [Server thread/INFO]: Using default channel type
+[23:18:46] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[23:18:46] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[23:18:46] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[23:18:46] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[23:18:47] [Server thread/INFO]: Preparing level "world"
+[23:18:50] [Server thread/INFO]: Preparing start region for level 0
+[23:18:51] [Server thread/INFO]: Preparing spawn area: 4%
+[23:18:52] [Server thread/INFO]: Preparing spawn area: 8%
+[23:18:53] [Server thread/INFO]: Preparing spawn area: 13%
+[23:18:54] [Server thread/INFO]: Preparing spawn area: 18%
+[23:18:55] [Server thread/INFO]: Preparing spawn area: 23%
+[23:18:56] [Server thread/INFO]: Preparing spawn area: 30%
+[23:18:57] [Server thread/INFO]: Preparing spawn area: 37%
+[23:18:58] [Server thread/INFO]: Preparing spawn area: 45%
+[23:18:59] [Server thread/INFO]: Preparing spawn area: 54%
+[23:19:00] [Server thread/INFO]: Preparing spawn area: 61%
+[23:19:01] [Server thread/INFO]: Preparing spawn area: 71%
+[23:19:02] [Server thread/INFO]: Preparing spawn area: 78%
+[23:19:03] [Server thread/INFO]: Preparing spawn area: 87%
+[23:19:04] [Server thread/INFO]: Preparing spawn area: 96%
+[23:19:05] [Server thread/INFO]: Done (18.053s)! For help, type "help" or "?"
+[23:19:08] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2483ms behind, skipping 49 tick(s)
+[23:19:12] [Server thread/INFO]: Player976[/127.0.0.1:50522] logged in with entity id 1737 at (-237.5, 72.0, 194.5)
+[23:19:12] [Server thread/INFO]: Player976 joined the game
+[23:19:25] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2853ms behind, skipping 57 tick(s)
+[23:19:26] [Server thread/INFO]: Player976 has just earned the achievement [Taking Inventory]
+[23:19:27] [Server thread/INFO]: [Player976: Given [Forge] * 64 to Player976]
+[23:20:41] [Server Watchdog/FATAL]: A single server tick took 71.76 seconds (should be max 0.05)
+[23:20:41] [Server Watchdog/FATAL]: Considering it to be crashed, server will forcibly shutdown.
