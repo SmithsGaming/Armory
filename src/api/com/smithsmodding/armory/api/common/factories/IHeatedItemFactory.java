@@ -4,6 +4,7 @@ import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
 import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -23,4 +24,7 @@ public interface IHeatedItemFactory {
 
     @Nonnull
     ItemStack convertToCooledIngot(@Nonnull ItemStack heatedStack);
+
+    @Nonnull
+    FluidStack generateFluid(@Nonnull IMaterial material, @Nonnull Integer amount);
 }

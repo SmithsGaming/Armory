@@ -8,7 +8,6 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.server.MinecraftServer;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -30,13 +29,13 @@ public class CommandEnableTempDecay extends CommandBase {
     @Nonnull
     @Override
     public String getUsage(ICommandSender pSender) {
-        return TranslationKeys.Messages.Commands.TEMPDECAYUSAGE;
+        return TranslationKeys.Messages.Commands.TK_TEMPDECAYUSAGE;
     }
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (args.length != 1)
-            throw new WrongUsageException(TranslationKeys.Messages.Commands.TEMPDECAYUSAGE);
+            throw new WrongUsageException(TranslationKeys.Messages.Commands.TK_TEMPDECAYUSAGE);
 
         ArmoryConfig.enableTemperatureDecay = parseBoolean(args[0]);
     }

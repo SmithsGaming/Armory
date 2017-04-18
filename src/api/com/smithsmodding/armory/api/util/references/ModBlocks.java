@@ -13,4 +13,5 @@ public class ModBlocks {
     public static Block BL_TANK;
     public static Block BL_PUMP;
     public static Block BL_RESOURCE;
+    public static Block BL_MOLTENMETALMIXER;
 }

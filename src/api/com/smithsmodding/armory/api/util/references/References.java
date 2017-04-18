@@ -18,6 +18,7 @@ public class References {
         public static int FORGEID = 0;
         public static int FIREPLACEID = 1;
         public static int ANVILID = 2;
+        public static int MOLTENMETALMIXER = 3;
     }
 
     public static final class General {
@@ -58,6 +59,7 @@ public class References {
                 public static final ResourceLocation CMN_OBSIDIAN = new ResourceLocation(General.MOD_ID , "Obsidian.Core");
                 public static final ResourceLocation CMN_GOLD = new ResourceLocation(General.MOD_ID , "Gold.Core");
                 public static final ResourceLocation CMN_STEEL = new ResourceLocation(General.MOD_ID , "Steel.Core");
+                public static final ResourceLocation CMN_HARDENED_IRON = new ResourceLocation(General.MOD_ID, "Iron.Hardened.Core");
             }
 
             public static final class Addon {
@@ -65,6 +67,7 @@ public class References {
                 public static final ResourceLocation AMN_OBSIDIAN = new ResourceLocation(General.MOD_ID , "Obsidian.Addon");
                 public static final ResourceLocation AMN_GOLD = new ResourceLocation(General.MOD_ID , "Gold.Addon");
                 public static final ResourceLocation AMN_STEEL = new ResourceLocation(General.MOD_ID , "Steel.Addon");
+                public static final ResourceLocation AMN_HARDENED_IRON = new ResourceLocation(General.MOD_ID, "Iron.Hardened.Addon");
             }
         }
 
@@ -232,6 +235,7 @@ public class References {
             public static final String ConduitPump = "armory.blocks.pump";
             public static final String RedstonePumpGenerator = "armory.blocks.redstonegenerator";
             public static final String Resource = "armory.blocks.resource";
+            public static final String MoltenMetalMixer = "armory.blocks.moltenmetalmixer";
         }
 
         public static final class TileEntities {
@@ -241,6 +245,7 @@ public class References {
             public static final String Conduit = "Container.Armory.Conduit";
             public static final String Tank = "Container.Armory.Tank";
             public static final String Pump = "Container.Armory.Pump";
+            public static final String MoltenMetalMixer = "Container.Armory.MoltenMetalMixer";
 
             public static final class Structures {
                 public static final String Forge = "Structures.Armory.Forge";
@@ -295,22 +300,7 @@ public class References {
                 public static final String FLAMEFIVE = "Gui.Forge.inventory.Flame5";
 
                 public static final String MELT = "Gui.Forge.inventory.Melt";
-
-                public static final String MOLTENMETALSLEFT = "Gui.Forge.MoltenMetals.liquids.left";
-                public static final String MOLTENMETALSRIGHT = "Gui.Forge.MoltenMetals.liquids.right";
-
-                public static final String INFUSIONSTACKSBACKGROUND = "Gui.Forge.MoltenMetals.InfusionStacks.Background";
-
-                public static final String PROGRESSMIXINGINLEFTHORIZONTAL = "Gui.Forge.MoltenMetals.MixingProgress.In.TK_LACESLEFT.Horizontal";
-                public static final String PROGRESSMIXINGINRIGHTHORIZONTAL = "Gui.Forge.MoltenMetals.MixingProgress.In.TK_LACESRIGHT.Horizontal";
-                public static final String PROGRESSMIXINGINLEFTVERTICAL = "Gui.Forge.MoltenMetals.MixingProgress.In.TK_LACESLEFT.Vertical";
-                public static final String PROGRESSMIXINGINRIGHTVERTICAL = "Gui.Forge.MoltenMetals.MixingProgress.In.TK_LACESRIGHT.Vertical";
-
-                public static final String PROGRESSMIXINGOUTLEFTHORIZONTAL = "Gui.Forge.MoltenMetals.MixingProgress.Out.TK_LACESLEFT.Horizontal";
-                public static final String PROGRESSMIXINGOUTRIGHTHORIZONTAL = "Gui.Forge.MoltenMetals.MixingProgress.Out.TK_LACESRIGHT.Horizontal";
-                public static final String PROGRESSMIXINGOUTLEFTVERTICAL = "Gui.Forge.MoltenMetals.MixingProgress.Out.TK_LACESLEFT.Vertical";
-                public static final String PROGRESSMIXINGOUTRIGHTVERTICAL = "Gui.Forge.MoltenMetals.MixingProgress.Out.TK_LACESRIGHT.Vertical";
-
+                
                 public static final String PROGRESSSOLIDIFYING = "Gui.Forge.MoltenMetals.SolidifyingProgress";
             }
 
@@ -336,6 +326,20 @@ public class References {
                 public static final String LOGO = "Gui.Anvil.Logo";
                 public static final String TEXTBOXBORDER = "Gui,Anvil.Name.Border";
                 public static final String TEXTBOX = "Gui.Anvil.Name.Textbox";
+            }
+            
+            public static class MoltenMetalMixer {
+                public static final String CPN_BACKGROUND = "Gui.MoltenMetalMixer.Background";
+                public static final String CPN_INVENTORY = "Gui.MoltenMetalMixer.Inventory.Player";
+                
+                public static final String CPN_MOLTENMETALSLEFT = "Gui.MoltenMetalMixer.Liquids.Left";
+                public static final String CPN_MOLTENMETALSRIGHT = "Gui.MoltenMetalMixer.Liquids.Right";
+                public static final String CPN_MOLTENMETALSOUTPUT = "Gui.MoltenMetalMixer.Liquids.Out";
+                
+                public static final String CPN_PROGRESSMIXINGINLEFTHORIZONTAL = "Gui.MoltenMetalMixer.MixingProgress.In.Left.Horizontal";
+                public static final String CPN_PROGRESSMIXINGINRIGHTHORIZONTAL = "Gui.MoltenMetalMixer.MixingProgress.In.Right.Horizontal";
+                public static final String CPN_PROGRESSMIXINGINLEFTVERTICAL = "Gui.MoltenMetalMixer.MixingProgress.In.Left.Vertical";
+                public static final String CPN_PROGRESSMIXINGINRIGHTVERTICAL = "Gui.MoltenMetalMixer.MixingProgress.In.Right.Vertical";
             }
         }
 
@@ -550,6 +554,12 @@ public class References {
             public class MoltenMetalTank {
                 public static final String TYPE = "Type";
                 public static final String CONTENTS = "Contents";
+            }
+
+            public class MoltenMetalMixer {
+                public static final String CURRENTRECIPE = "Recipe";
+                public static final String CURRENTPROGRESS = "Progress";
+                public static final String FACING = "Facing";
             }
         }
     }

@@ -45,7 +45,7 @@ public class CommandArmory extends CommandBase {
     @Nonnull
     @Override
     public String getUsage(ICommandSender pCommandSender) {
-        return TranslationKeys.Messages.Commands.BASEUSAGE;
+        return TranslationKeys.Messages.Commands.TK_BASEUSAGE;
     }
 
 

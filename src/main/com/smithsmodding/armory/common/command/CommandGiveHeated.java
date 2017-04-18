@@ -42,13 +42,13 @@ public class CommandGiveHeated extends CommandBase {
      */
     @Override
     public String getUsage(ICommandSender sender) {
-        return TranslationKeys.Messages.Commands.GIVEHEATEDUSAGE;
+        return TranslationKeys.Messages.Commands.TK_GIVEHEATEDUSAGE;
     }
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (args.length <= 3) {
-            throw new WrongUsageException(TranslationKeys.Messages.Commands.GIVEHEATEDUSAGE);
+            throw new WrongUsageException(TranslationKeys.Messages.Commands.TK_GIVEHEATEDUSAGE);
         } else {
             try {
                 IHeatableObject object = ModHeatableObjects.ITEMSTACK;
@@ -57,12 +57,12 @@ public class CommandGiveHeated extends CommandBase {
                 Float temperature = Float.parseFloat(args[3]);
 
                 if (type == null || material == null || temperature == null)
-                    throw new WrongUsageException(TranslationKeys.Messages.Commands.GIVEHEATEDUSAGE);
+                    throw new WrongUsageException(TranslationKeys.Messages.Commands.TK_GIVEHEATEDUSAGE);
 
                 ItemStack stack = IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getHeatedItemFactory().generateHeatedItemFromMaterial(material, object, type, temperature);
 
                 if (stack == null) {
-                    throw new WrongUsageException(TranslationKeys.Messages.Commands.GIVEHEATEDUSAGE);
+                    throw new WrongUsageException(TranslationKeys.Messages.Commands.TK_GIVEHEATEDUSAGE);
                 }
 
                 EntityPlayerMP player = getPlayer(server, sender, args[0]);
@@ -71,7 +71,7 @@ public class CommandGiveHeated extends CommandBase {
                 entity.setNoPickupDelay();
                 entity.setOwner(player.getDisplayNameString());
             } catch (Exception exception) {
-                throw new WrongUsageException(TranslationKeys.Messages.Commands.GIVEHEATEDUSAGE);
+                throw new WrongUsageException(TranslationKeys.Messages.Commands.TK_GIVEHEATEDUSAGE);
             }
         }
     }

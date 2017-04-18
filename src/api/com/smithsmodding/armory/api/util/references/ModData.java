@@ -17,7 +17,7 @@ public class ModData {
             @Nonnull
             public static final Float IRON_VAPORIZINGPOINT = 2862F;
             @Nonnull
-            public static final Integer IRON_VAPORIZINTIME = (int) (IRON_MELTINGTIME * (float) Iron.IRON_VAPORIZINGPOINT / (float) Iron.IRON_MELTINGPOINT);
+            public static final Integer IRON_VAPORIZINGTIME = (int) (IRON_MELTINGTIME * (float) Iron.IRON_VAPORIZINGPOINT / (float) Iron.IRON_MELTINGPOINT);
             @Nonnull
             public static final Float IRON_HEATCOEFFICIENT = 0.225F;
         }
@@ -30,7 +30,7 @@ public class ModData {
             @Nonnull
             public static final Float GOLD_VAPORIZINGPOINT = 2856F;
             @Nonnull
-            public static final Integer GOLD_VAPORIZINTIME = (int) (GOLD_MELTINGTIME * GOLD_VAPORIZINGPOINT / GOLD_MELTINGPOINT);
+            public static final Integer GOLD_VAPORIZINGTIME = (int) (GOLD_MELTINGTIME * GOLD_VAPORIZINGPOINT / GOLD_MELTINGPOINT);
             @Nonnull
             public static final Float GOLD_HEATCOEFFICIENT = 0.478F;
         }
@@ -43,7 +43,7 @@ public class ModData {
             @Nonnull
             public static final Float OBSIDIAN_VAPORIZINGPOINT = 2950F;
             @Nonnull
-            public static final Integer OBSIDIAN_VAPORIZINTIME = (int) (OBSIDIAN_MELTINGTIME * Obsidian.OBSIDIAN_VAPORIZINGPOINT / Obsidian.OBSIDIAN_MELTINGPOINT);
+            public static final Integer OBSIDIAN_VAPORIZINGTIME = (int) (OBSIDIAN_MELTINGTIME * Obsidian.OBSIDIAN_VAPORIZINGPOINT / Obsidian.OBSIDIAN_MELTINGPOINT);
             @Nonnull
             public static final Float OBSIDIAN_HEATCOEFFICIENT = 0.345F;
 
@@ -57,9 +57,22 @@ public class ModData {
             @Nonnull
             public static final Float STEEL_VAPORIZINGPOINT = 3165F;
             @Nonnull
-            public static final Integer STEEL_VAPORIZINTIME = (int) (STEEL_MELTINGTIME * Steel.STEEL_VAPORIZINGPOINT / Steel.STEEL_MELTINGPOINT);
+            public static final Integer STEEL_VAPORIZINGTIME = (int) (STEEL_MELTINGTIME * Steel.STEEL_VAPORIZINGPOINT / Steel.STEEL_MELTINGPOINT);
             @Nonnull
             public static final Float STEEL_HEATCOEFFICIENT = 0.2F;
+        }
+        
+        public static class Hardened_Iron {
+            @Nonnull
+            public static final Float HARDENED_IRON_MELTINGPOINT = 1785F;
+            @Nonnull
+            public static final Integer HARDENED_IRON_MELTINGTIME = (int) (Iron.IRON_MELTINGTIME * (HARDENED_IRON_MELTINGPOINT / Iron.IRON_MELTINGPOINT));
+            @Nonnull
+            public static final Float HARDENED_IRON_VAPORIZINGPOINT = 2963F;
+            @Nonnull
+            public static final Integer HARDENED_IRON_VAPORIZINGTIME = (int) (HARDENED_IRON_MELTINGTIME * Hardened_Iron.HARDENED_IRON_VAPORIZINGPOINT / Hardened_Iron.HARDENED_IRON_MELTINGPOINT);
+            @Nonnull
+            public static final Float HARDENED_IRON_HEATCOEFFICIENT = 0.176F;
         }
     }
 

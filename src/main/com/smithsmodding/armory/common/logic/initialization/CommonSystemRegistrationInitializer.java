@@ -11,6 +11,7 @@ import com.smithsmodding.armory.common.item.*;
 import com.smithsmodding.armory.common.item.armor.ItemMultiComponentArmor;
 import com.smithsmodding.armory.common.item.block.ItemBlockBlackSmithsAnvil;
 import com.smithsmodding.armory.common.item.block.ItemBlockHeatbableResource;
+import com.smithsmodding.armory.common.item.block.ItemBlockMoltenMetalTank;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -38,6 +39,7 @@ public class CommonSystemRegistrationInitializer {
         ModBlocks.BL_TANK = new BlockMoltenMetalTank();
         ModBlocks.BL_PUMP = new BlockPump();
         ModBlocks.BL_RESOURCE = new BlockHeatableResource();
+        ModBlocks.BL_MOLTENMETALMIXER = new BlockMoltenMetalMixer();
 
         blockRegistry.register(ModBlocks.BL_FORGE);
         blockRegistry.register(ModBlocks.BL_ANVIL);
@@ -46,6 +48,7 @@ public class CommonSystemRegistrationInitializer {
         blockRegistry.register(ModBlocks.BL_TANK);
         blockRegistry.register(ModBlocks.BL_PUMP);
         blockRegistry.register(ModBlocks.BL_RESOURCE);
+        blockRegistry.register(ModBlocks.BL_MOLTENMETALMIXER);
     }
 
     @SubscribeEvent
@@ -88,9 +91,10 @@ public class CommonSystemRegistrationInitializer {
         itemRegistry.register(new ItemBlockBlackSmithsAnvil(ModBlocks.BL_ANVIL));
         itemRegistry.register(new ItemBlock(ModBlocks.BL_FIREPLACE).setRegistryName(ModBlocks.BL_FIREPLACE.getRegistryName()));
         itemRegistry.register(new ItemBlock(ModBlocks.BL_CONDUIT).setRegistryName(ModBlocks.BL_CONDUIT.getRegistryName()));
-        itemRegistry.register(new ItemBlock(ModBlocks.BL_TANK).setRegistryName(ModBlocks.BL_TANK.getRegistryName()));
+        itemRegistry.register(new ItemBlockMoltenMetalTank(ModBlocks.BL_TANK).setRegistryName(ModBlocks.BL_TANK.getRegistryName()));
         itemRegistry.register(new ItemBlock(ModBlocks.BL_PUMP).setRegistryName(ModBlocks.BL_PUMP.getRegistryName()));
         itemRegistry.register(new ItemBlockHeatbableResource(ModBlocks.BL_RESOURCE));
+        itemRegistry.register(new ItemBlock(ModBlocks.BL_MOLTENMETALMIXER).setRegistryName(ModBlocks.BL_MOLTENMETALMIXER.getRegistryName()));
     }
 
     @SubscribeEvent

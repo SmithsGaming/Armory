@@ -8,6 +8,7 @@ import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionPosition;
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
+import com.smithsmodding.armory.api.common.crafting.mixing.IFluidFluidToFluidMixingRecipe;
 import com.smithsmodding.armory.api.common.events.common.material.RegisterMaterialEvent;
 import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
 import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
@@ -67,6 +68,9 @@ public final class RegistryManager implements IRegistryManager {
 
     @Nonnull
     protected IForgeRegistry<IAnvilRecipe> anvilRecipeRegistry;
+
+    @Nonnull
+    protected IForgeRegistry<IFluidFluidToFluidMixingRecipe> fluidFluidToFluidMixingRecipes;
 
     @Nonnull
     protected IForgeRegistry<IInitializationComponent> initializationComponentRegistry;
@@ -195,6 +199,17 @@ public final class RegistryManager implements IRegistryManager {
     @Override
     public IForgeRegistry<IAnvilRecipe> getAnvilRecipeRegistry() {
         return anvilRecipeRegistry;
+    }
+
+    /**
+     * Getter for the @code{IFluidFluidToFluidMixingRecipe} Registry. Holds all registered @code{IFluidFluidToFluidMixingRecipe}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     *
+     * @return The @code{IFluidFluidToFluidMixingRecipe} Registry.
+     */
+    @Nonnull
+    @Override
+    public IForgeRegistry<IFluidFluidToFluidMixingRecipe> getFluidFluidToFluidMixingRecipeRegistry() {
+        return fluidFluidToFluidMixingRecipes;
     }
 
     /**

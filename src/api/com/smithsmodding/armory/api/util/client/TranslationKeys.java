@@ -12,24 +12,24 @@ import com.smithsmodding.armory.api.util.references.References;
 public class TranslationKeys {
 
     public static final class CreativeTabs {
-        public static final String General = "Armory.Tabs.General";
-        public static final String Components = "Armory.Tabs.Components";
-        public static final String Armor = "Armory.Tabs.Armor";
-        public static final String HeatedItems = "Armory.Tabs.HeatedItem";
+        public static final String TK_TAB_GENERAL = "Armory.Tabs.General";
+        public static final String TK_TAB_COMPONENTS = "Armory.Tabs.Components";
+        public static final String TK_TAB_ARMOR = "Armory.Tabs.Armor";
+        public static final String TK_TAB_HEATEDITEMS = "Armory.Tabs.HeatedItem";
     }
 
     public static final class Messages {
         public static final class Commands {
-            public static final String BASEUSAGE = References.InternalNames.Commands.BASECOMMAND + ".usage";
-            public static final String GIVEHEATEDUSAGE = References.InternalNames.Commands.GIVEHEATED + ".usage";
-            public static final String TEMPDECAYUSAGE = References.InternalNames.Commands.ENABLEDECAY + ".usage";
+            public static final String TK_BASEUSAGE = References.InternalNames.Commands.BASECOMMAND + ".usage";
+            public static final String TK_GIVEHEATEDUSAGE = References.InternalNames.Commands.GIVEHEATED + ".usage";
+            public static final String TK_TEMPDECAYUSAGE = References.InternalNames.Commands.ENABLEDECAY + ".usage";
         }
 
     }
 
     public class Items {
         public class HeatedIngot {
-            public static final String TemperatureTag = "Armory.Items.HeatedObject.Tooltip.Temperature";
+            public static final String TK_TAG_TEMPERATURE = "Armory.Items.HeatedObject.Tooltip.Temperature";
         }
 
         public class MultiArmor {
@@ -71,6 +71,10 @@ public class TranslationKeys {
 
             }
         }
+
+        public class MoltenMetalTank {
+            public static final String TK_CONTENTS = "item.Armory.MultiMetalTank.Contents";
+        }
     }
 
     public class Materials {
@@ -86,6 +90,7 @@ public class TranslationKeys {
             public static final String TK_ARMOR_OBSIDIAN = "Armory.Materials.Vanilla.Obsidian";
             public static final String TK_ARMOR_GOLD = "Armory.Materials.Vanilla.Gold";
             public static final String TK_ARMOR_STEEL = "Armory.Materials.Armory.Steel";
+            public static final String TK_ARMOR_HARDENED_IRON = "Armory.Materials.Armory.Iron.Hardened";
         }
 
     }

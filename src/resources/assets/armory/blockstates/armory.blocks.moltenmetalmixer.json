@@ -14,14 +14,30 @@
     ],
     "inventory": [
       {
+        "transform": "forge:default-block",
         "model": "armory:moltenmetalmixer/mixer.obj",
         "custom": {
           "flip-v": true,
           "gui3d": false
         },
-        "transform": "forge:default-block"
+        "y": 270
       }
-    ]
+    ],
+    "facing": {
+      "east": {
+        "y": 90
+      },
+      "west": {
+        "y": 270
+      },
+      "north": {
+      },
+      "south": {
+        "y": 180
+      },
+      "up": {},
+      "down": {}
+    }
   }
 }
 

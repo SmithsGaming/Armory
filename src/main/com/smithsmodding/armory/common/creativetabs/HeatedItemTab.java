@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 public class HeatedItemTab extends CreativeTabs {
 
     public HeatedItemTab() {
-        super(TranslationKeys.CreativeTabs.HeatedItems);
+        super(TranslationKeys.CreativeTabs.TK_TAB_HEATEDITEMS);
     }
 
     @Nonnull

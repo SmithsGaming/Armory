@@ -12,6 +12,7 @@ import com.smithsmodding.smithscore.client.textures.ITextureController;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
@@ -36,6 +37,7 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
     private final String textureOverrideIdentifier;
 
     private ITextureController renderInfo;
+    private Fluid fluid;
 
     public MedievalAnvilMaterial(String translationKey, String textFormatting, String oreDictionaryIdentifier, Float meltingPoint, Float vaporizingPoint, Integer meltingTime, Integer vaporizingTime, Float heatCoefficient, Integer durability) {
         this.translationKey = translationKey;
@@ -185,6 +187,31 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
     @Override
     public Float getHeatCoefficient() {
         return heatCoefficient;
+    }
+
+    /**
+     * Method to get the fluid if this material is molten.
+     *
+     * @return The fluid that represents this material.
+     */
+    @Nonnull
+    @Override
+    public Fluid getFluidForMaterial() {
+        return fluid;
+    }
+
+    /**
+     * Setter for the fluid that represents this material.
+     *
+     * @param fluid The new molten material.
+     *
+     * @return The instance this was called upon.
+     */
+    @Nonnull
+    @Override
+    public IAnvilMaterial setFluidForMaterial(Fluid fluid) {
+        this.fluid = fluid;
+        return this;
     }
 
     /**

@@ -1,19 +1,20 @@
 package com.smithsmodding.armory.common.logic.initialization;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.common.fluid.FluidMoltenMetal;
 import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper;
+import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
 import com.smithsmodding.armory.common.creativetabs.ArmorTab;
 import com.smithsmodding.armory.common.creativetabs.ComponentsTab;
 import com.smithsmodding.armory.common.creativetabs.GeneralTabs;
 import com.smithsmodding.armory.common.creativetabs.HeatedItemTab;
-import com.smithsmodding.armory.common.fluid.FluidMoltenMetal;
 import com.smithsmodding.armory.common.tileentity.*;
-import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -21,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -28,6 +30,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ListIterator;
 
@@ -59,9 +62,17 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
     }
 
     private void registerFluids() {
-        ModFluids.moltenMetal = new FluidMoltenMetal();
+        HashMap<String, Fluid> oreDicNames = new HashMap<>();
 
-        FluidRegistry.registerFluid(ModFluids.moltenMetal);
+        for (RegistryMaterialWrapper materialWrapper : IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry()) {
+            if (!oreDicNames.containsKey(materialWrapper.getWrapped().getOreDictionaryIdentifier())) {
+                materialWrapper.getWrapped().setFluidForMaterial(new FluidMoltenMetal(materialWrapper.getWrapped()));
+                oreDicNames.put(materialWrapper.getWrapped().getOreDictionaryIdentifier(), materialWrapper.getWrapped().getFluidForMaterial());
+                FluidRegistry.registerFluid(materialWrapper.getWrapped().getFluidForMaterial());
+            } else {
+                materialWrapper.getWrapped().setFluidForMaterial(oreDicNames.get(materialWrapper.getWrapped().getOreDictionaryIdentifier()));
+            }
+        }
     }
 
     private void registerTileEntities() {
@@ -71,6 +82,7 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
         GameRegistry.registerTileEntity(TileEntityConduit.class, References.InternalNames.TileEntities.Conduit);
         GameRegistry.registerTileEntity(TileEntityMoltenMetalTank.class, References.InternalNames.TileEntities.Tank);
         GameRegistry.registerTileEntity(TileEntityPump.class, References.InternalNames.TileEntities.Pump);
+        GameRegistry.registerTileEntity(TileEntityMoltenMetalMixer.class, References.InternalNames.TileEntities.MoltenMetalMixer);
     }
 
     private static void registerCreativeTabs() {

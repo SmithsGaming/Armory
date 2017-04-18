@@ -4,6 +4,7 @@ import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionPosition;
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
+import com.smithsmodding.armory.api.common.crafting.mixing.IFluidFluidToFluidMixingRecipe;
 import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
 import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
 import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
@@ -86,6 +87,13 @@ public class CommonRegistryInitializer {
         RegistryManager.getInstance().anvilRecipeRegistry = new RegistryBuilder<IAnvilRecipe>()
                 .setName(ModRegistries.ANVILRECIPE)
                 .setType(IAnvilRecipe.class)
+                .setIDRange(0,9999)
+                .addCallback(new RegistryManager.RegistryCallbackToEventConverter<>())
+                .create();
+
+        RegistryManager.getInstance().fluidFluidToFluidMixingRecipes = new RegistryBuilder<IFluidFluidToFluidMixingRecipe>()
+                .setName(ModRegistries.FLUIDTOFLUIDMIXING)
+                .setType(IFluidFluidToFluidMixingRecipe.class)
                 .setIDRange(0,9999)
                 .addCallback(new RegistryManager.RegistryCallbackToEventConverter<>())
                 .create();

@@ -19,12 +19,14 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -33,6 +35,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Author Orion (Created on: 24.07.2016)
@@ -83,20 +86,19 @@ public class BlockConduit extends BlockArmoryTileEntity implements ICustomDebugI
 
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
-        list.add(new ItemStack(this, 1, 1));
-        list.add(new ItemStack(this, 1, 2));
-        list.add(new ItemStack(this, 1, 3));
+        for(EnumConduitType type : EnumConduitType.values()) {
+            if (type == EnumConduitType.LIGHT)
+                continue;
+
+            list.add(new ItemStack(this, 1, type.getMetadata()));
+        }
+
     }
 
     @Override
     public void onBlockPlacedBy(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, EntityLivingBase placer, @Nonnull ItemStack stack) {
-        if (stack.getMetadata() == 3) {
-            worldIn.setBlockState(pos, state.withProperty(TYPE, EnumConduitType.VERTICAL));
-        } else if (stack.getMetadata() == 2) {
-            worldIn.setBlockState(pos, state.withProperty(TYPE, EnumConduitType.LIGHT));
-        } else {
-            worldIn.setBlockState(pos, state.withProperty(TYPE, EnumConduitType.NORMAL));
-        }
+        worldIn.setBlockState(pos, state.withProperty(TYPE, EnumConduitType.byMetadata(stack.getItemDamage())));
+
 
         if (!worldIn.isRemote) {
             TileEntityConduit conduit = (TileEntityConduit) worldIn.getTileEntity(pos);
@@ -342,5 +344,41 @@ public class BlockConduit extends BlockArmoryTileEntity implements ICustomDebugI
 
         event.getRight().add("slave count:" + slaveCount + count + TextFormatting.RESET);
         event.getRight().add("masterlocation:" + masterTeLocation + location + TextFormatting.RESET);
+    }
+
+    /**
+     * This returns a complete list of items dropped from this block.
+     *
+     * @param world   The current world
+     * @param pos     Block position in world
+     * @param state   Current state
+     * @param fortune Breakers fortune level
+     *
+     * @return A ArrayList containing all items this block drops
+     */
+    @Override
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+        List<ItemStack> drops = new ArrayList<>();
+        EnumConduitType type = state.getValue(TYPE);
+
+        drops.add(new ItemStack(this, 1, type.getMetadata()));
+
+        return drops;
+    }
+
+    /**
+     * Called when a user uses the creative pick block button on this block
+     *
+     * @param state
+     * @param target The full target the player is looking at
+     * @param world
+     * @param pos
+     * @param player @return A ItemStack to add to the player's inventory, empty itemstack if nothing should be added.
+     */
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+        EnumConduitType type = state.getValue(TYPE);
+
+        return new ItemStack(this, 1, type.getMetadata());
     }
 }

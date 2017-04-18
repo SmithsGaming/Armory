@@ -1,13 +1,16 @@
 package com.smithsmodding.armory.common.item.block;
 
+import com.smithsmodding.armory.api.common.capability.IMaterializedStackCapability;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import javax.annotation.Nullable;
@@ -50,5 +53,14 @@ public class ItemBlockHeatbableResource extends ItemBlock {
         internalParentDispatcher.deserializeNBT(parentCompound);
 
         return internalParentDispatcher;
+    }
+
+    @Override
+    public String getItemStackDisplayName(ItemStack stack) {
+        if (!stack.hasCapability(ModCapabilities.MOD_MATERIALIZEDSSTACK_CAPABIITY, null))
+            return super.getItemStackDisplayName(stack);
+
+        IMaterializedStackCapability capability = stack.getCapability(ModCapabilities.MOD_MATERIALIZEDSSTACK_CAPABIITY, null);
+        return I18n.format(this.getUnlocalizedName() + ".name") + capability.getMaterial().getTextFormatting() + I18n.format(capability.getMaterial().getTranslationKey()) + TextFormatting.RESET;
     }
 }

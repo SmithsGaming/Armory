@@ -12,11 +12,14 @@ import com.smithsmodding.armory.api.common.factories.IHeatedItemFactory;
 import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
 import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.util.common.Triple;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModItems;
-import com.smithsmodding.armory.api.util.common.Triple;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -85,6 +88,14 @@ public class HeatedItemFactory implements IHeatedItemFactory {
             throw new IllegalArgumentException("cooledStack is not Heatable");
 
         return heatedStack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null).getOriginalStack();
+    }
+
+    @Nonnull
+    @Override
+    public FluidStack generateFluid(@Nonnull IMaterial material, @Nonnull Integer amount) {
+        NBTTagCompound fluidCompound = new NBTTagCompound();
+        fluidCompound.setString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL, material.getRegistryName().toString());
+        return new FluidStack(material.getFluidForMaterial(), amount, fluidCompound);
     }
 
     private IHeatedObjectCapability wrapHeatableData(ItemStack stack) {

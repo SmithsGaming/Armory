@@ -40,9 +40,12 @@ public class ModRegistries {
     public static final ResourceLocation ANVILRECIPE = new ResourceLocation(References.General.MOD_ID.toLowerCase(), "10-AnvilRecipe");
 
     @Nonnull
+    public static final ResourceLocation FLUIDTOFLUIDMIXING = new ResourceLocation(References.General.MOD_ID.toLowerCase(), "11-FluidToFluidRecipe.");
+
+    @Nonnull
     public static final ResourceLocation INITIALIZATIONCOMPONENTS = new ResourceLocation(References.General.MOD_ID, "00-Initialization");
 
     @Nonnull
-    public static final ResourceLocation TEXTURECREATIONCONTROLLER = new ResourceLocation(References.General.MOD_ID.toLowerCase(), "11-TextureCreationController");
+    public static final ResourceLocation TEXTURECREATIONCONTROLLER = new ResourceLocation(References.General.MOD_ID.toLowerCase(), "100-TextureCreationController");
 
 }

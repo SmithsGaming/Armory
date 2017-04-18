@@ -4,15 +4,14 @@ import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.capability.IHeatedObjectCapability;
 import com.smithsmodding.armory.api.common.forge.IForgeComponent;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.util.common.ItemStackHelper;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
-import com.smithsmodding.armory.api.util.references.ModFluids;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.block.BlockForge;
 import com.smithsmodding.armory.common.structure.forge.StructureForge;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityForgeGuiManager;
 import com.smithsmodding.armory.common.tileentity.state.IForgeFuelDataContainer;
 import com.smithsmodding.armory.common.tileentity.state.TileEntityForgeState;
-import com.smithsmodding.armory.api.util.common.ItemStackHelper;
 import com.smithsmodding.smithscore.client.events.models.block.BlockModelUpdateEvent;
 import com.smithsmodding.smithscore.common.events.structure.StructureEvent;
 import com.smithsmodding.smithscore.common.fluid.IFluidContainingEntity;
@@ -164,9 +163,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
         ingotStacks[stackIndex] = ItemStack.EMPTY;
 
-        NBTTagCompound fluidCompound = new NBTTagCompound();
-        fluidCompound.setString(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL, material.getRegistryName().toString());
-        FluidStack fluidStack = new FluidStack(ModFluids.moltenMetal, capability.getType().getMoltenAmount(), fluidCompound);
+        FluidStack fluidStack = IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getHeatedItemFactory().generateFluid(material, capability.getType().getMoltenAmount());
 
         getTankForSide(null).fill(fluidStack, true);
     }

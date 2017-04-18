@@ -18,7 +18,7 @@ public class ComponentsTab extends CreativeTabs {
 
 
     public ComponentsTab() {
-        super(TranslationKeys.CreativeTabs.Components);
+        super(TranslationKeys.CreativeTabs.TK_TAB_COMPONENTS);
     }
 
     @Nonnull

@@ -24,7 +24,7 @@ public class ArmorTab extends CreativeTabs {
     private static ItemStack TABSTACK = ItemStack.EMPTY;
 
     public ArmorTab() {
-        super(TranslationKeys.CreativeTabs.Armor);
+        super(TranslationKeys.CreativeTabs.TK_TAB_ARMOR);
     }
 
     @Nonnull

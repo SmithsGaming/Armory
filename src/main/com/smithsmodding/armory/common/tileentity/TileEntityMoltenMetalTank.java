@@ -13,6 +13,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -69,7 +70,7 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
 
     @Override
     public boolean hasCapability(Capability capability, EnumFacing facing) {
-        if (capability == ModCapabilities.MOD_MOLTENMETAL_ACCEPTOR_CAPABILITY || capability == ModCapabilities.MOD_MOLTENMETAL_PROVIDER_CAPABILITY)
+        if (capability == ModCapabilities.MOD_MOLTENMETAL_ACCEPTOR_CAPABILITY || capability == ModCapabilities.MOD_MOLTENMETAL_PROVIDER_CAPABILITY || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
             return true;
 
         return super.hasCapability(capability, facing);
@@ -77,7 +78,7 @@ public class TileEntityMoltenMetalTank extends TileEntitySmithsCore<TileEntityMo
 
     @Override
     public Object getCapability(Capability capability, EnumFacing facing) {
-        if (capability == ModCapabilities.MOD_MOLTENMETAL_ACCEPTOR_CAPABILITY || capability == ModCapabilities.MOD_MOLTENMETAL_PROVIDER_CAPABILITY)
+        if (capability == ModCapabilities.MOD_MOLTENMETAL_ACCEPTOR_CAPABILITY || capability == ModCapabilities.MOD_MOLTENMETAL_PROVIDER_CAPABILITY || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
             return internalTank;
 
         return super.getCapability(capability, facing);

@@ -9,6 +9,7 @@ import com.smithsmodding.armory.api.common.crafting.blacksmiths.component.Heated
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.component.StandardAnvilRecipeComponent;
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
+import com.smithsmodding.armory.api.common.crafting.mixing.IFluidFluidToFluidMixingRecipe;
 import com.smithsmodding.armory.api.common.events.common.RegisterMaterialDependentCoreExtensionEvent;
 import com.smithsmodding.armory.api.common.helpers.IMaterialConstructionHelper;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
@@ -17,13 +18,14 @@ import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterialDat
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterialDataCallback;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.common.armor.MedievalArmor;
 import com.smithsmodding.armory.common.armor.extension.MedievalArmorExtension;
 import com.smithsmodding.armory.common.armor.extension.MedievalArmorExtensionPosition;
 import com.smithsmodding.armory.common.armor.extension.MedievalMaterialDependantArmorExtension;
 import com.smithsmodding.armory.common.crafting.blacksmiths.recipe.ArmorUpgradeAnvilRecipe;
-import com.smithsmodding.armory.api.util.common.CapabilityHelper;
+import com.smithsmodding.armory.common.crafting.mixing.FluidFluidToFluidMixingRecipe;
 import com.smithsmodding.smithscore.common.events.AutomaticEventBusSubscriber;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -53,6 +55,7 @@ import static com.smithsmodding.armory.api.util.client.TranslationKeys.Materials
 import static com.smithsmodding.armory.api.util.references.ModData.Durability.Anvil.*;
 import static com.smithsmodding.armory.api.util.references.ModData.Durability.Armor.*;
 import static com.smithsmodding.armory.api.util.references.ModData.Materials.Gold.*;
+import static com.smithsmodding.armory.api.util.references.ModData.Materials.Hardened_Iron.*;
 import static com.smithsmodding.armory.api.util.references.ModData.Materials.Iron.*;
 import static com.smithsmodding.armory.api.util.references.ModData.Materials.Obsidian.*;
 import static com.smithsmodding.armory.api.util.references.ModData.Materials.Steel.*;
@@ -178,7 +181,7 @@ public class CommonMedievalRegistrationInitializer {
 
         ModMaterials.Armor.Core.IRON = helper
                 .createMedievalCoreArmorMaterial(TK_ARMOR_IRON, TextFormatting.RESET.toString(), "Iron",
-                        IRON_MELTINGPOINT, IRON_VAPORIZINGPOINT, IRON_MELTINGTIME, IRON_VAPORIZINTIME, IRON_HEATCOEFFICIENT, new ICoreArmorMaterialDataCallback() {
+                        IRON_MELTINGPOINT, IRON_VAPORIZINGPOINT, IRON_MELTINGTIME, IRON_VAPORIZINGTIME, IRON_HEATCOEFFICIENT, new ICoreArmorMaterialDataCallback() {
 
                             @Nonnull
                             @Override
@@ -196,7 +199,7 @@ public class CommonMedievalRegistrationInitializer {
 
         ModMaterials.Armor.Core.STEEL = helper
                 .createMedievalCoreArmorMaterial(TK_ARMOR_STEEL, TextFormatting.RESET.toString(), "Steel",
-                        STEEL_MELTINGPOINT, STEEL_VAPORIZINGPOINT, STEEL_MELTINGTIME, STEEL_VAPORIZINTIME, STEEL_HEATCOEFFICIENT, new ICoreArmorMaterialDataCallback() {
+                        STEEL_MELTINGPOINT, STEEL_VAPORIZINGPOINT, STEEL_MELTINGTIME, STEEL_VAPORIZINGTIME, STEEL_HEATCOEFFICIENT, new ICoreArmorMaterialDataCallback() {
 
                             @Nonnull
                             @Override
@@ -214,7 +217,7 @@ public class CommonMedievalRegistrationInitializer {
 
         ModMaterials.Armor.Core.GOLD = helper
                 .createMedievalCoreArmorMaterial(TK_ARMOR_GOLD, TextFormatting.RESET.toString(), "Gold",
-                        GOLD_MELTINGPOINT, GOLD_VAPORIZINGPOINT, GOLD_MELTINGTIME, GOLD_VAPORIZINTIME, GOLD_HEATCOEFFICIENT, new ICoreArmorMaterialDataCallback() {
+                        GOLD_MELTINGPOINT, GOLD_VAPORIZINGPOINT, GOLD_MELTINGTIME, GOLD_VAPORIZINGTIME, GOLD_HEATCOEFFICIENT, new ICoreArmorMaterialDataCallback() {
 
                             @Nonnull
                             @Override
@@ -232,7 +235,7 @@ public class CommonMedievalRegistrationInitializer {
 
         ModMaterials.Armor.Core.OBSIDIAN = helper
                 .createMedievalCoreArmorMaterial(TK_ARMOR_OBSIDIAN, TextFormatting.RESET.toString(), "Obsidian",
-                        OBSIDIAN_MELTINGPOINT, OBSIDIAN_VAPORIZINGPOINT, OBSIDIAN_MELTINGTIME, OBSIDIAN_VAPORIZINTIME, OBSIDIAN_HEATCOEFFICIENT, new ICoreArmorMaterialDataCallback() {
+                        OBSIDIAN_MELTINGPOINT, OBSIDIAN_VAPORIZINGPOINT, OBSIDIAN_MELTINGTIME, OBSIDIAN_VAPORIZINGTIME, OBSIDIAN_HEATCOEFFICIENT, new ICoreArmorMaterialDataCallback() {
 
                             @Nonnull
                             @Override
@@ -248,10 +251,29 @@ public class CommonMedievalRegistrationInitializer {
                             }
                         }).setRegistryName(CMN_OBSIDIAN);
 
+        ModMaterials.Armor.Core.HARDENED_IRON = helper
+                .createMedievalCoreArmorMaterial(TK_ARMOR_HARDENED_IRON, TextFormatting.RESET.toString(), "IronHardened",
+                        HARDENED_IRON_MELTINGPOINT , HARDENED_IRON_VAPORIZINGPOINT, HARDENED_IRON_MELTINGTIME, HARDENED_IRON_VAPORIZINGTIME, HARDENED_IRON_HEATCOEFFICIENT, new ICoreArmorMaterialDataCallback() {
+
+                            @Nonnull
+                            @Override
+                            public Integer getBaseDurabilityForArmor(@Nonnull IMultiComponentArmor armor) {
+                                return (int) (armor.getDefaultDurability() * (HARDENED_IRON_MELTINGPOINT / IRON_MELTINGPOINT));
+                            }
+
+                            @Nonnull
+                            @Override
+                            public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideCoreMaterialCapabilities(IMultiComponentArmor armor) {
+                                //TODO: Add capabilities for core material,
+                                return new HashMap<>();
+                            }
+                        }).setRegistryName(CMN_HARDENED_IRON);
+
         registry.register(ModMaterials.Armor.Core.IRON);
         registry.register(ModMaterials.Armor.Core.GOLD);
         registry.register(ModMaterials.Armor.Core.STEEL);
         registry.register(ModMaterials.Armor.Core.OBSIDIAN);
+        registry.register(ModMaterials.Armor.Core.HARDENED_IRON);
     }
 
     @SubscribeEvent
@@ -261,7 +283,7 @@ public class CommonMedievalRegistrationInitializer {
 
         ModMaterials.Armor.Addon.IRON = helper
                 .createMedievalAddonArmorMaterial(TK_ARMOR_IRON, TextFormatting.RESET.toString(), "Iron",
-                        IRON_MELTINGPOINT, IRON_VAPORIZINGPOINT, IRON_MELTINGTIME, IRON_VAPORIZINTIME, IRON_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
+                        IRON_MELTINGPOINT, IRON_VAPORIZINGPOINT, IRON_MELTINGTIME, IRON_VAPORIZINGTIME, IRON_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
 
                             /**
                              * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
@@ -278,7 +300,7 @@ public class CommonMedievalRegistrationInitializer {
 
         ModMaterials.Armor.Addon.STEEL = helper
                 .createMedievalAddonArmorMaterial(TK_ARMOR_STEEL, TextFormatting.RESET.toString(), "Steel",
-                        STEEL_MELTINGPOINT, STEEL_VAPORIZINGPOINT, STEEL_MELTINGTIME, STEEL_VAPORIZINTIME, STEEL_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
+                        STEEL_MELTINGPOINT, STEEL_VAPORIZINGPOINT, STEEL_MELTINGTIME, STEEL_VAPORIZINGTIME, STEEL_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
 
                             /**
                              * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
@@ -295,7 +317,7 @@ public class CommonMedievalRegistrationInitializer {
 
         ModMaterials.Armor.Addon.GOLD = helper
                 .createMedievalAddonArmorMaterial(TK_ARMOR_GOLD, TextFormatting.RESET.toString(), "Gold",
-                        GOLD_MELTINGPOINT, GOLD_VAPORIZINGPOINT, GOLD_MELTINGTIME, GOLD_VAPORIZINTIME, GOLD_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
+                        GOLD_MELTINGPOINT, GOLD_VAPORIZINGPOINT, GOLD_MELTINGTIME, GOLD_VAPORIZINGTIME, GOLD_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
 
                             /**
                              * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
@@ -312,7 +334,7 @@ public class CommonMedievalRegistrationInitializer {
 
         ModMaterials.Armor.Addon.OBSIDIAN = helper
                 .createMedievalAddonArmorMaterial(TK_ARMOR_OBSIDIAN, TextFormatting.RESET.toString(), "Obsidian",
-                        OBSIDIAN_MELTINGPOINT, OBSIDIAN_VAPORIZINGPOINT, OBSIDIAN_MELTINGTIME, OBSIDIAN_VAPORIZINTIME, OBSIDIAN_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
+                        OBSIDIAN_MELTINGPOINT, OBSIDIAN_VAPORIZINGPOINT, OBSIDIAN_MELTINGTIME, OBSIDIAN_VAPORIZINGTIME, OBSIDIAN_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
 
                             /**
                              * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
@@ -327,10 +349,28 @@ public class CommonMedievalRegistrationInitializer {
                             }
                         }).setRegistryName(AMN_OBSIDIAN);
 
+        ModMaterials.Armor.Addon.HARDENED_IRON = helper
+                .createMedievalAddonArmorMaterial(TK_ARMOR_HARDENED_IRON, TextFormatting.RESET.toString(), "IronHardened",
+                        HARDENED_IRON_MELTINGPOINT , HARDENED_IRON_VAPORIZINGPOINT, HARDENED_IRON_MELTINGTIME, HARDENED_IRON_VAPORIZINGTIME, HARDENED_IRON_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
+
+                            /**
+                             * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
+                             *
+                             * @param extension
+                             * @return All the default capabilities this ArmorMaterial provides.
+                             */
+                            @Nonnull
+                            @Override
+                            public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideAddonMaterialCapabilities(IMultiComponentArmorExtension extension) {
+                                return new HashMap<>();
+                            }
+                        }).setRegistryName(AMN_HARDENED_IRON);
+
         registry.register(ModMaterials.Armor.Addon.IRON);
         registry.register(ModMaterials.Armor.Addon.GOLD);
         registry.register(ModMaterials.Armor.Addon.STEEL);
         registry.register(ModMaterials.Armor.Addon.OBSIDIAN);
+        registry.register(ModMaterials.Armor.Addon.HARDENED_IRON);
     }
 
     @SubscribeEvent
@@ -340,15 +380,15 @@ public class CommonMedievalRegistrationInitializer {
 
         ModMaterials.Anvil.IRON = helper
                 .createMedievalAnvilMaterial(TK_ANVIL_IRON, TextFormatting.RESET.toString(), "Iron",
-                        IRON_MELTINGPOINT, IRON_VAPORIZINGPOINT, IRON_MELTINGTIME, IRON_VAPORIZINTIME, IRON_HEATCOEFFICIENT, DAN_IRON).setRegistryName(AN_IRON);
+                        IRON_MELTINGPOINT, IRON_VAPORIZINGPOINT, IRON_MELTINGTIME, IRON_VAPORIZINGTIME, IRON_HEATCOEFFICIENT, DAN_IRON).setRegistryName(AN_IRON);
 
         ModMaterials.Anvil.OBSIDIAN = helper
                 .createMedievalAnvilMaterial(TK_ANVIL_OBSIDIAN, TextFormatting.RESET.toString(), "Obsidian",
-                        OBSIDIAN_MELTINGPOINT, OBSIDIAN_VAPORIZINGPOINT, OBSIDIAN_MELTINGTIME, OBSIDIAN_VAPORIZINTIME, OBSIDIAN_HEATCOEFFICIENT, DAN_OBSIDIAN).setRegistryName(AN_OBSIDIAN);
+                        OBSIDIAN_MELTINGPOINT, OBSIDIAN_VAPORIZINGPOINT, OBSIDIAN_MELTINGTIME, OBSIDIAN_VAPORIZINGTIME, OBSIDIAN_HEATCOEFFICIENT, DAN_OBSIDIAN).setRegistryName(AN_OBSIDIAN);
 
         ModMaterials.Anvil.STONE = helper
                 .createMedievalAnvilMaterial(TK_ANVIL_STONE, TextFormatting.RESET.toString(), "Stone",
-                        OBSIDIAN_MELTINGPOINT, OBSIDIAN_VAPORIZINGPOINT, OBSIDIAN_MELTINGTIME, OBSIDIAN_VAPORIZINTIME, OBSIDIAN_HEATCOEFFICIENT, DAN_STONE).setRegistryName(AN_STONE);
+                        OBSIDIAN_MELTINGPOINT, OBSIDIAN_VAPORIZINGPOINT, OBSIDIAN_MELTINGTIME, OBSIDIAN_VAPORIZINGTIME, OBSIDIAN_HEATCOEFFICIENT, DAN_STONE).setRegistryName(AN_STONE);
 
         registry.register(ModMaterials.Anvil.IRON);
         registry.register(ModMaterials.Anvil.OBSIDIAN);
@@ -1241,4 +1281,25 @@ public class CommonMedievalRegistrationInitializer {
 
         extensionRegistry.registerAll(materializedExtensions.toArray(new IMultiComponentArmorExtension[0]));
     }
+
+    @SubscribeEvent
+    public static void handleFluidFluidToFluidMixingRecipeRegistration(@Nonnull RegistryEvent.Register<IFluidFluidToFluidMixingRecipe> fluidToFluidMixingRecipeRegisterEvent) {
+        IForgeRegistry<IFluidFluidToFluidMixingRecipe> registry = fluidToFluidMixingRecipeRegisterEvent.getRegistry();
+
+        registry.register(new FluidFluidToFluidMixingRecipe()
+                .setLeftInputData(ModMaterials.Armor.Core.IRON.getOreDictionaryIdentifier(), References.General.FLUID_INGOT)
+                .setRightInputData(ModMaterials.Armor.Core.OBSIDIAN.getOreDictionaryIdentifier(), References.General.FLUID_INGOT)
+                .setExamplaryOutputData(ModMaterials.Armor.Core.HARDENED_IRON.getOreDictionaryIdentifier(), References.General.FLUID_INGOT)
+                .setProcessingTime(125)
+                .setRegistryName(new ResourceLocation(References.General.MOD_ID, ModMaterials.Armor.Core.HARDENED_IRON + "-" + ModMaterials.Armor.Core.IRON + "-" + ModMaterials.Armor.Core.OBSIDIAN)));
+
+        registry.register(new FluidFluidToFluidMixingRecipe()
+                .setLeftInputData(ModMaterials.Armor.Core.OBSIDIAN.getOreDictionaryIdentifier(), References.General.FLUID_INGOT)
+                .setRightInputData(ModMaterials.Armor.Core.IRON.getOreDictionaryIdentifier(), References.General.FLUID_INGOT)
+                .setExamplaryOutputData(ModMaterials.Armor.Core.HARDENED_IRON.getOreDictionaryIdentifier(), References.General.FLUID_INGOT)
+                .setProcessingTime(125)
+                .setRegistryName(new ResourceLocation(References.General.MOD_ID, ModMaterials.Armor.Core.HARDENED_IRON + "-" + ModMaterials.Armor.Core.OBSIDIAN + "-" + ModMaterials.Armor.Core.IRON)));
+
+    }
+
 }

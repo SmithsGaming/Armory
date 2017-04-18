@@ -85,7 +85,7 @@ public class ItemHeatedItem extends Item {
 
         IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
 
-        String temperatureLine = I18n.format(TranslationKeys.Items.HeatedIngot.TemperatureTag);
+        String temperatureLine = I18n.format(TranslationKeys.Items.HeatedIngot.TK_TAG_TEMPERATURE);
         temperatureLine = temperatureLine + ": " + Math.round(capability.getTemperature());
 
         tooltip.add(temperatureLine);

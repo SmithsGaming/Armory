@@ -1,46 +1,14 @@
-# Blender MTL File: 'None'
+# Blender MTL File: 'mixer.blend'
 # Material Count: 4
 
 newmtl Connector
-Ns 96.078431
-Ka 1.000000 1.000000 1.000000
-Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd E:\Development\Minecraft\1.11\Armory\src\resources\assets\armory\textures\blocks\moltenmetalmixer\default.png
+map_Kd armory:blocks/moltenmetalmixer/default
 
 newmtl FloorPlate
-Ns 94.117647
-Ka 1.000000 1.000000 1.000000
-Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd E:\Development\Minecraft\1.11\Armory\src\resources\assets\armory\textures\blocks\moltenmetalmixer\floorplate.png
+map_Kd armory:blocks/moltenmetalmixer/floorplate
 
 newmtl Glass
-Ns 96.078431
-Ka 1.000000 1.000000 1.000000
-Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd E:\Development\Minecraft\1.11\Armory\src\resources\assets\armory\textures\blocks\moltenmetalmixer\glass.png
+map_Kd armory:blocks/moltenmetalmixer/glass
 
 newmtl Mixer
-Ns 96.078431
-Ka 1.000000 1.000000 1.000000
-Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd E:\Development\Minecraft\1.11\Armory\src\resources\assets\armory\textures\blocks\moltenmetalmixer\lightsheet.png
+map_Kd armory:blocks/moltenmetalmixer/lightsheet

@@ -37,6 +37,9 @@ public class ModMaterials {
 
             @Nonnull
             public static ICoreArmorMaterial GOLD;
+
+            @Nonnull
+            public static ICoreArmorMaterial HARDENED_IRON;
         }
 
         public static final class Addon {
@@ -52,6 +55,9 @@ public class ModMaterials {
 
             @Nonnull
             public static IAddonArmorMaterial GOLD;
+
+            @Nonnull
+            public static IAddonArmorMaterial HARDENED_IRON;
         }
     }
 

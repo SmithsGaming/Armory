@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
  */
 public class GeneralTabs extends CreativeTabs {
     public GeneralTabs() {
-        super(TranslationKeys.CreativeTabs.General);
+        super(TranslationKeys.CreativeTabs.TK_TAB_GENERAL);
     }
 
     @Nonnull

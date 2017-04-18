@@ -2,6 +2,7 @@ package com.smithsmodding.armory.api.common.material.core;
 
 import com.smithsmodding.armory.api.client.model.renderinfo.IRenderInfoProvider;
 import com.smithsmodding.armory.api.util.client.ITranslateable;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
@@ -47,8 +48,26 @@ public interface IMaterial<T> extends IForgeRegistryEntry<T>, IRenderInfoProvide
     @Nonnull
     Integer getVaporizingTime();
 
-
+    /**
+     * The heat coefficient of this material
+     * @return the heat coefficient of this material.
+     */
     @Nonnull
     Float getHeatCoefficient();
+
+    /**
+     * Method to get the fluid if this material is molten.
+     * @return The fluid that represents this material.
+     */
+    @Nonnull
+    Fluid getFluidForMaterial();
+
+    /**
+     * Setter for the fluid that represents this material.
+     * @param fluid The new molten material.
+     * @return The instance this was called upon.
+     */
+    @Nonnull
+    T setFluidForMaterial(Fluid fluid);
 
 }

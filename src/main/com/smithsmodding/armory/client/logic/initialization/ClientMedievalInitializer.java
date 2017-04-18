@@ -54,6 +54,9 @@ public class ClientMedievalInitializer extends IInitializationComponent.Impl {
         });
         ModMaterials.Armor.Addon.STEEL.setRenderInfo(ModMaterials.Armor.Core.STEEL.getRenderInfo());
 
+        ModMaterials.Armor.Core.HARDENED_IRON.setRenderInfo(new MaterialRenderControllers.Metal(0x757CBA, 0f, 0.3f, 0f));
+        ModMaterials.Armor.Addon.HARDENED_IRON.setRenderInfo(ModMaterials.Armor.Core.HARDENED_IRON.getRenderInfo());
+
         ModMaterials.Anvil.STONE.setRenderInfo(new MaterialRenderControllers.BlockTexture("minecraft:blocks/stone"));
         ModMaterials.Anvil.IRON.setRenderInfo(ModMaterials.Armor.Core.IRON.getRenderInfo());
         ModMaterials.Anvil.OBSIDIAN.setRenderInfo(ModMaterials.Armor.Core.OBSIDIAN.getRenderInfo());

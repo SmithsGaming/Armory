@@ -7,19 +7,16 @@ import com.smithsmodding.armory.api.util.references.ModBlocks;
 import com.smithsmodding.armory.api.util.references.ModItems;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.client.ArmoryClientProxy;
-import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererConduit;
-import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererForge;
-import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererMoltenMetalTank;
-import com.smithsmodding.armory.client.render.tileentity.TileEntityRendererPump;
+import com.smithsmodding.armory.client.render.tileentity.*;
 import com.smithsmodding.armory.common.block.BlockConduit;
 import com.smithsmodding.armory.common.block.BlockMoltenMetalTank;
 import com.smithsmodding.armory.common.block.BlockPump;
+import com.smithsmodding.armory.common.block.types.EnumConduitType;
+import com.smithsmodding.armory.common.block.types.EnumPumpType;
+import com.smithsmodding.armory.common.block.types.EnumTankType;
 import com.smithsmodding.armory.common.item.ItemArmorComponent;
 import com.smithsmodding.armory.common.item.ItemHeatedItem;
-import com.smithsmodding.armory.common.tileentity.TileEntityConduit;
-import com.smithsmodding.armory.common.tileentity.TileEntityForge;
-import com.smithsmodding.armory.common.tileentity.TileEntityMoltenMetalTank;
-import com.smithsmodding.armory.common.tileentity.TileEntityPump;
+import com.smithsmodding.armory.common.tileentity.*;
 import com.smithsmodding.smithscore.client.block.statemap.ExtendedStateMap;
 import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
 import com.smithsmodding.smithscore.client.model.loader.SmithsCoreOBJLoader;
@@ -83,13 +80,13 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
             @Nullable
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
-                if (stack.getMetadata() == 1)
+                if (EnumConduitType.byMetadata(stack.getItemDamage()) == EnumConduitType.NORMAL)
                     return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Normal"), "inventory");
 
-                if (stack.getMetadata() == 2)
+                if (EnumConduitType.byMetadata(stack.getItemDamage()) == EnumConduitType.LIGHT)
                     return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Light"), "inventory");
 
-                if (stack.getMetadata() == 3)
+                if (EnumConduitType.byMetadata(stack.getItemDamage()) == EnumConduitType.VERTICAL)
                     return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Conduit.Vertical"), "inventory");
 
                 return null;
@@ -104,10 +101,10 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
             @Nullable
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
-                if (stack.getMetadata() == 1)
+                if (EnumTankType.byMetadata(stack.getItemDamage()) == EnumTankType.NORMAL)
                     return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Tank.Normal"), "inventory");
 
-                if (stack.getMetadata() == 2)
+                if (EnumTankType.byMetadata(stack.getItemDamage()) == EnumTankType.LIGHT)
                     return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Tank.Light"), "inventory");
 
                 return null;
@@ -121,10 +118,10 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
             @Nullable
             @Override
             public ModelResourceLocation getModelLocation(ItemStack stack) {
-                if (stack.getMetadata() == 1)
+                if (EnumPumpType.byMetadata(stack.getItemDamage()) == EnumPumpType.HORIZONTAL)
                     return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Pump.Horizontal"), "inventory");
 
-                if (stack.getMetadata() == 2)
+                if (EnumPumpType.byMetadata(stack.getItemDamage()) == EnumPumpType.VERTICAL)
                     return new ModelResourceLocation(new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Blocks.Pump.Vertical"), "inventory");
 
                 return null;
@@ -150,6 +147,7 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
         ArmoryClientProxy.registerBlockModel(ModBlocks.BL_ANVIL);
         ArmoryClientProxy.registerBlockModel(ModBlocks.BL_FIREPLACE);
         ArmoryClientProxy.registerBlockModel(ModBlocks.BL_RESOURCE);
+        ArmoryClientProxy.registerBlockModel(ModBlocks.BL_MOLTENMETALMIXER);
 
         ModelLoader.setCustomStateMapper(ModBlocks.BL_CONDUIT, new ExtendedStateMap.Builder().withName(BlockConduit.TYPE).withCamelCase(new char[]{'.'}).withPrefix("Armory.Blocks.Conduit.").build());
         ModelLoader.setCustomStateMapper(ModBlocks.BL_TANK, new ExtendedStateMap.Builder().withName(BlockMoltenMetalTank.TYPE).withCamelCase(new char[]{'.'}).withPrefix("Armory.Blocks.Tank.").build());
@@ -159,5 +157,6 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConduit.class, new TileEntityRendererConduit());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMoltenMetalTank.class, new TileEntityRendererMoltenMetalTank());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPump.class, new TileEntityRendererPump());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMoltenMetalMixer.class, new TileEntityRendererMoltenMetalMixer());
     }
 }

@@ -2,6 +2,7 @@ package com.smithsmodding.armory.common.material;
 
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.smithscore.client.textures.ITextureController;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -26,6 +27,7 @@ public abstract class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<
     private final String textureOverrideIdentifier;
 
     private ITextureController renderInfo;
+    private Fluid fluid;
 
     public MedievalCoreArmorMaterial(String translationKey, String textFormatting, String oreDictionaryIdentifier, Float meltingPoint, Float vaporizingPoint, Integer meltingTime, Integer vaporizingTime, Float heatCoefficient) {
         this.translationKey = translationKey;
@@ -163,5 +165,31 @@ public abstract class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<
     @Override
     public Float getHeatCoefficient() {
         return heatCoefficient;
+    }
+
+    /**
+     * Method to get the fluid if this material is molten.
+     *
+     * @return The fluid that represents this material.
+     */
+    @Nonnull
+    @Override
+    public Fluid getFluidForMaterial() {
+        return fluid;
+    }
+
+    /**
+     * Setter for the fluid that represents this material.
+     *
+     * @param fluid The new molten material.
+     *
+     * @return The instance this was called upon.
+     */
+    @Nonnull
+    @Override
+    public ICoreArmorMaterial setFluidForMaterial(Fluid fluid) {
+        this.fluid = fluid;
+
+        return this;
     }
 }
