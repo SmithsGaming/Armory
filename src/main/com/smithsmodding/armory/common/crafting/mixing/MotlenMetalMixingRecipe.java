@@ -1,11 +1,12 @@
 package com.smithsmodding.armory.common.crafting.mixing;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.common.crafting.mixing.IFluidFluidToFluidMixingRecipe;
+import com.smithsmodding.armory.api.common.crafting.mixing.IMoltenMetalMixingRecipe;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.common.MaterialHelper;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.api.common.fluid.FluidMoltenMetal;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
@@ -16,7 +17,7 @@ import javax.annotation.Nullable;
 /**
  * Created by marcf on 3/9/2017.
  */
-public class FluidFluidToFluidMixingRecipe extends IForgeRegistryEntry.Impl<IFluidFluidToFluidMixingRecipe> implements IFluidFluidToFluidMixingRecipe {
+public class MotlenMetalMixingRecipe extends IForgeRegistryEntry.Impl<IMoltenMetalMixingRecipe> implements IMoltenMetalMixingRecipe {
 
     private String oreDicLeft;
     private int amountLeft;
@@ -28,6 +29,10 @@ public class FluidFluidToFluidMixingRecipe extends IForgeRegistryEntry.Impl<IFlu
     private int amountOut;
     
     private Integer processingTime;
+
+    private ItemStack primarySolidInputStack;
+    private ItemStack secondarySolidInputStack;
+    private ItemStack tertiarySolidInputStack;
 
     /**
      * Method to get the processing time required for this recipe.
@@ -48,8 +53,77 @@ public class FluidFluidToFluidMixingRecipe extends IForgeRegistryEntry.Impl<IFlu
      * @return The instance this was called upon.
      */
     @Override
-    public IFluidFluidToFluidMixingRecipe setProcessingTime(@Nonnull final Integer time) {
+    public IMoltenMetalMixingRecipe setProcessingTime(@Nonnull final Integer time) {
         this.processingTime = time;
+        return this;
+    }
+
+    /**
+     * Method to get the primary solid input stack.
+     *
+     * @return The primary solid input stack.
+     */
+    @Override
+    public ItemStack getPrimarySolidInputStack() {
+        return primarySolidInputStack;
+    }
+
+    /**
+     * Method used to set the primary solid input stack.
+     *
+     * @param primarySolidInputStack The new primary solid input stack.
+     *
+     * @return The primary solid input stack.
+     */
+    @Override
+    public IMoltenMetalMixingRecipe setPrimarySolidInputStack(@Nonnull ItemStack primarySolidInputStack) {
+        this.primarySolidInputStack = primarySolidInputStack;
+        return this;
+    }
+
+    /**
+     * Method to get the secondary solid input stack.
+     *
+     * @return The secondary solid input stack.
+     */
+    @Override
+    public ItemStack getSecondarySolidInputStack() {
+        return secondarySolidInputStack;
+    }
+
+    /**
+     * Method used to set the secondary solid input stack.
+     *
+     * @param secondarySolidInputStack The new secondary solid input stack.
+     *
+     * @return The secondary solid input stack.
+     */
+    @Override
+    public IMoltenMetalMixingRecipe setSecondarySolidInputStack(@Nonnull ItemStack secondarySolidInputStack) {
+        this.secondarySolidInputStack = secondarySolidInputStack;
+        return this;
+    }
+
+    /**
+     * Method to get the tertiary solid input stack.
+     *
+     * @return The tertiary solid input stack.
+     */
+    @Override
+    public ItemStack getTertiarySolidInputStack() {
+        return tertiarySolidInputStack;
+    }
+
+    /**
+     * Method used to set the tertiary solid input stack.
+     *
+     * @param tertiarySolidInputStack The new tertiary solid input stack.
+     *
+     * @return The tertiary solid input stack.
+     */
+    @Override
+    public IMoltenMetalMixingRecipe setTertiarySolidInputStack(@Nonnull ItemStack tertiarySolidInputStack) {
+        this.tertiarySolidInputStack = tertiarySolidInputStack;
         return this;
     }
 
@@ -75,7 +149,7 @@ public class FluidFluidToFluidMixingRecipe extends IForgeRegistryEntry.Impl<IFlu
      */
     @Nonnull
     @Override
-    public FluidFluidToFluidMixingRecipe setLeftInputStack(@Nonnull FluidStack inputStack) {
+    public MotlenMetalMixingRecipe setLeftInputStack(@Nonnull FluidStack inputStack) {
         if (!(inputStack.getFluid() instanceof FluidMoltenMetal) || inputStack.tag == null || !inputStack.tag.hasKey(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL))
             throw new IllegalArgumentException("Unsupported Fluid.");
 
@@ -94,7 +168,7 @@ public class FluidFluidToFluidMixingRecipe extends IForgeRegistryEntry.Impl<IFlu
      * @return The instance this was called upon.
      */
     @Nonnull
-    public FluidFluidToFluidMixingRecipe setLeftInputData(@Nonnull String oreDicLeft, @Nonnull Integer amountLeft) {
+    public MotlenMetalMixingRecipe setLeftInputData(@Nonnull String oreDicLeft, @Nonnull Integer amountLeft) {
         this.oreDicLeft = oreDicLeft;
         this.amountLeft = amountLeft;
         
@@ -123,7 +197,7 @@ public class FluidFluidToFluidMixingRecipe extends IForgeRegistryEntry.Impl<IFlu
      */
     @Nonnull
     @Override
-    public FluidFluidToFluidMixingRecipe setRightInputStack(@Nonnull FluidStack inputStack) {
+    public MotlenMetalMixingRecipe setRightInputStack(@Nonnull FluidStack inputStack) {
         if (!(inputStack.getFluid() instanceof FluidMoltenMetal) || inputStack.tag == null || !inputStack.tag.hasKey(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL))
             throw new IllegalArgumentException("Unsupported Fluid.");
 
@@ -142,7 +216,7 @@ public class FluidFluidToFluidMixingRecipe extends IForgeRegistryEntry.Impl<IFlu
      * @return The instance this was called upon.
      */
     @Nonnull
-    public FluidFluidToFluidMixingRecipe setRightInputData(@Nonnull String oreDicRight, @Nonnull Integer amountRight) {
+    public MotlenMetalMixingRecipe setRightInputData(@Nonnull String oreDicRight, @Nonnull Integer amountRight) {
         this.oreDicRight = oreDicRight;
         this.amountRight = amountRight;
 
@@ -172,7 +246,7 @@ public class FluidFluidToFluidMixingRecipe extends IForgeRegistryEntry.Impl<IFlu
      */
     @Nonnull
     @Override
-    public FluidFluidToFluidMixingRecipe setExemplaryOutputStack(@Nonnull FluidStack outputStack) {
+    public MotlenMetalMixingRecipe setExemplaryOutputStack(@Nonnull FluidStack outputStack) {
         if (!(outputStack.getFluid() instanceof FluidMoltenMetal) || outputStack.tag == null || !outputStack.tag.hasKey(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL))
             throw new IllegalArgumentException("Unsupported Fluid.");
 
@@ -191,7 +265,7 @@ public class FluidFluidToFluidMixingRecipe extends IForgeRegistryEntry.Impl<IFlu
      * @return The instance this was called upon.
      */
     @Nonnull
-    public FluidFluidToFluidMixingRecipe setExamplaryOutputData(@Nonnull String oreDicOutput, @Nonnull Integer amountOutput) {
+    public MotlenMetalMixingRecipe setExamplaryOutputData(@Nonnull String oreDicOutput, @Nonnull Integer amountOutput) {
         this.oreDicOut = oreDicOutput;
         this.amountOut = amountOutput;
 

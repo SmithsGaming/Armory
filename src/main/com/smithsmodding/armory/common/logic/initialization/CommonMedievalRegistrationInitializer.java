@@ -9,7 +9,7 @@ import com.smithsmodding.armory.api.common.crafting.blacksmiths.component.Heated
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.component.StandardAnvilRecipeComponent;
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
-import com.smithsmodding.armory.api.common.crafting.mixing.IFluidFluidToFluidMixingRecipe;
+import com.smithsmodding.armory.api.common.crafting.mixing.IMoltenMetalMixingRecipe;
 import com.smithsmodding.armory.api.common.events.common.RegisterMaterialDependentCoreExtensionEvent;
 import com.smithsmodding.armory.api.common.helpers.IMaterialConstructionHelper;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
@@ -25,7 +25,7 @@ import com.smithsmodding.armory.common.armor.extension.MedievalArmorExtension;
 import com.smithsmodding.armory.common.armor.extension.MedievalArmorExtensionPosition;
 import com.smithsmodding.armory.common.armor.extension.MedievalMaterialDependantArmorExtension;
 import com.smithsmodding.armory.common.crafting.blacksmiths.recipe.ArmorUpgradeAnvilRecipe;
-import com.smithsmodding.armory.common.crafting.mixing.FluidFluidToFluidMixingRecipe;
+import com.smithsmodding.armory.common.crafting.mixing.MotlenMetalMixingRecipe;
 import com.smithsmodding.smithscore.common.events.AutomaticEventBusSubscriber;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -1283,17 +1283,17 @@ public class CommonMedievalRegistrationInitializer {
     }
 
     @SubscribeEvent
-    public static void handleFluidFluidToFluidMixingRecipeRegistration(@Nonnull RegistryEvent.Register<IFluidFluidToFluidMixingRecipe> fluidToFluidMixingRecipeRegisterEvent) {
-        IForgeRegistry<IFluidFluidToFluidMixingRecipe> registry = fluidToFluidMixingRecipeRegisterEvent.getRegistry();
+    public static void handleFluidFluidToFluidMixingRecipeRegistration(@Nonnull RegistryEvent.Register<IMoltenMetalMixingRecipe> fluidToFluidMixingRecipeRegisterEvent) {
+        IForgeRegistry<IMoltenMetalMixingRecipe> registry = fluidToFluidMixingRecipeRegisterEvent.getRegistry();
 
-        registry.register(new FluidFluidToFluidMixingRecipe()
+        registry.register(new MotlenMetalMixingRecipe()
                 .setLeftInputData(ModMaterials.Armor.Core.IRON.getOreDictionaryIdentifier(), References.General.FLUID_INGOT)
                 .setRightInputData(ModMaterials.Armor.Core.OBSIDIAN.getOreDictionaryIdentifier(), References.General.FLUID_INGOT)
                 .setExamplaryOutputData(ModMaterials.Armor.Core.HARDENED_IRON.getOreDictionaryIdentifier(), References.General.FLUID_INGOT)
                 .setProcessingTime(125)
                 .setRegistryName(new ResourceLocation(References.General.MOD_ID, ModMaterials.Armor.Core.HARDENED_IRON + "-" + ModMaterials.Armor.Core.IRON + "-" + ModMaterials.Armor.Core.OBSIDIAN)));
 
-        registry.register(new FluidFluidToFluidMixingRecipe()
+        registry.register(new MotlenMetalMixingRecipe()
                 .setLeftInputData(ModMaterials.Armor.Core.OBSIDIAN.getOreDictionaryIdentifier(), References.General.FLUID_INGOT)
                 .setRightInputData(ModMaterials.Armor.Core.IRON.getOreDictionaryIdentifier(), References.General.FLUID_INGOT)
                 .setExamplaryOutputData(ModMaterials.Armor.Core.HARDENED_IRON.getOreDictionaryIdentifier(), References.General.FLUID_INGOT)

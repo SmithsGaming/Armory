@@ -1,7 +1,8 @@
 package com.smithsmodding.armory.common.tileentity;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.common.crafting.mixing.IFluidFluidToFluidMixingRecipe;
+import com.smithsmodding.armory.api.common.crafting.mixing.IMoltenMetalMixingRecipe;
+import com.smithsmodding.armory.api.util.common.ItemStackHelper;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.guimanagers.TileEntityMoltenMetalMixerGuiManager;
@@ -23,6 +24,16 @@ import javax.annotation.Nullable;
  * Created by marcf on 2/19/2017.
  */
 public class TileEntityMoltenMetalMixer extends TileEntitySmithsCore<TileEntityMoltenMetalMixerState, TileEntityMoltenMetalMixerGuiManager> implements ITickable, IFluidContainingEntity, IItemStorage {
+
+    public static final int CONSTANT_SOLIDMIXINGSLOTS = 3;
+
+    @Nonnull
+    private final ItemStack[] solidSlots = new ItemStack[CONSTANT_SOLIDMIXINGSLOTS];
+
+    public TileEntityMoltenMetalMixer() {
+        clearInventory();
+    }
+
     @Nonnull
     @Override
     protected TileEntityMoltenMetalMixerGuiManager getInitialGuiManager() {
@@ -110,7 +121,7 @@ public class TileEntityMoltenMetalMixer extends TileEntitySmithsCore<TileEntityM
             return;
         }
 
-        IFluidFluidToFluidMixingRecipe recipe = getState().getCurrentRecipe();
+        IMoltenMetalMixingRecipe recipe = getState().getCurrentRecipe();
 
         FluidStack currentLeft = getState().getLeftTank().drain(Integer.MAX_VALUE, false);
         FluidStack currentRight = getState().getRightTank().drain(Integer.MAX_VALUE, false);
@@ -136,7 +147,7 @@ public class TileEntityMoltenMetalMixer extends TileEntitySmithsCore<TileEntityM
         FluidStack currentLeft = getState().getLeftTank().drain(Integer.MAX_VALUE, false);
         FluidStack currentRight = getState().getRightTank().drain(Integer.MAX_VALUE, false);
         
-        for(IFluidFluidToFluidMixingRecipe currentRecipe : IArmoryAPI.Holder.getInstance().getRegistryManager().getFluidFluidToFluidMixingRecipeRegistry()) {
+        for(IMoltenMetalMixingRecipe currentRecipe : IArmoryAPI.Holder.getInstance().getRegistryManager().getMoltenMetalMixingRecipeRegistry()) {
             FluidStack output = currentRecipe.getRealOutputStack(currentLeft, currentRight);
 
             if (output == null)
@@ -198,7 +209,7 @@ public class TileEntityMoltenMetalMixer extends TileEntitySmithsCore<TileEntityM
      */
     @Override
     public boolean isEmpty() {
-        return true;
+        return false;
     }
 
     /**
@@ -206,7 +217,7 @@ public class TileEntityMoltenMetalMixer extends TileEntitySmithsCore<TileEntityM
      */
     @Override
     public int getSizeInventory() {
-        return 0;
+        return CONSTANT_SOLIDMIXINGSLOTS;
     }
 
     /**
@@ -237,7 +248,7 @@ public class TileEntityMoltenMetalMixer extends TileEntitySmithsCore<TileEntityM
      */
     @Override
     public void clearInventory() {
-
+        ItemStackHelper.InitializeItemStackArray(solidSlots);
     }
 
     /**
@@ -248,7 +259,7 @@ public class TileEntityMoltenMetalMixer extends TileEntitySmithsCore<TileEntityM
      */
     @Override
     public void setInventorySlotContents(int index, @Nonnull ItemStack stack) {
-
+        solidSlots[index] = stack;
     }
 
     /**
@@ -256,7 +267,7 @@ public class TileEntityMoltenMetalMixer extends TileEntitySmithsCore<TileEntityM
      */
     @Override
     public int getInventoryStackLimit() {
-        return 0;
+        return ItemStackHelper.CONSTANT_ITEMSTACK_DEFAULT_MAX;
     }
 
     /**
@@ -276,6 +287,10 @@ public class TileEntityMoltenMetalMixer extends TileEntitySmithsCore<TileEntityM
      */
     @Override
     public boolean isItemValidForSlot(int index, @Nonnull ItemStack stack) {
+        IArmoryAPI.Holder.getInstance().getRegistryManager().getMoltenMetalMixingRecipeRegistry().forEach(recipe -> {
+            if (ItemStackU)
+        });
+
         return false;
     }
 

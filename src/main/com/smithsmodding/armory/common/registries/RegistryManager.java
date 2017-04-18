@@ -8,7 +8,7 @@ import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionPosition;
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
-import com.smithsmodding.armory.api.common.crafting.mixing.IFluidFluidToFluidMixingRecipe;
+import com.smithsmodding.armory.api.common.crafting.mixing.IMoltenMetalMixingRecipe;
 import com.smithsmodding.armory.api.common.events.common.material.RegisterMaterialEvent;
 import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
 import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
 import java.util.Map;
 
 /**
- * Created by marcf on 1/2/2017.
+ * The central registry manager for Armory.
  */
 public final class RegistryManager implements IRegistryManager {
 
@@ -40,43 +40,43 @@ public final class RegistryManager implements IRegistryManager {
     private static final RegistryManager INSTANCE = new RegistryManager();
 
     @Nonnull
-    protected IForgeRegistry<ICoreArmorMaterial> coreArmorMaterialIForgeRegistry;
+    IForgeRegistry<ICoreArmorMaterial> coreArmorMaterialIForgeRegistry = null;
 
     @Nonnull
-    protected IForgeRegistry<IAddonArmorMaterial> addonArmorMaterialIForgeRegistry;
+    IForgeRegistry<IAddonArmorMaterial> addonArmorMaterialIForgeRegistry = null;
 
     @Nonnull
-    protected IForgeRegistry<IAnvilMaterial> anvilMaterialIForgeRegistry;
+    IForgeRegistry<IAnvilMaterial> anvilMaterialIForgeRegistry = null;
 
     @Nonnull
-    protected IForgeRegistry<RegistryMaterialWrapper> combinedMaterialRegistry;
+    IForgeRegistry<RegistryMaterialWrapper> combinedMaterialRegistry = null;
 
     @Nonnull
-    protected IForgeRegistry<IMultiComponentArmor> multiComponentArmorRegistry;
+    IForgeRegistry<IMultiComponentArmor> multiComponentArmorRegistry = null;
 
     @Nonnull
-    protected IForgeRegistry<IMultiComponentArmorExtensionPosition> multiComponentArmorExtensionPositionRegistry;
+    IForgeRegistry<IMultiComponentArmorExtensionPosition> multiComponentArmorExtensionPositionRegistry = null;
 
     @Nonnull
-    protected IForgeRegistry<IMultiComponentArmorExtension> multiComponentArmorExtensionRegistry;
+    IForgeRegistry<IMultiComponentArmorExtension> multiComponentArmorExtensionRegistry = null;
 
     @Nonnull
-    protected IForgeRegistry<IHeatableObject> heatableObjectRegistry;
+    IForgeRegistry<IHeatableObject> heatableObjectRegistry = null;
 
     @Nonnull
-    protected IForgeRegistry<IHeatedObjectType> heatableObjectTypeRegistry;
+    IForgeRegistry<IHeatedObjectType> heatableObjectTypeRegistry = null;
 
     @Nonnull
-    protected IForgeRegistry<IAnvilRecipe> anvilRecipeRegistry;
+    IForgeRegistry<IAnvilRecipe> anvilRecipeRegistry = null;
 
     @Nonnull
-    protected IForgeRegistry<IFluidFluidToFluidMixingRecipe> fluidFluidToFluidMixingRecipes;
+    IForgeRegistry<IMoltenMetalMixingRecipe> moltenMetalMixingRecipesRegistry = null;
 
     @Nonnull
-    protected IForgeRegistry<IInitializationComponent> initializationComponentRegistry;
+    IForgeRegistry<IInitializationComponent> initializationComponentRegistry = null;
 
     @Nonnull
-    protected IForgeRegistry<ICreationController> textureCreationControllerRegistry;
+    IForgeRegistry<ICreationController> textureCreationControllerRegistry = null;
 
     /**
      * Getter for the current Instance of the RegistryManager
@@ -91,9 +91,9 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{ICoreArmoryMaterial} Registry. Holds all registered @code{ICoreArmoryMaterial}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the {@link ICoreArmorMaterial} Registry. Holds all registered {@link ICoreArmorMaterial}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
-     * @return The @code{ICoreArmoryMaterial} Registry.
+     * @return The {@link ICoreArmorMaterial} Registry.
      */
     @Nonnull
     @Override
@@ -102,9 +102,9 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{IAddonArmoryMaterial} Registry. Holds all registered @code{IAddonArmoryMaterial}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the {@link IAddonArmorMaterial} Registry. Holds all registered {@link IAddonArmorMaterial}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
-     * @return The @code{IAddonArmoryMaterial} Registry.
+     * @return The {@link IAddonArmorMaterial} Registry.
      */
     @Nonnull
     @Override
@@ -113,9 +113,9 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{IAnvilMaterial} Registry. Holds all registered @code{IAnvilMaterial}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the {@link IAnvilMaterial} Registry. Holds all registered {@link IAnvilMaterial}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
-     * @return The @code{IAnvilMaterial} Registry.
+     * @return The {@link IAnvilMaterial} Registry.
      */
     @Nonnull
     @Override
@@ -124,9 +124,9 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{RegistryWrapper} Registry. Holds all registered @code{RegistryWrapper}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the {@link RegistryMaterialWrapper} Registry. Holds all registered {@link RegistryMaterialWrapper}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
-     * @return The @code{RegistryWrapper} Registry.
+     * @return The {@link RegistryMaterialWrapper} Registry.
      */
     @Nonnull
     @Override
@@ -135,9 +135,9 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{IMultiComponentArmorExtensionPosition} Registry. Holds all registered @code{IMultiComponentArmorExtensionPosition}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the {@link IMultiComponentArmorExtensionPosition} Registry. Holds all registered {@link IMultiComponentArmorExtensionPosition}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
-     * @return The @code{IMultiComponentArmorExtensionPosition} Registry.
+     * @return The {@link IMultiComponentArmorExtensionPosition} Registry.
      */
     @Nonnull
     @Override
@@ -146,9 +146,9 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{IMultiComponentArmorExtension} Registry. Holds all registered @code{IMultiComponentArmorExtension}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the {@link IMultiComponentArmorExtension} Registry. Holds all registered {@link IMultiComponentArmorExtension}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
-     * @return The @code{IMultiComponentArmorExtension} Registry.
+     * @return The {@link IMultiComponentArmorExtension} Registry.
      */
     @Nonnull
     @Override
@@ -157,9 +157,9 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{IMultiComponentArmor} Registry. Holds all registered @code{IMultiComponentArmor}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the {@link IMultiComponentArmor} Registry. Holds all registered {@link IMultiComponentArmor}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
-     * @return The @code{IMultiComponentArmor} Registry.
+     * @return The {@link IMultiComponentArmor} Registry.
      */
     @Nonnull
     @Override
@@ -169,9 +169,9 @@ public final class RegistryManager implements IRegistryManager {
 
 
     /**
-     * Getter for the @code{IHeatableObject} Registry. Holds all registered @code{IHeatableObject}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the {@link IHeatableObject} Registry. Holds all registered {@link IHeatableObject}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
-     * @return The @code{IHeatableObject} Registry.
+     * @return The {@link IHeatableObject} Registry.
      */
     @Nonnull
     @Override
@@ -180,9 +180,9 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{IHeatableObject} Registry. Holds all registered @code{IHeatableObject}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the {@link IHeatableObject} Registry. Holds all registered {@link IHeatableObject}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
-     * @return The @code{IHeatableObject} Registry.
+     * @return The {@link IHeatableObject} Registry.
      */
     @Nonnull
     @Override
@@ -191,9 +191,9 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{IAnvilRecipe} Registry. Holds all registered @code{IAnvilRecipe}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the {@link IAnvilRecipe} Registry. Holds all registered {@link IAnvilRecipe}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
-     * @return The @code{IAnvilRecipe} Registry.
+     * @return The {@link IAnvilRecipe} Registry.
      */
     @Nonnull
     @Override
@@ -202,19 +202,19 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{IFluidFluidToFluidMixingRecipe} Registry. Holds all registered @code{IFluidFluidToFluidMixingRecipe}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the {@link IMoltenMetalMixingRecipe} Registry. Holds all registered {@link IMoltenMetalMixingRecipe}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
-     * @return The @code{IFluidFluidToFluidMixingRecipe} Registry.
+     * @return The {@link IMoltenMetalMixingRecipe} Registry.
      */
     @Nonnull
     @Override
-    public IForgeRegistry<IFluidFluidToFluidMixingRecipe> getFluidFluidToFluidMixingRecipeRegistry() {
-        return fluidFluidToFluidMixingRecipes;
+    public IForgeRegistry<IMoltenMetalMixingRecipe> getMoltenMetalMixingRecipeRegistry() {
+        return moltenMetalMixingRecipesRegistry;
     }
 
     /**
-     * Getter for the @code{IInitializationComponent} Registry. Holds all registered @code{IInitializationComponent}. Managed by FML, as it is an instance of @code{IForgeRegistry}
-     * @return The @code{IInitializationComponent} Registry.
+     * Getter for the {@link IInitializationComponent} Registry. Holds all registered {@link IInitializationComponent}. Managed by FML, as it is an instance of {@link IForgeRegistry}
+     * @return The {@link IInitializationComponent} Registry.
      */
     @Nonnull
     public IForgeRegistry<IInitializationComponent> getInitializationComponentRegistry() {
@@ -222,9 +222,9 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the @code{ICreationController} Registry. Holds all registered @code{ICreationController}. Managed by FML, as it is an instance of @code{IForgeRegistry}
+     * Getter for the {@link ICreationController} Registry. Holds all registered {@link ICreationController}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
-     * @return The @code{ICreationController} Registry.
+     * @return The {@link ICreationController} Registry.
      */
     @Nonnull
     @Override

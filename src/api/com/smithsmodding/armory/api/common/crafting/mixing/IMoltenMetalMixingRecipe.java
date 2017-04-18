@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.api.common.crafting.mixing;
 
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
@@ -7,9 +8,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * Created by marcf on 2/19/2017.
+ * Interface describing a recipe for molten metal mixing.
  */
-public interface IFluidFluidToFluidMixingRecipe extends IForgeRegistryEntry<IFluidFluidToFluidMixingRecipe> {
+public interface IMoltenMetalMixingRecipe extends IForgeRegistryEntry<IMoltenMetalMixingRecipe> {
 
     /**
      * Method to get the processing time required for this recipe.
@@ -23,8 +24,47 @@ public interface IFluidFluidToFluidMixingRecipe extends IForgeRegistryEntry<IFlu
      * @param time The new processing time.
      * @return The instance this was called upon.
      */
-    IFluidFluidToFluidMixingRecipe setProcessingTime(@Nonnull Integer time);
+    IMoltenMetalMixingRecipe setProcessingTime(@Nonnull Integer time);
 
+    /**
+     * Method to get the primary solid input stack.
+     * @return The primary solid input stack.
+     */
+    ItemStack getPrimarySolidInputStack();
+
+    /**
+     * Method used to set the primary solid input stack.
+     * @param primarySolidInputStack The new primary solid input stack.
+     * @return The primary solid input stack.
+     */
+    IMoltenMetalMixingRecipe setPrimarySolidInputStack(@Nonnull ItemStack primarySolidInputStack);
+
+    /**
+     * Method to get the secondary solid input stack.
+     * @return The secondary solid input stack.
+     */
+    ItemStack getSecondarySolidInputStack();
+
+    /**
+     * Method used to set the secondary solid input stack.
+     * @param secondarySolidInputStack The new secondary solid input stack.
+     * @return The secondary solid input stack.
+     */
+    IMoltenMetalMixingRecipe setSecondarySolidInputStack(@Nonnull ItemStack secondarySolidInputStack);
+
+    /**
+     * Method to get the tertiary solid input stack.
+     * @return The tertiary solid input stack.
+     */
+    ItemStack getTertiarySolidInputStack();
+
+    /**
+     * Method used to set the tertiary solid input stack.
+     * @param tertiarySolidInputStack The new tertiary solid input stack.
+     * @return The tertiary solid input stack.
+     */
+    IMoltenMetalMixingRecipe setTertiarySolidInputStack(@Nonnull ItemStack tertiarySolidInputStack);
+    
     /**
      * Method to get the input Stack on the left side.
      * @return The input stack on the left Side.
@@ -38,7 +78,7 @@ public interface IFluidFluidToFluidMixingRecipe extends IForgeRegistryEntry<IFlu
      * @return The instance this was called upon.
      */
     @Nonnull
-    IFluidFluidToFluidMixingRecipe setLeftInputStack(@Nonnull FluidStack inputStack);
+    IMoltenMetalMixingRecipe setLeftInputStack(@Nonnull FluidStack inputStack);
     
     /**
      * Method to get the input Stack on the right side.
@@ -53,7 +93,7 @@ public interface IFluidFluidToFluidMixingRecipe extends IForgeRegistryEntry<IFlu
      * @return The instance this was called upon.
      */
     @Nonnull
-    IFluidFluidToFluidMixingRecipe setRightInputStack(@Nonnull FluidStack inputStack);
+    IMoltenMetalMixingRecipe setRightInputStack(@Nonnull FluidStack inputStack);
     
     /**
      * Method to get the exemplary output Stack, used for things like JEI.
@@ -68,7 +108,7 @@ public interface IFluidFluidToFluidMixingRecipe extends IForgeRegistryEntry<IFlu
      * @return The instance this was called upon.
      */
     @Nonnull
-    IFluidFluidToFluidMixingRecipe setExemplaryOutputStack(@Nonnull FluidStack outputStack);
+    IMoltenMetalMixingRecipe setExemplaryOutputStack(@Nonnull FluidStack outputStack);
     
     /**
      * Method to get the real output stack for a given input.

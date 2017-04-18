@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.common.tileentity.state;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.common.crafting.mixing.IFluidFluidToFluidMixingRecipe;
+import com.smithsmodding.armory.api.common.crafting.mixing.IMoltenMetalMixingRecipe;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.tileentity.moltenmetal.InputFilterableMoltenMetalTank;
 import com.smithsmodding.armory.common.tileentity.moltenmetal.MoltenMetalTank;
@@ -25,7 +25,7 @@ import static com.smithsmodding.armory.api.util.references.References.NBTTagComp
 public class TileEntityMoltenMetalMixerState implements ITileEntityState {
 
     @Nullable
-    private IFluidFluidToFluidMixingRecipe currentRecipe;
+    private IMoltenMetalMixingRecipe currentRecipe;
 
     @Nonnull
     private Integer currentProgress;
@@ -69,8 +69,8 @@ public class TileEntityMoltenMetalMixerState implements ITileEntityState {
 
         NBTTagCompound compound = (NBTTagCompound) stateData;
 
-        if (compound.hasKey(CURRENTRECIPE) && IArmoryAPI.Holder.getInstance().getRegistryManager().getFluidFluidToFluidMixingRecipeRegistry().containsKey(new ResourceLocation(compound.getString(CURRENTRECIPE))))
-            setCurrentRecipe(IArmoryAPI.Holder.getInstance().getRegistryManager().getFluidFluidToFluidMixingRecipeRegistry().getValue(new ResourceLocation(compound.getString(CURRENTRECIPE))));
+        if (compound.hasKey(CURRENTRECIPE) && IArmoryAPI.Holder.getInstance().getRegistryManager().getMoltenMetalMixingRecipeRegistry().containsKey(new ResourceLocation(compound.getString(CURRENTRECIPE))))
+            setCurrentRecipe(IArmoryAPI.Holder.getInstance().getRegistryManager().getMoltenMetalMixingRecipeRegistry().getValue(new ResourceLocation(compound.getString(CURRENTRECIPE))));
         else
             setCurrentRecipe(null);
 
@@ -115,12 +115,12 @@ public class TileEntityMoltenMetalMixerState implements ITileEntityState {
     }
 
     @Nullable
-    public IFluidFluidToFluidMixingRecipe getCurrentRecipe() {
+    public IMoltenMetalMixingRecipe getCurrentRecipe() {
         return currentRecipe;
     }
 
     @Nullable
-    public void setCurrentRecipe(@Nullable IFluidFluidToFluidMixingRecipe currentRecipe) {
+    public void setCurrentRecipe(@Nullable IMoltenMetalMixingRecipe currentRecipe) {
         this.currentRecipe = currentRecipe;
         this.currentProgress = 0;
     }

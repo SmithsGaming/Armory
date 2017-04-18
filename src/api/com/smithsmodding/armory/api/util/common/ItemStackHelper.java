@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
  */
 public class ItemStackHelper {
 
+    public static final int CONSTANT_ITEMSTACK_DEFAULT_MAX = 64;
+
     public static void InitializeItemStackArray(ItemStack[] stacks) {
         for (int i = 0; i < stacks.length; i++) {
             stacks[i] = ItemStack.EMPTY;

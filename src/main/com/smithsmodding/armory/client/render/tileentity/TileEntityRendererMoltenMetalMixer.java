@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.client.render.tileentity;
 
-import com.smithsmodding.armory.api.common.crafting.mixing.IFluidFluidToFluidMixingRecipe;
+import com.smithsmodding.armory.api.common.crafting.mixing.IMoltenMetalMixingRecipe;
 import com.smithsmodding.armory.client.render.tileentity.moltenmetalmixer.MoltenMetalMixerRenderComponents;
 import com.smithsmodding.armory.common.block.BlockMoltenMetalMixer;
 import com.smithsmodding.armory.common.tileentity.TileEntityMoltenMetalMixer;
@@ -36,7 +36,7 @@ public class TileEntityRendererMoltenMetalMixer extends TileEntitySpecialRendere
         if (te.getState().getCurrentRecipe() == null)
             return;
 
-        IFluidFluidToFluidMixingRecipe recipe = te.getState().getCurrentRecipe();
+        IMoltenMetalMixingRecipe recipe = te.getState().getCurrentRecipe();
         Float progression = te.getState().getCurrentProgress() / (float) recipe.getProcessingTime();
 
         MoltenMetalMixerRenderComponents.getRenderer(BlockMoltenMetalMixer.getFacing(te.getWorld(), te.getPos()))
